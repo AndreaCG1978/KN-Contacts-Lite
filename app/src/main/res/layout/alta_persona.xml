@@ -281,7 +281,7 @@
 				android:layout_width="wrap_content" android:layout_height="1px"
 				android:layout_marginBottom="8dp" android:background="@color/color_azul" />
 
-			<LinearLayout android:id="@+id/botonera"
+			<LinearLayout android:id="@+id/botonera1"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
 				android:orientation="horizontal" android:gravity="center"
 				android:layout_below="@id/lineaUp">

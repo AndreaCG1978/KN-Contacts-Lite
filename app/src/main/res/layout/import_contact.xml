@@ -18,7 +18,7 @@
 		android:layout_marginBottom="4dp" android:layout_marginTop="6dp"
 		android:padding="3dp" android:gravity="center" android:textStyle="bold"></TextView>
 
-	<View android:id="@+id/linea2" android:layout_width="wrap_content"
+	<View android:id="@+id/linea3" android:layout_width="wrap_content"
 		android:layout_height="1px" android:layout_marginBottom="6dp"
 		android:layout_marginTop="6dp" android:background="@color/color_azul" />
 
@@ -81,7 +81,7 @@
 
 
 
-	<View android:id="@+id/linea2" android:layout_width="wrap_content"
+	<View android:id="@+id/linea4" android:layout_width="wrap_content"
 		android:layout_height="1px" android:layout_marginBottom="6dp"
 		android:layout_marginTop="6dp" android:background="@color/color_azul" />
 

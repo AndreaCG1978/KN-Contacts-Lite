@@ -99,7 +99,7 @@
 			android:background="@layout/custom_button" android:text="@string/label_registrar_contrasenia"
 			android:textSize="12sp" android:layout_gravity="right" />
 
-		<View android:id="@+id/linea1" android:layout_width="wrap_content"
+		<View android:id="@+id/linea2" android:layout_width="wrap_content"
 			android:layout_height="1px" android:layout_margin="4dp"
 			android:background="@color/color_azul" />
 
@@ -142,12 +142,12 @@
 		</TextView>
 
 
-		<ListView android:id="@+id/android:list"
+		<ListView android:id="@android:id/list"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:dividerHeight="8dp" android:divider="@color/color_negro"
 			android:fastScrollEnabled="true" android:listSelector="@android:color/transparent">
 		</ListView>
-		<TextView android:id="@+id/android:empty"
+		<TextView android:id="@android:id/empty"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:layout_margin="10dp" android:text="@string/text_sinDatos" />
 	</LinearLayout>
