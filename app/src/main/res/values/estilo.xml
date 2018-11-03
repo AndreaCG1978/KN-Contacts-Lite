@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<color name="color_boton">#130011</color>
+	<color name="color_gris">#767777</color>
+	<color name="color_gris_oscuro">#2F3242</color>
+	<color name="color_blanco">#FFFFFF</color>
+	<color name="custom_theme_color">#140016</color>
+	<color name="titulo_color">#C99002</color>
+	<color name="spinner_color">#B25900</color>
+	<color name="color_texto">#C9E5E5</color> 
+	<color name="color_texto_shadow">#EFF260</color>
+	<color name="selector_lista">#f0f0f0</color>
+	<color name="color_text_alta">#6D8FAA</color>
+	<color name="color_text_lista">#758452</color>
+	<color name="color_naranja">#4F5354</color>
+	<color name="color_rojo">#EF9B00</color>
+	<color name="color_gris_claro">#D3D2CD</color>
+	<color name="color_negro">#000000</color>
+	<color name="color_amarillo">#FCFF7F</color>
+	<color name="color_naranja_muy_claro">#EDA757</color>
+	<color name="color_naranja_claro">#979DA0</color>
+	<color name="color_verde">#69A269</color>
+	<color name="color_azul_oscuro">#474556</color>
+	<color name="color_azul">#545066</color>
+	<color name="color_azul_claro">#748699</color>
+	<color name="color_violeta">#6D5D6C</color>
+	<color name="color_gris_boton">#D3D2CD</color>
+	<color name="color_celeste">#354CB5</color>
+
+</resources>

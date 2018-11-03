@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:orientation="vertical" android:background="@color/color_gris_oscuro">
+
+
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:layout_margin="15dp">
+
+
+		<TextView android:text="@string/label_contrasenia"
+			android:layout_width="110dp" android:layout_height="32dp"
+			android:background="@layout/custom_text_view_categoria_desc"
+			android:textColor="@color/color_azul_oscuro" android:padding="7dp"
+			android:gravity="right" android:textSize="13sp" />
+
+		<EditText android:id="@+id/contrasenia1" android:inputType="textPassword"
+			android:maxLength="20" 
+			android:textColor="@color/color_azul_oscuro" android:layout_width="fill_parent"
+			android:layout_height="35dp" android:padding="5dp" android:textSize="14sp"
+			android:layout_marginLeft="4dp" android:layout_marginRight="4dp" />
+
+	</LinearLayout>
+
+		<View android:layout_width="wrap_content" android:layout_height="1px"
+			android:layout_marginBottom="8dp" android:background="@color/color_azul" />
+
+	<Button android:id="@+id/botonActivarContrasenia"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:textColor="@color/color_azul" android:background="@layout/custom_button"
+		android:text="@string/label_ok" android:textSize="12sp"
+		android:layout_margin="8dp" android:layout_gravity="right" />
+
+
+</LinearLayout>

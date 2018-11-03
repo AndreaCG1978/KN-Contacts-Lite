@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" >
+
+
+	<TextView android:id="@+id/text1" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="@layout/custom_text_expandable_group_label"
+		android:textSize="13sp" android:textStyle="bold" android:paddingTop="9dp"
+		android:typeface="sans" android:paddingLeft="15dp"
+		android:paddingRight="10dp" android:paddingBottom="5dp"
+		android:layout_marginLeft="10dp" />
+
+</LinearLayout>
