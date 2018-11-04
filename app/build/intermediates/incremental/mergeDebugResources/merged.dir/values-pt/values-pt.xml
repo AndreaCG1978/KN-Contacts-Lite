@@ -32,7 +32,6 @@
     <string name="errorMandarMail">Falha ao enviar e-mail.</string>
     <string name="errorMandarMensaje">Falha ao enviar a mensagem.</string>
     <string name="errorSinContactosPorImportar"><![CDATA[Não há contatos para importar ...]]></string>
-    <string name="errorVerUrl">Falha ao navegar na url.</string>
     <string name="error_alta_categoria_incompleta"><![CDATA[Você deve preencher o nome da categoria e de recursos ...]]></string>
     <string name="error_alta_contrasenia"><![CDATA[Senha incorreta...]]></string>
     <string name="error_alta_persona_incompleta"><![CDATA[Você deve completar o Sobrenome ...]]></string>

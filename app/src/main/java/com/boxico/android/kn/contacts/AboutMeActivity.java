@@ -61,7 +61,7 @@ public class AboutMeActivity extends Activity {
     		startActivity(intent);
 			
 		} catch (Exception e) {
-			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorVerUrl));
+			ConstantsAdmin.mostrarMensaje(this, getString(R.string.error_exportar_csv));
 		}
     	 	
     }
