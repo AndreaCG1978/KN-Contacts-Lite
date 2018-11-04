@@ -13,7 +13,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	private static final String DATABASE_CREATE_PERSONA = "create table if not exists " + ConstantsAdmin.TABLA_PERSONA + 
         "(" + ConstantsAdmin.KEY_ROWID +" integer primary key autoincrement, "
         + ConstantsAdmin.KEY_APELLIDO + " text not null, "
-        + ConstantsAdmin.KEY_NOMBRES + " text null, "
+        + ConstantsAdmin.KEY_NOMBRES + " text, "
         + ConstantsAdmin.KEY_FECHA_NACIMIENTO + " text, "
         + ConstantsAdmin.KEY_TEL_PARTICULAR + " text, "
         + ConstantsAdmin.KEY_TEL_CELULAR + " text, "

@@ -5,7 +5,7 @@
 
 	<TextView android:id="@+id/nombre_contacto"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textSize="13sp" android:background="@layout/custom_text_view_categoria"
+		android:textSize="13sp" android:background="@drawable/custom_text_view_categoria"
 		android:textColor="@color/color_azul_oscuro" android:padding="3dp"
 		android:layout_marginBottom="3dp" android:layout_marginTop="3dp"
 		android:gravity="center" />
@@ -20,7 +20,7 @@
 			android:layout_width="wrap_content" android:layout_height="1px"
 			android:layout_marginBottom="8dp" android:background="@color/color_azul" />
 
-		<LinearLayout android:id="@+id/botonera"
+		<LinearLayout android:id="@+id/botonera1"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:orientation="horizontal" android:gravity="center"
 			android:layout_below="@id/lineaUp">
@@ -59,14 +59,14 @@
 					android:nextFocusRight="@+id/butttonRegistrarYSalir" android:text="@string/label_registrarPersona"
 					android:layout_width="fill_parent" android:layout_height="wrap_content"
 					android:textSize="12sp" android:textColor="@color/color_azul"
-					android:background="@layout/custom_button"
+					android:background="@drawable/custom_button"
 					android:layout_marginBottom="5dp" />
 
 				<Button android:id="@+id/butttonRegistrarYSalir"
 					android:layout_below="@id/nombre_contacto" android:text="@string/label_registrarPersonaYSalir"
 					android:layout_width="fill_parent" android:layout_height="wrap_content"
 					android:textSize="12sp" android:textColor="@color/color_azul"
-					android:background="@layout/custom_button" />
+					android:background="@drawable/custom_button" />
 
 			</LinearLayout>
 		</LinearLayout>
@@ -85,7 +85,7 @@
 
 		<TextView android:id="@+id/label_apellido" android:text="@string/hint_apellido"
 			android:layout_width="130dp" android:layout_height="32dp"
-			android:background="@layout/custom_text_view_categoria_desc"
+			android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" android:padding="7dp"
 			android:gravity="right" android:textSize="13sp" />
 
@@ -109,7 +109,7 @@
 
 		<TextView android:id="@+id/label_nombre" android:text="@string/hint_nombre"
 			android:singleLine="true" android:layout_width="130dp"
-			android:layout_height="32dp" android:background="@layout/custom_text_view_categoria_desc"
+			android:layout_height="32dp" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" android:padding="7dp"
 			android:gravity="right" android:textSize="13sp" />
 
@@ -137,7 +137,7 @@
 			android:nextFocusDown="@+id/butttonRegistrarPersonaFinal"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:textSize="12sp" android:textColor="@color/color_azul"
-			android:background="@layout/custom_button" android:layout_marginLeft="5dp" />
+			android:background="@drawable/custom_button" android:layout_marginLeft="5dp" />
 
 		<TextView android:id="@+id/labelDateDisplay"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -219,7 +219,7 @@
 		android:layout_below="@id/botonera" android:layout_width="wrap_content"
 		android:layout_height="35dp" android:layout_marginLeft="5dp"
 		android:layout_marginTop="5dp" android:layout_marginBottom="5dp"
-		android:background="@layout/custom_button" />
+		android:background="@drawable/custom_button" />
 
 
 	<LinearLayout android:id="@+id/linearCaracteristica"
@@ -230,7 +230,7 @@
 
 		<TextView android:id="@+id/label_datoExtra"
 			android:singleLine="true" android:layout_width="130dp"
-			android:layout_height="32dp" android:background="@layout/custom_text_view_categoria_desc"
+			android:layout_height="32dp" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" android:padding="7dp"
 			android:gravity="right" android:textSize="13sp" />
 
@@ -247,7 +247,7 @@
 
 		<TextView android:id="@+id/label_descripcion" android:text="@string/hint_descripcion"
 			android:singleLine="true" android:layout_width="130dp"
-			android:layout_height="32dp" android:background="@layout/custom_text_view_categoria_desc"
+			android:layout_height="32dp" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" android:padding="7dp"
 			android:gravity="right" android:textSize="13sp" />
 

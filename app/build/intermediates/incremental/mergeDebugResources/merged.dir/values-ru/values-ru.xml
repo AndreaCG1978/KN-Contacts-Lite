@@ -137,7 +137,6 @@
     <string name="mensaje_importar_contactos_csv"><![CDATA[Это сделает восстановления последней резервной копии. Хотите продолжить? (Это может занять несколько секунд)...)]]></string>
     <string name="mensaje_importar_todo_1"><![CDATA[Все новые контакты будут импортированы в качестве:]]></string>
     <string name="mensaje_importar_todo_2"><![CDATA[. Существующие контакты будут обновляться (только свои телефоны и почтовые аккаунты). Продолжить?]]></string>
-    <string name="mensaje_maximo_personas"><![CDATA[До 15 контактов в версии Lite.]]></string>
     <string name="mensaje_no_hay_contactos"><![CDATA[Никаких контактов, чтобы сделать резервную копию.]]></string>
     <string name="mensaje_registre_contrasenia"><![CDATA[Вы должны зарегистрировать пароль для защиты своих категориях...]]></string>
     <string name="mensaje_seleccione_actividad_categoria"><![CDATA[Категорийный менеджмент]]></string>

@@ -112,7 +112,6 @@
 <string name="errorEfectuarLlamada">Falha ao fazer a chamada.</string>
 <string name="errorMandarMensaje">Falha ao enviar a mensagem.</string>
 <string name="errorMandarMail">Falha ao enviar e-mail.</string>
-<string name="errorVerUrl">Falha ao navegar na url.</string>
 <string name="errorDesactivandoCategorias"><![CDATA[Você não pode desativar todas as categorias.]]></string>
 <string name="error_alta_persona_incompleta"><![CDATA[Você deve completar o Sobrenome ...]]></string>
 <string name="error_alta_categoria_incompleta"><![CDATA[Você deve preencher o nome da categoria e de recursos ...]]></string>

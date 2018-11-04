@@ -86,7 +86,7 @@ public class AltaCategoriaActivity extends Activity {
                     setResult(RESULT_OK);
                     finish();
             	}else{
-            		Toast t = Toast.makeText(getApplicationContext(), R.string.error_alta_categoria_incompleta, 4);
+            		Toast t = Toast.makeText(getApplicationContext(), R.string.error_alta_categoria_incompleta, Toast.LENGTH_LONG);
             		t.show();
          //   		mEntryApellido.clearFocus();
             		

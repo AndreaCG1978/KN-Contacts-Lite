@@ -11,12 +11,12 @@
 		<Button android:id="@+id/buttonIrAEditarPersona" android:text="@string/label_editarPersona"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:textSize="13sp" android:textColor="@color/color_azul"
-			android:background="@layout/custom_button" />
+			android:background="@drawable/custom_button" />
 
 		<Button android:id="@+id/buttonBorrarPersona" android:text="@string/label_borrarPersona"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:textSize="13sp" android:textColor="@color/color_azul"
-			android:background="@layout/custom_button" android:layout_marginLeft="15dp" />
+			android:background="@drawable/custom_button" android:layout_marginLeft="15dp" />
 
 		<ImageButton android:id="@+id/imagenPreferido"
 			android:layout_height="30dp" android:layout_width="30dp"
@@ -44,7 +44,7 @@
 	<LinearLayout android:id="@+id/nombres"
 		android:layout_width="fill_parent" android:layout_height="79dp"
 		android:orientation="vertical" android:gravity="center"
-		android:layout_marginTop="8dp" android:background="@layout/custom_text_view_categoria"
+		android:layout_marginTop="8dp" android:background="@drawable/custom_text_view_categoria"
 		android:layout_below="@id/linea1" android:layout_toRightOf="@id/photo">
 
 		<TextView android:id="@+id/detalle_apellido"
@@ -66,12 +66,12 @@
 		android:layout_below="@id/nombres" android:textSize="13dp"
 		android:textStyle="bold" android:paddingLeft="15dp"
 		android:paddingTop="8dp" android:paddingBottom="8dp"
-		android:textColor="@color/color_gris_oscuro" android:background="@layout/custom_text_view_categoria" />
+		android:textColor="@color/color_gris_oscuro" android:background="@drawable/custom_text_view_categoria" />
 
 	<LinearLayout android:id="@+id/cumple"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:orientation="horizontal" android:gravity="center"
-		android:layout_marginBottom="8dp" android:background="@layout/custom_text_view_categoria_desc"
+		android:layout_marginBottom="8dp" android:background="@drawable/custom_text_view_categoria_desc"
 		android:layout_below="@id/detalle_categoria">
 
 		<TextView android:id="@+id/label_fechaNacimiento"

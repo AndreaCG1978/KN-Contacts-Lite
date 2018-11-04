@@ -6,7 +6,7 @@
 	<LinearLayout android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:orientation="vertical">
 
-		<TextView android:id="@+id/categoriaTextView" android:background="@layout/custom_text_view_categoria"
+		<TextView android:id="@+id/categoriaTextView" android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_azul_oscuro" android:layout_width="fill_parent"
 			android:layout_height="30dp" android:textSize="14sp"
 			android:textStyle="bold" android:layout_margin="15dp" android:gravity="center"
@@ -33,7 +33,7 @@
 		<Button android:id="@+id/botonMisCategorias" android:text="@string/label_misCategorias"
 			android:layout_width="wrap_content" android:layout_height="30dp"
 			android:layout_marginBottom="18dp" android:textSize="13sp"
-			android:textColor="@color/color_azul" android:background="@layout/custom_button"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 			android:layout_gravity="center" android:gravity="center" />
 
 

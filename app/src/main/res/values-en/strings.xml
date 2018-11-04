@@ -108,7 +108,6 @@
 <string name="errorEfectuarLlamada">Failed to make the call.</string>
 <string name="errorMandarMensaje">Failed to send the message.</string>
 <string name="errorMandarMail">Failed to send the email.</string>
-<string name="errorVerUrl">Failed to navigate the url.</string>
 <string name="errorDesactivandoCategorias">You can not deactivate all Categories.</string>
 <string name="error_alta_persona_incompleta">You must complete the Last Name...</string>
 <string name="error_alta_categoria_incompleta">You must complete the Category Name and Feature...</string>

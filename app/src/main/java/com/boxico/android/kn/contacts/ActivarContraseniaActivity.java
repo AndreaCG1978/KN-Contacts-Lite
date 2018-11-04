@@ -1,5 +1,6 @@
 package com.boxico.android.kn.contacts;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -72,8 +73,8 @@ public class ActivarContraseniaActivity extends Activity {
                     setResult(RESULT_OK);
                     finish();
             	}else{
-            		Toast t = Toast.makeText(getApplicationContext(), R.string.error_alta_contrasenia, 4);
-            		t.show();
+            		Toast t = Toast.makeText(getApplicationContext(), R.string.error_alta_contrasenia, Toast.LENGTH_LONG);
+					t.show();
             		
             	}
 			}

@@ -157,7 +157,6 @@
 <string name="coma_separated"><![CDATA[формат USA/UK ( , )]]></string>
 <string name="puntocoma_separated"><![CDATA[формат CSV/DSV ( ; )]]></string>
 <string name="help_busqueda"><![CDATA[поиск по фамилии, имени, или въезд на категорию контакту.]]></string>
-<string name="mensaje_maximo_personas"><![CDATA[До 15 контактов в версии Lite.]]></string> 
 
 <string name="mensaje_seleccione_actividad_categoria"><![CDATA[Категорийный менеджмент]]></string>
 <string name="label_activar_categoria"><![CDATA[АКТИВИРОВАТЬ]]></string>

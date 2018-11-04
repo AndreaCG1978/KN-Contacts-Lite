@@ -49,7 +49,7 @@
 
 		<TextView android:id="@+id/label_identificacion"
 			android:text="@string/label_identificacion" android:layout_below="@id/menu_icons"
-			android:background="@layout/custom_text_view_categoria"
+			android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_height="25dp" android:textSize="14sp"
 			android:layout_marginBottom="20dp" android:gravity="center" />
@@ -62,7 +62,7 @@
 			<TextView android:id="@+id/label_apellido" android:text="@string/hint_apellido"
 				android:layout_width="130dp" android:layout_height="wrap_content"
 				android:textSize="13sp" android:padding="8dp" android:gravity="right"
-				android:singleLine="true" android:background="@layout/custom_text_view_categoria_desc"
+				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 				android:textColor="@color/color_azul_oscuro" />
 
 
@@ -86,7 +86,7 @@
 				android:layout_width="130dp" android:textSize="13sp"
 				android:layout_height="wrap_content" android:padding="8dp"
 				android:gravity="right" android:singleLine="true"
-				android:background="@layout/custom_text_view_categoria_desc"
+				android:background="@drawable/custom_text_view_categoria_desc"
 				android:textColor="@color/color_azul_oscuro" />
 
 			<EditText android:id="@+id/entryNombre" android:hint="@string/hint_nombre"
@@ -114,7 +114,7 @@
 				android:nextFocusDown="@+id/butttonRegistrarPersonaFinal"
 				android:layout_width="wrap_content" android:layout_height="30dp"
 				android:textSize="12sp" android:textColor="@color/color_azul"
-				android:background="@layout/custom_button"
+				android:background="@drawable/custom_button"
 				android:layout_marginLeft="5dp" />
 
 
@@ -134,7 +134,7 @@
 
 
 		<TextView android:id="@+id/label_phones" android:text="@string/label_telefonos"
-			android:layout_below="@id/menu_icons" android:background="@layout/custom_text_view_categoria"
+			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_toRightOf="@id/addTelefono" android:layout_height="25dp"
 			android:textSize="14sp" android:layout_marginBottom="6dp"
@@ -156,7 +156,7 @@
 		</ImageButton>
 
 		<TextView android:id="@+id/label_emails" android:text="@string/label_emails"
-			android:layout_below="@id/menu_icons" android:background="@layout/custom_text_view_categoria"
+			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_height="25dp" android:textSize="14sp"
 			android:layout_marginBottom="6dp" android:layout_toRightOf="@id/addMail"
@@ -178,7 +178,7 @@
 
 
 		<TextView android:id="@+id/label_address" android:text="@string/label_direcciones"
-			android:layout_below="@id/menu_icons" android:background="@layout/custom_text_view_categoria"
+			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_height="25dp" android:textSize="14sp"
 			android:layout_marginBottom="6dp" android:layout_toRightOf="@id/addDir"
@@ -201,7 +201,7 @@
 			android:layout_marginTop="50dp" />
 
 		<TextView android:id="@+id/label_category" android:text="@string/label_datosDeCategoria"
-			android:layout_below="@id/menu_icons" android:background="@layout/custom_text_view_categoria"
+			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_height="25dp" android:textSize="14sp"
 			android:layout_marginBottom="20dp" android:gravity="center" />
@@ -210,7 +210,7 @@
 			android:layout_below="@id/label_category" android:layout_width="wrap_content"
 			android:layout_height="35dp" android:layout_marginLeft="5dp"
 			android:layout_marginTop="5dp" android:layout_marginBottom="5dp"
-			android:background="@layout/custom_button" />
+			android:background="@drawable/custom_button" />
 
 
 		<LinearLayout android:id="@+id/linearCaracteristica"
@@ -222,7 +222,7 @@
 
 				android:layout_width="130dp" android:layout_height="wrap_content"
 				android:textSize="13sp" android:padding="8dp" android:gravity="right"
-				android:singleLine="true" android:background="@layout/custom_text_view_categoria_desc"
+				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 				android:textColor="@color/color_azul_oscuro" />
 
 			<EditText android:id="@+id/entryDatoExtra"
@@ -242,7 +242,7 @@
 			<TextView android:id="@+id/label_descripcion" android:text="@string/hint_descripcion"
 				android:layout_width="130dp" android:layout_height="wrap_content"
 				android:textSize="13sp" android:padding="8dp" android:gravity="right"
-				android:singleLine="true" android:background="@layout/custom_text_view_categoria_desc"
+				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 				android:textColor="@color/color_azul_oscuro" />
 
 			<EditText android:id="@+id/entryDescripcion" android:hint="@string/hint_descripcion"
@@ -267,7 +267,7 @@
 
 		<TextView android:id="@+id/nombre_contacto"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:textSize="15sp" android:background="@layout/custom_text_view_categoria"
+			android:textSize="15sp" android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_gris_oscuro"
 			android:layout_marginBottom="4dp" android:layout_marginTop="6dp"
 			android:padding="6dp" android:gravity="center" android:textStyle="bold" />
@@ -290,14 +290,14 @@
 					android:nextFocusRight="@+id/butttonRegistrarYSalir" android:text="@string/label_registrarPersona"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textSize="13sp" android:textColor="@color/color_azul"
-					android:background="@layout/custom_button"
+					android:background="@drawable/custom_button"
 					android:layout_marginRight="25dp" />
 
 				<Button android:id="@+id/butttonRegistrarYSalir"
 					android:layout_below="@id/nombre_contacto" android:text="@string/label_registrarPersonaYSalir"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textSize="13sp" android:textColor="@color/color_azul"
-					android:background="@layout/custom_button" />
+					android:background="@drawable/custom_button" />
 			</LinearLayout>
 
 			<View android:id="@+id/lineaDown" android:layout_below="@id/botonera"

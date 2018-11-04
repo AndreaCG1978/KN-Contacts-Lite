@@ -732,7 +732,7 @@ public class AltaPersonaActivity extends Activity {
 
                     
             	}else{
-            		Toast t = Toast.makeText(getApplicationContext(), R.string.error_alta_persona_incompleta, 4);
+            		Toast t = Toast.makeText(getApplicationContext(), R.string.error_alta_persona_incompleta, Toast.LENGTH_LONG);
             		t.show();
             		
             	}
@@ -748,12 +748,12 @@ public class AltaPersonaActivity extends Activity {
             public void onClick(View v) {
             	if(validarEntradaDeDatos()){
                     registrarPersona();
-            		Toast t = Toast.makeText(getApplicationContext(), R.string.label_guardar_parcial, 3);
+            		Toast t = Toast.makeText(getApplicationContext(), R.string.label_guardar_parcial, Toast.LENGTH_LONG);
             		t.show();
              
                     
             	}else{
-            		Toast t = Toast.makeText(getApplicationContext(), R.string.error_alta_persona_incompleta, 4);
+            		Toast t = Toast.makeText(getApplicationContext(), R.string.error_alta_persona_incompleta, Toast.LENGTH_LONG);
             		t.show();
             		
             	}

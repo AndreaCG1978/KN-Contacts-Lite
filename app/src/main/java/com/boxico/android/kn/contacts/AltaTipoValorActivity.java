@@ -196,7 +196,7 @@ public class AltaTipoValorActivity extends Activity {
                     setResult(RESULT_OK);
                     finish();
             	}else{
-            		Toast t = Toast.makeText(getApplicationContext(), R.string.error_alta_tipo_valor_incompleta, 4);
+            		Toast t = Toast.makeText(getApplicationContext(), R.string.error_alta_tipo_valor_incompleta, Toast.LENGTH_LONG);
             		t.show();
             		
             	}

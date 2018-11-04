@@ -11,7 +11,7 @@
 			android:text="@string/hint_categoria" android:layout_width="130dp"
 			android:layout_height="wrap_content" android:textSize="13sp"
 			android:padding="8dp" android:gravity="right" android:singleLine="true"
-			android:background="@layout/custom_text_view_categoria_desc"
+			android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" />
 
 
@@ -33,7 +33,7 @@
 			android:text="@string/hint_caracteristica" android:layout_width="130dp"
 			android:layout_height="wrap_content" android:textSize="13sp"
 			android:padding="8dp" android:gravity="right" android:singleLine="true"
-			android:background="@layout/custom_text_view_categoria_desc"
+			android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" />
 
 		<EditText android:id="@+id/entryTipoDatoExtra"
@@ -53,12 +53,12 @@
 
 		<Button android:id="@+id/buttonRegistrarCategoria"
 			android:layout_width="wrap_content" android:layout_height="35dp"
-			android:textColor="@color/color_azul" android:background="@layout/custom_button"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 			android:text="@string/label_registrarPersona" android:textSize="13sp" />
 
 		<Button android:id="@+id/buttonEliminarCategoria"
 			android:layout_width="wrap_content" android:layout_height="35dp"
-			android:textColor="@color/color_azul" android:background="@layout/custom_button"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 			android:layout_marginLeft="15dp" android:text="@string/label_borrarPersona"
 			android:textSize="13sp" />
 

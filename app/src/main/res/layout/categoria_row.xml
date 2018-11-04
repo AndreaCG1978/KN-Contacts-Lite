@@ -6,7 +6,7 @@
 
 
 	<TextView android:id="@+id/text1" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:background="@layout/custom_text_expandable_group_label"
+		android:layout_height="wrap_content" android:background="@drawable/custom_text_expandable_group_label"
 		android:textSize="13sp" android:textStyle="bold" android:paddingTop="9dp"
 		android:typeface="sans" android:paddingLeft="15dp"
 		android:paddingRight="10dp" android:paddingBottom="5dp"

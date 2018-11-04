@@ -5,7 +5,7 @@
 	android:orientation="vertical">
 	<LinearLayout android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:orientation="horizontal"
-		android:background="@layout/custom_text_view_apellido">
+		android:background="@drawable/custom_text_view_apellido">
 
 
 
@@ -36,7 +36,7 @@
 				android:textStyle="bold" android:textColor="@color/color_gris_oscuro"
 				android:textSize="12sp" android:paddingLeft="15dp"
 				android:paddingTop="1dp" android:paddingBottom="1dp"
-				android:background="@layout/custom_text_view_categoria"
+				android:background="@drawable/custom_text_view_categoria"
 				android:gravity="left" android:layout_marginRight="25dp"
 				android:singleLine="true">
 			</TextView>
@@ -44,7 +44,7 @@
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
 				android:textStyle="italic" android:textColor="@color/color_gris_oscuro"
 				android:textSize="12sp" android:paddingLeft="15dp"
-				android:background="@layout/custom_text_view_categoria_desc"
+				android:background="@drawable/custom_text_view_categoria_desc"
 				android:gravity="left" android:layout_marginRight="55dp"
 				android:singleLine="true">
 			</TextView>

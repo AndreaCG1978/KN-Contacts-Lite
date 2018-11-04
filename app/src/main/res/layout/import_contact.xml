@@ -6,14 +6,14 @@
 
 	<TextView android:id="@+id/textPersonaEncontrada"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textSize="18sp" android:background="@layout/custom_text_view_categoria"
+		android:textSize="18sp" android:background="@drawable/custom_text_view_categoria"
 		android:textColor="@color/color_azul_oscuro"
 		android:layout_marginBottom="1dp" android:layout_marginTop="6dp"
 		android:padding="3dp" android:gravity="center" android:textStyle="bold"></TextView>
 
 	<TextView android:id="@+id/textTipoPersonaEncontrada"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textSize="13sp" android:background="@layout/custom_text_view_categoria_desc"
+		android:textSize="13sp" android:background="@drawable/custom_text_view_categoria_desc"
 		android:textColor="@color/color_gris_oscuro"
 		android:layout_marginBottom="4dp" android:layout_marginTop="6dp"
 		android:padding="3dp" android:gravity="center" android:textStyle="bold"></TextView>
@@ -31,7 +31,7 @@
 		<Spinner android:id="@+id/spinnerCategorias_alta_persona"
 			android:layout_below="@id/label_category" android:layout_width="wrap_content"
 			android:layout_height="38dp" android:layout_marginLeft="5dp"
-			android:background="@layout/custom_button" />
+			android:background="@drawable/custom_button" />
 
 
 		<ImageButton android:id="@+id/imagenCategorias" android:background="@drawable/categoria_icon"
@@ -48,7 +48,7 @@
 		<TextView android:id="@+id/label_datoExtra"
 			android:layout_width="130dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:padding="8dp" android:gravity="right"
-			android:singleLine="true" android:background="@layout/custom_text_view_categoria_desc"
+			android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" />
 
 		<EditText android:id="@+id/entryDatoExtra" android:inputType="textCapWords"
@@ -67,7 +67,7 @@
 		<TextView android:id="@+id/label_descripcion" android:text="@string/hint_descripcion"
 			android:layout_width="130dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:padding="8dp" android:gravity="right"
-			android:singleLine="true" android:background="@layout/custom_text_view_categoria_desc"
+			android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" />
 
 		<EditText android:id="@+id/entryDescripcion" android:hint="@string/hint_descripcion"
@@ -93,19 +93,19 @@
 		<Button android:id="@+id/botonPrevContact" android:text="@string/label_anterior"
 			android:layout_width="wrap_content" android:layout_height="35dp"
 			android:layout_margin="5dp" android:textSize="12sp"
-			android:textColor="@color/color_azul" android:background="@layout/custom_button"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 			android:layout_gravity="center" />
 
 		<Button android:id="@+id/botonSkipContact" android:text="@string/label_siguiente"
 			android:layout_width="wrap_content" android:layout_height="35dp"
 			android:layout_margin="5dp" android:textSize="12sp"
-			android:textColor="@color/color_azul" android:background="@layout/custom_button"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 			android:layout_gravity="center" />
 
 		<Button android:id="@+id/botonAddContact" android:layout_width="wrap_content"
 			android:layout_height="35dp" android:layout_margin="5dp"
 			android:textSize="12sp" android:textColor="@color/color_azul"
-			android:background="@layout/custom_button" android:layout_gravity="center" />
+			android:background="@drawable/custom_button" android:layout_gravity="center" />
 
 
 	</LinearLayout>
@@ -122,14 +122,14 @@
 		<Button android:id="@+id/botonAddAll" android:text="@string/label_agregar_todos"
 			android:layout_width="wrap_content" android:layout_height="35dp"
 			android:layout_margin="10dp" android:textSize="12sp"
-			android:textColor="@color/color_azul" android:background="@layout/custom_button"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 			android:layout_gravity="center" />
 
 
 		<Button android:id="@+id/botonSkipAll" android:text="@string/label_omitir_todos"
 			android:layout_width="wrap_content" android:layout_height="35dp"
 			android:layout_margin="10dp" android:textSize="12sp"
-			android:textColor="@color/color_azul" android:background="@layout/custom_button"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 			android:layout_gravity="center" />
 
 	</LinearLayout>

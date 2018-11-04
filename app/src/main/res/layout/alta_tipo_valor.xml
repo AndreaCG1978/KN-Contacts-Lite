@@ -11,12 +11,12 @@
 		<TextView android:id="@+id/label_tipo" android:text="@string/hint_tipo"
 			android:layout_width="100dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:padding="8dp" android:gravity="right"
-			android:singleLine="true" android:background="@layout/custom_text_view_categoria_desc"
+			android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" />
 
 		<Spinner android:id="@+id/spinnerTipoValor"
 			android:layout_width="fill_parent" android:layout_height="38dp"
-			android:background="@layout/custom_button" android:layout_marginLeft="9dp" />
+			android:background="@drawable/custom_button" android:layout_marginLeft="9dp" />
 
 	</LinearLayout>
 
@@ -28,7 +28,7 @@
 		<TextView android:id="@+id/label_nuevo_tipo" android:text="@string/hint_nuevo_tipo"
 			android:layout_width="100dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:padding="8dp" android:gravity="right"
-			android:singleLine="true" android:background="@layout/custom_text_view_categoria_desc"
+			android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" />
 
 		<EditText android:id="@+id/entryNuevoTipo" android:hint="@string/hint_tipo"
@@ -49,7 +49,7 @@
 		<TextView android:id="@+id/label_valor" android:layout_width="100dp"
 			android:layout_height="wrap_content" android:textSize="13sp"
 			android:padding="8dp" android:gravity="right" android:singleLine="true"
-			android:background="@layout/custom_text_view_categoria_desc"
+			android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" />
 
 		<EditText android:id="@+id/entryValor" android:layout_width="fill_parent"
@@ -71,11 +71,11 @@
 		<Button android:id="@+id/buttonRegistrarCategoria"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:layout_marginRight="20dp" android:textColor="@color/color_azul"
-			android:background="@layout/custom_button" android:text="@string/label_registrarPersona"
+			android:background="@drawable/custom_button" android:text="@string/label_registrarPersona"
 			android:textSize="13sp" />
 		<Button android:id="@+id/buttonEliminarCategoria"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:textColor="@color/color_azul" android:background="@layout/custom_button"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 			android:text="@string/label_borrarPersona" android:textSize="13sp" />
 
 	</LinearLayout>

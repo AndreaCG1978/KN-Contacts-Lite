@@ -9,7 +9,7 @@
 	<LinearLayout android:id="@+id/nombres"
 		android:layout_width="fill_parent" android:layout_height="35dp"
 		android:orientation="horizontal" android:gravity="center"
-		android:layout_marginTop="2dp" android:background="@layout/custom_text_view_categoria"
+		android:layout_marginTop="2dp" android:background="@drawable/custom_text_view_categoria"
 		android:layout_toRightOf="@id/photo">
 
 
@@ -35,13 +35,13 @@
 		android:layout_below="@id/nombres" android:layout_toRightOf="@id/photo"
 		android:textSize="12sp" android:paddingLeft="15dp" android:paddingTop="4dp"
 		android:paddingBottom="4dp" android:textColor="@color/color_gris_oscuro"
-		android:background="@layout/custom_text_view_categoria" android:textStyle="bold"/>
+		android:background="@drawable/custom_text_view_categoria" android:textStyle="bold"/>
 
 
 	<LinearLayout android:id="@+id/cumple"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:orientation="horizontal" android:gravity="left"
-		android:layout_marginBottom="8dp" android:background="@layout/custom_text_view_categoria_desc"
+		android:layout_marginBottom="8dp" android:background="@drawable/custom_text_view_categoria_desc"
 		android:layout_below="@id/detalle_categoria" android:layout_toRightOf="@id/photo">
 
 
@@ -67,12 +67,12 @@
 		<Button android:id="@+id/buttonIrAEditarPersona" android:text="@string/label_editarPersona"
 			android:layout_width="90dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:textColor="@color/color_azul"
-			android:background="@layout/custom_button" />
+			android:background="@drawable/custom_button" />
 
 		<Button android:id="@+id/buttonBorrarPersona" android:text="@string/label_borrarPersona"
 			android:layout_width="90dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:textColor="@color/color_azul"
-			android:layout_marginLeft="20dp" android:background="@layout/custom_button" />
+			android:layout_marginLeft="20dp" android:background="@drawable/custom_button" />
 
 		<ImageButton android:id="@+id/imagenPreferido"
 			android:layout_height="25dp" android:layout_width="25dp"

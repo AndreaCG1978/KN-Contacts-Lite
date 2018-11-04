@@ -11,22 +11,22 @@
 	<Button android:id="@+id/buttonVerPersona"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:textColor="@color/color_azul"
-		android:background="@layout/custom_button" android:text="@string/label_ver_detalle"
+		android:background="@drawable/custom_button" android:text="@string/label_ver_detalle"
 		android:textSize="14sp" android:layout_margin="7dp"/>
 		
 	<Button android:id="@+id/buttonEditarPersona"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textColor="@color/color_azul" android:background="@layout/custom_button"
+		android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 		android:text="@string/label_editarPersona" android:textSize="14sp" android:layout_margin="7dp"/>
 
 	<Button android:id="@+id/buttonBorrarPersona"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textColor="@color/color_azul" android:background="@layout/custom_button"
+		android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 		android:text="@string/label_borrarPersona" android:textSize="14sp" android:layout_margin="7dp"/>
 
 	<Button android:id="@+id/buttonEnviarInfoPersona"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textColor="@color/color_azul" android:background="@layout/custom_button"
+		android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 		android:text="@string/label_enviar_info" android:textSize="14sp" android:layout_margin="7dp"/>
 	
 </LinearLayout>

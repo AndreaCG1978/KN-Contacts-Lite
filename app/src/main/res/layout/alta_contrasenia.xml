@@ -11,7 +11,7 @@
 
 		<TextView android:text="@string/label_contrasenia"
 			android:layout_width="110dp" android:layout_height="32dp"
-			android:background="@layout/custom_text_view_categoria_desc"
+			android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" android:padding="7dp"
 			android:gravity="right" android:textSize="13sp" />
 
@@ -28,7 +28,7 @@
 
 	<Button android:id="@+id/botonActivarContrasenia"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:textColor="@color/color_azul" android:background="@layout/custom_button"
+		android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 		android:text="@string/label_ok" android:textSize="12sp"
 		android:layout_margin="8dp" android:layout_gravity="right" />
 
