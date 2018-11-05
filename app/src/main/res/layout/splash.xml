@@ -12,6 +12,7 @@
 	android:src="@drawable/splash"
 	android:layout_height="wrap_content"
 	android:layout_width="wrap_content"
-	android:layout_gravity="center" />
+	android:layout_gravity="center"
+		android:contentDescription="imagenSplash" />
     
 </LinearLayout>

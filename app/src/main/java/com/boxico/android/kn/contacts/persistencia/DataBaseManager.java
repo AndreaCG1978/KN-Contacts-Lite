@@ -836,8 +836,7 @@ public class DataBaseManager {
      
      
      public int eliminarCategoriaProtegida(String nombreCategoria){
-    	 int result = mDb.delete(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, ConstantsAdmin.KEY_NOMBRE_CATEGORIA + "='" + nombreCategoria + "'", null);
-    	 return result;
+		 return mDb.delete(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, ConstantsAdmin.KEY_NOMBRE_CATEGORIA + "='" + nombreCategoria + "'", null);
       }
      
      

@@ -20,27 +20,32 @@
 			<ImageButton android:id="@+id/menu_icon_identification"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:nextFocusRight="@+id/menu_icon_phone" android:nextFocusDown="@+id/entryApellido"
-				android:focusable="true" />
+				android:focusable="true"
+                android:contentDescription="menu_icon_identification" />
 
 
 			<ImageButton android:id="@+id/menu_icon_phone"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:layout_marginLeft="16dp" android:nextFocusRight="@+id/menu_icon_mail" />
+				android:layout_marginLeft="16dp" android:nextFocusRight="@+id/menu_icon_mail"
+                android:contentDescription="menu_icon_phone" />
 
 			<ImageButton android:id="@+id/menu_icon_mail"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginLeft="22dp" android:nextFocusRight="@+id/menu_icon_addres"
-				android:focusable="true" />
+				android:focusable="true"
+                android:contentDescription="menu_icon_mail" />
 
 			<ImageButton android:id="@+id/menu_icon_addres"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginLeft="22dp" android:nextFocusRight="@+id/menu_icon_category"
-				android:focusable="true" />
+				android:focusable="true"
+                android:contentDescription="menu_icon_addres" />
 
 			<ImageButton android:id="@+id/menu_icon_category"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginLeft="22dp" android:nextFocusRight="@+id/butttonRegistrarYSalir"
-				android:focusable="true" />
+				android:focusable="true"
+                android:contentDescription="TODO" />
 
 
 		</LinearLayout>
@@ -129,7 +134,8 @@
 		<ImageButton android:id="@+id/addTelefono"
 			android:layout_width="36dp" android:layout_height="36dp"
 			android:layout_marginRight="10dp" android:layout_marginLeft="10dp"
-			android:layout_below="@id/menu_icons" android:src="@drawable/add_icon">
+			android:layout_below="@id/menu_icons" android:src="@drawable/add_icon"
+            android:contentDescription="addTelefono">
 		</ImageButton>
 
 
@@ -152,7 +158,8 @@
 		<ImageButton android:id="@+id/addMail"
 			android:layout_width="36dp" android:layout_height="36dp"
 			android:layout_below="@id/menu_icons" android:src="@drawable/add_icon"
-			android:layout_marginRight="10dp" android:layout_marginLeft="10dp">
+			android:layout_marginRight="10dp" android:layout_marginLeft="10dp"
+            android:contentDescription="addMail">
 		</ImageButton>
 
 		<TextView android:id="@+id/label_emails" android:text="@string/label_emails"
@@ -173,7 +180,8 @@
 		<ImageButton android:id="@+id/addDir"
 			android:layout_width="36dp" android:layout_height="36dp"
 			android:layout_below="@id/menu_icons" android:src="@drawable/add_icon"
-			android:layout_marginRight="10dp" android:layout_marginLeft="10dp">
+			android:layout_marginRight="10dp" android:layout_marginLeft="10dp"
+            android:contentDescription="addDir">
 		</ImageButton>
 
 

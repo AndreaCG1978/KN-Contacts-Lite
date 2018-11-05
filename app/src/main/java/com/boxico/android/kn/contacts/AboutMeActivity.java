@@ -13,9 +13,8 @@ import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 public class AboutMeActivity extends Activity {
 	
 	private  TextView mail = null;
-	private TextView publicaciones = null;
-	
-    public void onCreate(Bundle savedInstanceState) {
+
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        	this.setContentView(R.layout.acerca_de);
         this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_acerca_de));
@@ -41,7 +40,7 @@ public class AboutMeActivity extends Activity {
 				enviarMailGenerico(mail.getText().toString());
 			}
 		});
-    	publicaciones = (TextView) this.findViewById(R.id.textTodasLasPublicaciones);
+		TextView publicaciones = (TextView) this.findViewById(R.id.textTodasLasPublicaciones);
     	publicaciones.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

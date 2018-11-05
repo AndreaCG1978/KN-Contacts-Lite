@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/KN-Contacts.iml" filepath="$PROJECT_DIR$/KN-Contacts.iml" />
       <module fileurl="file://$PROJECT_DIR$/KN-Contacts-III.iml" filepath="$PROJECT_DIR$/KN-Contacts-III.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

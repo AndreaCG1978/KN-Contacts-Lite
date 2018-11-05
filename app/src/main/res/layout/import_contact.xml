@@ -36,7 +36,8 @@
 
 		<ImageButton android:id="@+id/imagenCategorias" android:background="@drawable/categoria_icon"
 			android:layout_height="34dp" android:layout_width="34dp"
-			android:layout_marginLeft="18dp" />
+			android:layout_marginLeft="18dp"
+			android:contentDescription="imagenCategorias" />
 	
 	</LinearLayout>
 

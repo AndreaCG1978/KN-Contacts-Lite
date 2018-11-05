@@ -371,8 +371,7 @@ public class AltaPersonaActivity extends Activity {
         String[] from = {TIPO, VALOR};
         int[] to={R.id.rowTipo,R.id.rowValor};
 
-        SimpleAdapter adapter = new SimpleAdapter(this, listdata, R.layout.row_item_alta, from, to);
-        return adapter;
+		return new SimpleAdapter(this, listdata, R.layout.row_item_alta, from, to);
     }
 	
 	private void registrarWidgets(){

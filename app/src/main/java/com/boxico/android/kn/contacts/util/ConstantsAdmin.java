@@ -779,9 +779,8 @@ public class ConstantsAdmin {
     public static String mensaje = null;
     public static String folderCSV = "KN-Contacts";
     private static String fileCSV = "kncontacts.csv";
-    private static String fileEsteticoCSV = "kncontactsExcel.csv";
-    
-    public static void importarCSV(Activity context){
+
+	public static void importarCSV(Activity context){
         String body = null;
         File file = null;
         mensaje = context.getString(R.string.error_importar_csv);
@@ -1175,7 +1174,8 @@ public class ConstantsAdmin {
      		msg = (String) canStore.getValue();
      		if(boolValue){
      			body = obtenerCSVdeContactosEstetico(context, separador, categoriasProtegidas);
-     			almacenarArchivo(folderCSV, fileEsteticoCSV , body);
+				String fileEsteticoCSV = "kncontactsExcel.csv";
+				almacenarArchivo(folderCSV, fileEsteticoCSV, body);
      			mensaje = context.getString(R.string.mensaje_exito_exportar_csv);
      		}else{
     			mensaje = msg;
@@ -1443,8 +1443,9 @@ public class ConstantsAdmin {
     	result = result + datosCategoria + separador;
     	
     	// TELEFONOS
-    	
-    	if(per.getTelParticular() != null){
+
+		String PIPE = " | ";
+		if(per.getTelParticular() != null){
     		result = result + context.getString(R.string.label_telefono) + "-" + context.getString(R.string.hint_particular) + SEPARACION_ATRIBUTO + per.getTelParticular() + PIPE;
     	}
     	if(per.getCelular() != null){
@@ -1699,8 +1700,7 @@ public class ConstantsAdmin {
     public static String ENTER = "\n";
     public static final String PUNTO_COMA = ";";
     public static final String COMA = ",";
-    private static String PIPE = " | ";
-    private static String INICIO = "#I#";
+	private static String INICIO = "#I#";
     private static String FIN = "#F#";
     private static String CAMPO_NULO = "###";
     private static String PARTICULAR = "PARTICULAR";

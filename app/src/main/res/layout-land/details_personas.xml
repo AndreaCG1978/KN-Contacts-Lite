@@ -4,7 +4,8 @@
 
 	<ImageView android:id="@+id/photo" android:layout_height="68dp"
 		android:layout_width="82dp" android:layout_marginLeft="5dp"
-		android:layout_marginTop="3dp" />
+		android:layout_marginTop="3dp"
+		android:contentDescription="photo" />
 
 	<LinearLayout android:id="@+id/nombres"
 		android:layout_width="fill_parent" android:layout_height="35dp"
@@ -76,12 +77,14 @@
 
 		<ImageButton android:id="@+id/imagenPreferido"
 			android:layout_height="25dp" android:layout_width="25dp"
-			android:layout_marginLeft="25dp" />
+			android:layout_marginLeft="25dp"
+			android:contentDescription="imagenPreferido" />
 
 		<ImageButton android:id="@+id/imagenPhoto"
 			android:layout_height="21dp" android:layout_width="29dp"
 			android:layout_marginLeft="25dp" android:layout_marginTop="2dp"
-			android:background="@drawable/camera_icon" />
+			android:background="@drawable/camera_icon"
+			android:contentDescription="imagenPhoto" />
 
 	</LinearLayout>
 

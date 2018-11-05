@@ -32,7 +32,8 @@
 
 				<ImageButton android:id="@+id/buttonTodasLasCategorias"
 					android:layout_width="38dp" android:layout_height="38dp"
-					android:layout_marginLeft="22dp" android:background="@drawable/clear_icon" />
+					android:layout_marginLeft="22dp" android:background="@drawable/clear_icon"
+					android:contentDescription="buttonTodasLasCategorias" />
 
 				<TextView android:id="@+id/cantRegistros"
 					android:layout_height="wrap_content" android:layout_width="wrap_content"
@@ -63,7 +64,8 @@
 				<ImageView android:id="@+id/imgPrefLeft"
 					android:layout_width="13dp" android:layout_height="13dp"
 					android:src="@drawable/pref_detalle_icon" android:gravity="left"
-					android:layout_marginTop="6dp" android:layout_marginRight="60dp" />
+					android:layout_marginTop="6dp" android:layout_marginRight="60dp"
+					android:contentDescription="imgPrefLeft" />
 
 				<TextView android:id="@+id/categoriasSeleccionadasId"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -75,7 +77,8 @@
 				<ImageView android:id="@+id/imgPrefRight"
 					android:layout_width="13dp" android:layout_height="13dp"
 					android:src="@drawable/pref_detalle_icon" android:gravity="right"
-					android:layout_marginTop="6dp" android:layout_marginLeft="60dp" />
+					android:layout_marginTop="6dp" android:layout_marginLeft="60dp"
+					android:contentDescription="imgPrefRight" />
 
 			</LinearLayout>
 		</LinearLayout>
@@ -111,28 +114,34 @@
 
 			<ImageButton android:id="@+id/imagenAddContacto"
 				android:background="@drawable/person_add_icon"
-				android:layout_height="35dp" android:layout_width="35dp" />
+				android:layout_height="35dp" android:layout_width="35dp"
+				android:contentDescription="imagenAddContacto" />
 
 			<ImageButton android:id="@+id/buttonSwitchOrganizacion"
 				android:layout_width="32dp" android:layout_height="32dp"
-				android:layout_marginLeft="23dp" android:background="@drawable/organizar_nombre" />
+				android:layout_marginLeft="23dp" android:background="@drawable/organizar_nombre"
+				android:contentDescription="buttonSwitchOrganizacion" />
 
 			<ImageButton android:id="@+id/buttonMoreOrLess"
 				android:layout_width="32dp" android:layout_height="32dp"
-				android:layout_marginLeft="23dp" android:background="@drawable/more_desc_contact" />
+				android:layout_marginLeft="23dp" android:background="@drawable/more_desc_contact"
+				android:contentDescription="buttonMoreOrLess" />
 
 
 			<ImageButton android:id="@+id/buttonExpandContractAll"
 				android:layout_width="30dp" android:layout_height="30dp"
-				android:layout_marginLeft="23dp" android:background="@drawable/expandir_icon" />
+				android:layout_marginLeft="23dp" android:background="@drawable/expandir_icon"
+				android:contentDescription="buttonExpandContractAll" />
 
 			<ImageButton android:id="@+id/imagenPreferidos"
 				android:layout_height="30dp" android:layout_width="30dp"
-				android:layout_marginLeft="23dp" />
+				android:layout_marginLeft="23dp"
+				android:contentDescription="imagenPreferidos" />
 
 			<ImageButton android:id="@+id/botonProtegerCategorias"
 				android:layout_height="30dp" android:layout_width="30dp"
-				android:layout_marginLeft="23dp" />
+				android:layout_marginLeft="23dp"
+				android:contentDescription="botonProtegerCategorias" />
 
 
 		</LinearLayout>
