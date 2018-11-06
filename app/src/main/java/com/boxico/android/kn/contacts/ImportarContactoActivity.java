@@ -238,7 +238,7 @@ public class ImportarContactoActivity extends Activity {
 	    int total = mSpinnerAdapt.getCount();
 	    while(!encontrado && pos < total){
 	    	
-	    	cat = (CategoriaDTO)mSpinnerAdapt.getItem(pos);
+	    	cat = mSpinnerAdapt.getItem(pos);
 	    	if(cat.getNombreReal().equals(persona.getCategoriaNombre())){
 	    		encontrado = true;
 	    		mCategoriaSeleccionada = cat;
@@ -299,7 +299,7 @@ public class ImportarContactoActivity extends Activity {
 		botonSkipContact.setEnabled(false);
 	
 		
-    	ImageButton categorias = (ImageButton) this.findViewById(R.id.imagenCategorias); 
+    	ImageButton categorias = this.findViewById(R.id.imagenCategorias);
     	categorias.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -469,22 +469,22 @@ public class ImportarContactoActivity extends Activity {
     
     
 	private void registrarWidgets(){
-		mSpinner = ((Spinner) this.findViewById(R.id.spinnerCategorias_alta_persona));
-		mPersonaEncontrada = (TextView) this.findViewById(R.id.textPersonaEncontrada);
-		mTipoPersonaEncontrada = (TextView) this.findViewById(R.id.textTipoPersonaEncontrada);
-		entryDatoExtra = (TextView) this.findViewById(R.id.entryDatoExtra);
-		entryDescripcion = (TextView) this.findViewById(R.id.entryDescripcion);
-		botonAddAll = (Button) this.findViewById(R.id.botonAddAll);
-		botonAddContact = (Button) this.findViewById(R.id.botonAddContact);
-		botonSkipAll = (Button) this.findViewById(R.id.botonSkipAll);
-		botonSkipContact = (Button) this.findViewById(R.id.botonSkipContact);
-		botonPrevContact = (Button) this.findViewById(R.id.botonPrevContact);
+		mSpinner = this.findViewById(R.id.spinnerCategorias_alta_persona);
+		mPersonaEncontrada = this.findViewById(R.id.textPersonaEncontrada);
+		mTipoPersonaEncontrada = this.findViewById(R.id.textTipoPersonaEncontrada);
+		entryDatoExtra = this.findViewById(R.id.entryDatoExtra);
+		entryDescripcion = this.findViewById(R.id.entryDescripcion);
+		botonAddAll = this.findViewById(R.id.botonAddAll);
+		botonAddContact = this.findViewById(R.id.botonAddContact);
+		botonSkipAll = this.findViewById(R.id.botonSkipAll);
+		botonSkipContact = this.findViewById(R.id.botonSkipContact);
+		botonPrevContact = this.findViewById(R.id.botonPrevContact);
 
 	}
 	
 	
 	private void seleccionarPrimerCategoria(){
-		mCategoriaSeleccionada = (CategoriaDTO) this.mSpinnerAdapt.getItem(0);
+		mCategoriaSeleccionada = this.mSpinnerAdapt.getItem(0);
 		mSpinner.setSelection(0);
 	}
 
@@ -497,13 +497,13 @@ public class ImportarContactoActivity extends Activity {
       this.cargarNombreRelativoCategorias(categorias);
       this.crearSpinnerCategorias(R.id.spinnerCategorias_alta_persona, categorias);
     }
-    
+
   	private void cargarNombreRelativoCategorias(List<CategoriaDTO> categorias){
   		Iterator<CategoriaDTO> it = categorias.iterator();
   		CategoriaDTO catTemp = null;
   		String nombreRelativo = null;
   		while(it.hasNext()){
-  			catTemp = (CategoriaDTO) it.next();
+  			catTemp = it.next();
   			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
   			if(nombreRelativo == null){
   				nombreRelativo = catTemp.getNombreReal();
@@ -516,7 +516,7 @@ public class ImportarContactoActivity extends Activity {
   	
     
     protected Spinner crearSpinnerCategorias(int nombreSpinner, List<CategoriaDTO> categorias){
-	    Spinner spinner = (Spinner) findViewById(nombreSpinner);
+	    Spinner spinner = findViewById(nombreSpinner);
 	    this.mSpinnerAdapt = new ArrayAdapter<CategoriaDTO>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
 	    this.seleccionarPrimerCategoria();
 	    spinner.setAdapter(this.mSpinnerAdapt); 
@@ -528,8 +528,8 @@ public class ImportarContactoActivity extends Activity {
 	private void mostrarDatosPorCategoria(){
     	String text = null;
     	if(mCategoriaSeleccionada != null){
-	    	EditText textViewEntry = (EditText)this.findViewById(R.id.entryDatoExtra);
-	    	TextView textViewLabel = (TextView)this.findViewById(R.id.label_datoExtra);
+	    	EditText textViewEntry = this.findViewById(R.id.entryDatoExtra);
+	    	TextView textViewLabel = this.findViewById(R.id.label_datoExtra);
 	    	text = this.obtenerEtiquetaDatoExtra(mCategoriaSeleccionada.getNombreReal());
 	    	if(text == null){
 	    		text = mCategoriaSeleccionada.getTipoDatoExtra();
@@ -633,7 +633,7 @@ public class ImportarContactoActivity extends Activity {
     	Cursor cur = null;
     	Iterator<Cursor> it = allMyCursors.iterator();
     	while(it.hasNext()){
-    		cur = (Cursor) it.next();
+    		cur = it.next();
     		cur.close();
     		this.stopManagingCursor(cur);
     	}

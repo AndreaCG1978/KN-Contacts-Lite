@@ -255,7 +255,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
             children = new ArrayList<Map<String, String>>();
             itPers = personas.iterator();
             while(itPers.hasNext()){
-            	per = (PersonaDTO)itPers.next();
+            	per = itPers.next();
             	curChildMap = new HashMap<String, String>();
                 children.add(curChildMap);
                 curChildMap.put(APELLIDO, per.getApellido());
@@ -284,11 +284,11 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
                 	String clave = mySortedByElements.get(groupPosition);
                 	final PersonaDTO per = (PersonaDTO) personasMap.get(clave).toArray()[childPosition];
                    	final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
-                   	TextView textApe = (TextView)v.findViewById(R.id.rowApellido);
-                    ImageView photo = (ImageView) v.findViewById(R.id.photo);
+                   	TextView textApe = v.findViewById(R.id.rowApellido);
+                    ImageView photo = v.findViewById(R.id.photo);
                     textApe.setText("- " + per.getApellido().toUpperCase());
                     
-                    TextView textNom = (TextView)v.findViewById(R.id.rowNombres);
+                    TextView textNom = v.findViewById(R.id.rowNombres);
                     textNom.setText(per.getNombres());
                     TextView text = null;
                     if(!ConstantsAdmin.config.isEstanDetallados()){
@@ -303,9 +303,9 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	                    	textNom.setText(textNom.getText() + " (" + per.getDatoExtra() + ")");	
 	                    }
 
-                    	text = (TextView)v.findViewById(R.id.rowDatoRelevante);
+                    	text = v.findViewById(R.id.rowDatoRelevante);
                     	text.setVisibility(View.GONE);
-                    	text = (TextView)v.findViewById(R.id.rowDatoRelevante2);
+                    	text = v.findViewById(R.id.rowDatoRelevante2);
                     	text.setVisibility(View.GONE);
                     	photo.setVisibility(View.GONE);
                     }else{
@@ -314,7 +314,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
                     	textApe.setTextSize(13);
                     	textNom.setTextSize(13);
                     	mostrarFoto(photo, per.getId());
-	                    text = (TextView)v.findViewById(R.id.rowDatoRelevante);
+	                    text = v.findViewById(R.id.rowDatoRelevante);
                     	if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
 //	                    if(estanOrdenadosAlfabeticamente){
 	                    	text.setText(per.getCategoriaNombreRelativo());
@@ -322,7 +322,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	                    	text.setText(per.getDatoExtra());	
 	                    }
 	                    text.setVisibility(View.VISIBLE);
-	                    text = (TextView)v.findViewById(R.id.rowDatoRelevante2);
+	                    text = v.findViewById(R.id.rowDatoRelevante2);
 	                    text.setText(per.getDescripcion());
 	                    text.setVisibility(View.VISIBLE);
                     }
@@ -372,8 +372,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
                 
                 public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
                 	final View v = super.getGroupView(groupPosition, isExpanded, convertView, parent);
-                	TextView textName = (TextView)v.findViewById(R.id.textName);
-                	TextView textCantidad = (TextView)v.findViewById(R.id.textCantidad);
+                	TextView textName = v.findViewById(R.id.textName);
+                	TextView textCantidad = v.findViewById(R.id.textCantidad);
 
                 	String temp = null;
                    	String label = null;
@@ -444,12 +444,12 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 
     
     private void configurarVerPreferidos(){
-    	preferidos = (ImageButton) this.findViewById(R.id.imagenPreferidos); 
+    	preferidos = this.findViewById(R.id.imagenPreferidos);
     	dcolorPref = getResources().getDrawable(R.drawable.pref_icon);
 		dbnPref = getResources().getDrawable(R.drawable.pref_icon_bw);
 		preferidos.setBackgroundDrawable(dbnPref);
-		imgPrefLeft = (ImageView) this.findViewById(R.id.imgPrefLeft); 
-		imgPrefRight = (ImageView) this.findViewById(R.id.imgPrefRight);
+		imgPrefLeft = this.findViewById(R.id.imgPrefLeft);
+		imgPrefRight = this.findViewById(R.id.imgPrefRight);
 		preferidos.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -502,7 +502,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }    */    
     
     private void configurarAddContact(){
-    	ImageButton addContact = (ImageButton) this.findViewById(R.id.imagenAddContacto); 
+    	ImageButton addContact = this.findViewById(R.id.imagenAddContacto);
     	addContact.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -589,7 +589,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
     
     private void configurarBotonIrACategoriaTodas(){
-    	irTodos = (ImageButton) this.findViewById(R.id.buttonTodasLasCategorias); 
+    	irTodos = this.findViewById(R.id.buttonTodasLasCategorias);
     	irTodos.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -603,7 +603,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
  
 
     private void configurarBotonSwitchOrganizacion(){
-    	switchOrganizacion = (ImageButton) this.findViewById(R.id.buttonSwitchOrganizacion); 
+    	switchOrganizacion = this.findViewById(R.id.buttonSwitchOrganizacion);
     	dorganizarNombre = getResources().getDrawable(R.drawable.organizar_nombre);
     	dorganizarCategoria = getResources().getDrawable(R.drawable.organizar_categoria);
     	switchOrganizacion.setOnClickListener(new View.OnClickListener() {
@@ -617,7 +617,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
     
     private void configurarBotonExpandContractAll(){
-    	expandContractAll = (ImageButton) this.findViewById(R.id.buttonExpandContractAll); 
+    	expandContractAll = this.findViewById(R.id.buttonExpandContractAll);
     	dexpandir = getResources().getDrawable(R.drawable.expandir_icon);
     	dcontraer = getResources().getDrawable(R.drawable.contraer_icon);
     	expandContractAll.setOnClickListener(new View.OnClickListener() {
@@ -631,7 +631,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
 
     private void configurarBotonMasOMenosDesc(){
-    	masOMenosDesc = (ImageButton) this.findViewById(R.id.buttonMoreOrLess); 
+    	masOMenosDesc = this.findViewById(R.id.buttonMoreOrLess);
     	dlessDesc = getResources().getDrawable(R.drawable.less_desc_contact);
     	dmoreDesc = getResources().getDrawable(R.drawable.more_desc_contact);
     	masOMenosDesc.setOnClickListener(new View.OnClickListener() {
@@ -746,7 +746,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
     
     private void configurarListView(){
-    	listaEspecial = (ListView)this.findViewById(R.id.listaEspecial);
+    	listaEspecial = this.findViewById(R.id.listaEspecial);
     	listaEspecial.setFastScrollEnabled(true);
     	listaEspecial.setVisibility(View.VISIBLE);
     	listaEspecial.setOnItemClickListener(new OnItemClickListener() {
@@ -784,8 +784,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         });	
     			
     			
-    	cantReg = (TextView) this.findViewById(R.id.cantRegistros);
-    	catSelectTextView = (TextView) this.findViewById(R.id.categoriasSeleccionadasId);
+    	cantReg = this.findViewById(R.id.cantRegistros);
+    	catSelectTextView = this.findViewById(R.id.categoriasSeleccionadasId);
     }
     
     @Override
@@ -858,7 +858,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         	if(it.hasNext()){
 	        	ConstantsAdmin.inicializarBD(this);
 	    		while(it.hasNext()){
-	    			per = (PersonaDTO)it.next();
+	    			per = it.next();
 	    			if(per.getNombres() != null && per.getApellido() == null){
 	    				per.setApellido(per.getNombres());
 	    				per.setNombres(null);
@@ -891,7 +891,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 
     	ConstantsAdmin.mailsARegistrar = new ArrayList<TipoValorDTO>();
     	CategoriaDTO cat = null;
-    	cat = (CategoriaDTO) todasLasCategorias.get(0);
+    	cat = todasLasCategorias.get(0);
     	PersonaDTO per = null;
     	ConstantsAdmin.inicializarBD(this);
     	Cursor people = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
@@ -1110,7 +1110,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
     
     private void configurarEntryBusqueda(){
-        entryBusqueda = (EditText)findViewById(R.id.entryBusquedaPersona);
+        entryBusqueda = findViewById(R.id.entryBusquedaPersona);
         entryBusqueda.addTextChangedListener(new TextWatcher() {
 			
 			@Override
@@ -1141,7 +1141,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
     
     private void configurarSpinner(){
-      spinnerCategorias = (MultiSpinner) this.findViewById(R.id.multi_spinner);
+      spinnerCategorias = this.findViewById(R.id.multi_spinner);
       Cursor cursor = null;
       CategoriaDTO cat = null;
       List<CategoriaDTO> categorias = null;
@@ -1188,7 +1188,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
       todasLasCategorias = new ArrayList<CategoriaDTO>();
       CategoriaDTO cattemp = null;
       while(itCat.hasNext()){
-    	  cattemp = (CategoriaDTO) itCat.next();
+    	  cattemp = itCat.next();
     	  todasLasCategorias.add(cattemp);
     	  if(ConstantsAdmin.estaProtegidaCategoria(cattemp.getNombreReal())){
     		  todasLasCategString.add("**" + cattemp.getNombreRelativo());
@@ -1208,7 +1208,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
   		CategoriaDTO catTemp = null;
   		String nombreRelativo = null;
   		while(it.hasNext()){
-  			catTemp = (CategoriaDTO) it.next();
+  			catTemp = it.next();
   			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
   			if(nombreRelativo == null){
   				nombreRelativo = catTemp.getNombreReal();
@@ -1773,7 +1773,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     	if(allMyCursors != null){
         	Iterator<Cursor> it = allMyCursors.iterator();
         	while(it.hasNext()){
-        		cur = (Cursor) it.next();
+        		cur = it.next();
         		cur.close();
         		this.stopManagingCursor(cur);
         	}
@@ -1877,7 +1877,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    }
 	    
 	    private void configurarBotonProtegerCategorias(){
-	    	protegerCategorias = (ImageButton) this.findViewById(R.id.botonProtegerCategorias);
+	    	protegerCategorias = this.findViewById(R.id.botonProtegerCategorias);
 	    	dCandadoAbierto = getResources().getDrawable(R.drawable.candado_abierto);
 			dCandadoCerrado = getResources().getDrawable(R.drawable.candado_cerrado);
 			if(ConstantsAdmin.contrasenia == null){

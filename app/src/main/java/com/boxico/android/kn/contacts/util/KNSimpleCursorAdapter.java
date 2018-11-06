@@ -51,9 +51,9 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 		// TODO Auto-generated method stub
 		 super.bindView(view, context, cursor);
 		 int colorPreferidoNaranja = Color.parseColor("#24221F");
-	     TextView textA = (TextView) view.findViewById(R.id.rowApellido);
-	     TextView textN = (TextView) view.findViewById(R.id.rowNombres);
-	     ImageView photo = (ImageView) view.findViewById(R.id.photo);
+	     TextView textA = view.findViewById(R.id.rowApellido);
+	     TextView textN = view.findViewById(R.id.rowNombres);
+	     ImageView photo = view.findViewById(R.id.photo);
 	     
 	     long id = cursor.getLong(cursor.getColumnIndex(ConstantsAdmin.KEY_ROWID));
 	     

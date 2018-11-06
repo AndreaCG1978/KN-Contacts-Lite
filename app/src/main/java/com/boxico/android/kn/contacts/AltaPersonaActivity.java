@@ -359,7 +359,7 @@ public class AltaPersonaActivity extends Activity {
     	if(lista != null){
         	Iterator<TipoValorDTO> it = lista.iterator();
         	while(it.hasNext()){
-        		tv = (TipoValorDTO) it.next();
+        		tv = it.next();
         		hm = new HashMap<String, Object>();
                 hm.put(TIPO, tv.getTipo());
                 hm.put(VALOR, tv.getValor());
@@ -375,28 +375,28 @@ public class AltaPersonaActivity extends Activity {
     }
 	
 	private void registrarWidgets(){
-		mDateDisplay = (TextView) this.findViewById(R.id.labelDateDisplay);
-		mPickDate = (Button) this.findViewById(R.id.buttonPickDate);
-		mCheckFechaNac = (CheckBox) this.findViewById(R.id.checkFechaNacimiento);
+		mDateDisplay = this.findViewById(R.id.labelDateDisplay);
+		mPickDate = this.findViewById(R.id.buttonPickDate);
+		mCheckFechaNac = this.findViewById(R.id.checkFechaNacimiento);
 		res = getResources(); 
-		mDescripcionLabel = (TextView)this.findViewById(R.id.label_descripcion);
+		mDescripcionLabel = this.findViewById(R.id.label_descripcion);
 
-		mSpinner = ((Spinner) this.findViewById(R.id.spinnerCategorias_alta_persona));
-		mEntryApellido = ((EditText)this.findViewById(R.id.entryApellido));
-		mEntryNombre = ((EditText)this.findViewById(R.id.entryNombre));
-		mEntryDatoExtra = ((EditText)this.findViewById(R.id.entryDatoExtra));
-		mEntryDescripcion = ((EditText)this.findViewById(R.id.entryDescripcion));
-		mNombContact = (TextView) this.findViewById(R.id.nombre_contacto);
+		mSpinner = this.findViewById(R.id.spinnerCategorias_alta_persona);
+		mEntryApellido = this.findViewById(R.id.entryApellido);
+		mEntryNombre = this.findViewById(R.id.entryNombre);
+		mEntryDatoExtra = this.findViewById(R.id.entryDatoExtra);
+		mEntryDescripcion = this.findViewById(R.id.entryDescripcion);
+		mNombContact = this.findViewById(R.id.nombre_contacto);
 		
 		
-		telefonosList = (ListView) this.findViewById(R.id.listaTelefonosAlta);
-		mailsList = (ListView) this.findViewById(R.id.listaMailsAlta);
-		direccionesList = (ListView) this.findViewById(R.id.listaDireccionesAlta);
+		telefonosList = this.findViewById(R.id.listaTelefonosAlta);
+		mailsList = this.findViewById(R.id.listaMailsAlta);
+		direccionesList = this.findViewById(R.id.listaDireccionesAlta);
 
-		sinDatos = (TextView) this.findViewById(R.id.label_sinDatos);
-		botonAddTel = (ImageButton) this.findViewById(R.id.addTelefono);
-		botonAddMail = (ImageButton) this.findViewById(R.id.addMail);
-		botonAddDir = (ImageButton) this.findViewById(R.id.addDir);
+		sinDatos = this.findViewById(R.id.label_sinDatos);
+		botonAddTel = this.findViewById(R.id.addTelefono);
+		botonAddMail = this.findViewById(R.id.addMail);
+		botonAddDir = this.findViewById(R.id.addDir);
 
 	}
 	
@@ -563,7 +563,7 @@ public class AltaPersonaActivity extends Activity {
 		Iterator<TipoValorDTO> it = listaOrigen.iterator();
 		TipoValorDTO tv = null;
 		while(it.hasNext()){
-			tv = (TipoValorDTO) it.next();
+			tv = it.next();
 			listaDestino.add(tv);
 			tipos.add(tv.getTipo());
 			
@@ -609,7 +609,7 @@ public class AltaPersonaActivity extends Activity {
 	    	temp = array[1];
 	    	mes = Integer.valueOf(temp);
 	    	
-	    	if(lang.equals(locale.ENGLISH.toString())){
+	    	if(lang.equals(Locale.ENGLISH.toString())){
 	    		result = textToFechaIngles(array[0], mes, array[2]);
 	    	}else if(lang.equals(ConstantsAdmin.LANG_ESPANOL)){
 	    		result = textToFechaEspanol(array[0], mes, array[2]);
@@ -721,7 +721,7 @@ public class AltaPersonaActivity extends Activity {
 	}
 	
 	private void configurarBotonGuardarYSalir(){
-		Button boton = (Button)this.findViewById(R.id.butttonRegistrarYSalir);
+		Button boton = this.findViewById(R.id.butttonRegistrarYSalir);
 		boton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if(validarEntradaDeDatos()){
@@ -742,7 +742,7 @@ public class AltaPersonaActivity extends Activity {
 	
 	
 	private void configurarBotonGuardar(){
-		Button boton = (Button)this.findViewById(R.id.butttonRegistrarPersonaFinal);
+		Button boton = this.findViewById(R.id.butttonRegistrarPersonaFinal);
 		boton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if(validarEntradaDeDatos()){
@@ -828,7 +828,7 @@ public class AltaPersonaActivity extends Activity {
 		Iterator<TipoValorDTO> it = telefonos.iterator();
 		TipoValorDTO tv = null;
 		while(it.hasNext()){
-			tv = (TipoValorDTO) it.next();
+			tv = it.next();
 			tv.setIdPersona(String.valueOf(idPer));
 		}
 		ConstantsAdmin.registrarTelefonos(this, telefonos);
@@ -839,7 +839,7 @@ public class AltaPersonaActivity extends Activity {
 		Iterator<TipoValorDTO> it = mails.iterator();
 		TipoValorDTO tv = null;
 		while(it.hasNext()){
-			tv = (TipoValorDTO) it.next();
+			tv = it.next();
 			tv.setIdPersona(String.valueOf(idPer));
 		}
 		ConstantsAdmin.registrarMails(this, mails);
@@ -850,7 +850,7 @@ public class AltaPersonaActivity extends Activity {
 		Iterator<TipoValorDTO> it = direcciones.iterator();
 		TipoValorDTO tv = null;
 		while(it.hasNext()){
-			tv = (TipoValorDTO) it.next();
+			tv = it.next();
 			tv.setIdPersona(String.valueOf(idPer));
 		}
 		ConstantsAdmin.registrarDirecciones(this, mails);
@@ -860,12 +860,12 @@ public class AltaPersonaActivity extends Activity {
 		
 	
 	private void seleccionarPrimerCategoria(){
-		mCategoriaSeleccionada = (CategoriaDTO) this.mSpinnerAdapt.getItem(0);
+		mCategoriaSeleccionada = this.mSpinnerAdapt.getItem(0);
 	}
 
 	private void configurarMasOMenosDatosPersonales(){
 
-		ImageButton icon = (ImageButton)this.findViewById(R.id.menu_icon_identification);
+		ImageButton icon = this.findViewById(R.id.menu_icon_identification);
 		icon.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if(!mMostrarDatosPersonalesBoolean){
@@ -882,7 +882,7 @@ public class AltaPersonaActivity extends Activity {
 
 	
 	private void configurarMasOMenosTelefonos(){
-		ImageButton icon = (ImageButton)this.findViewById(R.id.menu_icon_phone);
+		ImageButton icon = this.findViewById(R.id.menu_icon_phone);
 		icon.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if(!mMostrarTelefonosBoolean){
@@ -903,7 +903,7 @@ public class AltaPersonaActivity extends Activity {
 	
 	
 	private void configurarMasOMenosEmails(){
-		ImageButton icon = (ImageButton)this.findViewById(R.id.menu_icon_mail);
+		ImageButton icon = this.findViewById(R.id.menu_icon_mail);
 		icon.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if(!mMostrarEmailsBoolean){
@@ -919,7 +919,7 @@ public class AltaPersonaActivity extends Activity {
 	}
 	
 	private void configurarMasOMenosDirecciones(){
-		ImageButton icon = (ImageButton)this.findViewById(R.id.menu_icon_addres);
+		ImageButton icon = this.findViewById(R.id.menu_icon_addres);
 		icon.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if(!mMostrarDireccionesBoolean){
@@ -944,7 +944,7 @@ public class AltaPersonaActivity extends Activity {
 	}
 	
 	private void configurarMasOMenosDatosPorCategoria(){
-		ImageButton icon = (ImageButton)this.findViewById(R.id.menu_icon_category);
+		ImageButton icon = this.findViewById(R.id.menu_icon_category);
 		icon.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if(!mMostrarDatosPorCategoriaBoolean){
@@ -962,8 +962,8 @@ public class AltaPersonaActivity extends Activity {
 	private void mostrarTelefonos(){
 		Drawable dbw = res.getDrawable(R.drawable.phone_am_icon_bw);
 		Drawable d = res.getDrawable(R.drawable.phone_am_icon);
-		ImageButton icon = (ImageButton)this.findViewById(R.id.menu_icon_phone);
-		TextView text = (TextView) this.findViewById(R.id.label_phones);
+		ImageButton icon = this.findViewById(R.id.menu_icon_phone);
+		TextView text = this.findViewById(R.id.label_phones);
 		if(!mMostrarTelefonosBoolean){
 			if(text != null){
 				text.setVisibility(View.GONE);
@@ -992,8 +992,8 @@ public class AltaPersonaActivity extends Activity {
 	private void mostrarDatosPersonales(){
 		Drawable dbw = res.getDrawable(R.drawable.person_am_icon_bw);
 		Drawable d = res.getDrawable(R.drawable.person_am_icon);
-		ImageButton icon = (ImageButton)this.findViewById(R.id.menu_icon_identification);
-		TextView text = (TextView)this.findViewById(R.id.label_identificacion);
+		ImageButton icon = this.findViewById(R.id.menu_icon_identification);
+		TextView text = this.findViewById(R.id.label_identificacion);
 		if(!mMostrarDatosPersonalesBoolean){
 			this.findViewById(R.id.label_apellido).setVisibility(View.GONE);
 			this.findViewById(R.id.label_nombre).setVisibility(View.GONE);
@@ -1033,8 +1033,8 @@ public class AltaPersonaActivity extends Activity {
 	private void mostrarEmails(){
 		Drawable dbw = res.getDrawable(R.drawable.mail_am_icon_bw);
 		Drawable d = res.getDrawable(R.drawable.mail_am_icon);
-		ImageButton icon = (ImageButton)this.findViewById(R.id.menu_icon_mail);
-		TextView text = (TextView)this.findViewById(R.id.label_emails);
+		ImageButton icon = this.findViewById(R.id.menu_icon_mail);
+		TextView text = this.findViewById(R.id.label_emails);
 		if(!mMostrarEmailsBoolean){
 			if(text != null){
 				text.setVisibility(View.GONE);
@@ -1062,8 +1062,8 @@ public class AltaPersonaActivity extends Activity {
 	private void mostrarDirecciones(){
 		Drawable dbw = res.getDrawable(R.drawable.home_am_icon_bw);
 		Drawable d = res.getDrawable(R.drawable.home_am_icon);
-		ImageButton icon = (ImageButton)this.findViewById(R.id.menu_icon_addres);
-		TextView text = (TextView)this.findViewById(R.id.label_address);
+		ImageButton icon = this.findViewById(R.id.menu_icon_addres);
+		TextView text = this.findViewById(R.id.label_address);
 		if(!mMostrarDireccionesBoolean){
 			if(text != null){
 				text.setVisibility(View.GONE);
@@ -1094,8 +1094,8 @@ public class AltaPersonaActivity extends Activity {
 	private void mostrarDatosPorCategoria(){
 		Drawable dbw = res.getDrawable(R.drawable.categoria_am_icon_bw);
 		Drawable d = res.getDrawable(R.drawable.categoria_am_icon);
-		ImageButton icon = (ImageButton)this.findViewById(R.id.menu_icon_category);
-		TextView text = (TextView)this.findViewById(R.id.label_category);
+		ImageButton icon = this.findViewById(R.id.menu_icon_category);
+		TextView text = this.findViewById(R.id.label_category);
 		if(!mMostrarDatosPorCategoriaBoolean){
 			this.setVisibilityParaViewPorCategorias(View.GONE);
 			if(text != null){
@@ -1116,7 +1116,7 @@ public class AltaPersonaActivity extends Activity {
 
 	
 	private void setVisibilityParaViewPorCategorias(int visibility){
-		Spinner spinner = (Spinner)this.findViewById(R.id.spinnerCategorias_alta_persona);
+		Spinner spinner = this.findViewById(R.id.spinnerCategorias_alta_persona);
 		mEntryDatoExtra.setVisibility(visibility);
 		mEntryDescripcion.setVisibility(visibility);
 		this.findViewById(R.id.label_datoExtra).setVisibility(visibility);
@@ -1216,7 +1216,7 @@ public class AltaPersonaActivity extends Activity {
   		CategoriaDTO catTemp = null;
   		String nombreRelativo = null;
   		while(it.hasNext()){
-  			catTemp = (CategoriaDTO) it.next();
+  			catTemp = it.next();
   			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
   			if(nombreRelativo == null){
   				nombreRelativo = catTemp.getNombreReal();
@@ -1229,14 +1229,14 @@ public class AltaPersonaActivity extends Activity {
   	
     
     protected Spinner crearSpinnerCategorias(int nombreSpinner, List<CategoriaDTO> categorias){
-	    Spinner spinner = (Spinner) findViewById(nombreSpinner);
+	    Spinner spinner = findViewById(nombreSpinner);
 	    int pos = 0;
 	    CategoriaDTO cat = null;
 	    boolean encontrado = false;
 	    Iterator<CategoriaDTO> it = categorias.iterator();
 	    while(!encontrado && it.hasNext()){
 	    	pos++;
-	    	cat = (CategoriaDTO)it.next();
+	    	cat = it.next();
 	    	if(cat.getNombreReal().equals(mPersonaSeleccionada.getCategoriaNombre())){
 	    		encontrado = true;
 	    		mCategoriaSeleccionada = cat;
@@ -1310,8 +1310,8 @@ public class AltaPersonaActivity extends Activity {
     private void configurarEntriesPorCategoriaSeleccionada(){
     	String text = null;
     	if(mCategoriaSeleccionada != null){
-	    	EditText textViewEntry = (EditText)this.findViewById(R.id.entryDatoExtra);
-	    	TextView textViewLabel = (TextView)this.findViewById(R.id.label_datoExtra);
+	    	EditText textViewEntry = this.findViewById(R.id.entryDatoExtra);
+	    	TextView textViewLabel = this.findViewById(R.id.label_datoExtra);
 	    	text = this.obtenerEtiquetaDatoExtra(mCategoriaSeleccionada.getNombreReal());
 	    	if(text == null){
 	    		text = mCategoriaSeleccionada.getTipoDatoExtra();
@@ -1345,7 +1345,7 @@ public class AltaPersonaActivity extends Activity {
     	Cursor cur = null;
     	Iterator<Cursor> it = allMyCursors.iterator();
     	while(it.hasNext()){
-    		cur = (Cursor) it.next();
+    		cur = it.next();
     		cur.close();
     		this.stopManagingCursor(cur);
     	}

@@ -79,7 +79,7 @@ public class AltaTipoValorActivity extends Activity {
 	    Iterator<String> it = tipos.iterator();
 	    if(mTipoValor != null && mTipoValor.getTipo() != null){
 		    while (!encontrado && it.hasNext()){
-		    	tip = (String) it.next();
+		    	tip = it.next();
 		    	encontrado = mTipoValor.getTipo().toUpperCase().equals(tip.toUpperCase());
 		    	pos++;
 		    }
@@ -137,14 +137,14 @@ public class AltaTipoValorActivity extends Activity {
 		InputFilter[] filterArray = new InputFilter[1];
 		
 		
-		TextView labelValor = (TextView) dialog.findViewById(R.id.label_valor);
-		labelNuevoTipo = (TextView) dialog.findViewById(R.id.label_nuevo_tipo);
+		TextView labelValor = dialog.findViewById(R.id.label_valor);
+		labelNuevoTipo = dialog.findViewById(R.id.label_nuevo_tipo);
 		
-		mValor = (EditText) dialog.findViewById(R.id.entryValor);
-		mNuevoTipo = (EditText) dialog.findViewById(R.id.entryNuevoTipo);	
-		spinnerTipos = (Spinner) dialog.findViewById(R.id.spinnerTipoValor);
-		btnEditar = (Button) dialog.findViewById(R.id.buttonRegistrarCategoria); 
-		btnEliminar = (Button) dialog.findViewById(R.id.buttonEliminarCategoria); 
+		mValor = dialog.findViewById(R.id.entryValor);
+		mNuevoTipo = dialog.findViewById(R.id.entryNuevoTipo);
+		spinnerTipos = dialog.findViewById(R.id.spinnerTipoValor);
+		btnEditar = dialog.findViewById(R.id.buttonRegistrarCategoria);
+		btnEliminar = dialog.findViewById(R.id.buttonEliminarCategoria);
 		
 		if(tipoElemento.equals(ConstantsAdmin.TIPO_TELEFONO)){
 			labelValor.setText(this.getString(R.string.label_telefono));
@@ -459,7 +459,7 @@ public class AltaTipoValorActivity extends Activity {
 		boolean encontrado = false;
 		TipoValorDTO tvTemp = null;
 		while(it.hasNext()&& !encontrado){
-			tvTemp = (TipoValorDTO) it.next();
+			tvTemp = it.next();
 			encontrado = tvTemp.getId() == tv.getId();
 			if(encontrado){
 				it.remove();

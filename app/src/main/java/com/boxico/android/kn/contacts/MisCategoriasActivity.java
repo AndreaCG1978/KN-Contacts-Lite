@@ -52,7 +52,7 @@ public class MisCategoriasActivity extends ListActivity {
     	Cursor cur = null;
     	Iterator<Cursor> it = allMyCursors.iterator();
     	while(it.hasNext()){
-    		cur = (Cursor) it.next();
+    		cur = it.next();
     		cur.close();
     		this.stopManagingCursor(cur);
     	}
@@ -139,20 +139,20 @@ public class MisCategoriasActivity extends ListActivity {
     
 	private void configurarBotonCategorias(){
 		Button boton = null;
-		boton = (Button) this.findViewById(R.id.botonMisCategorias);
+		boton = this.findViewById(R.id.botonMisCategorias);
 		boton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	verCategorias();
             }
         });
-		boton = (Button) this.findViewById(R.id.botonAgregarCategoria);
+		boton = this.findViewById(R.id.botonAgregarCategoria);
 		boton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	openAltaCategoria();
             }
         });
 		
-		labelCategorias = (TextView)this.findViewById(R.id.categoriaTextView);
+		labelCategorias = this.findViewById(R.id.categoriaTextView);
 		titulo = labelCategorias.getText().toString();
 
 

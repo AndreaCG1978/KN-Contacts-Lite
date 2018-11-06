@@ -98,7 +98,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
     	Cursor cur = null;
     	Iterator<Cursor> it = allMyCursors.iterator();
     	while(it.hasNext()){
-    		cur = (Cursor) it.next();
+    		cur = it.next();
     		cur.close();
     		this.stopManagingCursor(cur);
     	}
@@ -157,18 +157,18 @@ public class ProteccionCategoriaActivity extends ListActivity {
 	}
 	
 	private void registrarWidgets(){
-		contrasenia1 = (EditText)this.findViewById(R.id.contrasenia1);
-		contrasenia2 = (EditText)this.findViewById(R.id.contrasenia2);
-		mailPassword = (EditText)this.findViewById(R.id.mailPassword);
+		contrasenia1 = this.findViewById(R.id.contrasenia1);
+		contrasenia2 = this.findViewById(R.id.contrasenia2);
+		mailPassword = this.findViewById(R.id.mailPassword);
 		if(ConstantsAdmin.contrasenia.getContrasenia()!= null && !ConstantsAdmin.contrasenia.getContrasenia().equals("")){
 			contrasenia1.setText(ConstantsAdmin.contrasenia.getContrasenia());
 			contrasenia2.setText(ConstantsAdmin.contrasenia.getContrasenia());
 			mailPassword.setText(ConstantsAdmin.contrasenia.getMail());
 		}
-		botonRegistrarContrasenia = (Button)this.findViewById(R.id.botonRegistrarContrasenia);
-		botonActivarContrasenia = (Button)this.findViewById(R.id.botonActivarContrasenia);
-		botonDesactivarContrasenia = (Button)this.findViewById(R.id.botonDesactivarContrasenia);
-		imagen = (ImageView) this.findViewById(R.id.imagenProtegerCategorias);
+		botonRegistrarContrasenia = this.findViewById(R.id.botonRegistrarContrasenia);
+		botonActivarContrasenia = this.findViewById(R.id.botonActivarContrasenia);
+		botonDesactivarContrasenia = this.findViewById(R.id.botonDesactivarContrasenia);
+		imagen = this.findViewById(R.id.imagenProtegerCategorias);
     	dCandadoAbierto = getResources().getDrawable(R.drawable.candado_abierto);
 		dCandadoCerrado = getResources().getDrawable(R.drawable.candado_cerrado);
 	}
@@ -243,7 +243,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
     	CategoriaDTO cat = null;
     	Iterator<CategoriaDTO> it = ConstantsAdmin.categoriasProtegidas.iterator();
     	while(!result && it.hasNext()){
-    		cat = (CategoriaDTO) it.next();
+    		cat = it.next();
     		result = cat.getNombreReal().equals(catSelected.getNombreReal());
     	}
     	return result;
@@ -256,7 +256,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
     	boolean encontrada = false;
     	ConstantsAdmin.eliminarCategoriaProtegida(catSelected, this);
     	while(it.hasNext() && !encontrada){
-    		cat = (CategoriaDTO) it.next();
+    		cat = it.next();
     		if(cat.getNombreReal().equals(catSelected.getNombreReal())){
     			it.remove();
     			encontrada = true;
@@ -322,7 +322,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
         this.getListView().setItemsCanFocus(false);
         this.getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         this.getListView().setFastScrollEnabled(true);
-        labelCategorias = (TextView) this.findViewById(R.id.tituloCategorias);
+        labelCategorias = this.findViewById(R.id.tituloCategorias);
 	}
 
 	private void cambiarNombreCategorias(List<CategoriaDTO> categorias){
@@ -330,7 +330,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
   		CategoriaDTO catTemp = null;
   		String nombreRelativo = null;
   		while(it.hasNext()){
-  			catTemp = (CategoriaDTO) it.next();
+  			catTemp = it.next();
   			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
   			if(nombreRelativo == null){
   				nombreRelativo = catTemp.getNombreReal();

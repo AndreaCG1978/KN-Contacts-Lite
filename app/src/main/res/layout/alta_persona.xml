@@ -45,7 +45,7 @@
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginLeft="22dp" android:nextFocusRight="@+id/butttonRegistrarYSalir"
 				android:focusable="true"
-                android:contentDescription="TODO" />
+                android:contentDescription="menu_icon_category" />
 
 
 		</LinearLayout>
@@ -239,7 +239,8 @@
 				android:padding="5dp"
 				android:textSize="14sp" android:layout_marginLeft="3dp"
 				android:layout_marginRight="4dp" android:layout_width="fill_parent"
-				android:maxLength="30" />
+				android:maxLength="30"
+				/>
 		</LinearLayout>
 
 		<LinearLayout android:id="@+id/linearDesc"

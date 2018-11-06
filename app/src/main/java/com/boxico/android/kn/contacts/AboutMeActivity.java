@@ -32,7 +32,7 @@ public class AboutMeActivity extends Activity {
     }
     
     private void configurarMailYLinkPagEmpresa(){
-    	mail = (TextView) this.findViewById(R.id.textAcercaDeMail);
+    	mail = this.findViewById(R.id.textAcercaDeMail);
     	mail.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -40,7 +40,7 @@ public class AboutMeActivity extends Activity {
 				enviarMailGenerico(mail.getText().toString());
 			}
 		});
-		TextView publicaciones = (TextView) this.findViewById(R.id.textTodasLasPublicaciones);
+		TextView publicaciones = this.findViewById(R.id.textTodasLasPublicaciones);
     	publicaciones.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

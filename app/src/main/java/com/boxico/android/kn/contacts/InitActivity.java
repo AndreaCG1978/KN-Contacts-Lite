@@ -69,7 +69,7 @@ public class InitActivity extends Activity {
     	Cursor cur = null;
     	Iterator<Cursor> it = allMyCursors.iterator();
     	while(it.hasNext()){
-    		cur = (Cursor) it.next();
+    		cur = it.next();
     		cur.close();
     		this.stopManagingCursor(cur);
     	}

@@ -57,8 +57,8 @@ public class ActivarContraseniaActivity extends Activity {
 	
 	
 	private void registrarWidgets(Dialog dialog){
-		mContrasenia = (EditText) dialog.findViewById(R.id.contrasenia1);
-		btnAceptar = (Button) dialog.findViewById(R.id.botonActivarContrasenia);		
+		mContrasenia = dialog.findViewById(R.id.contrasenia1);
+		btnAceptar = dialog.findViewById(R.id.botonActivarContrasenia);
 	}
 	
     private void configurarBotonAceptar(){

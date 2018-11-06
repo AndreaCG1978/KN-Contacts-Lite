@@ -70,10 +70,10 @@ public class AltaCategoriaActivity extends Activity {
 	
 	
 	private void registrarWidgets(Dialog dialog){
-		mNombreCategoria = (EditText) dialog.findViewById(R.id.entryNombreCategoria);
-		mNombreCaracteristica = (EditText) dialog.findViewById(R.id.entryTipoDatoExtra);		
-		btnEditar = (Button) dialog.findViewById(R.id.buttonRegistrarCategoria); 
-		btnEliminar = (Button) dialog.findViewById(R.id.buttonEliminarCategoria); 
+		mNombreCategoria = dialog.findViewById(R.id.entryNombreCategoria);
+		mNombreCaracteristica = dialog.findViewById(R.id.entryTipoDatoExtra);
+		btnEditar = dialog.findViewById(R.id.buttonRegistrarCategoria);
+		btnEliminar = dialog.findViewById(R.id.buttonEliminarCategoria);
 	}
 	
     private void configurarBotonAgregarCategoria(){

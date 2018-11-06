@@ -38,7 +38,7 @@ public class ListadoCategoriaActivity extends ListActivity {
     }
 	
 	private void registrarWidgets(){
-		labelCategorias = (TextView)this.findViewById(R.id.categoriaTextView);
+		labelCategorias = this.findViewById(R.id.categoriaTextView);
 		titulo = labelCategorias.getText().toString();
 	}
 	
@@ -46,7 +46,7 @@ public class ListadoCategoriaActivity extends ListActivity {
     	Cursor cur = null;
     	Iterator<Cursor> it = allMyCursors.iterator();
     	while(it.hasNext()){
-    		cur = (Cursor) it.next();
+    		cur = it.next();
     		cur.close();
     		this.stopManagingCursor(cur);
     	}
@@ -59,7 +59,7 @@ public class ListadoCategoriaActivity extends ListActivity {
   		CategoriaDTO catTemp = null;
   		String nombreRelativo = null;
   		while(it.hasNext()){
-  			catTemp = (CategoriaDTO) it.next();
+  			catTemp = it.next();
   			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
   			if(nombreRelativo == null){
   				nombreRelativo = catTemp.getNombreReal();
@@ -98,7 +98,7 @@ public class ListadoCategoriaActivity extends ListActivity {
 	
 	private void configurarBotonMisCategorias(){
 		Button misCat = null;
-		misCat = (Button) this.findViewById(R.id.botonMisCategorias);
+		misCat = this.findViewById(R.id.botonMisCategorias);
 		misCat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	verMisCategorias();

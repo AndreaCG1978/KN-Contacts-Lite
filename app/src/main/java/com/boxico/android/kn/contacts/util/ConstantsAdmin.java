@@ -78,7 +78,7 @@ public class ConstantsAdmin {
 		String primeraLetra = null;
 		String nombreCategoria = null;
         while(it.hasNext()){
-        	per = (PersonaDTO) it.next();
+        	per = it.next();
         
         	// ORGANIZO ALFABETICAMENTE
         	if(!per.getApellido().equals("")){
@@ -164,7 +164,7 @@ public class ConstantsAdmin {
     	      context.stopManagingCursor(cursor);
     	      it = categorias.iterator();
     	      while(it.hasNext()){
-	    	      cat = (CategoriaDTO) it.next();
+	    	      cat = it.next();
 	    	      cat.setTipoDatoExtra(obtenerTipoDatoExtraPorCategoria(cat.getNombreReal(), context));
 	    	      mDBManager.actualizarCategoria(cat);
     	      }
@@ -201,7 +201,7 @@ public class ConstantsAdmin {
     	TipoValorDTO tv = null;
     	inicializarBD(context);
     	while(it.hasNext()){
-    		tv = (TipoValorDTO) it.next();
+    		tv = it.next();
     		mDBManager.createTipoValor(tv, tablaNombre);
     	}
     	finalizarBD();
@@ -847,43 +847,43 @@ public class ConstantsAdmin {
     	inicializarBD(context);
     	mDBManager.deleteAll();
     	while(itPers.hasNext()){
-    		per = (PersonaDTO) itPers.next();
+    		per = itPers.next();
     		mDBManager.createPersona(per, true);
     	}
     	while(itCat.hasNext()){
-    		cat = (CategoriaDTO) itCat.next();
+    		cat = itCat.next();
     		mDBManager.crearCategoria(cat, true);
     	}
     	itCat = categoriasPersonales.iterator();
     	while(itCat.hasNext()){
-    		cat = (CategoriaDTO) itCat.next();
+    		cat = itCat.next();
     		mDBManager.crearCategoriaPersonal(cat, null, true);
     	}   
     	
     	itCat = catProtegidas.iterator();
     	categoriasProtegidas = new ArrayList<CategoriaDTO>();
     	while(itCat.hasNext()){
-    		cat = (CategoriaDTO) itCat.next();
+    		cat = itCat.next();
     		mDBManager.crearCategoriaProtegida(cat);
     		categoriasProtegidas.add(cat);
     		
     	}  
     	while(itPref.hasNext()){
-    		pref = (Long) itPref.next();
+    		pref = itPref.next();
     		mDBManager.crearPreferido(pref);
     	}   
     	while(itTv.hasNext()){
-    		tv = (TipoValorDTO) itTv.next();
+    		tv = itTv.next();
     		mDBManager.createTelefono(tv);
     	} 
     	itTv = mailsARegistrar.iterator();
     	while(itTv.hasNext()){
-    		tv = (TipoValorDTO) itTv.next();
+    		tv = itTv.next();
     		mDBManager.createEmail(tv);
     	}     	
     	itTv = direccionesARegistrar.iterator();
     	while(itTv.hasNext()){
-    		tv = (TipoValorDTO) itTv.next();
+    		tv = itTv.next();
     		mDBManager.createDireccion(tv);
     	}     	
     	
@@ -914,7 +914,7 @@ public class ConstantsAdmin {
     	mailsARegistrar = new ArrayList<TipoValorDTO>();
     	direccionesARegistrar = new ArrayList<TipoValorDTO>();
     	while(it.hasNext()){
-    		linea = (String) it.next();
+    		linea = it.next();
     		campos = linea.split(PUNTO_COMA);
     		per = new PersonaDTO();
     		per.setId(new Long(campos[1]));
@@ -1028,7 +1028,7 @@ public class ConstantsAdmin {
         	Iterator<String> it = lista.iterator();
         	CategoriaDTO cat = null;
         	while(it.hasNext()){
-        		linea = (String) it.next();
+        		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
         		cat = new CategoriaDTO();
         		cat.setId(new Long(campos[1]));  
@@ -1050,7 +1050,7 @@ public class ConstantsAdmin {
         	Iterator<String> it = lista.iterator();
         	CategoriaDTO cat = null;
         	while(it.hasNext()){
-        		linea = (String) it.next();
+        		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
         		cat = new CategoriaDTO();
         		cat.setId(new Long(campos[1]));  
@@ -1067,7 +1067,7 @@ public class ConstantsAdmin {
     	Iterator<CategoriaDTO> it = result.iterator();
     	CategoriaDTO cat = null;
     	while(it.hasNext()){
-    		cat = (CategoriaDTO) it.next();
+    		cat = it.next();
     		cat.setCategoriaPersonal(true);
     	}
     	return result;
@@ -1083,7 +1083,7 @@ public class ConstantsAdmin {
         	Iterator<String> it = lista.iterator();
         	Long id = null;
         	while(it.hasNext()){
-        		linea = (String) it.next();
+        		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
         		id = new Long(campos[1]);
         		resultado.add(id);
@@ -1101,7 +1101,7 @@ public class ConstantsAdmin {
         	Iterator<String> it = lista.iterator();
         	Long id = null;
         	if(it.hasNext()){
-        		linea = (String) it.next();
+        		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
         		id = new Long(campos[1]);
         		pass.setId(id);
@@ -1113,7 +1113,7 @@ public class ConstantsAdmin {
     	return pass;
     }
     
-    private static String obtenerContenidoArchivo(File file, Activity context)throws FileNotFoundException, IOException{
+    private static String obtenerContenidoArchivo(File file, Activity context)throws IOException{
         // ACA DEBERIA CARGAR EL CONTENIDO DEL ARCHIVO PASADO COMO PARAMETRO, HACER LOS CONTROLES DE LECTURA
     	String line = null;
     	Asociacion canStore = comprobarSDCard(context);
@@ -1187,7 +1187,7 @@ public class ConstantsAdmin {
     }
     
     
-    public static void almacenarArchivo(String nombreDirectorio, String nombreArchivo, String body) throws IOException, FileNotFoundException{
+    public static void almacenarArchivo(String nombreDirectorio, String nombreArchivo, String body) throws IOException {
     	String path = obtenerPath(nombreDirectorio);
 
 	    File dir = new File(path);
@@ -1217,7 +1217,7 @@ public class ConstantsAdmin {
     	List<PersonaDTO> personas = obtenerPersonas(context, categoriasProtegidas);
     	Iterator<PersonaDTO> itPer = personas.iterator();
     	while(itPer.hasNext()){
-    		per = (PersonaDTO) itPer.next();
+    		per = itPer.next();
     	//	result = result + obtenerStringPersona(per, context);
     		result = result + obtenerStringEsteticoPersona(per, context, separador);
 
@@ -1235,7 +1235,7 @@ public class ConstantsAdmin {
     	List<PersonaDTO> personas = obtenerPersonas(context);
     	Iterator<PersonaDTO> itPer = personas.iterator();
     	while(itPer.hasNext()){
-    		per = (PersonaDTO) itPer.next();
+    		per = itPer.next();
     		result = result + obtenerStringPersona(per, context);
     	}
     	
@@ -1244,7 +1244,7 @@ public class ConstantsAdmin {
     	List<CategoriaDTO> categorias = obtenerCategorias(context);
     	Iterator<CategoriaDTO> itCat = categorias.iterator();
     	while(itCat.hasNext()){
-    		cat = (CategoriaDTO) itCat.next();
+    		cat = itCat.next();
     		result = result + obtenerStringCategoria(cat, HEAD_CATEGORIA);
     	}
     	
@@ -1253,7 +1253,7 @@ public class ConstantsAdmin {
     	categorias = obtenerCategoriasPersonales(context);
     	itCat = categorias.iterator();
     	while(itCat.hasNext()){
-    		cat = (CategoriaDTO) itCat.next();
+    		cat = itCat.next();
     		result = result + obtenerStringCategoria(cat, HEAD_CATEGORIA_PERSONAL);
     	}
     	
@@ -1263,7 +1263,7 @@ public class ConstantsAdmin {
     	List<Long> preferidos = obtenerPreferidos(context);
     	Iterator<Long> itPref = preferidos.iterator();
     	while(itPref.hasNext()){
-    		idPref = (Long) itPref.next();
+    		idPref = itPref.next();
     		result = result + HEAD_PREFERIDO + PUNTO_COMA +idPref + ENTER;
     	}
     	
@@ -1273,7 +1273,7 @@ public class ConstantsAdmin {
     	categorias = categoriasProtegidas;
     	itCat = categorias.iterator();
     	while(itCat.hasNext()){
-    		cat = (CategoriaDTO) itCat.next();
+    		cat = itCat.next();
     		result = result + obtenerStringCategoriaProtegida(cat, HEAD_CATEGORIA_PROTEGIDA);
     	}
     	result = result + obtenerStringContrasenia();
@@ -1341,7 +1341,7 @@ public class ConstantsAdmin {
     	masTVs = obtenerTelefonosIdPersona(context, per.getId());
     	it = masTVs.iterator();
     	while(it.hasNext()){
-    		tv = (TipoValorDTO) it.next();
+    		tv = it.next();
     		result = result + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PUNTO_COMA;
     	}
 
@@ -1362,7 +1362,7 @@ public class ConstantsAdmin {
     	masTVs = obtenerEmailsIdPersona(context, per.getId());
     	it = masTVs.iterator();
     	while(it.hasNext()){
-    		tv = (TipoValorDTO) it.next();
+    		tv = it.next();
     		result = result + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PUNTO_COMA;
     	}
     	
@@ -1381,7 +1381,7 @@ public class ConstantsAdmin {
     	masTVs = obtenerDireccionesIdPersona(context, per.getId());
     	it = masTVs.iterator();
     	while(it.hasNext()){
-    		tv = (TipoValorDTO) it.next();
+    		tv = it.next();
     		result = result + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PUNTO_COMA;
     	}
     	
@@ -1459,7 +1459,7 @@ public class ConstantsAdmin {
     	masTVs = obtenerTelefonosIdPersona(context, per.getId());
     	it = masTVs.iterator();
     	while(it.hasNext()){
-    		tv = (TipoValorDTO) it.next();
+    		tv = it.next();
     		result = result + context.getString(R.string.label_telefono) + "-" +  tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PIPE;
     	}
     	
@@ -1480,7 +1480,7 @@ public class ConstantsAdmin {
     	masTVs = obtenerEmailsIdPersona(context, per.getId());
     	it = masTVs.iterator();
     	while(it.hasNext()){
-    		tv = (TipoValorDTO) it.next();
+    		tv = it.next();
     		result = result + context.getString(R.string.label_email) + "-" + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PIPE;
     	}
     	
@@ -1498,7 +1498,7 @@ public class ConstantsAdmin {
     	masTVs = obtenerDireccionesIdPersona(context, per.getId());
     	it = masTVs.iterator();
     	while(it.hasNext()){
-    		tv = (TipoValorDTO) it.next();
+    		tv = it.next();
     		result = result + context.getString(R.string.label_direccion) + "-" + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PIPE;
     	}
     	
@@ -1546,7 +1546,7 @@ public class ConstantsAdmin {
     	masTVs = obtenerTelefonosIdPersona(context, per.getId());
     	it = masTVs.iterator();
     	while(it.hasNext()){
-    		tv = (TipoValorDTO) it.next();
+    		tv = it.next();
     		result = result + "* " + context.getString(R.string.label_telefono) + "-" +  tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + separador;
     	}
 
@@ -1568,7 +1568,7 @@ public class ConstantsAdmin {
     	masTVs = obtenerEmailsIdPersona(context, per.getId());
     	it = masTVs.iterator();
     	while(it.hasNext()){
-    		tv = (TipoValorDTO) it.next();
+    		tv = it.next();
     		result = result + "* " + context.getString(R.string.label_email) + "-" + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + separador;
     	}
     	
@@ -1588,7 +1588,7 @@ public class ConstantsAdmin {
     	masTVs = obtenerDireccionesIdPersona(context, per.getId());
     	it = masTVs.iterator();
     	while(it.hasNext()){
-    		tv = (TipoValorDTO) it.next();
+    		tv = it.next();
     		result = result + "* " + context.getString(R.string.label_direccion) + "-" + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + separador;
     	}
     	
@@ -2003,7 +2003,7 @@ public class ConstantsAdmin {
 		if(categoriasProtegidas != null){
 			Iterator<CategoriaDTO> it = categoriasProtegidas.iterator();
 			while(it.hasNext() && !result){
-				cat = (CategoriaDTO) it.next();
+				cat = it.next();
 				result = cat.getNombreReal().equals(nombreCategoria);
 				
 			}
@@ -2126,7 +2126,7 @@ public class ConstantsAdmin {
     	return result;
     }
     
-    public static void almacenarImagen(Activity context, String nombreDirectorio, String nombreArchivo, Bitmap bm) throws IOException, FileNotFoundException{
+    public static void almacenarImagen(Activity context, String nombreDirectorio, String nombreArchivo, Bitmap bm) throws IOException {
   	  	  String path = obtenerPath(nombreDirectorio);
 	      OutputStream fOut = null;
 	      File dir = new File(path);

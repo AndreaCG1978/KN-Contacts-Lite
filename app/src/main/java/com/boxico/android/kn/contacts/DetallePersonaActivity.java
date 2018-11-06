@@ -102,7 +102,7 @@ public class DetallePersonaActivity extends Activity {
 		Cursor cur = null;
 		Iterator<Cursor> it = allMyCursors.iterator();
 		while (it.hasNext()) {
-			cur = (Cursor) it.next();
+			cur = it.next();
 			cur.close();
 			this.stopManagingCursor(cur);
 		}
@@ -166,7 +166,7 @@ public class DetallePersonaActivity extends Activity {
 		Asociacion asoc = null;
 		Iterator<Asociacion> it = telefonos.iterator();
 		while (it.hasNext()) {
-			asoc = (Asociacion) it.next();
+			asoc = it.next();
 			hm = new HashMap<String, Object>();
 			hm.put(TIPO, asoc.getKey());
 			hm.put(VALOR, asoc.getValue());
@@ -211,7 +211,7 @@ public class DetallePersonaActivity extends Activity {
 		Asociacion asoc = null;
 		Iterator<Asociacion> it = mails.iterator();
 		while (it.hasNext()) {
-			asoc = (Asociacion) it.next();
+			asoc = it.next();
 			hm = new HashMap<String, Object>();
 			hm.put(TIPO, asoc.getKey());
 			hm.put(VALOR, asoc.getValue());
@@ -253,7 +253,7 @@ public class DetallePersonaActivity extends Activity {
 		Asociacion asoc = null;
 		Iterator<Asociacion> it = direcciones.iterator();
 		while (it.hasNext()) {
-			asoc = (Asociacion) it.next();
+			asoc = it.next();
 			hm = new HashMap<String, Object>();
 			hm.put(TIPO, asoc.getKey());
 			hm.put(VALOR, asoc.getValue());
@@ -389,22 +389,22 @@ public class DetallePersonaActivity extends Activity {
 	private void registrarViews() {
 		res = getResources();
 
-		mApellido = (TextView) this.findViewById(R.id.detalle_apellido);
-		mNombres = (TextView) this.findViewById(R.id.detalle_nombres);
-		mFechaNacimiento = (TextView) this.findViewById(R.id.detalle_fechaNacimiento);
-		mFechaNacimientoLabel = (TextView) this.findViewById(R.id.label_fechaNacimiento);
-		mCategoria = (TextView) this.findViewById(R.id.detalle_categoria);
+		mApellido = this.findViewById(R.id.detalle_apellido);
+		mNombres = this.findViewById(R.id.detalle_nombres);
+		mFechaNacimiento = this.findViewById(R.id.detalle_fechaNacimiento);
+		mFechaNacimientoLabel = this.findViewById(R.id.label_fechaNacimiento);
+		mCategoria = this.findViewById(R.id.detalle_categoria);
 
-		mTituloTelefonos = (TextView) this.findViewById(R.id.label_telefonos);
-		mTituloEmails = (TextView) this.findViewById(R.id.label_emails);
-		mTituloDirecciones = (TextView) this.findViewById(R.id.label_direcciones);
-		sinDatos = (TextView) this.findViewById(R.id.label_sinDatos);
+		mTituloTelefonos = this.findViewById(R.id.label_telefonos);
+		mTituloEmails = this.findViewById(R.id.label_emails);
+		mTituloDirecciones = this.findViewById(R.id.label_direcciones);
+		sinDatos = this.findViewById(R.id.label_sinDatos);
 
 
-		mImagenPreferido = (ImageButton) this.findViewById(R.id.imagenPreferido);
-		imagenPhoto = (ImageButton) this.findViewById(R.id.imagenPhoto);
+		mImagenPreferido = this.findViewById(R.id.imagenPreferido);
+		imagenPhoto = this.findViewById(R.id.imagenPhoto);
 
-		photo = (ImageView) this.findViewById(R.id.photo);
+		photo = this.findViewById(R.id.photo);
 
 		drwPrefColor = res.getDrawable(R.drawable.pref_detalle_icon);
 		drwPrefBN = res.getDrawable(R.drawable.pref_detalle_bn_icon);
@@ -412,9 +412,9 @@ public class DetallePersonaActivity extends Activity {
 		drwColorSeleccionado = res.getDrawable(R.drawable.custom_text_view_categoria_desc);
 		drwColorDeseleccionado = res.getDrawable(R.drawable.custom_text_view_categoria);
 
-		telefonosList = (ListView) this.findViewById(R.id.listaTelefonos);
-		mailsList = (ListView) this.findViewById(R.id.listaMails);
-		direccionesList = (ListView) this.findViewById(R.id.listaDirecciones);
+		telefonosList = this.findViewById(R.id.listaTelefonos);
+		mailsList = this.findViewById(R.id.listaMails);
+		direccionesList = this.findViewById(R.id.listaDirecciones);
 
 	}
 
@@ -466,7 +466,7 @@ public class DetallePersonaActivity extends Activity {
 				Iterator<TipoValorDTO> it = nuevosTV.iterator();
 				TipoValorDTO tv = null;
 				while (it.hasNext()) {
-					tv = (TipoValorDTO) it.next();
+					tv = it.next();
 					asoc = new Asociacion(tv.getTipo(), tv.getValor());
 					telefonos.add(asoc);
 				}
@@ -497,7 +497,7 @@ public class DetallePersonaActivity extends Activity {
 				it = nuevosTV.iterator();
 				tv = null;
 				while (it.hasNext()) {
-					tv = (TipoValorDTO) it.next();
+					tv = it.next();
 					asoc = new Asociacion(tv.getTipo(), tv.getValor());
 					mails.add(asoc);
 				}
@@ -521,7 +521,7 @@ public class DetallePersonaActivity extends Activity {
 				it = nuevosTV.iterator();
 				tv = null;
 				while (it.hasNext()) {
-					tv = (TipoValorDTO) it.next();
+					tv = it.next();
 					asoc = new Asociacion(tv.getTipo(), tv.getValor());
 					direcciones.add(asoc);
 				}
@@ -584,7 +584,7 @@ public class DetallePersonaActivity extends Activity {
 			temp = array[1];
 			mes = Integer.valueOf(temp);
 
-			if (lang.equals(locale.ENGLISH.toString())) {
+			if (lang.equals(Locale.ENGLISH.toString())) {
 				result = textToFechaIngles(array[0], mes, array[2]);
 			} else if (lang.equals(ConstantsAdmin.LANG_ESPANOL)) {
 				result = textToFechaEspanol(array[0], mes, array[2]);
@@ -791,7 +791,7 @@ public class DetallePersonaActivity extends Activity {
     }
        
 	private void configurarBotonEditar(){
-		Button boton = (Button)this.findViewById(R.id.buttonIrAEditarPersona);
+		Button boton = this.findViewById(R.id.buttonIrAEditarPersona);
 		if(boton != null){
 			boton.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
@@ -916,7 +916,7 @@ public class DetallePersonaActivity extends Activity {
 	}
 
 	private void configurarBotonEliminar(){
-		Button boton = (Button)this.findViewById(R.id.buttonBorrarPersona);
+		Button boton = this.findViewById(R.id.buttonBorrarPersona);
 		if(boton != null){
 			boton.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {

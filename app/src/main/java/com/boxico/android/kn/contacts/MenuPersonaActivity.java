@@ -48,25 +48,25 @@ public class MenuPersonaActivity extends Activity {
     		nombre = nombre + ", " + per.getNombres();	
     	}
 		dialog.setTitle(nombre);
-		Button btn = (Button) dialog.findViewById(R.id.buttonVerPersona);
+		Button btn = dialog.findViewById(R.id.buttonVerPersona);
 		btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	openVerDetallePersona();
             }
         });
-		btn = (Button) dialog.findViewById(R.id.buttonEditarPersona);
+		btn = dialog.findViewById(R.id.buttonEditarPersona);
 		btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	abrirEditarPersona();
             }
         });
-		btn = (Button) dialog.findViewById(R.id.buttonBorrarPersona);
+		btn = dialog.findViewById(R.id.buttonBorrarPersona);
 		btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	eliminarPersonaDialog();
             }
         });
-		btn = (Button) dialog.findViewById(R.id.buttonEnviarInfoPersona);
+		btn = dialog.findViewById(R.id.buttonEnviarInfoPersona);
 		btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	sendInfoByMail();
