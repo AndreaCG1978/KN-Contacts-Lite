@@ -25,19 +25,19 @@
 				<EditText android:id="@+id/entryBusquedaPersona"
 					android:inputType="textPersonName" android:layout_height="38dp"
 					android:layout_width="110dp" android:maxLength="15"
-					android:paddingLeft="7dp" android:textSize="15sp"
-					android:layout_marginLeft="22dp" 
+					android:paddingStart="7dp" android:textSize="15sp"
+					android:layout_marginStart="22dp"
 					android:hint="@string/hint_busqueda" android:textColor="@color/color_azul_oscuro" />
 
 
 				<ImageButton android:id="@+id/buttonTodasLasCategorias"
 					android:layout_width="38dp" android:layout_height="38dp"
-					android:layout_marginLeft="22dp" android:background="@drawable/clear_icon"
+					android:layout_marginStart="22dp" android:background="@drawable/clear_icon"
 					android:contentDescription="buttonTodasLasCategorias" />
 
 				<TextView android:id="@+id/cantRegistros"
 					android:layout_height="wrap_content" android:layout_width="wrap_content"
-					android:layout_marginLeft="22dp" android:textSize="12sp">
+					android:layout_marginStart="22dp" android:textSize="12sp">
 				</TextView>
 
 
@@ -54,7 +54,7 @@
 
 
 			<View android:id="@+id/linea1" android:layout_width="wrap_content"
-				android:layout_height="2px" android:background="@color/color_negro" />
+				android:layout_height="2dp" android:background="@color/color_negro" />
 
 			<LinearLayout android:orientation="horizontal"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -63,8 +63,8 @@
 
 				<ImageView android:id="@+id/imgPrefLeft"
 					android:layout_width="13dp" android:layout_height="13dp"
-					android:src="@drawable/pref_detalle_icon" android:gravity="left"
-					android:layout_marginTop="6dp" android:layout_marginRight="60dp"
+					android:src="@drawable/pref_detalle_icon" android:gravity="start"
+					android:layout_marginTop="6dp" android:layout_marginEnd="60dp"
 					android:contentDescription="imgPrefLeft" />
 
 				<TextView android:id="@+id/categoriasSeleccionadasId"
@@ -76,8 +76,8 @@
 
 				<ImageView android:id="@+id/imgPrefRight"
 					android:layout_width="13dp" android:layout_height="13dp"
-					android:src="@drawable/pref_detalle_icon" android:gravity="right"
-					android:layout_marginTop="6dp" android:layout_marginLeft="60dp"
+					android:src="@drawable/pref_detalle_icon" android:gravity="end"
+					android:layout_marginTop="6dp" android:layout_marginStart="60dp"
 					android:contentDescription="imgPrefRight" />
 
 			</LinearLayout>
@@ -119,28 +119,28 @@
 
 			<ImageButton android:id="@+id/buttonSwitchOrganizacion"
 				android:layout_width="32dp" android:layout_height="32dp"
-				android:layout_marginLeft="23dp" android:background="@drawable/organizar_nombre"
+				android:layout_marginStart="23dp" android:background="@drawable/organizar_nombre"
 				android:contentDescription="buttonSwitchOrganizacion" />
 
 			<ImageButton android:id="@+id/buttonMoreOrLess"
 				android:layout_width="32dp" android:layout_height="32dp"
-				android:layout_marginLeft="23dp" android:background="@drawable/more_desc_contact"
+				android:layout_marginStart="23dp" android:background="@drawable/more_desc_contact"
 				android:contentDescription="buttonMoreOrLess" />
 
 
 			<ImageButton android:id="@+id/buttonExpandContractAll"
 				android:layout_width="30dp" android:layout_height="30dp"
-				android:layout_marginLeft="23dp" android:background="@drawable/expandir_icon"
+				android:layout_marginStart="23dp" android:background="@drawable/expandir_icon"
 				android:contentDescription="buttonExpandContractAll" />
 
 			<ImageButton android:id="@+id/imagenPreferidos"
 				android:layout_height="30dp" android:layout_width="30dp"
-				android:layout_marginLeft="23dp"
+				android:layout_marginStart="23dp"
 				android:contentDescription="imagenPreferidos" />
 
 			<ImageButton android:id="@+id/botonProtegerCategorias"
 				android:layout_height="30dp" android:layout_width="30dp"
-				android:layout_marginLeft="23dp"
+				android:layout_marginStart="23dp"
 				android:contentDescription="botonProtegerCategorias" />
 
 

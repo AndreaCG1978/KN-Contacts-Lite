@@ -26,7 +26,7 @@
 
 			<ImageButton android:id="@+id/menu_icon_phone"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:layout_marginLeft="16dp" android:nextFocusRight="@+id/menu_icon_mail"
+				android:layout_marginStart="16dp" android:nextFocusRight="@+id/menu_icon_mail"
                 android:contentDescription="menu_icon_phone" />
 
 			<ImageButton android:id="@+id/menu_icon_mail"
@@ -37,7 +37,7 @@
 
 			<ImageButton android:id="@+id/menu_icon_addres"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:layout_marginLeft="22dp" android:nextFocusRight="@+id/menu_icon_category"
+				android:layout_marginStart="22dp" android:nextFocusRight="@+id/menu_icon_category"
 				android:focusable="true"
                 android:contentDescription="menu_icon_addres" />
 
@@ -53,7 +53,7 @@
 
 
 		<TextView android:id="@+id/label_identificacion"
-			android:text="@string/label_identificacion" android:layout_below="@id/menu_icons"
+            android:text="@string/label_identificacion" android:layout_below="@id/menu_icons"
 			android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_height="25dp" android:textSize="14sp"
@@ -66,7 +66,7 @@
 
 			<TextView android:id="@+id/label_apellido" android:text="@string/hint_apellido"
 				android:layout_width="130dp" android:layout_height="wrap_content"
-				android:textSize="13sp" android:padding="8dp" android:gravity="right"
+				android:textSize="13sp" android:padding="8dp" android:gravity="end"
 				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 				android:textColor="@color/color_azul_oscuro" />
 
@@ -77,7 +77,7 @@
 				android:inputType="textCapWords" android:layout_height="35dp"
 				android:textStyle="bold" android:textColor="@color/color_azul_oscuro"
 				android:padding="5dp"
-				android:textSize="14sp" android:layout_marginLeft="3dp"
+				android:textSize="14sp" android:layout_marginStart="3dp"
 				android:layout_marginRight="4dp" android:maxLength="25"
 				android:layout_width="fill_parent" />
 
@@ -90,7 +90,7 @@
 			<TextView android:id="@+id/label_nombre" android:text="@string/hint_nombre"
 				android:layout_width="130dp" android:textSize="13sp"
 				android:layout_height="wrap_content" android:padding="8dp"
-				android:gravity="right" android:singleLine="true"
+				android:gravity="end" android:singleLine="true"
 				android:background="@drawable/custom_text_view_categoria_desc"
 				android:textColor="@color/color_azul_oscuro" />
 
@@ -99,7 +99,7 @@
 				android:layout_height="35dp" android:textStyle="bold"
 				android:textColor="@color/color_azul_oscuro" 
 				android:padding="5dp" android:textSize="14sp"
-				android:layout_marginLeft="3dp" android:layout_marginRight="4dp"
+				android:layout_marginStart="3dp" android:layout_marginEnd="4dp"
 				android:maxLength="25" android:layout_width="fill_parent" />
 
 		</LinearLayout>
@@ -111,7 +111,7 @@
 
 			<CheckBox android:id="@+id/checkFechaNacimiento"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_marginLeft="10dp" android:textColor="@color/color_gris_claro"
+				android:layout_marginStart="10dp" android:textColor="@color/color_gris_claro"
 				android:nextFocusRight="@+id/buttonPickDate" />
 
 
@@ -129,7 +129,7 @@
 		<TextView android:id="@+id/labelDateDisplay"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:textSize="14sp" android:textStyle="bold"
-			android:layout_below="@id/linearCumple" android:layout_marginLeft="15dp" />
+			android:layout_below="@id/linearCumple" android:layout_marginStart="15dp" />
 
 		<ImageButton android:id="@+id/addTelefono"
 			android:layout_width="36dp" android:layout_height="36dp"
@@ -166,7 +166,7 @@
 			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_height="25dp" android:textSize="14sp"
-			android:layout_marginBottom="6dp" android:layout_toRightOf="@id/addMail"
+			android:layout_marginBottom="6dp" android:layout_toEndOf="@id/addMail"
 			android:gravity="center" />
 
 		<ListView android:id="@+id/listaMailsAlta"
@@ -205,7 +205,7 @@
 		<TextView android:id="@+id/label_sinDatos"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:text="@string/text_sinDatos" android:textSize="12sp"
-			android:layout_below="@id/menu_icons" android:paddingLeft="15dp"
+			android:layout_below="@id/menu_icons" android:paddingStart="15dp"
 			android:layout_marginTop="50dp" />
 
 		<TextView android:id="@+id/label_category" android:text="@string/label_datosDeCategoria"
@@ -229,7 +229,7 @@
 			<TextView android:id="@+id/label_datoExtra"
 
 				android:layout_width="130dp" android:layout_height="wrap_content"
-				android:textSize="13sp" android:padding="8dp" android:gravity="right"
+				android:textSize="13sp" android:padding="8dp" android:gravity="end"
 				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 				android:textColor="@color/color_azul_oscuro" />
 
@@ -237,9 +237,10 @@
 				android:inputType="textCapWords" android:layout_height="35dp"
 				android:textStyle="bold" android:textColor="@color/color_azul_oscuro"
 				android:padding="5dp"
-				android:textSize="14sp" android:layout_marginLeft="3dp"
+				android:textSize="14sp" android:layout_marginStart="3dp"
 				android:layout_marginRight="4dp" android:layout_width="fill_parent"
 				android:maxLength="30"
+                android:hint="@string/hint_descripcion"
 				/>
 		</LinearLayout>
 
@@ -250,7 +251,7 @@
 
 			<TextView android:id="@+id/label_descripcion" android:text="@string/hint_descripcion"
 				android:layout_width="130dp" android:layout_height="wrap_content"
-				android:textSize="13sp" android:padding="8dp" android:gravity="right"
+				android:textSize="13sp" android:padding="8dp" android:gravity="end"
 				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 				android:textColor="@color/color_azul_oscuro" />
 
@@ -258,9 +259,9 @@
 				android:inputType="textMultiLine" android:layout_height="35dp"
 				android:textStyle="bold" android:textColor="@color/color_azul_oscuro"
 				android:padding="5dp"
-				android:textSize="14sp" android:layout_marginLeft="3dp"
+				android:textSize="14sp" android:layout_marginStart="3dp"
 				android:layout_marginRight="4dp" android:layout_width="fill_parent"
-				android:maxLength="100" android:gravity="top|left" android:lines="4"
+				android:maxLength="100" android:gravity="top|start" android:lines="4"
 				android:singleLine="false"
 				 />
 				
@@ -300,7 +301,7 @@
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textSize="13sp" android:textColor="@color/color_azul"
 					android:background="@drawable/custom_button"
-					android:layout_marginRight="25dp" />
+					android:layout_marginEnd="25dp" />
 
 				<Button android:id="@+id/butttonRegistrarYSalir"
 					android:layout_below="@id/nombre_contacto" android:text="@string/label_registrarPersonaYSalir"
