@@ -14,15 +14,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
 import com.boxico.android.kn.contacts.*;
@@ -33,6 +36,8 @@ import com.boxico.android.kn.contacts.persistencia.dtos.ConfigDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.ContraseniaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
+
+import android.support.v4.content.ContextCompat;
 
 public class ConstantsAdmin {
 	
@@ -785,6 +790,33 @@ public class ConstantsAdmin {
         File file = null;
         mensaje = context.getString(R.string.error_importar_csv);
         try {
+
+            if (ContextCompat.checkSelfPermission(context,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                // Should we show an explanation?
+                if (ActivityCompat.shouldShowRequestPermissionRationale(context,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+                    // Show an expanation to the user *asynchronously* -- don't block
+                    // this thread waiting for the user's response! After the user
+                    // sees the explanation, try again to request the permission.
+
+                } else {
+
+                    // No explanation needed, we can request the permission.
+
+                    ActivityCompat.requestPermissions(context,
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            1);
+
+                    // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                    // app-defined int constant. The callback method gets the
+                    // result of the request.
+                }
+            }
+
         	file = obtenerFileCSV(context);
         	if(file != null){
                 if(file.getName().equals(fileCSV)){

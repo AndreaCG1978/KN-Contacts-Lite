@@ -6,8 +6,12 @@ android {
 
     defaultConfig {
         applicationId "com.boxico.android.kn.contacts"
-        minSdkVersion 27
+        minSdkVersion 15
         targetSdkVersion 27
+    }
+
+    dependencies {
+        compile 'com.android.support:support-v4:27.1.1'
     }
 
     buildTypes {
