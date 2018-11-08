@@ -33,7 +33,7 @@ public class PhotoActivity extends Activity {
 	    try {
 
 	        super.onCreate(savedInstanceState);   
-	        mPersonaSeleccionadaId = new Integer((String)getIntent().getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
+	        mPersonaSeleccionadaId = Integer.valueOf((String)getIntent().getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
 
 	        setContentView(R.layout.main);
 	             /*   File root = new File(Environment

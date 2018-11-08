@@ -32,10 +32,6 @@
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable\\splash.png"
     },
     {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_search_icon.png.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-ldpi\\search_icon.png"
-    },
-    {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_candado_abierto.png.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-mdpi\\candado_abierto.png"
     },
@@ -144,10 +140,6 @@
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-hdpi\\add_icon.png"
     },
     {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_categoria_add_menu_icon.png.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-mdpi\\categoria_add_menu_icon.png"
-    },
-    {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_generate_menu.png.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-ldpi\\generate_menu.png"
     },
@@ -178,6 +170,10 @@
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
         "source": "C:\\Users\\a.grassano.spb\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\c507a73a819eaa2e22933f0ad836559d\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\xml_backup_descriptor.xml.flat",
+        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\xml\\backup_descriptor.xml"
     },
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_lines_media.xml.flat",
@@ -372,10 +368,6 @@
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-hdpi\\person_am_icon.png"
     },
     {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_search_color_icon.png.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-hdpi\\search_color_icon.png"
-    },
-    {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_candado_cerrado.png.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-hdpi\\candado_cerrado.png"
     },
@@ -442,10 +434,6 @@
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_tile_bg.xml.flat",
         "source": "C:\\Users\\a.grassano.spb\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\c507a73a819eaa2e22933f0ad836559d\\res\\drawable\\notification_tile_bg.xml"
-    },
-    {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_categoria_add_menu_icon.png.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-ldpi\\categoria_add_menu_icon.png"
     },
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_restore_menu.png.flat",
@@ -556,10 +544,6 @@
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-ldpi\\pref_icon_bw.png"
     },
     {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable_custom_entry_view.xml.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable\\custom_entry_view.xml"
-    },
-    {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_home_am_icon.png.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-hdpi\\home_am_icon.png"
     },
@@ -584,10 +568,6 @@
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-mdpi\\generate_menu.png"
     },
     {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\layout_personas_row.xml.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\layout\\personas_row.xml"
-    },
-    {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable_custom_text_expandable_group_label.xml.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable\\custom_text_expandable_group_label.xml"
     },
@@ -596,20 +576,12 @@
         "source": "C:\\Users\\a.grassano.spb\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\c507a73a819eaa2e22933f0ad836559d\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_search_color_icon.png.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-ldpi\\search_color_icon.png"
-    },
-    {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_candado_cerrado.png.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-ldpi\\candado_cerrado.png"
     },
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_template_custom_big.xml.flat",
         "source": "C:\\Users\\a.grassano.spb\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\c507a73a819eaa2e22933f0ad836559d\\res\\layout-v21\\notification_template_custom_big.xml"
-    },
-    {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_search_icon.png.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-mdpi\\search_icon.png"
     },
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
@@ -634,10 +606,6 @@
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_contraer_icon.png.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-hdpi\\contraer_icon.png"
-    },
-    {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_custom_big.xml.flat",
-        "source": "C:\\Users\\a.grassano.spb\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\c507a73a819eaa2e22933f0ad836559d\\res\\layout\\notification_template_custom_big.xml"
     },
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_phone_am_icon_bw.png.flat",
@@ -676,20 +644,12 @@
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\layout\\details_personas.xml"
     },
     {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_categoria_add_menu_icon.png.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-hdpi\\categoria_add_menu_icon.png"
-    },
-    {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_less_desc_contact.png.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-mdpi\\less_desc_contact.png"
     },
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\layout_main.xml.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\layout\\main.xml"
-    },
-    {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_search_icon.png.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-hdpi\\search_icon.png"
     },
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
@@ -734,10 +694,6 @@
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_pref_icon.png.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-hdpi\\pref_icon.png"
-    },
-    {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_search_color_icon.png.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-mdpi\\search_color_icon.png"
     },
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_action.xml.flat",

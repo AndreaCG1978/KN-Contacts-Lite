@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 import com.boxico.android.kn.contacts.util.KNArrayAdapter;
@@ -68,6 +69,7 @@ public class MisCategoriasActivity extends ListActivity {
     private void activarODesactivarCategoria(ListView list, int position, View v){
 		LinearLayout ll = (LinearLayout)v;
 		TextView tv = (TextView) ll.getChildAt(0);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
      	CategoriaDTO catSelected = (CategoriaDTO) list.getItemAtPosition(position);
     	if(catSelected.getActiva()==1){
     		catSelected.setActiva(0);
@@ -78,9 +80,9 @@ public class MisCategoriasActivity extends ListActivity {
     		cantActivas++;
     		tv.setTextColor(getResources().getColor(R.color.color_gris_oscuro));	    		
     	}
-    	ConstantsAdmin.inicializarBD(this);
-    	ConstantsAdmin.mDBManager.actualizarCategoriaPersonal(catSelected);
-    	ConstantsAdmin.finalizarBD();
+    	ConstantsAdmin.inicializarBD( mDBManager);
+    	mDBManager.actualizarCategoriaPersonal(catSelected);
+    	ConstantsAdmin.finalizarBD(mDBManager);
         labelCategorias.setText(titulo + " (" + cantActivas + "/" + cantCategorias + ")");
 
     }
@@ -110,9 +112,10 @@ public class MisCategoriasActivity extends ListActivity {
     
     private void refreshList(){
     	ListView listView = this.getListView();
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	CategoriaDTO cat = null;
-		ConstantsAdmin.inicializarBD(this);
-        Cursor categoriasCursor = ConstantsAdmin.mDBManager.fetchAllCategoriasPersonalesPorNombre(null);
+		ConstantsAdmin.inicializarBD(mDBManager);
+        Cursor categoriasCursor = mDBManager.fetchAllCategoriasPersonalesPorNombre(null);
         if(categoriasCursor!= null){
 	        startManagingCursor(categoriasCursor);
 	        List categorias = ConstantsAdmin.categoriasPersonalesCursorToDtos(categoriasCursor);
@@ -133,7 +136,7 @@ public class MisCategoriasActivity extends ListActivity {
 	        labelCategorias.setText(titulo + " (" + cantActivas + "/" + cantCategorias + ")");
 
         }
-        ConstantsAdmin.finalizarBD();
+        ConstantsAdmin.finalizarBD(mDBManager);
     	
     }
     
@@ -192,7 +195,7 @@ public class MisCategoriasActivity extends ListActivity {
             Intent i = new Intent(this, AltaCategoriaActivity.class);
             AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
             //catSelect = info.id;   
-            int pos = (new Long(info.id)).intValue();
+            int pos = (Long.valueOf(info.id)).intValue();
             cat = (CategoriaDTO)this.getListAdapter().getItem(pos);
             i.putExtra(ConstantsAdmin.CATEGORIA_SELECCIONADA, String.valueOf(cat.getId()));
             this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_CATEGORIA);

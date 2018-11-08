@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
@@ -110,7 +111,8 @@ public class AltaCategoriaActivity extends Activity {
     
 	private void eliminarCategoriaSeleccionada(){
 		try {
-			ConstantsAdmin.eliminarCategoriaPersonal(mCategoriaSeleccionada, this);
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			ConstantsAdmin.eliminarCategoriaPersonal(mCategoriaSeleccionada, this, mDBManager);
 		} catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEliminacionCategoria));
 		}
@@ -136,8 +138,9 @@ public class AltaCategoriaActivity extends Activity {
 	}
     
 	private void cargarCategoriaDto(String idCatString){
-		int idCat = new Integer(idCatString);
-		mCategoriaSeleccionada = ConstantsAdmin.obtenerCategoriaPersonalId(this, idCat);
+		int idCat = Integer.valueOf(idCatString);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		mCategoriaSeleccionada = ConstantsAdmin.obtenerCategoriaPersonalId(this, idCat, mDBManager);
 	}
 	
 	private void cargarEntriesConCategoriaDto(){
@@ -175,7 +178,8 @@ public class AltaCategoriaActivity extends Activity {
 			mCategoriaSeleccionada.setTipoDatoExtra(mNombreCaracteristica.getText().toString());
 			mCategoriaSeleccionada.setActiva(1);
 			mCategoriaSeleccionada.setCategoriaPersonal(true);
-			ConstantsAdmin.crearCategoriaPersonal(mCategoriaSeleccionada, oldNameCat, false, this);
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			ConstantsAdmin.crearCategoriaPersonal(mCategoriaSeleccionada, oldNameCat, false, this, mDBManager);
 			if(reset){
 				ConstantsAdmin.resetPersonasOrganizadas();
 			}

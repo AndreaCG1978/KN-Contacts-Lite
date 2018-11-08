@@ -19,13 +19,35 @@ public class DataBaseManager {
     
 	 private DataBaseHelper mDbHelper;
 	 private SQLiteDatabase mDb;
-	 private final Context mCtx;
+	 private Context mCtx;
+
+
+
+	private static DataBaseManager instanciaUnica = new DataBaseManager();
 	 
 	 public DataBaseManager(Context ctx) {
 	        this.mCtx = ctx;
 	 }
 
-	 	 
+
+	public DataBaseManager() {
+	 	super();
+	}
+
+
+	 public static DataBaseManager getInstance(Context ctx) {
+	 	instanciaUnica.setmCtx(ctx);
+	 	return instanciaUnica;
+	 }
+
+	public Context getmCtx() {
+		return mCtx;
+	}
+
+	public void setmCtx(Context mCtx) {
+		this.mCtx = mCtx;
+	}
+
      public DataBaseManager open() throws SQLException {
 	      mDbHelper = new DataBaseHelper(mCtx);
 	      mDb = mDbHelper.getWritableDatabase();

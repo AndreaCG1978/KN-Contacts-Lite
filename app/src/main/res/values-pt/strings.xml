@@ -19,25 +19,21 @@
 <string name="hint_otro">OUTROS</string>
 <string name="hint_fechaNacimiento">ANIVERSARIO</string>
 <string name="hint_categoria">CATEGORIA</string>
-<string name="hint_ingreseApellidoONombre">SOBRENOME/NOMES</string>
-<string name="hint_caracteristica">RECURSO</string>
+    <string name="hint_caracteristica">RECURSO</string>
 
 <string name="label_editarPersona">EDITAR</string>
-<string name="label_spinnerCategoriasListadoPersonas">SELECIONAR CATEGORIA</string>
-<string name="label_fechaNacimiento">ANIVERSARIO</string>
+    <string name="label_fechaNacimiento">ANIVERSARIO</string>
 <string name="label_borrarPersona">REMOVER</string>
 <string name="label_registrarPersona">SALVAR</string>
 <string name="label_si">OK</string>
 <string name="label_no">CANCELAR</string>
-<string name="label_seleccioneCategoria">Selecionar Categoria:</string>
-<string name="label_llamada">TELEFONEMA</string>
+    <string name="label_llamada">TELEFONEMA</string>
 <string name="label_sms">SMS</string>
 <string name="mensaje_seleccione_llamada_sms"><![CDATA[Selecione o tipo de comunicação:]]></string>
 <string name="label_registrarPersonaYSalir">SALVAR E SAIR</string>
-<string name="label_guardar_parcial">Salvo...</string>
-<string name="label_longclic">Pressione um clic muito em cada item para editar/remover.</string>
-     
-<string name="label_identificacion"><![CDATA[IDENTIFICAÇÃO]]></string>
+<string name="label_guardar_parcial">Salvo…</string>
+
+    <string name="label_identificacion"><![CDATA[IDENTIFICAÇÃO]]></string>
 <string name="label_telefonos">TELEFONES</string>
 <string name="label_emails">EMAILS</string>
 <string name="label_direcciones"><![CDATA[ENDEREÇOS]]></string>
@@ -49,28 +45,23 @@
 	 
 
 <string name="mensaje_borrar_persona"><![CDATA[O contato será removido. Você tem certeza?]]></string>
-<string name="mensaje_importar_contactos"><![CDATA[Contatos serão importados a partir de sua lista de contatos. Continuar?(Pode levar alguns segundos ...)]]></string>
-<string name="mensaje_borrar_categoria"><![CDATA[A categoria será removido. Você tem certeza?]]></string>
+    <string name="mensaje_borrar_categoria"><![CDATA[A categoria será removido. Você tem certeza?]]></string>
 
 <string name="menu_agregar_persona">Adicionar Contato</string>
-<string name="menu_agregar_categoria">Adicionar Categoria</string>
-<string name="menu_listar_categoria">Categorias</string>
+    <string name="menu_listar_categoria">Categorias</string>
 <string name="menu_importar_contactos">Importar Contatos</string>
 <string name="menu_eliminar">Remover Contato</string>
-<string name="menu_about_me">Sobre mim...</string>
-<string name="menu_editar">Editar</string>
-<string name="menu_editar_o_eliminar">Editar/Remover</string>
+<string name="menu_about_me">Sobre mim…</string>
+    <string name="menu_editar_o_eliminar">Editar/Remover</string>
 
 <string name="title_detallePersona">Detalhes </string>
 
-<string name="title_datos_contacto">Dados de Contato</string>
-<string name="title_acerca_de">Sobre mim...</string>
+    <string name="title_acerca_de">Sobre mim…</string>
 <string name="title_nueva_categoria">Nova categoria</string>
      
 <string name="text_sinDatos">SEM DATA</string>
-<string name="separadorFecha">-</string>
- 
-<string name="cat_Paciente">Paciente</string>
+
+    <string name="cat_Paciente">Paciente</string>
 <string name="cat_Proveedor">Fornecedor</string>
 <string name="cat_Cliente">Cliente</string>
 <string name="cat_Otro">Outros</string>
@@ -85,9 +76,8 @@
 <string name="cat_Colega">Colega</string>
 <string name="cat_Medico"><![CDATA[Médico]]></string>
 <string name="cat_TODAS">TODOS</string>
-<string name="go_to_TODAS">ir TODOS</string>
 
-<string name="smesEne">January</string>
+    <string name="smesEne">January</string>
 <string name="smesFeb">February</string>
 <string name="smesMar">March</string>
 <string name="smesAbr">April</string>
@@ -108,16 +98,15 @@
 <string name="errorActualizacionCategoria">Falha ao atualizar a categoria.</string>
 <string name="errorAltaContacto">Falha ao adicionar o contato.</string>
 <string name="errorImportarContacto">Falha ao importar a partir de lista de contatos.</string>
-<string name="errorSinContactosPorImportar"><![CDATA[Não há contatos para importar ...]]></string>
+<string name="errorSinContactosPorImportar"><![CDATA[Não há contatos para importar …]]></string>
 <string name="errorEfectuarLlamada">Falha ao fazer a chamada.</string>
 <string name="errorMandarMensaje">Falha ao enviar a mensagem.</string>
 <string name="errorMandarMail">Falha ao enviar e-mail.</string>
 <string name="errorDesactivandoCategorias"><![CDATA[Você não pode desativar todas as categorias.]]></string>
-<string name="error_alta_persona_incompleta"><![CDATA[Você deve completar o Sobrenome ...]]></string>
-<string name="error_alta_categoria_incompleta"><![CDATA[Você deve preencher o nome da categoria e de recursos ...]]></string>
+<string name="error_alta_persona_incompleta"><![CDATA[Você deve completar o Sobrenome …]]></string>
+<string name="error_alta_categoria_incompleta"><![CDATA[Você deve preencher o nome da categoria e de recursos …]]></string>
 <string name="error_alta_tipo_valor_incompleta"><![CDATA[Você deve completar o tipo eo valor.]]></string>
-<string name="error_ya_esta_en_todas"><![CDATA[Você estão listados todos os contatos.]]></string>	
-<string name="error_sin_preferidos"><![CDATA[Não há contatos favoritos.]]></string>	
+    <string name="error_sin_preferidos"><![CDATA[Não há contatos favoritos.]]></string>
 <string name="errorEliminacionPreferido">Falha ao remover o contacto favorito.</string>	
 <string name="errorAgregarPreferido">Falha ao adicionar o contato favorito.</string>	
 	
@@ -138,11 +127,11 @@
 <string name="mensaje_exito_importar_csv"><![CDATA[Contatos foram recuperados com sucesso.]]></string>
 <string name="error_exportar_csv"><![CDATA[Você não pode criar o backup..]]></string> 
 <string name="label_ok">Ok</string> 
-<string name="mensaje_importando_contactos"><![CDATA[Contatos estão sendo importados...]]></string>	
+<string name="mensaje_importando_contactos"><![CDATA[Contatos estão sendo importados…]]></string>
 <string name="menu_importar_contactos_csv">Restaurar Backup</string> 
 <string name="hint_tipo">TIPO</string>
 <string name="hint_nuevo_tipo">NOVO TIPO</string>
-<string name="mensaje_exportando_contactos"><![CDATA[Exportando contatos...]]></string>
+<string name="mensaje_exportando_contactos"><![CDATA[Exportando contatos…]]></string>
 <string name="menu_exportar_contactos">Gerar de backup</string>
 
 <string name="menu_exportar_excel">Exportar para Excel</string>
@@ -151,7 +140,7 @@
 
 
 
-<string name="mensaje_importar_contactos_csv"><![CDATA[Ele irá restaurar o último backup realizado. Quer continuar? (Pode levar alguns segundos ...)]]></string>
+<string name="mensaje_importar_contactos_csv"><![CDATA[Ele irá restaurar o último backup realizado. Quer continuar? (Pode levar alguns segundos …)]]></string>
 <string name="mensaje_exportar_contactos"><![CDATA[As informações de contato serão protegidos no "kncontacts.csv" contida no "KN-Contatos" do seu cartão SD. Para maior segurança, guarde em outro lugar uma cópia atualizada deste arquivo. Irá substituir o backup existente. Quer continuar?]]></string>
 <string name="error_importar_csv"><![CDATA[Não é possível recuperar o backup.]]></string>  
 <string name="mensaje_no_hay_contactos"><![CDATA[Nenhum contato para fazer um backup.]]></string>  
@@ -166,15 +155,15 @@
 
 
 <string name="label_cantidad_categorias_protegidas"><![CDATA[CATEGORIAS PROTEGIDAS]]></string>
-<string name="mensaje_activacion_proteccion"><![CDATA[Suas categorias estão protegidos...]]></string>
-<string name="mensaje_debe_registrar_contrasenia"><![CDATA[Proteção de categorias ainda não estão habilitados...]]></string>
-<string name="mensaje_complete_contrasenia"><![CDATA[Você deve digitar uma senha...]]></string>
-<string name="mensaje_complete_repeticion_contrasenia"><![CDATA[Você deve repetir a senha digitada...]]></string>
-<string name="mensaje_contrasenia_no_coinciden"><![CDATA[Senhas não coincidem...]]></string>
-<string name="mensaje_contrasenia_registrada_ok"><![CDATA[A senha para proteger suas categorias está registrado corretamente...]]></string>
+<string name="mensaje_activacion_proteccion"><![CDATA[Suas categorias estão protegidos…]]></string>
+<string name="mensaje_debe_registrar_contrasenia"><![CDATA[Proteção de categorias ainda não estão habilitados…]]></string>
+<string name="mensaje_complete_contrasenia"><![CDATA[Você deve digitar uma senha…]]></string>
+<string name="mensaje_complete_repeticion_contrasenia"><![CDATA[Você deve repetir a senha digitada…]]></string>
+<string name="mensaje_contrasenia_no_coinciden"><![CDATA[Senhas não coincidem…]]></string>
+<string name="mensaje_contrasenia_registrada_ok"><![CDATA[A senha para proteger suas categorias está registrado corretamente…]]></string>
 <string name="title_alta_contrasenia"><![CDATA[SENHA LOGIN]]></string>
-<string name="mensaje_seleccione_categoria_proteger"><![CDATA[Não selecionou categorias para proteger...]]></string>
-<string name="mensaje_registre_contrasenia"><![CDATA[Você deve registrar uma senha para proteger suas categorias...]]></string>
+<string name="mensaje_seleccione_categoria_proteger"><![CDATA[Não selecionou categorias para proteger…]]></string>
+<string name="mensaje_registre_contrasenia"><![CDATA[Você deve registrar uma senha para proteger suas categorias…]]></string>
 
 <string name="title_proteccion_categorias"><![CDATA[PROTEÇÃO DAS CATEGORIAS]]></string>
 <string name="label_contrasenia"><![CDATA[SENHA]]></string>
@@ -184,7 +173,7 @@
 <string name="label_bloquear_contrasenia"><![CDATA[BLOQUEIO]]></string>
 
 <string name="mensaje_exito_almacenar_password"><![CDATA[Sua senha foi registrado e armazenado no arquivo "kncontacts.txt" pasta KN-Contacts.]]></string>
-<string name="error_alta_contrasenia"><![CDATA[Senha incorreta...]]></string>
+<string name="error_alta_contrasenia"><![CDATA[Senha incorreta…]]></string>
 
 <string name="title_obtener_imagen"><![CDATA[Obter imagem]]></string>
 <string name="title_capturar_archivo"><![CDATA[DESDE ARCHIVO]]></string>

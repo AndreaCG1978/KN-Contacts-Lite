@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 import com.boxico.android.kn.contacts.util.KNArrayAdapter;
@@ -70,11 +71,12 @@ public class ListadoCategoriaActivity extends ListActivity {
 	
     
     private void configurarList(ListView listView){
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
         listView.setItemsCanFocus(false);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setFastScrollEnabled(true);
 
-        List<CategoriaDTO> categorias = ConstantsAdmin.obtenerCategorias(this, null);
+        List<CategoriaDTO> categorias = ConstantsAdmin.obtenerCategorias(this, null, mDBManager);
 		this.cambiarNombreCategorias(categorias);
 		Collections.sort(categorias);
         
@@ -135,6 +137,7 @@ public class ListadoCategoriaActivity extends ListActivity {
 //    	long cantCatActivas = this.cantidadCategoriasActivas(list);
     	CategoriaDTO catSelected = (CategoriaDTO) list.getItemAtPosition(position);
     	if(!(cantActivas == 1 && catSelected.getActiva() == 1)){
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 	    	if(catSelected.getActiva()==1){
 	    		catSelected.setActiva(0);
 	    		cantActivas--;
@@ -146,7 +149,7 @@ public class ListadoCategoriaActivity extends ListActivity {
 	    		//list.setItemChecked(position, true);
 	    		tv.setTextColor(getResources().getColor(R.color.color_gris_oscuro));
 	    	}
-	    	ConstantsAdmin.actualizarCategoria(catSelected, this);
+	    	ConstantsAdmin.actualizarCategoria(catSelected, this, mDBManager);
 	        labelCategorias.setText(titulo + " (" + cantActivas + "/" + cantCategorias + ")");
     	
     	}else{

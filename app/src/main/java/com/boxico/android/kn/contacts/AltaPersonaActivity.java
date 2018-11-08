@@ -36,6 +36,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
@@ -401,8 +402,9 @@ public class AltaPersonaActivity extends Activity {
 	}
 	
 	private void cargarPersonaDto(String idPerString){
-		int idPer = new Integer(idPerString);
-		mPersonaSeleccionada = ConstantsAdmin.obtenerPersonaId(this, idPer);
+		int idPer = Integer.valueOf(idPerString);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		mPersonaSeleccionada = ConstantsAdmin.obtenerPersonaId(this, idPer, mDBManager);
 	}
 	
 	private void cargarEntriesConPersonaDto(){
@@ -436,7 +438,7 @@ public class AltaPersonaActivity extends Activity {
 	
 	private void cargarTelefonos(){
 		// ACA DEBERIA RECUPERAR LOS TELEFONOS EXTRAS
-
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		TipoValorDTO tv = null;
 		telefonos = new ArrayList<TipoValorDTO>();
 		tiposTelefono = new ArrayList<String>();
@@ -463,7 +465,7 @@ public class AltaPersonaActivity extends Activity {
 		// RECUPERO LOS TIPOS MOVILES
 		List<TipoValorDTO> masTelefonos = null;
 		if(mPersonaSeleccionada.getId()!= -1){
-			masTelefonos = ConstantsAdmin.obtenerTelefonosIdPersona(this, mPersonaSeleccionada.getId());
+			masTelefonos = ConstantsAdmin.obtenerTelefonosIdPersona(this, mPersonaSeleccionada.getId(), mDBManager);
 			this.cargarMasElementos(masTelefonos, telefonos, tiposTelefono);
 		}else{
 			masTelefonos = ConstantsAdmin.telefonosARegistrar;
@@ -506,7 +508,8 @@ public class AltaPersonaActivity extends Activity {
 		// RECUPERO LOS TIPOS MOVILES
 		List<TipoValorDTO> masMails = null;
 		if(mPersonaSeleccionada.getId()!= -1){
-			masMails = ConstantsAdmin.obtenerEmailsIdPersona(this, mPersonaSeleccionada.getId());
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			masMails = ConstantsAdmin.obtenerEmailsIdPersona(this, mPersonaSeleccionada.getId(), mDBManager);
 			this.cargarMasElementos(masMails, mails, tiposEmail);
 		}else{
 			masMails = ConstantsAdmin.mailsARegistrar;
@@ -526,6 +529,7 @@ public class AltaPersonaActivity extends Activity {
 		TipoValorDTO tv = null;
 		direcciones = new ArrayList<TipoValorDTO>();
 		tiposDireccion = new ArrayList<String>();
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		this.cargarTiposDireccion();
 		String idPer = String.valueOf(mPersonaSeleccionada.getId());
 
@@ -545,7 +549,7 @@ public class AltaPersonaActivity extends Activity {
 		// RECUPERO LOS TIPOS MOVILES
 		List<TipoValorDTO> masDirecciones = null;
 		if(mPersonaSeleccionada.getId()!= -1){
-			masDirecciones = ConstantsAdmin.obtenerDireccionesIdPersona(this, mPersonaSeleccionada.getId());
+			masDirecciones = ConstantsAdmin.obtenerDireccionesIdPersona(this, mPersonaSeleccionada.getId(), mDBManager);
 			this.cargarMasElementos(masDirecciones, direcciones, tiposDireccion);
 		}else{
 			masDirecciones = ConstantsAdmin.direccionesARegistrar;
@@ -714,9 +718,9 @@ public class AltaPersonaActivity extends Activity {
 		String[] temp = null; 
 		if(fechaTemp != null && !fechaTemp.equals("")){
 			temp = fechaTemp.split(ConstantsAdmin.SEPARADOR_FECHA);
-			mDay = new Integer(temp[0]);
-			mMonth = new Integer(temp[1]);
-			mYear = new Integer(temp[2]);
+			mDay = Integer.valueOf(temp[0]);
+			mMonth = Integer.valueOf(temp[1]);
+			mYear = Integer.valueOf(temp[2]);
 		}
 	}
 	
@@ -793,8 +797,8 @@ public class AltaPersonaActivity extends Activity {
 				mPersonaSeleccionada.setCategoriaNombreRelativo(mCategoriaSeleccionada.getNombreRelativo());
 				cambioCategoriaFlag = false;
 			}
-			
-			long idPer = ConstantsAdmin.crearPersona(mPersonaSeleccionada, false, this);
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			long idPer = ConstantsAdmin.crearPersona(mPersonaSeleccionada, false, this, mDBManager);
 			this.getIntent().putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(idPer));
 
 			if(ConstantsAdmin.telefonosARegistrar != null && ConstantsAdmin.telefonosARegistrar.size() > 0){
@@ -826,12 +830,13 @@ public class AltaPersonaActivity extends Activity {
 	
 	private void registrarTelefonos(List<TipoValorDTO> telefonos, long idPer){
 		Iterator<TipoValorDTO> it = telefonos.iterator();
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		TipoValorDTO tv = null;
 		while(it.hasNext()){
 			tv = it.next();
 			tv.setIdPersona(String.valueOf(idPer));
 		}
-		ConstantsAdmin.registrarTelefonos(this, telefonos);
+		ConstantsAdmin.registrarTelefonos(this, telefonos, mDBManager);
 		
 	}
 
@@ -842,18 +847,20 @@ public class AltaPersonaActivity extends Activity {
 			tv = it.next();
 			tv.setIdPersona(String.valueOf(idPer));
 		}
-		ConstantsAdmin.registrarMails(this, mails);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		ConstantsAdmin.registrarMails(this, mails, mDBManager);
 		
 	}
 		
 	private void registrarDirecciones(List<TipoValorDTO> direcciones, long idPer){
 		Iterator<TipoValorDTO> it = direcciones.iterator();
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		TipoValorDTO tv = null;
 		while(it.hasNext()){
 			tv = it.next();
 			tv.setIdPersona(String.valueOf(idPer));
 		}
-		ConstantsAdmin.registrarDirecciones(this, mails);
+		ConstantsAdmin.registrarDirecciones(this, mails, mDBManager);
 		
 	}
 		
@@ -1204,8 +1211,9 @@ public class AltaPersonaActivity extends Activity {
     private void configurarSpinner(){
       List<CategoriaDTO> categorias = null;
       List<CategoriaDTO> categoriasPersonales = null;
-      categorias = ConstantsAdmin.obtenerCategoriasActivas(this, null);
-      categoriasPersonales = ConstantsAdmin.obtenerCategoriasActivasPersonales(this);
+      DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+      categorias = ConstantsAdmin.obtenerCategoriasActivas(this, null, mDBManager);
+      categoriasPersonales = ConstantsAdmin.obtenerCategoriasActivasPersonales(this, mDBManager);
       categorias.addAll(categoriasPersonales);
       this.cargarNombreRelativoCategorias(categorias);
       this.crearSpinnerCategorias(R.id.spinnerCategorias_alta_persona, categorias);

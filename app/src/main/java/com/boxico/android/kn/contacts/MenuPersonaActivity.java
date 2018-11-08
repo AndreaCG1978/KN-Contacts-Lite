@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
@@ -21,7 +22,7 @@ public class MenuPersonaActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-        mPersonaSeleccionadaId = new Integer((String)getIntent().getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
+        mPersonaSeleccionadaId = Integer.valueOf((String)getIntent().getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
         this.configurarDialog();
         this.registrarWidgets(dialog);
         dialog.show();
@@ -42,7 +43,8 @@ public class MenuPersonaActivity extends Activity {
 	
 	private void registrarWidgets(Dialog dialog){
 		PersonaDTO per = null;
-		per = ConstantsAdmin.obtenerPersonaId(this, mPersonaSeleccionadaId);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		per = ConstantsAdmin.obtenerPersonaId(this, mPersonaSeleccionadaId, mDBManager);
     	String nombre = per.getApellido() + " ";
     	if(per.getNombres() != null && !per.getNombres().equals("")){
     		nombre = nombre + ", " + per.getNombres();	
@@ -76,7 +78,8 @@ public class MenuPersonaActivity extends Activity {
 
 	
     private void sendInfoByMail(){
-    	String infoContacto = ConstantsAdmin.recuperarInfoContacto(this, mPersonaSeleccionadaId);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+    	String infoContacto = ConstantsAdmin.recuperarInfoContacto(this, mPersonaSeleccionadaId, mDBManager);
     	ConstantsAdmin.enviarMailGenerico(this, "", infoContacto, "");
     	dialog.cancel();
     	this.finish();
@@ -104,7 +107,8 @@ public class MenuPersonaActivity extends Activity {
 
 	private void eliminarPersonaSeleccionada(){
 		try {
-			ConstantsAdmin.eliminarPersona(this, mPersonaSeleccionadaId);
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			ConstantsAdmin.eliminarPersona(this, mPersonaSeleccionadaId, mDBManager);
 	
 		} catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEliminacionContacto));

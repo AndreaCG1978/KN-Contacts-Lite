@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 import com.boxico.android.kn.contacts.util.KNArrayAdapter;
@@ -201,8 +202,9 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if(ConstantsAdmin.contrasenia.getId() != -1){
+					DataBaseManager mDBManager = DataBaseManager.getInstance(me);
 					ConstantsAdmin.contrasenia.setActiva(false);
-					ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, me);
+					ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, me, mDBManager);
 					ConstantsAdmin.resetPersonasOrganizadas();
 					habilitarCampos();
 					contrasenia1.setText(ConstantsAdmin.contrasenia.getContrasenia());
@@ -252,9 +254,10 @@ public class ProteccionCategoriaActivity extends ListActivity {
     
     private void eliminarCategoriaProtegida(CategoriaDTO catSelected){
     	Iterator<CategoriaDTO> it = ConstantsAdmin.categoriasProtegidas.iterator();
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	CategoriaDTO cat = null;
     	boolean encontrada = false;
-    	ConstantsAdmin.eliminarCategoriaProtegida(catSelected, this);
+    	ConstantsAdmin.eliminarCategoriaProtegida(catSelected, this, mDBManager);
     	while(it.hasNext() && !encontrada){
     		cat = it.next();
     		if(cat.getNombreReal().equals(catSelected.getNombreReal())){
@@ -265,8 +268,9 @@ public class ProteccionCategoriaActivity extends ListActivity {
     }
     
     private void agregarCategoriaProtegida(CategoriaDTO catSelected){
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	ConstantsAdmin.categoriasProtegidas.add(catSelected);
-    	ConstantsAdmin.crearCategoriaProtegida(catSelected, this);
+    	ConstantsAdmin.crearCategoriaProtegida(catSelected, this, mDBManager);
     }
 
     
@@ -278,10 +282,11 @@ public class ProteccionCategoriaActivity extends ListActivity {
     
     private void cargarDatosContrasenia(String pass, String mail){
     	long id = -1;
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	ConstantsAdmin.contrasenia.setActiva(true);
     	ConstantsAdmin.contrasenia.setContrasenia(pass);
     	ConstantsAdmin.contrasenia.setMail(mail);
-    	id = ConstantsAdmin.crearContrasenia(ConstantsAdmin.contrasenia, this);
+    	id = ConstantsAdmin.crearContrasenia(ConstantsAdmin.contrasenia, this, mDBManager);
     	ConstantsAdmin.contrasenia.setId(id);
 		ConstantsAdmin.resetPersonasOrganizadas();
 
@@ -341,8 +346,9 @@ public class ProteccionCategoriaActivity extends ListActivity {
 	
 	
 	private void inicializarCategoriasProtegidas(){
-		categoriasActivas = ConstantsAdmin.obtenerCategoriasActivas(this, null);
-		List<CategoriaDTO> categoriasPersonalesActivas = ConstantsAdmin.obtenerCategoriasActivasPersonales(this);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		categoriasActivas = ConstantsAdmin.obtenerCategoriasActivas(this, null, mDBManager);
+		List<CategoriaDTO> categoriasPersonalesActivas = ConstantsAdmin.obtenerCategoriasActivasPersonales(this, mDBManager);
 		categoriasActivas.addAll(categoriasPersonalesActivas);
 		this.cambiarNombreCategorias(categoriasActivas);
 		Collections.sort(categoriasActivas);

@@ -45,6 +45,7 @@ import android.widget.ListView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.ConfigDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
@@ -72,7 +73,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     ImageButton expandContractAll = null;
     ImageButton protegerCategorias = null;
     ImageButton masOMenosDesc = null;
-    ListadoPersonaActivity me = null;
+    static ListadoPersonaActivity me = null;
     String separadorExcel = null;
     int mGroupSelected = -1;
 	int mChildSelected = -1;    
@@ -203,7 +204,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
 	private void recuperarConfiguracion() {
 		ConfigDTO config = null;
-		config = ConstantsAdmin.obtenerConfiguracion(this);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		config = ConstantsAdmin.obtenerConfiguracion(me, mDBManager);
 		ConstantsAdmin.config = config;
 		// TODO Auto-generated method stub
 		
@@ -217,9 +219,10 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 
     private void recargarLista(){
     	listaEspecial.setVisibility(View.GONE);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		if(ConstantsAdmin.contrasenia == null){
-			ConstantsAdmin.cargarContrasenia(this);
-			ConstantsAdmin.cargarCategoriasProtegidas(this);
+			ConstantsAdmin.cargarContrasenia(this, mDBManager);
+			ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
 		}
 		this.getExpandableListView().setVisibility(View.VISIBLE);
         List<Map<String, String>> groupData = new ArrayList<Map<String, String>>();
@@ -232,9 +235,9 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         }
         //if(estanOrdenadosAlfabeticamente){
         if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
-        	personasMap = ConstantsAdmin.obtenerOrganizadosAlfabeticamente(this);
+        	personasMap = ConstantsAdmin.obtenerOrganizadosAlfabeticamente(this, mDBManager);
         }else{
-        	personasMap = ConstantsAdmin.obtenerOrganizadosPorCategoria(this);
+        	personasMap = ConstantsAdmin.obtenerOrganizadosPorCategoria(this, mDBManager);
         }
         mySortedByElements = new ArrayList<String>();
         mySortedByElements.addAll(personasMap.keySet());
@@ -515,9 +518,10 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
     private void verBusqueda(){
 		mEntryBusquedaNombre = null;
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 	//	mMostrandoPreferidos = ConstantsAdmin.config.isMuestraPreferidos();
 		if(ConstantsAdmin.contrasenia == null){
-			ConstantsAdmin.cargarContrasenia(this);
+			ConstantsAdmin.cargarContrasenia(this, mDBManager);
 		}
 		if(ConstantsAdmin.contrasenia.getId() == -1){
 			protegerCategorias.setBackgroundDrawable(dCandadoAbierto);
@@ -534,7 +538,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
     
     private void verPreferidos(){
-    	long prefSize = ConstantsAdmin.tablaPreferidosSize(this);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+    	long prefSize = ConstantsAdmin.tablaPreferidosSize(this, mDBManager);
     	if(prefSize == 0){
     		ConstantsAdmin.mostrarMensaje(this,getString(R.string.error_sin_preferidos));	
     	}else{
@@ -566,8 +571,9 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
     private void mostrarSoloPreferidos(){
     	Cursor prefCursor = null;
-		ConstantsAdmin.inicializarBD(this);
-    	prefCursor = ConstantsAdmin.mDBManager.fetchAllPreferidos(ConstantsAdmin.categoriasProtegidas);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		ConstantsAdmin.inicializarBD(mDBManager);
+    	prefCursor = mDBManager.fetchAllPreferidos(ConstantsAdmin.categoriasProtegidas);
     	if(prefCursor != null){
     		ConstantsAdmin.config.setMuestraPreferidos(true);
 	        startManagingCursor(prefCursor);
@@ -813,7 +819,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
 	private void eliminarPersonaDialog(){
 		try {
-			PersonaDTO per = ConstantsAdmin.obtenerPersonaId(this, mPersonaSelect);
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			PersonaDTO per = ConstantsAdmin.obtenerPersonaId(this, mPersonaSelect, mDBManager);
 			String contacto = per.getApellido();
 			if(per.getNombres() != null && !per.getNombres().equals("")){
 				contacto = contacto + ", " + per.getNombres(); 
@@ -842,9 +849,10 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 
 	
 	private void eliminarPersonaSeleccionada(){
-		ConstantsAdmin.inicializarBD(this);
-		ConstantsAdmin.mDBManager.eliminarPersona(mPersonaSelect);
-		ConstantsAdmin.finalizarBD();
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		ConstantsAdmin.inicializarBD(mDBManager);
+		mDBManager.eliminarPersona(mPersonaSelect);
+		ConstantsAdmin.finalizarBD(mDBManager);
 
 	}
 	
@@ -854,18 +862,18 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         	List<PersonaDTO> contactosImportados = this.importarContactosPrivado();
         	Iterator<PersonaDTO> it = contactosImportados.iterator();
         	ConstantsAdmin.mensaje = getString(R.string.mensaje_exito_importar_csv);
-        	
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
         	if(it.hasNext()){
-	        	ConstantsAdmin.inicializarBD(this);
+	        	ConstantsAdmin.inicializarBD(mDBManager);
 	    		while(it.hasNext()){
 	    			per = it.next();
 	    			if(per.getNombres() != null && per.getApellido() == null){
 	    				per.setApellido(per.getNombres());
 	    				per.setNombres(null);
 	    			}
-	    			ConstantsAdmin.mDBManager.createPersona(per, false);
+	    			mDBManager.createPersona(per, false);
 	    		}
-	    		ConstantsAdmin.finalizarBD();
+	    		ConstantsAdmin.finalizarBD(mDBManager);
         	}else{
         		//ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorSinContactosPorImportar));
         		ConstantsAdmin.mensaje = getString(R.string.errorSinContactosPorImportar);
@@ -887,13 +895,13 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
   */  
     private List<PersonaDTO> importarContactosPrivado(){
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	ArrayList<PersonaDTO> result = new ArrayList<PersonaDTO>();
-
     	ConstantsAdmin.mailsARegistrar = new ArrayList<TipoValorDTO>();
     	CategoriaDTO cat = null;
     	cat = todasLasCategorias.get(0);
     	PersonaDTO per = null;
-    	ConstantsAdmin.inicializarBD(this);
+    	ConstantsAdmin.inicializarBD(mDBManager);
     	Cursor people = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
     	Asociacion asoc = null;
     	if(people != null){
@@ -948,7 +956,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    	}
 	
     	}
-    	ConstantsAdmin.finalizarBD();
+    	ConstantsAdmin.finalizarBD(mDBManager);
       	return result;
 
     }
@@ -958,6 +966,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     	String given = null;
     	String family = null;
     	PersonaDTO per = null;
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	String[] projectionPhone = new String[]{
     			Phone.NUMBER,
     			Phone.TYPE
@@ -974,7 +983,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
    	       family = (String)asoc.getValue();
    	       if((family != null && !family.equals("") || given!= null && !given.equals(""))&&
 	        		   (family != null || given!= null) ){
-	        	   per = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
+	        	   per = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
 	        	   if(per == null){
 	        		   per = new PersonaDTO();   
 	        	   }
@@ -1141,31 +1150,32 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
     
     private void configurarSpinner(){
-      spinnerCategorias = this.findViewById(R.id.multi_spinner);
-      Cursor cursor = null;
-      CategoriaDTO cat = null;
-      List<CategoriaDTO> categorias = null;
-      List<CategoriaDTO> categoriasPersonales = null;
-      Iterator<CategoriaDTO> it = null;
+    	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+      	spinnerCategorias = this.findViewById(R.id.multi_spinner);
+      	Cursor cursor = null;
+      	CategoriaDTO cat = null;
+      	List<CategoriaDTO> categorias = null;
+      	List<CategoriaDTO> categoriasPersonales = null;
+      	Iterator<CategoriaDTO> it = null;
   //    CategoriaDTO cat = null;
-      ConstantsAdmin.inicializarBD(this);
-      cursor = ConstantsAdmin.mDBManager.fetchCategoriasActivasPorNombre(null);
-      if(cursor != null){
-          startManagingCursor(cursor);
-          categorias = ConstantsAdmin.categoriasCursorToDtos(cursor);
-      }
+      	ConstantsAdmin.inicializarBD( mDBManager);
+      	cursor = mDBManager.fetchCategoriasActivasPorNombre(null);
+      	if(cursor != null){
+        	startManagingCursor(cursor);
+          	categorias = ConstantsAdmin.categoriasCursorToDtos(cursor);
+      	}
       
-      cursor = ConstantsAdmin.mDBManager.fetchCategoriasPersonalesActivasPorNombre(null);
-      if(cursor != null){
-          startManagingCursor(cursor);
-          categoriasPersonales = ConstantsAdmin.categoriasCursorToDtos(cursor);
-      }      
+      	cursor = mDBManager.fetchCategoriasPersonalesActivasPorNombre(null);
+      	if(cursor != null){
+          	startManagingCursor(cursor);
+          	categoriasPersonales = ConstantsAdmin.categoriasCursorToDtos(cursor);
+      	}
       
-      ConstantsAdmin.finalizarBD();
+     	ConstantsAdmin.finalizarBD(mDBManager);
    //   cat = new CategoriaDTO(0,ConstantsAdmin.CATEGORIA_TODOS, ConstantsAdmin.CATEGORIA_TODOS, 1, "");
-      categorias.addAll(categoriasPersonales);
+      	categorias.addAll(categoriasPersonales);
       
-      if(ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva()){
+	    if(ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva()){
           it = categorias.iterator();
           while(it.hasNext()){
         	  cat = it.next();
@@ -1174,20 +1184,20 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         	  }
           }
     	  
-      }
+    	}
       
 
-      this.cambiarNombreCategorias(categorias);
+      	this.cambiarNombreCategorias(categorias);
  
-      Collections.sort(categorias);
+      	Collections.sort(categorias);
    //   categorias.add(0,cat);
       
      
-      Iterator<CategoriaDTO> itCat = categorias.iterator();
-      todasLasCategString = new ArrayList<String>();
-      todasLasCategorias = new ArrayList<CategoriaDTO>();
-      CategoriaDTO cattemp = null;
-      while(itCat.hasNext()){
+      	Iterator<CategoriaDTO> itCat = categorias.iterator();
+      	todasLasCategString = new ArrayList<String>();
+      	todasLasCategorias = new ArrayList<CategoriaDTO>();
+      	CategoriaDTO cattemp = null;
+      	while(itCat.hasNext()){
     	  cattemp = itCat.next();
     	  todasLasCategorias.add(cattemp);
     	  if(ConstantsAdmin.estaProtegidaCategoria(cattemp.getNombreReal())){
@@ -1196,7 +1206,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     		  todasLasCategString.add(cattemp.getNombreRelativo());
     	  }
     	  
-      }
+      	}
       
       spinnerCategorias.setItems(todasLasCategString, getString(R.string.cat_TODAS), this);
       
@@ -1315,6 +1325,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     private void cargarPersonasPorApellidoONombreMultipleSeleccion(){
         // Get all of the rows from the database and create the item list
 		listaEspecial.setVisibility(View.VISIBLE);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		this.getExpandableListView().setVisibility(View.GONE);
 
     	preferidos.setVisibility(View.VISIBLE);
@@ -1325,7 +1336,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 		imgPrefLeft.setVisibility(View.GONE);
 		imgPrefRight.setVisibility(View.GONE);
 		try{
-    		ConstantsAdmin.inicializarBD(this);
+    		ConstantsAdmin.inicializarBD(mDBManager);
     		if(categoriasSeleccionadas != null && categoriasSeleccionadas.size()>0){
     			labelCateg = this.recuperarEtiquetaCatSeleccionadas();
     			catSelectTextView.setText(labelCateg);
@@ -1335,7 +1346,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     			catSelectTextView.setVisibility(View.GONE);
     		}
     		ConstantsAdmin.config.setMuestraPreferidos(false);
-    		personasCursor = ConstantsAdmin.mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(mEntryBusquedaNombre, categoriasSeleccionadas, ConstantsAdmin.categoriasProtegidas);
+    		personasCursor = mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(mEntryBusquedaNombre, categoriasSeleccionadas, ConstantsAdmin.categoriasProtegidas);
     		
 	    	if(personasCursor != null){
 	    		startManagingCursor(personasCursor);
@@ -1439,14 +1450,15 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         return super.onMenuItemSelected(featureId, item);
     }
     
-    private class ExportCSVTask extends AsyncTask<Long, Integer, Integer>{
+    private static class ExportCSVTask extends AsyncTask<Long, Integer, Integer>{
     	ProgressDialog dialog = null;
         @Override
         protected Integer doInBackground(Long... params) {
 
             try {
+				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
                 publishProgress(1);
-                ConstantsAdmin.exportarCSV(me);
+                ConstantsAdmin.exportarCSV(me, mDBManager);
 
 
             } catch (Exception e) {
@@ -1476,12 +1488,14 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 
     private class ExportCSVEsteticoTask extends AsyncTask<Long, Integer, Integer>{
     	ProgressDialog dialog = null;
+
         @Override
         protected Integer doInBackground(Long... params) {
 
             try {
                 publishProgress(1);
-                ConstantsAdmin.exportarCSVEstetico(me, separadorExcel, ConstantsAdmin.categoriasProtegidas);
+				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
+                ConstantsAdmin.exportarCSVEstetico(me, separadorExcel, ConstantsAdmin.categoriasProtegidas, mDBManager);
 
 
             } catch (Exception e) {
@@ -1554,7 +1568,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 
             try {
                 publishProgress(1);
-                ConstantsAdmin.importarCSV(me);
+				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
+                ConstantsAdmin.importarCSV(me, mDBManager);
              //   ConstantsAdmin.procesarStringDatos(body, me);
 
 
@@ -1597,7 +1612,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    	       .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	        	    Long[] params = new Long[1];
-	    		    		params[0] = new Long(1);
+	    		    		params[0] = Long.valueOf(1);
 	    		    		dialog.cancel();
 	    		    		new ExportCSVTask().execute(params);    	           }
 	    	       })
@@ -1621,7 +1636,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    	       .setPositiveButton(R.string.coma_separated, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	        	    Long[] params = new Long[1];
-	    		    		params[0] = new Long(1);
+	    		    		params[0] = Long.valueOf(1);
 	    		    		dialog.cancel();
 	    		    		separadorExcel = ConstantsAdmin.COMA;
 	    		    		new ExportCSVEsteticoTask().execute(params);
@@ -1630,7 +1645,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    	       .setNegativeButton(R.string.puntocoma_separated, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	        	    Long[] params = new Long[1];
-	    		    		params[0] = new Long(1);
+	    		    		params[0] = Long.valueOf(1);
 	    		    		dialog.cancel();
 	    		    		separadorExcel = ConstantsAdmin.PUNTO_COMA;
 	    		    		new ExportCSVEsteticoTask().execute(params);	    	           }
@@ -1650,7 +1665,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     	       .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
     	           public void onClick(DialogInterface dialog, int id) {
     	        	    Long[] params = new Long[1];
-    		    		params[0] = new Long(1);
+    		    		params[0] = Long.valueOf(1);
     		    		dialog.cancel();
     		    		new ImportCSVTask().execute(params);    	  
     		    	}
@@ -1721,6 +1736,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
     private void ejecutarOnActivityResult(int requestCode){
     	try {
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
         	if(requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_PROTECCION_CATEGORIA){
         		categoriasSeleccionadas = null;
         		mEntryBusquedaNombre = null;   		
@@ -1735,7 +1751,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         	this.configurarSpinner();    
             
         	if(ConstantsAdmin.contrasenia == null){
-        		ConstantsAdmin.cargarCategoriasProtegidas(this);
+        		ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
         	}
         	if(ConstantsAdmin.contrasenia.isActiva()){
         		protegerCategorias.setBackgroundDrawable(dCandadoAbierto);
@@ -1820,7 +1836,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 		// TODO Auto-generated method stub
 		//this.finish();
 		super.onDestroy();
-		ConstantsAdmin.actualizarConfig(this);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		ConstantsAdmin.actualizarConfig(this, mDBManager);
 	}
 
 
@@ -1880,9 +1897,10 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    	protegerCategorias = this.findViewById(R.id.botonProtegerCategorias);
 	    	dCandadoAbierto = getResources().getDrawable(R.drawable.candado_abierto);
 			dCandadoCerrado = getResources().getDrawable(R.drawable.candado_cerrado);
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 			if(ConstantsAdmin.contrasenia == null){
-				ConstantsAdmin.cargarContrasenia(this);
-				ConstantsAdmin.cargarCategoriasProtegidas(this);
+				ConstantsAdmin.cargarContrasenia(this, mDBManager);
+				ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
 			}
 			if(ConstantsAdmin.contrasenia.isActiva()){
 				protegerCategorias.setBackgroundDrawable(dCandadoAbierto);					
@@ -1895,6 +1913,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 				@Override
 				public void onClick(View v) {
 					preferidos.setBackgroundDrawable(dbnPref);
+					DataBaseManager mDBManager = DataBaseManager.getInstance(me);
 					// TODO Auto-generated method stub
 					if(ConstantsAdmin.categoriasProtegidas.size() == 0 || ConstantsAdmin.contrasenia.getId() == -1){
 						openProteccionCategoria();	
@@ -1909,7 +1928,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 						openVerActivarContrasenia();
 					}else{
 						ConstantsAdmin.contrasenia.setActiva(false);
-						ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, me);
+						ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, me, mDBManager);
 						protegerCategorias.setBackgroundDrawable(dCandadoCerrado);
 						configurarSpinner();
 						ConstantsAdmin.resetPersonasOrganizadas();

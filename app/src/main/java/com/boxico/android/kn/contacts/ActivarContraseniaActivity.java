@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
 public class ActivarContraseniaActivity extends Activity {
@@ -67,8 +68,9 @@ public class ActivarContraseniaActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
             	if(validarContrasenia()){
+					DataBaseManager mDBManager = DataBaseManager.getInstance(me);
                     ConstantsAdmin.contrasenia.setActiva(true);
-                    ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, me);
+                    ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, me, mDBManager);
                     ConstantsAdmin.resetPersonasOrganizadas();
                     setResult(RESULT_OK);
                     finish();

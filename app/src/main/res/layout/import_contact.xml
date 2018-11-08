@@ -18,7 +18,8 @@
 		android:layout_marginBottom="4dp" android:layout_marginTop="6dp"
 		android:padding="3dp" android:gravity="center" android:textStyle="bold"></TextView>
 
-	<View android:id="@+id/linea3" android:layout_width="wrap_content"
+	<View
+        android:layout_width="wrap_content"
 		android:layout_height="1px" android:layout_marginBottom="6dp"
 		android:layout_marginTop="6dp" android:background="@color/color_azul" />
 
@@ -29,7 +30,7 @@
 
 
 		<Spinner android:id="@+id/spinnerCategorias_alta_persona"
-			android:layout_below="@id/label_category" android:layout_width="wrap_content"
+            android:layout_width="wrap_content"
 			android:layout_height="38dp" android:layout_marginStart="5dp"
 			android:background="@drawable/custom_button" />
 
@@ -57,11 +58,12 @@
 			android:textColor="@color/color_azul_oscuro" 
 			android:padding="5dp" android:textSize="14sp"
 			android:layout_marginStart="3dp" android:layout_marginEnd="4dp"
-			android:layout_width="fill_parent" android:maxLength="30" />
+			android:layout_width="fill_parent" android:maxLength="30"
+			android:importantForAutofill="no" />
 	</LinearLayout>
 
-	<LinearLayout android:id="@+id/linearDesc"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
+	<LinearLayout
+        android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:orientation="horizontal" android:layout_margin="5dp"
 		>
 
@@ -77,12 +79,14 @@
 			android:padding="5dp"
 			android:textSize="14sp" android:layout_marginStart="3dp"
 			android:layout_marginEnd="4dp" android:layout_width="fill_parent"
-			android:maxLength="40" />
+			android:maxLength="40"
+			android:importantForAutofill="no" />
 	</LinearLayout>
 
 
 
-	<View android:id="@+id/linea4" android:layout_width="wrap_content"
+	<View
+        android:layout_width="wrap_content"
 		android:layout_height="1px" android:layout_marginBottom="6dp"
 		android:layout_marginTop="6dp" android:background="@color/color_azul" />
 
@@ -95,18 +99,18 @@
 			android:layout_width="wrap_content" android:layout_height="35dp"
 			android:layout_margin="5dp" android:textSize="12sp"
 			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-			android:layout_gravity="center" />
+			android:layout_gravity="center" style="?android:buttonBarButtonStyle"/>
 
 		<Button android:id="@+id/botonSkipContact" android:text="@string/label_siguiente"
 			android:layout_width="wrap_content" android:layout_height="35dp"
 			android:layout_margin="5dp" android:textSize="12sp"
 			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-			android:layout_gravity="center" />
+			android:layout_gravity="center" style="?android:buttonBarButtonStyle"/>
 
 		<Button android:id="@+id/botonAddContact" android:layout_width="wrap_content"
 			android:layout_height="35dp" android:layout_margin="5dp"
 			android:textSize="12sp" android:textColor="@color/color_azul"
-			android:background="@drawable/custom_button" android:layout_gravity="center" />
+			android:background="@drawable/custom_button" android:layout_gravity="center" style="?android:buttonBarButtonStyle"/>
 
 
 	</LinearLayout>
@@ -124,14 +128,14 @@
 			android:layout_width="wrap_content" android:layout_height="35dp"
 			android:layout_margin="10dp" android:textSize="12sp"
 			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-			android:layout_gravity="center" />
+			android:layout_gravity="center" style="?android:buttonBarButtonStyle"/>
 
 
 		<Button android:id="@+id/botonSkipAll" android:text="@string/label_omitir_todos"
 			android:layout_width="wrap_content" android:layout_height="35dp"
 			android:layout_margin="10dp" android:textSize="12sp"
 			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-			android:layout_gravity="center" />
+			android:layout_gravity="center" style="?android:buttonBarButtonStyle"/>
 
 	</LinearLayout>
 

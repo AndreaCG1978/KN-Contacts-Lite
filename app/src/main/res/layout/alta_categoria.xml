@@ -7,8 +7,8 @@
 		android:layout_height="wrap_content" android:orientation="horizontal"
 		android:layout_margin="7dp">
 
-		<TextView android:id="@+id/label_nombre_categoria"
-			android:text="@string/hint_categoria" android:layout_width="130dp"
+		<TextView
+            android:text="@string/hint_categoria" android:layout_width="130dp"
 			android:layout_height="wrap_content" android:textSize="13sp"
 			android:padding="8dp" android:gravity="end" android:singleLine="true"
 			android:background="@drawable/custom_text_view_categoria_desc"
@@ -21,7 +21,8 @@
 			android:maxLength="15" android:nextFocusUp="@+id/label_tipo_dato_extra"
 			android:padding="8dp" android:textSize="14sp"
 			android:layout_marginStart="9dp"
-			android:textColor="@color/color_azul_oscuro"/>
+			android:textColor="@color/color_azul_oscuro"
+			android:importantForAutofill="no" />
 
 	</LinearLayout>
 
@@ -40,7 +41,8 @@
 			android:layout_width="fill_parent" android:layout_height="35dp"
 			android:hint="@string/hint_caracteristica" android:inputType="textCapWords"
 			android:layout_marginStart="9dp" android:maxLength="15" android:textColor="@color/color_azul_oscuro"
-			android:textSize="14sp" android:padding="8dp" />
+			android:textSize="14sp" android:padding="8dp"
+			android:importantForAutofill="no" />
 	</LinearLayout>
 	<View android:layout_width="wrap_content" android:layout_height="1px"
 		android:layout_marginBottom="8dp" android:background="@color/color_azul" />
@@ -54,13 +56,13 @@
 		<Button android:id="@+id/buttonRegistrarCategoria"
 			android:layout_width="wrap_content" android:layout_height="35dp"
 			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-			android:text="@string/label_registrarPersona" android:textSize="13sp" />
+			android:text="@string/label_registrarPersona" android:textSize="13sp" style="?android:buttonBarButtonStyle" />
 
 		<Button android:id="@+id/buttonEliminarCategoria"
 			android:layout_width="wrap_content" android:layout_height="35dp"
 			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 			android:layout_marginStart="15dp" android:text="@string/label_borrarPersona"
-			android:textSize="13sp" />
+			android:textSize="13sp" style="?android:buttonBarButtonStyle"/>
 
 	</LinearLayout>
 

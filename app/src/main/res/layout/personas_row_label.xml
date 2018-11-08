@@ -11,13 +11,13 @@
 		android:textStyle="bold"
 		android:paddingTop="7dp" android:typeface="sans"
 		android:paddingLeft="10dp" android:paddingRight="10dp"
-		android:paddingBottom="7dp" android:layout_marginLeft="33dp" />
+		android:paddingBottom="7dp" android:layout_marginStart="33dp" />
 
 	<TextView android:id="@+id/textCantidad" android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:textColor="@color/color_gris_oscuro" android:textSize="15sp"
 		android:textStyle="bold" android:paddingTop="7dp" android:typeface="sans"
-		android:paddingRight="18dp" android:gravity="right"
+		android:paddingEnd="18dp" android:gravity="end"
 		android:paddingBottom="7dp" />
 
 

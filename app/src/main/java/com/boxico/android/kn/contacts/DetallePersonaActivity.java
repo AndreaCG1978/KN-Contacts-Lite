@@ -36,6 +36,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
 import com.boxico.android.kn.contacts.util.Asociacion;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
@@ -127,7 +128,7 @@ public class DetallePersonaActivity extends Activity {
 		this.configurarBorrarPhoto();
 		this.compruebaCuandoConecta();
 		this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_detallePersona));
-		mPersonaSeleccionadaId = new Integer((String) intent.getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
+		mPersonaSeleccionadaId = Integer.valueOf((String) intent.getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
 		this.mostrarFoto();
 	}
 
@@ -422,15 +423,16 @@ public class DetallePersonaActivity extends Activity {
 	private void populateFields() {
 		String temp = null;
 		Asociacion asoc = null;
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		if (mPersonaSeleccionadaId != -1) {
-			ConstantsAdmin.inicializarBD(this);
-			Cursor perCursor = ConstantsAdmin.mDBManager.fetchPersonaPorId(mPersonaSeleccionadaId);
+			ConstantsAdmin.inicializarBD(mDBManager);
+			Cursor perCursor = mDBManager.fetchPersonaPorId(mPersonaSeleccionadaId);
 			if (perCursor != null) {
 				telefonos = new ArrayList<Asociacion>();
 				mails = new ArrayList<Asociacion>();
 				direcciones = new ArrayList<Asociacion>();
 				startManagingCursor(perCursor);
-				Cursor prefCursor = ConstantsAdmin.mDBManager.fetchPreferidoPorId(mPersonaSeleccionadaId);
+				Cursor prefCursor = mDBManager.fetchPreferidoPorId(mPersonaSeleccionadaId);
 				startManagingCursor(prefCursor);
 				mEsPreferido = prefCursor.getCount() > 0;
 				prefCursor.close();
@@ -462,7 +464,7 @@ public class DetallePersonaActivity extends Activity {
 
 				// CARGO LOS TELEFONOS MOVILES
 
-				List<TipoValorDTO> nuevosTV = ConstantsAdmin.obtenerTelefonosIdPersona(this, mPersonaSeleccionadaId);
+				List<TipoValorDTO> nuevosTV = ConstantsAdmin.obtenerTelefonosIdPersona(this, mPersonaSeleccionadaId, mDBManager);
 				Iterator<TipoValorDTO> it = nuevosTV.iterator();
 				TipoValorDTO tv = null;
 				while (it.hasNext()) {
@@ -493,7 +495,7 @@ public class DetallePersonaActivity extends Activity {
 
 				// CARGO LOS MAILS MOVILES
 
-				nuevosTV = ConstantsAdmin.obtenerEmailsIdPersona(this, mPersonaSeleccionadaId);
+				nuevosTV = ConstantsAdmin.obtenerEmailsIdPersona(this, mPersonaSeleccionadaId, mDBManager);
 				it = nuevosTV.iterator();
 				tv = null;
 				while (it.hasNext()) {
@@ -517,7 +519,7 @@ public class DetallePersonaActivity extends Activity {
 
 				// CARGO LAS DIRECCIONES MOVILES
 
-				nuevosTV = ConstantsAdmin.obtenerDireccionesIdPersona(this, mPersonaSeleccionadaId);
+				nuevosTV = ConstantsAdmin.obtenerDireccionesIdPersona(this, mPersonaSeleccionadaId, mDBManager);
 				it = nuevosTV.iterator();
 				tv = null;
 				while (it.hasNext()) {
@@ -559,7 +561,7 @@ public class DetallePersonaActivity extends Activity {
 				stopManagingCursor(perCursor);
 			}
 
-			ConstantsAdmin.finalizarBD();
+			ConstantsAdmin.finalizarBD(mDBManager);
 		}
 	}
 
@@ -887,11 +889,12 @@ public class DetallePersonaActivity extends Activity {
 	}
 	
 	private void seleccionarPreferido(){
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		if(mEsPreferido && mImagenPreferido!= null){
 			mEsPreferido = false;
 			mImagenPreferido.setBackgroundDrawable(drwPrefBN);
 			try {
-				ConstantsAdmin.eliminarPreferido(this, mPersonaSeleccionadaId);
+				ConstantsAdmin.eliminarPreferido(this, mPersonaSeleccionadaId, mDBManager);
 			} catch (Exception e) {
 				ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEliminacionPreferido));
 			}			
@@ -899,7 +902,7 @@ public class DetallePersonaActivity extends Activity {
 			mEsPreferido = true;
 			mImagenPreferido.setBackgroundDrawable(drwPrefColor);
 			try {
-				ConstantsAdmin.crearPreferido(this, mPersonaSeleccionadaId);
+				ConstantsAdmin.crearPreferido(this, mPersonaSeleccionadaId, mDBManager);
 			} catch (Exception e) {
 				ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorAgregarPreferido));
 			}			
@@ -947,7 +950,8 @@ public class DetallePersonaActivity extends Activity {
 	
 	private void eliminarPersonaSeleccionada(){
 		try {
-			ConstantsAdmin.eliminarPersona(this, mPersonaSeleccionadaId);
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			ConstantsAdmin.eliminarPersona(this, mPersonaSeleccionadaId, mDBManager);
 
 		} catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEliminacionContacto));

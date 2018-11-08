@@ -26,6 +26,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.util.Asociacion;
@@ -90,6 +91,7 @@ public class ImportarContactoActivity extends Activity {
 	private void buscarSiguienteContacto() {
     	boolean encontrado = false;
     	String contactIdTemp = null;
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	
     	while(!encontrado && people.moveToNext()) {
     		posPeople = people.getPosition();
@@ -110,7 +112,7 @@ public class ImportarContactoActivity extends Activity {
 
      	       		if((family != null && !family.equals("") || given!= null && !given.equals(""))&&
   	        		   (family != null || given!= null) ){
-   	  	        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
+   	  	        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
    	  	        	   if(persona == null){
    	  	        		   persona = new PersonaDTO();   
    	  	        	   }
@@ -148,6 +150,7 @@ public class ImportarContactoActivity extends Activity {
     	family = null;
     	boolean encontrado = false;
     	String contactIdTemp = null;
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
        	while(!encontrado && people.moveToPrevious()) {
        	   posPeople = people.getPosition();
 	       contactIdTemp  = people.getString(people.getColumnIndex(ContactsContract.Contacts._ID));
@@ -167,7 +170,7 @@ public class ImportarContactoActivity extends Activity {
 	   	   	       if((family != null && !family.equals("") || given!= null && !given.equals(""))&&
 		        		   (family != null || given!= null) ){
 	
-		        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
+		        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
 		        	   if(persona == null){
 		        		   persona = new PersonaDTO();   
 		        	   }
@@ -352,7 +355,7 @@ public class ImportarContactoActivity extends Activity {
     	       .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
     	           public void onClick(DialogInterface dialog, int id) {
 	   	        	   Long[] params = new Long[1];
-	   		    	   params[0] = new Long(1);
+	   		    	   params[0] = Long.valueOf(1);
 	   		    	   dialog.cancel();    	        	   
     	        	   new ImportContactTask().execute(params);    	  
 
@@ -408,6 +411,7 @@ public class ImportarContactoActivity extends Activity {
 		ConstantsAdmin.mDBManager.createPersona(persona, false);*/
 		String given = null;
 		String family = null;
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		try {
 			people.moveToFirst();
 			while(people.moveToNext()) {
@@ -419,7 +423,7 @@ public class ImportarContactoActivity extends Activity {
 
 			   	       if((family != null && !family.equals("") || given!= null && !given.equals(""))&&
 				        		   (family != null || given!= null) ){
-			        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
+			        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
 			        	   if(persona == null){
 			        		   persona = new PersonaDTO();   
 			        	   }
@@ -430,7 +434,7 @@ public class ImportarContactoActivity extends Activity {
 				   			   persona.setNombres(null);
 						   }
 				   		   this.obtenerContactoCapturado(true);
-			    	   	   ConstantsAdmin.mDBManager.createPersona(persona, false);
+			    	   	   mDBManager.createPersona(persona, false);
 
 			   	       }
 		   	       }
@@ -447,8 +451,9 @@ public class ImportarContactoActivity extends Activity {
 
 	private void addContact() {
 		long id = -1;
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		this.obtenerContactoCapturado(false);
-		id = ConstantsAdmin.mDBManager.createPersona(persona, false);
+		id = mDBManager.createPersona(persona, false);
 		if(id != -1){
 			ConstantsAdmin.resetPersonasOrganizadas();
 			persona.setId(id);
@@ -491,8 +496,9 @@ public class ImportarContactoActivity extends Activity {
     private void configurarSpinner(){
       List<CategoriaDTO> categorias = null;
       List<CategoriaDTO> categoriasPersonales = null;
-      categorias = ConstantsAdmin.obtenerCategoriasActivas(this, null);
-      categoriasPersonales = ConstantsAdmin.obtenerCategoriasActivasPersonales(this);
+      DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+      categorias = ConstantsAdmin.obtenerCategoriasActivas(this, null, mDBManager);
+      categoriasPersonales = ConstantsAdmin.obtenerCategoriasActivasPersonales(this, mDBManager);
       categorias.addAll(categoriasPersonales);
       this.cargarNombreRelativoCategorias(categorias);
       this.crearSpinnerCategorias(R.id.spinnerCategorias_alta_persona, categorias);
@@ -592,6 +598,7 @@ public class ImportarContactoActivity extends Activity {
     
     protected void onResume() {
         super.onResume();
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
         if(ConstantsAdmin.mainActivity == null){
         	Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage(this.getPackageName());
         	startActivity(LaunchIntent);
@@ -599,7 +606,7 @@ public class ImportarContactoActivity extends Activity {
         	ConstantsAdmin.cerrarMainActivity = true;
 
         }else{
-        	ConstantsAdmin.inicializarBD(this);
+        	ConstantsAdmin.inicializarBD(mDBManager);
             String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
             if(people == null){
             	people = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null,
@@ -620,10 +627,11 @@ public class ImportarContactoActivity extends Activity {
     }
     
     protected void onPause() {
-        super.onPause();
+    	super.onPause();
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
         this.resetAllMyCursors();
         people = null;
-        ConstantsAdmin.finalizarBD();
+        ConstantsAdmin.finalizarBD(mDBManager);
 
     }
 

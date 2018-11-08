@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	android:orientation="vertical" android:background="@color/color_gris_oscuro">
+	android:orientation="vertical" >
 
 
 	<LinearLayout android:layout_width="fill_parent"
@@ -20,7 +20,8 @@
 			android:hint="*********"
 			android:textColor="@color/color_azul_oscuro" android:layout_width="fill_parent"
 			android:layout_height="35dp" android:padding="5dp" android:textSize="14sp"
-			android:layout_marginLeft="4dp" android:layout_marginRight="4dp" />
+			android:layout_marginLeft="4dp" android:layout_marginRight="4dp"
+            android:importantForAutofill="no" />
 
 	</LinearLayout>
 

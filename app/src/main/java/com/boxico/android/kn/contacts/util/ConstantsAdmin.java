@@ -43,22 +43,28 @@ public class ConstantsAdmin {
 	
 	// CONSTANTES DE LA BASE DE DATOS
 	
-	public static DataBaseManager mDBManager = null;
+
 	private static Map<String, List<PersonaDTO>> organizadosAlfabeticamente = null;
 	private static Map<String, List<PersonaDTO>> organizadosPorCategoria = null;
+
+
+
 	public static ListadoPersonaActivity mainActivity = null;
 
-	public static Map<String, List<PersonaDTO>> obtenerOrganizadosAlfabeticamente(Activity context){
+
+
+
+	public static Map<String, List<PersonaDTO>> obtenerOrganizadosAlfabeticamente(Activity context, DataBaseManager mDBManager){
 		if(organizadosAlfabeticamente == null){
-			cargarPersonasAlfabeticamenteYPorCategoria(context);
+			cargarPersonasAlfabeticamenteYPorCategoria(context, mDBManager);
 		}
 		return organizadosAlfabeticamente;
 	}
 
 	
-	public static Map<String, List<PersonaDTO>> obtenerOrganizadosPorCategoria(Activity context){
+	public static Map<String, List<PersonaDTO>> obtenerOrganizadosPorCategoria(Activity context, DataBaseManager mDBManager){
 		if(organizadosPorCategoria == null){
-			cargarPersonasAlfabeticamenteYPorCategoria(context);
+			cargarPersonasAlfabeticamenteYPorCategoria(context, mDBManager);
 		}
 		return organizadosPorCategoria;
 	}
@@ -72,9 +78,9 @@ public class ConstantsAdmin {
 		organizadosPorCategoria = null;
 	}
 	
-	private static void cargarPersonasAlfabeticamenteYPorCategoria(Activity context) {
+	private static void cargarPersonasAlfabeticamenteYPorCategoria(Activity context, DataBaseManager mDBManager) {
 		// TODO Auto-generated method stub
-		List<PersonaDTO> personas = obtenerPersonas(context);
+		List<PersonaDTO> personas = obtenerPersonas(context, mDBManager);
 		Iterator<PersonaDTO> it = personas.iterator();
 		PersonaDTO per = null;
 		organizadosAlfabeticamente = new HashMap<String, List<PersonaDTO>>();
@@ -120,18 +126,18 @@ public class ConstantsAdmin {
 	}
 
 		
-	public static DataBaseManager getmDBManager() {
-		return mDBManager;
-	}
-
+	//public static DataBaseManager getmDBManager() {
+	//	return mDBManager;
+	//}
+/*
 	public static void setmDBManager(DataBaseManager mDBManager) {
 		ConstantsAdmin.mDBManager = mDBManager;
-	}
+	}*/
 	
-    public static void inicializarBD(Activity act){
-    	if(mDBManager == null){
-    		mDBManager = new DataBaseManager(act);	
-    	}
+    public static void inicializarBD(DataBaseManager mDBManager){
+    	/*if(mDBManager == null){
+    		mDBManager = new DataBaseManager(act);
+    	}*/
     	mDBManager.open();
     }
     
@@ -141,22 +147,22 @@ public class ConstantsAdmin {
     	}
     }
     
-    public static void finalizarBD(){
+    public static void finalizarBD(DataBaseManager mDBManager){
     	if(mDBManager != null){
     		mDBManager.close();
     	}
     }
-    
-    public static void inicializarBD(){
+
+    public static void upgradeBD(DataBaseManager mDBManager){
     	mDBManager.upgradeDB();
     }
     
-    public static void createBD(){
+    public static void createBD(DataBaseManager mDBManager){
     	mDBManager.createBD();
     }
     
     
-    public static void actualizarTablaCategorias(Activity context){
+    public static void actualizarTablaCategorias(Activity context, DataBaseManager mDBManager){
     	boolean actualizo = mDBManager.actualizarTablaCategoria();
     	List<CategoriaDTO> categorias = null;
     	Iterator<CategoriaDTO> it = null;
@@ -176,47 +182,47 @@ public class ConstantsAdmin {
     	}
     }
 
-    public static void actualizarTablaContrasenia(){
+    public static void actualizarTablaContrasenia(DataBaseManager mDBManager){
     	mDBManager.actualizarTablaContrasenia();
     }
     
     
-    public static void cargarCategorias(Activity context){
+    public static void cargarCategorias(Activity context, DataBaseManager mDBManager){
     	long catSize = 0;
     	catSize = mDBManager.tablaCategoriaSize();
     	if(catSize == 0){
-    		cargarCategoriasPrivado(context);
+    		cargarCategoriasPrivado(context, mDBManager);
     	}
     }
     
-    public static void registrarTelefonos(Activity context, List<TipoValorDTO> telefonos){
-    	registrarTipoValor(context, telefonos, TABLA_TELEFONOS);
+    public static void registrarTelefonos(Activity context, List<TipoValorDTO> telefonos, DataBaseManager mDBManager){
+    	registrarTipoValor(context, telefonos, TABLA_TELEFONOS, mDBManager);
     }
     
-    public static void registrarMails(Activity context, List<TipoValorDTO> mails){
-    	registrarTipoValor(context, mails, TABLA_EMAILS);
+    public static void registrarMails(Activity context, List<TipoValorDTO> mails, DataBaseManager mDBManager){
+    	registrarTipoValor(context, mails, TABLA_EMAILS, mDBManager);
     }
     
-    public static void registrarDirecciones(Activity context, List<TipoValorDTO> direcciones){
-    	registrarTipoValor(context, direcciones, TABLA_DIRECCIONES);
+    public static void registrarDirecciones(Activity context, List<TipoValorDTO> direcciones, DataBaseManager mDBManager){
+    	registrarTipoValor(context, direcciones, TABLA_DIRECCIONES, mDBManager);
     }
     
-    private static void registrarTipoValor(Activity context, List<TipoValorDTO> valores, String tablaNombre){
+    private static void registrarTipoValor(Activity context, List<TipoValorDTO> valores, String tablaNombre, DataBaseManager mDBManager){
     	Iterator<TipoValorDTO> it = valores.iterator();
     	TipoValorDTO tv = null;
-    	inicializarBD(context);
+    	inicializarBD(mDBManager);
     	while(it.hasNext()){
     		tv = it.next();
     		mDBManager.createTipoValor(tv, tablaNombre);
     	}
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     }
     
-    public static long tablaPreferidosSize(Activity context){
+    public static long tablaPreferidosSize(Activity context, DataBaseManager mDBManager){
     	long valor = 0;
-    	inicializarBD(context);
+    	inicializarBD(mDBManager);
     	valor = mDBManager.tablaPreferidosSize();
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     	return valor;
     }
     
@@ -256,7 +262,7 @@ public class ConstantsAdmin {
     	return result;
     }
     
-	private static void cargarCategoriasPrivado(Activity context){
+	private static void cargarCategoriasPrivado(Activity context, DataBaseManager mDBManager){
 		CategoriaDTO cat = null;
 		String tipoDE = null;
 		
@@ -506,31 +512,31 @@ public class ConstantsAdmin {
 
     }   
     
-    public static PersonaDTO obtenerPersonaId(Activity context, long idPer){
+    public static PersonaDTO obtenerPersonaId(Activity context, long idPer, DataBaseManager mDBManager){
     	PersonaDTO per = new PersonaDTO();
-        per.setId(new Long(idPer));
+        per.setId(Long.valueOf(idPer));
     	Cursor perCursor = null;
-		inicializarBD(context);
+		inicializarBD(mDBManager);
     	perCursor = mDBManager.fetchPersonaPorId(idPer);
     	context.startManagingCursor(perCursor);
     	per = cursorToPersonaDto(perCursor);
     	perCursor.close();
     	context.stopManagingCursor(perCursor);
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     	return per;
     }
     
-    public static CategoriaDTO obtenerCategoriaPersonalId(Activity context, long idCat){
+    public static CategoriaDTO obtenerCategoriaPersonalId(Activity context, long idCat, DataBaseManager mDBManager){
     	CategoriaDTO cat = new CategoriaDTO();
-    	cat.setId(new Long(idCat));
+    	cat.setId(Long.valueOf(idCat));
     	Cursor catCursor = null;
-		inicializarBD(context);
+		inicializarBD(mDBManager);
     	catCursor = mDBManager.fetchCategoriaPersonalPorId(idCat);
     	context.startManagingCursor(catCursor);
     	cat = cursorToCategoriaDto(catCursor);
     	catCursor.close();
     	context.stopManagingCursor(catCursor);
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     	return cat;
     }
     
@@ -552,28 +558,28 @@ public class ConstantsAdmin {
         
 
     
-    public static List<TipoValorDTO> obtenerTelefonosIdPersona(Activity context, long id){
-    	return obtenerTipoValorDtosIdPersona(context, id, ConstantsAdmin.TABLA_TELEFONOS);
+    public static List<TipoValorDTO> obtenerTelefonosIdPersona(Activity context, long id, DataBaseManager mDBManager){
+    	return obtenerTipoValorDtosIdPersona(context, id, ConstantsAdmin.TABLA_TELEFONOS, mDBManager);
     }
     
-    public static List<TipoValorDTO> obtenerEmailsIdPersona(Activity context, long id){
-    	return obtenerTipoValorDtosIdPersona(context, id, ConstantsAdmin.TABLA_EMAILS);
+    public static List<TipoValorDTO> obtenerEmailsIdPersona(Activity context, long id, DataBaseManager mDBManager){
+    	return obtenerTipoValorDtosIdPersona(context, id, ConstantsAdmin.TABLA_EMAILS, mDBManager);
     }
 
-    public static List<TipoValorDTO> obtenerDireccionesIdPersona(Activity context, long id){
-    	return obtenerTipoValorDtosIdPersona(context, id, ConstantsAdmin.TABLA_DIRECCIONES);
+    public static List<TipoValorDTO> obtenerDireccionesIdPersona(Activity context, long id, DataBaseManager mDBManager){
+    	return obtenerTipoValorDtosIdPersona(context, id, ConstantsAdmin.TABLA_DIRECCIONES, mDBManager);
     }
     
-    public static List<TipoValorDTO> obtenerTipoValorDtosIdPersona(Activity context, long id, String tablaName){
+    public static List<TipoValorDTO> obtenerTipoValorDtosIdPersona(Activity context, long id, String tablaName, DataBaseManager mDBManager){
     	Cursor cur = null;
     	List<TipoValorDTO> result = null;
-		inicializarBD(context);
+		inicializarBD(mDBManager);
     	cur = mDBManager.fetchTipoValorPorIdPersona(id, tablaName);
     	context.startManagingCursor(cur);
     	result = cursorToTipoValorDtos(cur);
     	cur.close();
     	context.stopManagingCursor(cur);
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     	return result;
     }
 
@@ -618,7 +624,7 @@ public class ConstantsAdmin {
     	Long id = null;
     	if(cur != null){
 	        temp = cur.getString(cur.getColumnIndex(ConstantsAdmin.KEY_ROWID));
-	        id = new Long(temp);
+	        id = Long.valueOf(temp);
     	}
     	return id;
     }     
@@ -668,10 +674,10 @@ public class ConstantsAdmin {
     }
     
     
-    public static PersonaDTO obtenerPersonaConNombreYApellido(String name, String apellido, Activity context){
+    public static PersonaDTO obtenerPersonaConNombreYApellido(String name, String apellido, Activity context, DataBaseManager mDBManager){
     	Cursor cursor = null;
     	PersonaDTO per = null;
-    	cursor = ConstantsAdmin.mDBManager.fetchPersonaPorNombreYApellido(name, apellido);
+    	cursor = mDBManager.fetchPersonaPorNombreYApellido(name, apellido);
     	if(cursor != null){
     		context.startManagingCursor(cursor);
     		if(cursor.getCount() > 0){
@@ -681,7 +687,7 @@ public class ConstantsAdmin {
     		context.stopManagingCursor(cursor);
     	}
     	if(per == null){
-        	cursor = ConstantsAdmin.mDBManager.fetchPersonaPorNombreYApellido(apellido, name);
+        	cursor = mDBManager.fetchPersonaPorNombreYApellido(apellido, name);
         	if(cursor != null){
         		context.startManagingCursor(cursor);
         		if(cursor.getCount() > 0){
@@ -785,7 +791,7 @@ public class ConstantsAdmin {
     public static String folderCSV = "KN-Contacts";
     private static String fileCSV = "kncontacts.csv";
 
-	public static void importarCSV(Activity context){
+	public static void importarCSV(Activity context, DataBaseManager mDBManager){
         String body = null;
         File file = null;
         mensaje = context.getString(R.string.error_importar_csv);
@@ -821,7 +827,7 @@ public class ConstantsAdmin {
         	if(file != null){
                 if(file.getName().equals(fileCSV)){
                 	body = obtenerContenidoArchivo(file, context);
-                	procesarStringDatos(body, context);
+                	procesarStringDatos(body, context, mDBManager);
                 	mensaje = context.getString(R.string.mensaje_exito_importar_csv);
                 }
             }
@@ -831,7 +837,7 @@ public class ConstantsAdmin {
 		}
     }
     
-    public static void procesarStringDatos(String body, Activity context){
+    public static void procesarStringDatos(String body, Activity context, DataBaseManager mDBManager){
 
     	String[] lineas = body.split(ENTER);
     	int i = 0;
@@ -856,11 +862,11 @@ public class ConstantsAdmin {
     	List<Long> preferidos = procesarPreferidos(map.get(HEAD_PREFERIDO));
     	List<CategoriaDTO> categoriasProtegidas = procesarCategoriasProtegidas(map.get(HEAD_CATEGORIA_PROTEGIDA));
     	ContraseniaDTO pass = procesarContrasenia(map.get(HEAD_CONTRASENIA));
-    	almacenarDatos(context, personas, categorias, categoriasPersonales, preferidos, categoriasProtegidas, pass);
+    	almacenarDatos(context, personas, categorias, categoriasPersonales, preferidos, categoriasProtegidas, pass, mDBManager );
     	
     }
     
-    private static void almacenarDatos(Activity context, List<PersonaDTO> personas,List<CategoriaDTO> categorias, List<CategoriaDTO> categoriasPersonales,List<Long> preferidos, List<CategoriaDTO> catProtegidas, ContraseniaDTO pass){
+    private static void almacenarDatos(Activity context, List<PersonaDTO> personas,List<CategoriaDTO> categorias, List<CategoriaDTO> categoriasPersonales,List<Long> preferidos, List<CategoriaDTO> catProtegidas, ContraseniaDTO pass, DataBaseManager mDBManager){
     	PersonaDTO per = null;
     	CategoriaDTO cat = null;
     	Long pref = null;
@@ -876,7 +882,7 @@ public class ConstantsAdmin {
     	itPref = preferidos.iterator();
     	itTv = telefonosARegistrar.iterator();
     	
-    	inicializarBD(context);
+    	inicializarBD(mDBManager);
     	mDBManager.deleteAll();
     	while(itPers.hasNext()){
     		per = itPers.next();
@@ -925,7 +931,7 @@ public class ConstantsAdmin {
     		long id = mDBManager.crearContrasenia(pass);
     		contrasenia.setId(id);
     	}
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     	telefonosARegistrar = null;
     	mailsARegistrar = null;
     	direccionesARegistrar = null;
@@ -949,7 +955,7 @@ public class ConstantsAdmin {
     		linea = it.next();
     		campos = linea.split(PUNTO_COMA);
     		per = new PersonaDTO();
-    		per.setId(new Long(campos[1]));
+    		per.setId(Long.valueOf(campos[1]));
     		per.setApellido(campos[2]);
     		if(!campos[3].equals(CAMPO_NULO)){
     			per.setNombres(campos[3]);
@@ -1030,7 +1036,7 @@ public class ConstantsAdmin {
     		}
     		//PROCESO LOS DATOS POR CATEGORIAS
     		i++;
-    		per.setCategoriaId(new Long(campos[i]));
+    		per.setCategoriaId(Long.valueOf(campos[i]));
     		i++;
     		per.setCategoriaNombre(campos[i]);
     		i++;
@@ -1063,9 +1069,9 @@ public class ConstantsAdmin {
         		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
         		cat = new CategoriaDTO();
-        		cat.setId(new Long(campos[1]));  
+        		cat.setId(Long.valueOf(campos[1]));
         		cat.setNombreReal(campos[2]);
-        		cat.setActiva(new Long(campos[3]));
+        		cat.setActiva(Long.valueOf(campos[3]));
         		cat.setTipoDatoExtra(campos[4]);
         		resultado.add(cat);
         	}   		
@@ -1085,7 +1091,7 @@ public class ConstantsAdmin {
         		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
         		cat = new CategoriaDTO();
-        		cat.setId(new Long(campos[1]));  
+        		cat.setId(Long.valueOf(campos[1]));
         		cat.setNombreReal(campos[2]);
         		resultado.add(cat);
         	}   		
@@ -1117,7 +1123,7 @@ public class ConstantsAdmin {
         	while(it.hasNext()){
         		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
-        		id = new Long(campos[1]);
+        		id = Long.valueOf(campos[1]);
         		resultado.add(id);
         	}    		
     	}
@@ -1135,7 +1141,7 @@ public class ConstantsAdmin {
         	if(it.hasNext()){
         		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
-        		id = new Long(campos[1]);
+        		id = Long.valueOf(campos[1]);
         		pass.setId(id);
         		pass.setContrasenia(campos[2]);
 
@@ -1171,7 +1177,7 @@ public class ConstantsAdmin {
 
     }    
     
-    public static void exportarCSV(Activity context){
+    public static void exportarCSV(Activity context, DataBaseManager mDBManager){
     	Asociacion canStore = null;
     	Boolean boolValue = true;
     	String msg = null;
@@ -1182,7 +1188,7 @@ public class ConstantsAdmin {
      		boolValue = (Boolean)canStore.getKey();
      		msg = (String) canStore.getValue();
      		if(boolValue){
-     			body = obtenerCSVdeContactos(context);
+     			body = obtenerCSVdeContactos(context, mDBManager);
      			almacenarArchivo(folderCSV, fileCSV , body);
      			mensaje = context.getString(R.string.mensaje_exito_exportar_csv);
      		}else{
@@ -1194,7 +1200,7 @@ public class ConstantsAdmin {
 	  	  }    	
     }
 
-    public static void exportarCSVEstetico(Activity context, String separador, List<CategoriaDTO> categoriasProtegidas){
+    public static void exportarCSVEstetico(Activity context, String separador, List<CategoriaDTO> categoriasProtegidas, DataBaseManager mDBManager){
     	Asociacion canStore = null;
     	Boolean boolValue = true;
     	String msg = null;
@@ -1205,7 +1211,7 @@ public class ConstantsAdmin {
      		boolValue = (Boolean)canStore.getKey();
      		msg = (String) canStore.getValue();
      		if(boolValue){
-     			body = obtenerCSVdeContactosEstetico(context, separador, categoriasProtegidas);
+     			body = obtenerCSVdeContactosEstetico(context, separador, categoriasProtegidas, mDBManager);
 				String fileEsteticoCSV = "kncontactsExcel.csv";
 				almacenarArchivo(folderCSV, fileEsteticoCSV, body);
      			mensaje = context.getString(R.string.mensaje_exito_exportar_csv);
@@ -1241,39 +1247,39 @@ public class ConstantsAdmin {
     }
 
     
-    private static String obtenerCSVdeContactosEstetico(Activity context, String separador, List<CategoriaDTO> categoriasProtegidas){
+    private static String obtenerCSVdeContactosEstetico(Activity context, String separador, List<CategoriaDTO> categoriasProtegidas, DataBaseManager mDBManager){
     	String result = "";
     	PersonaDTO per = null;
     	
     	// RECUPERO PERSONAS
-    	List<PersonaDTO> personas = obtenerPersonas(context, categoriasProtegidas);
+    	List<PersonaDTO> personas = obtenerPersonas(context, categoriasProtegidas, mDBManager);
     	Iterator<PersonaDTO> itPer = personas.iterator();
     	while(itPer.hasNext()){
     		per = itPer.next();
     	//	result = result + obtenerStringPersona(per, context);
-    		result = result + obtenerStringEsteticoPersona(per, context, separador);
+    		result = result + obtenerStringEsteticoPersona(per, context, separador, mDBManager);
 
     	}
     	return result;
     }
     
-    private static String obtenerCSVdeContactos(Activity context){
+    private static String obtenerCSVdeContactos(Activity context, DataBaseManager mDBManager){
     	String result = "";
     	PersonaDTO per = null;
     	CategoriaDTO cat = null;
     	
     	
     	// RECUPERO PERSONAS
-    	List<PersonaDTO> personas = obtenerPersonas(context);
+    	List<PersonaDTO> personas = obtenerPersonas(context, mDBManager);
     	Iterator<PersonaDTO> itPer = personas.iterator();
     	while(itPer.hasNext()){
     		per = itPer.next();
-    		result = result + obtenerStringPersona(per, context);
+    		result = result + obtenerStringPersona(per, context, mDBManager);
     	}
     	
     	
     	// RECUPERO CATEGORIAS FIJAS
-    	List<CategoriaDTO> categorias = obtenerCategorias(context);
+    	List<CategoriaDTO> categorias = obtenerCategorias(context, mDBManager);
     	Iterator<CategoriaDTO> itCat = categorias.iterator();
     	while(itCat.hasNext()){
     		cat = itCat.next();
@@ -1282,7 +1288,7 @@ public class ConstantsAdmin {
     	
     	
     	// RECUPERO CATEGORIAS PERSONALES
-    	categorias = obtenerCategoriasPersonales(context);
+    	categorias = obtenerCategoriasPersonales(context, mDBManager);
     	itCat = categorias.iterator();
     	while(itCat.hasNext()){
     		cat = itCat.next();
@@ -1292,7 +1298,7 @@ public class ConstantsAdmin {
     	
     	// RECUPERO PREFERIDOS
     	Long idPref = null;
-    	List<Long> preferidos = obtenerPreferidos(context);
+    	List<Long> preferidos = obtenerPreferidos(context, mDBManager);
     	Iterator<Long> itPref = preferidos.iterator();
     	while(itPref.hasNext()){
     		idPref = itPref.next();
@@ -1335,7 +1341,7 @@ public class ConstantsAdmin {
     
     
     
-    private static String obtenerStringPersona(PersonaDTO per, Activity context){
+    private static String obtenerStringPersona(PersonaDTO per, Activity context, DataBaseManager mDBManager){
     	String result = "";
     	List<TipoValorDTO> masTVs = null;
     	TipoValorDTO tv = null;
@@ -1357,8 +1363,9 @@ public class ConstantsAdmin {
     	}
     	
     	// TELEFONOS
-    	
-    	result = result + INICIO + PUNTO_COMA;
+
+		String INICIO = "#I#";
+		result = result + INICIO + PUNTO_COMA;
     	if(per.getTelParticular() != null){
     		result = result + PARTICULAR + SEPARACION_ATRIBUTO + per.getTelParticular() + PUNTO_COMA;
     	}
@@ -1370,7 +1377,7 @@ public class ConstantsAdmin {
     	}
     	
     
-    	masTVs = obtenerTelefonosIdPersona(context, per.getId());
+    	masTVs = obtenerTelefonosIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
@@ -1391,7 +1398,7 @@ public class ConstantsAdmin {
     		result = result + OTRO + SEPARACION_ATRIBUTO + per.getEmailOtro() + PUNTO_COMA;
     	}
     	
-    	masTVs = obtenerEmailsIdPersona(context, per.getId());
+    	masTVs = obtenerEmailsIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
@@ -1410,7 +1417,7 @@ public class ConstantsAdmin {
     		result = result + LABORAL + SEPARACION_ATRIBUTO + per.getDireccionLaboral() + PUNTO_COMA;
     	}
     	
-    	masTVs = obtenerDireccionesIdPersona(context, per.getId());
+    	masTVs = obtenerDireccionesIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
@@ -1442,7 +1449,7 @@ public class ConstantsAdmin {
     	
     }
 
-    private static String obtenerStringEsteticoPersona(PersonaDTO per, Activity context, String separador){
+    private static String obtenerStringEsteticoPersona(PersonaDTO per, Activity context, String separador, DataBaseManager mDBManager){
     	String result = "";
     	List<TipoValorDTO> masTVs = null;
     	TipoValorDTO tv = null;
@@ -1488,7 +1495,7 @@ public class ConstantsAdmin {
     	}
     	
     
-    	masTVs = obtenerTelefonosIdPersona(context, per.getId());
+    	masTVs = obtenerTelefonosIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
@@ -1509,7 +1516,7 @@ public class ConstantsAdmin {
     		result = result + context.getString(R.string.label_email) + "-" + context.getString(R.string.hint_otro) + SEPARACION_ATRIBUTO + per.getEmailOtro() + PIPE;
     	}
     	
-    	masTVs = obtenerEmailsIdPersona(context, per.getId());
+    	masTVs = obtenerEmailsIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
@@ -1527,7 +1534,7 @@ public class ConstantsAdmin {
     		result = result + context.getString(R.string.label_direccion) + "-" + context.getString(R.string.hint_laboral) + SEPARACION_ATRIBUTO + per.getDireccionLaboral() + PIPE;
     	}
     	
-    	masTVs = obtenerDireccionesIdPersona(context, per.getId());
+    	masTVs = obtenerDireccionesIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
@@ -1544,7 +1551,7 @@ public class ConstantsAdmin {
     }
 
 
-    private static String obtenerStringEsteticoPersonaParaEnviar(PersonaDTO per, Activity context, String separador){
+    private static String obtenerStringEsteticoPersonaParaEnviar(PersonaDTO per, Activity context, String separador, DataBaseManager mDBManager){
     	String result = "";
     	List<TipoValorDTO> masTVs = null;
     	TipoValorDTO tv = null;
@@ -1575,7 +1582,7 @@ public class ConstantsAdmin {
     	}
     	
     
-    	masTVs = obtenerTelefonosIdPersona(context, per.getId());
+    	masTVs = obtenerTelefonosIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
@@ -1597,7 +1604,7 @@ public class ConstantsAdmin {
     		result = result + "* " + context.getString(R.string.label_email) + "-" + context.getString(R.string.hint_otro) + SEPARACION_ATRIBUTO + per.getEmailOtro() + separador;
     	}
     	
-    	masTVs = obtenerEmailsIdPersona(context, per.getId());
+    	masTVs = obtenerEmailsIdPersona(context, per.getId(),mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
@@ -1617,7 +1624,7 @@ public class ConstantsAdmin {
     		result = result + "* " + context.getString(R.string.label_direccion) + "-" + context.getString(R.string.hint_laboral) + SEPARACION_ATRIBUTO + per.getDireccionLaboral() + separador;
     	}
     	
-    	masTVs = obtenerDireccionesIdPersona(context, per.getId());
+    	masTVs = obtenerDireccionesIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
@@ -1636,10 +1643,10 @@ public class ConstantsAdmin {
 
     
     
-    private static List<PersonaDTO> obtenerPersonas(Activity context, List<CategoriaDTO> categoriasProtegidas){
+    private static List<PersonaDTO> obtenerPersonas(Activity context, List<CategoriaDTO> categoriasProtegidas, DataBaseManager mDBManager){
     	PersonaDTO per = null;
     	List<PersonaDTO> result = new ArrayList<PersonaDTO>();
-    	inicializarBD(context);
+    	inicializarBD(mDBManager);
     	Cursor cur = mDBManager.fetchAllPersonas(categoriasProtegidas);
     	context.startManagingCursor(cur);
     	cur.moveToFirst();
@@ -1650,14 +1657,14 @@ public class ConstantsAdmin {
     	}
     	cur.close();
     	context.stopManagingCursor(cur);
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     	return result;
     }
     
-    private static List<PersonaDTO> obtenerPersonas(Activity context){
+    private static List<PersonaDTO> obtenerPersonas(Activity context, DataBaseManager mDBManager){
     	PersonaDTO per = null;
     	List<PersonaDTO> result = new ArrayList<PersonaDTO>();
-    	inicializarBD(context);
+    	inicializarBD(mDBManager);
     	Cursor cur = mDBManager.fetchAllPersonas(categoriasProtegidas);
     	context.startManagingCursor(cur);
     	cur.moveToFirst();
@@ -1668,14 +1675,14 @@ public class ConstantsAdmin {
     	}
     	cur.close();
     	context.stopManagingCursor(cur);
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     	return result;
     }
     
-    private static List<CategoriaDTO> obtenerCategorias(Activity context){
+    private static List<CategoriaDTO> obtenerCategorias(Activity context, DataBaseManager mDBManager){
     	CategoriaDTO cat = null;
     	List<CategoriaDTO> result = new ArrayList<CategoriaDTO>();
-    	inicializarBD(context);
+    	inicializarBD(mDBManager);
     	Cursor cur = mDBManager.fetchAllCategoriasPorNombre(null);
     	context.startManagingCursor(cur);
     	cur.moveToFirst();
@@ -1686,14 +1693,14 @@ public class ConstantsAdmin {
     	}
     	cur.close();
     	context.stopManagingCursor(cur);
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     	return result;
     }    
 
-    private static List<CategoriaDTO> obtenerCategoriasPersonales(Activity context){
+    private static List<CategoriaDTO> obtenerCategoriasPersonales(Activity context, DataBaseManager mDBManager){
     	CategoriaDTO cat = null;
     	List<CategoriaDTO> result = new ArrayList<CategoriaDTO>();
-    	inicializarBD(context);
+    	inicializarBD(mDBManager);
     	Cursor cur = mDBManager.fetchAllCategoriasPersonalesPorNombre(null);
     	context.startManagingCursor(cur);
     	cur.moveToFirst();
@@ -1704,16 +1711,16 @@ public class ConstantsAdmin {
     	}
     	cur.close();
     	context.stopManagingCursor(cur);
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     	return result;
     }     
     
 
     
-    private static List<Long> obtenerPreferidos(Activity context){
+    private static List<Long> obtenerPreferidos(Activity context, DataBaseManager mDBManager){
     	Long id = null;
     	List<Long> result = new ArrayList<Long>();
-    	inicializarBD(context);
+    	inicializarBD(mDBManager);
     	Cursor cur = mDBManager.fetchAllPreferidos();
     	context.startManagingCursor(cur);
     	cur.moveToFirst();
@@ -1724,7 +1731,7 @@ public class ConstantsAdmin {
     	}
     	cur.close();
     	context.stopManagingCursor(cur);
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     	return result;
     }     
         
@@ -1732,8 +1739,7 @@ public class ConstantsAdmin {
     public static String ENTER = "\n";
     public static final String PUNTO_COMA = ";";
     public static final String COMA = ",";
-	private static String INICIO = "#I#";
-    private static String FIN = "#F#";
+	private static String FIN = "#F#";
     private static String CAMPO_NULO = "###";
     private static String PARTICULAR = "PARTICULAR";
     private static String LABORAL = "LABORAL";
@@ -1777,67 +1783,67 @@ public class ConstantsAdmin {
    		  return backup;
     }    
         
-    public static void eliminarCategoriaPersonal(CategoriaDTO cat, Activity context){
-		inicializarBD(context);
+    public static void eliminarCategoriaPersonal(CategoriaDTO cat, Activity context, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
 		mDBManager.eliminarCategoriaPersonal(cat.getId());
-		finalizarBD();    	
+		finalizarBD(mDBManager);
     }
     
     
-    public static void crearCategoriaPersonal(CategoriaDTO cat, String oldNameCat, boolean forImport, Activity context){
-		inicializarBD(context);
+    public static void crearCategoriaPersonal(CategoriaDTO cat, String oldNameCat, boolean forImport, Activity context, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
 		mDBManager.crearCategoriaPersonal(cat, oldNameCat, forImport);
-		finalizarBD();
+		finalizarBD(mDBManager);
     }
     
-    public static long crearPersona(PersonaDTO personaSeleccionada, boolean forImport, Activity context){
+    public static long crearPersona(PersonaDTO personaSeleccionada, boolean forImport, Activity context, DataBaseManager mDBManager){
     	long id = -1;
-    	inicializarBD(context);
+    	inicializarBD(mDBManager);
     	id = mDBManager.createPersona(personaSeleccionada, forImport);
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     	return id;
     }
     
-    public static void eliminarTelefono(TipoValorDTO tv, Activity context){
-        inicializarBD(context);
+    public static void eliminarTelefono(TipoValorDTO tv, Activity context, DataBaseManager mDBManager){
+        inicializarBD(mDBManager);
     	mDBManager.eliminarTelefono(tv.getId());
-    	finalizarBD();   	
+    	finalizarBD(mDBManager);
     }
     
-    public static void eliminarEmail(TipoValorDTO tv, Activity context){
-        inicializarBD(context);
+    public static void eliminarEmail(TipoValorDTO tv, Activity context, DataBaseManager mDBManager){
+        inicializarBD(mDBManager);
     	mDBManager.eliminarEmail(tv.getId());
-    	finalizarBD();   	
+    	finalizarBD(mDBManager);
     }
 
-    public static void eliminarDireccion(TipoValorDTO tv, Activity context){
-        inicializarBD(context);
+    public static void eliminarDireccion(TipoValorDTO tv, Activity context, DataBaseManager mDBManager){
+        inicializarBD(mDBManager);
     	mDBManager.eliminarDireccion(tv.getId());
-    	finalizarBD();   	
+    	finalizarBD(mDBManager);
     }
     
-    public static void crearTelefono(TipoValorDTO mTipoValor, Activity context){
-		inicializarBD(context);
+    public static void crearTelefono(TipoValorDTO mTipoValor, Activity context, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
 		mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_TELEFONOS);
-		finalizarBD();
+		finalizarBD(mDBManager);
     }
     
-    public static void crearEmail(TipoValorDTO mTipoValor, Activity context){
-		inicializarBD(context);
+    public static void crearEmail(TipoValorDTO mTipoValor, Activity context, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
 		mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_EMAILS);
-		finalizarBD();
+		finalizarBD(mDBManager);
     }
     
-    public static void crearDireccion(TipoValorDTO mTipoValor, Activity context){
-		inicializarBD(context);
+    public static void crearDireccion(TipoValorDTO mTipoValor, Activity context, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
 		mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_DIRECCIONES);
-		finalizarBD();
+		finalizarBD(mDBManager);
     }
 
-    public static List<CategoriaDTO> obtenerCategoriasActivas(Activity context, String nombre){
+    public static List<CategoriaDTO> obtenerCategoriasActivas(Activity context, String nombre, DataBaseManager mDBManager){
     	Cursor cursor = null;
     	List<CategoriaDTO> categorias = new ArrayList<CategoriaDTO>();
-	    inicializarBD(context);
+	    inicializarBD(mDBManager);
 	    cursor = mDBManager.fetchCategoriasActivasPorNombre(nombre);
 	    if(cursor != null){
 	        context.startManagingCursor(cursor);
@@ -1845,15 +1851,15 @@ public class ConstantsAdmin {
 	        cursor.close();
 	        context.stopManagingCursor(cursor);
 	    }
-	    finalizarBD();
+	    finalizarBD(mDBManager);
 	    return categorias;
     }
     
-    public static List<CategoriaDTO> obtenerCategoriasActivasPersonales(Activity context){
+    public static List<CategoriaDTO> obtenerCategoriasActivasPersonales(Activity context, DataBaseManager mDBManager){
     	Cursor cursor = null;
     	List<CategoriaDTO> categorias = new ArrayList<CategoriaDTO>();
-	    inicializarBD(context);   
-	    cursor = ConstantsAdmin.mDBManager.fetchCategoriasPersonalesActivasPorNombre(null);
+	    inicializarBD(mDBManager);
+	    cursor = mDBManager.fetchCategoriasPersonalesActivasPorNombre(null);
 	    if(cursor != null){
 	        context.startManagingCursor(cursor);
 	        categorias = ConstantsAdmin.categoriasCursorToDtos(cursor);
@@ -1861,14 +1867,14 @@ public class ConstantsAdmin {
 	        context.stopManagingCursor(cursor);
 	    }
 
-	    finalizarBD();
+	    finalizarBD(mDBManager);
 	    return categorias;
     }
     
-    public static List<CategoriaDTO> obtenerCategorias(Activity context, String nombre){
+    public static List<CategoriaDTO> obtenerCategorias(Activity context, String nombre, DataBaseManager mDBManager){
     	Cursor cursor = null;
     	List<CategoriaDTO> categorias = new ArrayList<CategoriaDTO>();
-	    inicializarBD(context);
+	    inicializarBD(mDBManager);
 	    cursor = mDBManager.fetchAllCategoriasPorNombre(nombre);
 	    if(cursor != null){
 	        context.startManagingCursor(cursor);
@@ -1876,39 +1882,39 @@ public class ConstantsAdmin {
 	        cursor.close();
 	        context.stopManagingCursor(cursor);
 	    }
-	    finalizarBD();
+	    finalizarBD(mDBManager);
 	    return categorias;
     }
     
-    public static void actualizarCategoria(CategoriaDTO catSelected, Activity context){
- 		inicializarBD(context);
+    public static void actualizarCategoria(CategoriaDTO catSelected, Activity context, DataBaseManager mDBManager){
+ 		inicializarBD(mDBManager);
 		mDBManager.actualizarCategoria(catSelected);
-		finalizarBD();
+		finalizarBD(mDBManager);
     }
     
-    public static void actualizarConfig(Activity context){
- 		inicializarBD(context);
+    public static void actualizarConfig(Activity context, DataBaseManager mDBManager){
+ 		inicializarBD(mDBManager);
 		mDBManager.actualizarConfig(config);
-		finalizarBD();
+		finalizarBD(mDBManager);
     }
         
     
-    public static void eliminarPreferido(Activity context, long idPer){
-		inicializarBD(context);
+    public static void eliminarPreferido(Activity context, long idPer, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
 		mDBManager.eliminarPreferido(idPer);
-		finalizarBD();
+		finalizarBD(mDBManager);
     }
     
-    public static void crearPreferido(Activity context, long idPer){   
-		inicializarBD(context);
+    public static void crearPreferido(Activity context, long idPer, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
 		mDBManager.crearPreferido(idPer);
-		finalizarBD();
+		finalizarBD(mDBManager);
     }
     
-    public static void eliminarPersona(Activity context, long perId){
-		inicializarBD(context);
+    public static void eliminarPersona(Activity context, long perId, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
 		mDBManager.eliminarPersona(perId);
-		finalizarBD();
+		finalizarBD(mDBManager);
     }
     
     
@@ -1930,22 +1936,22 @@ public class ConstantsAdmin {
     public static final String TABLA_CATEGORIA_PROTEGIDA = "categoriaProtegida";
     
     
-    public static void crearCategoriaProtegida(CategoriaDTO cat, Activity context){
-		inicializarBD(context);
+    public static void crearCategoriaProtegida(CategoriaDTO cat, Activity context, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
 		mDBManager.crearCategoriaProtegida(cat);
-		finalizarBD();
+		finalizarBD(mDBManager);
     }
     
     
-    public static long crearContrasenia(ContraseniaDTO contrasenia, Activity context){
+    public static long crearContrasenia(ContraseniaDTO contrasenia, Activity context, DataBaseManager mDBManager){
     	long id = -1;
-		inicializarBD(context);
+		inicializarBD(mDBManager);
 		id = mDBManager.crearContrasenia(contrasenia);
-		finalizarBD();
+		finalizarBD(mDBManager);
 		return id;
     }
     
-    public static void almacenarContraseniaEnArchivo(Activity context){
+    public static void almacenarContraseniaEnArchivo(Activity context, DataBaseManager mDBManager){
     	Asociacion canStore = null;
     	Boolean boolValue = true;
     	String msg = null;
@@ -1969,17 +1975,17 @@ public class ConstantsAdmin {
    	
     }
     
-    public static void eliminarCategoriaProtegida(CategoriaDTO cat, Activity context){
-		inicializarBD(context);
+    public static void eliminarCategoriaProtegida(CategoriaDTO cat, Activity context, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
 		mDBManager.eliminarCategoriaProtegida(cat.getNombreReal());
-		finalizarBD();    	
+		finalizarBD(mDBManager);
     }
     
     
-    public static List<CategoriaDTO> obtenerCategoriasProtegidas(Activity context){
+    public static List<CategoriaDTO> obtenerCategoriasProtegidas(Activity context, DataBaseManager mDBManager){
     	Cursor cursor = null;
     	List<CategoriaDTO> categorias = new ArrayList<CategoriaDTO>();
-	    cursor = ConstantsAdmin.mDBManager.fetchAllCategoriasProtegidasPorNombre(null);
+	    cursor = mDBManager.fetchAllCategoriasProtegidasPorNombre(null);
 	    if(cursor != null){
 	        context.startManagingCursor(cursor);
 	        categorias = ConstantsAdmin.categoriasProtegidasCursorToDtos(cursor);
@@ -1989,10 +1995,10 @@ public class ConstantsAdmin {
 	    return categorias;
     }
     
-    public static ContraseniaDTO obtenerContrasenia(Activity context){
+    public static ContraseniaDTO obtenerContrasenia(Activity context, DataBaseManager mDBManager){
     	Cursor cursor = null;
     	ContraseniaDTO contrasenia = null;
-	    cursor = ConstantsAdmin.mDBManager.fetchContrasenia();
+	    cursor = mDBManager.fetchContrasenia();
 	    if(cursor != null){
 	        context.startManagingCursor(cursor);
 	        contrasenia = ConstantsAdmin.contraseniaCursorToDtos(cursor);
@@ -2004,11 +2010,11 @@ public class ConstantsAdmin {
     }
     
     
-    public static ConfigDTO obtenerConfiguracion(Activity context){
+    public static ConfigDTO obtenerConfiguracion(Activity context, DataBaseManager mDBManager){
     	Cursor cursor = null;
     	ConfigDTO config = null;
-    	inicializarBD(context);
-	    cursor = ConstantsAdmin.mDBManager.fetchConfig();
+    	inicializarBD(mDBManager);
+	    cursor = mDBManager.fetchConfig();
 	    if(cursor != null){
 	    	cursor.moveToFirst();
 	    	if(!cursor.isAfterLast()){
@@ -2025,7 +2031,7 @@ public class ConstantsAdmin {
 		    }
 
 	    }
-	    finalizarBD();
+	    finalizarBD(mDBManager);
 	    return config;
     }
     
@@ -2117,12 +2123,12 @@ public class ConstantsAdmin {
     public static ContraseniaDTO contrasenia = null;
     public static ConfigDTO config = null;
    
-    public static void cargarCategoriasProtegidas(Activity context){
-    	categoriasProtegidas = obtenerCategoriasProtegidas(context);
+    public static void cargarCategoriasProtegidas(Activity context, DataBaseManager mDBManager){
+    	categoriasProtegidas = obtenerCategoriasProtegidas(context, mDBManager);
     }
     
-    public static void cargarContrasenia(Activity context){
-    	contrasenia = obtenerContrasenia(context);
+    public static void cargarContrasenia(Activity context, DataBaseManager mDBManager){
+    	contrasenia = obtenerContrasenia(context, mDBManager);
     	if(contrasenia == null){
     		contrasenia = new ContraseniaDTO();
     		
@@ -2130,10 +2136,10 @@ public class ConstantsAdmin {
     	
     }
     
-    public static void actualizarContrasenia(ContraseniaDTO pass, Activity context){
-    	inicializarBD(context);
+    public static void actualizarContrasenia(ContraseniaDTO pass, Activity context, DataBaseManager mDBManager){
+    	inicializarBD(mDBManager);
     	mDBManager.crearContrasenia(pass);
-    	finalizarBD();
+    	finalizarBD(mDBManager);
     }
     
     public static final int ACTIVITY_EJECUTAR_PROTECCION_CATEGORIA = 22;
@@ -2203,13 +2209,12 @@ public class ConstantsAdmin {
 	}
 
 
-	public static String recuperarInfoContacto(
-			Activity activity, long id) {
+	public static String recuperarInfoContacto(Activity activity, long id, DataBaseManager mDBManager) {
 		// TODO Auto-generated method stub
 		
 		String result = null;
-		PersonaDTO per = obtenerPersonaId(activity, id);
-		result = obtenerStringEsteticoPersonaParaEnviar(per, activity, ENTER);
+		PersonaDTO per = obtenerPersonaId(activity, id, mDBManager);
+		result = obtenerStringEsteticoPersonaParaEnviar(per, activity, ENTER, mDBManager);
 		return result;
 	}
 

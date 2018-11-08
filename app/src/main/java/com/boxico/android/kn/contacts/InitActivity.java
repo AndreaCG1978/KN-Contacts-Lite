@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MotionEvent;
 
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
 
@@ -18,6 +21,8 @@ public class InitActivity extends Activity {
     protected int _splashTime = 1200;    
     private Activity me = null;
     private ArrayList<Cursor> allMyCursors = null;
+
+
 
 	/** Called when the activity is first created. */
 	@Override
@@ -85,15 +90,22 @@ public class InitActivity extends Activity {
 }
 
 */
+
+
+
 	private void inicializarBD(){
-    	ConstantsAdmin.inicializarBD(this);
-    	ConstantsAdmin.createBD();
-    	ConstantsAdmin.actualizarTablaCategorias(this);
-    	ConstantsAdmin.cargarCategorias(this);
-    	ConstantsAdmin.cargarCategoriasProtegidas(this);
-    	ConstantsAdmin.actualizarTablaContrasenia();
-    	ConstantsAdmin.cargarContrasenia(this);
-    	ConstantsAdmin.finalizarBD();
+
+        DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+            // GUARDAR EL ssmDBManager en algun lugar
+
+    	ConstantsAdmin.inicializarBD(mDBManager);
+    	ConstantsAdmin.createBD(mDBManager);
+    	ConstantsAdmin.actualizarTablaCategorias(this, mDBManager);
+    	ConstantsAdmin.cargarCategorias(this, mDBManager);
+    	ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
+    	ConstantsAdmin.actualizarTablaContrasenia(mDBManager);
+    	ConstantsAdmin.cargarContrasenia(this, mDBManager);
+    	ConstantsAdmin.finalizarBD(mDBManager);
 		
 	}
 	

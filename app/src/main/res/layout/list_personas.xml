@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent">
 
 
-	<LinearLayout android:id="@+id/layoutListas"
+	<LinearLayout
 		android:layout_width="fill_parent" android:layout_height="fill_parent"
 		android:orientation="vertical"
 		android:scrollbarAlwaysDrawVerticalTrack="true">
@@ -27,7 +27,8 @@
 					android:layout_width="110dp" android:maxLength="15"
 					android:paddingStart="7dp" android:textSize="15sp"
 					android:layout_marginStart="22dp"
-					android:hint="@string/hint_busqueda" android:textColor="@color/color_azul_oscuro" />
+					android:hint="@string/hint_busqueda" android:textColor="@color/color_azul_oscuro"
+					android:importantForAutofill="no" />
 
 
 				<ImageButton android:id="@+id/buttonTodasLasCategorias"
@@ -44,7 +45,7 @@
 
 			</LinearLayout>
 
-			<TextView android:id="@+id/ayuda_busqueda"
+			<TextView
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:layout_marginBottom="2dp" android:layout_marginRight="10dp"
 				android:layout_marginLeft="10dp" android:textColor="@color/color_negro"
@@ -149,4 +150,4 @@
 
 
 
-</FrameLayout>
+</merge>
