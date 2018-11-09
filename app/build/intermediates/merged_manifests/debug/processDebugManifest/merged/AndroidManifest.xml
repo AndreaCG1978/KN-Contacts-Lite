@@ -23,6 +23,7 @@
         android:required="true" />
 
     <application
+        android:allowBackup="true"
         android:debuggable="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@drawable/contacts_icon"

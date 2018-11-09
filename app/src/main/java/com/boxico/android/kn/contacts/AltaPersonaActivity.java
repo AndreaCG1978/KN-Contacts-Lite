@@ -967,15 +967,16 @@ public class AltaPersonaActivity extends Activity {
 	}
 	
 	private void mostrarTelefonos(){
-		Drawable dbw = res.getDrawable(R.drawable.phone_am_icon_bw);
-		Drawable d = res.getDrawable(R.drawable.phone_am_icon);
+	//	Drawable dbw = res.getDrawable(R.drawable.phone_am_icon_bw);
+//		Drawable d = res.getDrawable(R.drawable.phone_am_icon);
 		ImageButton icon = this.findViewById(R.id.menu_icon_phone);
 		TextView text = this.findViewById(R.id.label_phones);
 		if(!mMostrarTelefonosBoolean){
 			if(text != null){
 				text.setVisibility(View.GONE);
 			}
-			icon.setBackgroundDrawable(dbw);
+			icon.setBackgroundResource(R.drawable.phone_am_icon_bw);
+		//	icon.setBackgroundDrawable(dbw);
 			botonAddTel.setVisibility(View.GONE);
 			telefonosList.setVisibility(View.GONE);
 		}else{
@@ -991,14 +992,15 @@ public class AltaPersonaActivity extends Activity {
 			botonAddTel.setVisibility(View.VISIBLE);
 			mailsList.setVisibility(View.GONE);
 			direccionesList.setVisibility(View.GONE);
-			icon.setBackgroundDrawable(d);	
+			icon.setBackgroundResource(R.drawable.phone_am_icon);
+			//icon.setBackgroundDrawable(d);
 		}
 	}
 	
 	
 	private void mostrarDatosPersonales(){
-		Drawable dbw = res.getDrawable(R.drawable.person_am_icon_bw);
-		Drawable d = res.getDrawable(R.drawable.person_am_icon);
+	//	Drawable dbw = res.getDrawable(R.drawable.person_am_icon_bw);
+	//	Drawable d = res.getDrawable(R.drawable.person_am_icon);
 		ImageButton icon = this.findViewById(R.id.menu_icon_identification);
 		TextView text = this.findViewById(R.id.label_identificacion);
 		if(!mMostrarDatosPersonalesBoolean){
@@ -1015,8 +1017,8 @@ public class AltaPersonaActivity extends Activity {
 			mDateDisplay.setVisibility(View.GONE);
 			mPickDate.setVisibility(View.GONE);
 
-			
-			icon.setBackgroundDrawable(dbw);	
+			icon.setBackgroundResource(R.drawable.person_am_icon_bw);
+		//	icon.setBackgroundDrawable(dbw);
 
 
 		}else{
@@ -1032,21 +1034,22 @@ public class AltaPersonaActivity extends Activity {
 			mDateDisplay.setVisibility(View.VISIBLE);
 			mPickDate.setVisibility(View.VISIBLE);
 			mEntryApellido.setPressed(false);
-			icon.setBackgroundDrawable(d);
+			icon.setBackgroundResource(R.drawable.person_am_icon);
+			//icon.setBackgroundDrawable(d);
 		}
 	}
 
 	
 	private void mostrarEmails(){
-		Drawable dbw = res.getDrawable(R.drawable.mail_am_icon_bw);
-		Drawable d = res.getDrawable(R.drawable.mail_am_icon);
+		//Drawable dbw = res.getDrawable(R.drawable.mail_am_icon_bw);
+	//	Drawable d = res.getDrawable(R.drawable.mail_am_icon);
 		ImageButton icon = this.findViewById(R.id.menu_icon_mail);
 		TextView text = this.findViewById(R.id.label_emails);
 		if(!mMostrarEmailsBoolean){
 			if(text != null){
 				text.setVisibility(View.GONE);
 			}
-			icon.setBackgroundDrawable(dbw);
+			icon.setBackgroundResource(R.drawable.mail_am_icon_bw);
 			mailsList.setVisibility(View.GONE);
 			botonAddMail.setVisibility(View.GONE);
 		}else{
@@ -1062,20 +1065,20 @@ public class AltaPersonaActivity extends Activity {
 			botonAddMail.setVisibility(View.VISIBLE);			
 			telefonosList.setVisibility(View.GONE);
 			direccionesList.setVisibility(View.GONE);
-			icon.setBackgroundDrawable(d);
+			icon.setBackgroundResource(R.drawable.mail_am_icon);
 		}
 	}
 
 	private void mostrarDirecciones(){
-		Drawable dbw = res.getDrawable(R.drawable.home_am_icon_bw);
-		Drawable d = res.getDrawable(R.drawable.home_am_icon);
+	//	Drawable dbw = res.getDrawable(R.drawable.home_am_icon_bw);
+	//	Drawable d = res.getDrawable(R.drawable.home_am_icon);
 		ImageButton icon = this.findViewById(R.id.menu_icon_addres);
 		TextView text = this.findViewById(R.id.label_address);
 		if(!mMostrarDireccionesBoolean){
 			if(text != null){
 				text.setVisibility(View.GONE);
 			}
-			icon.setBackgroundDrawable(dbw);
+			icon.setBackgroundResource(R.drawable.home_am_icon_bw);
 			direccionesList.setVisibility(View.GONE);
 			botonAddDir.setVisibility(View.GONE);
 		}else{
@@ -1091,7 +1094,7 @@ public class AltaPersonaActivity extends Activity {
 			botonAddDir.setVisibility(View.VISIBLE);
 			telefonosList.setVisibility(View.GONE);
 			mailsList.setVisibility(View.GONE);
-			icon.setBackgroundDrawable(d);
+			icon.setBackgroundResource(R.drawable.home_am_icon);
 
 		}
 	}
@@ -1099,8 +1102,8 @@ public class AltaPersonaActivity extends Activity {
 
 
 	private void mostrarDatosPorCategoria(){
-		Drawable dbw = res.getDrawable(R.drawable.categoria_am_icon_bw);
-		Drawable d = res.getDrawable(R.drawable.categoria_am_icon);
+		//Drawable dbw = res.getDrawable(R.drawable.categoria_am_icon_bw);
+		//Drawable d = res.getDrawable(R.drawable.categoria_am_icon);
 		ImageButton icon = this.findViewById(R.id.menu_icon_category);
 		TextView text = this.findViewById(R.id.label_category);
 		if(!mMostrarDatosPorCategoriaBoolean){
@@ -1108,11 +1111,11 @@ public class AltaPersonaActivity extends Activity {
 			if(text != null){
 				text.setVisibility(View.GONE);
 			}
-			icon.setBackgroundDrawable(dbw);
+			icon.setBackgroundResource(R.drawable.categoria_am_icon_bw);
 		}else{
 			sinDatos.setVisibility(View.GONE);
 			this.setVisibilityParaViewPorCategorias(View.VISIBLE);
-			icon.setBackgroundDrawable(d);
+			icon.setBackgroundResource(R.drawable.categoria_am_icon);
 			if(text != null){
 				text.setVisibility(View.VISIBLE);
 			}

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-83:12
-INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-83:12
-INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-83:12
-INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-83:12
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-84:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-84:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-84:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-84:12
 MERGED from [com.android.support:support-v4:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\6c14039de595deea9e44e7b4d529d73e\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\4375c49807259a62be8a3b3c35718571\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\2700cacfdcb3480343f6fee27e511dab\AndroidManifest.xml:17:1-22:12
@@ -14,9 +14,9 @@ MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\a.grassano.spb\.grad
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\a409d494ef8bfc826858b5b41c28154a\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\de8b9e0ef8b02b8d032351f7e49ce850\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\05cc84855a40bf4e1570a49c15f73d75\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-83:12
-INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-83:12
-INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-83:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-84:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-84:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:2:1-84:12
 	package
 		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:4:2-42
 		INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml
@@ -70,7 +70,7 @@ ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\And
 	android:name
 		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:19:16-59
 application
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:23:2-82:16
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:23:2-83:16
 	android:supportsRtl
 		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:25:3-29
 	android:label
@@ -81,84 +81,86 @@ ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\And
 		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:26:3-42
 	android:icon
 		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:23:15-53
+	android:allowBackup
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:28:3-29
 activity#com.boxico.android.kn.contacts.InitActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:29:3-37:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:30:3-38:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:29:13-40
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:30:13-40
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:30:4-33:20
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:31:4-34:20
 action#android.intent.action.MAIN
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:31:5-57
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:32:5-57
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:31:13-54
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:32:13-54
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:32:5-65
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:33:5-65
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:32:15-62
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:33:15-62
 intent-filter#action:name:android.permission.READ_CONTACTS
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:34:4-36:20
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:35:4-37:20
 action#android.permission.READ_CONTACTS
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:35:5-70
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:36:5-70
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:35:13-60
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:36:13-60
 activity#com.boxico.android.kn.contacts.ListadoPersonaActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:38:3-43:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:39:3-44:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:38:13-50
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:39:13-50
 activity#com.boxico.android.kn.contacts.DetallePersonaActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:44:3-49:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:45:3-50:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:44:13-50
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:45:13-50
 intent-filter#action:name:android.permission.CALL_PHONE
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:45:4-47:20
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:46:4-48:20
 action#android.permission.CALL_PHONE
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:46:5-67
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:47:5-67
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:46:13-57
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:47:13-57
 activity#com.boxico.android.kn.contacts.ListadoCategoriaActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:50:3-51:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:51:3-52:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:50:13-52
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:51:13-52
 activity#com.boxico.android.kn.contacts.AltaPersonaActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:52:3-53:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:53:3-54:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:52:13-47
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:53:13-47
 activity#com.boxico.android.kn.contacts.AboutMeActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:55:3-56:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:56:3-57:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:55:13-43
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:56:13-43
 activity#com.boxico.android.kn.contacts.MisCategoriasActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:58:3-59:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:59:3-60:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:58:13-49
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:59:13-49
 activity#com.boxico.android.kn.contacts.AltaCategoriaActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:61:3-62:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:62:3-63:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:61:13-49
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:62:13-49
 activity#com.boxico.android.kn.contacts.AltaTipoValorActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:64:3-65:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:65:3-66:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:64:13-49
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:65:13-49
 activity#com.boxico.android.kn.contacts.ProteccionCategoriaActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:67:3-68:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:68:3-69:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:67:13-55
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:68:13-55
 activity#com.boxico.android.kn.contacts.ActivarContraseniaActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:70:3-71:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:71:3-72:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:70:13-54
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:71:13-54
 activity#com.boxico.android.kn.contacts.PhotoActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:73:3-74:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:74:3-75:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:73:13-41
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:74:13-41
 activity#com.boxico.android.kn.contacts.ImportarContactoActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:76:3-77:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:77:3-78:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:76:13-52
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:77:13-52
 activity#com.boxico.android.kn.contacts.MenuPersonaActivity
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:79:3-80:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:80:3-81:14
 	android:name
-		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:79:13-47
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:80:13-47
 uses-sdk
 INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml

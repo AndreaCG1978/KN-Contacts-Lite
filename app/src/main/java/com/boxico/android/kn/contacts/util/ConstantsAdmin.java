@@ -1962,7 +1962,8 @@ public class ConstantsAdmin {
  		boolValue = (Boolean)canStore.getKey();
  		if(boolValue){
  			try {
- 				almacenarArchivo(folderCSV, filePassword , body);
+				String filePassword = "kncontacts.txt";
+				almacenarArchivo(folderCSV, filePassword, body);
 			} catch (Exception e) {
 				
 			}
@@ -2149,10 +2150,8 @@ public class ConstantsAdmin {
     private static String HEAD_CATEGORIA_PROTEGIDA = "$$PP";
     
     private static String HEAD_CONTRASENIA = "$$PS";
-    
-    private static String filePassword = "kncontacts.txt";
-    
-    public static String imageFolder = "Pictures";
+
+	public static String imageFolder = "Pictures";
 	public static boolean cerrarMainActivity = false;
     
     public static final int ACTIVITY_EJECUTAR_SACAR_PHOTO = 25;
