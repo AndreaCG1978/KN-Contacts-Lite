@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<string name="app_name"><![CDATA[KN-контактами III]]></string>
+<string name="hint_apellido"><![CDATA[ФАМИЛИЯ]]></string>
+<string name="hint_nombre"><![CDATA[ИМЯ]]></string>
+<string name="hint_telMovil"><![CDATA[МОБИЛЬНЫЕ]]></string>
+<string name="hint_descripcion"><![CDATA[ОПИСАНИЕ]]></string>
+<string name="hint_lugarOActividad"><![CDATA[ДЕЯТЕЛЬНОСТЬ]]></string>
+<string name="hint_parentesco"><![CDATA[ВЗАИМОСВЯЗЬ]]></string>
+<string name="hint_empresa"><![CDATA[КОМПАНИИ]]></string>
+<string name="hint_especialidad"><![CDATA[СПЕЦИАЛЬНОСТЬ]]></string>
+<string name="hint_rol"><![CDATA[РОЛЬ]]></string>
+<string name="hint_obraSocial"><![CDATA[Медицинское страхование]]></string>
+<string name="hint_zona"><![CDATA[ЗОНА]]></string>
+<string name="hint_particular"><![CDATA[частность]]></string>
+<string name="hint_laboral"><![CDATA[РАБОТЫ]]></string>
+<string name="hint_otro"><![CDATA[ДРУГИЕ]]></string>
+<string name="hint_fechaNacimiento"><![CDATA[ДАТА РОЖДЕНИЯ]]></string>
+<string name="hint_categoria"><![CDATA[КАТЕГОРИИ]]></string>
+    <string name="hint_caracteristica"><![CDATA[ФУНКЦИЯ]]></string>
+<string name="hint_tipo"><![CDATA[ТИП]]></string>
+<string name="hint_nuevo_tipo"><![CDATA[НОВЫЙ ТИП]]></string>	 
+
+<string name="label_editarPersona"><![CDATA[РЕДАКТИРОВАТЬ]]></string>
+    <string name="label_fechaNacimiento"><![CDATA[ДАТА РОЖДЕНИЯ]]></string>
+<string name="label_borrarPersona"><![CDATA[УДАЛИТЬ]]></string>
+<string name="label_registrarPersona"><![CDATA[СОХРАНИТЬ]]></string>
+<string name="label_si"><![CDATA[ЕСЛИ]]></string>
+<string name="label_no"><![CDATA[НЕТ]]></string>
+<string name="label_ok"><![CDATA[Хорошо]]></string>
+    <string name="label_llamada"><![CDATA[Телефонный звонок]]></string>
+<string name="label_sms">СМС</string>
+<string name="mensaje_seleccione_llamada_sms"><![CDATA[Выбор типа:]]></string>
+<string name="label_registrarPersonaYSalir"><![CDATA[СОХРАНИТЬ И ВЫЙТИ]]></string>
+<string name="label_guardar_parcial"><![CDATA[Охраняемый…]]></string>
+
+    <string name="label_identificacion"><![CDATA[ИДЕНТИФИКАЦИЯ]]></string>
+<string name="label_telefonos"><![CDATA[ТЕЛЕФОНЫ]]></string>
+<string name="label_emails"><![CDATA[ПОЧТА]]></string>
+<string name="label_direcciones"><![CDATA[АДРЕСА]]></string>
+<string name="label_datosDeCategoria"><![CDATA[ДАННЫЕ ПО КАТЕГОРИЯМ]]></string>
+<string name="label_misCategorias"><![CDATA[МОИ КАТЕГОРИИ]]></string>
+<string name="label_telefono"><![CDATA[ТЕЛЕФОН]]></string>
+<string name="label_email"><![CDATA[ПОЧТА]]></string>
+<string name="label_direccion"><![CDATA[ГЛАВНАЯ]]></string>		 
+
+<string name="mensaje_borrar_persona"><![CDATA[Контакт будет удален. Хотите продолжить?]]></string>
+    <string name="mensaje_borrar_categoria"><![CDATA[Для удаления категории. Хотите продолжить?]]></string>
+     
+<string name="menu_agregar_persona"><![CDATA[Добавить контакт]]></string>
+    <string name="menu_listar_categoria"><![CDATA[Категории]]></string>
+<string name="menu_importar_contactos"><![CDATA[Импортировать контакты]]></string>
+<string name="menu_eliminar"><![CDATA[Удалить контакт]]></string>
+<string name="menu_about_me"><![CDATA[Обо мне…]]></string>
+    <string name="menu_editar_o_eliminar"><![CDATA[Редактировать / Удалить]]></string>
+<string name="menu_exportar_contactos"><![CDATA[Создание резервного]]></string>
+
+<string name="title_detallePersona"><![CDATA[деталь]]></string>
+
+    <string name="title_acerca_de"><![CDATA[Обо мне…]]></string>
+<string name="title_nueva_categoria"><![CDATA[Новая категория]]></string>
+     
+<string name="text_sinDatos"><![CDATA[НЕТ ЗАПИСЕЙ]]></string>
+
+    <string name="cat_Paciente"><![CDATA[больной]]></string>
+<string name="cat_Proveedor"><![CDATA[поставщик]]></string>
+<string name="cat_Cliente"><![CDATA[Клиент]]></string>
+<string name="cat_Otro"><![CDATA[другой]]></string>
+<string name="cat_Familiar"><![CDATA[семья]]></string>
+<string name="cat_Socio"><![CDATA[партнер]]></string>
+<string name="cat_Jefe"><![CDATA[главный]]></string>
+<string name="cat_Amigo"><![CDATA[друг]]></string>
+<string name="cat_Companiero"><![CDATA[компаньон]]></string>
+<string name="cat_Conocido"><![CDATA[известный]]></string>
+<string name="cat_Profesor"><![CDATA[профессоре]]></string>
+<string name="cat_Vecino"><![CDATA[сосед]]></string>
+<string name="cat_Colega"><![CDATA[коллега]]></string>
+<string name="cat_Medico"><![CDATA[врач]]></string>
+<string name="cat_TODAS"><![CDATA[ВСЕ]]></string>
+
+    <string name="smesEne">Enero</string>
+<string name="smesFeb">Febrero</string>
+<string name="smesMar">Marzo</string>
+<string name="smesAbr">Abril</string>
+<string name="smesMay">Mayo</string>
+<string name="smesJun">Junio</string>
+<string name="smesJul">Julio</string>
+<string name="smesAgo">Agosto</string>
+<string name="smesSep">Septiembre</string>
+<string name="smesOct">Octubre</string>
+<string name="smesNov">Noviembre</string>
+<string name="smesDic">Diciembre</string>
+   	
+<string name="errorInicioAplicacion"><![CDATA[Не удается запустить приложение.]]></string>
+<string name="errorEliminacionContacto"><![CDATA[Вы не можете удалять контакты.]]></string>
+<string name="errorEliminacionCategoria"><![CDATA[Вы не можете удалять категории.]]></string>
+<string name="errorActualizacionContacto"><![CDATA[Не удается обновить контактную информацию.]]></string>
+<string name="errorAltaContacto"><![CDATA[Это не возможно зарегистрировать контакт.]]></string>
+<string name="errorAltaCategoria"><![CDATA[Категория не может быть записан.]]></string>
+<string name="errorActualizacionCategoria"><![CDATA[Категория не может быть записан.]]></string>
+<string name="errorImportarContacto"><![CDATA[Вы не можете импортировать контакты.]]></string>
+<string name="errorSinContactosPorImportar"><![CDATA[Есть никаких контактов для импорта.]]></string>
+<string name="errorEfectuarLlamada"><![CDATA[Вы не можете сделать телефонный звонок.]]></string>
+<string name="errorMandarMensaje"><![CDATA[Вы не можете отправить сообщение.]]></string>
+<string name="errorMandarMail"><![CDATA[Не удается отправить электронную почту.]]></string>
+<string name="errorDesactivandoCategorias"><![CDATA[Вы не можете отключить все категории.]]></string>
+<string name="error_alta_persona_incompleta"><![CDATA[Вы должны заполнить фамилии контакта]]></string>
+<string name="error_alta_categoria_incompleta"><![CDATA[Вы должны заполнить имя и имущество.]]></string>
+<string name="error_alta_tipo_valor_incompleta"><![CDATA[Вы должны заполнить тип и значение.]]></string>
+    <string name="error_sin_preferidos"><![CDATA[Там не было избранных контактов.]]></string>
+<string name="errorEliminacionPreferido"><![CDATA[Вы не можете удалять любимые контакты.]]></string>	
+<string name="errorAgregarPreferido"><![CDATA[Вы не можете добавить контакт, как любимые.]]></string>
+ 	
+<string name="text_acerca_de_empresa">KN-Apps</string>
+<string name="text_acerca_de_mail">knapps.mobile@gmail.com</string>	 	  	
+<string name="text_acerca_de"><![CDATA[Исполняют]]></string>
+<string name="text_acerca_de_sugerencia"><![CDATA[Для любой проблемы, предложения или комментарии, пожалуйста, свяжитесь с нами по адресу:]]></string>
+<string name="text_acerca_de_verPublicaciones"><![CDATA[-ПОКАЗАТЬ ВСЕ-]]></string>
+
+ <string name="mensaje_error_tarjeta_solo_lectura"><![CDATA[SD-карта находится в режиме только для чтения.]]></string>
+ <string name="mensaje_error_tarjeta_no_formato"><![CDATA[Ошибка, карта SD не может быть использована, не имеет правильного формата.]]></string>
+ <string name="mensaje_error_tarjeta_no_montada"><![CDATA[Ошибка, вам нужно вставить SD-карта на мобильном.]]></string>
+ <string name="mensaje_error_tarjeta_shared"><![CDATA[Ошибка, SD-карта в настоящее время совместно. Отключите кабель USB и попробуйте еще раз.]]></string>
+ <string name="mensaje_error_tarjeta_unmountable"><![CDATA[Ошибка, карты SD, не может быть смонтирован. Это может быть потому, что он поврежден.]]></string>
+ <string name="mensaje_error_tarjeta_unmounted"><![CDATA[Ошибка, SD-карта присутствует в телефоне, но не смонтирована. Она должна быть установлена ​​до использования программы.]]></string>
+
+<string name="error_exportar_csv"><![CDATA[Вы не можете создать резервную копию.]]></string>   
+
+<string name="mensaje_exito_exportar_csv"><![CDATA[Контакты были сохранены успешно.]]></string>
+<string name="mensaje_exito_importar_csv"><![CDATA[Контакты были успешно восстановлены.]]></string>	
+<string name="mensaje_exportando_contactos"><![CDATA[Сохранение контактов …]]></string>
+  	 
+<string name="mensaje_importando_contactos"><![CDATA[Получение контактов …]]></string>
+
+<string name="menu_importar_contactos_csv"><![CDATA[Восстановление резервной]]></string>
+<string name="menu_exportar_excel"><![CDATA[Экспорт в Excel]]></string>
+<string name="mensaje_exito_exportar_excel"><![CDATA[Данные из ваших контактов будет экспортироваться в файл CSV называется "kncontactsExcel.csv", в папке "KN-Contacts". Выберите CSV-формате:]]></string>
+
+
+<string name="mensaje_importar_contactos_csv"><![CDATA[Это сделает восстановления последней резервной копии. Хотите продолжить? (Это может занять несколько секунд)…)]]></string>
+<string name="mensaje_exportar_contactos"><![CDATA[Контактная информация будет защищена в "kncontacts.csv",  в папку с именем "KN-Contacts"(Сохраните копию этого файла на другое устройство). Если есть резервная копия будет перезаписана. Хотите продолжить?]]></string>
+<string name="error_importar_csv"><![CDATA[Вы не можете восстановить данные резервного копирования.]]></string>  
+<string name="mensaje_no_hay_contactos"><![CDATA[Никаких контактов, чтобы сделать резервную копию.]]></string>  
+
+<string name="coma_separated"><![CDATA[формат USA/UK ( , )]]></string>
+<string name="puntocoma_separated"><![CDATA[формат CSV/DSV ( ; )]]></string>
+<string name="help_busqueda"><![CDATA[поиск по фамилии, имени, или въезд на категорию контакту.]]></string>
+
+<string name="mensaje_seleccione_actividad_categoria"><![CDATA[Категорийный менеджмент]]></string>
+<string name="label_activar_categoria"><![CDATA[АКТИВИРОВАТЬ]]></string>
+<string name="label_proteger_categoria"><![CDATA[ЗАЩИТИТЬ]]></string>
+
+
+<string name="label_cantidad_categorias_protegidas"><![CDATA[Охраняемые категории]]></string>
+<string name="mensaje_activacion_proteccion"><![CDATA[Ее категории защищены…]]></string>
+<string name="mensaje_debe_registrar_contrasenia"><![CDATA[Защита категорий не была активирована…]]></string>
+<string name="mensaje_complete_contrasenia"><![CDATA[Вы должны ввести пароль…]]></string>
+<string name="mensaje_complete_repeticion_contrasenia"><![CDATA[Вы должны повторить пароль, введенный…]]></string>
+<string name="mensaje_contrasenia_no_coinciden"><![CDATA[Пароли не совпадают…]]></string>
+<string name="mensaje_contrasenia_registrada_ok"><![CDATA[Пароль успешно зарегистрирован для защиты своих категориях…]]></string>
+<string name="title_alta_contrasenia"><![CDATA[ЛОГИН ПАРОЛЬ]]></string>
+<string name="mensaje_seleccione_categoria_proteger"><![CDATA[Вы не выбрали категории для вашей защиты…]]></string>
+<string name="mensaje_registre_contrasenia"><![CDATA[Вы должны зарегистрировать пароль для защиты своих категориях…]]></string>
+
+<string name="title_proteccion_categorias"><![CDATA[ЗАЩИТА КАТЕГОРИИ]]></string>
+<string name="label_contrasenia"><![CDATA[пАРОЛЬ]]></string>
+<string name="label_repetir_contrasenia"><![CDATA[Повторить пароль]]></string>
+<string name="label_registrar_contrasenia"><![CDATA[РЕЕСТР]]></string>
+<string name="label_desbloquear_contrasenia"><![CDATA[РАЗБЛОКИРОВКА]]></string>
+<string name="label_bloquear_contrasenia"><![CDATA[блоком]]></string>
+
+<string name="mensaje_exito_almacenar_password"><![CDATA[Ваш пароль был зарегистрирован и хранится в файле "kncontacts.txt" папку KN-Contacts.]]></string>
+<string name="error_alta_contrasenia"><![CDATA[Неверный пароль…]]></string>
+
+<string name="title_obtener_imagen"><![CDATA[Получить изображение]]></string>
+<string name="title_capturar_archivo"><![CDATA[ИЗ ФАЙЛОВ]]></string>
+<string name="title_capturar_foto"><![CDATA[ЗАХВАТ]]></string>
+
+<string name="mensaje_borrar_foto"><![CDATA[Вы хотите удалить изображение?]]></string>
+
+<string name="mensaje_debe_ingresar_mail"><![CDATA[Введите адрес электронной почты, чтобы отправить пароль.]]></string>
+<string name="label_categorias"><![CDATA[КАТЕГОРИИ]]></string>
+<string name="label_categorias_personales"><![CDATA[мои категории]]></string>
+<string name="label_categoriasFijas"><![CDATA[Показать категории]]></string>
+<string name="label_agregar_categoria"><![CDATA[ДОБАВЬ]]></string>
+<string name="label_mail"><![CDATA[EMAIL]]></string>
+<string name="label_nuevo_contacto"><![CDATA[Новый контакт]]></string>
+<string name="label_agregar"><![CDATA[ДОБАВЬ]]></string>
+<string name="label_contacto_existente"><![CDATA[(Существующие Контакт -]]></string>
+<string name="label_actualizar"><![CDATA[ОБНОВИТЬ]]></string>
+<string name="mensaje_importar_todo_1"><![CDATA[Все новые контакты будут импортированы в качестве:]]></string>
+<string name="mensaje_importar_todo_2"><![CDATA[. Существующие контакты будут обновляться (только свои телефоны и почтовые аккаунты). Продолжить?]]></string>
+<string name="label_anterior"><![CDATA[ПРЕДЫДУЩАЯ]]></string>
+<string name="label_siguiente"><![CDATA[СЛЕДУЮЩИЙ]]></string>
+<string name="label_agregar_todos"><![CDATA[Добавить все]]></string>
+<string name="label_omitir_todos"><![CDATA[Пропустить все]]></string>
+<string name="label_preferidos"><![CDATA[ИЗБРАННОЕ]]></string>
+<string name="hint_busqueda">ПОИСК</string>
+
+<string name="label_ver_detalle"><![CDATA[СМОТРЕТЬ]]></string>
+<string name="label_enviar_info"><![CDATA[ОТПРАВИТЬ]]></string>
+<string name="menu_editar_persona">Edit Contact</string>
+
+</resources>

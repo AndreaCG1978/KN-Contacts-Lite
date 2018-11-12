@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="color_gris">#767777</color>
+	<color name="color_gris_oscuro">#2F3242</color>
+	<color name="color_blanco">#FFFFFF</color>
+    <color name="spinner_color">#B25900</color>
+    <color name="color_naranja">#4F5354</color>
+    <color name="color_gris_claro">#D3D2CD</color>
+	<color name="color_negro">#000000</color>
+    <color name="color_naranja_claro">#979DA0</color>
+    <color name="color_azul_oscuro">#474556</color>
+	<color name="color_azul">#545066</color>
+    <color name="color_gris_boton">#D3D2CD</color>
+	<color name="color_celeste">#354CB5</color>
+
+</resources>
