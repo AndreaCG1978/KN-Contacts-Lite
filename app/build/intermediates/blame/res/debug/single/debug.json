@@ -680,12 +680,12 @@
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\layout\\alta_categoria.xml"
     },
     {
-        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_person_menu_icon.png.flat",
-        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-ldpi\\person_menu_icon.png"
-    },
-    {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\layout_personas_row_label.xml.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\layout\\personas_row_label.xml"
+    },
+    {
+        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_person_menu_icon.png.flat",
+        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\src\\main\\res\\drawable-ldpi\\person_menu_icon.png"
     },
     {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_categoria_icon.png.flat",
