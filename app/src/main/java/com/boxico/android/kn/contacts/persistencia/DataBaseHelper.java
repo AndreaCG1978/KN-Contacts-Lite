@@ -63,7 +63,7 @@ class DataBaseHelper extends SQLiteOpenHelper{
     + ConstantsAdmin.KEY_TIPO + " text not null, "
     + ConstantsAdmin.KEY_ID_PERSONA + " text not null);";      
     
-    public static final String SIZE_PERSONAS = "select count(" + ConstantsAdmin.KEY_ROWID +") from " + ConstantsAdmin.TABLA_PERSONA + "  where " + ConstantsAdmin.KEY_ROWID + " > 0";
+    // --Commented out by Inspection (13/11/2018 12:26):public static final String SIZE_PERSONAS = "select count(" + ConstantsAdmin.KEY_ROWID +") from " + ConstantsAdmin.TABLA_PERSONA + "  where " + ConstantsAdmin.KEY_ROWID + " > 0";
     
     public static final String SIZE_PREFERIDOS = "select count(" + ConstantsAdmin.KEY_ROWID +") from " + ConstantsAdmin.TABLA_PREFERIDOS + "  where " + ConstantsAdmin.KEY_ROWID + " > 0";
     

@@ -863,7 +863,7 @@ public class DetallePersonaActivity extends Activity {
 	    	       });
 	    	builder.show();
 			
-		} catch (Exception e) {
+		} catch (Exception ignored) {
 
 		}
 	}

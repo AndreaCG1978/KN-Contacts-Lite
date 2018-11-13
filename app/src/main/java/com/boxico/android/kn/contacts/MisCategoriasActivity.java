@@ -116,7 +116,7 @@ public class MisCategoriasActivity extends ListActivity {
         Cursor categoriasCursor = mDBManager.fetchAllCategoriasPersonalesPorNombre(null);
         if(categoriasCursor!= null){
 	        startManagingCursor(categoriasCursor);
-	        List categorias = ConstantsAdmin.categoriasPersonalesCursorToDtos(categoriasCursor);
+	        List<CategoriaDTO> categorias = ConstantsAdmin.categoriasPersonalesCursorToDtos(categoriasCursor);
 	       // stopManagingCursor(categoriasCursor);
 	        Collections.sort(categorias);
 	        

@@ -543,7 +543,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     			catSelectTextView.setVisibility(View.VISIBLE);
     			catSelectTextView.setText(getResources().getString(R.string.label_preferidos));
 	    		preferidos.setBackgroundResource(R.drawable.pref_icon);
-	    	    spinnerCategorias.setItems(todasLasCategString, getString(R.string.cat_TODAS), this);
+	    	    spinnerCategorias.setItems(todasLasCategString,this);
 	    	    imgPrefLeft.setVisibility(View.VISIBLE);
 	    	    imgPrefRight.setVisibility(View.VISIBLE);
 	  //  		this.verBusqueda();
@@ -740,8 +740,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     	catSelectTextView.setVisibility(View.GONE);
 		imgPrefLeft.setVisibility(View.GONE);
 		imgPrefRight.setVisibility(View.GONE);
-        spinnerCategorias.setItems(todasLasCategString, getString(R.string.cat_TODAS),
-                this);   	
+        spinnerCategorias.setItems(todasLasCategString, this);
         this.recargarLista();
         mGroupSelected = -1;
 
@@ -851,7 +850,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 		ConstantsAdmin.finalizarBD(mDBManager);
 
 	}
-	
+
     private void importarContactos(){
     	try {
         	PersonaDTO per;
@@ -889,7 +888,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     	}
     	return result;
     }
-  */  
+  */
     private List<PersonaDTO> importarContactosPrivado(){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	ArrayList<PersonaDTO> result = new ArrayList<>();
@@ -915,14 +914,14 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 			        		   (family != null || given!= null) ){
 			        	   per = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
 			        	   if(per == null){
-			        		   per = new PersonaDTO();   
+			        		   per = new PersonaDTO();
 			        	   }
 					       if ( hasPhone.equalsIgnoreCase("1")){
 					    	   hasPhone = "true";
 					       }else{
 					           hasPhone = "false";
 					       }
-					       
+
 					       per.setApellido(family);
 					       per.setNombres(given);
 					       if(per.getId()== -1){
@@ -930,15 +929,15 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 						       per.setCategoriaNombre(cat.getNombreReal());
 						       per.setCategoriaNombreRelativo(cat.getNombreRelativo());
 					       }
-					       
-					       
-					       if (Boolean.parseBoolean(hasPhone)) 
+
+
+					       if (Boolean.parseBoolean(hasPhone))
 					       {
 					    	   this.importarTelDeContacto(projectionPhone, per, contactId);
 					       }
 					       this.importarMailDeContacto(projectionMail, per, contactId);
 		           }
-	*/				
+	*/
 				} catch (Exception e) {
 					// TODO: handle exception
 				} finally{
@@ -1010,8 +1009,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 		return per;
 
     }
-    
-    
+
+
     private Asociacion obtenerNombreYApellidoDeContactoDeAgenda(String contactId){
     	Asociacion asoc = null;
     	Cursor nameCur;
@@ -1032,7 +1031,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 
     	return asoc;
     }
-    
+
     private void importarMailDeContacto(String[] projectionMail, PersonaDTO per, String contactId){
     	String emailAddress;
     	int emailType;
@@ -1070,9 +1069,9 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     	
     }
     
+
     
-    
-    
+
     private void importarTelDeContacto(String[] projectionPhone, PersonaDTO per, String contactId){
     	String phoneNumber;
     	int phoneType;
@@ -1112,7 +1111,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         
     	
     }
-    
+
     private void configurarEntryBusqueda(){
         entryBusqueda = findViewById(R.id.entryBusquedaPersona);
         entryBusqueda.addTextChangedListener(new TextWatcher() {
@@ -1203,7 +1202,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     	  
       	}
       
-      spinnerCategorias.setItems(todasLasCategString, getString(R.string.cat_TODAS), this);
+      spinnerCategorias.setItems(todasLasCategString, this);
       
   //    this.crearSpinnerCategorias(R.id.spinnerCategorias_list_personas, categorias);
     }
@@ -1336,7 +1335,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     			labelCateg = this.recuperarEtiquetaCatSeleccionadas();
     			catSelectTextView.setText(labelCateg);
     			catSelectTextView.setVisibility(View.VISIBLE);
-    			spinnerCategorias.setItems(todasLasCategString, labelCateg, this);
+    			spinnerCategorias.setItems(todasLasCategString, this);
     		}else{
     			catSelectTextView.setVisibility(View.GONE);
     		}
@@ -1518,8 +1517,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         }
     }
     
-    
-    
+    /*
+
     private class ImportContactTask extends AsyncTask<Long, Integer, Integer>{
     	ProgressDialog dialog = null;
         @Override
@@ -1537,7 +1536,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         }
 
         protected void onProgressUpdate(Integer... progress) {
-        	dialog = ProgressDialog.show(me, "", 
+        	dialog = ProgressDialog.show(me, "",
                     me.getString(R.string.mensaje_importando_contactos), false);
         }
 
@@ -1554,7 +1553,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     		recargarLista();    	        	           		
         }
     }
-    
+*/
     
     private class ImportCSVTask extends AsyncTask<Long, Integer, Integer>{
     	ProgressDialog dialog = null;
@@ -1851,7 +1850,6 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 			i++;
 		}
 		if(categoriasSeleccionadas != null && categoriasSeleccionadas.size() > 0){
-			boolean[] seleccionados = selected;
 			cargarPersonasPorApellidoONombreMultipleSeleccion();
 		}else{
 			this.mostrarTodosLosContactos(); 

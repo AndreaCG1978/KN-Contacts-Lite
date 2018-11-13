@@ -156,7 +156,7 @@ public class ConstantsAdmin {
     public static void upgradeBD(DataBaseManager mDBManager){
     	mDBManager.upgradeDB();
     }
-    
+
     public static void createBD(DataBaseManager mDBManager){
     	mDBManager.createBD();
     }
@@ -195,15 +195,15 @@ public class ConstantsAdmin {
     	}
     }
     
-    public static void registrarTelefonos(Activity context, List<TipoValorDTO> telefonos, DataBaseManager mDBManager){
+    public static void registrarTelefonos(List<TipoValorDTO> telefonos, DataBaseManager mDBManager){
     	registrarTipoValor(telefonos, TABLA_TELEFONOS, mDBManager);
     }
     
-    public static void registrarMails(Activity context, List<TipoValorDTO> mails, DataBaseManager mDBManager){
+    public static void registrarMails(List<TipoValorDTO> mails, DataBaseManager mDBManager){
     	registrarTipoValor(mails, TABLA_EMAILS, mDBManager);
     }
     
-    public static void registrarDirecciones(Activity context, List<TipoValorDTO> direcciones, DataBaseManager mDBManager){
+    public static void registrarDirecciones(List<TipoValorDTO> direcciones, DataBaseManager mDBManager){
     	registrarTipoValor(direcciones, TABLA_DIRECCIONES, mDBManager);
     }
     
@@ -390,7 +390,7 @@ public class ConstantsAdmin {
     
     public static final String TABLA_PREFERIDOS = "preferidos";
     
-    
+    /*
     
     public static final String smesEne="Enero";
     public static final String smesFeb="Febrero";
@@ -405,11 +405,11 @@ public class ConstantsAdmin {
     public static final String smesNov="Noviembre";
     public static final String smesDic="Diciembre";
 
-    
+    */
     
     // CODIGOS DE REQUERIMIENTOS DE INTENTS
     
-    public static final int ACTIVITY_EJECUTAR_LISTADO_PERSONAS=1;
+ //   public static final int ACTIVITY_EJECUTAR_LISTADO_PERSONAS=1;
     public static final int ACTIVITY_EJECUTAR_DETALLE_PERSONA=3;
     public static final int ACTIVITY_EJECUTAR_ALTA_PERSONA=2;
     public static final int ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS=4;
@@ -420,14 +420,14 @@ public class ConstantsAdmin {
     public static final int ACTIVITY_EJECUTAR_MIS_CATEGORIAS = 9;
     public static final int ACTIVITY_EJECUTAR_ALTA_CATEGORIA=10;
     public static final int ACTIVITY_EJECUTAR_EDITAR_CATEGORIA=11;
-    public static final int ACTIVITY_EJECUTAR_ELIMINAR_CATEGORIA=12;
+  //  public static final int ACTIVITY_EJECUTAR_ELIMINAR_CATEGORIA=12;
     public static final int ACTIVITY_EJECUTAR_EDICION_TELEFONO=13;
     public static final int ACTIVITY_EJECUTAR_ALTA_TELEFONO=14;    
     public static final int ACTIVITY_EJECUTAR_EDICION_EMAIL=15;
     public static final int ACTIVITY_EJECUTAR_ALTA_EMAIL=16; 
     public static final int ACTIVITY_EJECUTAR_EDICION_DIRECCION=17;
     public static final int ACTIVITY_EJECUTAR_ALTA_DIRECCION=18; 
-    
+  /*
     public static final String TIPO_DATO_EXTRA_ACTIVIDAD = "ACTIVIDAD";
     public static final String TIPO_DATO_EXTRA_PARENTESCO = "PARENTESCO";
     public static final String TIPO_DATO_EXTRA_EMPRESA = "EMPRESA";
@@ -435,7 +435,7 @@ public class ConstantsAdmin {
     public static final String TIPO_DATO_EXTRA_OBRA_ZONA = "ZONA";
     public static final String TIPO_DATO_EXTRA_OBRA_ESPECIALIDAD = "ESPECIALIDAD";
     public static final String TIPO_DATO_EXTRA_ROL = "ROL";
-    
+  */
     public static final String SEPARADOR_FECHA = "-";
     public static final String LANG_ESPANOL = "es";
 	public static final String TABLA_TELEFONOS = "telefonos";
@@ -837,14 +837,12 @@ public class ConstantsAdmin {
                     != PackageManager.PERMISSION_GRANTED) {
 
                 // Should we show an explanation?
-                if (ActivityCompat.shouldShowRequestPermissionRationale(context,
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(context,
                         Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
                     // Show an expanation to the user *asynchronously* -- don't block
                     // this thread waiting for the user's response! After the user
                     // sees the explanation, try again to request the permission.
-
-                } else {
 
                     // No explanation needed, we can request the permission.
 
@@ -862,7 +860,7 @@ public class ConstantsAdmin {
         	if(file != null){
                 if(file.getName().equals(fileCSV)){
                 	body = obtenerContenidoArchivo(file, context);
-                	procesarStringDatos(body, context, mDBManager);
+                	procesarStringDatos(body, mDBManager);
                 	mensaje = context.getString(R.string.mensaje_exito_importar_csv);
                 }
             }
@@ -872,7 +870,7 @@ public class ConstantsAdmin {
 		}
     }
     
-    private static void procesarStringDatos(String body, Activity context, DataBaseManager mDBManager){
+    private static void procesarStringDatos(String body, DataBaseManager mDBManager){
 
     	String[] lineas = body.split(ENTER);
     	int i = 0;
@@ -2010,7 +2008,7 @@ public class ConstantsAdmin {
  			try {
 				String filePassword = "kncontacts.txt";
 				almacenarArchivo(folderCSV, filePassword, body);
-			} catch (Exception e) {
+			} catch (Exception ignored) {
 				
 			}
  			msg = context.getString(R.string.mensaje_exito_almacenar_password);

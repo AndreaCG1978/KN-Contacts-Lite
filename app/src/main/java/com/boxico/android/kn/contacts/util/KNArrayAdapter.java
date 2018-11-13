@@ -43,7 +43,7 @@ public class KNArrayAdapter extends ArrayAdapter<CategoriaDTO> {
 		ListView lv = (ListView)parent;
 		CategoriaDTO cat = (CategoriaDTO) lv.getAdapter().getItem(position);
 		TextView tv;
-		LinearLayout ll = null;
+		LinearLayout ll;
 		ll = (LinearLayout)v;
 		tv = (TextView) ll.getChildAt(0);
 

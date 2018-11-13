@@ -47,7 +47,7 @@ public class InitActivity extends Activity {
                                 waited += 100;
                             }
                         }
-                    } catch(InterruptedException e) {
+                    } catch(InterruptedException ignored) {
                         
                     } finally {
                         finish();

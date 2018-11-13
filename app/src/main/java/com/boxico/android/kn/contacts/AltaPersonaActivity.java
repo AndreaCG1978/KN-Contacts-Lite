@@ -836,7 +836,7 @@ public class AltaPersonaActivity extends Activity  {
 			tv = it.next();
 			tv.setIdPersona(String.valueOf(idPer));
 		}
-		ConstantsAdmin.registrarTelefonos(this, telefonos, mDBManager);
+		ConstantsAdmin.registrarTelefonos(telefonos, mDBManager);
 		
 	}
 
@@ -848,7 +848,7 @@ public class AltaPersonaActivity extends Activity  {
 			tv.setIdPersona(String.valueOf(idPer));
 		}
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		ConstantsAdmin.registrarMails(this, mails, mDBManager);
+		ConstantsAdmin.registrarMails(mails, mDBManager);
 		
 	}
 		
@@ -860,7 +860,7 @@ public class AltaPersonaActivity extends Activity  {
 			tv = it.next();
 			tv.setIdPersona(String.valueOf(idPer));
 		}
-		ConstantsAdmin.registrarDirecciones(this, mails, mDBManager);
+		ConstantsAdmin.registrarDirecciones(mails, mDBManager);
 		
 	}
 		

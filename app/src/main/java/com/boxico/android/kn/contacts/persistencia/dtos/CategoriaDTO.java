@@ -1,8 +1,6 @@
 package com.boxico.android.kn.contacts.persistencia.dtos;
 
-import android.support.annotation.NonNull;
-
-public class CategoriaDTO implements Comparable{
+public class CategoriaDTO implements Comparable<CategoriaDTO>{
 	
 	@Override
 	public String toString() {
@@ -92,13 +90,13 @@ public class CategoriaDTO implements Comparable{
 
 
 	@Override
-	public int compareTo(@NonNull Object another) {
+	public int compareTo(CategoriaDTO another) {
 		// TODO Auto-generated method stub
 		int val;
-		CategoriaDTO cat = (CategoriaDTO) another;
-		val = this.getNombreRelativo().compareTo(cat.getNombreRelativo());
+		val = this.getNombreRelativo().compareTo(another.getNombreRelativo());
 		return val;
 	}
+
 
 	public CategoriaDTO() {
 		super();

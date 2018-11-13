@@ -2,7 +2,7 @@ package com.boxico.android.kn.contacts.util;
 
 public class Asociacion {
 	
-	private Object key;
+	private final Object key;
 	private Object value;
 	public Object getKey() {
 		return key;

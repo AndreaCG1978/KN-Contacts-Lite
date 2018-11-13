@@ -18,8 +18,7 @@ public class MultiSpinner extends Spinner implements
 	 
 	private List<String> items;
 	    private boolean[] selected;
-	    private String defaultText;
-	    private MultiSpinnerListener listener;
+	private MultiSpinnerListener listener;
 
 		public MultiSpinner(Context context) {
 	        super(context);
@@ -40,25 +39,24 @@ public class MultiSpinner extends Spinner implements
 
 	    @Override
 	    public void onCancel(DialogInterface dialog) {
-	        // refresh text on spinner
+/*
 	        StringBuilder spinnerBuffer = new StringBuilder();
-	        boolean someUnselected = false;
+
 	        for (int i = 0; i < items.size(); i++) {
 	            if (selected[i]) {
 	                spinnerBuffer.append(items.get(i));
 	                spinnerBuffer.append(", ");
-	            } else {
-	                someUnselected = true;
 	            }
-	        }
-	        String spinnerText;
+	        }*/
+
+	      /*  String spinnerText;
 	        if (someUnselected) {
 	            spinnerText = spinnerBuffer.toString();
 	            if (spinnerText.length() > 2)
 	                spinnerText = spinnerText.substring(0, spinnerText.length() - 2);
 	        } else {
 	            spinnerText = defaultText;
-	        }
+	        }*/
 	        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
 					android.R.layout.simple_spinner_item,
 					new String[]{""});
@@ -71,7 +69,7 @@ public class MultiSpinner extends Spinner implements
 		    super.performClick();
 	        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 	        builder.setMultiChoiceItems(
-	                items.toArray(new CharSequence[items.size()]), selected, this);
+	                items.toArray(new CharSequence[0]), selected, this);
 	        builder.setPositiveButton(R.string.label_ok,
 	                new DialogInterface.OnClickListener() {
 
@@ -86,11 +84,10 @@ public class MultiSpinner extends Spinner implements
 	        return true;
 	    }
 
-	    public void setItems(List<String> items, String allText,
+	    public void setItems(List<String> items,
 	            MultiSpinnerListener listener) {
 	        this.items = items;
-	        this.defaultText = allText;
-	        this.listener = listener;
+			this.listener = listener;
 
 	        // all selected by default
 	        selected = new boolean[items.size()];

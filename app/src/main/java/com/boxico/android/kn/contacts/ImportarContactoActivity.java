@@ -110,7 +110,7 @@ public class ImportarContactoActivity extends Activity {
      	       			family = "";
      	       		}
 
-     	       		if((!family.equals("") || !given.equals("")) && (family != null || given != null)){
+     	       		if(!family.equals("") || !given.equals("")){
    	  	        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
    	  	        	   if(persona == null){
    	  	        		   persona = new PersonaDTO();   
@@ -166,8 +166,7 @@ public class ImportarContactoActivity extends Activity {
 	   	   	       if(family == null){
 	   	   	    	   family = "";
 	   	   	       }
-	   	   	       if((family != null && !family.equals("") || given!= null && !given.equals(""))&&
-		        		   (family != null || given!= null) ){
+	   	   	       if((!family.equals("") || given != null && !given.equals("")) && (family != null || given != null)){
 	
 		        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
 		        	   if(persona == null){
@@ -420,8 +419,7 @@ public class ImportarContactoActivity extends Activity {
 				       given = (String)contactoActual.getKey();
 			   	       family = (String)contactoActual.getValue();
 
-			   	       if((family != null && !family.equals("") || given!= null && !given.equals(""))&&
-				        		   (family != null || given!= null) ){
+			   	       if(family != null && !family.equals("") || given != null && !given.equals("")){
 			        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
 			        	   if(persona == null){
 			        		   persona = new PersonaDTO();   
