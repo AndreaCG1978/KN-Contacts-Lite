@@ -36,9 +36,9 @@ public class ImportarContactoActivity extends Activity {
 	
 	private ArrayAdapter<CategoriaDTO> mSpinnerAdapt = null;
 	private CategoriaDTO mCategoriaSeleccionada = null;
-	Cursor people = null;
-	ImportarContactoActivity me = null;
-	boolean haciaAdelante = true;
+	private Cursor people = null;
+	private ImportarContactoActivity me = null;
+	// --Commented out by Inspection (12/11/2018 12:34):boolean haciaAdelante = true;
 	private ArrayList<Cursor> allMyCursors = null;
 	
 	private TextView mPersonaEncontrada;
@@ -46,11 +46,11 @@ public class ImportarContactoActivity extends Activity {
 	private TextView entryDatoExtra;
 	private TextView entryDescripcion;
 	
-	Spinner mSpinner = null;
+	private Spinner mSpinner = null;
 
-	String given = "";
-	String family = "";
-	int posPeople = 0;
+	private String given = "";
+	private String family = "";
+	private int posPeople = 0;
 
 	private Button botonAddContact = null;
 	private Button botonSkipContact = null;
@@ -58,7 +58,7 @@ public class ImportarContactoActivity extends Activity {
 	private Button botonAddAll = null;
 	private Button botonSkipAll = null;
 	private Asociacion contactoActual = null;
-	PersonaDTO persona = null;
+	private PersonaDTO persona = null;
 	private String contactId = null;
 	
 
@@ -73,7 +73,7 @@ public class ImportarContactoActivity extends Activity {
         super.onCreate(savedInstanceState);
         this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_importar_contactos));
         try {
-        	allMyCursors = new ArrayList<Cursor>();
+        	allMyCursors = new ArrayList<>();
             this.setContentView(R.layout.import_contact);
             this.registrarWidgets();
             
@@ -90,7 +90,7 @@ public class ImportarContactoActivity extends Activity {
 	
 	private void buscarSiguienteContacto() {
     	boolean encontrado = false;
-    	String contactIdTemp = null;
+    	String contactIdTemp;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	
     	while(!encontrado && people.moveToNext()) {
@@ -110,8 +110,7 @@ public class ImportarContactoActivity extends Activity {
      	       			family = "";
      	       		}
 
-     	       		if((family != null && !family.equals("") || given!= null && !given.equals(""))&&
-  	        		   (family != null || given!= null) ){
+     	       		if((!family.equals("") || !given.equals("")) && (family != null || given != null)){
    	  	        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
    	  	        	   if(persona == null){
    	  	        		   persona = new PersonaDTO();   
@@ -149,7 +148,7 @@ public class ImportarContactoActivity extends Activity {
     	given = null;
     	family = null;
     	boolean encontrado = false;
-    	String contactIdTemp = null;
+    	String contactIdTemp;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
        	while(!encontrado && people.moveToPrevious()) {
        	   posPeople = people.getPosition();
@@ -205,7 +204,7 @@ public class ImportarContactoActivity extends Activity {
 	
 	
 	private void mostrarDatosPersonaEncontrada(){
-		String text = null;
+		String text;
     	if(persona != null){
     		mPersonaEncontrada.setText("");
     		if(persona.getNombres() != null && !persona.getNombres().equals("")){
@@ -237,7 +236,7 @@ public class ImportarContactoActivity extends Activity {
 	private void seleccionarCategoriaContactoExistente() {
 		boolean encontrado = false;
 	    int pos = 0;
-	    CategoriaDTO cat = null;
+	    CategoriaDTO cat;
 	    int total = mSpinnerAdapt.getCount();
 	    while(!encontrado && pos < total){
 	    	
@@ -355,7 +354,7 @@ public class ImportarContactoActivity extends Activity {
     	       .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
     	           public void onClick(DialogInterface dialog, int id) {
 	   	        	   Long[] params = new Long[1];
-	   		    	   params[0] = Long.valueOf(1);
+	   		    	   params[0] = 1L;
 	   		    	   dialog.cancel();    	        	   
     	        	   new ImportContactTask().execute(params);    	  
 
@@ -409,8 +408,8 @@ public class ImportarContactoActivity extends Activity {
 	private void addAllPrivado() {
 	/*	this.obtenerContactoCapturado(true);
 		ConstantsAdmin.mDBManager.createPersona(persona, false);*/
-		String given = null;
-		String family = null;
+		String given;
+		String family;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		try {
 			people.moveToFirst();
@@ -450,7 +449,7 @@ public class ImportarContactoActivity extends Activity {
 
 
 	private void addContact() {
-		long id = -1;
+		long id;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		this.obtenerContactoCapturado(false);
 		id = mDBManager.createPersona(persona, false);
@@ -467,7 +466,7 @@ public class ImportarContactoActivity extends Activity {
 
 	
 
-    protected void openListadoCategoria(){
+    private void openListadoCategoria(){
         Intent i = new Intent(this, ListadoCategoriaActivity.class);
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS);
     }
@@ -494,20 +493,20 @@ public class ImportarContactoActivity extends Activity {
 	}
 
     private void configurarSpinner(){
-      List<CategoriaDTO> categorias = null;
-      List<CategoriaDTO> categoriasPersonales = null;
+      List<CategoriaDTO> categorias;
+      List<CategoriaDTO> categoriasPersonales;
       DataBaseManager mDBManager = DataBaseManager.getInstance(this);
       categorias = ConstantsAdmin.obtenerCategoriasActivas(this, null, mDBManager);
       categoriasPersonales = ConstantsAdmin.obtenerCategoriasActivasPersonales(this, mDBManager);
       categorias.addAll(categoriasPersonales);
       this.cargarNombreRelativoCategorias(categorias);
-      this.crearSpinnerCategorias(R.id.spinnerCategorias_alta_persona, categorias);
+      this.crearSpinnerCategorias(categorias);
     }
 
   	private void cargarNombreRelativoCategorias(List<CategoriaDTO> categorias){
   		Iterator<CategoriaDTO> it = categorias.iterator();
-  		CategoriaDTO catTemp = null;
-  		String nombreRelativo = null;
+  		CategoriaDTO catTemp;
+  		String nombreRelativo;
   		while(it.hasNext()){
   			catTemp = it.next();
   			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
@@ -521,18 +520,17 @@ public class ImportarContactoActivity extends Activity {
 
   	
     
-    protected Spinner crearSpinnerCategorias(int nombreSpinner, List<CategoriaDTO> categorias){
-	    Spinner spinner = findViewById(nombreSpinner);
-	    this.mSpinnerAdapt = new ArrayAdapter<CategoriaDTO>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
+    private void crearSpinnerCategorias(List<CategoriaDTO> categorias){
+	    Spinner spinner = findViewById(R.id.spinnerCategorias_alta_persona);
+	    this.mSpinnerAdapt = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
 	    this.seleccionarPrimerCategoria();
 	    spinner.setAdapter(this.mSpinnerAdapt); 
 	    OnItemSelectedListener spinnerListener = new seleccionSpinnerListener();
 	    spinner.setOnItemSelectedListener(spinnerListener);
-	    return spinner;
-    }
+	}
     
 	private void mostrarDatosPorCategoria(){
-    	String text = null;
+    	String text;
     	if(mCategoriaSeleccionada != null){
 	    	EditText textViewEntry = this.findViewById(R.id.entryDatoExtra);
 	    	TextView textViewLabel = this.findViewById(R.id.label_datoExtra);
@@ -547,35 +545,50 @@ public class ImportarContactoActivity extends Activity {
 
     private String obtenerEtiquetaDatoExtra(String nombreEtiqueta){
     	String result = null;
-    	if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_AMIGOS)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_CLIENTES)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_COLEGAS)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_COMPANIEROS)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_CONOCIDOS)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_FAMILIARES)){
-    		result = getString(R.string.hint_parentesco);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_JEFES)){
-    		result = getString(R.string.hint_empresa);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_MEDICO)){
-    		result = getString(R.string.hint_especialidad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_OTROS)){
-    		result = getString(R.string.hint_rol);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_PACIENTES)){
-    		result = getString(R.string.hint_obraSocial);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_PROFESORES)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_PROVEEDORES)){
-    		result = getString(R.string.hint_empresa);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_SOCIOS)){
-    		result = getString(R.string.hint_empresa);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_VECINOS)){
-    		result = getString(R.string.hint_zona);
-    	}
+		switch (nombreEtiqueta) {
+			case ConstantsAdmin.CATEGORIA_AMIGOS:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_CLIENTES:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_COLEGAS:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_COMPANIEROS:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_CONOCIDOS:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_FAMILIARES:
+				result = getString(R.string.hint_parentesco);
+				break;
+			case ConstantsAdmin.CATEGORIA_JEFES:
+				result = getString(R.string.hint_empresa);
+				break;
+			case ConstantsAdmin.CATEGORIA_MEDICO:
+				result = getString(R.string.hint_especialidad);
+				break;
+			case ConstantsAdmin.CATEGORIA_OTROS:
+				result = getString(R.string.hint_rol);
+				break;
+			case ConstantsAdmin.CATEGORIA_PACIENTES:
+				result = getString(R.string.hint_obraSocial);
+				break;
+			case ConstantsAdmin.CATEGORIA_PROFESORES:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_PROVEEDORES:
+				result = getString(R.string.hint_empresa);
+				break;
+			case ConstantsAdmin.CATEGORIA_SOCIOS:
+				result = getString(R.string.hint_empresa);
+				break;
+			case ConstantsAdmin.CATEGORIA_VECINOS:
+				result = getString(R.string.hint_zona);
+				break;
+		}
     	
     	
     	return result;
@@ -583,7 +596,7 @@ public class ImportarContactoActivity extends Activity {
     
     
     
-    public class seleccionSpinnerListener implements OnItemSelectedListener {
+    class seleccionSpinnerListener implements OnItemSelectedListener {
 
 
         public void onItemSelected(AdapterView<?> parent, View v, int pos, long row) {
@@ -638,19 +651,18 @@ public class ImportarContactoActivity extends Activity {
     
             
     private void resetAllMyCursors(){
-    	Cursor cur = null;
-    	Iterator<Cursor> it = allMyCursors.iterator();
-    	while(it.hasNext()){
-    		cur = it.next();
-    		cur.close();
-    		this.stopManagingCursor(cur);
-    	}
-    	allMyCursors = new ArrayList<Cursor>();
+    	Cursor cur;
+		for (Cursor allMyCursor : allMyCursors) {
+			cur = allMyCursor;
+			cur.close();
+			this.stopManagingCursor(cur);
+		}
+    	allMyCursors = new ArrayList<>();
     }
 
     
     private void obtenerContactoCapturado(boolean desdeAgregarTodos){
-    	boolean tieneTelefonos = false;
+    	boolean tieneTelefonos;
     	String[] projectionPhone = new String[]{
     			Phone.NUMBER,
     			Phone.TYPE
@@ -695,9 +707,9 @@ public class ImportarContactoActivity extends Activity {
     
     private Asociacion obtenerNombreYApellidoDeContactoDeAgenda(String contactId){
     	Asociacion asoc = null;
-    	Cursor nameCur = null;
-    	String given = null;
-    	String family = null;
+    	Cursor nameCur;
+    	String given;
+    	String family;
         String whereName = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
         String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
         nameCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, null);
@@ -717,8 +729,8 @@ public class ImportarContactoActivity extends Activity {
     }
     
     private void importarMailDeContacto(String[] projectionMail, PersonaDTO per, String contactId){
-    	String emailAddress = null;
-    	int emailType = 0;
+    	String emailAddress;
+    	int emailType;
     	try {
             Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null); 
             if(emails != null){
@@ -759,8 +771,8 @@ public class ImportarContactoActivity extends Activity {
     
     
     private void importarTelDeContacto(String[] projectionPhone, PersonaDTO per, String contactId){
-    	String phoneNumber = null;
-    	int phoneType = 0;
+    	String phoneNumber;
+    	int phoneType;
     	try {
     		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
             if(phones != null){

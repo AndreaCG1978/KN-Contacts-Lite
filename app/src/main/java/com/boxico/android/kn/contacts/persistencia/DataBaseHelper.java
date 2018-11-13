@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
-public class DataBaseHelper extends SQLiteOpenHelper{
+class DataBaseHelper extends SQLiteOpenHelper{
 	
 	 
 	private static final String DATABASE_CREATE_PERSONA = "create table if not exists " + ConstantsAdmin.TABLA_PERSONA + 

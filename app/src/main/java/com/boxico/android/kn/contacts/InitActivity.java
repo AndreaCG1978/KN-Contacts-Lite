@@ -1,12 +1,9 @@
 package com.boxico.android.kn.contacts;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -17,8 +14,8 @@ import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
 public class InitActivity extends Activity {
 	
-    protected boolean _active = true;
-    protected int _splashTime = 1200;    
+    private boolean _active = true;
+    private final int _splashTime = 1200;
     private Activity me = null;
     private ArrayList<Cursor> allMyCursors = null;
 
@@ -30,7 +27,7 @@ public class InitActivity extends Activity {
         super.onCreate(savedInstanceState);
  //       CargaDePersonasTest test = new CargaDePersonasTest();
         try{
-        	allMyCursors = new ArrayList<Cursor>();
+        	allMyCursors = new ArrayList<>();
         	inicializarBD();
         	this.resetAllMyCursors();
         	
@@ -71,14 +68,13 @@ public class InitActivity extends Activity {
     }
 
    private void resetAllMyCursors(){
-    	Cursor cur = null;
-    	Iterator<Cursor> it = allMyCursors.iterator();
-    	while(it.hasNext()){
-    		cur = it.next();
-    		cur.close();
-    		this.stopManagingCursor(cur);
-    	}
-    	allMyCursors = new ArrayList<Cursor>();
+    	Cursor cur;
+       for (Cursor allMyCursor : allMyCursors) {
+           cur = allMyCursor;
+           cur.close();
+           this.stopManagingCursor(cur);
+       }
+    	allMyCursors = new ArrayList<>();
     }
 	
  /*   private void cargarDatosFicticios(){

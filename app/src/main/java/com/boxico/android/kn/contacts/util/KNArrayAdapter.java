@@ -3,6 +3,7 @@ package com.boxico.android.kn.contacts.util;
 import java.util.List;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,14 +16,16 @@ import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 
 public class KNArrayAdapter extends ArrayAdapter<CategoriaDTO> {
 
-	Context activity = null;
-	boolean paraProteccion = false;
+	private final Context activity;
+	private final boolean paraProteccion;
 	
-	public KNArrayAdapter(Context context, int textViewResourceId,
-			List<CategoriaDTO> objects) {
-		super(context, textViewResourceId, objects);
-		// TODO Auto-generated constructor stub
-	}
+// --Commented out by Inspection START (12/11/2018 12:34):
+//	public KNArrayAdapter(Context context, int textViewResourceId,
+//			List<CategoriaDTO> objects) {
+//		super(context, textViewResourceId, objects);
+//		// TODO Auto-generated constructor stub
+//	}
+// --Commented out by Inspection STOP (12/11/2018 12:34)
 
 	public KNArrayAdapter(Context context, int resourceId, int textViewResourceId,
 			List<CategoriaDTO> objects, boolean paraProtec) {
@@ -32,13 +35,14 @@ public class KNArrayAdapter extends ArrayAdapter<CategoriaDTO> {
 		activity = context;
 	}
 
+	@NonNull
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		View v = super.getView(position, convertView, parent);
 		ListView lv = (ListView)parent;
 		CategoriaDTO cat = (CategoriaDTO) lv.getAdapter().getItem(position);
-		TextView tv = null;
+		TextView tv;
 		LinearLayout ll = null;
 		ll = (LinearLayout)v;
 		tv = (TextView) ll.getChildAt(0);

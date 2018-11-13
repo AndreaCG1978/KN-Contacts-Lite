@@ -34,18 +34,17 @@ public class ProteccionCategoriaActivity extends ListActivity {
 	private EditText mailPassword = null;
 	private TextView labelCategorias = null;
 	private ProteccionCategoriaActivity me = null;
-	ImageView imagen = null;
-	Drawable dCandadoAbierto = null;
-	Drawable dCandadoCerrado = null;
+	private ImageView imagen = null;
+	private Drawable dCandadoAbierto = null;
+	private Drawable dCandadoCerrado = null;
 	private ArrayList<Cursor> allMyCursors = null;
-	List<CategoriaDTO> categoriasActivas = null;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		allMyCursors = new ArrayList<Cursor>();
+		allMyCursors = new ArrayList<>();
 		me = this;
 		this.setContentView(R.layout.proteccion_categorias);
 		this.inicializarList();
@@ -96,14 +95,13 @@ public class ProteccionCategoriaActivity extends ListActivity {
 
     
     private void resetAllMyCursors(){
-    	Cursor cur = null;
-    	Iterator<Cursor> it = allMyCursors.iterator();
-    	while(it.hasNext()){
-    		cur = it.next();
-    		cur.close();
-    		this.stopManagingCursor(cur);
-    	}
-    	allMyCursors = new ArrayList<Cursor>();
+    	Cursor cur;
+		for (Cursor allMyCursor : allMyCursors) {
+			cur = allMyCursor;
+			cur.close();
+			this.stopManagingCursor(cur);
+		}
+    	allMyCursors = new ArrayList<>();
     }
 	
 	private void habilitarCampos(){
@@ -204,7 +202,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 				if(ConstantsAdmin.contrasenia.getId() != -1){
 					DataBaseManager mDBManager = DataBaseManager.getInstance(me);
 					ConstantsAdmin.contrasenia.setActiva(false);
-					ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, me, mDBManager);
+					ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, mDBManager);
 					ConstantsAdmin.resetPersonasOrganizadas();
 					habilitarCampos();
 					contrasenia1.setText(ConstantsAdmin.contrasenia.getContrasenia());
@@ -242,7 +240,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
     
     private boolean estaRegistradaCategoria(CategoriaDTO catSelected){
     	boolean result = false;
-    	CategoriaDTO cat = null;
+    	CategoriaDTO cat;
     	Iterator<CategoriaDTO> it = ConstantsAdmin.categoriasProtegidas.iterator();
     	while(!result && it.hasNext()){
     		cat = it.next();
@@ -255,9 +253,9 @@ public class ProteccionCategoriaActivity extends ListActivity {
     private void eliminarCategoriaProtegida(CategoriaDTO catSelected){
     	Iterator<CategoriaDTO> it = ConstantsAdmin.categoriasProtegidas.iterator();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-    	CategoriaDTO cat = null;
+    	CategoriaDTO cat;
     	boolean encontrada = false;
-    	ConstantsAdmin.eliminarCategoriaProtegida(catSelected, this, mDBManager);
+    	ConstantsAdmin.eliminarCategoriaProtegida(catSelected, mDBManager);
     	while(it.hasNext() && !encontrada){
     		cat = it.next();
     		if(cat.getNombreReal().equals(catSelected.getNombreReal())){
@@ -270,23 +268,23 @@ public class ProteccionCategoriaActivity extends ListActivity {
     private void agregarCategoriaProtegida(CategoriaDTO catSelected){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	ConstantsAdmin.categoriasProtegidas.add(catSelected);
-    	ConstantsAdmin.crearCategoriaProtegida(catSelected, this, mDBManager);
+    	ConstantsAdmin.crearCategoriaProtegida(catSelected, mDBManager);
     }
 
     
     
-    protected void openVerActivarContrasenia() {
+    private void openVerActivarContrasenia() {
         Intent i = new Intent(this, ActivarContraseniaActivity.class);
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ACTIVAR_CONTRASENIA);
     }
     
     private void cargarDatosContrasenia(String pass, String mail){
-    	long id = -1;
+    	long id;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	ConstantsAdmin.contrasenia.setActiva(true);
     	ConstantsAdmin.contrasenia.setContrasenia(pass);
     	ConstantsAdmin.contrasenia.setMail(mail);
-    	id = ConstantsAdmin.crearContrasenia(ConstantsAdmin.contrasenia, this, mDBManager);
+    	id = ConstantsAdmin.crearContrasenia(ConstantsAdmin.contrasenia, mDBManager);
     	ConstantsAdmin.contrasenia.setId(id);
 		ConstantsAdmin.resetPersonasOrganizadas();
 
@@ -297,7 +295,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
     	String c1 = contrasenia1.getText().toString();
     	String c2 = contrasenia2.getText().toString();
     	String c3 = mailPassword.getText().toString();
-    	String mensaje = null;
+    	String mensaje;
     	if(c1.trim().equals("")){
     		mensaje = this.getString(R.string.mensaje_complete_contrasenia);
     	}else if(c2.trim().equals("")){
@@ -318,10 +316,8 @@ public class ProteccionCategoriaActivity extends ListActivity {
     		
     		
     	}
-    	if(mensaje != null){
-    		ConstantsAdmin.mostrarMensaje(this, mensaje);
-    	}
-    }
+		ConstantsAdmin.mostrarMensaje(this, mensaje);
+	}
 	
 	private void inicializarList(){
         this.getListView().setItemsCanFocus(false);
@@ -332,8 +328,8 @@ public class ProteccionCategoriaActivity extends ListActivity {
 
 	private void cambiarNombreCategorias(List<CategoriaDTO> categorias){
   		Iterator<CategoriaDTO> it = categorias.iterator();
-  		CategoriaDTO catTemp = null;
-  		String nombreRelativo = null;
+  		CategoriaDTO catTemp;
+  		String nombreRelativo;
   		while(it.hasNext()){
   			catTemp = it.next();
   			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
@@ -347,7 +343,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 	
 	private void inicializarCategoriasProtegidas(){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		categoriasActivas = ConstantsAdmin.obtenerCategoriasActivas(this, null, mDBManager);
+		List<CategoriaDTO> categoriasActivas = ConstantsAdmin.obtenerCategoriasActivas(this, null, mDBManager);
 		List<CategoriaDTO> categoriasPersonalesActivas = ConstantsAdmin.obtenerCategoriasActivasPersonales(this, mDBManager);
 		categoriasActivas.addAll(categoriasPersonalesActivas);
 		this.cambiarNombreCategorias(categoriasActivas);
@@ -358,16 +354,6 @@ public class ProteccionCategoriaActivity extends ListActivity {
 
 
 	}
-	
 
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onPostCreate(savedInstanceState);
-//		this.seleccionarCategoriasSeleccionadas();
-	}
-	
-	
-	
 
 }

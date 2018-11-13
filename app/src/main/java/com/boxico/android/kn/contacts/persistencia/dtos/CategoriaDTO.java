@@ -1,11 +1,12 @@
 package com.boxico.android.kn.contacts.persistencia.dtos;
 
+import android.support.annotation.NonNull;
+
 public class CategoriaDTO implements Comparable{
 	
 	@Override
 	public String toString() {
-		String valor = this.nombreRelativo;
-		return valor;
+		return this.nombreRelativo;
 	}
 
 	private long id = 0;
@@ -13,19 +14,24 @@ public class CategoriaDTO implements Comparable{
 	private String nombreRelativo = null;
 	private String tipoDatoExtra = null;
 	private boolean categoriaPersonal = false;
-	private boolean protegida = false;
+    // --Commented out by Inspection (12/11/2018 12:50):private boolean protegida = false;
 
-	public boolean isProtegida() {
-		return protegida;
-	}
-
-	public void setProtegida(boolean protegida) {
-		this.protegida = protegida;
-	}
+// --Commented out by Inspection START (12/11/2018 12:44):
+//	public boolean isProtegida() {
+//		return protegida;
+//	}
+// --Commented out by Inspection START (12/11/2018 12:50):
+//// --Commented out by Inspection STOP (12/11/2018 12:44)
+//
+//	public void setProtegida(boolean protegida) {
+// --Commented out by Inspection STOP (12/11/2018 12:50)
+	//	this.protegida = protegida;
+	//}
 
 	public boolean isCategoriaPersonal() {
 		return categoriaPersonal;
 	}
+// --Commented out by Inspection STOP (12/11/2018 12:34)
 
 	public void setCategoriaPersonal(boolean categoriaPersonal) {
 		this.categoriaPersonal = categoriaPersonal;
@@ -86,9 +92,9 @@ public class CategoriaDTO implements Comparable{
 
 
 	@Override
-	public int compareTo(Object another) {
+	public int compareTo(@NonNull Object another) {
 		// TODO Auto-generated method stub
-		int val = 0;
+		int val;
 		CategoriaDTO cat = (CategoriaDTO) another;
 		val = this.getNombreRelativo().compareTo(cat.getNombreRelativo());
 		return val;

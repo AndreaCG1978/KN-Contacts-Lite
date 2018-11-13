@@ -41,7 +41,7 @@ public class MultiSpinner extends Spinner implements
 	    @Override
 	    public void onCancel(DialogInterface dialog) {
 	        // refresh text on spinner
-	        StringBuffer spinnerBuffer = new StringBuffer();
+	        StringBuilder spinnerBuffer = new StringBuilder();
 	        boolean someUnselected = false;
 	        for (int i = 0; i < items.size(); i++) {
 	            if (selected[i]) {
@@ -59,15 +59,16 @@ public class MultiSpinner extends Spinner implements
 	        } else {
 	            spinnerText = defaultText;
 	        }
-	        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-	                android.R.layout.simple_spinner_item,
-	                new String[] {""});
+	        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+					android.R.layout.simple_spinner_item,
+					new String[]{""});
 	        setAdapter(adapter);
 	        listener.onItemsSelected(selected);
 	    }
 
 	    @Override
 	    public boolean performClick() {
+		    super.performClick();
 	        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 	        builder.setMultiChoiceItems(
 	                items.toArray(new CharSequence[items.size()]), selected, this);
@@ -97,8 +98,8 @@ public class MultiSpinner extends Spinner implements
 	            selected[i] = true;
 */
 	        // all text on the spinner
-	        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-	                android.R.layout.simple_spinner_item, new String[] { "" });
+	        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                    android.R.layout.simple_spinner_item, new String[]{""});
 	        setAdapter(adapter);
 	    }
 

@@ -28,27 +28,27 @@ import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 public class AltaTipoValorActivity extends Activity {
 	
 
-	EditText mValor = null;
-	EditText mNuevoTipo = null;
-	TextView labelNuevoTipo = null;
-	Spinner spinnerTipos = null;
-	Button btnEditar = null; 
-	Button btnEliminar = null; 
-	Dialog dialog = null;
+	private EditText mValor = null;
+	private EditText mNuevoTipo = null;
+	private TextView labelNuevoTipo = null;
+	private Spinner spinnerTipos = null;
+	private Button btnEditar = null;
+	private Button btnEliminar = null;
+	private Dialog dialog = null;
 	
-	ArrayList<String> tipos = null;
-	String tipoElemento = null;
-	PersonaDTO personaSeleccionada = null;
-	TipoValorDTO mTipoValor = null;
-	TipoValorDTO mTipoValorAnterior = null;	
-	boolean actualizarPersona = false;
-	boolean actualizarTipoValor = false;
+	private ArrayList<String> tipos = null;
+	private String tipoElemento = null;
+	private PersonaDTO personaSeleccionada = null;
+	private TipoValorDTO mTipoValor = null;
+	private TipoValorDTO mTipoValorAnterior = null;
+//	boolean actualizarPersona = false;
+//	boolean actualizarTipoValor = false;
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTipoValor = ConstantsAdmin.tipoValorSeleccionado;
         mTipoValorAnterior = ConstantsAdmin.tipoValorAnteriorSeleccionado;
-        tipos = new ArrayList<String>();
+        tipos = new ArrayList<>();
         tipos.addAll(ConstantsAdmin.tiposValores);
         personaSeleccionada = ConstantsAdmin.personaSeleccionada;
         
@@ -72,10 +72,10 @@ public class AltaTipoValorActivity extends Activity {
 	
 	private void configurarSpinner(){
 		tipos.add(this.getString(R.string.hint_nuevo_tipo));
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tipos);
+		ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, tipos);
 	    spinnerTipos.setAdapter(adapter);
 	    int pos = 0;
-	    String tip = null;
+	    String tip;
 	    boolean encontrado = false;
 	    Iterator<String> it = tipos.iterator();
 	    if(mTipoValor != null && mTipoValor.getTipo() != null){
@@ -94,7 +94,7 @@ public class AltaTipoValorActivity extends Activity {
 	}
 	
     
-    public class seleccionSpinnerListener implements OnItemSelectedListener {
+    class seleccionSpinnerListener implements OnItemSelectedListener {
         public void onItemSelected(AdapterView<?> parent, View v, int pos, long row) {
         	String tipo = (String) parent.getSelectedItem();
         	if(!tipo.equals(getString(R.string.hint_nuevo_tipo))){
@@ -146,25 +146,29 @@ public class AltaTipoValorActivity extends Activity {
 		spinnerTipos = dialog.findViewById(R.id.spinnerTipoValor);
 		btnEditar = dialog.findViewById(R.id.buttonRegistrarCategoria);
 		btnEliminar = dialog.findViewById(R.id.buttonEliminarCategoria);
-		
-		if(tipoElemento.equals(ConstantsAdmin.TIPO_TELEFONO)){
-			labelValor.setText(this.getString(R.string.label_telefono));
-			dialog.setTitle(this.getString(R.string.label_telefono));
-			mValor.setInputType(InputType.TYPE_CLASS_PHONE);
-			filterArray[0] = new InputFilter.LengthFilter(25);
-			
-		}else if(tipoElemento.equals(ConstantsAdmin.TIPO_EMAIL)){
-			labelValor.setText(this.getString(R.string.label_email));
-			dialog.setTitle(this.getString(R.string.label_email));
-			mValor.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-			filterArray[0] = new InputFilter.LengthFilter(40);
-		}else{
-			labelValor.setText(this.getString(R.string.label_direccion));
-			dialog.setTitle(this.getString(R.string.label_direccion));
-			mValor.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-			filterArray[0] = new InputFilter.LengthFilter(80);
-			mValor.setLines(3);
-			mValor.setSingleLine(false);
+
+		switch (tipoElemento) {
+			case ConstantsAdmin.TIPO_TELEFONO:
+				labelValor.setText(this.getString(R.string.label_telefono));
+				dialog.setTitle(this.getString(R.string.label_telefono));
+				mValor.setInputType(InputType.TYPE_CLASS_PHONE);
+				filterArray[0] = new InputFilter.LengthFilter(25);
+
+				break;
+			case ConstantsAdmin.TIPO_EMAIL:
+				labelValor.setText(this.getString(R.string.label_email));
+				dialog.setTitle(this.getString(R.string.label_email));
+				mValor.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+				filterArray[0] = new InputFilter.LengthFilter(40);
+				break;
+			default:
+				labelValor.setText(this.getString(R.string.label_direccion));
+				dialog.setTitle(this.getString(R.string.label_direccion));
+				mValor.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+				filterArray[0] = new InputFilter.LengthFilter(80);
+				mValor.setLines(3);
+				mValor.setSingleLine(false);
+				break;
 		}
 		mValor.setFilters(filterArray);
 		if(mTipoValor != null){
@@ -222,16 +226,20 @@ public class AltaTipoValorActivity extends Activity {
 	private void eliminarTipoValor(){
 		try {
 			String tipo = mNuevoTipo.getText().toString();
-			if(!(tipo == null || tipo.equals(""))){
+			if(! tipo.equals("")){
 				mTipoValor.setTipo(tipo.toUpperCase());
 			}
-			if(tipoElemento.equals(ConstantsAdmin.TIPO_TELEFONO)){
-				eliminarTelefono();
-			}else if(tipoElemento.equals(ConstantsAdmin.TIPO_EMAIL)){
-				eliminarMail();
-			}else{
-				eliminarDireccion();
-			}
+            switch (tipoElemento) {
+                case ConstantsAdmin.TIPO_TELEFONO:
+                    eliminarTelefono();
+                    break;
+                case ConstantsAdmin.TIPO_EMAIL:
+                    eliminarMail();
+                    break;
+                default:
+                    eliminarDireccion();
+                    break;
+            }
 		} catch (Exception e) {
 //			ConstantsAdmin.mostrarErrorAplicacion(this, getString(R.string.errorEliminacionCategoria));
 		}
@@ -244,14 +252,14 @@ public class AltaTipoValorActivity extends Activity {
 			this.setearTelefonoPersona(null, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
 
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 			
 		}else{
 			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.eliminarTelefono(mTipoValor, this, mDBManager);
+				ConstantsAdmin.eliminarTelefono(mTipoValor, mDBManager);
 			}else{
 				this.eliminarTipoValor(ConstantsAdmin.telefonosARegistrar, mTipoValor);
 			}
@@ -265,14 +273,14 @@ public class AltaTipoValorActivity extends Activity {
 		if(esTipoFijoMail(mTipoValor.getTipo())){
 			this.setearMailPersona(null, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 			
 		}else{
 			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.eliminarEmail(mTipoValor, this, mDBManager);
+				ConstantsAdmin.eliminarEmail(mTipoValor, mDBManager);
 			}else{
 				this.eliminarTipoValor(ConstantsAdmin.mailsARegistrar, mTipoValor);
 			}
@@ -287,14 +295,14 @@ public class AltaTipoValorActivity extends Activity {
 		if(esTipoFijoDireccion(mTipoValor.getTipo())){
 			this.setearDireccionPersona(null, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 			
 		}else{
 			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.eliminarDireccion(mTipoValor, this, mDBManager);
+				ConstantsAdmin.eliminarDireccion(mTipoValor, mDBManager);
 			}else{
 				this.eliminarTipoValor(ConstantsAdmin.direccionesARegistrar, mTipoValor);
 			}
@@ -305,13 +313,17 @@ public class AltaTipoValorActivity extends Activity {
    	
 	
 	private void registrarTipoValor(){
-		if(tipoElemento.equals(ConstantsAdmin.TIPO_TELEFONO)){
-			this.registrarTelefono();
-		}else if(tipoElemento.equals(ConstantsAdmin.TIPO_EMAIL)){
-			this.registrarMail();
-		}else{
-			this.registrarDireccion();
-		}
+        switch (tipoElemento) {
+            case ConstantsAdmin.TIPO_TELEFONO:
+                this.registrarTelefono();
+                break;
+            case ConstantsAdmin.TIPO_EMAIL:
+                this.registrarMail();
+                break;
+            default:
+                this.registrarDireccion();
+                break;
+        }
 
 	}
 	
@@ -345,21 +357,21 @@ public class AltaTipoValorActivity extends Activity {
 		String tipo = mNuevoTipo.getText().toString();
 		mTipoValor.setValor(valor);
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		if(!(tipo == null || tipo.equals(""))){
+		if(! tipo.equals("")){
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
 		
 		if(esTipoFijoTelefono(mTipoValor.getTipo())){
 			this.setearTelefonoPersona(valor, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 			
 		}else{
 			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.crearTelefono(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearTelefono(mTipoValor, mDBManager);
 			}else{
 				ConstantsAdmin.telefonosARegistrar.add(mTipoValor);
 				
@@ -374,20 +386,20 @@ public class AltaTipoValorActivity extends Activity {
 		String tipo = mNuevoTipo.getText().toString();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		mTipoValor.setValor(valor);
-		if(!(tipo == null || tipo.equals(""))){
+		if(!tipo.equals("")){
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
 		if(esTipoFijoMail(mTipoValor.getTipo())){
 			this.setearMailPersona(valor, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 		}else{
 			
 			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.crearEmail(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearEmail(mTipoValor, mDBManager);
 			}else{
 				ConstantsAdmin.mailsARegistrar.add(mTipoValor);
 				
@@ -403,21 +415,21 @@ public class AltaTipoValorActivity extends Activity {
 		String tipo = mNuevoTipo.getText().toString();
 		mTipoValor.setValor(valor);
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		if(!(tipo == null || tipo.equals(""))){
+		if(!tipo.equals("")){
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
 		
 		if(esTipoFijoDireccion(mTipoValor.getTipo())){
 			this.setearDireccionPersona(valor, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 
 		}else{
 			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.crearDireccion(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearDireccion(mTipoValor, mDBManager);
 			}else{
 				ConstantsAdmin.direccionesARegistrar.add(mTipoValor);
 			}
@@ -462,7 +474,7 @@ public class AltaTipoValorActivity extends Activity {
 	private void eliminarTipoValor(List<TipoValorDTO> listado, TipoValorDTO tv){
 		Iterator<TipoValorDTO> it = listado.iterator();
 		boolean encontrado = false;
-		TipoValorDTO tvTemp = null;
+		TipoValorDTO tvTemp;
 		while(it.hasNext()&& !encontrado){
 			tvTemp = it.next();
 			encontrado = tvTemp.getId() == tv.getId();
@@ -479,7 +491,7 @@ public class AltaTipoValorActivity extends Activity {
 		String tipo = mNuevoTipo.getText().toString();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		mTipoValor.setValor(valor);
-		if(!(tipo == null || tipo.equals(""))){
+		if(tipo.equals("")){
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
 		
@@ -488,7 +500,7 @@ public class AltaTipoValorActivity extends Activity {
 			this.setearTelefonoPersona(valor, mTipoValor.getTipo());
 			
 			if(personaSeleccionada.getId()!= -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
 				
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
@@ -499,8 +511,8 @@ public class AltaTipoValorActivity extends Activity {
 		}else if(esTipoFijoTelefono(mTipoValorAnterior.getTipo())&& !esTipoFijoTelefono(mTipoValor.getTipo())){
 			this.setearTelefonoPersona(null, mTipoValorAnterior.getTipo());
 			if(personaSeleccionada.getId()!= -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
-				ConstantsAdmin.crearTelefono(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
+				ConstantsAdmin.crearTelefono(mTipoValor, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 				ConstantsAdmin.telefonosARegistrar.add(mTipoValor);
@@ -512,8 +524,8 @@ public class AltaTipoValorActivity extends Activity {
 		}else if(!esTipoFijoTelefono(mTipoValorAnterior.getTipo())&& esTipoFijoTelefono(mTipoValor.getTipo())){
 			this.setearTelefonoPersona(valor, mTipoValor.getTipo());
 			if(personaSeleccionada.getId()!= -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
-				ConstantsAdmin.eliminarTelefono(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
+				ConstantsAdmin.eliminarTelefono(mTipoValor, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 				this.eliminarTipoValor(ConstantsAdmin.telefonosARegistrar, mTipoValorAnterior);
@@ -523,7 +535,7 @@ public class AltaTipoValorActivity extends Activity {
 			
 			if(personaSeleccionada.getId()!= -1){
 				mTipoValor.setId(mTipoValorAnterior.getId());
-				ConstantsAdmin.crearTelefono(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearTelefono(mTipoValor, mDBManager);
 			}else{
 				this.eliminarTipoValor(ConstantsAdmin.telefonosARegistrar, mTipoValorAnterior);
 				ConstantsAdmin.telefonosARegistrar.add(mTipoValor);
@@ -538,7 +550,7 @@ public class AltaTipoValorActivity extends Activity {
 		String tipo = mNuevoTipo.getText().toString();
 		mTipoValor.setValor(valor);
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		if(!(tipo == null || tipo.equals(""))){
+		if(! tipo.equals("")){
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
 		
@@ -547,7 +559,7 @@ public class AltaTipoValorActivity extends Activity {
 			this.setearMailPersona(valor, mTipoValor.getTipo());
 			
 			if(personaSeleccionada.getId()!= -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
 				
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
@@ -558,8 +570,8 @@ public class AltaTipoValorActivity extends Activity {
 		}else if(esTipoFijoMail(mTipoValorAnterior.getTipo())&& !esTipoFijoMail(mTipoValor.getTipo())){
 			this.setearMailPersona(null, mTipoValorAnterior.getTipo());
 			if(personaSeleccionada.getId()!= -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
-				ConstantsAdmin.crearEmail(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
+				ConstantsAdmin.crearEmail(mTipoValor, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 				ConstantsAdmin.mailsARegistrar.add(mTipoValor);
@@ -571,8 +583,8 @@ public class AltaTipoValorActivity extends Activity {
 		}else if(!esTipoFijoMail(mTipoValorAnterior.getTipo())&& esTipoFijoMail(mTipoValor.getTipo())){
 			this.setearMailPersona(valor, mTipoValor.getTipo());
 			if(personaSeleccionada.getId()!= -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
-				ConstantsAdmin.eliminarEmail(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
+				ConstantsAdmin.eliminarEmail(mTipoValor, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 				this.eliminarTipoValor(ConstantsAdmin.mailsARegistrar, mTipoValorAnterior);
@@ -582,7 +594,7 @@ public class AltaTipoValorActivity extends Activity {
 			
 			if(personaSeleccionada.getId()!= -1){
 				mTipoValor.setId(mTipoValorAnterior.getId());
-				ConstantsAdmin.crearEmail(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearEmail(mTipoValor, mDBManager);
 			}else{
 				this.eliminarTipoValor(ConstantsAdmin.mailsARegistrar, mTipoValorAnterior);
 				ConstantsAdmin.mailsARegistrar.add(mTipoValor);
@@ -597,7 +609,7 @@ public class AltaTipoValorActivity extends Activity {
 		String tipo = mNuevoTipo.getText().toString();
 		mTipoValor.setValor(valor);
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		if(!(tipo == null || tipo.equals(""))){
+		if(tipo.equals("")){
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
 		
@@ -606,7 +618,7 @@ public class AltaTipoValorActivity extends Activity {
 			this.setearDireccionPersona(valor, mTipoValor.getTipo());
 			
 			if(personaSeleccionada.getId()!= -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
 				
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
@@ -617,8 +629,8 @@ public class AltaTipoValorActivity extends Activity {
 		}else if(esTipoFijoDireccion(mTipoValorAnterior.getTipo())&& !esTipoFijoDireccion(mTipoValor.getTipo())){
 			this.setearDireccionPersona(null, mTipoValorAnterior.getTipo());
 			if(personaSeleccionada.getId()!= -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
-				ConstantsAdmin.crearDireccion(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
+				ConstantsAdmin.crearDireccion(mTipoValor, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 				ConstantsAdmin.direccionesARegistrar.add(mTipoValor);
@@ -630,8 +642,8 @@ public class AltaTipoValorActivity extends Activity {
 		}else if(!esTipoFijoDireccion(mTipoValorAnterior.getTipo())&& esTipoFijoDireccion(mTipoValor.getTipo())){
 			this.setearDireccionPersona(valor, mTipoValor.getTipo());
 			if(personaSeleccionada.getId()!= -1){
-				ConstantsAdmin.crearPersona(personaSeleccionada, false, this, mDBManager);
-				ConstantsAdmin.eliminarDireccion(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
+				ConstantsAdmin.eliminarDireccion(mTipoValor, mDBManager);
 			}else{
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 				this.eliminarTipoValor(ConstantsAdmin.direccionesARegistrar, mTipoValorAnterior);
@@ -641,7 +653,7 @@ public class AltaTipoValorActivity extends Activity {
 			
 			if(personaSeleccionada.getId()!= -1){
 				mTipoValor.setId(mTipoValorAnterior.getId());
-				ConstantsAdmin.crearDireccion(mTipoValor, this, mDBManager);
+				ConstantsAdmin.crearDireccion(mTipoValor, mDBManager);
 			}else{
 				this.eliminarTipoValor(ConstantsAdmin.direccionesARegistrar, mTipoValorAnterior);
 				ConstantsAdmin.direccionesARegistrar.add(mTipoValor);
@@ -675,14 +687,14 @@ public class AltaTipoValorActivity extends Activity {
     
     
 	private boolean validarEntradaDeDatos(){
-		boolean estaOk = true;
+		boolean estaOk;
 		String nuevoTipoStr = mNuevoTipo.getText().toString();
 		String valorStr = mValor.getText().toString();
 		
 		if(nuevoTipoStr.equals("") && !(spinnerTipos.getSelectedItemPosition() == spinnerTipos.getCount() - 1)){
 			nuevoTipoStr = mTipoValor.getTipo();
 		}
-		estaOk = estaOk && !valorStr.equals("") && !nuevoTipoStr.equals("");
+		estaOk = !valorStr.equals("") && !nuevoTipoStr.equals("");
 		return estaOk;
 	}
 	

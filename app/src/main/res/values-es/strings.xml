@@ -208,5 +208,7 @@
 	<string name="label_ver_detalle"><![CDATA[VER DETALLE]]></string>
 	<string name="label_enviar_info"><![CDATA[ENVIAR INFO]]></string>
 	<string name="menu_editar_persona">Editar Contacto</string>
+    <string name="hint_contrasenia">********</string>
+	<string name="blank">%d</string>
 
 </resources>

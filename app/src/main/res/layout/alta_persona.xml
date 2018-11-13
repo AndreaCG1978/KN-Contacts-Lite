@@ -27,25 +27,29 @@
 			<ImageButton android:id="@+id/menu_icon_phone"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginStart="16dp" android:nextFocusRight="@+id/menu_icon_mail"
-                android:contentDescription="menu_icon_phone" />
+                android:contentDescription="menu_icon_phone"
+				android:layout_marginLeft="16dp" />
 
 			<ImageButton android:id="@+id/menu_icon_mail"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginStart="22dp" android:nextFocusRight="@+id/menu_icon_addres"
 				android:focusable="true"
-                android:contentDescription="menu_icon_mail" />
+                android:contentDescription="menu_icon_mail"
+				android:layout_marginLeft="22dp" />
 
 			<ImageButton android:id="@+id/menu_icon_addres"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginStart="22dp" android:nextFocusRight="@+id/menu_icon_category"
 				android:focusable="true"
-                android:contentDescription="menu_icon_addres" />
+                android:contentDescription="menu_icon_addres"
+				android:layout_marginLeft="22dp" />
 
 			<ImageButton android:id="@+id/menu_icon_category"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginStart="22dp" android:nextFocusRight="@+id/butttonRegistrarYSalir"
 				android:focusable="true"
-                android:contentDescription="menu_icon_category" />
+                android:contentDescription="menu_icon_category"
+				android:layout_marginLeft="22dp" />
 
 
 		</LinearLayout>
@@ -80,7 +84,9 @@
 				android:textSize="14sp" android:layout_marginStart="3dp"
 				android:layout_marginEnd="4dp" android:maxLength="25"
 				android:layout_width="fill_parent"
-				android:importantForAutofill="no" />
+				android:importantForAutofill="no"
+				android:layout_marginRight="4dp"
+				android:layout_marginLeft="3dp" />
 
 		</LinearLayout>
 		<LinearLayout android:id="@+id/linearNombre"
@@ -102,7 +108,9 @@
 				android:padding="5dp" android:textSize="14sp"
 				android:layout_marginStart="3dp" android:layout_marginEnd="4dp"
 				android:maxLength="25" android:layout_width="fill_parent"
-				android:importantForAutofill="no" />
+				android:importantForAutofill="no"
+				android:layout_marginRight="4dp"
+				android:layout_marginLeft="3dp" />
 
 		</LinearLayout>
 
@@ -114,7 +122,8 @@
 			<CheckBox android:id="@+id/checkFechaNacimiento"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:layout_marginStart="10dp" android:textColor="@color/color_gris_claro"
-				android:nextFocusRight="@+id/buttonPickDate" />
+				android:nextFocusRight="@+id/buttonPickDate"
+				android:layout_marginLeft="10dp" />
 
 
 			<Button android:id="@+id/buttonPickDate" android:text="@string/label_fechaNacimiento"
@@ -122,7 +131,8 @@
 				android:layout_width="wrap_content" android:layout_height="30dp"
 				android:textSize="12sp" android:textColor="@color/color_azul"
 				android:background="@drawable/custom_button"
-				android:layout_marginStart="5dp" />
+				android:layout_marginStart="5dp"
+				android:layout_marginLeft="5dp" />
 
 
 
@@ -131,7 +141,8 @@
 		<TextView android:id="@+id/labelDateDisplay"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:textSize="14sp" android:textStyle="bold"
-			android:layout_below="@id/linearCumple" android:layout_marginStart="15dp" />
+			android:layout_below="@id/linearCumple" android:layout_marginStart="15dp"
+			android:layout_marginLeft="15dp" />
 
 		<ImageButton android:id="@+id/addTelefono"
 			android:layout_width="36dp" android:layout_height="36dp"
@@ -146,7 +157,8 @@
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_toEndOf="@id/addTelefono" android:layout_height="25dp"
 			android:textSize="14sp" android:layout_marginBottom="6dp"
-			android:gravity="center" />
+			android:gravity="center"
+			android:layout_toRightOf="@id/addTelefono" />
 
 
 		<ListView android:id="@+id/listaTelefonosAlta"
@@ -169,7 +181,8 @@
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_height="25dp" android:textSize="14sp"
 			android:layout_marginBottom="6dp" android:layout_toEndOf="@id/addMail"
-			android:gravity="center" />
+			android:gravity="center"
+			android:layout_toRightOf="@id/addMail" />
 
 		<ListView android:id="@+id/listaMailsAlta"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -192,7 +205,8 @@
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_height="25dp" android:textSize="14sp"
 			android:layout_marginBottom="6dp" android:layout_toEndOf="@id/addDir"
-			android:gravity="center" />
+			android:gravity="center"
+			android:layout_toRightOf="@id/addDir" />
 
 
 
@@ -208,7 +222,10 @@
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:text="@string/text_sinDatos" android:textSize="12sp"
 			android:layout_below="@id/menu_icons" android:paddingStart="15dp"
-			android:layout_marginTop="50dp" />
+			android:paddingEnd="15dp"
+			android:layout_marginTop="50dp"
+			android:paddingLeft="15dp"
+			android:paddingRight="15dp"/>
 
 		<TextView android:id="@+id/label_category" android:text="@string/label_datosDeCategoria"
 			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
@@ -220,7 +237,8 @@
 			android:layout_below="@id/label_category" android:layout_width="wrap_content"
 			android:layout_height="35dp" android:layout_marginStart="5dp"
 			android:layout_marginTop="5dp" android:layout_marginBottom="5dp"
-			android:background="@drawable/custom_button" />
+			android:background="@drawable/custom_button"
+			android:layout_marginLeft="5dp" />
 
 
 		<LinearLayout android:id="@+id/linearCaracteristica"
@@ -243,7 +261,9 @@
 				android:layout_marginEnd="4dp" android:layout_width="fill_parent"
 				android:maxLength="30"
                 android:hint="@string/hint_descripcion"
-				android:importantForAutofill="no" />
+				android:importantForAutofill="no"
+				android:layout_marginRight="4dp"
+				android:layout_marginLeft="3dp" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -265,7 +285,9 @@
 				android:layout_marginEnd="4dp" android:layout_width="fill_parent"
 				android:maxLength="100" android:gravity="top|start" android:lines="4"
 				android:singleLine="false"
-				android:importantForAutofill="no" />
+				android:importantForAutofill="no"
+				android:layout_marginRight="4dp"
+				android:layout_marginLeft="3dp" />
 				
 		</LinearLayout>
 
@@ -303,7 +325,8 @@
 					android:textSize="13sp" android:textColor="@color/color_azul"
 					android:background="@drawable/custom_button"
 					android:layout_marginEnd="25dp"
-					style="?android:buttonBarButtonStyle"/>
+					style="?android:buttonBarButtonStyle"
+					android:layout_marginRight="25dp" />
 
 				<Button android:id="@+id/butttonRegistrarYSalir"
 					android:text="@string/label_registrarPersonaYSalir"

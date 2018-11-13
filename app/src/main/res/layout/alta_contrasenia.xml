@@ -17,7 +17,7 @@
 
 		<EditText android:id="@+id/contrasenia1" android:inputType="textPassword"
 			android:maxLength="20"
-			android:hint="*********"
+			android:hint="@string/hint_contrasenia"
 			android:textColor="@color/color_azul_oscuro" android:layout_width="fill_parent"
 			android:layout_height="35dp" android:padding="5dp" android:textSize="14sp"
 			android:layout_marginLeft="4dp" android:layout_marginRight="4dp"

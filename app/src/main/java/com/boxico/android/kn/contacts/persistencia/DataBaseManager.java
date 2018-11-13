@@ -23,14 +23,16 @@ public class DataBaseManager {
 
 
 
-	private static DataBaseManager instanciaUnica = new DataBaseManager();
+	private static final DataBaseManager instanciaUnica = new DataBaseManager();
 	 
-	 public DataBaseManager(Context ctx) {
-	        this.mCtx = ctx;
-	 }
+// --Commented out by Inspection START (12/11/2018 12:44):
+//	 public DataBaseManager(Context ctx) {
+//	        this.mCtx = ctx;
+//	 }
+// --Commented out by Inspection STOP (12/11/2018 12:44)
 
 
-	public DataBaseManager() {
+	private DataBaseManager() {
 	 	super();
 	}
 
@@ -44,22 +46,21 @@ public class DataBaseManager {
 		return mCtx;
 	}
 
-	public void setmCtx(Context mCtx) {
+	private void setmCtx(Context mCtx) {
 		this.mCtx = mCtx;
 	}
 
-     public DataBaseManager open() throws SQLException {
+     public void open() throws SQLException {
 	      mDbHelper = new DataBaseHelper(mCtx);
 	      mDb = mDbHelper.getWritableDatabase();
-	      return this;
-     }
+	 }
      
      public void close() {
          mDbHelper.close();
      }
      
-     public long createTipoValor(TipoValorDTO tipoVal, String nombreTabla) {
-    	 long returnValue = -1;
+     public void createTipoValor(TipoValorDTO tipoVal, String nombreTabla) {
+    	 long returnValue;
          ContentValues initialValues = new ContentValues();
          initialValues.put(ConstantsAdmin.KEY_TIPO, tipoVal.getTipo());
          initialValues.put(ConstantsAdmin.KEY_VALOR, tipoVal.getValor());
@@ -70,36 +71,35 @@ public class DataBaseManager {
     		 mDb.update(nombreTabla, initialValues, ConstantsAdmin.KEY_ROWID + "=" + tipoVal.getId() , null);
     		 returnValue = tipoVal.getId();
     	 }
-          return returnValue;
-         
-     }     
-     
-     public long createTelefono(TipoValorDTO tipoVal) {
-    	 return createTipoValor(tipoVal, ConstantsAdmin.TABLA_TELEFONOS);
-     }
 
-     public long createEmail(TipoValorDTO tipoVal) {
-    	 return createTipoValor(tipoVal, ConstantsAdmin.TABLA_EMAILS);
-     }
-
-     public long createDireccion(TipoValorDTO tipoVal) {
-    	 return createTipoValor(tipoVal, ConstantsAdmin.TABLA_DIRECCIONES);
-     }
+	 }
      
-     public int eliminarTelefono(long id){
-      	return mDb.delete(ConstantsAdmin.TABLA_TELEFONOS, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(id), null);
-     }
-     
-     public int eliminarEmail(long id){
-       	return mDb.delete(ConstantsAdmin.TABLA_EMAILS, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(id), null);
-     }
+     public void createTelefono(TipoValorDTO tipoVal) {
+		 createTipoValor(tipoVal, ConstantsAdmin.TABLA_TELEFONOS);
+	 }
 
-     public int eliminarDireccion(long id){
-       	return mDb.delete(ConstantsAdmin.TABLA_DIRECCIONES, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(id), null);
-     }
+     public void createEmail(TipoValorDTO tipoVal) {
+		 createTipoValor(tipoVal, ConstantsAdmin.TABLA_EMAILS);
+	 }
+
+     public void createDireccion(TipoValorDTO tipoVal) {
+		 createTipoValor(tipoVal, ConstantsAdmin.TABLA_DIRECCIONES);
+	 }
+     
+     public void eliminarTelefono(long id){
+		 mDb.delete(ConstantsAdmin.TABLA_TELEFONOS, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(id), null);
+	 }
+     
+     public void eliminarEmail(long id){
+		 mDb.delete(ConstantsAdmin.TABLA_EMAILS, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(id), null);
+	 }
+
+     public void eliminarDireccion(long id){
+		 mDb.delete(ConstantsAdmin.TABLA_DIRECCIONES, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(id), null);
+	 }
 
      public long createPersona(PersonaDTO persona, boolean importando) {
-    	 long returnValue = -1;
+    	 long returnValue;
          ContentValues initialValues = new ContentValues();
          initialValues.put(ConstantsAdmin.KEY_APELLIDO, persona.getApellido());
          initialValues.put(ConstantsAdmin.KEY_NOMBRES, persona.getNombres());
@@ -135,19 +135,19 @@ public class DataBaseManager {
          
      }
      
-     public int eliminarPersona(long idPersona){
+     public void eliminarPersona(long idPersona){
      	 mDb.delete(ConstantsAdmin.TABLA_PREFERIDOS, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(idPersona), null);
-    	 return mDb.delete(ConstantsAdmin.TABLA_PERSONA, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(idPersona), null);
+		 mDb.delete(ConstantsAdmin.TABLA_PERSONA, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(idPersona), null);
 
-     }
+	 }
      
-     public int eliminarPreferido(long idPersona){
-     	return mDb.delete(ConstantsAdmin.TABLA_PREFERIDOS, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(idPersona), null);
-     }
+     public void eliminarPreferido(long idPersona){
+		 mDb.delete(ConstantsAdmin.TABLA_PREFERIDOS, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(idPersona), null);
+	 }
 
-     public int eliminarCategoriaPersonal(long idCat){
-     	return mDb.delete(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(idCat), null);
-     }
+     public void eliminarCategoriaPersonal(long idCat){
+		 mDb.delete(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(idCat), null);
+	 }
     
 /*     
      public long crearPaciente(long idPersona, String obraSocial){
@@ -181,24 +181,24 @@ public class DataBaseManager {
     */ 
      
      private String queryParaCategoriaProtegidas(List<CategoriaDTO> catProt){
-    	 String result = "";
-    	 com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO cat = null;
+    	 StringBuilder result = new StringBuilder();
+    	 com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO cat;
     	 
     	 Iterator<CategoriaDTO> it = catProt.iterator();
     	 it = catProt.iterator();
     	 while(it.hasNext()){
              cat = it.next();
-    		 result = result + " AND (" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " <> '" + cat.getNombreReal() + "') ";
+    		 result.append(" AND (").append(ConstantsAdmin.KEY_NOMBRE_CATEGORIA).append(" <> '").append(cat.getNombreReal()).append("') ");
     	 }
-    	 return result;
+    	 return result.toString();
      }
      
      public Cursor fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(String param, List<String> categorias, List<CategoriaDTO> categoriasProtegidas) {
     	 String sortOrder = ConstantsAdmin.KEY_APELLIDO + " COLLATE LOCALIZED ASC";
     	 Cursor result = null;
-    	 String consultaPorCategoria = " (1 = 2) ";
-    	 Iterator<String> catSelect = null;
-    	 String catTemp = null; 
+    	 StringBuilder consultaPorCategoria = new StringBuilder(" (1 = 2) ");
+    	 Iterator<String> catSelect;
+    	 String catTemp;
     	 String categProteg = " (1 = 1) ";
     	 if(!ConstantsAdmin.contrasenia.isActiva()){
     		 categProteg = categProteg + this.queryParaCategoriaProtegidas(categoriasProtegidas);
@@ -218,7 +218,7 @@ public class DataBaseManager {
     			 catSelect = categorias.iterator();
     			 while(catSelect.hasNext()){
     				 catTemp = catSelect.next();
-    				 consultaPorCategoria = consultaPorCategoria + " OR (" +  ConstantsAdmin.KEY_NOMBRE_CATEGORIA + "='" + catTemp + "')";
+    				 consultaPorCategoria.append(" OR (").append(ConstantsAdmin.KEY_NOMBRE_CATEGORIA).append("='").append(catTemp).append("')");
     			 }
 		    	 if(param != null && !param.equals("")){
 		    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, atr, "(" + consulta + ") AND (" + consultaPorCategoria + ")", null, null, null, sortOrder);
@@ -243,7 +243,7 @@ public class DataBaseManager {
     	 if(!ConstantsAdmin.contrasenia.isActiva()){
     		 categProteg = categProteg + this.queryParaCategoriaProtegidas(categoriasProtegidas);
     	 }
-    	 
+
 //    	 LIKE '[^a-zA-Z]%'
     	 String consulta = categProteg + " AND " + ConstantsAdmin.KEY_APELLIDO + " LIKE '" + primeraLetra +"%' ";
     	 String[] atr = new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_APELLIDO,ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_DATO_EXTRA, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DESCRIPCION};
@@ -261,13 +261,13 @@ public class DataBaseManager {
 		    	 }else{
 		    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, atr, categProteg + " AND " + consultaPorCategoria, null, null, null, sortOrder);
 		    	 }
-    			 
+
     		 }
     	 }catch (SQLiteException e) {
 			e.getMessage();
 		}
     	 return result;
-    	 
+
      }
 
      
@@ -283,13 +283,13 @@ public class DataBaseManager {
      
      public long tablaPreferidosSize(){
 //    	 Cursor cur = null;
-    	 long result = 0;
+    	 long result;
     	 SQLiteStatement s = mDb.compileStatement(DataBaseHelper.SIZE_PREFERIDOS);
     	 result = s.simpleQueryForLong();
     	 return result;
      }
      
-     public long crearCategoria(CategoriaDTO categoria, boolean importando){
+     public void crearCategoria(CategoriaDTO categoria, boolean importando){
     	 ContentValues initialValues = new ContentValues();
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA, categoria.getNombreReal());
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_ACTIVA, categoria.getActiva());
@@ -301,17 +301,16 @@ public class DataBaseManager {
         	 initialValues.put(ConstantsAdmin.KEY_ROWID, categoria.getId());
         	 result = mDb.insert(ConstantsAdmin.TABLA_CATEGORIA, null, initialValues);
          }
-         return result;
-     }
+	 }
      
-     public long crearPreferido(long preferidoId){
+     public void crearPreferido(long preferidoId){
     	 ContentValues initialValues = new ContentValues();
          initialValues.put(ConstantsAdmin.KEY_ROWID, preferidoId);
-         return mDb.insert(ConstantsAdmin.TABLA_PREFERIDOS, null, initialValues);
-     }
+		 mDb.insert(ConstantsAdmin.TABLA_PREFERIDOS, null, initialValues);
+	 }
      
      
-     public long crearCategoriaPersonal(CategoriaDTO categoria, String oldCat, boolean importando){
+     public void crearCategoriaPersonal(CategoriaDTO categoria, String oldCat, boolean importando){
     	 long returnValue = -1;
     	 ContentValues initialValues = new ContentValues();
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA, categoria.getNombreReal());
@@ -334,9 +333,8 @@ public class DataBaseManager {
          } catch (Exception e) {
 			// TODO: handle exception
 			e.getMessage();
-         }      
-         return returnValue;
-     }
+         }
+	 }
      
      private void actualizarContactosPorCambioCategoriaPersonal(CategoriaDTO categoria, String oldCat){
      	 ContentValues initialValues = new ContentValues();
@@ -345,14 +343,14 @@ public class DataBaseManager {
          mDb.update(ConstantsAdmin.TABLA_PERSONA, initialValues, ConstantsAdmin.KEY_NOMBRE_CATEGORIA + "='" + oldCat +"'" , null);
      }
      
-     public long actualizarCategoria(CategoriaDTO categoria){
+     public void actualizarCategoria(CategoriaDTO categoria){
     	 ContentValues initialValues = new ContentValues();
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_ACTIVA, categoria.getActiva());
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA, categoria.getTipoDatoExtra());
-         return mDb.update(ConstantsAdmin.TABLA_CATEGORIA, initialValues, ConstantsAdmin.KEY_ROWID + " = " + categoria.getId(), null);
-     }  
+		 mDb.update(ConstantsAdmin.TABLA_CATEGORIA, initialValues, ConstantsAdmin.KEY_ROWID + " = " + categoria.getId(), null);
+	 }
 
-     public long actualizarConfig(ConfigDTO config){
+     public void actualizarConfig(ConfigDTO config){
     	 ContentValues initialValues = new ContentValues();
     	 if(!config.isEstanDetallados()){
     		 initialValues.put(ConstantsAdmin.KEY_ESTAN_DETALLADOS, 0);	 
@@ -386,28 +384,29 @@ public class DataBaseManager {
          } catch (Exception e) {
 			// TODO: handle exception
 			e.getMessage();
-         }  
-         return id;
+         }
 
-     }       
+	 }
      
-     public long actualizarCategoriaPersonal(CategoriaDTO categoria){
+     public void actualizarCategoriaPersonal(CategoriaDTO categoria){
     	 ContentValues initialValues = new ContentValues();
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_ACTIVA, categoria.getActiva());
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA, categoria.getTipoDatoExtra());
-         return mDb.update(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, initialValues, ConstantsAdmin.KEY_ROWID + " = " + categoria.getId(), null);
-     }  
+		 mDb.update(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, initialValues, ConstantsAdmin.KEY_ROWID + " = " + categoria.getId(), null);
+	 }
      
-     public void borrarDatosFicticios(){
-    	 mDb.delete(ConstantsAdmin.TABLA_PERSONA, null, null);
-    	 mDb.delete(ConstantsAdmin.TABLA_CATEGORIA, null, null);
-     }
-     
+// --Commented out by Inspection START (12/11/2018 12:34):
+//     public void borrarDatosFicticios(){
+//    	 mDb.delete(ConstantsAdmin.TABLA_PERSONA, null, null);
+//    	 mDb.delete(ConstantsAdmin.TABLA_CATEGORIA, null, null);
+//     }
+// --Commented out by Inspection STOP (12/11/2018 12:34)
+
      public void createBD(){
     	 mDbHelper.onCreate(mDb);
      }
      
-     public long tablaContraseniaSize(){
+     private long tablaContraseniaSize(){
     	 long result = 0;
     	 try {
 			SQLiteStatement s = mDb.compileStatement(DataBaseHelper.SIZE_CONTRASENIA);
@@ -443,7 +442,7 @@ public class DataBaseManager {
 		
      }
      
-     public boolean actualizarTablaContrasenia(){
+     public void actualizarTablaContrasenia(){
      	boolean result = false;
      	try {
      		if(tablaContraseniaSize() > 0){
@@ -453,9 +452,8 @@ public class DataBaseManager {
  		} catch (Exception e) {
  			e.getMessage();
  		}
- 		return result;
- 		
-      }
+
+	 }
 
      public void upgradeDB(){
     	 mDbHelper.onUpgrade(mDb, 1, 2);
@@ -526,15 +524,15 @@ public class DataBaseManager {
 		    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_APELLIDO,
 		    				 ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_DATO_EXTRA, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO}, ConstantsAdmin.KEY_NOMBRE_CATEGORIA + "= '" + categoria.getNombreReal() + "'", null, null, null, sortOrder);
 		    	 }
-    			 
+
     		 }
     	 }catch (SQLiteException e) {
 			e.getMessage();
 		}
     	 return result;
-    	 
+
      }
-     
+
      public Cursor fetchAllPersonaPorApellidoONombreODatosCategoria(String param, CategoriaDTO categoria) {
     	 String sortOrder = ConstantsAdmin.KEY_APELLIDO + " COLLATE LOCALIZED ASC";
     	 Cursor result = null;
@@ -553,13 +551,13 @@ public class DataBaseManager {
 		    	 }else{
 		    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, atr, ConstantsAdmin.KEY_NOMBRE_CATEGORIA + "= '" + categoria.getNombreReal() + "'", null, null, null, sortOrder);
 		    	 }
-    			 
+
     		 }
     	 }catch (SQLiteException e) {
 			e.getMessage();
 		}
     	 return result;
-    	 
+
      }
 
      public Cursor fetchAllPersonas() {
@@ -593,7 +591,7 @@ public class DataBaseManager {
      }
      
      public Cursor fetchAllCategoriasPorNombre(String paramNombre) {
-    	 Cursor result = null;
+    	 Cursor result;
     	 if(paramNombre != null && !paramNombre.equals("")){
     		 result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA}, ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%'", null, null, null, null);
     	 }else{
@@ -603,7 +601,7 @@ public class DataBaseManager {
      }
      
      public Cursor fetchAllCategoriasPersonalesPorNombre(String paramNombre) {
-    	 Cursor result = null;
+    	 Cursor result;
     	 if(paramNombre != null && !paramNombre.equals("")){
     		 result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA}, ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%'", null, null, null, null);
     	 }else{
@@ -613,7 +611,7 @@ public class DataBaseManager {
      }
 
      public Cursor fetchCategoriasActivasPorNombre(String paramNombre) {
-    	 Cursor result = null;
+    	 Cursor result;
     	 if(paramNombre != null && !paramNombre.equals("")){
     		 result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
     	 }else{
@@ -623,7 +621,7 @@ public class DataBaseManager {
      }
      
      public Cursor fetchCategoriasPersonalesActivasPorNombre(String paramNombre) {
-    	 Cursor result = null;
+    	 Cursor result;
     	 if(paramNombre != null && !paramNombre.equals("")){
     		 result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
     	 }else{
@@ -632,7 +630,7 @@ public class DataBaseManager {
          return result;
      }
      
-     public Cursor fetchPersonaString(String column, Object value) throws SQLException {
+     private Cursor fetchPersonaString(String column, Object value) throws SQLException {
          Cursor mCursor = null;
     	 try{
     		 mCursor =
@@ -649,10 +647,10 @@ public class DataBaseManager {
      }
      
      
-     public Cursor fetchPersonaString(String column1, String column2, Object value1, Object value2) throws SQLException {
+     private Cursor fetchPersonaString(String column1, String column2, Object value1, Object value2) throws SQLException {
          Cursor mCursor = null;
     	 try{
-    		 String valor = null;
+    		 String valor;
     		 if(value1 != null && value2 != null && !"".equals(value1) && !"".equals(value2)){
     			 valor = "TRIM(UPPER(" + column1 + ")) = TRIM(UPPER('" + value1 + "')) AND TRIM(UPPER(" + column2 +")) = TRIM(UPPER('" + value2 + "'))";
     		 }else  if(value1 != null && !"".equals(value1)){
@@ -673,7 +671,7 @@ public class DataBaseManager {
          return mCursor;
      }
 
-     public Cursor fetchPersonaNumber(String column, Object value) throws SQLException {
+     private Cursor fetchPersonaNumber(String column, Object value) throws SQLException {
          Cursor mCursor = null;
     	 try{
     		 mCursor =
@@ -690,7 +688,7 @@ public class DataBaseManager {
      }
      
      
-     public Cursor fetchCategoriaPersonalNumber(String column, Object value) throws SQLException {
+     private Cursor fetchCategoriaPersonalNumber(String column, Object value) throws SQLException {
          Cursor mCursor = null;
     	 try{
     		 mCursor =
@@ -705,11 +703,11 @@ public class DataBaseManager {
 		}
          return mCursor;
      }
-     
-     
+
+
      public Cursor fetchPersonaPorId(long id){
     	 return this.fetchPersonaNumber(ConstantsAdmin.KEY_ROWID, id);
-  	 
+
      }
      
      public Cursor fetchPreferidoPorId(long id){
@@ -742,10 +740,10 @@ public class DataBaseManager {
     	 return fetchTipoValorPorIdPersona(id,ConstantsAdmin.TABLA_DIRECCIONES);
      }
 
-     
+
      public Cursor fetchTipoValorPorIdPersona(long id, String nombreTabla){
     	    //	 return this.fetchPersonaNumber(ConstantsAdmin.KEY_ROWID, id);
-	     Cursor mCursor = null;
+	     Cursor mCursor;
 		 mCursor =
          mDb.query(true, nombreTabla, null, ConstantsAdmin.KEY_ID_PERSONA + "= '" + id + "'" , null,
                  null, null, null, null);
@@ -782,7 +780,7 @@ public class DataBaseManager {
      // CAMBIOS PARA AGREGAR CONTRASENIA EN LAS CATEGORIAS
      
      public Cursor fetchAllCategoriasProtegidasPorNombre(String paramNombre) {
-    	 Cursor result = null;
+    	 Cursor result;
     	 if(paramNombre != null && !paramNombre.equals("")){
     		 result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA}, ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%'", null, null, null, null);
     	 }else{
@@ -815,7 +813,7 @@ public class DataBaseManager {
     	 
      }
      
-     public long crearCategoriaProtegida(CategoriaDTO categoria){
+     public void crearCategoriaProtegida(CategoriaDTO categoria){
     	 long returnValue = -1;
     	 ContentValues initialValues = new ContentValues();
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA, categoria.getNombreReal());
@@ -826,9 +824,8 @@ public class DataBaseManager {
          } catch (Exception e) {
 			// TODO: handle exception
 			e.getMessage();
-         }      
-         return returnValue;
-     }
+         }
+	 }
      
      
      public long crearContrasenia(ContraseniaDTO contrasenia){
@@ -857,9 +854,9 @@ public class DataBaseManager {
      }
      
      
-     public int eliminarCategoriaProtegida(String nombreCategoria){
-		 return mDb.delete(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, ConstantsAdmin.KEY_NOMBRE_CATEGORIA + "='" + nombreCategoria + "'", null);
-      }
+     public void eliminarCategoriaProtegida(String nombreCategoria){
+		 mDb.delete(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, ConstantsAdmin.KEY_NOMBRE_CATEGORIA + "='" + nombreCategoria + "'", null);
+	 }
      
      
 

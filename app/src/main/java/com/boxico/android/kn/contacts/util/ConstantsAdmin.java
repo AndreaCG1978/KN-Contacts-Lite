@@ -2,7 +2,6 @@ package com.boxico.android.kn.contacts.util;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -29,7 +28,6 @@ import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
 import com.boxico.android.kn.contacts.*;
-import com.boxico.android.kn.contacts.R;
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.ConfigDTO;
@@ -82,12 +80,12 @@ public class ConstantsAdmin {
 		// TODO Auto-generated method stub
 		List<PersonaDTO> personas = obtenerPersonas(context, mDBManager);
 		Iterator<PersonaDTO> it = personas.iterator();
-		PersonaDTO per = null;
-		organizadosAlfabeticamente = new HashMap<String, List<PersonaDTO>>();
-		organizadosPorCategoria = new HashMap<String, List<PersonaDTO>>();
-		List<PersonaDTO> listTemp = null;
-		String primeraLetra = null;
-		String nombreCategoria = null;
+		PersonaDTO per;
+		organizadosAlfabeticamente = new HashMap<>();
+		organizadosPorCategoria = new HashMap<>();
+		List<PersonaDTO> listTemp;
+		String primeraLetra;
+		String nombreCategoria;
         while(it.hasNext()){
         	per = it.next();
         
@@ -98,7 +96,7 @@ public class ConstantsAdmin {
         		primeraLetra = "";
         	}
 
-        	listTemp = new ArrayList<PersonaDTO>();
+        	listTemp = new ArrayList<>();
         	if (organizadosAlfabeticamente.containsKey(primeraLetra)) {
         		listTemp = organizadosAlfabeticamente.get(primeraLetra);
         	}
@@ -107,7 +105,7 @@ public class ConstantsAdmin {
 
     		// ORGANIZO POR CATEGORIA
     		nombreCategoria = per.getCategoriaNombreRelativo();
-        	listTemp = new ArrayList<PersonaDTO>();
+        	listTemp = new ArrayList<>();
         	if (organizadosPorCategoria.containsKey(nombreCategoria)) {
         		listTemp = organizadosPorCategoria.get(nombreCategoria);
         	}
@@ -141,12 +139,14 @@ public class ConstantsAdmin {
     	mDBManager.open();
     }
     
-    public static void abrirCursor(Cursor cur){
-    	if(cur.isClosed()){
-    	//	cur.
-    	}
-    }
-    
+// --Commented out by Inspection START (12/11/2018 12:34):
+//    public static void abrirCursor(Cursor cur){
+//    	if(cur.isClosed()){
+//    	//	cur.
+//    	}
+//    }
+// --Commented out by Inspection STOP (12/11/2018 12:34)
+
     public static void finalizarBD(DataBaseManager mDBManager){
     	if(mDBManager != null){
     		mDBManager.close();
@@ -164,9 +164,9 @@ public class ConstantsAdmin {
     
     public static void actualizarTablaCategorias(Activity context, DataBaseManager mDBManager){
     	boolean actualizo = mDBManager.actualizarTablaCategoria();
-    	List<CategoriaDTO> categorias = null;
-    	Iterator<CategoriaDTO> it = null;
-    	CategoriaDTO cat = null;
+    	List<CategoriaDTO> categorias;
+    	Iterator<CategoriaDTO> it;
+    	CategoriaDTO cat;
     	if(actualizo){
     	      Cursor cursor = mDBManager.fetchAllCategoriasPorNombre(null);
     	      context.startManagingCursor(cursor);
@@ -188,7 +188,7 @@ public class ConstantsAdmin {
     
     
     public static void cargarCategorias(Activity context, DataBaseManager mDBManager){
-    	long catSize = 0;
+    	long catSize;
     	catSize = mDBManager.tablaCategoriaSize();
     	if(catSize == 0){
     		cargarCategoriasPrivado(context, mDBManager);
@@ -196,20 +196,20 @@ public class ConstantsAdmin {
     }
     
     public static void registrarTelefonos(Activity context, List<TipoValorDTO> telefonos, DataBaseManager mDBManager){
-    	registrarTipoValor(context, telefonos, TABLA_TELEFONOS, mDBManager);
+    	registrarTipoValor(telefonos, TABLA_TELEFONOS, mDBManager);
     }
     
     public static void registrarMails(Activity context, List<TipoValorDTO> mails, DataBaseManager mDBManager){
-    	registrarTipoValor(context, mails, TABLA_EMAILS, mDBManager);
+    	registrarTipoValor(mails, TABLA_EMAILS, mDBManager);
     }
     
     public static void registrarDirecciones(Activity context, List<TipoValorDTO> direcciones, DataBaseManager mDBManager){
-    	registrarTipoValor(context, direcciones, TABLA_DIRECCIONES, mDBManager);
+    	registrarTipoValor(direcciones, TABLA_DIRECCIONES, mDBManager);
     }
     
-    private static void registrarTipoValor(Activity context, List<TipoValorDTO> valores, String tablaNombre, DataBaseManager mDBManager){
+    private static void registrarTipoValor(List<TipoValorDTO> valores, String tablaNombre, DataBaseManager mDBManager){
     	Iterator<TipoValorDTO> it = valores.iterator();
-    	TipoValorDTO tv = null;
+    	TipoValorDTO tv;
     	inicializarBD(mDBManager);
     	while(it.hasNext()){
     		tv = it.next();
@@ -218,8 +218,8 @@ public class ConstantsAdmin {
     	finalizarBD(mDBManager);
     }
     
-    public static long tablaPreferidosSize(Activity context, DataBaseManager mDBManager){
-    	long valor = 0;
+    public static long tablaPreferidosSize(DataBaseManager mDBManager){
+    	long valor;
     	inicializarBD(mDBManager);
     	valor = mDBManager.tablaPreferidosSize();
     	finalizarBD(mDBManager);
@@ -228,43 +228,58 @@ public class ConstantsAdmin {
     
     private static String obtenerTipoDatoExtraPorCategoria(String categoria, Activity context){
     	String result = null;
-    	
-    	if(categoria.equals(ConstantsAdmin.CATEGORIA_AMIGOS)){
-    		result = context.getString(R.string.hint_lugarOActividad);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_CLIENTES)){
-    		result = context.getString(R.string.hint_lugarOActividad);
-    	}else if(context.equals(ConstantsAdmin.CATEGORIA_COLEGAS)){
-    		result = context.getString(R.string.hint_lugarOActividad);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_COMPANIEROS)){
-    		result = context.getString(R.string.hint_lugarOActividad);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_CONOCIDOS)){
-    		result = context.getString(R.string.hint_lugarOActividad);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_FAMILIARES)){
-    		result = context.getString(R.string.hint_parentesco);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_JEFES)){
-    		result = context.getString(R.string.hint_empresa);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_MEDICO)){
-    		result = context.getString(R.string.hint_especialidad);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_OTROS)){
-    		result = context.getString(R.string.hint_rol);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_PACIENTES)){
-    		result = context.getString(R.string.hint_obraSocial);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_PROFESORES)){
-    		result = context.getString(R.string.hint_lugarOActividad);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_PROVEEDORES)){
-    		result = context.getString(R.string.hint_empresa);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_SOCIOS)){
-    		result = context.getString(R.string.hint_empresa);
-    	}else if(categoria.equals(ConstantsAdmin.CATEGORIA_VECINOS)){
-    		result = context.getString(R.string.hint_zona);
-    	}    	
+
+        switch (categoria) {
+            case ConstantsAdmin.CATEGORIA_AMIGOS:
+                result = context.getString(R.string.hint_lugarOActividad);
+                break;
+            case ConstantsAdmin.CATEGORIA_CLIENTES:
+                result = context.getString(R.string.hint_lugarOActividad);
+                break;
+            case ConstantsAdmin.CATEGORIA_COLEGAS:
+                result = context.getString(R.string.hint_lugarOActividad);
+                break;
+            case ConstantsAdmin.CATEGORIA_COMPANIEROS:
+                result = context.getString(R.string.hint_lugarOActividad);
+                break;
+            case ConstantsAdmin.CATEGORIA_CONOCIDOS:
+                result = context.getString(R.string.hint_lugarOActividad);
+                break;
+            case ConstantsAdmin.CATEGORIA_FAMILIARES:
+                result = context.getString(R.string.hint_parentesco);
+                break;
+            case ConstantsAdmin.CATEGORIA_JEFES:
+                result = context.getString(R.string.hint_empresa);
+                break;
+            case ConstantsAdmin.CATEGORIA_MEDICO:
+                result = context.getString(R.string.hint_especialidad);
+                break;
+            case ConstantsAdmin.CATEGORIA_OTROS:
+                result = context.getString(R.string.hint_rol);
+                break;
+            case ConstantsAdmin.CATEGORIA_PACIENTES:
+                result = context.getString(R.string.hint_obraSocial);
+                break;
+            case ConstantsAdmin.CATEGORIA_PROFESORES:
+                result = context.getString(R.string.hint_lugarOActividad);
+                break;
+            case ConstantsAdmin.CATEGORIA_PROVEEDORES:
+                result = context.getString(R.string.hint_empresa);
+                break;
+            case ConstantsAdmin.CATEGORIA_SOCIOS:
+                result = context.getString(R.string.hint_empresa);
+                break;
+            case ConstantsAdmin.CATEGORIA_VECINOS:
+                result = context.getString(R.string.hint_zona);
+                break;
+        }
      	
     	return result;
     }
     
 	private static void cargarCategoriasPrivado(Activity context, DataBaseManager mDBManager){
-		CategoriaDTO cat = null;
-		String tipoDE = null;
+		CategoriaDTO cat;
+		String tipoDE;
 		
 		tipoDE = obtenerTipoDatoExtraPorCategoria(ConstantsAdmin.CATEGORIA_AMIGOS, context);
 		cat = new CategoriaDTO(0 , ConstantsAdmin.CATEGORIA_AMIGOS, ConstantsAdmin.CATEGORIA_AMIGOS, 1, tipoDE);
@@ -362,7 +377,7 @@ public class ConstantsAdmin {
     public static final String CATEGORIA_VECINOS = "Vecino";
     public static final String CATEGORIA_COLEGAS = "Colega";
     public static final String CATEGORIA_MEDICO = "Doctor";
-    public static final String CATEGORIA_TODOS = "TODAS";
+    private static final String CATEGORIA_TODOS = "TODAS";
     
     // TABLA: Categoria
     
@@ -443,13 +458,13 @@ public class ConstantsAdmin {
 	
     
     public static List<CategoriaDTO> categoriasCursorToDtos(Cursor cursor){
-    	ArrayList<CategoriaDTO> result = new ArrayList<CategoriaDTO>();
-    	CategoriaDTO cat = null; 
+    	ArrayList<CategoriaDTO> result = new ArrayList<>();
+    	CategoriaDTO cat;
     	
-    	String catName = null;
-    	String tipoDatoExtra = null;
-    	long catId = 0;
-    	long catActiva = 0;
+    	String catName;
+    	String tipoDatoExtra;
+    	long catId;
+    	long catActiva;
     	
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
@@ -467,12 +482,12 @@ public class ConstantsAdmin {
 
     }   
     
-    public static List<CategoriaDTO> categoriasProtegidasCursorToDtos(Cursor cursor){
-    	ArrayList<CategoriaDTO> result = new ArrayList<CategoriaDTO>();
-    	CategoriaDTO cat = null; 
+    private static List<CategoriaDTO> categoriasProtegidasCursorToDtos(Cursor cursor){
+    	ArrayList<CategoriaDTO> result = new ArrayList<>();
+    	CategoriaDTO cat;
     	
-    	String catName = null;
-    	long catId = 0;
+    	String catName;
+    	long catId;
     	
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
@@ -488,13 +503,13 @@ public class ConstantsAdmin {
     }   
     
     public static List<CategoriaDTO> categoriasPersonalesCursorToDtos(Cursor cursor){
-    	ArrayList<CategoriaDTO> result = new ArrayList<CategoriaDTO>();
-    	CategoriaDTO cat = null; 
+    	ArrayList<CategoriaDTO> result = new ArrayList<>();
+    	CategoriaDTO cat;
     	
-    	String catName = null;
-    	String tipoDatoExtra = null;
-    	long catId = 0;
-    	long catActiva = 0;
+    	String catName;
+    	String tipoDatoExtra;
+    	long catId;
+    	long catActiva;
     	
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
@@ -514,8 +529,8 @@ public class ConstantsAdmin {
     
     public static PersonaDTO obtenerPersonaId(Activity context, long idPer, DataBaseManager mDBManager){
     	PersonaDTO per = new PersonaDTO();
-        per.setId(Long.valueOf(idPer));
-    	Cursor perCursor = null;
+        per.setId(idPer);
+    	Cursor perCursor;
 		inicializarBD(mDBManager);
     	perCursor = mDBManager.fetchPersonaPorId(idPer);
     	context.startManagingCursor(perCursor);
@@ -528,8 +543,8 @@ public class ConstantsAdmin {
     
     public static CategoriaDTO obtenerCategoriaPersonalId(Activity context, long idCat, DataBaseManager mDBManager){
     	CategoriaDTO cat = new CategoriaDTO();
-    	cat.setId(Long.valueOf(idCat));
-    	Cursor catCursor = null;
+    	cat.setId(idCat);
+    	Cursor catCursor;
 		inicializarBD(mDBManager);
     	catCursor = mDBManager.fetchCategoriaPersonalPorId(idCat);
     	context.startManagingCursor(catCursor);
@@ -541,9 +556,9 @@ public class ConstantsAdmin {
     }
     
     
-    public static List<TipoValorDTO> cursorToTipoValorDtos(Cursor cursor){
-    	ArrayList<TipoValorDTO> result = new ArrayList<TipoValorDTO>();
-    	TipoValorDTO tv = null; 
+    private static List<TipoValorDTO> cursorToTipoValorDtos(Cursor cursor){
+    	ArrayList<TipoValorDTO> result = new ArrayList<>();
+    	TipoValorDTO tv;
 
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
@@ -570,9 +585,9 @@ public class ConstantsAdmin {
     	return obtenerTipoValorDtosIdPersona(context, id, ConstantsAdmin.TABLA_DIRECCIONES, mDBManager);
     }
     
-    public static List<TipoValorDTO> obtenerTipoValorDtosIdPersona(Activity context, long id, String tablaName, DataBaseManager mDBManager){
-    	Cursor cur = null;
-    	List<TipoValorDTO> result = null;
+    private static List<TipoValorDTO> obtenerTipoValorDtosIdPersona(Activity context, long id, String tablaName, DataBaseManager mDBManager){
+    	Cursor cur;
+    	List<TipoValorDTO> result;
 		inicializarBD(mDBManager);
     	cur = mDBManager.fetchTipoValorPorIdPersona(id, tablaName);
     	context.startManagingCursor(cur);
@@ -585,7 +600,7 @@ public class ConstantsAdmin {
 
     
     private static CategoriaDTO cursorToCategoriaDto(Cursor catCursor){
-    	String temp = null;
+    	String temp;
     	CategoriaDTO cat = new CategoriaDTO();
     	if(catCursor != null){
 	  //  	context.stopManagingCursor(catCursor);
@@ -604,7 +619,7 @@ public class ConstantsAdmin {
 
     
     private static TipoValorDTO cursorToTipoValorDto(Cursor cur){
-    	String temp = null;
+    	String temp;
     	TipoValorDTO tv = new TipoValorDTO();
     	if(cur != null){
 	        temp = cur.getString(cur.getColumnIndex(ConstantsAdmin.KEY_ROWID));
@@ -620,7 +635,7 @@ public class ConstantsAdmin {
     }    
 
     private static Long cursorToPreferido(Cursor cur){
-    	String temp = null;
+    	String temp;
     	Long id = null;
     	if(cur != null){
 	        temp = cur.getString(cur.getColumnIndex(ConstantsAdmin.KEY_ROWID));
@@ -630,7 +645,7 @@ public class ConstantsAdmin {
     }     
     
     private static PersonaDTO cursorToPersonaDto(Cursor perCursor){
-    	String temp = null;
+    	String temp;
     	PersonaDTO per = new PersonaDTO();
     	if(perCursor != null){
 	 //   	context.stopManagingCursor(perCursor);
@@ -675,7 +690,7 @@ public class ConstantsAdmin {
     
     
     public static PersonaDTO obtenerPersonaConNombreYApellido(String name, String apellido, Activity context, DataBaseManager mDBManager){
-    	Cursor cursor = null;
+    	Cursor cursor;
     	PersonaDTO per = null;
     	cursor = mDBManager.fetchPersonaPorNombreYApellido(name, apellido);
     	if(cursor != null){
@@ -703,36 +718,53 @@ public class ConstantsAdmin {
 
     public static String obtenerNombreCategoria(String nCat, Context context){
     	String nombreCat = null;
-     	if(nCat.equals(ConstantsAdmin.CATEGORIA_AMIGOS))
-    		nombreCat = context.getString(R.string.cat_Amigo);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_CLIENTES))
-    		nombreCat = context.getString(R.string.cat_Cliente);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_COLEGAS))
-    		nombreCat = context.getString(R.string.cat_Colega);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_COMPANIEROS))
-    		nombreCat = context.getString(R.string.cat_Companiero);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_CONOCIDOS))
-    		nombreCat = context.getString(R.string.cat_Conocido);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_FAMILIARES))
-    		nombreCat = context.getString(R.string.cat_Familiar);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_JEFES))
-    		nombreCat = context.getString(R.string.cat_Jefe);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_MEDICO))
-    		nombreCat = context.getString(R.string.cat_Medico);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_OTROS))
-    		nombreCat = context.getString(R.string.cat_Otro);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_PACIENTES))
-    		nombreCat = context.getString(R.string.cat_Paciente);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_PROFESORES))
-    		nombreCat = context.getString(R.string.cat_Profesor);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_PROVEEDORES))
-    		nombreCat = context.getString(R.string.cat_Proveedor);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_SOCIOS))
-    		nombreCat = context.getString(R.string.cat_Socio);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_VECINOS))
-    		nombreCat = context.getString(R.string.cat_Vecino);
-    	else if(nCat.equals(ConstantsAdmin.CATEGORIA_TODOS))
-    		nombreCat = context.getString(R.string.cat_TODAS);
+		switch (nCat) {
+			case ConstantsAdmin.CATEGORIA_AMIGOS:
+				nombreCat = context.getString(R.string.cat_Amigo);
+				break;
+			case ConstantsAdmin.CATEGORIA_CLIENTES:
+				nombreCat = context.getString(R.string.cat_Cliente);
+				break;
+			case ConstantsAdmin.CATEGORIA_COLEGAS:
+				nombreCat = context.getString(R.string.cat_Colega);
+				break;
+			case ConstantsAdmin.CATEGORIA_COMPANIEROS:
+				nombreCat = context.getString(R.string.cat_Companiero);
+				break;
+			case ConstantsAdmin.CATEGORIA_CONOCIDOS:
+				nombreCat = context.getString(R.string.cat_Conocido);
+				break;
+			case ConstantsAdmin.CATEGORIA_FAMILIARES:
+				nombreCat = context.getString(R.string.cat_Familiar);
+				break;
+			case ConstantsAdmin.CATEGORIA_JEFES:
+				nombreCat = context.getString(R.string.cat_Jefe);
+				break;
+			case ConstantsAdmin.CATEGORIA_MEDICO:
+				nombreCat = context.getString(R.string.cat_Medico);
+				break;
+			case ConstantsAdmin.CATEGORIA_OTROS:
+				nombreCat = context.getString(R.string.cat_Otro);
+				break;
+			case ConstantsAdmin.CATEGORIA_PACIENTES:
+				nombreCat = context.getString(R.string.cat_Paciente);
+				break;
+			case ConstantsAdmin.CATEGORIA_PROFESORES:
+				nombreCat = context.getString(R.string.cat_Profesor);
+				break;
+			case ConstantsAdmin.CATEGORIA_PROVEEDORES:
+				nombreCat = context.getString(R.string.cat_Proveedor);
+				break;
+			case ConstantsAdmin.CATEGORIA_SOCIOS:
+				nombreCat = context.getString(R.string.cat_Socio);
+				break;
+			case ConstantsAdmin.CATEGORIA_VECINOS:
+				nombreCat = context.getString(R.string.cat_Vecino);
+				break;
+			case ConstantsAdmin.CATEGORIA_TODOS:
+				nombreCat = context.getString(R.string.cat_TODAS);
+				break;
+		}
     	return nombreCat;
     }
 
@@ -751,36 +783,39 @@ public class ConstantsAdmin {
 	public static ArrayList<TipoValorDTO> direccionesARegistrar = null;
 
     public static Asociacion comprobarSDCard(Activity context){
-    	Asociacion map = null;
+    	Asociacion map;
         String auxSDCardStatus = Environment.getExternalStorageState();
         boolean sePuede = false;
         String msg = null;
 
-        if (auxSDCardStatus.equals(Environment.MEDIA_MOUNTED))
-            sePuede = true;
-        else if (auxSDCardStatus.equals(Environment.MEDIA_MOUNTED_READ_ONLY)){
-            msg = context.getString(R.string.mensaje_error_tarjeta_solo_lectura);
-            sePuede = false;
-        }
-        else if(auxSDCardStatus.equals(Environment.MEDIA_NOFS)){
-        	msg = context.getString(R.string.mensaje_error_tarjeta_no_formato);
-            sePuede = false;
-        }
-        else if(auxSDCardStatus.equals(Environment.MEDIA_REMOVED)){
-            msg =  context.getString(R.string.mensaje_error_tarjeta_no_montada);
-            sePuede = false;
-        }
-        else if(auxSDCardStatus.equals(Environment.MEDIA_SHARED)){
-            msg = context.getString(R.string.mensaje_error_tarjeta_shared);
-            sePuede = false;
-        }
-        else if (auxSDCardStatus.equals(Environment.MEDIA_UNMOUNTABLE)){
-            msg = context.getString(R.string.mensaje_error_tarjeta_unmountable);
-            sePuede = false;
-        }
-        else if (auxSDCardStatus.equals(Environment.MEDIA_UNMOUNTED)){
-            msg = context.getString(R.string.mensaje_error_tarjeta_unmounted);
-            sePuede = false;
+        switch (auxSDCardStatus) {
+            case Environment.MEDIA_MOUNTED:
+                sePuede = true;
+                break;
+            case Environment.MEDIA_MOUNTED_READ_ONLY:
+                msg = context.getString(R.string.mensaje_error_tarjeta_solo_lectura);
+                sePuede = false;
+                break;
+            case Environment.MEDIA_NOFS:
+                msg = context.getString(R.string.mensaje_error_tarjeta_no_formato);
+                sePuede = false;
+                break;
+            case Environment.MEDIA_REMOVED:
+                msg = context.getString(R.string.mensaje_error_tarjeta_no_montada);
+                sePuede = false;
+                break;
+            case Environment.MEDIA_SHARED:
+                msg = context.getString(R.string.mensaje_error_tarjeta_shared);
+                sePuede = false;
+                break;
+            case Environment.MEDIA_UNMOUNTABLE:
+                msg = context.getString(R.string.mensaje_error_tarjeta_unmountable);
+                sePuede = false;
+                break;
+            case Environment.MEDIA_UNMOUNTED:
+                msg = context.getString(R.string.mensaje_error_tarjeta_unmounted);
+                sePuede = false;
+                break;
         }
         map = new Asociacion(sePuede, msg);
         
@@ -788,12 +823,12 @@ public class ConstantsAdmin {
     }
     
     public static String mensaje = null;
-    public static String folderCSV = "KN-Contacts";
-    private static String fileCSV = "kncontacts.csv";
+    public static final String folderCSV = "KN-Contacts";
+    private static final String fileCSV = "kncontacts.csv";
 
 	public static void importarCSV(Activity context, DataBaseManager mDBManager){
-        String body = null;
-        File file = null;
+        String body;
+        File file;
         mensaje = context.getString(R.string.error_importar_csv);
         try {
 
@@ -837,20 +872,20 @@ public class ConstantsAdmin {
 		}
     }
     
-    public static void procesarStringDatos(String body, Activity context, DataBaseManager mDBManager){
+    private static void procesarStringDatos(String body, Activity context, DataBaseManager mDBManager){
 
     	String[] lineas = body.split(ENTER);
     	int i = 0;
-    	String linea = null;
-    	String[] campos = null;
-    	ArrayList<String> lista = null;
-    	HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+    	String linea;
+    	String[] campos;
+    	ArrayList<String> lista;
+    	HashMap<String, ArrayList<String>> map = new HashMap<>();
     	while(i < lineas.length){
     		linea = lineas[i];
     		campos = linea.split(PUNTO_COMA);
     		lista = map.get(campos[0]);
     		if(lista == null){
-    			lista = new ArrayList<String>();
+    			lista = new ArrayList<>();
     			map.put(campos[0], lista);
     		}
     		lista.add(linea);
@@ -862,20 +897,20 @@ public class ConstantsAdmin {
     	List<Long> preferidos = procesarPreferidos(map.get(HEAD_PREFERIDO));
     	List<CategoriaDTO> categoriasProtegidas = procesarCategoriasProtegidas(map.get(HEAD_CATEGORIA_PROTEGIDA));
     	ContraseniaDTO pass = procesarContrasenia(map.get(HEAD_CONTRASENIA));
-    	almacenarDatos(context, personas, categorias, categoriasPersonales, preferidos, categoriasProtegidas, pass, mDBManager );
+    	almacenarDatos(personas, categorias, categoriasPersonales, preferidos, categoriasProtegidas, pass, mDBManager );
     	
     }
     
-    private static void almacenarDatos(Activity context, List<PersonaDTO> personas,List<CategoriaDTO> categorias, List<CategoriaDTO> categoriasPersonales,List<Long> preferidos, List<CategoriaDTO> catProtegidas, ContraseniaDTO pass, DataBaseManager mDBManager){
-    	PersonaDTO per = null;
-    	CategoriaDTO cat = null;
-    	Long pref = null;
-    	TipoValorDTO tv = null;
+    private static void almacenarDatos(List<PersonaDTO> personas, List<CategoriaDTO> categorias, List<CategoriaDTO> categoriasPersonales, List<Long> preferidos, List<CategoriaDTO> catProtegidas, ContraseniaDTO pass, DataBaseManager mDBManager){
+    	PersonaDTO per;
+    	CategoriaDTO cat;
+    	Long pref;
+    	TipoValorDTO tv;
     	
-    	Iterator<PersonaDTO> itPers = null;
-    	Iterator<CategoriaDTO> itCat = null;
-    	Iterator<Long> itPref = null;
-    	Iterator<TipoValorDTO> itTv = null;
+    	Iterator<PersonaDTO> itPers;
+    	Iterator<CategoriaDTO> itCat;
+    	Iterator<Long> itPref;
+    	Iterator<TipoValorDTO> itTv;
     	
     	itPers = personas.iterator();
     	itCat = categorias.iterator();
@@ -899,7 +934,7 @@ public class ConstantsAdmin {
     	}   
     	
     	itCat = catProtegidas.iterator();
-    	categoriasProtegidas = new ArrayList<CategoriaDTO>();
+    	categoriasProtegidas = new ArrayList<>();
     	while(itCat.hasNext()){
     		cat = itCat.next();
     		mDBManager.crearCategoriaProtegida(cat);
@@ -939,18 +974,18 @@ public class ConstantsAdmin {
     }
     
     private static List<PersonaDTO> procesarPersonas(ArrayList<String> lista){
-    	String linea = null;
-    	List<PersonaDTO> resultado = new ArrayList<PersonaDTO>();
-    	String[] campos = null;
-    	String temp = null;
+    	String linea;
+    	List<PersonaDTO> resultado = new ArrayList<>();
+    	String[] campos;
+    	String temp;
     	Iterator<String> it = lista.iterator();
-    	PersonaDTO per = null;
-    	int i = 0;
-    	String[] par = null;
-    	TipoValorDTO tv = null;
-    	telefonosARegistrar = new ArrayList<TipoValorDTO>();
-    	mailsARegistrar = new ArrayList<TipoValorDTO>();
-    	direccionesARegistrar = new ArrayList<TipoValorDTO>();
+    	PersonaDTO per;
+    	int i;
+    	String[] par;
+    	TipoValorDTO tv;
+    	telefonosARegistrar = new ArrayList<>();
+    	mailsARegistrar = new ArrayList<>();
+    	direccionesARegistrar = new ArrayList<>();
     	while(it.hasNext()){
     		linea = it.next();
     		campos = linea.split(PUNTO_COMA);
@@ -969,19 +1004,24 @@ public class ConstantsAdmin {
     		i = 6;
     		while(!temp.equals(FIN)){
     			par = campos[i].split(SEPARACION_ATRIBUTO);
-    			if(par[0].equals(PARTICULAR)){
-    				per.setTelParticular(par[1]);
-    			}else if(par[0].equals(LABORAL)){
-    				per.setTelLaboral(par[1]);
-    			}else if(par[0].equals(MOVIL)){
-    				per.setCelular(par[1]);
-    			}else{
-    				tv = new TipoValorDTO();
-    				tv.setIdPersona(String.valueOf(per.getId()));
-    				tv.setTipo(par[0]);
-    				tv.setValor(par[1]);
-    				telefonosARegistrar.add(tv);
-    			}
+				switch (par[0]) {
+					case PARTICULAR:
+						per.setTelParticular(par[1]);
+						break;
+					case LABORAL:
+						per.setTelLaboral(par[1]);
+						break;
+					case MOVIL:
+						per.setCelular(par[1]);
+						break;
+					default:
+						tv = new TipoValorDTO();
+						tv.setIdPersona(String.valueOf(per.getId()));
+						tv.setTipo(par[0]);
+						tv.setValor(par[1]);
+						telefonosARegistrar.add(tv);
+						break;
+				}
     			
     			i++;
     			temp = campos[i];
@@ -994,19 +1034,24 @@ public class ConstantsAdmin {
     		temp = campos[i];
     		while(!temp.equals(FIN)){
     			par = campos[i].split(SEPARACION_ATRIBUTO);
-    			if(par[0].equals(PARTICULAR)){
-    				per.setEmailParticular(par[1]);
-    			}else if(par[0].equals(LABORAL)){
-    				per.setEmailLaboral(par[1]);
-    			}else if(par[0].equals(OTRO)){
-    				per.setEmailOtro(par[1]);
-    			}else{
-    				tv = new TipoValorDTO();
-    				tv.setIdPersona(String.valueOf(per.getId()));
-    				tv.setTipo(par[0]);
-    				tv.setValor(par[1]);
-    				mailsARegistrar.add(tv);
-    			}
+                switch (par[0]) {
+                    case PARTICULAR:
+                        per.setEmailParticular(par[1]);
+                        break;
+                    case LABORAL:
+                        per.setEmailLaboral(par[1]);
+                        break;
+                    case OTRO:
+                        per.setEmailOtro(par[1]);
+                        break;
+                    default:
+                        tv = new TipoValorDTO();
+                        tv.setIdPersona(String.valueOf(per.getId()));
+                        tv.setTipo(par[0]);
+                        tv.setValor(par[1]);
+                        mailsARegistrar.add(tv);
+                        break;
+                }
     			
     			i++;
     			temp = campos[i];
@@ -1019,17 +1064,21 @@ public class ConstantsAdmin {
     		temp = campos[i];
     		while(!temp.equals(FIN)){
     			par = campos[i].split(SEPARACION_ATRIBUTO);
-    			if(par[0].equals(PARTICULAR)){
-    				per.setDireccionParticular(par[1]);
-    			}else if(par[0].equals(LABORAL)){
-    				per.setDireccionLaboral(par[1]);
-    			}else{
-    				tv = new TipoValorDTO();
-    				tv.setIdPersona(String.valueOf(per.getId()));
-    				tv.setTipo(par[0]);
-    				tv.setValor(par[1]);
-    				direccionesARegistrar.add(tv);
-    			}
+                switch (par[0]) {
+                    case PARTICULAR:
+                        per.setDireccionParticular(par[1]);
+                        break;
+                    case LABORAL:
+                        per.setDireccionLaboral(par[1]);
+                        break;
+                    default:
+                        tv = new TipoValorDTO();
+                        tv.setIdPersona(String.valueOf(per.getId()));
+                        tv.setTipo(par[0]);
+                        tv.setValor(par[1]);
+                        direccionesARegistrar.add(tv);
+                        break;
+                }
     			
     			i++;
     			temp = campos[i];
@@ -1059,12 +1108,12 @@ public class ConstantsAdmin {
     }
 
     private static List<CategoriaDTO> procesarCategorias(ArrayList<String> lista){
-    	String linea = null;
-    	List<CategoriaDTO> resultado = new ArrayList<CategoriaDTO>();
-    	String[] campos = null;
+    	String linea;
+    	List<CategoriaDTO> resultado = new ArrayList<>();
+    	String[] campos;
     	if(lista != null){
         	Iterator<String> it = lista.iterator();
-        	CategoriaDTO cat = null;
+        	CategoriaDTO cat;
         	while(it.hasNext()){
         		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
@@ -1081,12 +1130,12 @@ public class ConstantsAdmin {
     }
 
     private static List<CategoriaDTO> procesarCategoriasProtegidas(ArrayList<String> lista){
-    	String linea = null;
-    	List<CategoriaDTO> resultado = new ArrayList<CategoriaDTO>();
-    	String[] campos = null;
+    	String linea;
+    	List<CategoriaDTO> resultado = new ArrayList<>();
+    	String[] campos;
     	if(lista != null){
         	Iterator<String> it = lista.iterator();
-        	CategoriaDTO cat = null;
+        	CategoriaDTO cat;
         	while(it.hasNext()){
         		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
@@ -1103,7 +1152,7 @@ public class ConstantsAdmin {
     private static List<CategoriaDTO> procesarCategoriasPersonales(ArrayList<String> lista){
     	List<CategoriaDTO> result = procesarCategorias(lista);
     	Iterator<CategoriaDTO> it = result.iterator();
-    	CategoriaDTO cat = null;
+    	CategoriaDTO cat;
     	while(it.hasNext()){
     		cat = it.next();
     		cat.setCategoriaPersonal(true);
@@ -1114,12 +1163,12 @@ public class ConstantsAdmin {
 
 
     private static List<Long> procesarPreferidos(ArrayList<String> lista){
-    	String linea = null;
-    	List<Long> resultado = new ArrayList<Long>();
-    	String[] campos = null; 
+    	String linea;
+    	List<Long> resultado = new ArrayList<>();
+    	String[] campos;
     	if(lista != null){
         	Iterator<String> it = lista.iterator();
-        	Long id = null;
+        	Long id;
         	while(it.hasNext()){
         		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
@@ -1132,12 +1181,12 @@ public class ConstantsAdmin {
     }
     
     private static ContraseniaDTO procesarContrasenia(ArrayList<String> lista){
-    	String linea = null;
+    	String linea;
     	ContraseniaDTO pass = new ContraseniaDTO();
-    	String[] campos = null;
+    	String[] campos;
     	if(lista != null){
         	Iterator<String> it = lista.iterator();
-        	Long id = null;
+        	Long id;
         	if(it.hasNext()){
         		linea = it.next();
         		campos = linea.split(PUNTO_COMA);
@@ -1153,17 +1202,17 @@ public class ConstantsAdmin {
     
     private static String obtenerContenidoArchivo(File file, Activity context)throws IOException{
         // ACA DEBERIA CARGAR EL CONTENIDO DEL ARCHIVO PASADO COMO PARAMETRO, HACER LOS CONTROLES DE LECTURA
-    	String line = null;
+    	String line;
     	Asociacion canStore = comprobarSDCard(context);
     	boolean boolValue = (Boolean)canStore.getKey();
     	String msg = (String) canStore.getValue();
-    	String result = "";
+    	StringBuilder result = new StringBuilder();
     	if(boolValue){
     		BufferedReader input =  new BufferedReader(new FileReader(file));
     		line = input.readLine();
     		while(line != null){
     			if(!line.equals("")){
-    				result = result + line + ENTER;
+    				result.append(line).append(ENTER);
     			}
     			
     			line = input.readLine();
@@ -1173,15 +1222,15 @@ public class ConstantsAdmin {
 			  mensaje = msg;
     	}
     	
-        return result;
+        return result.toString();
 
     }    
     
     public static void exportarCSV(Activity context, DataBaseManager mDBManager){
-    	Asociacion canStore = null;
-    	Boolean boolValue = true;
-    	String msg = null;
-    	String body = null;
+    	Asociacion canStore;
+    	Boolean boolValue;
+    	String msg;
+    	String body;
         try
         {	
         	canStore = comprobarSDCard(context);
@@ -1201,10 +1250,10 @@ public class ConstantsAdmin {
     }
 
     public static void exportarCSVEstetico(Activity context, String separador, List<CategoriaDTO> categoriasProtegidas, DataBaseManager mDBManager){
-    	Asociacion canStore = null;
-    	Boolean boolValue = true;
-    	String msg = null;
-    	String body = null;
+    	Asociacion canStore;
+    	Boolean boolValue;
+    	String msg;
+    	String body;
         try
         {	
         	canStore = comprobarSDCard(context);
@@ -1225,7 +1274,7 @@ public class ConstantsAdmin {
     }
     
     
-    public static void almacenarArchivo(String nombreDirectorio, String nombreArchivo, String body) throws IOException {
+    private static void almacenarArchivo(String nombreDirectorio, String nombreArchivo, String body) throws IOException {
     	String path = obtenerPath(nombreDirectorio);
 
 	    File dir = new File(path);
@@ -1241,41 +1290,39 @@ public class ConstantsAdmin {
 	    writer.close();
     }
   
-    public static String obtenerPath(String nombreDirectorio){
+    private static String obtenerPath(String nombreDirectorio){
     	String path = Environment.getExternalStorageDirectory().toString();
     	return path + File.separator + nombreDirectorio;
     }
 
     
     private static String obtenerCSVdeContactosEstetico(Activity context, String separador, List<CategoriaDTO> categoriasProtegidas, DataBaseManager mDBManager){
-    	String result = "";
-    	PersonaDTO per = null;
+    	StringBuilder result = new StringBuilder();
+    	PersonaDTO per;
     	
     	// RECUPERO PERSONAS
     	List<PersonaDTO> personas = obtenerPersonas(context, categoriasProtegidas, mDBManager);
-    	Iterator<PersonaDTO> itPer = personas.iterator();
-    	while(itPer.hasNext()){
-    		per = itPer.next();
-    	//	result = result + obtenerStringPersona(per, context);
-    		result = result + obtenerStringEsteticoPersona(per, context, separador, mDBManager);
+		for (PersonaDTO persona : personas) {
+			per = persona;
+			//	result = result + obtenerStringPersona(per, context);
+			result.append(obtenerStringEsteticoPersona(per, context, separador, mDBManager));
 
-    	}
-    	return result;
+		}
+    	return result.toString();
     }
     
     private static String obtenerCSVdeContactos(Activity context, DataBaseManager mDBManager){
-    	String result = "";
-    	PersonaDTO per = null;
-    	CategoriaDTO cat = null;
+    	StringBuilder result = new StringBuilder();
+    	PersonaDTO per;
+    	CategoriaDTO cat;
     	
     	
     	// RECUPERO PERSONAS
     	List<PersonaDTO> personas = obtenerPersonas(context, mDBManager);
-    	Iterator<PersonaDTO> itPer = personas.iterator();
-    	while(itPer.hasNext()){
-    		per = itPer.next();
-    		result = result + obtenerStringPersona(per, context, mDBManager);
-    	}
+        for (PersonaDTO persona : personas) {
+            per = persona;
+            result.append(obtenerStringPersona(per, context, mDBManager));
+        }
     	
     	
     	// RECUPERO CATEGORIAS FIJAS
@@ -1283,7 +1330,7 @@ public class ConstantsAdmin {
     	Iterator<CategoriaDTO> itCat = categorias.iterator();
     	while(itCat.hasNext()){
     		cat = itCat.next();
-    		result = result + obtenerStringCategoria(cat, HEAD_CATEGORIA);
+    		result.append(obtenerStringCategoria(cat, HEAD_CATEGORIA));
     	}
     	
     	
@@ -1292,18 +1339,17 @@ public class ConstantsAdmin {
     	itCat = categorias.iterator();
     	while(itCat.hasNext()){
     		cat = itCat.next();
-    		result = result + obtenerStringCategoria(cat, HEAD_CATEGORIA_PERSONAL);
+    		result.append(obtenerStringCategoria(cat, HEAD_CATEGORIA_PERSONAL));
     	}
     	
     	
     	// RECUPERO PREFERIDOS
-    	Long idPref = null;
+    	Long idPref;
     	List<Long> preferidos = obtenerPreferidos(context, mDBManager);
-    	Iterator<Long> itPref = preferidos.iterator();
-    	while(itPref.hasNext()){
-    		idPref = itPref.next();
-    		result = result + HEAD_PREFERIDO + PUNTO_COMA +idPref + ENTER;
-    	}
+        for (Long preferido : preferidos) {
+            idPref = preferido;
+            result.append(HEAD_PREFERIDO).append(PUNTO_COMA).append(idPref).append(ENTER);
+        }
     	
     	
     	// RECUPERO CATEGORIAS PROTEGIDAS
@@ -1312,29 +1358,29 @@ public class ConstantsAdmin {
     	itCat = categorias.iterator();
     	while(itCat.hasNext()){
     		cat = itCat.next();
-    		result = result + obtenerStringCategoriaProtegida(cat, HEAD_CATEGORIA_PROTEGIDA);
+    		result.append(obtenerStringCategoriaProtegida(cat, HEAD_CATEGORIA_PROTEGIDA));
     	}
-    	result = result + obtenerStringContrasenia();
+    	result.append(obtenerStringContrasenia());
     	
-    	return result;
+    	return result.toString();
     	
     }
     
     private static String obtenerStringCategoria(CategoriaDTO cat, String header){
-    	String result = "";
+    	String result;
     	result = header + PUNTO_COMA + cat.getId() + PUNTO_COMA + cat.getNombreReal() + PUNTO_COMA + cat.getActiva() + PUNTO_COMA + cat.getTipoDatoExtra() + ENTER;
     	return result;
     }
     
     private static String obtenerStringContrasenia(){
-    	String result = "";
+    	String result;
     	result = HEAD_CONTRASENIA + PUNTO_COMA + contrasenia.getId() + PUNTO_COMA + contrasenia.getContrasenia() + ENTER;
     	return result;
     }
     
     
     private static String obtenerStringCategoriaProtegida(CategoriaDTO cat, String header){
-    	String result = "";
+    	String result;
     	result = header + PUNTO_COMA + cat.getId() + PUNTO_COMA + cat.getNombreReal() + ENTER;
     	return result;
     }
@@ -1342,38 +1388,38 @@ public class ConstantsAdmin {
     
     
     private static String obtenerStringPersona(PersonaDTO per, Activity context, DataBaseManager mDBManager){
-    	String result = "";
-    	List<TipoValorDTO> masTVs = null;
-    	TipoValorDTO tv = null;
-    	Iterator<TipoValorDTO> it = null; 
+    	StringBuilder result = new StringBuilder();
+    	List<TipoValorDTO> masTVs;
+    	TipoValorDTO tv;
+    	Iterator<TipoValorDTO> it;
     	//result = result + SEPARACION_PERSONA + ENTER;
  
     	// DATOS PERSONALES
     	
-    	result = result + HEAD_PERSONA + PUNTO_COMA + per.getId() + PUNTO_COMA + per.getApellido() + PUNTO_COMA;
+    	result.append(HEAD_PERSONA).append(PUNTO_COMA).append(per.getId()).append(PUNTO_COMA).append(per.getApellido()).append(PUNTO_COMA);
     	if(per.getNombres() != null && !per.getNombres().equals("")){
-    		result = result + per.getNombres() + PUNTO_COMA;	
+    		result.append(per.getNombres()).append(PUNTO_COMA);
     	}else{
-    		result = result + CAMPO_NULO + PUNTO_COMA;
+    		result.append(CAMPO_NULO).append(PUNTO_COMA);
     	}
     	if(per.getFechaNacimiento() != null){
-    		result = result + per.getFechaNacimiento() + PUNTO_COMA;	
+    		result.append(per.getFechaNacimiento()).append(PUNTO_COMA);
     	}else{
-    		result = result + CAMPO_NULO + PUNTO_COMA;
+    		result.append(CAMPO_NULO).append(PUNTO_COMA);
     	}
     	
     	// TELEFONOS
 
 		String INICIO = "#I#";
-		result = result + INICIO + PUNTO_COMA;
+		result.append(INICIO).append(PUNTO_COMA);
     	if(per.getTelParticular() != null){
-    		result = result + PARTICULAR + SEPARACION_ATRIBUTO + per.getTelParticular() + PUNTO_COMA;
+    		result.append(PARTICULAR).append(SEPARACION_ATRIBUTO).append(per.getTelParticular()).append(PUNTO_COMA);
     	}
     	if(per.getCelular() != null){
-    		result = result + MOVIL + SEPARACION_ATRIBUTO + per.getCelular() + PUNTO_COMA;
+    		result.append(MOVIL).append(SEPARACION_ATRIBUTO).append(per.getCelular()).append(PUNTO_COMA);
     	}
     	if(per.getTelLaboral() != null){
-    		result = result + LABORAL + SEPARACION_ATRIBUTO + per.getTelLaboral() + PUNTO_COMA;
+    		result.append(LABORAL).append(SEPARACION_ATRIBUTO).append(per.getTelLaboral()).append(PUNTO_COMA);
     	}
     	
     
@@ -1381,93 +1427,93 @@ public class ConstantsAdmin {
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result = result + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PUNTO_COMA;
+    		result.append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(PUNTO_COMA);
     	}
 
-    	result = result + FIN + PUNTO_COMA;
+    	result.append(FIN).append(PUNTO_COMA);
     	// MAILS
     	
-    	result = result + INICIO + PUNTO_COMA;
+    	result.append(INICIO).append(PUNTO_COMA);
     	if(per.getEmailParticular() != null){
-    		result = result + PARTICULAR + SEPARACION_ATRIBUTO + per.getEmailParticular() + PUNTO_COMA;
+    		result.append(PARTICULAR).append(SEPARACION_ATRIBUTO).append(per.getEmailParticular()).append(PUNTO_COMA);
     	}
     	if(per.getEmailLaboral() != null){
-    		result = result + LABORAL + SEPARACION_ATRIBUTO + per.getEmailLaboral() + PUNTO_COMA;
+    		result.append(LABORAL).append(SEPARACION_ATRIBUTO).append(per.getEmailLaboral()).append(PUNTO_COMA);
     	}
     	if(per.getEmailOtro() != null){
-    		result = result + OTRO + SEPARACION_ATRIBUTO + per.getEmailOtro() + PUNTO_COMA;
+    		result.append(OTRO).append(SEPARACION_ATRIBUTO).append(per.getEmailOtro()).append(PUNTO_COMA);
     	}
     	
     	masTVs = obtenerEmailsIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result = result + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PUNTO_COMA;
+    		result.append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(PUNTO_COMA);
     	}
     	
-    	result = result + FIN + PUNTO_COMA;
+    	result.append(FIN).append(PUNTO_COMA);
     	
     	// DIRECCIONES
     	
-    	result = result + INICIO + PUNTO_COMA;
+    	result.append(INICIO).append(PUNTO_COMA);
     	if(per.getDireccionParticular() != null){
-    		result = result + PARTICULAR + SEPARACION_ATRIBUTO + per.getDireccionParticular() + PUNTO_COMA;
+    		result.append(PARTICULAR).append(SEPARACION_ATRIBUTO).append(per.getDireccionParticular()).append(PUNTO_COMA);
     	}
     	if(per.getDireccionLaboral() != null){
-    		result = result + LABORAL + SEPARACION_ATRIBUTO + per.getDireccionLaboral() + PUNTO_COMA;
+    		result.append(LABORAL).append(SEPARACION_ATRIBUTO).append(per.getDireccionLaboral()).append(PUNTO_COMA);
     	}
     	
     	masTVs = obtenerDireccionesIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result = result + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PUNTO_COMA;
+    		result.append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(PUNTO_COMA);
     	}
     	
-    	result = result + FIN + PUNTO_COMA;
+    	result.append(FIN).append(PUNTO_COMA);
     	
     	// DATOS POR CATEGORIA
 
-    	result = result + per.getCategoriaId() + PUNTO_COMA;
-    	result = result + per.getCategoriaNombre() + PUNTO_COMA;
-    	result = result + per.getCategoriaNombreRelativo() + PUNTO_COMA;
+    	result.append(per.getCategoriaId()).append(PUNTO_COMA);
+    	result.append(per.getCategoriaNombre()).append(PUNTO_COMA);
+    	result.append(per.getCategoriaNombreRelativo()).append(PUNTO_COMA);
     	if(per.getDatoExtra()!= null && !per.getDatoExtra().equals("")){
-    		result = result + per.getDatoExtra() + PUNTO_COMA;	
+    		result.append(per.getDatoExtra()).append(PUNTO_COMA);
     	}else{
-    		result = result + CAMPO_NULO + PUNTO_COMA;
+    		result.append(CAMPO_NULO).append(PUNTO_COMA);
     	}
     	if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
-    		result = result + per.getDescripcion();
+    		result.append(per.getDescripcion());
     	}else{
-    		result = result + CAMPO_NULO ;
+    		result.append(CAMPO_NULO);
     	}
 
-    	result = result + ENTER;
+    	result.append(ENTER);
     	
     	
-    	return result;
+    	return result.toString();
     	
     }
 
     private static String obtenerStringEsteticoPersona(PersonaDTO per, Activity context, String separador, DataBaseManager mDBManager){
-    	String result = "";
-    	List<TipoValorDTO> masTVs = null;
-    	TipoValorDTO tv = null;
-    	Iterator<TipoValorDTO> it = null; 
+    	StringBuilder result = new StringBuilder();
+    	List<TipoValorDTO> masTVs;
+    	TipoValorDTO tv;
+    	Iterator<TipoValorDTO> it;
     	//result = result + SEPARACION_PERSONA + ENTER;
  
     	// DATOS PERSONALES
     	
-    	result = result + per.getApellido() + separador;
+    	result.append(per.getApellido()).append(separador);
     	if(per.getNombres() != null && !per.getNombres().equals("")){
-    		result = result + per.getNombres() + separador;	
+    		result.append(per.getNombres()).append(separador);
     	}else{
-    		result = result + separador;
+    		result.append(separador);
     	}
     	if(per.getFechaNacimiento() != null){
-    		result = result + context.getString(R.string.label_fechaNacimiento) + SEPARACION_ATRIBUTO + per.getFechaNacimiento() + separador;	
+    		result.append(context.getString(R.string.label_fechaNacimiento)).append(SEPARACION_ATRIBUTO).append(per.getFechaNacimiento()).append(separador);
     	}else{
-    		result = result + context.getString(R.string.label_fechaNacimiento) + SEPARACION_ATRIBUTO + separador;
+    		result.append(context.getString(R.string.label_fechaNacimiento)).append(SEPARACION_ATRIBUTO).append(separador);
     	}
     	
     	// DATOS POR CATEGORIA
@@ -1479,19 +1525,19 @@ public class ConstantsAdmin {
     	if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
     		datosCategoria = datosCategoria + "-" + per.getDescripcion();
     	}
-    	result = result + datosCategoria + separador;
+    	result.append(datosCategoria).append(separador);
     	
     	// TELEFONOS
 
 		String PIPE = " | ";
 		if(per.getTelParticular() != null){
-    		result = result + context.getString(R.string.label_telefono) + "-" + context.getString(R.string.hint_particular) + SEPARACION_ATRIBUTO + per.getTelParticular() + PIPE;
+    		result.append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getTelParticular()).append(PIPE);
     	}
     	if(per.getCelular() != null){
-    		result = result + context.getString(R.string.label_telefono) + "-" + context.getString(R.string.hint_telMovil) + SEPARACION_ATRIBUTO + per.getCelular() + PIPE;
+    		result.append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_telMovil)).append(SEPARACION_ATRIBUTO).append(per.getCelular()).append(PIPE);
     	}
     	if(per.getTelLaboral() != null){
-    		result = result + context.getString(R.string.label_telefono) + "-" + context.getString(R.string.hint_laboral) + SEPARACION_ATRIBUTO + per.getTelLaboral() + PIPE;
+    		result.append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getTelLaboral()).append(PIPE);
     	}
     	
     
@@ -1499,86 +1545,86 @@ public class ConstantsAdmin {
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result = result + context.getString(R.string.label_telefono) + "-" +  tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PIPE;
+    		result.append(context.getString(R.string.label_telefono)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(PIPE);
     	}
     	
-    	result = result + separador;
+    	result.append(separador);
 
     	// MAILS
 
     	if(per.getEmailParticular() != null){
-    		result = result + context.getString(R.string.label_email) + "-" + context.getString(R.string.hint_particular) + SEPARACION_ATRIBUTO + per.getEmailParticular() + PIPE;
+    		result.append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getEmailParticular()).append(PIPE);
     	}
     	if(per.getEmailLaboral() != null){
-    		result = result + context.getString(R.string.label_email) + "-" + context.getString(R.string.hint_laboral) + SEPARACION_ATRIBUTO + per.getEmailLaboral() + PIPE;
+    		result.append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getEmailLaboral()).append(PIPE);
     	}
     	if(per.getEmailOtro() != null){
-    		result = result + context.getString(R.string.label_email) + "-" + context.getString(R.string.hint_otro) + SEPARACION_ATRIBUTO + per.getEmailOtro() + PIPE;
+    		result.append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_otro)).append(SEPARACION_ATRIBUTO).append(per.getEmailOtro()).append(PIPE);
     	}
     	
     	masTVs = obtenerEmailsIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result = result + context.getString(R.string.label_email) + "-" + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PIPE;
+    		result.append(context.getString(R.string.label_email)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(PIPE);
     	}
     	
-    	result = result + separador;
+    	result.append(separador);
     	
     	// DIRECCIONES
     	
     	if(per.getDireccionParticular() != null){
-    		result = result + context.getString(R.string.label_direccion) + "-" + context.getString(R.string.hint_particular) + SEPARACION_ATRIBUTO + per.getDireccionParticular() + PIPE;
+    		result.append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getDireccionParticular()).append(PIPE);
     	}
     	if(per.getDireccionLaboral() != null){
-    		result = result + context.getString(R.string.label_direccion) + "-" + context.getString(R.string.hint_laboral) + SEPARACION_ATRIBUTO + per.getDireccionLaboral() + PIPE;
+    		result.append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getDireccionLaboral()).append(PIPE);
     	}
     	
     	masTVs = obtenerDireccionesIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result = result + context.getString(R.string.label_direccion) + "-" + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + PIPE;
+    		result.append(context.getString(R.string.label_direccion)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(PIPE);
     	}
     	
-    	result = result + separador;
+    	result.append(separador);
 
-    	result = result + ENTER;
+    	result.append(ENTER);
     	
     	
-    	return result;
+    	return result.toString();
     	
     }
 
 
     private static String obtenerStringEsteticoPersonaParaEnviar(PersonaDTO per, Activity context, String separador, DataBaseManager mDBManager){
-    	String result = "";
-    	List<TipoValorDTO> masTVs = null;
-    	TipoValorDTO tv = null;
-    	Iterator<TipoValorDTO> it = null; 
+    	StringBuilder result = new StringBuilder();
+    	List<TipoValorDTO> masTVs;
+    	TipoValorDTO tv;
+    	Iterator<TipoValorDTO> it;
     	//result = result + SEPARACION_PERSONA + ENTER;
  
     	// DATOS PERSONALES
     	
-    	result = result + "- " + per.getApellido() + " ";
+    	result.append("- ").append(per.getApellido()).append(" ");
     	if(per.getNombres() != null && !per.getNombres().equals("")){
-    		result = result + per.getNombres() + separador;	
+    		result.append(per.getNombres()).append(separador);
     	}
-		result = result + separador;
+		result.append(separador);
     	// TELEFONOS
     	
-    	result = separador + result + context.getResources().getString(R.string.label_telefonos) + separador;
+    	result = new StringBuilder(separador + result + context.getResources().getString(R.string.label_telefonos) + separador);
     	
-    	result = result + separador;
+    	result.append(separador);
     	
     	if(per.getTelParticular() != null){
-    		result = result + "* " + context.getString(R.string.label_telefono) + "-" + context.getString(R.string.hint_particular) + SEPARACION_ATRIBUTO + per.getTelParticular() + separador;
+    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getTelParticular()).append(separador);
     	}
     	if(per.getCelular() != null){
-    		result = result + "* " + context.getString(R.string.label_telefono) + "-" + context.getString(R.string.hint_telMovil) + SEPARACION_ATRIBUTO + per.getCelular() + separador;
+    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_telMovil)).append(SEPARACION_ATRIBUTO).append(per.getCelular()).append(separador);
     	}
     	if(per.getTelLaboral() != null){
-    		result = result + "* " + context.getString(R.string.label_telefono) + "-" + context.getString(R.string.hint_laboral) + SEPARACION_ATRIBUTO + per.getTelLaboral() + separador;
+    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getTelLaboral()).append(separador);
     	}
     	
     
@@ -1586,57 +1632,57 @@ public class ConstantsAdmin {
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result = result + "* " + context.getString(R.string.label_telefono) + "-" +  tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + separador;
+    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(separador);
     	}
 
-    	result = result + separador;
+    	result.append(separador);
     	// MAILS
-    	result = separador + result + context.getResources().getString(R.string.label_mail) + separador;
+    	result = new StringBuilder(separador + result + context.getResources().getString(R.string.label_mail) + separador);
 
-    	result = result + separador;
+    	result.append(separador);
     	if(per.getEmailParticular() != null){
-    		result = result + "* " + context.getString(R.string.label_email) + "-" + context.getString(R.string.hint_particular) + SEPARACION_ATRIBUTO + per.getEmailParticular() + separador;
+    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getEmailParticular()).append(separador);
     	}
     	if(per.getEmailLaboral() != null){
-    		result = result + "* " + context.getString(R.string.label_email) + "-" + context.getString(R.string.hint_laboral) + SEPARACION_ATRIBUTO + per.getEmailLaboral() + separador;
+    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getEmailLaboral()).append(separador);
     	}
     	if(per.getEmailOtro() != null){
-    		result = result + "* " + context.getString(R.string.label_email) + "-" + context.getString(R.string.hint_otro) + SEPARACION_ATRIBUTO + per.getEmailOtro() + separador;
+    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_otro)).append(SEPARACION_ATRIBUTO).append(per.getEmailOtro()).append(separador);
     	}
     	
     	masTVs = obtenerEmailsIdPersona(context, per.getId(),mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result = result + "* " + context.getString(R.string.label_email) + "-" + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + separador;
+    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(separador);
     	}
     	
-    	result = result + separador;
+    	result.append(separador);
     	// DIRECCIONES
 
-    	result = separador + result + context.getResources().getString(R.string.label_direcciones) + separador;
+    	result = new StringBuilder(separador + result + context.getResources().getString(R.string.label_direcciones) + separador);
 
-    	result = result + separador;
+    	result.append(separador);
     	if(per.getDireccionParticular() != null){
-    		result = result + "* " + context.getString(R.string.label_direccion) + "-" + context.getString(R.string.hint_particular) + SEPARACION_ATRIBUTO + per.getDireccionParticular() + separador;
+    		result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getDireccionParticular()).append(separador);
     	}
     	if(per.getDireccionLaboral() != null){
-    		result = result + "* " + context.getString(R.string.label_direccion) + "-" + context.getString(R.string.hint_laboral) + SEPARACION_ATRIBUTO + per.getDireccionLaboral() + separador;
+    		result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getDireccionLaboral()).append(separador);
     	}
     	
     	masTVs = obtenerDireccionesIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result = result + "* " + context.getString(R.string.label_direccion) + "-" + tv.getTipo() + SEPARACION_ATRIBUTO + tv.getValor() + separador;
+    		result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(separador);
     	}
     	
-    	result = result + separador;
+    	result.append(separador);
 
-    	result = result + ENTER;
+    	result.append(ENTER);
     	
     	
-    	return result;
+    	return result.toString();
     	
     }
 
@@ -1644,8 +1690,8 @@ public class ConstantsAdmin {
     
     
     private static List<PersonaDTO> obtenerPersonas(Activity context, List<CategoriaDTO> categoriasProtegidas, DataBaseManager mDBManager){
-    	PersonaDTO per = null;
-    	List<PersonaDTO> result = new ArrayList<PersonaDTO>();
+    	PersonaDTO per;
+    	List<PersonaDTO> result = new ArrayList<>();
     	inicializarBD(mDBManager);
     	Cursor cur = mDBManager.fetchAllPersonas(categoriasProtegidas);
     	context.startManagingCursor(cur);
@@ -1662,8 +1708,8 @@ public class ConstantsAdmin {
     }
     
     private static List<PersonaDTO> obtenerPersonas(Activity context, DataBaseManager mDBManager){
-    	PersonaDTO per = null;
-    	List<PersonaDTO> result = new ArrayList<PersonaDTO>();
+    	PersonaDTO per;
+    	List<PersonaDTO> result = new ArrayList<>();
     	inicializarBD(mDBManager);
     	Cursor cur = mDBManager.fetchAllPersonas(categoriasProtegidas);
     	context.startManagingCursor(cur);
@@ -1680,8 +1726,8 @@ public class ConstantsAdmin {
     }
     
     private static List<CategoriaDTO> obtenerCategorias(Activity context, DataBaseManager mDBManager){
-    	CategoriaDTO cat = null;
-    	List<CategoriaDTO> result = new ArrayList<CategoriaDTO>();
+    	CategoriaDTO cat;
+    	List<CategoriaDTO> result = new ArrayList<>();
     	inicializarBD(mDBManager);
     	Cursor cur = mDBManager.fetchAllCategoriasPorNombre(null);
     	context.startManagingCursor(cur);
@@ -1698,8 +1744,8 @@ public class ConstantsAdmin {
     }    
 
     private static List<CategoriaDTO> obtenerCategoriasPersonales(Activity context, DataBaseManager mDBManager){
-    	CategoriaDTO cat = null;
-    	List<CategoriaDTO> result = new ArrayList<CategoriaDTO>();
+    	CategoriaDTO cat;
+    	List<CategoriaDTO> result = new ArrayList<>();
     	inicializarBD(mDBManager);
     	Cursor cur = mDBManager.fetchAllCategoriasPersonalesPorNombre(null);
     	context.startManagingCursor(cur);
@@ -1718,8 +1764,8 @@ public class ConstantsAdmin {
 
     
     private static List<Long> obtenerPreferidos(Activity context, DataBaseManager mDBManager){
-    	Long id = null;
-    	List<Long> result = new ArrayList<Long>();
+    	Long id;
+    	List<Long> result = new ArrayList<>();
     	inicializarBD(mDBManager);
     	Cursor cur = mDBManager.fetchAllPreferidos();
     	context.startManagingCursor(cur);
@@ -1736,20 +1782,20 @@ public class ConstantsAdmin {
     }     
         
     
-    public static String ENTER = "\n";
+    private static final String ENTER = "\n";
     public static final String PUNTO_COMA = ";";
     public static final String COMA = ",";
-	private static String FIN = "#F#";
-    private static String CAMPO_NULO = "###";
-    private static String PARTICULAR = "PARTICULAR";
-    private static String LABORAL = "LABORAL";
-    private static String OTRO = "OTRO";
-    private static String MOVIL = "MOVIL";
-    private static String SEPARACION_ATRIBUTO = ":";
-    private static String HEAD_PERSONA = "$$PE";
-    private static String HEAD_CATEGORIA = "$$C";
-    private static String HEAD_CATEGORIA_PERSONAL = "$$CP";
-    private static String HEAD_PREFERIDO = "$$PR";
+	private static final String FIN = "#F#";
+    private static final String CAMPO_NULO = "###";
+    private static final String PARTICULAR = "PARTICULAR";
+    private static final String LABORAL = "LABORAL";
+    private static final String OTRO = "OTRO";
+    private static final String MOVIL = "MOVIL";
+    private static final String SEPARACION_ATRIBUTO = ":";
+    private static final String HEAD_PERSONA = "$$PE";
+    private static final String HEAD_CATEGORIA = "$$C";
+    private static final String HEAD_CATEGORIA_PERSONAL = "$$CP";
+    private static final String HEAD_PREFERIDO = "$$PR";
     public static final int ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS = 19;
     public static final int ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS_CSV = 20;
 	public static final int ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS_ESTETICO = 21;
@@ -1769,8 +1815,8 @@ public class ConstantsAdmin {
     private static File obtenerFileCSV(Activity context){
         // LEVANTAR TODOS LOS FILES QUE ESTAN EN LA CARPETA KN-CSVfiles
     	  File backup = null;
-    	  boolean boolValue = true;
-    	  Asociacion canStore = null;
+    	  boolean boolValue;
+    	  Asociacion canStore;
     	  canStore = comprobarSDCard(context);
    		  boolValue = (Boolean)canStore.getKey();
    		  String msg = (String)canStore.getValue();
@@ -1783,66 +1829,66 @@ public class ConstantsAdmin {
    		  return backup;
     }    
         
-    public static void eliminarCategoriaPersonal(CategoriaDTO cat, Activity context, DataBaseManager mDBManager){
+    public static void eliminarCategoriaPersonal(CategoriaDTO cat, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.eliminarCategoriaPersonal(cat.getId());
 		finalizarBD(mDBManager);
     }
     
     
-    public static void crearCategoriaPersonal(CategoriaDTO cat, String oldNameCat, boolean forImport, Activity context, DataBaseManager mDBManager){
+    public static void crearCategoriaPersonal(CategoriaDTO cat, String oldNameCat, boolean forImport, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.crearCategoriaPersonal(cat, oldNameCat, forImport);
 		finalizarBD(mDBManager);
     }
     
-    public static long crearPersona(PersonaDTO personaSeleccionada, boolean forImport, Activity context, DataBaseManager mDBManager){
-    	long id = -1;
+    public static long crearPersona(PersonaDTO personaSeleccionada, boolean forImport, DataBaseManager mDBManager){
+    	long id;
     	inicializarBD(mDBManager);
     	id = mDBManager.createPersona(personaSeleccionada, forImport);
     	finalizarBD(mDBManager);
     	return id;
     }
     
-    public static void eliminarTelefono(TipoValorDTO tv, Activity context, DataBaseManager mDBManager){
+    public static void eliminarTelefono(TipoValorDTO tv, DataBaseManager mDBManager){
         inicializarBD(mDBManager);
     	mDBManager.eliminarTelefono(tv.getId());
     	finalizarBD(mDBManager);
     }
     
-    public static void eliminarEmail(TipoValorDTO tv, Activity context, DataBaseManager mDBManager){
+    public static void eliminarEmail(TipoValorDTO tv, DataBaseManager mDBManager){
         inicializarBD(mDBManager);
     	mDBManager.eliminarEmail(tv.getId());
     	finalizarBD(mDBManager);
     }
 
-    public static void eliminarDireccion(TipoValorDTO tv, Activity context, DataBaseManager mDBManager){
+    public static void eliminarDireccion(TipoValorDTO tv, DataBaseManager mDBManager){
         inicializarBD(mDBManager);
     	mDBManager.eliminarDireccion(tv.getId());
     	finalizarBD(mDBManager);
     }
     
-    public static void crearTelefono(TipoValorDTO mTipoValor, Activity context, DataBaseManager mDBManager){
+    public static void crearTelefono(TipoValorDTO mTipoValor, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_TELEFONOS);
 		finalizarBD(mDBManager);
     }
     
-    public static void crearEmail(TipoValorDTO mTipoValor, Activity context, DataBaseManager mDBManager){
+    public static void crearEmail(TipoValorDTO mTipoValor, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_EMAILS);
 		finalizarBD(mDBManager);
     }
     
-    public static void crearDireccion(TipoValorDTO mTipoValor, Activity context, DataBaseManager mDBManager){
+    public static void crearDireccion(TipoValorDTO mTipoValor, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_DIRECCIONES);
 		finalizarBD(mDBManager);
     }
 
     public static List<CategoriaDTO> obtenerCategoriasActivas(Activity context, String nombre, DataBaseManager mDBManager){
-    	Cursor cursor = null;
-    	List<CategoriaDTO> categorias = new ArrayList<CategoriaDTO>();
+    	Cursor cursor;
+    	List<CategoriaDTO> categorias = new ArrayList<>();
 	    inicializarBD(mDBManager);
 	    cursor = mDBManager.fetchCategoriasActivasPorNombre(nombre);
 	    if(cursor != null){
@@ -1856,8 +1902,8 @@ public class ConstantsAdmin {
     }
     
     public static List<CategoriaDTO> obtenerCategoriasActivasPersonales(Activity context, DataBaseManager mDBManager){
-    	Cursor cursor = null;
-    	List<CategoriaDTO> categorias = new ArrayList<CategoriaDTO>();
+    	Cursor cursor;
+    	List<CategoriaDTO> categorias = new ArrayList<>();
 	    inicializarBD(mDBManager);
 	    cursor = mDBManager.fetchCategoriasPersonalesActivasPorNombre(null);
 	    if(cursor != null){
@@ -1872,8 +1918,8 @@ public class ConstantsAdmin {
     }
     
     public static List<CategoriaDTO> obtenerCategorias(Activity context, String nombre, DataBaseManager mDBManager){
-    	Cursor cursor = null;
-    	List<CategoriaDTO> categorias = new ArrayList<CategoriaDTO>();
+    	Cursor cursor;
+    	List<CategoriaDTO> categorias = new ArrayList<>();
 	    inicializarBD(mDBManager);
 	    cursor = mDBManager.fetchAllCategoriasPorNombre(nombre);
 	    if(cursor != null){
@@ -1886,32 +1932,32 @@ public class ConstantsAdmin {
 	    return categorias;
     }
     
-    public static void actualizarCategoria(CategoriaDTO catSelected, Activity context, DataBaseManager mDBManager){
+    public static void actualizarCategoria(CategoriaDTO catSelected, DataBaseManager mDBManager){
  		inicializarBD(mDBManager);
 		mDBManager.actualizarCategoria(catSelected);
 		finalizarBD(mDBManager);
     }
     
-    public static void actualizarConfig(Activity context, DataBaseManager mDBManager){
+    public static void actualizarConfig(DataBaseManager mDBManager){
  		inicializarBD(mDBManager);
 		mDBManager.actualizarConfig(config);
 		finalizarBD(mDBManager);
     }
         
     
-    public static void eliminarPreferido(Activity context, long idPer, DataBaseManager mDBManager){
+    public static void eliminarPreferido(long idPer, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.eliminarPreferido(idPer);
 		finalizarBD(mDBManager);
     }
     
-    public static void crearPreferido(Activity context, long idPer, DataBaseManager mDBManager){
+    public static void crearPreferido(long idPer, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.crearPreferido(idPer);
 		finalizarBD(mDBManager);
     }
     
-    public static void eliminarPersona(Activity context, long perId, DataBaseManager mDBManager){
+    public static void eliminarPersona(long perId, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.eliminarPersona(perId);
 		finalizarBD(mDBManager);
@@ -1936,26 +1982,26 @@ public class ConstantsAdmin {
     public static final String TABLA_CATEGORIA_PROTEGIDA = "categoriaProtegida";
     
     
-    public static void crearCategoriaProtegida(CategoriaDTO cat, Activity context, DataBaseManager mDBManager){
+    public static void crearCategoriaProtegida(CategoriaDTO cat, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.crearCategoriaProtegida(cat);
 		finalizarBD(mDBManager);
     }
     
     
-    public static long crearContrasenia(ContraseniaDTO contrasenia, Activity context, DataBaseManager mDBManager){
-    	long id = -1;
+    public static long crearContrasenia(ContraseniaDTO contrasenia, DataBaseManager mDBManager){
+    	long id;
 		inicializarBD(mDBManager);
 		id = mDBManager.crearContrasenia(contrasenia);
 		finalizarBD(mDBManager);
 		return id;
     }
     
-    public static void almacenarContraseniaEnArchivo(Activity context, DataBaseManager mDBManager){
-    	Asociacion canStore = null;
-    	Boolean boolValue = true;
+    public static void almacenarContraseniaEnArchivo(Activity context){
+    	Asociacion canStore;
+    	Boolean boolValue;
     	String msg = null;
-    	String body = null;
+    	String body;
 	
     	canStore = comprobarSDCard(context);
     	body = contrasenia.getContrasenia();
@@ -1976,16 +2022,16 @@ public class ConstantsAdmin {
    	
     }
     
-    public static void eliminarCategoriaProtegida(CategoriaDTO cat, Activity context, DataBaseManager mDBManager){
+    public static void eliminarCategoriaProtegida(CategoriaDTO cat, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.eliminarCategoriaProtegida(cat.getNombreReal());
 		finalizarBD(mDBManager);
     }
     
     
-    public static List<CategoriaDTO> obtenerCategoriasProtegidas(Activity context, DataBaseManager mDBManager){
-    	Cursor cursor = null;
-    	List<CategoriaDTO> categorias = new ArrayList<CategoriaDTO>();
+    private static List<CategoriaDTO> obtenerCategoriasProtegidas(Activity context, DataBaseManager mDBManager){
+    	Cursor cursor;
+    	List<CategoriaDTO> categorias = new ArrayList<>();
 	    cursor = mDBManager.fetchAllCategoriasProtegidasPorNombre(null);
 	    if(cursor != null){
 	        context.startManagingCursor(cursor);
@@ -1996,8 +2042,8 @@ public class ConstantsAdmin {
 	    return categorias;
     }
     
-    public static ContraseniaDTO obtenerContrasenia(Activity context, DataBaseManager mDBManager){
-    	Cursor cursor = null;
+    private static ContraseniaDTO obtenerContrasenia(Activity context, DataBaseManager mDBManager){
+    	Cursor cursor;
     	ContraseniaDTO contrasenia = null;
 	    cursor = mDBManager.fetchContrasenia();
 	    if(cursor != null){
@@ -2012,7 +2058,7 @@ public class ConstantsAdmin {
     
     
     public static ConfigDTO obtenerConfiguracion(Activity context, DataBaseManager mDBManager){
-    	Cursor cursor = null;
+    	Cursor cursor;
     	ConfigDTO config = null;
     	inicializarBD(mDBManager);
 	    cursor = mDBManager.fetchConfig();
@@ -2038,7 +2084,7 @@ public class ConstantsAdmin {
     
 	public static boolean estaProtegidaCategoria(String nombreCategoria){
 		boolean result = false;
-		CategoriaDTO cat = null;
+		CategoriaDTO cat;
 		if(categoriasProtegidas != null){
 			Iterator<CategoriaDTO> it = categoriasProtegidas.iterator();
 			while(it.hasNext() && !result){
@@ -2052,13 +2098,13 @@ public class ConstantsAdmin {
 	}
     
     
-    public static ContraseniaDTO contraseniaCursorToDtos(Cursor cursor){
+    private static ContraseniaDTO contraseniaCursorToDtos(Cursor cursor){
     	ContraseniaDTO contrasenia = null; 
     	
-    	String pass = null;
-    	long passId = 0;
+    	String pass;
+    	long passId;
     	int activa;
-    	String mail = null;
+    	String mail;
     	
         cursor.moveToFirst();
         if(!cursor.isAfterLast()){
@@ -2082,13 +2128,13 @@ public class ConstantsAdmin {
 
     }  
     
-    public static ConfigDTO configCursorToDtos(Cursor cursor){
+    private static ConfigDTO configCursorToDtos(Cursor cursor){
     	ConfigDTO config = null; 
-    	int id = -1;
-    	int estanDetallados = 0;
-    	int organizadosPorCateg = 0;
-    	int estanExpandidos = 0;
-    	int muestraPreferidos = 0;
+    	int id;
+    	int estanDetallados;
+    	int organizadosPorCateg;
+    	int estanExpandidos;
+    	int muestraPreferidos;
         	
         cursor.moveToFirst();
         if(!cursor.isAfterLast()){
@@ -2137,7 +2183,7 @@ public class ConstantsAdmin {
     	
     }
     
-    public static void actualizarContrasenia(ContraseniaDTO pass, Activity context, DataBaseManager mDBManager){
+    public static void actualizarContrasenia(ContraseniaDTO pass, DataBaseManager mDBManager){
     	inicializarBD(mDBManager);
     	mDBManager.crearContrasenia(pass);
     	finalizarBD(mDBManager);
@@ -2145,27 +2191,27 @@ public class ConstantsAdmin {
     
     public static final int ACTIVITY_EJECUTAR_PROTECCION_CATEGORIA = 22;
     public static final int ACTIVITY_EJECUTAR_ACTIVAR_CONTRASENIA = 23;
-    public static final int ACTIVITY_EJECUTAR_ACTIVAR_CONTRASENIA_DESDE_SPINNER = 24;
+    // --Commented out by Inspection (12/11/2018 12:44):public static final int ACTIVITY_EJECUTAR_ACTIVAR_CONTRASENIA_DESDE_SPINNER = 24;
     
-    private static String HEAD_CATEGORIA_PROTEGIDA = "$$PP";
+    private static final String HEAD_CATEGORIA_PROTEGIDA = "$$PP";
     
-    private static String HEAD_CONTRASENIA = "$$PS";
+    private static final String HEAD_CONTRASENIA = "$$PS";
 
-	public static String imageFolder = "Pictures";
+	public static final String imageFolder = "Pictures";
 	public static boolean cerrarMainActivity = false;
     
     public static final int ACTIVITY_EJECUTAR_SACAR_PHOTO = 25;
 
     
     public static String obtenerPathImagen(){
-    	String result = null;
+    	String result;
     	result = obtenerPath(folderCSV) + File.separator + imageFolder + File.separator;
     	return result;
     }
     
     public static void almacenarImagen(Activity context, String nombreDirectorio, String nombreArchivo, Bitmap bm) throws IOException {
   	  	  String path = obtenerPath(nombreDirectorio);
-	      OutputStream fOut = null;
+	      OutputStream fOut;
 	      File dir = new File(path);
 	      dir.mkdirs();
 	      
@@ -2211,7 +2257,7 @@ public class ConstantsAdmin {
 	public static String recuperarInfoContacto(Activity activity, long id, DataBaseManager mDBManager) {
 		// TODO Auto-generated method stub
 		
-		String result = null;
+		String result;
 		PersonaDTO per = obtenerPersonaId(activity, id, mDBManager);
 		result = obtenerStringEsteticoPersonaParaEnviar(per, activity, ENTER, mDBManager);
 		return result;

@@ -12,10 +12,8 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,7 +40,7 @@ import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
-public class AltaPersonaActivity extends Activity {
+public class AltaPersonaActivity extends Activity  {
 	
 	private ArrayAdapter<CategoriaDTO> mSpinnerAdapt = null;
 	private CategoriaDTO mCategoriaSeleccionada = null;
@@ -61,17 +59,16 @@ public class AltaPersonaActivity extends Activity {
 	private boolean mMostrarEmailsBoolean = false;
 	private boolean mMostrarDireccionesBoolean = false;
 	private boolean mMostrarDatosPorCategoriaBoolean = false;
-	Resources res = null;
-	Drawable shapeLight = null;
-	Drawable shapeDark = null;
-	TextView mDescripcionLabel = null;
-	TextView mNombContact = null;
-	Spinner mSpinner = null;
+    // --Commented out by Inspection (12/11/2018 12:49):Drawable shapeLight = null;
+	// --Commented out by Inspection (12/11/2018 12:44):Drawable shapeDark = null;
+	// --Commented out by Inspection (12/11/2018 12:32):private TextView mDescripcionLabel = null;
+	private TextView mNombContact = null;
+	private Spinner mSpinner = null;
 
-	EditText mEntryApellido = null;
-	EditText mEntryNombre = null;
-	EditText mEntryDatoExtra = null;
-	EditText mEntryDescripcion = null;
+	private EditText mEntryApellido = null;
+	private EditText mEntryNombre = null;
+	private EditText mEntryDatoExtra = null;
+	private EditText mEntryDescripcion = null;
 
 	
 	
@@ -85,25 +82,28 @@ public class AltaPersonaActivity extends Activity {
 	private ImageButton botonAddMail = null;
 	private ImageButton botonAddDir = null;
 	
-	private List<TipoValorDTO> telefonos = new ArrayList<TipoValorDTO>();
-	private List<TipoValorDTO> mails = new ArrayList<TipoValorDTO>();
-	private List<TipoValorDTO> direcciones = new ArrayList<TipoValorDTO>();	
+	private List<TipoValorDTO> telefonos = new ArrayList<>();
+	private List<TipoValorDTO> mails = new ArrayList<>();
+	private List<TipoValorDTO> direcciones = new ArrayList<>();
 	
-	private ArrayList<String> tiposTelefono = new ArrayList<String>();
-	private ArrayList<String> tiposEmail = new ArrayList<String>();
-	private ArrayList<String> tiposDireccion = new ArrayList<String>();
+	private ArrayList<String> tiposTelefono = new ArrayList<>();
+	private ArrayList<String> tiposEmail = new ArrayList<>();
+	private ArrayList<String> tiposDireccion = new ArrayList<>();
 	
 	private static final String VALOR = "VALOR";
 	private static final String TIPO = "TIPO";
 	
-	TextView sinDatos = null;
+	private TextView sinDatos = null;
 	
 	private boolean cambioCategoriaFlag = false;
 	private boolean vieneDesdeDetalle = false;
 	
 	
 	
-	static final int DATE_DIALOG_ID = 0;
+	private static final int DATE_DIALOG_ID = 0;
+
+
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -112,14 +112,14 @@ public class AltaPersonaActivity extends Activity {
         return true;
 
     }
-    
+
     @Override
     public void startManagingCursor(Cursor c) {
     	allMyCursors.add(c);
         super.startManagingCursor(c);
     }
 
-    
+
     
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch(item.getItemId()) {
@@ -130,7 +130,7 @@ public class AltaPersonaActivity extends Activity {
         return super.onMenuItemSelected(featureId, item);
     }
     
-    protected void openListadoCategoria(){
+    private void openListadoCategoria(){
         Intent i = new Intent(this, ListadoCategoriaActivity.class);
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS);
     }
@@ -182,10 +182,10 @@ public class AltaPersonaActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-        	ConstantsAdmin.telefonosARegistrar = new ArrayList<TipoValorDTO>();
-        	ConstantsAdmin.mailsARegistrar = new ArrayList<TipoValorDTO>();
-        	ConstantsAdmin.direccionesARegistrar = new ArrayList<TipoValorDTO>();
-        	allMyCursors = new ArrayList<Cursor>();
+        	ConstantsAdmin.telefonosARegistrar = new ArrayList<>();
+        	ConstantsAdmin.mailsARegistrar = new ArrayList<>();
+        	ConstantsAdmin.direccionesARegistrar = new ArrayList<>();
+        	allMyCursors = new ArrayList<>();
             this.setContentView(R.layout.alta_persona);
             this.registrarWidgets();
             this.guardarPersonaSeleccionada(this.getIntent());
@@ -208,7 +208,7 @@ public class AltaPersonaActivity extends Activity {
             }else{
                 this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_editar_persona));
             }
-            
+
             
 		} catch (Exception e) {
 		// TODO: handle exception
@@ -354,19 +354,18 @@ public class AltaPersonaActivity extends Activity {
 
     
     private SimpleAdapter obtenerAdapter(List<TipoValorDTO> lista){
-    	ArrayList<HashMap<String,Object>> listdata=new ArrayList<HashMap<String,Object>>();
-    	HashMap<String, Object> hm = null;
-    	TipoValorDTO tv = null;
+    	ArrayList<HashMap<String,Object>> listdata= new ArrayList<>();
+    	HashMap<String, Object> hm;
+    	TipoValorDTO tv;
     	if(lista != null){
-        	Iterator<TipoValorDTO> it = lista.iterator();
-        	while(it.hasNext()){
-        		tv = it.next();
-        		hm = new HashMap<String, Object>();
-                hm.put(TIPO, tv.getTipo());
-                hm.put(VALOR, tv.getValor());
-                listdata.add(hm);
-        		
-        	}    		
+			for (TipoValorDTO aLista : lista) {
+				tv = aLista;
+				hm = new HashMap<>();
+				hm.put(TIPO, tv.getTipo());
+				hm.put(VALOR, tv.getValor());
+				listdata.add(hm);
+
+			}
     	}
         
         String[] from = {TIPO, VALOR};
@@ -379,8 +378,8 @@ public class AltaPersonaActivity extends Activity {
 		mDateDisplay = this.findViewById(R.id.labelDateDisplay);
 		mPickDate = this.findViewById(R.id.buttonPickDate);
 		mCheckFechaNac = this.findViewById(R.id.checkFechaNacimiento);
-		res = getResources(); 
-		mDescripcionLabel = this.findViewById(R.id.label_descripcion);
+     //   Resources res = getResources();
+	//	mDescripcionLabel = this.findViewById(R.id.label_descripcion);
 
 		mSpinner = this.findViewById(R.id.spinnerCategorias_alta_persona);
 		mEntryApellido = this.findViewById(R.id.entryApellido);
@@ -439,9 +438,9 @@ public class AltaPersonaActivity extends Activity {
 	private void cargarTelefonos(){
 		// ACA DEBERIA RECUPERAR LOS TELEFONOS EXTRAS
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		TipoValorDTO tv = null;
-		telefonos = new ArrayList<TipoValorDTO>();
-		tiposTelefono = new ArrayList<String>();
+		TipoValorDTO tv;
+		telefonos = new ArrayList<>();
+		tiposTelefono = new ArrayList<>();
 		this.cargarTiposTelefono();
 		String idPer = String.valueOf(mPersonaSeleccionada.getId());
 
@@ -463,7 +462,7 @@ public class AltaPersonaActivity extends Activity {
 		}
 		
 		// RECUPERO LOS TIPOS MOVILES
-		List<TipoValorDTO> masTelefonos = null;
+		List<TipoValorDTO> masTelefonos;
 		if(mPersonaSeleccionada.getId()!= -1){
 			masTelefonos = ConstantsAdmin.obtenerTelefonosIdPersona(this, mPersonaSeleccionada.getId(), mDBManager);
 			this.cargarMasElementos(masTelefonos, telefonos, tiposTelefono);
@@ -482,9 +481,9 @@ public class AltaPersonaActivity extends Activity {
 	private void cargarEmails(){
 		// ACA DEBERIA RECUPERAR LOS TELEFONOS EXTRAS
 
-		TipoValorDTO tv = null;
-		mails = new ArrayList<TipoValorDTO>();
-		tiposEmail = new ArrayList<String>();
+		TipoValorDTO tv;
+		mails = new ArrayList<>();
+		tiposEmail = new ArrayList<>();
 		this.cargarTiposEmail();
 		String idPer = String.valueOf(mPersonaSeleccionada.getId());
 
@@ -506,7 +505,7 @@ public class AltaPersonaActivity extends Activity {
 		}
 		
 		// RECUPERO LOS TIPOS MOVILES
-		List<TipoValorDTO> masMails = null;
+		List<TipoValorDTO> masMails;
 		if(mPersonaSeleccionada.getId()!= -1){
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 			masMails = ConstantsAdmin.obtenerEmailsIdPersona(this, mPersonaSeleccionada.getId(), mDBManager);
@@ -526,9 +525,9 @@ public class AltaPersonaActivity extends Activity {
 	private void cargarDirecciones(){
 		// ACA DEBERIA RECUPERAR LOS TELEFONOS EXTRAS
 
-		TipoValorDTO tv = null;
-		direcciones = new ArrayList<TipoValorDTO>();
-		tiposDireccion = new ArrayList<String>();
+		TipoValorDTO tv;
+		direcciones = new ArrayList<>();
+		tiposDireccion = new ArrayList<>();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		this.cargarTiposDireccion();
 		String idPer = String.valueOf(mPersonaSeleccionada.getId());
@@ -547,7 +546,7 @@ public class AltaPersonaActivity extends Activity {
 		
 		
 		// RECUPERO LOS TIPOS MOVILES
-		List<TipoValorDTO> masDirecciones = null;
+		List<TipoValorDTO> masDirecciones;
 		if(mPersonaSeleccionada.getId()!= -1){
 			masDirecciones = ConstantsAdmin.obtenerDireccionesIdPersona(this, mPersonaSeleccionada.getId(), mDBManager);
 			this.cargarMasElementos(masDirecciones, direcciones, tiposDireccion);
@@ -565,7 +564,7 @@ public class AltaPersonaActivity extends Activity {
 	
 	private void cargarMasElementos(List<TipoValorDTO> listaOrigen, List<TipoValorDTO> listaDestino, List<String> tipos){
 		Iterator<TipoValorDTO> it = listaOrigen.iterator();
-		TipoValorDTO tv = null;
+		TipoValorDTO tv;
 		while(it.hasNext()){
 			tv = it.next();
 			listaDestino.add(tv);
@@ -576,7 +575,7 @@ public class AltaPersonaActivity extends Activity {
 
 
 	private TipoValorDTO cargarTipoValor(String tipo, String valor, String idPer){
-		TipoValorDTO tv = null;
+		TipoValorDTO tv;
 		tv = new TipoValorDTO();
 		tv.setId(0);
 		tv.setIdPersona(idPer);
@@ -606,9 +605,8 @@ public class AltaPersonaActivity extends Activity {
     	if(text != null){
 	    	Locale locale = this.getResources().getConfiguration().locale;
 	    	String lang = locale.getLanguage();
-	    	String temp = "";
-	    	result = "";
-	    	int mes = -1;
+	    	String temp;
+			int mes;
 	    	String[] array = text.split(ConstantsAdmin.SEPARADOR_FECHA);
 	    	temp = array[1];
 	    	mes = Integer.valueOf(temp);
@@ -689,7 +687,7 @@ public class AltaPersonaActivity extends Activity {
 
 	
 	private void guardarPersonaSeleccionada(Intent intent){
-		String idPerString = null;
+		String idPerString;
 		this.cargarTiposTelefono();
 		this.cargarTiposEmail();
 		this.cargarTiposDireccion();
@@ -715,7 +713,7 @@ public class AltaPersonaActivity extends Activity {
 	}
 	
 	private void cargarVariablesDeFechaNacimiento(String fechaTemp){
-		String[] temp = null; 
+		String[] temp;
 		if(fechaTemp != null && !fechaTemp.equals("")){
 			temp = fechaTemp.split(ConstantsAdmin.SEPARADOR_FECHA);
 			mDay = Integer.valueOf(temp[0]);
@@ -765,7 +763,7 @@ public class AltaPersonaActivity extends Activity {
 	}
 	
 	private boolean validarEntradaDeDatos(){
-		boolean estaOk = false;
+		boolean estaOk;
 		String apellidoText = mEntryApellido.getText().toString();
 		estaOk = !apellidoText.equals("");
 		return estaOk;
@@ -798,7 +796,7 @@ public class AltaPersonaActivity extends Activity {
 				cambioCategoriaFlag = false;
 			}
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			long idPer = ConstantsAdmin.crearPersona(mPersonaSeleccionada, false, this, mDBManager);
+			long idPer = ConstantsAdmin.crearPersona(mPersonaSeleccionada, false, mDBManager);
 			this.getIntent().putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(idPer));
 
 			if(ConstantsAdmin.telefonosARegistrar != null && ConstantsAdmin.telefonosARegistrar.size() > 0){
@@ -816,7 +814,9 @@ public class AltaPersonaActivity extends Activity {
 			mCategoriaSeleccionada = null;
 			mPersonaSeleccionada.setId(idPer);
 			mNombContact.setVisibility(View.VISIBLE);
-			mNombContact.setText(mPersonaSeleccionada.getApellido().toUpperCase() + " " + mPersonaSeleccionada.getNombres());
+
+			mNombContact.setText(mPersonaSeleccionada.getApellido().toUpperCase() + getString(R.string.blank) + mPersonaSeleccionada.getNombres());
+			//mNombContact.setText(mPersonaSeleccionada.getApellido().toUpperCase() + " " + mPersonaSeleccionada.getNombres());
 			ConstantsAdmin.resetPersonasOrganizadas();
 		} catch (Exception e) {
 			if(mPersonaSeleccionada.getId() == -1){
@@ -831,7 +831,7 @@ public class AltaPersonaActivity extends Activity {
 	private void registrarTelefonos(List<TipoValorDTO> telefonos, long idPer){
 		Iterator<TipoValorDTO> it = telefonos.iterator();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		TipoValorDTO tv = null;
+		TipoValorDTO tv;
 		while(it.hasNext()){
 			tv = it.next();
 			tv.setIdPersona(String.valueOf(idPer));
@@ -842,7 +842,7 @@ public class AltaPersonaActivity extends Activity {
 
 	private void registrarMails(List<TipoValorDTO> mails, long idPer){
 		Iterator<TipoValorDTO> it = mails.iterator();
-		TipoValorDTO tv = null;
+		TipoValorDTO tv;
 		while(it.hasNext()){
 			tv = it.next();
 			tv.setIdPersona(String.valueOf(idPer));
@@ -855,7 +855,7 @@ public class AltaPersonaActivity extends Activity {
 	private void registrarDirecciones(List<TipoValorDTO> direcciones, long idPer){
 		Iterator<TipoValorDTO> it = direcciones.iterator();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		TipoValorDTO tv = null;
+		TipoValorDTO tv;
 		while(it.hasNext()){
 			tv = it.next();
 			tv.setIdPersona(String.valueOf(idPer));
@@ -1140,7 +1140,7 @@ public class AltaPersonaActivity extends Activity {
 	private void configurarDatePicker(){
         mPickDate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showDialog(DATE_DIALOG_ID);
+                showDialog(DATE_DIALOG_ID, null);
             }
         });
         
@@ -1189,7 +1189,7 @@ public class AltaPersonaActivity extends Activity {
     }
     
  // the callback received when the user "sets" the date in the dialog
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
+    private final DatePickerDialog.OnDateSetListener mDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, 
@@ -1212,20 +1212,20 @@ public class AltaPersonaActivity extends Activity {
     }
 
     private void configurarSpinner(){
-      List<CategoriaDTO> categorias = null;
-      List<CategoriaDTO> categoriasPersonales = null;
+      List<CategoriaDTO> categorias;
+      List<CategoriaDTO> categoriasPersonales;
       DataBaseManager mDBManager = DataBaseManager.getInstance(this);
       categorias = ConstantsAdmin.obtenerCategoriasActivas(this, null, mDBManager);
       categoriasPersonales = ConstantsAdmin.obtenerCategoriasActivasPersonales(this, mDBManager);
       categorias.addAll(categoriasPersonales);
       this.cargarNombreRelativoCategorias(categorias);
-      this.crearSpinnerCategorias(R.id.spinnerCategorias_alta_persona, categorias);
+      this.crearSpinnerCategorias(categorias);
     }
     
   	private void cargarNombreRelativoCategorias(List<CategoriaDTO> categorias){
   		Iterator<CategoriaDTO> it = categorias.iterator();
-  		CategoriaDTO catTemp = null;
-  		String nombreRelativo = null;
+  		CategoriaDTO catTemp;
+  		String nombreRelativo;
   		while(it.hasNext()){
   			catTemp = it.next();
   			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
@@ -1239,10 +1239,10 @@ public class AltaPersonaActivity extends Activity {
 
   	
     
-    protected Spinner crearSpinnerCategorias(int nombreSpinner, List<CategoriaDTO> categorias){
-	    Spinner spinner = findViewById(nombreSpinner);
+    private void crearSpinnerCategorias(List<CategoriaDTO> categorias){
+	    Spinner spinner = findViewById(R.id.spinnerCategorias_alta_persona);
 	    int pos = 0;
-	    CategoriaDTO cat = null;
+	    CategoriaDTO cat;
 	    boolean encontrado = false;
 	    Iterator<CategoriaDTO> it = categorias.iterator();
 	    while(!encontrado && it.hasNext()){
@@ -1253,7 +1253,7 @@ public class AltaPersonaActivity extends Activity {
 	    		mCategoriaSeleccionada = cat;
 	    	}
 	    }
-	    this.mSpinnerAdapt = new ArrayAdapter<CategoriaDTO>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
+	    this.mSpinnerAdapt = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
 
 	    spinner.setAdapter(this.mSpinnerAdapt); 
 	    if(encontrado){
@@ -1261,11 +1261,10 @@ public class AltaPersonaActivity extends Activity {
 	    }
 	    OnItemSelectedListener spinnerListener = new seleccionSpinnerListener();
 	    spinner.setOnItemSelectedListener(spinnerListener);
-	    return spinner;
-    }
-    
-    
-    public class seleccionSpinnerListener implements OnItemSelectedListener {
+	}
+
+
+	class seleccionSpinnerListener implements OnItemSelectedListener {
 
 
         public void onItemSelected(AdapterView<?> parent, View v, int pos, long row) {
@@ -1283,35 +1282,50 @@ public class AltaPersonaActivity extends Activity {
     
     private String obtenerEtiquetaDatoExtra(String nombreEtiqueta){
     	String result = null;
-    	if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_AMIGOS)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_CLIENTES)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_COLEGAS)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_COMPANIEROS)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_CONOCIDOS)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_FAMILIARES)){
-    		result = getString(R.string.hint_parentesco);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_JEFES)){
-    		result = getString(R.string.hint_empresa);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_MEDICO)){
-    		result = getString(R.string.hint_especialidad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_OTROS)){
-    		result = getString(R.string.hint_rol);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_PACIENTES)){
-    		result = getString(R.string.hint_obraSocial);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_PROFESORES)){
-    		result = getString(R.string.hint_lugarOActividad);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_PROVEEDORES)){
-    		result = getString(R.string.hint_empresa);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_SOCIOS)){
-    		result = getString(R.string.hint_empresa);
-    	}else if(nombreEtiqueta.equals(ConstantsAdmin.CATEGORIA_VECINOS)){
-    		result = getString(R.string.hint_zona);
-    	}
+		switch (nombreEtiqueta) {
+			case ConstantsAdmin.CATEGORIA_AMIGOS:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_CLIENTES:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_COLEGAS:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_COMPANIEROS:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_CONOCIDOS:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_FAMILIARES:
+				result = getString(R.string.hint_parentesco);
+				break;
+			case ConstantsAdmin.CATEGORIA_JEFES:
+				result = getString(R.string.hint_empresa);
+				break;
+			case ConstantsAdmin.CATEGORIA_MEDICO:
+				result = getString(R.string.hint_especialidad);
+				break;
+			case ConstantsAdmin.CATEGORIA_OTROS:
+				result = getString(R.string.hint_rol);
+				break;
+			case ConstantsAdmin.CATEGORIA_PACIENTES:
+				result = getString(R.string.hint_obraSocial);
+				break;
+			case ConstantsAdmin.CATEGORIA_PROFESORES:
+				result = getString(R.string.hint_lugarOActividad);
+				break;
+			case ConstantsAdmin.CATEGORIA_PROVEEDORES:
+				result = getString(R.string.hint_empresa);
+				break;
+			case ConstantsAdmin.CATEGORIA_SOCIOS:
+				result = getString(R.string.hint_empresa);
+				break;
+			case ConstantsAdmin.CATEGORIA_VECINOS:
+				result = getString(R.string.hint_zona);
+				break;
+		}
     	
     	
     	return result;
@@ -1319,7 +1333,7 @@ public class AltaPersonaActivity extends Activity {
     
     
     private void configurarEntriesPorCategoriaSeleccionada(){
-    	String text = null;
+    	String text;
     	if(mCategoriaSeleccionada != null){
 	    	EditText textViewEntry = this.findViewById(R.id.entryDatoExtra);
 	    	TextView textViewLabel = this.findViewById(R.id.label_datoExtra);
@@ -1351,16 +1365,15 @@ public class AltaPersonaActivity extends Activity {
     }
     
 
-    
+
     private void resetAllMyCursors(){
-    	Cursor cur = null;
-    	Iterator<Cursor> it = allMyCursors.iterator();
-    	while(it.hasNext()){
-    		cur = it.next();
-    		cur.close();
-    		this.stopManagingCursor(cur);
-    	}
-    	allMyCursors = new ArrayList<Cursor>();
+    	Cursor cur;
+        for (Cursor allMyCursor : allMyCursors) {
+            cur = allMyCursor;
+            cur.close();
+            this.stopManagingCursor(cur);
+        }
+    	allMyCursors = new ArrayList<>();
     }
 
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
@@ -15,7 +14,7 @@ import com.boxico.android.kn.contacts.R;
 
 public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 	
-	private ListadoPersonaActivity localContext;
+	private final ListadoPersonaActivity localContext;
 
 	public KNSimpleCursorAdapter(Context context, int layout, Cursor c,
 			String[] from, int[] to) {
@@ -50,9 +49,9 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 	public void bindView(View view, Context context, Cursor cursor) {
 		// TODO Auto-generated method stub
 		 super.bindView(view, context, cursor);
-		 int colorPreferidoNaranja = Color.parseColor("#24221F");
+	//	 int colorPreferidoNaranja = Color.parseColor("#24221F");
 	     TextView textA = view.findViewById(R.id.rowApellido);
-	     TextView textN = view.findViewById(R.id.rowNombres);
+	 //    TextView textN = view.findViewById(R.id.rowNombres);
 	     ImageView photo = view.findViewById(R.id.photo);
 	     
 	     long id = cursor.getLong(cursor.getColumnIndex(ConstantsAdmin.KEY_ROWID));

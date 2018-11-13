@@ -18,11 +18,11 @@ import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 public class AltaCategoriaActivity extends Activity {
 	
 	private CategoriaDTO mCategoriaSeleccionada = null;
-	EditText mNombreCategoria = null;
-	EditText mNombreCaracteristica = null;
-	Button btnEditar = null; 
-	Button btnEliminar = null; 
-	Dialog dialog = null;
+	private EditText mNombreCategoria = null;
+	private EditText mNombreCaracteristica = null;
+	private Button btnEditar = null;
+	private Button btnEliminar = null;
+	private Dialog dialog = null;
 	
     
 	public void onCreate(Bundle savedInstanceState) {
@@ -112,7 +112,7 @@ public class AltaCategoriaActivity extends Activity {
 	private void eliminarCategoriaSeleccionada(){
 		try {
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			ConstantsAdmin.eliminarCategoriaPersonal(mCategoriaSeleccionada, this, mDBManager);
+			ConstantsAdmin.eliminarCategoriaPersonal(mCategoriaSeleccionada, mDBManager);
 		} catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEliminacionCategoria));
 		}
@@ -151,7 +151,7 @@ public class AltaCategoriaActivity extends Activity {
     
     
 	private void guardarCategoriaSeleccionada(Intent intent){
-		String idCatString = null;
+		String idCatString;
 		if(intent.hasExtra(ConstantsAdmin.CATEGORIA_SELECCIONADA)){
 			idCatString = (String)intent.getExtras().get(ConstantsAdmin.CATEGORIA_SELECCIONADA);
 			this.cargarCategoriaDto(idCatString);
@@ -179,7 +179,7 @@ public class AltaCategoriaActivity extends Activity {
 			mCategoriaSeleccionada.setActiva(1);
 			mCategoriaSeleccionada.setCategoriaPersonal(true);
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			ConstantsAdmin.crearCategoriaPersonal(mCategoriaSeleccionada, oldNameCat, false, this, mDBManager);
+			ConstantsAdmin.crearCategoriaPersonal(mCategoriaSeleccionada, oldNameCat, false, mDBManager);
 			if(reset){
 				ConstantsAdmin.resetPersonasOrganizadas();
 			}
@@ -197,7 +197,7 @@ public class AltaCategoriaActivity extends Activity {
     
     
 	private boolean validarEntradaDeDatos(){
-		boolean estaOk = false;
+		boolean estaOk;
 		
 		String nomCatStr = mNombreCategoria.getText().toString();
 		String nomDatoRelStr = mNombreCaracteristica.getText().toString();

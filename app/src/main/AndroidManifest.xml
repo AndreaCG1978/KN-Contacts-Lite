@@ -33,18 +33,18 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 			<intent-filter>
-				<action android:name="android.permission.READ_CONTACTS"></action>
+				<action android:name="android.permission.READ_CONTACTS" />
 			</intent-filter>
 		</activity>
 		<activity android:name="ListadoPersonaActivity">
 			<intent-filter>
-				<action android:name="android.permission.READ_CONTACTS"></action>
+				<action android:name="android.permission.READ_CONTACTS" />
 			</intent-filter>
 
 		</activity>
 		<activity android:name="DetallePersonaActivity">
 			<intent-filter>
-				<action android:name="android.permission.CALL_PHONE"></action>
+				<action android:name="android.permission.CALL_PHONE" />
 			</intent-filter>
 
 		</activity>

@@ -17,15 +17,14 @@ import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
 public class PhotoActivity extends Activity {
 	
-	protected boolean _taken = true;
-	File sdImageMainDirectory;
-	Uri outputFileUri;
-	String fileTemp = "temp.jpg";
+	// --Commented out by Inspection (12/11/2018 12:36):protected boolean _taken = true;
+	private File sdImageMainDirectory;
+	private final String fileTemp = "temp.jpg";
 
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 0;
-	int mPersonaSeleccionadaId = -1;
+	private int mPersonaSeleccionadaId = -1;
 	
-	boolean capturoConCamara = false;
+	private boolean capturoConCamara = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -70,15 +69,15 @@ public class PhotoActivity extends Activity {
     }
     
 
-	protected void startFromFileActivity() {
+	private void startFromFileActivity() {
 		capturoConCamara = false;
 	    Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 	    startActivityForResult(i, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE); 
 	}
 	
-	protected void startCameraActivity() {
+	private void startCameraActivity() {
 		capturoConCamara = true;
-	    outputFileUri = Uri.fromFile(sdImageMainDirectory);
+		Uri outputFileUri = Uri.fromFile(sdImageMainDirectory);
 
 	    Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
 	    intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
@@ -96,7 +95,7 @@ public class PhotoActivity extends Activity {
 	        if(resultCode==Activity.RESULT_OK)
 	        {
 	            try{
-	            	Bitmap b = null;
+	            	Bitmap b;
 	            	if(capturoConCamara){
             		   	b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + fileTemp);
    	            	
@@ -108,7 +107,7 @@ public class PhotoActivity extends Activity {
    	               	Bitmap newb = Bitmap.createScaledBitmap(b, 100, 100, true);
    	            	ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, String.valueOf(mPersonaSeleccionadaId) + ".jpg", newb);
    	            	File file = new File(ConstantsAdmin.obtenerPathImagen() + fileTemp);
-   	            	if(file != null && file.exists()){
+   	            	if(file.exists()){
    	            		file.delete();
    	            	}
 

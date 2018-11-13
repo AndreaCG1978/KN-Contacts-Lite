@@ -100,7 +100,7 @@ ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\And
 intent-filter#action:name:android.permission.READ_CONTACTS
 ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:35:4-37:20
 action#android.permission.READ_CONTACTS
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:36:5-70
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:36:5-63
 	android:name
 		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:36:13-60
 activity#com.boxico.android.kn.contacts.ListadoPersonaActivity
@@ -114,7 +114,7 @@ ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\And
 intent-filter#action:name:android.permission.CALL_PHONE
 ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:46:4-48:20
 action#android.permission.CALL_PHONE
-ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:47:5-67
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:47:5-60
 	android:name
 		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\src\main\AndroidManifest.xml:47:13-57
 activity#com.boxico.android.kn.contacts.ListadoCategoriaActivity

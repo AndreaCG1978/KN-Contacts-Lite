@@ -128,28 +128,30 @@ public class PersonaDTO {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public PersonaDTO(String apellido, String nombres, 
-			String fechaNacimiento, long categoriaId, String emailParticular, String emailLaboral, String emailOtro,
-			String celular, String telLaboral, String telParticular,
-			String descripcion, String direccionParticular, String direccionLaboral, String categoriaNombre, String datoExtra, long id) {
-		super();
-		this.apellido = apellido;
-		this.nombres = nombres;
-		this.fechaNacimiento = fechaNacimiento;
-		this.categoriaId = categoriaId;
-		this.emailParticular = emailParticular;
-		this.emailLaboral = emailLaboral;
-		this.emailOtro = emailOtro;
-		this.celular = celular;
-		this.telLaboral = telLaboral;
-		this.telParticular = telParticular;
-		this.descripcion = descripcion;
-		this.direccionLaboral = direccionLaboral;
-		this.direccionParticular = direccionParticular;
-		this.categoriaNombre = categoriaNombre;
-		this.datoExtra = datoExtra;
-		this.id = id;
-	}
+// --Commented out by Inspection START (12/11/2018 12:36):
+//	public PersonaDTO(String apellido, String nombres,
+//			String fechaNacimiento, long categoriaId, String emailParticular, String emailLaboral, String emailOtro,
+//			String celular, String telLaboral, String telParticular,
+//			String descripcion, String direccionParticular, String direccionLaboral, String categoriaNombre, String datoExtra, long id) {
+//		super();
+//		this.apellido = apellido;
+//		this.nombres = nombres;
+//		this.fechaNacimiento = fechaNacimiento;
+//		this.categoriaId = categoriaId;
+//		this.emailParticular = emailParticular;
+//		this.emailLaboral = emailLaboral;
+//		this.emailOtro = emailOtro;
+//		this.celular = celular;
+//		this.telLaboral = telLaboral;
+//		this.telParticular = telParticular;
+//		this.descripcion = descripcion;
+//		this.direccionLaboral = direccionLaboral;
+//		this.direccionParticular = direccionParticular;
+//		this.categoriaNombre = categoriaNombre;
+//		this.datoExtra = datoExtra;
+//		this.id = id;
+//	}
+// --Commented out by Inspection STOP (12/11/2018 12:36)
 	public PersonaDTO() {
 		// TODO Auto-generated constructor stub
 	}

@@ -1,17 +1,17 @@
 package com.boxico.android.kn.contacts.persistencia.dtos;
 
 public class ConfigDTO {
-	long id = -1;
+	private long id = -1;
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	boolean ordenadoPorCategoria = false;
-	boolean estanDetallados = false;
-	boolean listaExpandida = false;
-	boolean muestraPreferidos = false;
+	private boolean ordenadoPorCategoria = false;
+	private boolean estanDetallados = false;
+	private boolean listaExpandida = false;
+	private boolean muestraPreferidos = false;
 	public boolean isOrdenadoPorCategoria() {
 		return ordenadoPorCategoria;
 	}

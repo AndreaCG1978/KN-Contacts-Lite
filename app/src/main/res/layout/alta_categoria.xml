@@ -22,7 +22,8 @@
 			android:padding="8dp" android:textSize="14sp"
 			android:layout_marginStart="9dp"
 			android:textColor="@color/color_azul_oscuro"
-			android:importantForAutofill="no" />
+			android:importantForAutofill="no"
+			android:layout_marginLeft="9dp" />
 
 	</LinearLayout>
 
@@ -42,7 +43,8 @@
 			android:hint="@string/hint_caracteristica" android:inputType="textCapWords"
 			android:layout_marginStart="9dp" android:maxLength="15" android:textColor="@color/color_azul_oscuro"
 			android:textSize="14sp" android:padding="8dp"
-			android:importantForAutofill="no" />
+			android:importantForAutofill="no"
+			android:layout_marginLeft="9dp" />
 	</LinearLayout>
 	<View android:layout_width="wrap_content" android:layout_height="1px"
 		android:layout_marginBottom="8dp" android:background="@color/color_azul" />
@@ -62,7 +64,8 @@
 			android:layout_width="wrap_content" android:layout_height="35dp"
 			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 			android:layout_marginStart="15dp" android:text="@string/label_borrarPersona"
-			android:textSize="13sp" style="?android:buttonBarButtonStyle"/>
+			android:textSize="13sp" style="?android:buttonBarButtonStyle"
+			android:layout_marginLeft="15dp" />
 
 	</LinearLayout>
 

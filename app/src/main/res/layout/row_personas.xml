@@ -14,13 +14,16 @@
 			android:textSize="13sp" android:paddingStart="15dp"
 			android:paddingTop="1dp" android:paddingEnd="4dp"
 			android:paddingBottom="1dp" android:typeface="sans"
-			android:maxLength="20">
+			android:maxLength="20"
+            android:paddingLeft="15dp"
+            android:paddingRight="4dp">
 		</TextView>
 		<TextView android:id="@+id/rowNombres" android:layout_height="wrap_content"
 			android:layout_width="fill_parent" android:textSize="13sp"
 			android:textColor="@color/color_blanco" android:padding="1dp"
 			android:layout_marginEnd="10dp"
-			android:singleLine="true" android:typeface="sans">
+			android:singleLine="true" android:typeface="sans"
+            android:layout_marginRight="10dp">
 		</TextView>
 
 	</LinearLayout>
@@ -29,25 +32,34 @@
 		<ImageView android:id="@+id/photo" android:layout_height="34dp"
 			android:layout_width="41dp" android:layout_marginTop="2dp"
 			android:layout_marginEnd="2dp"
-			android:contentDescription="photo" />
+			android:contentDescription="photo"
+            android:layout_marginRight="2dp" />
 		<LinearLayout android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:orientation="vertical">
 			<TextView android:id="@+id/rowDatoRelevante"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
 				android:textStyle="bold" android:textColor="@color/color_gris_oscuro"
 				android:textSize="12sp" android:paddingStart="15dp"
+				android:paddingEnd="15dp"
 				android:paddingTop="1dp" android:paddingBottom="1dp"
 				android:background="@drawable/custom_text_view_categoria"
 				android:gravity="start" android:layout_marginEnd="25dp"
-				android:singleLine="true">
+				android:singleLine="true"
+                android:paddingLeft="15dp"
+				android:paddingRight="15dp"
+                android:layout_marginRight="25dp">
 			</TextView>
 			<TextView android:id="@+id/rowDatoRelevante2"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
 				android:textStyle="italic" android:textColor="@color/color_gris_oscuro"
 				android:textSize="12sp" android:paddingStart="15dp"
+				android:paddingEnd="15dp"
 				android:background="@drawable/custom_text_view_categoria_desc"
 				android:gravity="start" android:layout_marginEnd="55dp"
-				android:singleLine="true">
+				android:singleLine="true"
+                android:paddingLeft="15dp"
+				android:paddingRight="15dp"
+                android:layout_marginRight="55dp">
 			</TextView>
 		</LinearLayout>
 	</LinearLayout>

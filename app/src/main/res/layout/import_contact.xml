@@ -4,19 +4,31 @@
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical">
 
-	<TextView android:id="@+id/textPersonaEncontrada"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textSize="18sp" android:background="@drawable/custom_text_view_categoria"
+	<TextView
+		android:id="@+id/textPersonaEncontrada"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:textSize="18sp"
+		android:background="@drawable/custom_text_view_categoria"
 		android:textColor="@color/color_azul_oscuro"
-		android:layout_marginBottom="1dp" android:layout_marginTop="6dp"
-		android:padding="3dp" android:gravity="center" android:textStyle="bold"></TextView>
+		android:layout_marginBottom="1dp"
+		android:layout_marginTop="6dp"
+		android:padding="3dp"
+		android:gravity="center"
+		android:textStyle="bold" />
 
-	<TextView android:id="@+id/textTipoPersonaEncontrada"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textSize="13sp" android:background="@drawable/custom_text_view_categoria_desc"
+	<TextView
+		android:id="@+id/textTipoPersonaEncontrada"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:textSize="13sp"
+		android:background="@drawable/custom_text_view_categoria_desc"
 		android:textColor="@color/color_gris_oscuro"
-		android:layout_marginBottom="4dp" android:layout_marginTop="6dp"
-		android:padding="3dp" android:gravity="center" android:textStyle="bold"></TextView>
+		android:layout_marginBottom="4dp"
+		android:layout_marginTop="6dp"
+		android:padding="3dp"
+		android:gravity="center"
+		android:textStyle="bold" />
 
 	<View
         android:layout_width="wrap_content"
@@ -32,13 +44,15 @@
 		<Spinner android:id="@+id/spinnerCategorias_alta_persona"
             android:layout_width="wrap_content"
 			android:layout_height="38dp" android:layout_marginStart="5dp"
-			android:background="@drawable/custom_button" />
+			android:background="@drawable/custom_button"
+			android:layout_marginLeft="5dp" />
 
 
 		<ImageButton android:id="@+id/imagenCategorias" android:background="@drawable/categoria_icon"
 			android:layout_height="34dp" android:layout_width="34dp"
 			android:layout_marginStart="18dp"
-			android:contentDescription="imagenCategorias" />
+			android:contentDescription="imagenCategorias"
+			android:layout_marginLeft="18dp" />
 	
 	</LinearLayout>
 
@@ -59,7 +73,10 @@
 			android:padding="5dp" android:textSize="14sp"
 			android:layout_marginStart="3dp" android:layout_marginEnd="4dp"
 			android:layout_width="fill_parent" android:maxLength="30"
-			android:importantForAutofill="no" />
+			android:importantForAutofill="no"
+			android:hint="@string/hint_caracteristica"
+			android:layout_marginLeft="3dp"
+			android:layout_marginRight="4dp" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -80,7 +97,9 @@
 			android:textSize="14sp" android:layout_marginStart="3dp"
 			android:layout_marginEnd="4dp" android:layout_width="fill_parent"
 			android:maxLength="40"
-			android:importantForAutofill="no" />
+			android:importantForAutofill="no"
+			android:layout_marginLeft="3dp"
+			android:layout_marginRight="4dp" />
 	</LinearLayout>
 
 

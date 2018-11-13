@@ -199,5 +199,7 @@
 <string name="label_ver_detalle"><![CDATA[VEDI DETTAGLIO]]></string>
 <string name="label_enviar_info"><![CDATA[INVIA A]]></string>
 <string name="menu_editar_persona">Edit Contact</string>
+    <string name="hint_contrasenia">********</string>
+    <string name="blank">%d</string>
 
 </resources>

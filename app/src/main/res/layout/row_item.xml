@@ -8,7 +8,9 @@
 		android:textSize="12sp" android:singleLine="true" android:paddingStart="2dp"
 		android:paddingTop="12dp" android:paddingEnd="8dp"
 		android:paddingBottom="12dp" android:gravity="end"
-		android:background="@drawable/custom_text_view_categoria">
+		android:background="@drawable/custom_text_view_categoria"
+        android:paddingLeft="2dp"
+        android:paddingRight="8dp">
 	</TextView>
 
 	<TextView android:id="@+id/rowValor" android:layout_width="fill_parent"
@@ -17,7 +19,10 @@
 		android:background="@drawable/custom_text_view_categoria_desc"
 		android:paddingStart="15dp" android:paddingTop="12dp"
 		android:paddingEnd="20dp" android:paddingBottom="12dp"
-		android:layout_marginStart="2dp">
+		android:layout_marginStart="2dp"
+        android:paddingLeft="15dp"
+        android:layout_marginLeft="2dp"
+        android:paddingRight="20dp">
 	</TextView>
 
 

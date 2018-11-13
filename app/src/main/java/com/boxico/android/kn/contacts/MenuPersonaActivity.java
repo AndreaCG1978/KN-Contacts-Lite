@@ -15,7 +15,7 @@ import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
 public class MenuPersonaActivity extends Activity {
 	
-	Dialog dialog = null;
+	private Dialog dialog = null;
 	private int mPersonaSeleccionadaId = -1;
 
 	@Override
@@ -42,7 +42,7 @@ public class MenuPersonaActivity extends Activity {
 	
 	
 	private void registrarWidgets(Dialog dialog){
-		PersonaDTO per = null;
+		PersonaDTO per;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		per = ConstantsAdmin.obtenerPersonaId(this, mPersonaSeleccionadaId, mDBManager);
     	String nombre = per.getApellido() + " ";
@@ -108,7 +108,7 @@ public class MenuPersonaActivity extends Activity {
 	private void eliminarPersonaSeleccionada(){
 		try {
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			ConstantsAdmin.eliminarPersona(this, mPersonaSeleccionadaId, mDBManager);
+			ConstantsAdmin.eliminarPersona(mPersonaSeleccionadaId, mDBManager);
 	
 		} catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEliminacionContacto));

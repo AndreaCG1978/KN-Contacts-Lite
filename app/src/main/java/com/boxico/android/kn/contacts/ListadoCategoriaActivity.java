@@ -31,7 +31,7 @@ public class ListadoCategoriaActivity extends ListActivity {
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        allMyCursors = new ArrayList<Cursor>();
+        allMyCursors = new ArrayList<>();
         this.setContentView(R.layout.list_categorias);
         this.registrarWidgets();
         this.configurarList(getListView()); 
@@ -44,21 +44,20 @@ public class ListadoCategoriaActivity extends ListActivity {
 	}
 	
     private void resetAllMyCursors(){
-    	Cursor cur = null;
-    	Iterator<Cursor> it = allMyCursors.iterator();
-    	while(it.hasNext()){
-    		cur = it.next();
-    		cur.close();
-    		this.stopManagingCursor(cur);
-    	}
-    	allMyCursors = new ArrayList<Cursor>();
+    	Cursor cur;
+		for (Cursor allMyCursor : allMyCursors) {
+			cur = allMyCursor;
+			cur.close();
+			this.stopManagingCursor(cur);
+		}
+    	allMyCursors = new ArrayList<>();
     }
   	
 	
     private void cambiarNombreCategorias(List<CategoriaDTO> categorias){
   		Iterator<CategoriaDTO> it = categorias.iterator();
-  		CategoriaDTO catTemp = null;
-  		String nombreRelativo = null;
+  		CategoriaDTO catTemp;
+  		String nombreRelativo;
   		while(it.hasNext()){
   			catTemp = it.next();
   			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
@@ -81,7 +80,7 @@ public class ListadoCategoriaActivity extends ListActivity {
 		Collections.sort(categorias);
         
         setListAdapter(new KNArrayAdapter(this, R.layout.categoria_row, R.id.text1, categorias, false));
-        CategoriaDTO cat = null;
+        CategoriaDTO cat;
         int pos = 0;
         cantActivas = 0;
         cantCategorias = categorias.size();
@@ -99,7 +98,7 @@ public class ListadoCategoriaActivity extends ListActivity {
 	}
 	
 	private void configurarBotonMisCategorias(){
-		Button misCat = null;
+		Button misCat;
 		misCat = this.findViewById(R.id.botonMisCategorias);
 		misCat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -149,7 +148,7 @@ public class ListadoCategoriaActivity extends ListActivity {
 	    		//list.setItemChecked(position, true);
 	    		tv.setTextColor(getResources().getColor(R.color.color_gris_oscuro));
 	    	}
-	    	ConstantsAdmin.actualizarCategoria(catSelected, this, mDBManager);
+	    	ConstantsAdmin.actualizarCategoria(catSelected, mDBManager);
 	        labelCategorias.setText(titulo + " (" + cantActivas + "/" + cantCategorias + ")");
     	
     	}else{
@@ -159,13 +158,8 @@ public class ListadoCategoriaActivity extends ListActivity {
     	}
     }
 
-    
-    protected void onPause() {
-        super.onPause();
-       
-    }
-    
-    protected void onResume() {
+
+	protected void onResume() {
         super.onResume();
         if(ConstantsAdmin.mainActivity == null){
         	Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage(this.getPackageName());

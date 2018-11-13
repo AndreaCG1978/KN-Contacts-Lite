@@ -42,7 +42,8 @@
 			android:layout_width="wrap_content" android:layout_height="30dp" android:textSize="13sp"
 			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
 			android:layout_gravity="center" android:gravity="center" 
-			android:layout_toEndOf="@id/botonAgregarCategoria" android:layout_alignBottom="@id/botonAgregarCategoria"/>
+			android:layout_toEndOf="@id/botonAgregarCategoria" android:layout_alignBottom="@id/botonAgregarCategoria"
+			android:layout_toRightOf="@id/botonAgregarCategoria" />
 	</RelativeLayout>
 
 </merge>

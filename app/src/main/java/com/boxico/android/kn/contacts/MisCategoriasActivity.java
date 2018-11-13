@@ -2,7 +2,6 @@ package com.boxico.android.kn.contacts;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import android.app.ListActivity;
@@ -35,7 +34,7 @@ public class MisCategoriasActivity extends ListActivity {
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        allMyCursors = new ArrayList<Cursor>();
+        allMyCursors = new ArrayList<>();
         this.setContentView(R.layout.admin_categorias);
         this.configurarBotonCategorias();
         this.configurarList();
@@ -50,14 +49,13 @@ public class MisCategoriasActivity extends ListActivity {
     }
     
     private void resetAllMyCursors(){
-    	Cursor cur = null;
-    	Iterator<Cursor> it = allMyCursors.iterator();
-    	while(it.hasNext()){
-    		cur = it.next();
-    		cur.close();
-    		this.stopManagingCursor(cur);
-    	}
-    	allMyCursors = new ArrayList<Cursor>();
+    	Cursor cur;
+		for (Cursor allMyCursor : allMyCursors) {
+			cur = allMyCursor;
+			cur.close();
+			this.stopManagingCursor(cur);
+		}
+    	allMyCursors = new ArrayList<>();
     }
     
     protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -105,7 +103,7 @@ public class MisCategoriasActivity extends ListActivity {
         return super.onMenuItemSelected(featureId, item);
     }
     
-    protected void openAltaCategoria() {
+    private void openAltaCategoria() {
         Intent i = new Intent(this, AltaCategoriaActivity.class);
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_CATEGORIA);
     }
@@ -113,7 +111,7 @@ public class MisCategoriasActivity extends ListActivity {
     private void refreshList(){
     	ListView listView = this.getListView();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-    	CategoriaDTO cat = null;
+    	CategoriaDTO cat;
 		ConstantsAdmin.inicializarBD(mDBManager);
         Cursor categoriasCursor = mDBManager.fetchAllCategoriasPersonalesPorNombre(null);
         if(categoriasCursor!= null){
@@ -141,7 +139,7 @@ public class MisCategoriasActivity extends ListActivity {
     }
     
 	private void configurarBotonCategorias(){
-		Button boton = null;
+		Button boton;
 		boton = this.findViewById(R.id.botonMisCategorias);
 		boton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -189,7 +187,7 @@ public class MisCategoriasActivity extends ListActivity {
 	
     @Override
 	public boolean onContextItemSelected(MenuItem item) {
-    	CategoriaDTO cat = null;
+    	CategoriaDTO cat;
     	switch(item.getItemId()) {
         case ConstantsAdmin.ACTIVITY_EJECUTAR_EDITAR_CATEGORIA:
             Intent i = new Intent(this, AltaCategoriaActivity.class);

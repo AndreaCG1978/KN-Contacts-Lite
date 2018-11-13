@@ -35,29 +35,34 @@
 			<ImageButton android:id="@+id/menu_icon_phone"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginStart="14dp" android:nextFocusRight="@+id/menu_icon_mail"
-				android:contentDescription="menu_icon_phone" />
+				android:contentDescription="menu_icon_phone"
+                android:layout_marginLeft="14dp" />
 
 			<ImageButton android:id="@+id/menu_icon_mail"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginStart="14dp" android:nextFocusRight="@+id/menu_icon_addres"
 				android:focusable="true"
-				android:contentDescription="menu_icon_mail" />
+				android:contentDescription="menu_icon_mail"
+				android:layout_marginLeft="14dp" />
 
 			<ImageButton android:id="@+id/menu_icon_addres"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginStart="14dp" android:nextFocusRight="@+id/menu_icon_category"
 				android:focusable="true"
-				android:contentDescription="menu_icon_addres" />
+				android:contentDescription="menu_icon_addres"
+				android:layout_marginLeft="14dp" />
 
 			<ImageButton android:id="@+id/menu_icon_category"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:layout_marginStart="14dp" android:nextFocusRight="@+id/butttonRegistrarYSalir"
 				android:focusable="true"
-				android:contentDescription="menu_icon_category" />
+				android:contentDescription="menu_icon_category"
+				android:layout_marginLeft="14dp" />
 
 			<LinearLayout android:layout_width="wrap_content"
 				android:layout_height="wrap_content" android:orientation="vertical"
-				android:gravity="center" android:layout_marginStart="10dp">
+				android:gravity="center" android:layout_marginStart="10dp"
+				android:layout_marginLeft="10dp">
 
 				<Button android:id="@+id/butttonRegistrarPersonaFinal"
 					android:nextFocusRight="@+id/butttonRegistrarYSalir" android:text="@string/label_registrarPersona"
@@ -136,19 +141,22 @@
 		<CheckBox android:id="@+id/checkFechaNacimiento"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:layout_marginStart="10dp" android:textColor="@color/color_gris_claro"
-			android:nextFocusRight="@+id/buttonPickDate" />
+			android:nextFocusRight="@+id/buttonPickDate"
+			android:layout_marginLeft="10dp" />
 
 
 		<Button android:id="@+id/buttonPickDate" android:text="@string/label_fechaNacimiento"
 			android:nextFocusDown="@+id/butttonRegistrarPersonaFinal"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:textSize="12sp" android:textColor="@color/color_azul"
-			android:background="@drawable/custom_button" android:layout_marginStart="5dp" />
+			android:background="@drawable/custom_button" android:layout_marginStart="5dp"
+			android:layout_marginLeft="5dp" />
 
 		<TextView android:id="@+id/labelDateDisplay"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:textSize="14sp" android:textStyle="bold"
-			android:layout_marginStart="15dp" />
+			android:layout_marginStart="15dp"
+			android:layout_marginLeft="15dp" />
 
 	</LinearLayout>
 
@@ -167,7 +175,8 @@
 			android:layout_width="360dp" android:layout_height="wrap_content"
 			android:dividerHeight="5dp" android:divider="@color/color_negro"
 			android:listSelector="@android:color/transparent"
-			android:layout_marginStart="15dp">
+			android:layout_marginStart="15dp"
+			android:layout_marginLeft="15dp">
 		</ListView>
 
 
@@ -177,7 +186,10 @@
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:text="@string/text_sinDatos" android:textSize="12sp"
 		android:layout_below="@id/botonera" android:paddingStart="10dp"
-		android:layout_marginTop="55dp" />
+		android:paddingEnd="10dp"
+		android:layout_marginTop="55dp"
+		android:paddingLeft="10dp"
+		android:paddingRight="10dp"/>
 
 	<LinearLayout android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:orientation="horizontal"
@@ -195,7 +207,8 @@
 			android:layout_width="360dp" android:layout_height="wrap_content"
 			android:dividerHeight="5dp" android:divider="@color/color_negro"
 			android:listSelector="@android:color/transparent"
-			android:layout_marginStart="15dp">
+			android:layout_marginStart="15dp"
+			android:layout_marginLeft="15dp">
 		</ListView>
 
 
@@ -219,7 +232,8 @@
 			android:layout_width="360dp" android:layout_height="wrap_content"
 			android:dividerHeight="5dp" android:divider="@color/color_negro"
 			android:listSelector="@android:color/transparent"
-			android:layout_marginStart="15dp">
+			android:layout_marginStart="15dp"
+			android:layout_marginLeft="15dp">
 		</ListView>
 
 
@@ -228,7 +242,8 @@
 		android:layout_below="@id/botonera" android:layout_width="wrap_content"
 		android:layout_height="35dp" android:layout_marginStart="5dp"
 		android:layout_marginTop="5dp" android:layout_marginBottom="5dp"
-		android:background="@drawable/custom_button" />
+		android:background="@drawable/custom_button"
+		android:layout_marginLeft="5dp" />
 
 
 	<LinearLayout android:id="@+id/linearCaracteristica"
@@ -249,7 +264,8 @@
 			android:layout_height="35dp" android:padding="5dp" android:textSize="13sp"
 			android:layout_marginStart="4dp"
 			android:hint="@string/hint_descripcion"
-			android:importantForAutofill="no" />
+			android:importantForAutofill="no"
+			android:layout_marginLeft="4dp" />
 	</LinearLayout>
 	<LinearLayout
         android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -268,7 +284,8 @@
 			android:layout_width="fill_parent" android:layout_height="35dp"
 			android:padding="5dp" android:textSize="13sp"
 			android:layout_marginStart="4dp"
-			android:importantForAutofill="no" />
+			android:importantForAutofill="no"
+			android:layout_marginLeft="4dp" />
 	</LinearLayout>
 
 

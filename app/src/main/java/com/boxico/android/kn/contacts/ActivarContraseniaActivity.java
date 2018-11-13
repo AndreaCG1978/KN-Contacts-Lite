@@ -1,6 +1,5 @@
 package com.boxico.android.kn.contacts;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -17,10 +16,10 @@ import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 public class ActivarContraseniaActivity extends Activity {
 	
 
-	EditText mContrasenia = null;
-	Button btnAceptar = null; 
-	Dialog dialog = null;
-	ActivarContraseniaActivity me = null;
+	private EditText mContrasenia = null;
+	private Button btnAceptar = null;
+	private Dialog dialog = null;
+	private ActivarContraseniaActivity me = null;
 
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -70,7 +69,7 @@ public class ActivarContraseniaActivity extends Activity {
             	if(validarContrasenia()){
 					DataBaseManager mDBManager = DataBaseManager.getInstance(me);
                     ConstantsAdmin.contrasenia.setActiva(true);
-                    ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, me, mDBManager);
+                    ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, mDBManager);
                     ConstantsAdmin.resetPersonasOrganizadas();
                     setResult(RESULT_OK);
                     finish();

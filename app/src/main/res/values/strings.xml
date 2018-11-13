@@ -203,6 +203,8 @@
 <string name="label_enviar_info"><![CDATA[SEND TO]]></string>
 
 <string name="menu_editar_persona">Edit Contact</string>
+    <string name="hint_contrasenia">********</string>
+    <string name="blank">%d</string>
 
 
 </resources>

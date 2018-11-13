@@ -16,7 +16,8 @@
 
 		<Spinner android:id="@+id/spinnerTipoValor"
 			android:layout_width="fill_parent" android:layout_height="38dp"
-			android:background="@drawable/custom_button" android:layout_marginStart="9dp" />
+			android:background="@drawable/custom_button" android:layout_marginStart="9dp"
+			android:layout_marginLeft="9dp" />
 
 	</LinearLayout>
 
@@ -37,7 +38,9 @@
 			android:layout_marginEnd="4dp" android:layout_height="35dp"
 			android:layout_marginStart="9dp" android:inputType="textCapWords"
 			android:maxLength="15" android:textColor="@color/color_azul_oscuro"
-			android:importantForAutofill="no" />
+			android:importantForAutofill="no"
+			android:layout_marginLeft="9dp"
+			android:layout_marginRight="4dp" />
 
 	</LinearLayout>
 
@@ -59,7 +62,10 @@
 			android:layout_marginStart="9dp" android:inputType="textCapWords"
 			android:gravity="top|start"
 			android:maxLength="15" android:textColor="@color/color_azul_oscuro"
-			android:importantForAutofill="no" />
+			android:importantForAutofill="no"
+			android:hint="@string/hint_nuevo_tipo"
+			android:layout_marginLeft="9dp"
+			android:layout_marginRight="4dp" />
 
 	</LinearLayout>
 	<View
@@ -74,7 +80,8 @@
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:layout_marginEnd="20dp" android:textColor="@color/color_azul"
 			android:background="@drawable/custom_button" android:text="@string/label_registrarPersona"
-			android:textSize="13sp" style="?android:buttonBarButtonStyle"/>
+			android:textSize="13sp" style="?android:buttonBarButtonStyle"
+			android:layout_marginRight="20dp" />
 		<Button android:id="@+id/buttonEliminarCategoria"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:textColor="@color/color_azul" android:background="@drawable/custom_button"

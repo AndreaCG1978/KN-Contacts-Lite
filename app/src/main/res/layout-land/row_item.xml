@@ -16,7 +16,10 @@
 		android:textColor="@color/color_azul_oscuro" android:textSize="16sp"
 		android:background="@drawable/custom_text_view_categoria_desc"
 		android:paddingStart="18dp" android:layout_marginStart="2dp"
-		android:paddingBottom="8dp" android:paddingTop="8dp" android:paddingEnd="8dp">
+		android:paddingBottom="8dp" android:paddingTop="8dp" android:paddingEnd="8dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="8dp"
+        android:layout_marginLeft="2dp">
 	</TextView>
 
 

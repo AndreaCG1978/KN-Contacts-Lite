@@ -51,32 +51,31 @@ public class DetallePersonaActivity extends Activity {
 
 	private int mPersonaSeleccionadaId = -1;
 
-	TextView mFechaNacimiento = null;
-	TextView mApellido = null;
-	TextView mNombres = null;
-	TextView mCategoria = null;
-	TextView mFechaNacimientoLabel = null;
-	TextView mTituloTelefonos = null;
-	TextView mTituloEmails = null;
-	TextView mTituloDirecciones = null;
+	private TextView mFechaNacimiento = null;
+	private TextView mApellido = null;
+	private TextView mNombres = null;
+	private TextView mCategoria = null;
+	private TextView mFechaNacimientoLabel = null;
+	private TextView mTituloTelefonos = null;
+	private TextView mTituloEmails = null;
+	private TextView mTituloDirecciones = null;
 
-	ImageButton mImagenPreferido = null;
-	ImageButton imagenPhoto = null;
-	ImageView photo = null;
-	TextView sinDatos = null;
+	private ImageButton mImagenPreferido = null;
+	private ImageButton imagenPhoto = null;
+	private ImageView photo = null;
+	private TextView sinDatos = null;
 
-	Resources res = null;
 	//Drawable shapeLight = null;
 	//Drawable shapeDark = null;
 
-	Drawable drwPrefColor = null;
-	Drawable drwPrefBN = null;
+	private Drawable drwPrefColor = null;
+	private Drawable drwPrefBN = null;
 
-	Drawable drwColorSeleccionado = null;
-	Drawable drwColorDeseleccionado = null;
+	private Drawable drwColorSeleccionado = null;
+	private Drawable drwColorDeseleccionado = null;
 
-	int colorSeleccionado = Color.parseColor("#874312");
-	int colorDeseleccionado = Color.parseColor("#41289C");
+	private final int colorSeleccionado = Color.parseColor("#874312");
+	private final int colorDeseleccionado = Color.parseColor("#41289C");
 
 	private boolean mMostrarTelefonos = false;
 	private boolean mMostrarEmails = false;
@@ -100,19 +99,18 @@ public class DetallePersonaActivity extends Activity {
 
 
 	private void resetAllMyCursors() {
-		Cursor cur = null;
-		Iterator<Cursor> it = allMyCursors.iterator();
-		while (it.hasNext()) {
-			cur = it.next();
+		Cursor cur;
+		for (Cursor allMyCursor : allMyCursors) {
+			cur = allMyCursor;
 			cur.close();
 			this.stopManagingCursor(cur);
 		}
-		allMyCursors = new ArrayList<Cursor>();
+		allMyCursors = new ArrayList<>();
 	}
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		allMyCursors = new ArrayList<Cursor>();
+		allMyCursors = new ArrayList<>();
 		Intent intent = getIntent();
 		setContentView(R.layout.details_personas);
 		this.registrarViews();
@@ -136,15 +134,23 @@ public class DetallePersonaActivity extends Activity {
 		BroadcastReceiver mReceiver1 = new BroadcastReceiver() {
 			public void onReceive(Context context, Intent intent) {
 				String action = intent.getAction();
-				if (action.equals(Intent.ACTION_MEDIA_MOUNTED)) {
-				} else if (action.equals(Intent.ACTION_MEDIA_UNMOUNTED)) {
-				} else if (action.equals(Intent.ACTION_MEDIA_SCANNER_STARTED)) {
-				} else if (action.equals(Intent.ACTION_MEDIA_SCANNER_FINISHED)) {
-				} else if (action.equals(Intent.ACTION_MEDIA_EJECT)) {
-				} else if (action.equals(Intent.ACTION_UMS_CONNECTED)) {
-					finish();
-				} else if (action.equals(Intent.ACTION_UMS_DISCONNECTED)) {
+				switch (action) {
+					case Intent.ACTION_MEDIA_MOUNTED:
+						break;
+					case Intent.ACTION_MEDIA_UNMOUNTED:
+						break;
+					case Intent.ACTION_MEDIA_SCANNER_STARTED:
+						break;
+					case Intent.ACTION_MEDIA_SCANNER_FINISHED:
+						break;
+					case Intent.ACTION_MEDIA_EJECT:
+						break;
+					case Intent.ACTION_UMS_CONNECTED:
+						finish();
+						break;
+					case Intent.ACTION_UMS_DISCONNECTED:
 
+						break;
 				}
 			}
 		};
@@ -162,13 +168,12 @@ public class DetallePersonaActivity extends Activity {
 	}
 
 	private void configurarListaTelefonos() {
-		ArrayList<HashMap<String, Object>> listdata = new ArrayList<HashMap<String, Object>>();
-		HashMap<String, Object> hm = null;
-		Asociacion asoc = null;
-		Iterator<Asociacion> it = telefonos.iterator();
-		while (it.hasNext()) {
-			asoc = it.next();
-			hm = new HashMap<String, Object>();
+		ArrayList<HashMap<String, Object>> listdata = new ArrayList<>();
+		HashMap<String, Object> hm;
+		Asociacion asoc;
+		for (Asociacion telefono : telefonos) {
+			asoc = telefono;
+			hm = new HashMap<>();
 			hm.put(TIPO, asoc.getKey());
 			hm.put(VALOR, asoc.getValue());
 			listdata.add(hm);
@@ -196,7 +201,7 @@ public class DetallePersonaActivity extends Activity {
 
 	private void efectuarLlamadaPos(int pos) {
 		SimpleAdapter adapt = (SimpleAdapter) telefonosList.getAdapter();
-		String numero = null;
+		String numero;
 		HashMap<String, String> map = (HashMap<String, String>) adapt.getItem(pos);
 		numero = map.get(VALOR);
 		efectuarLlamadaGenerico(numero);
@@ -206,14 +211,12 @@ public class DetallePersonaActivity extends Activity {
 
 
 	private void configurarListaMails() {
-		ArrayList<HashMap<String, Object>> listdata = new ArrayList<HashMap<String, Object>>();
-		HashMap<String, Object> hm = null;
-		hm = new HashMap<String, Object>();
-		Asociacion asoc = null;
-		Iterator<Asociacion> it = mails.iterator();
-		while (it.hasNext()) {
-			asoc = it.next();
-			hm = new HashMap<String, Object>();
+		ArrayList<HashMap<String, Object>> listdata = new ArrayList<>();
+		HashMap<String, Object> hm;
+		Asociacion asoc;
+		for (Asociacion mail : mails) {
+			asoc = mail;
+			hm = new HashMap<>();
 			hm.put(TIPO, asoc.getKey());
 			hm.put(VALOR, asoc.getValue());
 			listdata.add(hm);
@@ -239,7 +242,7 @@ public class DetallePersonaActivity extends Activity {
 
 	private void enviarMailPos(int pos) {
 		SimpleAdapter adapt = (SimpleAdapter) mailsList.getAdapter();
-		String mail = null;
+		String mail;
 		HashMap<String, String> map = (HashMap<String, String>) adapt.getItem(pos);
 		mail = map.get(VALOR);
 		enviarMailGenerico(mail);
@@ -248,14 +251,12 @@ public class DetallePersonaActivity extends Activity {
 	}
 
 	private void configurarListaDirecciones() {
-		ArrayList<HashMap<String, Object>> listdata = new ArrayList<HashMap<String, Object>>();
-		HashMap<String, Object> hm = null;
-		hm = new HashMap<String, Object>();
-		Asociacion asoc = null;
-		Iterator<Asociacion> it = direcciones.iterator();
-		while (it.hasNext()) {
-			asoc = it.next();
-			hm = new HashMap<String, Object>();
+		ArrayList<HashMap<String, Object>> listdata = new ArrayList<>();
+		HashMap<String, Object> hm;
+		Asociacion asoc;
+		for (Asociacion direccione : direcciones) {
+			asoc = direccione;
+			hm = new HashMap<>();
 			hm.put(TIPO, asoc.getKey());
 			hm.put(VALOR, asoc.getValue());
 			listdata.add(hm);
@@ -388,7 +389,7 @@ public class DetallePersonaActivity extends Activity {
 
 
 	private void registrarViews() {
-		res = getResources();
+		Resources res = getResources();
 
 		mApellido = this.findViewById(R.id.detalle_apellido);
 		mNombres = this.findViewById(R.id.detalle_nombres);
@@ -421,16 +422,16 @@ public class DetallePersonaActivity extends Activity {
 
 
 	private void populateFields() {
-		String temp = null;
-		Asociacion asoc = null;
+		String temp;
+		Asociacion asoc;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		if (mPersonaSeleccionadaId != -1) {
 			ConstantsAdmin.inicializarBD(mDBManager);
 			Cursor perCursor = mDBManager.fetchPersonaPorId(mPersonaSeleccionadaId);
 			if (perCursor != null) {
-				telefonos = new ArrayList<Asociacion>();
-				mails = new ArrayList<Asociacion>();
-				direcciones = new ArrayList<Asociacion>();
+				telefonos = new ArrayList<>();
+				mails = new ArrayList<>();
+				direcciones = new ArrayList<>();
 				startManagingCursor(perCursor);
 				Cursor prefCursor = mDBManager.fetchPreferidoPorId(mPersonaSeleccionadaId);
 				startManagingCursor(prefCursor);
@@ -466,7 +467,7 @@ public class DetallePersonaActivity extends Activity {
 
 				List<TipoValorDTO> nuevosTV = ConstantsAdmin.obtenerTelefonosIdPersona(this, mPersonaSeleccionadaId, mDBManager);
 				Iterator<TipoValorDTO> it = nuevosTV.iterator();
-				TipoValorDTO tv = null;
+				TipoValorDTO tv;
 				while (it.hasNext()) {
 					tv = it.next();
 					asoc = new Asociacion(tv.getTipo(), tv.getValor());
@@ -497,7 +498,6 @@ public class DetallePersonaActivity extends Activity {
 
 				nuevosTV = ConstantsAdmin.obtenerEmailsIdPersona(this, mPersonaSeleccionadaId, mDBManager);
 				it = nuevosTV.iterator();
-				tv = null;
 				while (it.hasNext()) {
 					tv = it.next();
 					asoc = new Asociacion(tv.getTipo(), tv.getValor());
@@ -521,7 +521,6 @@ public class DetallePersonaActivity extends Activity {
 
 				nuevosTV = ConstantsAdmin.obtenerDireccionesIdPersona(this, mPersonaSeleccionadaId, mDBManager);
 				it = nuevosTV.iterator();
-				tv = null;
 				while (it.hasNext()) {
 					tv = it.next();
 					asoc = new Asociacion(tv.getTipo(), tv.getValor());
@@ -531,7 +530,7 @@ public class DetallePersonaActivity extends Activity {
 
 				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_FECHA_NACIMIENTO));
 				temp = formatFechaToView(temp);
-				this.actualizarView(mFechaNacimiento, mFechaNacimientoLabel, temp, null);
+				this.actualizarView(mFechaNacimiento, mFechaNacimientoLabel, temp);
 
 				String tempCategoria = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO));
 				String tempDatoExtra = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_DATO_EXTRA));
@@ -552,7 +551,7 @@ public class DetallePersonaActivity extends Activity {
 				}
 
 
-				this.actualizarView(mCategoria, null, tempCategoria, null);
+				this.actualizarView(mCategoria, null, tempCategoria);
 				this.actualizarPreferido();
 				this.configurarListaTelefonos();
 				this.configurarListaMails();
@@ -579,9 +578,8 @@ public class DetallePersonaActivity extends Activity {
 		if (text != null) {
 			Locale locale = this.getResources().getConfiguration().locale;
 			String lang = locale.getLanguage();
-			String temp = "";
-			result = "";
-			int mes = -1;
+			String temp;
+			int mes;
 			String[] array = text.split(ConstantsAdmin.SEPARADOR_FECHA);
 			temp = array[1];
 			mes = Integer.valueOf(temp);
@@ -660,12 +658,9 @@ public class DetallePersonaActivity extends Activity {
 	}
 
 
-	private void actualizarView(TextView viewDetalle, TextView viewLabel, String text, TextView titulo) {
+	private void actualizarView(TextView viewDetalle, TextView viewLabel, String text) {
 		if (text != null && !text.equals("")) {
 			viewDetalle.setText(text);
-			if (titulo != null) {
-				titulo.setVisibility(View.VISIBLE);
-			}
 			viewDetalle.setVisibility(View.VISIBLE);
 			if (viewLabel != null) {
 				viewLabel.setVisibility(View.VISIBLE);
@@ -839,7 +834,7 @@ public class DetallePersonaActivity extends Activity {
 		String msg = (String) asoc.getValue();
 		if(puede){
 	       	File file = new File(ConstantsAdmin.obtenerPathImagen() + String.valueOf(mPersonaSeleccionadaId) + ".jpg");
-	       	if(file != null && file.exists()){
+	       	if(file.exists()){
 	       		file.delete();
 	       	}			
 		}else{
@@ -894,7 +889,7 @@ public class DetallePersonaActivity extends Activity {
 			mEsPreferido = false;
 			mImagenPreferido.setBackgroundDrawable(drwPrefBN);
 			try {
-				ConstantsAdmin.eliminarPreferido(this, mPersonaSeleccionadaId, mDBManager);
+				ConstantsAdmin.eliminarPreferido(mPersonaSeleccionadaId, mDBManager);
 			} catch (Exception e) {
 				ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEliminacionPreferido));
 			}			
@@ -902,7 +897,7 @@ public class DetallePersonaActivity extends Activity {
 			mEsPreferido = true;
 			mImagenPreferido.setBackgroundDrawable(drwPrefColor);
 			try {
-				ConstantsAdmin.crearPreferido(this, mPersonaSeleccionadaId, mDBManager);
+				ConstantsAdmin.crearPreferido(mPersonaSeleccionadaId, mDBManager);
 			} catch (Exception e) {
 				ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorAgregarPreferido));
 			}			
@@ -951,7 +946,7 @@ public class DetallePersonaActivity extends Activity {
 	private void eliminarPersonaSeleccionada(){
 		try {
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			ConstantsAdmin.eliminarPersona(this, mPersonaSeleccionadaId, mDBManager);
+			ConstantsAdmin.eliminarPersona(mPersonaSeleccionadaId, mDBManager);
 
 		} catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEliminacionContacto));

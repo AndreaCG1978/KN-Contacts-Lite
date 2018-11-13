@@ -38,7 +38,6 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.EditText;
-import android.widget.ExpandableListAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -49,7 +48,6 @@ import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.ConfigDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
-import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
 import com.boxico.android.kn.contacts.util.Asociacion;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 import com.boxico.android.kn.contacts.util.KNSimpleCursorAdapter;
@@ -59,61 +57,58 @@ import com.boxico.android.kn.contacts.util.MultiSpinner.MultiSpinnerListener;
 
 public class ListadoPersonaActivity extends ExpandableListActivity implements MultiSpinnerListener{
 	private String mEntryBusquedaNombre = null;
-	Map<String, List<PersonaDTO>> personasMap = null;
+	private Map<String, List<PersonaDTO>> personasMap = null;
     private long mPersonaSelect = -1;
  //   private boolean estanOrdenadosAlfabeticamente = false;
-    LayoutInflater layoutInflater = null;
+ private LayoutInflater layoutInflater = null;
     private ArrayList<Cursor> allMyCursors = null;
  //   public boolean mMostrandoPreferidos = false;
     private EditText entryBusqueda = null;
     private MultiSpinner spinnerCategorias = null;
-    ExpandableListAdapter mAdapter = null;
-    ImageButton irTodos = null;
-    ImageButton switchOrganizacion = null;
-    ImageButton expandContractAll = null;
-    ImageButton protegerCategorias = null;
-    ImageButton masOMenosDesc = null;
-    static ListadoPersonaActivity me = null;
-    String separadorExcel = null;
-    int mGroupSelected = -1;
-	int mChildSelected = -1;    
+	private ImageButton switchOrganizacion = null;
+    private ImageButton expandContractAll = null;
+    private ImageButton protegerCategorias = null;
+    private ImageButton masOMenosDesc = null;
+    private static ListadoPersonaActivity me = null;
+    private String separadorExcel = null;
+    private int mGroupSelected = -1;
+	private int mChildSelected = -1;
 	
-	Drawable dcolorPref = null;
-	Drawable dbnPref = null;
+//	private Drawable dcolorPref = null;
+	private Drawable dbnPref = null;
 
-	Drawable dexpandir = null;
-	Drawable dcontraer = null;
+	private Drawable dexpandir = null;
+	private Drawable dcontraer = null;
 
-	Drawable dorganizarNombre = null;
-	Drawable dorganizarCategoria = null;
+	private Drawable dorganizarNombre = null;
+	private Drawable dorganizarCategoria = null;
 
-	Drawable dlessDesc = null;
-	Drawable dmoreDesc = null;
+	private Drawable dlessDesc = null;
+	private Drawable dmoreDesc = null;
 
 	
-	ImageButton preferidos = null;
+	private ImageButton preferidos = null;
 	
-	Drawable dcolorSearch = null;
-	Drawable dbnSearch = null;
+	//Drawable dcolorSearch = null;
+	// --Commented out by Inspection (12/11/2018 12:35):Drawable dbnSearch = null;
 	
-	Drawable dCandadoAbierto = null;
-	Drawable dCandadoCerrado = null;
+	//private Drawable dCandadoAbierto = null;
+	//private Drawable dCandadoCerrado = null;
 	
-	private static final String LIST_STATE = "listState";
+	// --Commented out by Inspection (12/11/2018 12:45):private static final String LIST_STATE = "listState";
 	private static final String CLAVE = "CLAVE";
 	private static final String APELLIDO = "APELLIDO";
 	private static final String NOMBRE = "NOMBRE";
 	
 	private TextView cantReg = null;
 	
-	List<String> categoriasSeleccionadas = new ArrayList<String>();
-	public List<CategoriaDTO> todasLasCategorias = new ArrayList<CategoriaDTO>();
-	List<String> todasLasCategString = new ArrayList<String>();
-	boolean[] seleccionados = null;
-	
-	TextView catSelectTextView = null;
+	private List<String> categoriasSeleccionadas = new ArrayList<>();
+	private List<CategoriaDTO> todasLasCategorias = new ArrayList<>();
+	private List<String> todasLasCategString = new ArrayList<>();
 
-	List<String> mySortedByElements = null;
+	private TextView catSelectTextView = null;
+
+	private List<String> mySortedByElements = null;
 	
 	
 	private ListView listaEspecial;
@@ -175,7 +170,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     	super.onCreate(savedInstanceState);
         me = this;
         try{
-        	allMyCursors = new ArrayList<Cursor>();
+        	allMyCursors = new ArrayList<>();
         	ConstantsAdmin.mainActivity = me;
         	this.setContentView(R.layout.list_personas);
             this.setTitle(R.string.app_name);
@@ -203,7 +198,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 
     
 	private void recuperarConfiguracion() {
-		ConfigDTO config = null;
+		ConfigDTO config;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		config = ConstantsAdmin.obtenerConfiguracion(me, mDBManager);
 		ConstantsAdmin.config = config;
@@ -225,10 +220,10 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 			ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
 		}
 		this.getExpandableListView().setVisibility(View.VISIBLE);
-        List<Map<String, String>> groupData = new ArrayList<Map<String, String>>();
-        List<List<Map<String, String>>> childData = new ArrayList<List<Map<String, String>>>();
+        List<Map<String, String>> groupData = new ArrayList<>();
+        List<List<Map<String, String>>> childData = new ArrayList<>();
         
-        List<PersonaDTO> personas = null;
+        List<PersonaDTO> personas;
         if(ConstantsAdmin.isResetPersonasOrganizadas()){
         	mGroupSelected = -1;
         	mChildSelected = -1;
@@ -239,27 +234,27 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         }else{
         	personasMap = ConstantsAdmin.obtenerOrganizadosPorCategoria(this, mDBManager);
         }
-        mySortedByElements = new ArrayList<String>();
+        mySortedByElements = new ArrayList<>();
         mySortedByElements.addAll(personasMap.keySet());
         Collections.sort(mySortedByElements);
-        Map<String, String> curGroupMap = null;
-        List<Map<String, String>> children = null;
-        Map<String, String> curChildMap = null;
-        Iterator<PersonaDTO> itPers = null;
-        PersonaDTO per = null;
+        Map<String, String> curGroupMap;
+        List<Map<String, String>> children;
+        Map<String, String> curChildMap;
+        Iterator<PersonaDTO> itPers;
+        PersonaDTO per;
         int cantidadTotal = 0;
         
         for (String key : mySortedByElements) {
         	personas = personasMap.get(key);
-            curGroupMap = new HashMap<String, String>();
+            curGroupMap = new HashMap<>();
             groupData.add(curGroupMap);
             curGroupMap.put(CLAVE, key);
                
-            children = new ArrayList<Map<String, String>>();
+            children = new ArrayList<>();
             itPers = personas.iterator();
             while(itPers.hasNext()){
             	per = itPers.next();
-            	curChildMap = new HashMap<String, String>();
+            	curChildMap = new HashMap<>();
                 children.add(curChildMap);
                 curChildMap.put(APELLIDO, per.getApellido());
                 curChildMap.put(NOMBRE, per.getNombres());
@@ -293,7 +288,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
                     
                     TextView textNom = v.findViewById(R.id.rowNombres);
                     textNom.setText(per.getNombres());
-                    TextView text = null;
+                    TextView text;
                     if(!ConstantsAdmin.config.isEstanDetallados()){
                     	textApe.setPadding(10, 10, 2, 10);
                     	textNom.setPadding(3, 10, 10, 10);
@@ -351,7 +346,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
                 	if(layoutInflater == null){
                 		layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 	}
-                    return layoutInflater.inflate(R.layout.row_personas, null, false);
+                    return layoutInflater.inflate(R.layout.row_personas, parent, false);
                 }
                 
                 public View newGroupView(boolean isExpanded, ViewGroup parent){
@@ -359,7 +354,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
                 		layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 	}
 
-                	return layoutInflater.inflate(R.layout.personas_row_label, null, false);
+                	return layoutInflater.inflate(R.layout.personas_row_label, parent, false);
                 }
                 
                 @Override
@@ -378,8 +373,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
                 	TextView textName = v.findViewById(R.id.textName);
                 	TextView textCantidad = v.findViewById(R.id.textCantidad);
 
-                	String temp = null;
-                   	String label = null;
+                	String temp;
+                   	String label;
                 	temp = mySortedByElements.get(groupPosition);
                 	label = temp.toUpperCase();
                 	textName.setText(label);
@@ -448,9 +443,9 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
     private void configurarVerPreferidos(){
     	preferidos = this.findViewById(R.id.imagenPreferidos);
-    	dcolorPref = getResources().getDrawable(R.drawable.pref_icon);
+    //	dcolorPref = getResources().getDrawable(R.drawable.pref_icon);
 		dbnPref = getResources().getDrawable(R.drawable.pref_icon_bw);
-		preferidos.setBackgroundDrawable(dbnPref);
+		preferidos.setBackgroundResource(R.drawable.pref_icon_bw);
 		imgPrefLeft = this.findViewById(R.id.imgPrefLeft);
 		imgPrefRight = this.findViewById(R.id.imgPrefRight);
 		preferidos.setOnClickListener(new View.OnClickListener() {
@@ -524,11 +519,11 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 			ConstantsAdmin.cargarContrasenia(this, mDBManager);
 		}
 		if(ConstantsAdmin.contrasenia.getId() == -1){
-			protegerCategorias.setBackgroundDrawable(dCandadoAbierto);
+			protegerCategorias.setBackgroundResource(R.drawable.candado_abierto);
 		}else if(ConstantsAdmin.contrasenia.isActiva()){
-			protegerCategorias.setBackgroundDrawable(dCandadoAbierto);
+			protegerCategorias.setBackgroundResource(R.drawable.candado_abierto);
 		}else{
-			protegerCategorias.setBackgroundDrawable(dCandadoCerrado);
+			protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
 		}
 	
 		if(!ConstantsAdmin.config.isMuestraPreferidos()){
@@ -539,7 +534,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
     private void verPreferidos(){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-    	long prefSize = ConstantsAdmin.tablaPreferidosSize(this, mDBManager);
+    	long prefSize = ConstantsAdmin.tablaPreferidosSize(mDBManager);
     	if(prefSize == 0){
     		ConstantsAdmin.mostrarMensaje(this,getString(R.string.error_sin_preferidos));	
     	}else{
@@ -547,7 +542,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    		this.mostrarSoloPreferidos();
     			catSelectTextView.setVisibility(View.VISIBLE);
     			catSelectTextView.setText(getResources().getString(R.string.label_preferidos));
-	    		preferidos.setBackgroundDrawable(dcolorPref);
+	    		preferidos.setBackgroundResource(R.drawable.pref_icon);
 	    	    spinnerCategorias.setItems(todasLasCategString, getString(R.string.cat_TODAS), this);
 	    	    imgPrefLeft.setVisibility(View.VISIBLE);
 	    	    imgPrefRight.setVisibility(View.VISIBLE);
@@ -570,7 +565,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
     
     private void mostrarSoloPreferidos(){
-    	Cursor prefCursor = null;
+    	Cursor prefCursor;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
     	prefCursor = mDBManager.fetchAllPreferidos(ConstantsAdmin.categoriasProtegidas);
@@ -578,8 +573,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     		ConstantsAdmin.config.setMuestraPreferidos(true);
 	        startManagingCursor(prefCursor);
 	        // Create an array to specify the fields we want to display in the list (only TITLE)
-	        String[] from = null;
-	        int[] to = null;
+	        String[] from;
+	        int[] to;
 			from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
 			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
 			KNSimpleCursorAdapter personas = 
@@ -595,7 +590,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
     
     private void configurarBotonIrACategoriaTodas(){
-    	irTodos = this.findViewById(R.id.buttonTodasLasCategorias);
+		// --Commented out by Inspection (12/11/2018 12:51):ExpandableListAdapter mAdapter = null;
+		ImageButton irTodos = this.findViewById(R.id.buttonTodasLasCategorias);
     	irTodos.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -762,7 +758,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 					long arg3) {
 				// TODO Auto-generated method stub
 				
-				Cursor per = null;
+				Cursor per;
 		        Intent i = new Intent(me, DetallePersonaActivity.class);
 		        per = (Cursor)listaEspecial.getAdapter().getItem(arg2);
 		        //per.moveToFirst();
@@ -777,7 +773,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
                     int arg2, long arg3) {
-				Cursor per = null;
+				Cursor per;
 		        Intent i = new Intent(me, MenuPersonaActivity.class);
 		        per = (Cursor)listaEspecial.getAdapter().getItem(arg2);
 		        //per.moveToFirst();
@@ -858,7 +854,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	
     private void importarContactos(){
     	try {
-        	PersonaDTO per = null;
+        	PersonaDTO per;
         	List<PersonaDTO> contactosImportados = this.importarContactosPrivado();
         	Iterator<PersonaDTO> it = contactosImportados.iterator();
         	ConstantsAdmin.mensaje = getString(R.string.mensaje_exito_importar_csv);
@@ -896,14 +892,14 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
   */  
     private List<PersonaDTO> importarContactosPrivado(){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-    	ArrayList<PersonaDTO> result = new ArrayList<PersonaDTO>();
-    	ConstantsAdmin.mailsARegistrar = new ArrayList<TipoValorDTO>();
-    	CategoriaDTO cat = null;
+    	ArrayList<PersonaDTO> result = new ArrayList<>();
+    	ConstantsAdmin.mailsARegistrar = new ArrayList<>();
+    	CategoriaDTO cat;
     	cat = todasLasCategorias.get(0);
     	PersonaDTO per = null;
     	ConstantsAdmin.inicializarBD(mDBManager);
     	Cursor people = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-    	Asociacion asoc = null;
+    	Asociacion asoc;
     	if(people != null){
 	    	
 	    	startManagingCursor(people);
@@ -963,8 +959,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 
 
     private PersonaDTO obtenerContactoCapturado(Asociacion asoc, Cursor people, CategoriaDTO cat, String contactId){
-    	String given = null;
-    	String family = null;
+    	String given;
+    	String family;
     	PersonaDTO per = null;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	String[] projectionPhone = new String[]{
@@ -981,8 +977,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
  		   String hasPhone = people.getString(people.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
 	       given = (String)asoc.getKey();
    	       family = (String)asoc.getValue();
-   	       if((family != null && !family.equals("") || given!= null && !given.equals(""))&&
-	        		   (family != null || given!= null) ){
+   	       if(family != null && !family.equals("") || given != null && !given.equals("")){
 	        	   per = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
 	        	   if(per == null){
 	        		   per = new PersonaDTO();   
@@ -1019,9 +1014,9 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
     private Asociacion obtenerNombreYApellidoDeContactoDeAgenda(String contactId){
     	Asociacion asoc = null;
-    	Cursor nameCur = null;
-    	String given = null;
-    	String family = null;
+    	Cursor nameCur;
+    	String given;
+    	String family;
         String whereName = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
         String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
         nameCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, null);
@@ -1039,8 +1034,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
     
     private void importarMailDeContacto(String[] projectionMail, PersonaDTO per, String contactId){
-    	String emailAddress = null;
-    	int emailType = 0;
+    	String emailAddress;
+    	int emailType;
     	try {
             Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null); 
             if(emails != null){
@@ -1079,8 +1074,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
     
     private void importarTelDeContacto(String[] projectionPhone, PersonaDTO per, String contactId){
-    	String phoneNumber = null;
-    	int phoneType = 0;
+    	String phoneNumber;
+    	int phoneType;
     	try {
     		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
             if(phones != null){
@@ -1152,11 +1147,11 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     private void configurarSpinner(){
     	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
       	spinnerCategorias = this.findViewById(R.id.multi_spinner);
-      	Cursor cursor = null;
-      	CategoriaDTO cat = null;
+      	Cursor cursor;
+      	CategoriaDTO cat;
       	List<CategoriaDTO> categorias = null;
       	List<CategoriaDTO> categoriasPersonales = null;
-      	Iterator<CategoriaDTO> it = null;
+      	Iterator<CategoriaDTO> it;
   //    CategoriaDTO cat = null;
       	ConstantsAdmin.inicializarBD( mDBManager);
       	cursor = mDBManager.fetchCategoriasActivasPorNombre(null);
@@ -1194,9 +1189,9 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
       
      
       	Iterator<CategoriaDTO> itCat = categorias.iterator();
-      	todasLasCategString = new ArrayList<String>();
-      	todasLasCategorias = new ArrayList<CategoriaDTO>();
-      	CategoriaDTO cattemp = null;
+      	todasLasCategString = new ArrayList<>();
+      	todasLasCategorias = new ArrayList<>();
+      	CategoriaDTO cattemp;
       	while(itCat.hasNext()){
     	  cattemp = itCat.next();
     	  todasLasCategorias.add(cattemp);
@@ -1215,8 +1210,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
   	private void cambiarNombreCategorias(List<CategoriaDTO> categorias){
   		Iterator<CategoriaDTO> it = categorias.iterator();
-  		CategoriaDTO catTemp = null;
-  		String nombreRelativo = null;
+  		CategoriaDTO catTemp;
+  		String nombreRelativo;
   		while(it.hasNext()){
   			catTemp = it.next();
   			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
@@ -1313,9 +1308,9 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
     private String recuperarEtiquetaCatSeleccionadas(){
     	Iterator<String> it = categoriasSeleccionadas.iterator();
-    	String temp = "";
+    	StringBuilder temp = new StringBuilder();
     	while(it.hasNext()){
-    		temp = temp + it.next().toUpperCase() + "*";
+    		temp.append(it.next().toUpperCase()).append("*");
     	}
     	return temp.substring(0, temp.length() - 1);
     }
@@ -1330,8 +1325,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 
     	preferidos.setVisibility(View.VISIBLE);
      	preferidos.setBackgroundDrawable(dbnPref);
-    	Cursor personasCursor = null;
-    	String labelCateg = null;
+    	Cursor personasCursor;
+    	String labelCateg;
 		catSelectTextView.setText("");
 		imgPrefLeft.setVisibility(View.GONE);
 		imgPrefRight.setVisibility(View.GONE);
@@ -1351,8 +1346,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    	if(personasCursor != null){
 	    		startManagingCursor(personasCursor);
 		        // Create an array to specify the fields we want to display in the list (only TITLE)
-		        String[] from = null;
-		        int[] to = null;
+		        String[] from;
+		        int[] to;
 				from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
 				to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
 		        
@@ -1389,7 +1384,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     
     
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuItem item = null;
+        MenuItem item;
     	super.onCreateOptionsMenu(menu);
         
         item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA,0, R.string.menu_agregar_persona);
@@ -1595,7 +1590,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
        		ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
     		ConstantsAdmin.mensaje = null;
 			ConstantsAdmin.contrasenia.setActiva(false);
-			protegerCategorias.setBackgroundDrawable(dCandadoCerrado);
+			protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
 			configurarSpinner();
 			ConstantsAdmin.resetPersonasOrganizadas();
 			mostrarTodosLosContactos();
@@ -1612,7 +1607,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    	       .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	        	    Long[] params = new Long[1];
-	    		    		params[0] = Long.valueOf(1);
+	    		    		params[0] = 1L;
 	    		    		dialog.cancel();
 	    		    		new ExportCSVTask().execute(params);    	           }
 	    	       })
@@ -1636,7 +1631,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    	       .setPositiveButton(R.string.coma_separated, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	        	    Long[] params = new Long[1];
-	    		    		params[0] = Long.valueOf(1);
+	    		    		params[0] = 1L;
 	    		    		dialog.cancel();
 	    		    		separadorExcel = ConstantsAdmin.COMA;
 	    		    		new ExportCSVEsteticoTask().execute(params);
@@ -1645,7 +1640,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    	       .setNegativeButton(R.string.puntocoma_separated, new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	        	    Long[] params = new Long[1];
-	    		    		params[0] = Long.valueOf(1);
+	    		    		params[0] = 1L;
 	    		    		dialog.cancel();
 	    		    		separadorExcel = ConstantsAdmin.PUNTO_COMA;
 	    		    		new ExportCSVEsteticoTask().execute(params);	    	           }
@@ -1665,7 +1660,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     	       .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
     	           public void onClick(DialogInterface dialog, int id) {
     	        	    Long[] params = new Long[1];
-    		    		params[0] = Long.valueOf(1);
+    		    		params[0] = 1L;
     		    		dialog.cancel();
     		    		new ImportCSVTask().execute(params);    	  
     		    	}
@@ -1718,12 +1713,12 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ABOUT_ME);
     }
     
-    protected void openAltaPersona() {
+    private void openAltaPersona() {
         Intent i = new Intent(this, AltaPersonaActivity.class);
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA);
     }
     
-    protected void openListadoCategoria(){
+    private void openListadoCategoria(){
         Intent i = new Intent(this, ListadoCategoriaActivity.class);
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS);
     }
@@ -1754,9 +1749,9 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
         		ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
         	}
         	if(ConstantsAdmin.contrasenia.isActiva()){
-        		protegerCategorias.setBackgroundDrawable(dCandadoAbierto);
+        		protegerCategorias.setBackgroundResource(R.drawable.candado_abierto);
         	}else{
-        		protegerCategorias.setBackgroundDrawable(dCandadoCerrado);
+        		protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
         	}
         	if((mEntryBusquedaNombre!= null && !mEntryBusquedaNombre.equals("")) || (categoriasSeleccionadas != null && categoriasSeleccionadas.size() > 0)){
             	this.cargarPersonasPorApellidoONombreMultipleSeleccion();
@@ -1785,17 +1780,16 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
     }
     
     private void resetAllMyCursors(){
-    	Cursor cur = null;
+    	Cursor cur;
     	if(allMyCursors != null){
-        	Iterator<Cursor> it = allMyCursors.iterator();
-        	while(it.hasNext()){
-        		cur = it.next();
-        		cur.close();
-        		this.stopManagingCursor(cur);
-        	}
+			for (Cursor allMyCursor : allMyCursors) {
+				cur = allMyCursor;
+				cur.close();
+				this.stopManagingCursor(cur);
+			}
     		
     	}
-    	allMyCursors = new ArrayList<Cursor>();
+    	allMyCursors = new ArrayList<>();
     }
     
 
@@ -1837,16 +1831,16 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 		//this.finish();
 		super.onDestroy();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		ConstantsAdmin.actualizarConfig(this, mDBManager);
+		ConstantsAdmin.actualizarConfig(mDBManager);
 	}
 
 
 	@Override
 	public void onItemsSelected(boolean[] selected) {
 		// TODO Auto-generated method stub
-		categoriasSeleccionadas = new ArrayList<String>();
-		Iterator<CategoriaDTO> it = null;
-		CategoriaDTO tempCat = null;
+		categoriasSeleccionadas = new ArrayList<>();
+		Iterator<CategoriaDTO> it;
+		CategoriaDTO tempCat;
 		it = todasLasCategorias.iterator();
 		int i = 0;
 		while(it.hasNext()){
@@ -1857,7 +1851,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 			i++;
 		}
 		if(categoriasSeleccionadas != null && categoriasSeleccionadas.size() > 0){
-			seleccionados = selected;
+			boolean[] seleccionados = selected;
 			cargarPersonasPorApellidoONombreMultipleSeleccion();
 		}else{
 			this.mostrarTodosLosContactos(); 
@@ -1888,24 +1882,24 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    	
 	    }
 	   
-	    protected void openProteccionCategoria(){
+	    private void openProteccionCategoria(){
 	        Intent i = new Intent(this, ProteccionCategoriaActivity.class);
 	        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_PROTECCION_CATEGORIA);
 	    }
 	    
 	    private void configurarBotonProtegerCategorias(){
 	    	protegerCategorias = this.findViewById(R.id.botonProtegerCategorias);
-	    	dCandadoAbierto = getResources().getDrawable(R.drawable.candado_abierto);
-			dCandadoCerrado = getResources().getDrawable(R.drawable.candado_cerrado);
+	    //	dCandadoAbierto = getResources().getDrawable(R.drawable.candado_abierto);
+		//	dCandadoCerrado = getResources().getDrawable(R.drawable.candado_cerrado);
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 			if(ConstantsAdmin.contrasenia == null){
 				ConstantsAdmin.cargarContrasenia(this, mDBManager);
 				ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
 			}
 			if(ConstantsAdmin.contrasenia.isActiva()){
-				protegerCategorias.setBackgroundDrawable(dCandadoAbierto);					
+				protegerCategorias.setBackgroundResource(R.drawable.candado_abierto);
 			}else{
-				protegerCategorias.setBackgroundDrawable(dCandadoCerrado);
+				protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
 			}
 
 	    	 
@@ -1928,8 +1922,8 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 						openVerActivarContrasenia();
 					}else{
 						ConstantsAdmin.contrasenia.setActiva(false);
-						ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, me, mDBManager);
-						protegerCategorias.setBackgroundDrawable(dCandadoCerrado);
+						ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, mDBManager);
+						protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
 						configurarSpinner();
 						ConstantsAdmin.resetPersonasOrganizadas();
 						mostrarTodosLosContactos();
@@ -1940,7 +1934,7 @@ public class ListadoPersonaActivity extends ExpandableListActivity implements Mu
 	    	
 	    }
 	    
-	    protected void openVerActivarContrasenia() {
+	    private void openVerActivarContrasenia() {
 	        Intent i = new Intent(this, ActivarContraseniaActivity.class);
 	        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ACTIVAR_CONTRASENIA);
 	    }
