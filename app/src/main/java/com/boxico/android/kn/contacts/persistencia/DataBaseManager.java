@@ -10,6 +10,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteStatement;
+import android.support.v4.content.CursorLoader;
 
 import com.boxico.android.kn.contacts.persistencia.dtos.*;
 import com.boxico.android.kn.contacts.util.*;
@@ -623,7 +624,28 @@ public class DataBaseManager {
     	 }
          return result;
      }
-     
+
+	public CursorLoader cursorLoaderCategoriasActivasPorNombre(String paramNombre, Context context) {
+		String selection = null;
+		if(paramNombre != null && !paramNombre.equals("")){
+			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
+			selection  = "(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)";
+		}
+
+		return new CursorLoader( context, null, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA}, selection, null, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				return mDb.query( ConstantsAdmin.TABLA_CATEGORIA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+			}
+		};
+
+	}
+
+
      public Cursor fetchCategoriasPersonalesActivasPorNombre(String paramNombre) {
     	 Cursor result;
     	 if(paramNombre != null && !paramNombre.equals("")){

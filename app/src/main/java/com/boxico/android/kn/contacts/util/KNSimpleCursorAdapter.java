@@ -1,12 +1,14 @@
 package com.boxico.android.kn.contacts.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.boxico.android.kn.contacts.ListadoPersonaActivity;
@@ -14,14 +16,16 @@ import com.boxico.android.kn.contacts.R;
 
 public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 	
-	private final ListadoPersonaActivity localContext;
+	private final Activity localContext;
 
-	public KNSimpleCursorAdapter(Context context, int layout, Cursor c,
-			String[] from, int[] to) {
+
+	public KNSimpleCursorAdapter(Activity context, int layout, Cursor c,
+								 String[] from, int[] to) {
 		super(context, layout, c, from, to);
-		localContext = (ListadoPersonaActivity) context;
+		localContext = context;
 		// TODO Auto-generated constructor stub
 	}
+
 
     private void mostrarFoto(ImageView photo, long idPer){
     	try {
