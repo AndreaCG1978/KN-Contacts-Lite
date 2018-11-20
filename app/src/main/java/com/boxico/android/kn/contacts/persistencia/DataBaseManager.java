@@ -639,7 +639,11 @@ public class DataBaseManager {
 			{
 				// You better know how to get your database.
 				// You can use any query that returns a cursor.
-				return mDb.query( ConstantsAdmin.TABLA_CATEGORIA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				Cursor c = null;
+				if(mDb.isOpen()){
+					c = mDb.query( ConstantsAdmin.TABLA_CATEGORIA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				}
+				return c;
 			}
 		};
 

@@ -6,7 +6,7 @@
     density="xhdpi"
     format="10"
     plugin-version="3.2.1"
-    timestamp="1542633344317"
+    timestamp="1542711498829"
     token="-3487319520807323221"
     verifier="FULL_BUILD_REQUESTED" >
 
@@ -18,153 +18,219 @@
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="2172" />
     <task
         name="verifier"
-        duration="0" />
+        duration="1625" />
 
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
         type="SPLIT_MAIN" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
         type="SPLIT" />
     <artifact
-        location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+        location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
         type="SPLIT" />
 
     <build
         build-mode="FULL"
-        timestamp="1542633344317"
+        timestamp="1542711498829"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
             type="SPLIT_MAIN" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
             type="SPLIT" />
         <artifact
-            location="/home/andrea/AndroidStudioProjects/KN-Contacts-I/C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            location="C:\home\andrea\AndroidStudioProjects\KN-Contacts-I\C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
     </build>
 

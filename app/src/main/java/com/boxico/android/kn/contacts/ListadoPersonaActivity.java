@@ -141,6 +141,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	    state.putInt(ITEM_POSITION_KEY, mItemPosition);
 	}
 
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.list_personas, container, false);
@@ -151,7 +153,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			ConstantsAdmin.mainActivity = me;
 			this.setTitle(R.string.app_name);
 			this.registerForContextMenu(getExpandableListView());
-			this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
+	//		this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
 			this.configurarSpinner();
 			this.configurarEntryBusqueda();
 			this.configurarListView();
@@ -180,28 +182,30 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	super.onCreate(savedInstanceState);
         me = this;
         try{
-        	allMyCursors = new ArrayList<>();
-        	ConstantsAdmin.mainActivity = me;
-        	this.setContentView(R.layout.list_personas);
-            this.setTitle(R.string.app_name);
-            this.registerForContextMenu(getExpandableListView());
-            this.configurarSpinner();
-            this.configurarEntryBusqueda();
-            this.configurarListView();
-            this.configurarExpandableList(); 
-            this.configurarBotonIrACategoriaTodas();
-            this.configurarBotonProtegerCategorias();
-            this.configurarVerPreferidos();
-            this.configurarAddContact();
-            this.configurarBotonSwitchOrganizacion();
-            this.configurarBotonExpandContractAll();
-            this.configurarBotonMasOMenosDesc();
-            this.recuperarConfiguracion();
-            verBusqueda();
-            layoutInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-            
-        }catch (Exception e) {
+			allMyCursors = new ArrayList<>();
+			ConstantsAdmin.mainActivity = me;
+            this.setContentView(R.layout.list_personas);
+			this.setTitle(R.string.app_name);
+
+			this.registerForContextMenu(getExpandableListView());
+			this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
+			this.configurarSpinner();
+			this.configurarEntryBusqueda();
+			this.configurarListView();
+			this.configurarExpandableList();
+			this.configurarBotonIrACategoriaTodas();
+			this.configurarBotonProtegerCategorias();
+			this.configurarVerPreferidos();
+			this.configurarAddContact();
+			this.configurarBotonSwitchOrganizacion();
+			this.configurarBotonExpandContractAll();
+			this.configurarBotonMasOMenosDesc();
+			this.recuperarConfiguracion();
+			verBusqueda();
+			layoutInflater = (LayoutInflater) this.getLayoutInflater();
+			this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+		}catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorInicioAplicacion));
 		}
     }
@@ -1152,7 +1156,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
       	List<CategoriaDTO> categoriasPersonales = null;
       	Iterator<CategoriaDTO> it;
   //    CategoriaDTO cat = null;
-      	ConstantsAdmin.inicializarBD( mDBManager);
+     	ConstantsAdmin.inicializarBD( mDBManager);
       	cursor = mDBManager.fetchCategoriasActivasPorNombre(null);
       	if(cursor != null){
         //	startManagingCursor(cursor);

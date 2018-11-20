@@ -23,6 +23,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.boxico.android.kn.contacts.R;
+
 public class ExpandableListFragment extends FragmentActivity
         implements OnCreateContextMenuListener,
         ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupCollapseListener,
@@ -143,9 +145,11 @@ public class ExpandableListFragment extends FragmentActivity
             if (!mListShown && !hadAdapter) {
                 // The list was hidden, and previously didn't have an
                 // adapter.  It is now time to show it.
-
-                //setListShown(true, getView().getWindowToken() != null);
-                setListShown(true, false);
+                View v = findViewById(android.R.id.list);
+                if(v != null) {
+                    setListShown(true, v.getWindowToken() != null);
+                }
+                //setListShown(true, false);
             }
         }
     }
@@ -231,6 +235,9 @@ public class ExpandableListFragment extends FragmentActivity
      */
     private void setListShown(boolean shown, boolean animate) {
         ensureList();
+
+  /*
+
         if (mListShown == shown) {
             return;
         }
@@ -247,7 +254,7 @@ public class ExpandableListFragment extends FragmentActivity
                         this, android.R.anim.fade_out));
             }
             mListContainer.setVisibility(View.GONE);
-        }
+        }*/
     }
 
     /**
@@ -273,8 +280,12 @@ public class ExpandableListFragment extends FragmentActivity
             mStandardEmptyView = (TextView)root.findViewById(INTERNAL_EMPTY_ID);
             if (mStandardEmptyView == null) {
                 mEmptyView = root.findViewById(android.R.id.empty);
+            } else {
+                mStandardEmptyView.setVisibility(View.GONE);
             }
-            mListContainer = null; //root.findViewById(com.android.internal.R.id.listContainer);
+
+//
+            mListContainer = root.findViewById(android.R.id.list_container);
             View rawListView = root.findViewById(android.R.id.list);
             if (!(rawListView instanceof ExpandableListView)) {
                 if (rawListView == null) {
