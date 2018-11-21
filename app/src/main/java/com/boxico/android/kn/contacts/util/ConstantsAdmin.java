@@ -25,6 +25,7 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.CursorLoader;
 import android.widget.Toast;
 
 import com.boxico.android.kn.contacts.*;
@@ -1707,9 +1708,20 @@ public class ConstantsAdmin {
     
     private static List<PersonaDTO> obtenerPersonas(Activity context, DataBaseManager mDBManager){
     	PersonaDTO per;
+		CursorLoader cursorLoader = null;
     	List<PersonaDTO> result = new ArrayList<>();
     	inicializarBD(mDBManager);
-    	Cursor cur = mDBManager.fetchAllPersonas(categoriasProtegidas);
+    	cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
+		Cursor cur = cursorLoader.loadInBackground();
+		cur.moveToFirst();
+		while(!cur.isAfterLast()){
+			per = cursorToPersonaDto(cur);
+			result.add(per);
+			cur.moveToNext();
+		}
+		cur.close();
+
+    /*	Cursor cur = mDBManager.fetchAllPersonas(categoriasProtegidas);
     	context.startManagingCursor(cur);
     	cur.moveToFirst();
     	while(!cur.isAfterLast()){
@@ -1718,7 +1730,7 @@ public class ConstantsAdmin {
            cur.moveToNext();
     	}
     	cur.close();
-    	context.stopManagingCursor(cur);
+    	context.stopManagingCursor(cur);*/
     	finalizarBD(mDBManager);
     	return result;
     }
@@ -2028,8 +2040,17 @@ public class ConstantsAdmin {
     
     
     private static List<CategoriaDTO> obtenerCategoriasProtegidas(Activity context, DataBaseManager mDBManager){
-    	Cursor cursor;
+    	CursorLoader cursorLoader = null;
     	List<CategoriaDTO> categorias = new ArrayList<>();
+		cursorLoader = mDBManager.cursorLoaderCategoriasProtegidas(null, context);
+		//		cursor = mDBManager.fetchCategoriasActivasPorNombre(null);
+		if(cursorLoader != null){
+			//	startManagingCursor(cursor);
+			categorias = ConstantsAdmin.categoriasProtegidasCursorToDtos(cursorLoader.loadInBackground());
+		}
+
+
+	/*
 	    cursor = mDBManager.fetchAllCategoriasProtegidasPorNombre(null);
 	    if(cursor != null){
 	        context.startManagingCursor(cursor);
@@ -2037,20 +2058,35 @@ public class ConstantsAdmin {
 	        cursor.close();
 	        context.stopManagingCursor(cursor);
 	    }
+
+
+	    */
 	    return categorias;
     }
     
     private static ContraseniaDTO obtenerContrasenia(Activity context, DataBaseManager mDBManager){
-    	Cursor cursor;
+    	CursorLoader cursorLoader;
     	ContraseniaDTO contrasenia = null;
-	    cursor = mDBManager.fetchContrasenia();
+
+	//	ConstantsAdmin.inicializarBD( mDBManager);
+		cursorLoader = mDBManager.cursorLoaderContrasenia(context);
+		if(cursorLoader != null){
+			//	startManagingCursor(cursor);
+			contrasenia = ConstantsAdmin.contraseniaCursorToDtos(cursorLoader.loadInBackground());
+		}
+	//	ConstantsAdmin.finalizarBD(mDBManager);
+
+
+
+
+		/*    cursor = mDBManager.fetchContrasenia();
 	    if(cursor != null){
 	        context.startManagingCursor(cursor);
 	        contrasenia = ConstantsAdmin.contraseniaCursorToDtos(cursor);
 	        cursor.close();
 	        context.stopManagingCursor(cursor);
 	    }
-
+*/
 	    return contrasenia;
     }
     

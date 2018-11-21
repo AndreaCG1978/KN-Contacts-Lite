@@ -578,22 +578,11 @@ public class DataBaseManager {
     	 
      }
     */
-     public Cursor fetchAllPersonas(List<CategoriaDTO> categoriasProtegidas) {
-    	 String sortOrder = ConstantsAdmin.KEY_APELLIDO + " COLLATE LOCALIZED ASC";
-    	 Cursor result = null;
-    	 try{
-        	 String categProteg = " (1 = 1) ";
-        	 if(ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva()){
-        		 categProteg = categProteg + this.queryParaCategoriaProtegidas(categoriasProtegidas);
-        	 }
 
-    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, null, categProteg, null, null, null, sortOrder);
-    	 }catch (SQLiteException e) {
-			e.getMessage();
-		}
-    	return result;
-    	 
-     }
+
+
+
+
      
      public Cursor fetchAllCategoriasPorNombre(String paramNombre) {
     	 Cursor result;
@@ -625,11 +614,50 @@ public class DataBaseManager {
          return result;
      }
 
+	public Cursor fetchCategoriasPersonalesActivasPorNombre(String paramNombre) {
+		Cursor result;
+		if(paramNombre != null && !paramNombre.equals("")){
+			result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
+		}else{
+			result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA}, "(" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
+		}
+		return result;
+	}
+
+
+	public CursorLoader cursorLoaderCategoriasPersonalesActivasPorNombre(String paramNombre, Context context) {
+		String selection = null;
+		if(paramNombre != null && !paramNombre.equals("")){
+			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
+			selection  = " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)";
+		}else{
+			selection  = "(" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)";
+		}
+
+		return new CursorLoader( context, null, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA}, selection, null, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				Cursor c = null;
+				if(mDb.isOpen()){
+					c = mDb.query(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				}
+				return c;
+			}
+		};
+
+	}
+
 	public CursorLoader cursorLoaderCategoriasActivasPorNombre(String paramNombre, Context context) {
 		String selection = null;
 		if(paramNombre != null && !paramNombre.equals("")){
 			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
 			selection  = "(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)";
+		}else{
+			selection  = "(" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)";
 		}
 
 		return new CursorLoader( context, null, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA}, selection, null, null)
@@ -649,16 +677,50 @@ public class DataBaseManager {
 
 	}
 
+	public CursorLoader cursorLoaderPersonas(List<CategoriaDTO> categoriasProtegidas, Context context) {
+		String sortOrder = ConstantsAdmin.KEY_APELLIDO + " COLLATE LOCALIZED ASC";
+		String categProteg = " (1 = 1) ";
+		if(ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva()){
+			categProteg = categProteg + this.queryParaCategoriaProtegidas(categoriasProtegidas);
+		}
 
-     public Cursor fetchCategoriasPersonalesActivasPorNombre(String paramNombre) {
-    	 Cursor result;
-    	 if(paramNombre != null && !paramNombre.equals("")){
-    		 result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
-    	 }else{
-    		 result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA}, "(" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
-    	 }
-         return result;
-     }
+
+		return new CursorLoader( context, null, null, categProteg, null, sortOrder)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				Cursor c = null;
+				if(mDb.isOpen()){
+					c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				}
+				return c;
+			}
+		};
+
+	}
+
+	public Cursor fetchAllPersonas(List<CategoriaDTO> categoriasProtegidas) {
+		String sortOrder = ConstantsAdmin.KEY_APELLIDO + " COLLATE LOCALIZED ASC";
+		Cursor result = null;
+		try{
+			String categProteg = " (1 = 1) ";
+			if(ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva()){
+				categProteg = categProteg + this.queryParaCategoriaProtegidas(categoriasProtegidas);
+			}
+
+			result = mDb.query(ConstantsAdmin.TABLA_PERSONA, null, categProteg, null, null, null, sortOrder);
+		}catch (SQLiteException e) {
+			e.getMessage();
+		}
+		return result;
+
+	}
+
+
+
      /*
      private Cursor fetchPersonaString(String column, Object value) throws SQLException {
          Cursor mCursor = null;
@@ -825,6 +887,53 @@ public class DataBaseManager {
     	 }
          return result;
      }
+
+	public CursorLoader cursorLoaderCategoriasProtegidas(String paramNombre, Context context) {
+		String selection = null;
+		if(paramNombre != null && !paramNombre.equals("")){
+			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
+			selection  = ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%'";
+		}
+
+		return new CursorLoader( context, null, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA}, null, null, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				Cursor c = null;
+				if(mDb.isOpen()){
+					c = mDb.query(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				}
+				return c;
+			}
+		};
+
+	}
+
+
+
+    public CursorLoader cursorLoaderContrasenia(Context context) {
+
+        return new CursorLoader( context, null, null, null, null, null)
+        {
+            @Override
+            public Cursor loadInBackground()
+            {
+                // You better know how to get your database.
+                // You can use any query that returns a cursor.
+                Cursor c = null;
+                if(mDb.isOpen()){
+                    c = mDb.query(ConstantsAdmin.TABLA_CONTRASENIA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+                }
+                return c;
+            }
+        };
+
+    }
+
+
      
      public Cursor fetchContrasenia() {
     	 Cursor result = null;

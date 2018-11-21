@@ -121,6 +121,10 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private int mListPosition = 0;
 	private int mItemPosition = 0;
 	private final int CATEGORIAS_CURSOR = 1;
+	private final int CATEGORIAS_PERSONALES_CURSOR = 2;
+	private final int CONTRASENIA_CURSOR = 3;
+	private final int CATEGORIAS_PROTEGIDAS_CURSOR = 4;
+    private final int PERSONAS_CURSOR = 5;
 
 	@Override
 	public void onSaveInstanceState(Bundle state) {
@@ -186,9 +190,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			ConstantsAdmin.mainActivity = me;
             this.setContentView(R.layout.list_personas);
 			this.setTitle(R.string.app_name);
-
 			this.registerForContextMenu(getExpandableListView());
-			this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
+			this.cargarLoaders();
 			this.configurarSpinner();
 			this.configurarEntryBusqueda();
 			this.configurarListView();
@@ -210,7 +213,14 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		}
     }
 
-    
+    private void cargarLoaders() {
+		this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(CATEGORIAS_PERSONALES_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(CONTRASENIA_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(CATEGORIAS_PROTEGIDAS_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(PERSONAS_CURSOR, null, this);
+	}
+
 	private void recuperarConfiguracion() {
 		ConfigDTO config;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
@@ -230,8 +240,10 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	listaEspecial.setVisibility(View.GONE);
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		if(ConstantsAdmin.contrasenia == null){
+			ConstantsAdmin.inicializarBD(mDBManager);
 			ConstantsAdmin.cargarContrasenia(this, mDBManager);
 			ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
+			ConstantsAdmin.finalizarBD(mDBManager);
 		}
 		this.getExpandableListView().setVisibility(View.VISIBLE);
         List<Map<String, String>> groupData = new ArrayList<>();
@@ -1150,23 +1162,24 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     private void configurarSpinner(){
     	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
       	spinnerCategorias = this.findViewById(R.id.multi_spinner);
-      	Cursor cursor;
+		CursorLoader cursorLoader;
       	CategoriaDTO cat;
       	List<CategoriaDTO> categorias = null;
       	List<CategoriaDTO> categoriasPersonales = null;
       	Iterator<CategoriaDTO> it;
   //    CategoriaDTO cat = null;
      	ConstantsAdmin.inicializarBD( mDBManager);
-      	cursor = mDBManager.fetchCategoriasActivasPorNombre(null);
-      	if(cursor != null){
+		cursorLoader = mDBManager.cursorLoaderCategoriasActivasPorNombre(null, this);
+		//		cursor = mDBManager.fetchCategoriasActivasPorNombre(null);
+      	if(cursorLoader != null){
         //	startManagingCursor(cursor);
-          	categorias = ConstantsAdmin.categoriasCursorToDtos(cursor);
+          	categorias = ConstantsAdmin.categoriasCursorToDtos(cursorLoader.loadInBackground());
       	}
-      
-      	cursor = mDBManager.fetchCategoriasPersonalesActivasPorNombre(null);
-      	if(cursor != null){
+
+		cursorLoader = mDBManager.cursorLoaderCategoriasPersonalesActivasPorNombre(null, this);
+      	if(cursorLoader != null){
          // 	startManagingCursor(cursor);
-          	categoriasPersonales = ConstantsAdmin.categoriasCursorToDtos(cursor);
+          	categoriasPersonales = ConstantsAdmin.categoriasCursorToDtos(cursorLoader.loadInBackground());
       	}
       
      	ConstantsAdmin.finalizarBD(mDBManager);
@@ -1453,14 +1466,26 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
         DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-        ConstantsAdmin.inicializarBD( mDBManager);
+     //   ConstantsAdmin.inicializarBD( mDBManager);
         CursorLoader cl = null;
 		switch(id) {
 			case CATEGORIAS_CURSOR:
                 cl = mDBManager.cursorLoaderCategoriasActivasPorNombre(null, this);
 				break; // optional
+			case CATEGORIAS_PERSONALES_CURSOR:
+				cl = mDBManager.cursorLoaderCategoriasPersonalesActivasPorNombre(null, this);
+				break; // optional
+			case CONTRASENIA_CURSOR:
+				cl = mDBManager.cursorLoaderContrasenia(this);
+				break;
+			case CATEGORIAS_PROTEGIDAS_CURSOR:
+				cl = mDBManager.cursorLoaderCategoriasProtegidas(null, this);
+				break; 				// optional
+            case PERSONAS_CURSOR:
+                cl = mDBManager.cursorLoaderPersonas(ConstantsAdmin.categoriasProtegidas, this);
+                break;
+            // You can have any number of case statements.
 
-						// You can have any number of case statements.
 			default : // Optional
 				// Statements
 		}
