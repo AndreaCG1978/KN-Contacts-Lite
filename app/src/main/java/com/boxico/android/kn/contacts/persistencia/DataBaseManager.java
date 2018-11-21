@@ -463,8 +463,38 @@ public class DataBaseManager {
      public void deleteAll(){
     	 mDbHelper.deleteAll(mDb);
      }
-     
-     public Cursor fetchAllPreferidos(List<CategoriaDTO> categoriasProtegidas){
+
+	public CursorLoader cursorLoaderPreferidos(List<CategoriaDTO> categoriasProtegidas, Context context) {
+		Cursor result = null;
+		String categProteg = " (1 = 1) ";
+		if(!ConstantsAdmin.contrasenia.isActiva()){
+			categProteg = categProteg + this.queryParaCategoriaProtegidas(categoriasProtegidas);
+		}
+
+		String query = "SELECT * FROM " + ConstantsAdmin.TABLA_PERSONA + " a INNER JOIN " + ConstantsAdmin.TABLA_PREFERIDOS + " b ON a._id = b._id WHERE " + categProteg;
+
+
+		return new CursorLoader( context, null, null, query, null, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				Cursor c = null;
+				if(mDb.isOpen()){
+					c = mDb.rawQuery(getSelection(), null);
+				}
+				return c;
+			}
+		};
+
+	}
+
+
+
+
+	public Cursor fetchAllPreferidos(List<CategoriaDTO> categoriasProtegidas){
     	 Cursor result = null;
     	
        	 try{
@@ -701,6 +731,7 @@ public class DataBaseManager {
 		};
 
 	}
+
 
 	public Cursor fetchAllPersonas(List<CategoriaDTO> categoriasProtegidas) {
 		String sortOrder = ConstantsAdmin.KEY_APELLIDO + " COLLATE LOCALIZED ASC";

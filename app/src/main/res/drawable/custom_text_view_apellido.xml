@@ -4,11 +4,11 @@
     <item>        
         <shape>
             <gradient
-                android:endColor="@color/color_gris_oscuro"
+                android:endColor="@color/color_gris_claro"
                 android:startColor="@color/color_gris"
                 android:angle="270" />
             <corners
-                android:radius="8dp" />
+                android:radius="5dp" />
  
         </shape>
     </item>

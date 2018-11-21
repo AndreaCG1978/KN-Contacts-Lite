@@ -125,6 +125,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private final int CONTRASENIA_CURSOR = 3;
 	private final int CATEGORIAS_PROTEGIDAS_CURSOR = 4;
     private final int PERSONAS_CURSOR = 5;
+	private final int PREFERIDOS_CURSOR = 6;
 
 	@Override
 	public void onSaveInstanceState(Bundle state) {
@@ -219,6 +220,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		this.getSupportLoaderManager().initLoader(CONTRASENIA_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_PROTEGIDAS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(PERSONAS_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(PREFERIDOS_CURSOR, null, this);
 	}
 
 	private void recuperarConfiguracion() {
@@ -589,10 +591,13 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     
     
     private void mostrarSoloPreferidos(){
+    	CursorLoader prefCursorLoader;
     	Cursor prefCursor;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
-    	prefCursor = mDBManager.fetchAllPreferidos(ConstantsAdmin.categoriasProtegidas);
+		prefCursorLoader = mDBManager.cursorLoaderPreferidos(ConstantsAdmin.categoriasProtegidas, this);
+    	//prefCursorLoader = mDBManager.fetchAllPreferidos(ConstantsAdmin.categoriasProtegidas);
+    	prefCursor = prefCursorLoader.loadInBackground();
     	if(prefCursor != null){
     		ConstantsAdmin.config.setMuestraPreferidos(true);
 	      //  startManagingCursor(prefCursor);
@@ -606,6 +611,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	        //PONER UNA LISTA OCULTA PARA LAS BUSQUEDAS ESPECIFICAS
 			
 			listaEspecial.setAdapter(personas);
+			ConstantsAdmin.finalizarBD(mDBManager);
 			listaEspecial.setVisibility(View.VISIBLE);
 			this.getExpandableListView().setVisibility(View.GONE);
 	        cantReg.setText("(" + listaEspecial.getAdapter().getCount() + ")");
@@ -1382,17 +1388,17 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     
     private void habilitarDeshabilitarItemMenu(){
         if(menuItemExportarContactos != null){
-        	if(personasMap.size() == 0){
-               	menuItemExportarContactos.setEnabled(false);
+        	if(personasMap != null && personasMap.size()!= 0){
+               	menuItemExportarContactos.setEnabled(true);
         	}else{
-        		menuItemExportarContactos.setEnabled(true);
+        		menuItemExportarContactos.setEnabled(false);
         	}
         }
         if(menuItemExportarContactosEstetico != null){
-        	if(personasMap.size() == 0){
-               	menuItemExportarContactosEstetico.setEnabled(false);
+        	if(personasMap != null && personasMap.size() != 0){
+               	menuItemExportarContactosEstetico.setEnabled(true);
         	}else{
-        		menuItemExportarContactosEstetico.setEnabled(true);
+        		menuItemExportarContactosEstetico.setEnabled(false);
         	}
         }
     	
@@ -1484,6 +1490,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
             case PERSONAS_CURSOR:
                 cl = mDBManager.cursorLoaderPersonas(ConstantsAdmin.categoriasProtegidas, this);
                 break;
+			case PREFERIDOS_CURSOR:
+				cl = mDBManager.cursorLoaderPreferidos(ConstantsAdmin.categoriasProtegidas, this);
+				break;
             // You can have any number of case statements.
 
 			default : // Optional
