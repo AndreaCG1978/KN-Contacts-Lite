@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v21/values-v21.xml",
+            "outputFile": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
-                    "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/128366f1703785702ad6229df4352b00/res/values-v21/values-v21.xml",
+                    "source": "C:\\Users\\a.grassano.spb\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\2e68c68ea7455d7bd390ed6484e2a795\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/4bc68d70532e111746d0f571d3744632/res/values-v21/values-v21.xml",
+                    "source": "C:\\Users\\a.grassano.spb\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\13f61fae76c6399b0c073a6ffb1ce14d\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,5,8,11",
                         "startColumns": "4,4,4,4",

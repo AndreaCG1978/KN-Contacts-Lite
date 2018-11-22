@@ -1502,8 +1502,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		return cl;
 	}
 
-	@Override
-	public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+	public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+		// Swap the new cursor in.  (The framework will take care of closing the
+		// old cursor once we return.)
 
 	}
 

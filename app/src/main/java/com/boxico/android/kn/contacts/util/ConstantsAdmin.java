@@ -170,10 +170,10 @@ public class ConstantsAdmin {
     	CategoriaDTO cat;
     	if(actualizo){
     	      Cursor cursor = mDBManager.fetchAllCategoriasPorNombre(null);
-    	      context.startManagingCursor(cursor);
+    	  //    context.startManagingCursor(cursor);
     	      categorias = ConstantsAdmin.categoriasCursorToDtos(cursor);
     	      cursor.close();
-    	      context.stopManagingCursor(cursor);
+    	//      context.stopManagingCursor(cursor);
     	      it = categorias.iterator();
     	      while(it.hasNext()){
 	    	      cat = it.next();
@@ -534,10 +534,10 @@ public class ConstantsAdmin {
     	Cursor perCursor;
 		inicializarBD(mDBManager);
     	perCursor = mDBManager.fetchPersonaPorId(idPer);
-    	context.startManagingCursor(perCursor);
+    //	context.startManagingCursor(perCursor);
     	per = cursorToPersonaDto(perCursor);
-    	perCursor.close();
-    	context.stopManagingCursor(perCursor);
+    //	perCursor.close();
+    //	context.stopManagingCursor(perCursor);
     	finalizarBD(mDBManager);
     	return per;
     }
@@ -548,10 +548,10 @@ public class ConstantsAdmin {
     	Cursor catCursor;
 		inicializarBD(mDBManager);
     	catCursor = mDBManager.fetchCategoriaPersonalPorId(idCat);
-    	context.startManagingCursor(catCursor);
+    //	context.startManagingCursor(catCursor);
     	cat = cursorToCategoriaDto(catCursor);
-    	catCursor.close();
-    	context.stopManagingCursor(catCursor);
+    //	catCursor.close();
+    //	context.stopManagingCursor(catCursor);
     	finalizarBD(mDBManager);
     	return cat;
     }
@@ -591,10 +591,10 @@ public class ConstantsAdmin {
     	List<TipoValorDTO> result;
 		inicializarBD(mDBManager);
     	cur = mDBManager.fetchTipoValorPorIdPersona(id, tablaName);
-    	context.startManagingCursor(cur);
+  //  	context.startManagingCursor(cur);
     	result = cursorToTipoValorDtos(cur);
-    	cur.close();
-    	context.stopManagingCursor(cur);
+  //  	cur.close();
+  //  	context.stopManagingCursor(cur);
     	finalizarBD(mDBManager);
     	return result;
     }
@@ -695,22 +695,22 @@ public class ConstantsAdmin {
     	PersonaDTO per = null;
     	cursor = mDBManager.fetchPersonaPorNombreYApellido(name, apellido);
     	if(cursor != null){
-    		context.startManagingCursor(cursor);
+    	//	context.startManagingCursor(cursor);
     		if(cursor.getCount() > 0){
         		per = cursorToPersonaDto(cursor);
     		}
-    		cursor.close();
-    		context.stopManagingCursor(cursor);
+    	//	cursor.close();
+    	//	context.stopManagingCursor(cursor);
     	}
     	if(per == null){
         	cursor = mDBManager.fetchPersonaPorNombreYApellido(apellido, name);
         	if(cursor != null){
-        		context.startManagingCursor(cursor);
+        	//	context.startManagingCursor(cursor);
         		if(cursor.getCount() > 0){
             		per = cursorToPersonaDto(cursor);
         		}
-        		cursor.close();
-        		context.stopManagingCursor(cursor);
+        	//	cursor.close();
+        	//	context.stopManagingCursor(cursor);
         	}
     		
     	}
