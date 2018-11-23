@@ -147,7 +147,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 
-
+/*
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.list_personas, container, false);
@@ -182,7 +182,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		return view;
 	}
 
-
+*/
 	public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         me = this;
@@ -215,8 +215,16 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     }
 
     private void cargarLoaders() {
+		Loader<Cursor> lc;
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_PERSONALES_CURSOR, null, this);
+	/*	lc.registerListener (CATEGORIAS_PERSONALES_CURSOR,new Loader.OnLoadCompleteListener(){
+
+			@Override
+			public void onLoadComplete(@NonNull Loader loader, @Nullable Object data) {
+
+			}
+		});*/
 		this.getSupportLoaderManager().initLoader(CONTRASENIA_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_PROTEGIDAS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(PERSONAS_CURSOR, null, this);
@@ -1489,6 +1497,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				break; 				// optional
             case PERSONAS_CURSOR:
                 cl = mDBManager.cursorLoaderPersonas(ConstantsAdmin.categoriasProtegidas, this);
+				ConstantsAdmin.cursorPersonas = cl;
                 break;
 			case PREFERIDOS_CURSOR:
 				cl = mDBManager.cursorLoaderPreferidos(ConstantsAdmin.categoriasProtegidas, this);

@@ -47,7 +47,7 @@ public class ConstantsAdmin {
 	private static Map<String, List<PersonaDTO>> organizadosPorCategoria = null;
 
 
-
+	public static CursorLoader cursorPersonas = null;
 	public static ListadoPersonaActivity mainActivity = null;
 
 
@@ -1257,8 +1257,8 @@ public class ConstantsAdmin {
         {
 
 			if (ContextCompat.checkSelfPermission(context,
-					Manifest.permission.WRITE_EXTERNAL_STORAGE)
-					!= PackageManager.PERMISSION_GRANTED) {
+					android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+					== PackageManager.PERMISSION_GRANTED) {
 
 				// Should we show an explanation?
 				if (!ActivityCompat.shouldShowRequestPermissionRationale(context,
@@ -1715,18 +1715,29 @@ public class ConstantsAdmin {
     
     private static List<PersonaDTO> obtenerPersonas(Activity context, List<CategoriaDTO> categoriasProtegidas, DataBaseManager mDBManager){
     	PersonaDTO per;
+    	Cursor cursor = null;
+	//	CursorLoader cursorLoader = null;
     	List<PersonaDTO> result = new ArrayList<>();
     	inicializarBD(mDBManager);
    // 	Cursor cur = mDBManager.fetchAllPersonas(categoriasProtegidas);
    // 	context.startManagingCursor(cur);
 
-        CursorLoader cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
-        Cursor cur = cursorLoader.loadInBackground();
-    	cur.moveToFirst();
-    	while(!cur.isAfterLast()){
-           per = cursorToPersonaDto(cur);
+
+		CursorLoader cursorLoader = ConstantsAdmin.cursorPersonas;
+		if(cursorLoader == null){
+			cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
+
+		}
+		cursor = cursorLoader.loadInBackground();
+
+     //   CursorLoader cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
+    //    cursorLoader.startLoading();
+     //   Cursor cur = cursorLoader.loadInBackground();
+		cursor.moveToFirst();
+    	while(!cursor.isAfterLast()){
+           per = cursorToPersonaDto(cursor);
            result.add(per);
-           cur.moveToNext();
+			cursor.moveToNext();
     	}
     //	cur.close();
    // 	context.stopManagingCursor(cur);
@@ -1737,10 +1748,17 @@ public class ConstantsAdmin {
     private static List<PersonaDTO> obtenerPersonas(Activity context, DataBaseManager mDBManager){
     	PersonaDTO per;
 		CursorLoader cursorLoader = null;
+		Cursor cur = null;
     	List<PersonaDTO> result = new ArrayList<>();
     	inicializarBD(mDBManager);
-    	cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
-		Cursor cur = cursorLoader.loadInBackground();
+		cursorLoader = ConstantsAdmin.cursorPersonas;
+		if(cursorLoader == null){
+			cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
+
+		}
+		cur = cursorLoader.loadInBackground();
+    //	cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
+	//	Cursor cur = cursorLoader.loadInBackground();
 		cur.moveToFirst();
 		while(!cur.isAfterLast()){
 			per = cursorToPersonaDto(cur);
