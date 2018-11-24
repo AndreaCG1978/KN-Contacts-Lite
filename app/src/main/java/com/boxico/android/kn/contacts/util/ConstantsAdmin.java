@@ -48,7 +48,12 @@ public class ConstantsAdmin {
 
 
 	public static CursorLoader cursorPersonas = null;
+	public static CursorLoader cursorCategorias = null;
+	public static CursorLoader cursorCategoriasPersonales = null;
+	public static CursorLoader cursorPreferidos = null;
 	public static ListadoPersonaActivity mainActivity = null;
+	public static CursorLoader cursorCategoriasActivas = null;
+	public static CursorLoader cursorCategoriasPersonalesActivas = null;
 
 
 
@@ -1782,29 +1787,26 @@ public class ConstantsAdmin {
     }
     
     private static List<CategoriaDTO> obtenerCategorias(Activity context, DataBaseManager mDBManager){
-    	CategoriaDTO cat;
-    	List<CategoriaDTO> result = new ArrayList<>();
-    	inicializarBD(mDBManager);
-    	Cursor cur = mDBManager.fetchAllCategoriasPorNombre(null);
-    	context.startManagingCursor(cur);
-    	cur.moveToFirst();
-    	while(!cur.isAfterLast()){
-           cat = cursorToCategoriaDto(cur);
-           result.add(cat);
-           cur.moveToNext();
-    	}
-    	cur.close();
-    	context.stopManagingCursor(cur);
-    	finalizarBD(mDBManager);
-    	return result;
+		return obtenerCategorias(context, null, mDBManager);
     }    
 
     private static List<CategoriaDTO> obtenerCategoriasPersonales(Activity context, DataBaseManager mDBManager){
-    	CategoriaDTO cat;
-    	List<CategoriaDTO> result = new ArrayList<>();
-    	inicializarBD(mDBManager);
-    	Cursor cur = mDBManager.fetchAllCategoriasPersonalesPorNombre(null);
-    	context.startManagingCursor(cur);
+		CategoriaDTO cat;
+		CursorLoader cursorLoader = null;
+		Cursor cur = null;
+		List<CategoriaDTO> result = new ArrayList<>();
+		inicializarBD(mDBManager);
+
+		cursorLoader = ConstantsAdmin.cursorCategoriasPersonales;
+		if(cursorLoader == null){
+			cursorLoader = mDBManager.cursorLoaderCategoriasPersonalesPorNombre(null, context);
+
+		}
+		cur = cursorLoader.loadInBackground();
+
+/*
+		Cursor cur = mDBManager.fetchAllCategoriasPersonalesPorNombre(null);
+    	context.startManagingCursor(cur);*/
     	cur.moveToFirst();
     	while(!cur.isAfterLast()){
            cat = cursorToCategoriaDto(cur);
@@ -1812,8 +1814,9 @@ public class ConstantsAdmin {
            cur.moveToNext();
     	}
     	cur.close();
-    	context.stopManagingCursor(cur);
-    	finalizarBD(mDBManager);
+
+    	/*context.stopManagingCursor(cur);
+    	finalizarBD(mDBManager);*/
     	return result;
     }     
     
@@ -1821,18 +1824,32 @@ public class ConstantsAdmin {
     
     private static List<Long> obtenerPreferidos(Activity context, DataBaseManager mDBManager){
     	Long id;
-    	List<Long> result = new ArrayList<>();
+		CursorLoader cursorLoader = null;
+		Cursor cur = null;
+
+		List<Long> result = new ArrayList<>();
     	inicializarBD(mDBManager);
-    	Cursor cur = mDBManager.fetchAllPreferidos();
+
+		cursorLoader = ConstantsAdmin.cursorPreferidos;
+		if(cursorLoader == null){
+			cursorLoader = mDBManager.cursorLoaderPreferidos(null, context);
+
+		}
+		cur = cursorLoader.loadInBackground();
+
+/*    	Cursor cur = mDBManager.fetchAllPreferidos();
     	context.startManagingCursor(cur);
+  */
+
     	cur.moveToFirst();
     	while(!cur.isAfterLast()){
            id = cursorToPreferido(cur);
            result.add(id);
            cur.moveToNext();
     	}
-    	cur.close();
-    	context.stopManagingCursor(cur);
+    /*	cur.close();
+
+    	context.stopManagingCursor(cur);*/
     	finalizarBD(mDBManager);
     	return result;
     }     
@@ -1944,29 +1961,48 @@ public class ConstantsAdmin {
 
     public static List<CategoriaDTO> obtenerCategoriasActivas(Activity context, String nombre, DataBaseManager mDBManager){
     	Cursor cursor;
+    	CursorLoader cursorLoader = null;
     	List<CategoriaDTO> categorias = new ArrayList<>();
 	    inicializarBD(mDBManager);
-	    cursor = mDBManager.fetchCategoriasActivasPorNombre(nombre);
+
+	    cursorLoader = ConstantsAdmin.cursorCategoriasActivas;
+	    if(cursorLoader == null){
+	    	cursorLoader = mDBManager.cursorLoaderCategoriasActivasPorNombre(nombre, context);
+		}
+	    cursor = cursorLoader.loadInBackground();
+
+
+	//    cursor = mDBManager.fetchCategoriasActivasPorNombre(nombre);
 	    if(cursor != null){
-	        context.startManagingCursor(cursor);
+	  //      context.startManagingCursor(cursor);
 	        categorias = categoriasCursorToDtos(cursor);
-	        cursor.close();
-	        context.stopManagingCursor(cursor);
+	    //    cursor.close();
+	      //  context.stopManagingCursor(cursor);
 	    }
+
 	    finalizarBD(mDBManager);
 	    return categorias;
     }
     
     public static List<CategoriaDTO> obtenerCategoriasActivasPersonales(Activity context, DataBaseManager mDBManager){
-    	Cursor cursor;
+    	Cursor cursor = null;
+    	CursorLoader cursorLoader = null;
+
     	List<CategoriaDTO> categorias = new ArrayList<>();
 	    inicializarBD(mDBManager);
-	    cursor = mDBManager.fetchCategoriasPersonalesActivasPorNombre(null);
+
+	    cursorLoader = ConstantsAdmin.cursorCategoriasPersonalesActivas;
+	    if(cursorLoader == null){
+	    	cursorLoader = mDBManager.cursorLoaderCategoriasPersonalesActivasPorNombre(null, context);
+		}
+
+		cursor = cursorLoader.loadInBackground();
+	    //cursor = mDBManager.fetchCategoriasPersonalesActivasPorNombre(null);
 	    if(cursor != null){
-	        context.startManagingCursor(cursor);
+	        //context.startManagingCursor(cursor);
 	        categorias = ConstantsAdmin.categoriasCursorToDtos(cursor);
-	        cursor.close();
-	        context.stopManagingCursor(cursor);
+	        //cursor.close();
+	        //context.stopManagingCursor(cursor);
 	    }
 
 	    finalizarBD(mDBManager);
@@ -1974,7 +2010,39 @@ public class ConstantsAdmin {
     }
     
     public static List<CategoriaDTO> obtenerCategorias(Activity context, String nombre, DataBaseManager mDBManager){
-    	Cursor cursor;
+    	CategoriaDTO cat;
+		CursorLoader cursorLoader = null;
+		Cursor cur = null;
+		List<CategoriaDTO> result = new ArrayList<>();
+		inicializarBD(mDBManager);
+
+		cursorLoader = ConstantsAdmin.cursorCategorias;
+		if(cursorLoader == null){
+			cursorLoader = mDBManager.cursorLoaderCategoriasPorNombre(nombre, context);
+
+		}
+		cur = cursorLoader.loadInBackground();
+
+
+    	/*Cursor cur = mDBManager.fetchAllCategoriasPorNombre(null);
+    	context.startManagingCursor(cur);*/
+		cur.moveToFirst();
+		while(!cur.isAfterLast()){
+			cat = cursorToCategoriaDto(cur);
+			result.add(cat);
+			cur.moveToNext();
+		}
+
+    	/*cur.close();
+    	context.stopManagingCursor(cur);*/
+		finalizarBD(mDBManager);
+		return result;
+
+
+
+
+
+    	/*
     	List<CategoriaDTO> categorias = new ArrayList<>();
 	    inicializarBD(mDBManager);
 	    cursor = mDBManager.fetchAllCategoriasPorNombre(nombre);
@@ -1985,7 +2053,7 @@ public class ConstantsAdmin {
 	        context.stopManagingCursor(cursor);
 	    }
 	    finalizarBD(mDBManager);
-	    return categorias;
+	    return categorias;*/
     }
     
     public static void actualizarCategoria(CategoriaDTO catSelected, DataBaseManager mDBManager){

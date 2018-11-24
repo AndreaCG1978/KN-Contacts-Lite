@@ -126,6 +126,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private final int CATEGORIAS_PROTEGIDAS_CURSOR = 4;
     private final int PERSONAS_CURSOR = 5;
 	private final int PREFERIDOS_CURSOR = 6;
+	private final int CATEGORIAS_ACTIVAS_CURSOR = 7;
+	private final int CATEGORIAS_PERSONALES_ACTIVAS_CURSOR = 8;
 
 	@Override
 	public void onSaveInstanceState(Bundle state) {
@@ -218,17 +220,13 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		Loader<Cursor> lc;
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_PERSONALES_CURSOR, null, this);
-	/*	lc.registerListener (CATEGORIAS_PERSONALES_CURSOR,new Loader.OnLoadCompleteListener(){
-
-			@Override
-			public void onLoadComplete(@NonNull Loader loader, @Nullable Object data) {
-
-			}
-		});*/
 		this.getSupportLoaderManager().initLoader(CONTRASENIA_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_PROTEGIDAS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(PERSONAS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(PREFERIDOS_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(CATEGORIAS_ACTIVAS_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(CATEGORIAS_PERSONALES_ACTIVAS_CURSOR, null, this);
+
 	}
 
 	private void recuperarConfiguracion() {
@@ -1484,10 +1482,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
         CursorLoader cl = null;
 		switch(id) {
 			case CATEGORIAS_CURSOR:
-                cl = mDBManager.cursorLoaderCategoriasActivasPorNombre(null, this);
+                cl = mDBManager.cursorLoaderCategoriasPorNombre(null, this);
+				ConstantsAdmin.cursorCategorias = cl;
 				break; // optional
 			case CATEGORIAS_PERSONALES_CURSOR:
-				cl = mDBManager.cursorLoaderCategoriasPersonalesActivasPorNombre(null, this);
+				cl = mDBManager.cursorLoaderCategoriasPersonalesPorNombre(null, this);
+				ConstantsAdmin.cursorCategoriasPersonales = cl;
 				break; // optional
 			case CONTRASENIA_CURSOR:
 				cl = mDBManager.cursorLoaderContrasenia(this);
@@ -1501,8 +1501,16 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
                 break;
 			case PREFERIDOS_CURSOR:
 				cl = mDBManager.cursorLoaderPreferidos(ConstantsAdmin.categoriasProtegidas, this);
+				ConstantsAdmin.cursorPreferidos = cl;
 				break;
-            // You can have any number of case statements.
+			case CATEGORIAS_ACTIVAS_CURSOR:
+				cl = mDBManager.cursorLoaderCategoriasActivasPorNombre(null, this);
+				ConstantsAdmin.cursorCategoriasActivas = cl;
+				break;
+			case CATEGORIAS_PERSONALES_ACTIVAS_CURSOR:
+				cl = mDBManager.cursorLoaderCategoriasPersonalesActivasPorNombre(null, this);
+				ConstantsAdmin.cursorCategoriasPersonalesActivas = cl;
+				break;			// You can have any number of case statements.
 
 			default : // Optional
 				// Statements
