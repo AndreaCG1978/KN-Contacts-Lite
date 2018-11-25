@@ -54,6 +54,7 @@ public class ConstantsAdmin {
 	public static ListadoPersonaActivity mainActivity = null;
 	public static CursorLoader cursorCategoriasActivas = null;
 	public static CursorLoader cursorCategoriasPersonalesActivas = null;
+	public static CursorLoader cursorConfiguracion = null;
 
 
 
@@ -2207,16 +2208,22 @@ public class ConstantsAdmin {
     
     public static ConfigDTO obtenerConfiguracion(Activity context, DataBaseManager mDBManager){
     	Cursor cursor;
+    	CursorLoader cursorLoader = null;
     	ConfigDTO config = null;
     	inicializarBD(mDBManager);
-	    cursor = mDBManager.fetchConfig();
+	  //  cursor = mDBManager.fetchConfig();
+		cursorLoader = ConstantsAdmin.cursorConfiguracion;
+		if(cursorLoader == null){
+			cursorLoader = mDBManager.cursorLoaderConfiguracion(context);
+		}
+		cursor = cursorLoader.loadInBackground();
 	    if(cursor != null){
 	    	cursor.moveToFirst();
 	    	if(!cursor.isAfterLast()){
-		        context.startManagingCursor(cursor);
+		        //context.startManagingCursor(cursor);
 		        config = ConstantsAdmin.configCursorToDtos(cursor);
-		        cursor.close();
-		        context.stopManagingCursor(cursor);
+		        //cursor.close();
+		        //context.stopManagingCursor(cursor);
 	    	}else{
 		    	config = new ConfigDTO();
 		    	config.setEstanDetallados(false);

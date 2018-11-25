@@ -65,7 +65,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private Map<String, List<PersonaDTO>> personasMap = null;
     private long mPersonaSelect = -1;
  	private LayoutInflater layoutInflater = null;
-    private ArrayList<Cursor> allMyCursors = null;
+ //   private ArrayList<Cursor> allMyCursors = null;
     private EditText entryBusqueda = null;
     private MultiSpinner spinnerCategorias = null;
 	private ImageButton switchOrganizacion = null;
@@ -128,6 +128,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private final int PREFERIDOS_CURSOR = 6;
 	private final int CATEGORIAS_ACTIVAS_CURSOR = 7;
 	private final int CATEGORIAS_PERSONALES_ACTIVAS_CURSOR = 8;
+    private final int CONFIGURACION_CURSOR = 9;
 
 	@Override
 	public void onSaveInstanceState(Bundle state) {
@@ -189,7 +190,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	super.onCreate(savedInstanceState);
         me = this;
         try{
-			allMyCursors = new ArrayList<>();
+		//	allMyCursors = new ArrayList<>();
 			ConstantsAdmin.mainActivity = me;
             this.setContentView(R.layout.list_personas);
 			this.setTitle(R.string.app_name);
@@ -217,7 +218,6 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     }
 
     private void cargarLoaders() {
-		Loader<Cursor> lc;
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_PERSONALES_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CONTRASENIA_CURSOR, null, this);
@@ -226,6 +226,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		this.getSupportLoaderManager().initLoader(PREFERIDOS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_ACTIVAS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_PERSONALES_ACTIVAS_CURSOR, null, this);
+        this.getSupportLoaderManager().initLoader(CONFIGURACION_CURSOR, null, this);
 
 	}
 
@@ -1511,8 +1512,11 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				cl = mDBManager.cursorLoaderCategoriasPersonalesActivasPorNombre(null, this);
 				ConstantsAdmin.cursorCategoriasPersonalesActivas = cl;
 				break;			// You can have any number of case statements.
-
-			default : // Optional
+            case CONFIGURACION_CURSOR:
+                cl = mDBManager.cursorLoaderConfiguracion( this);
+                ConstantsAdmin.cursorConfiguracion = cl;
+                break;
+            default : // Optional
 				// Statements
 		}
 
@@ -1827,7 +1831,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
         		
         	}
         	mySortedByElements = null;
-    		this.resetAllMyCursors();
+    	//	this.resetAllMyCursors();
         	this.configurarSpinner();    
             
         	if(ConstantsAdmin.contrasenia == null){
@@ -1862,7 +1866,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
         
     }
-    
+    /*
     private void resetAllMyCursors(){
     	Cursor cur;
     	if(allMyCursors != null){
@@ -1875,7 +1879,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	}
     	allMyCursors = new ArrayList<>();
     }
-    
+    */
 
 
 	public void onResume() {
@@ -1884,7 +1888,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
         	ConstantsAdmin.cerrarMainActivity = false;
         	this.finish();
         }else{
-	        this.resetAllMyCursors();
+	   //     this.resetAllMyCursors();
 	        
 	        if(listaEspecial == null){
 	        	this.configurarListView();

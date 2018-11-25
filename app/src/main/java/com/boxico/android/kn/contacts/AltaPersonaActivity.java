@@ -46,7 +46,7 @@ public class AltaPersonaActivity extends Activity  {
 	private CategoriaDTO mCategoriaSeleccionada = null;
 	private PersonaDTO mPersonaSeleccionada = null;
 	
-	private ArrayList<Cursor> allMyCursors = null;
+	//private ArrayList<Cursor> allMyCursors = null;
 	
 	private TextView mDateDisplay;
 	private Button mPickDate;
@@ -112,14 +112,14 @@ public class AltaPersonaActivity extends Activity  {
         return true;
 
     }
-
+/*
     @Override
     public void startManagingCursor(Cursor c) {
     	allMyCursors.add(c);
         super.startManagingCursor(c);
     }
 
-
+*/
     
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch(item.getItemId()) {
@@ -138,7 +138,7 @@ public class AltaPersonaActivity extends Activity  {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	super.onActivityResult(requestCode, resultCode, intent);
-    	this.resetAllMyCursors();
+    //	this.resetAllMyCursors();
 		if(mPersonaSeleccionada.getId() != -1){
 			this.cargarPersonaDto(String.valueOf(mPersonaSeleccionada.getId()));				
 		}
@@ -185,7 +185,7 @@ public class AltaPersonaActivity extends Activity  {
         	ConstantsAdmin.telefonosARegistrar = new ArrayList<>();
         	ConstantsAdmin.mailsARegistrar = new ArrayList<>();
         	ConstantsAdmin.direccionesARegistrar = new ArrayList<>();
-        	allMyCursors = new ArrayList<>();
+        //	allMyCursors = new ArrayList<>();
             this.setContentView(R.layout.alta_persona);
             this.registrarWidgets();
             this.guardarPersonaSeleccionada(this.getIntent());
@@ -1359,13 +1359,13 @@ public class AltaPersonaActivity extends Activity  {
         	this.finish();
         	ConstantsAdmin.cerrarMainActivity = true;
         }else{
-        	this.resetAllMyCursors();
+        //	this.resetAllMyCursors();
         	this.mostrarTodo();
         }
     }
     
 
-
+/*
     private void resetAllMyCursors(){
     	Cursor cur;
         for (Cursor allMyCursor : allMyCursors) {
@@ -1375,5 +1375,5 @@ public class AltaPersonaActivity extends Activity  {
         }
     	allMyCursors = new ArrayList<>();
     }
-
+*/
 }

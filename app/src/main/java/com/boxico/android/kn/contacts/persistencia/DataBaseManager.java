@@ -844,23 +844,50 @@ public class DataBaseManager {
          return mCursor;
      }
 
-     private Cursor fetchPersonaNumber(String column, Object value) throws SQLException {
-         Cursor mCursor = null;
-    	 try{
-    		 mCursor =
-             mDb.query(true, ConstantsAdmin.TABLA_PERSONA, null, column + "= '" + value + "'" , null,
-                     null, null, null, null);
-    		 if (mCursor != null) {
-    			 mCursor.moveToFirst();
-    		 }
-    	 }catch (Exception e) {
-			// TODO: handle exception
-    		 e.getMessage();
+
+	public CursorLoader cursorLoaderPersonasPorCampo(String column, Object value, Context context) {
+		String selection = null;
+		if(column != null && !column.equals("")){
+			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
+			selection  = column + "= '" + value + "'";
 		}
-         return mCursor;
-     }
-     
-     
+
+		return new CursorLoader( context, null, null, selection, null, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				Cursor c = null;
+				if(mDb.isOpen()){
+					c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				}
+				return c;
+			}
+		};
+
+	}
+
+
+	private Cursor fetchPersonaNumber(String column, Object value) throws SQLException {
+		Cursor mCursor = null;
+		try{
+			mCursor =
+					mDb.query(true, ConstantsAdmin.TABLA_PERSONA, null, column + "= '" + value + "'" , null,
+							null, null, null, null);
+			if (mCursor != null) {
+				mCursor.moveToFirst();
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.getMessage();
+		}
+		return mCursor;
+	}
+
+
+
      private Cursor fetchCategoriaPersonalNumber(String column, Object value) throws SQLException {
          Cursor mCursor = null;
     	 try{
@@ -882,7 +909,42 @@ public class DataBaseManager {
     	 return this.fetchPersonaNumber(ConstantsAdmin.KEY_ROWID, id);
 
      }
-     
+
+	public CursorLoader cursorLoaderPersonaPorId(long id, Context context){
+		return this.cursorLoaderPersonasPorCampo(ConstantsAdmin.KEY_ROWID, id, context);
+
+	}
+
+	public CursorLoader cursorLoaderPreferidoPorId(long id, Context context){
+		return this.cursorLoaderPreferidoPorCampo(ConstantsAdmin.KEY_ROWID, id, context);
+
+	}
+
+
+	public CursorLoader cursorLoaderPreferidoPorCampo(String column, Object value, Context context) {
+		String selection = null;
+		if(column != null && !column.equals("")){
+			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
+			selection  = column + "= '" + value + "'";
+		}
+
+		return new CursorLoader( context, null, null, selection, null, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				Cursor c = null;
+				if(mDb.isOpen()){
+					c = mDb.query(ConstantsAdmin.TABLA_PREFERIDOS, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				}
+				return c;
+			}
+		};
+
+	}
+
      public Cursor fetchPreferidoPorId(long id){
     //	 return this.fetchPersonaNumber(ConstantsAdmin.KEY_ROWID, id);
 	     Cursor mCursor = null;
@@ -1027,6 +1089,28 @@ public class DataBaseManager {
     	return result;
     	 
      }
+
+
+
+     public CursorLoader cursorLoaderConfiguracion(Context context){
+
+             return new CursorLoader( context, null, null, null, null, null)
+             {
+                 @Override
+                 public Cursor loadInBackground()
+                 {
+                     // You better know how to get your database.
+                     // You can use any query that returns a cursor.
+                     Cursor c = null;
+                     if(mDb.isOpen()){
+                         c = mDb.query(ConstantsAdmin.TABLA_CONFIGURACION, null, null, null, null, null, null);
+                     }
+                     return c;
+                 }
+             };
+
+     }
+
 
      public Cursor fetchConfig() {
     	 Cursor result = null;

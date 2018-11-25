@@ -26,6 +26,12 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -42,9 +48,9 @@ import com.boxico.android.kn.contacts.util.Asociacion;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
 
-public class DetallePersonaActivity extends Activity {
+public class DetallePersonaActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-	private ArrayList<Cursor> allMyCursors = null;
+	//private ArrayList<Cursor> allMyCursors = null;
 
 	private static final String VALOR = "VALOR";
 	private static final String TIPO = "TIPO";
@@ -90,6 +96,9 @@ public class DetallePersonaActivity extends Activity {
 	private List<Asociacion> mails = null;
 	private List<Asociacion> direcciones = null;
 
+	private final int PERSONAS_CURSOR = 1;
+	private final int PREFERIDO_CURSOR = 2;
+
 
 	public DetallePersonaActivity() {
 		super();
@@ -97,7 +106,7 @@ public class DetallePersonaActivity extends Activity {
 		// TODO Auto-generated constructor stub
 	}
 
-
+/*
 	private void resetAllMyCursors() {
 		Cursor cur;
 		for (Cursor allMyCursor : allMyCursors) {
@@ -107,14 +116,20 @@ public class DetallePersonaActivity extends Activity {
 		}
 		allMyCursors = new ArrayList<>();
 	}
+*/
+	private void cargarLoaders() {
+		this.getSupportLoaderManager().initLoader(PERSONAS_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(PREFERIDO_CURSOR, null, this);
+	}
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		allMyCursors = new ArrayList<>();
+	//	allMyCursors = new ArrayList<>();
 		Intent intent = getIntent();
 		setContentView(R.layout.details_personas);
 		this.registrarViews();
 		mMostrarTelefonos = true;
+		this.cargarLoaders();
 		this.configurarBotonEditar();
 		this.configurarBotonEliminar();
 
@@ -160,13 +175,13 @@ public class DetallePersonaActivity extends Activity {
 
 
 	}
-
+/*
 	@Override
 	public void startManagingCursor(Cursor c) {
 		allMyCursors.add(c);
 		super.startManagingCursor(c);
 	}
-
+*/
 	private void configurarListaTelefonos() {
 		ArrayList<HashMap<String, Object>> listdata = new ArrayList<>();
 		HashMap<String, Object> hm;
@@ -426,18 +441,26 @@ public class DetallePersonaActivity extends Activity {
 		Asociacion asoc;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		if (mPersonaSeleccionadaId != -1) {
+			CursorLoader loaderPersona = null;
+			CursorLoader loaderPreferido = null;
+			Cursor perCursor = null;
+			Cursor prefCursor = null;
 			ConstantsAdmin.inicializarBD(mDBManager);
-			Cursor perCursor = mDBManager.fetchPersonaPorId(mPersonaSeleccionadaId);
+			loaderPersona = mDBManager.cursorLoaderPersonaPorId(mPersonaSeleccionadaId, this);
+			//Cursor perCursor = mDBManager.fetchPersonaPorId(mPersonaSeleccionadaId);h
+			perCursor = loaderPersona.loadInBackground();
 			if (perCursor != null) {
 				telefonos = new ArrayList<>();
 				mails = new ArrayList<>();
 				direcciones = new ArrayList<>();
-				startManagingCursor(perCursor);
-				Cursor prefCursor = mDBManager.fetchPreferidoPorId(mPersonaSeleccionadaId);
-				startManagingCursor(prefCursor);
+			//	startManagingCursor(perCursor);
+                loaderPreferido = mDBManager.cursorLoaderPreferidoPorId(mPersonaSeleccionadaId, this);
+			//	Cursor prefCursor = mDBManager.fetchPreferidoPorId(mPersonaSeleccionadaId);
+                prefCursor = loaderPreferido.loadInBackground();
+				//startManagingCursor(prefCursor);
 				mEsPreferido = prefCursor.getCount() > 0;
-				prefCursor.close();
-				stopManagingCursor(prefCursor);
+				//prefCursor.close();
+				//stopManagingCursor(prefCursor);
 				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_APELLIDO));
 				mApellido.setText(temp.toUpperCase());
 				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_NOMBRES));
@@ -675,7 +698,7 @@ public class DetallePersonaActivity extends Activity {
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
-		this.resetAllMyCursors();
+	//	this.resetAllMyCursors();
 		switch (requestCode) {
 			case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA:
 				this.populateFields();
@@ -968,7 +991,7 @@ public class DetallePersonaActivity extends Activity {
         	this.finish();
         	ConstantsAdmin.cerrarMainActivity = true;
         }else{
-	        this.resetAllMyCursors();
+	     //   this.resetAllMyCursors();
 	        this.limpiarDatos();
 	        this.populateFields();
 	        if(!mMostrarDirecciones && !mMostrarEmails && !mMostrarTelefonos){
@@ -983,7 +1006,36 @@ public class DetallePersonaActivity extends Activity {
     }
 
 
+	@NonNull
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+        //   ConstantsAdmin.inicializarBD( mDBManager);
+        CursorLoader cl = null;
+        switch(id) {
+            case PERSONAS_CURSOR:
+                cl = mDBManager.cursorLoaderPersonaPorId(0, this);
+                //ConstantsAdmin.cursorCategorias = cl;
+                break; // optional
+            case PREFERIDO_CURSOR:
+                cl = mDBManager.cursorLoaderPreferidos(null, this);
+                //ConstantsAdmin.cursorCategoriasPersonales = cl;
+                break; // optional
 
+            default : // Optional
+                // Statements
+        }
 
-	
+        return cl;
+	}
+
+	@Override
+	public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+
+	}
+
+	@Override
+	public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+
+	}
 }
