@@ -862,6 +862,9 @@ public class DataBaseManager {
 				Cursor c = null;
 				if(mDb.isOpen()){
 					c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+					if (c != null) {
+						c.moveToFirst();
+					}
 				}
 				return c;
 			}
@@ -938,6 +941,9 @@ public class DataBaseManager {
 				Cursor c = null;
 				if(mDb.isOpen()){
 					c = mDb.query(ConstantsAdmin.TABLA_PREFERIDOS, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+					if(c != null){
+						c.moveToFirst();
+					}
 				}
 				return c;
 			}
