@@ -3,6 +3,7 @@ package com.boxico.android.kn.contacts.persistencia;
 import java.util.Iterator;
 import java.util.List;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -10,6 +11,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteStatement;
+import android.provider.ContactsContract;
 import android.support.v4.content.CursorLoader;
 
 import com.boxico.android.kn.contacts.persistencia.dtos.*;
@@ -871,6 +873,28 @@ public class DataBaseManager {
 		};
 
 	}
+
+
+	public CursorLoader cursorLoaderTelefonosDePersonaId(String contactId, Context context, ContentResolver mDbContentResolver) {
+		String selection = ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId;
+		final ContentResolver cr = mDbContentResolver;
+
+		return new CursorLoader( context, null, null, selection, null, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				Cursor phones = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, getProjection() , getSelection() ,null, null);
+					//c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				return phones;
+			}
+		};
+
+	}
+
+
 
 
 	private Cursor fetchPersonaNumber(String column, Object value) throws SQLException {

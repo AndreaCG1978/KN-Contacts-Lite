@@ -75,6 +75,9 @@
 		</activity>
 
 		<activity android:name="ImportarContactoActivity">
+			<intent-filter>
+				<action android:name="android.permission.READ_CONTACTS" />
+			</intent-filter>
 		</activity>
 
 		<activity android:name="MenuPersonaActivity">

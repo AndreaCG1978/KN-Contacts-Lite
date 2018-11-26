@@ -5,17 +5,26 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -25,6 +34,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
@@ -32,7 +42,7 @@ import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.util.Asociacion;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
-public class ImportarContactoActivity extends Activity {
+public class ImportarContactoActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 	
 	private ArrayAdapter<CategoriaDTO> mSpinnerAdapt = null;
 	private CategoriaDTO mCategoriaSeleccionada = null;
@@ -60,6 +70,8 @@ public class ImportarContactoActivity extends Activity {
 	private Asociacion contactoActual = null;
 	private PersonaDTO persona = null;
 	private String contactId = null;
+
+	private final int TELEFONOS_POR_PERSONA_ID_CURSOR = 1;
 	
 
     @Override
@@ -67,14 +79,29 @@ public class ImportarContactoActivity extends Activity {
     	allMyCursors.add(c);
         super.startManagingCursor(c);
     }
- 
-    
+
+	private void cargarLoaders() {
+
+
+			// Android version is lesser than 6.0 or the permission is already granted.
+			this.getSupportLoaderManager().initLoader(TELEFONOS_POR_PERSONA_ID_CURSOR, null, this);
+		//	cursorLoaderPhones = mDBManager.cursorLoaderTelefonosDePersonaId(contactId, this,getContentResolver());
+
+
+
+	}
+
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_importar_contactos));
         try {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+				requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
+				//After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
+			}
         	allMyCursors = new ArrayList<>();
             this.setContentView(R.layout.import_contact);
+            this.cargarLoaders();
             this.registrarWidgets();
             
             me = this;
@@ -367,8 +394,34 @@ public class ImportarContactoActivity extends Activity {
     	builder.show();
 		
 	}
-	
-    private class ImportContactTask extends AsyncTask<Long, Integer, Integer>{
+
+	@NonNull
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		//   ConstantsAdmin.inicializarBD( mDBManager);
+		CursorLoader cl = null;
+		switch(id) {
+			case TELEFONOS_POR_PERSONA_ID_CURSOR:
+				cl = mDBManager.cursorLoaderTelefonosDePersonaId("0", this, getContentResolver());
+				//ConstantsAdmin.cursorCategorias = cl;
+				break; // optional
+			default : // Optional
+		}
+		return cl;
+	}
+
+	@Override
+	public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+
+	}
+
+	@Override
+	public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+
+	}
+
+	private class ImportContactTask extends AsyncTask<Long, Integer, Integer>{
     	ProgressDialog dialog = null;
         @Override
         protected Integer doInBackground(Long... params) {
@@ -658,9 +711,29 @@ public class ImportarContactoActivity extends Activity {
     	allMyCursors = new ArrayList<>();
     }
 
-    
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions,
+										   int[] grantResults) {
+		if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				// Permission is granted
+				DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+				cursorLoaderPhones = mDBManager.cursorLoaderTelefonosDePersonaId(contactId, this,getContentResolver());
+			} else {
+				Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+
+
+
+	private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
+
+	CursorLoader cursorLoaderPhones = null;
+
     private void obtenerContactoCapturado(boolean desdeAgregarTodos){
     	boolean tieneTelefonos;
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	String[] projectionPhone = new String[]{
     			Phone.NUMBER,
     			Phone.TYPE
@@ -672,13 +745,22 @@ public class ImportarContactoActivity extends Activity {
     	};   	
 
     	try{
-	//	   String hasPhone = people.getString(people.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
-    	//   String hasPhone = people.getString(people.getColumnIndex(ContactsContract.CommonDataKinds.Phone.HAS_PHONE_NUMBER));
-    	   Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
-    	   super.startManagingCursor(phones);
-    	   tieneTelefonos = phones.getCount() > 0;
-    	   phones.close();
-    	   stopManagingCursor(phones);
+
+			//if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+		//		requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
+				//After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
+			//} else {
+				// Android version is lesser than 6.0 or the permission is already granted.
+				cursorLoaderPhones = mDBManager.cursorLoaderTelefonosDePersonaId(contactId, this,getContentResolver());
+			//}
+
+//    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+			Cursor phones = cursorLoaderPhones.loadInBackground();
+
+    	//   super.startManagingCursor(phones);
+    	  	tieneTelefonos = phones.getCount() > 0;
+    	 //  	phones.close();
+    	   	//stopManagingCursor(phones);
 		   if(mCategoriaSeleccionada == null){
 			   this.seleccionarPrimerCategoria();
 		   }

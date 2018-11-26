@@ -579,8 +579,8 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				this.configurarListaTelefonos();
 				this.configurarListaMails();
 				this.configurarListaDirecciones();
-				perCursor.close();
-				stopManagingCursor(perCursor);
+			//	perCursor.close();
+			//	stopManagingCursor(perCursor);
 			}
 
 			ConstantsAdmin.finalizarBD(mDBManager);
