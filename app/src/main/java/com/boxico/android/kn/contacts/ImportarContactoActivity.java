@@ -9,6 +9,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -93,22 +94,6 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	}
 
-    public void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Contacts access needed");
-        builder.setPositiveButton(android.R.string.ok, null);
-        builder.setMessage("please confirm Contacts access");
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                // Only call the permission request api on Android M
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
-                }
-            }
-        });
-        builder.show();
-    }
 
 	public void askForContactPermission(){
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -126,17 +111,53 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		}
 	}
 
+	private void inicializarContactosAImportar(){
+		this.cargarLoaders();
+
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		if(ConstantsAdmin.mainActivity == null){
+			Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage(this.getPackageName());
+			startActivity(LaunchIntent);
+			this.finish();
+			ConstantsAdmin.cerrarMainActivity = true;
+
+		}else{
+			ConstantsAdmin.inicializarBD(mDBManager);
+			String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
+			people = getPeople();
+
+			if(people != null){
+				startManagingCursor(people);
+				this.buscarSiguienteContacto();
+			}else{
+				ConstantsAdmin.mostrarMensajeDialog(this, getResources().getString(R.string.mensaje_no_hay_contactos));
+				this.finish();
+			}
+
+		}
+
+
+
+	}
+
+	private Cursor getPeople(){
+		if(people == null){
+			String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
+			people = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null,
+					null//if you don't want to google contacts also,
+					,null, sortOrder);
+		}
+		return people;
+    }
+
 	@Override
 	public void onRequestPermissionsResult(int requestCode, String[] permissions,
 										   int[] grantResults) {
 		if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				// Permission is granted
-			//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			//	cursorLoaderPhones = mDBManager.cursorLoaderTelefonosDePersonaId(contactId, this,getContentResolver());
-				this.cargarLoaders();
+				this.inicializarContactosAImportar();
 			} else {
-				Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
+				this.finish();
 			}
 		}
 	}
@@ -173,9 +194,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     	String contactIdTemp;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	
-    	while(!encontrado && people.moveToNext()) {
-    		posPeople = people.getPosition();
-    		contactIdTemp  = people.getString(people.getColumnIndex(ContactsContract.Contacts._ID));
+    	while(!encontrado && getPeople().moveToNext()) {
+    		posPeople = getPeople().getPosition();
+    		contactIdTemp  = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
    	       	contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactIdTemp);
    	       	if(contactoActual != null){
    	   	       	if(contactId == null || !contactId.equals(contactIdTemp)){
@@ -210,7 +231,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
    	       		
    	       	}
     	}
-    	if(posPeople < people.getCount() - 1){
+    	if(posPeople < getPeople().getCount() - 1){
     		botonSkipContact.setEnabled(true);
     		botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul));
     	}else{
@@ -230,9 +251,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     	boolean encontrado = false;
     	String contactIdTemp;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-       	while(!encontrado && people.moveToPrevious()) {
-       	   posPeople = people.getPosition();
-	       contactIdTemp  = people.getString(people.getColumnIndex(ContactsContract.Contacts._ID));
+       	while(!encontrado && getPeople().moveToPrevious()) {
+       	   posPeople = getPeople().getPosition();
+	       contactIdTemp  = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
    	       contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactIdTemp);
    	       if(contactoActual != null){
 	           if(contactId == null || !contactId.equals(contactIdTemp)){
@@ -273,7 +294,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     		botonPrevContact.setEnabled(true);
     		botonPrevContact.setTextColor(getResources().getColor(R.color.color_azul));
     	}
-    	if(posPeople < people.getCount()){
+    	if(posPeople < getPeople().getCount()){
     		botonSkipContact.setEnabled(true);
     		botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul));
     	}
@@ -306,7 +327,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     			entryDatoExtra.setText(persona.getDatoExtra());
     			entryDescripcion.setText(persona.getDescripcion());
     		}
-   // 		tipoPersona = people.getString(people.getColumnIndex(ContactsContract.Data.));
+   // 		tipoPersona = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Data.));
     		mTipoPersonaEncontrada.setText(text);
     	}
 		
@@ -452,12 +473,11 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		//   ConstantsAdmin.inicializarBD( mDBManager);
 		CursorLoader cl = null;
 		switch(id) {
 			case TELEFONOS_POR_PERSONA_ID_CURSOR:
 				cl = mDBManager.cursorLoaderTelefonosDePersonaId("0", this, getContentResolver());
-				//ConstantsAdmin.cursorCategorias = cl;
+				ConstantsAdmin.cursorTelefonosDePer = cl;
 				break; // optional
 			default : // Optional
 		}
@@ -517,9 +537,10 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		String family;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		try {
-			people.moveToFirst();
-			while(people.moveToNext()) {
-			       contactId  = people.getString(people.getColumnIndex(ContactsContract.Contacts._ID));
+
+			getPeople().moveToFirst();
+			while(getPeople().moveToNext()) {
+			       contactId  = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
 		   	       contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactId);
 		   	       if(contactoActual != null){
 				       given = (String)contactoActual.getKey();
@@ -715,7 +736,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     
     protected void onResume() {
         super.onResume();
-		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+	/*	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
         if(ConstantsAdmin.mainActivity == null){
         	Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage(this.getPackageName());
         	startActivity(LaunchIntent);
@@ -740,15 +761,15 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
         	}
 
         }
-
+*/
     }
     
     protected void onPause() {
     	super.onPause();
-		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-        this.resetAllMyCursors();
+		/*DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+        this.resetAllMyCursors();*/
         people = null;
-        ConstantsAdmin.finalizarBD(mDBManager);
+       /* ConstantsAdmin.finalizarBD(mDBManager);*/
 
     }
 
@@ -785,37 +806,29 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
     	try{
 
-			//if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-		//		requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
-				//After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
-			//} else {
-				// Android version is lesser than 6.0 or the permission is already granted.
+			cursorLoaderPhones = ConstantsAdmin.cursorTelefonosDePer;
+			if(cursorLoaderPhones == null){
 				cursorLoaderPhones = mDBManager.cursorLoaderTelefonosDePersonaId(contactId, this,getContentResolver());
-			//}
+			}
 
-//    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
 			Cursor phones = cursorLoaderPhones.loadInBackground();
-
-    	//   super.startManagingCursor(phones);
-    	  	tieneTelefonos = phones.getCount() > 0;
-    	 //  	phones.close();
-    	   	//stopManagingCursor(phones);
-		   if(mCategoriaSeleccionada == null){
-			   this.seleccionarPrimerCategoria();
-		   }
-		   if(!desdeAgregarTodos || (persona.getId() == -1)){// SIGNIFICA QUE ES UN AGREGADO O ACTUALIZACION SIMPLE DE UN CONTACTO
+    	   	tieneTelefonos = phones.getCount() > 0;
+		   	if(mCategoriaSeleccionada == null){
+				this.seleccionarPrimerCategoria();
+		   	}
+		   	if(!desdeAgregarTodos || (persona.getId() == -1)){// SIGNIFICA QUE ES UN AGREGADO O ACTUALIZACION SIMPLE DE UN CONTACTO
 		   // O SI ES DESDE ADD ALL SOLO CONFIGURO CATEGORIA SI EL CONTACTO ES NUEVO
 			   persona.setCategoriaId(mCategoriaSeleccionada.getId());
 		       persona.setCategoriaNombre(mCategoriaSeleccionada.getNombreReal());
 		       persona.setCategoriaNombreRelativo(mCategoriaSeleccionada.getNombreRelativo());
 			   persona.setDatoExtra(entryDatoExtra.getText().toString());
 			   persona.setDescripcion(entryDescripcion.getText().toString());
-		   }
+		   	}
 
-	       if (tieneTelefonos){
+	       	if (tieneTelefonos){
 	    	   this.importarTelDeContacto(projectionPhone, persona, contactId);
-	       }
-	       this.importarMailDeContacto(projectionMail, persona, contactId);
+	       	}
+	       	this.importarMailDeContacto(projectionMail, persona, contactId);
 			
 		} catch (Exception e) {
 			e.getMessage();
