@@ -21,8 +21,10 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.view.View;
@@ -91,17 +93,68 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	}
 
+    public void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Contacts access needed");
+        builder.setPositiveButton(android.R.string.ok, null);
+        builder.setMessage("please confirm Contacts access");
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                // Only call the permission request api on Android M
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
+                }
+            }
+        });
+        builder.show();
+    }
+
+	public void askForContactPermission(){
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.READ_CONTACTS},
+						PERMISSIONS_REQUEST_READ_CONTACTS);
+
+			}
+		} else {
+			ActivityCompat.requestPermissions(this,
+					new String[]{Manifest.permission.READ_CONTACTS},
+					PERMISSIONS_REQUEST_READ_CONTACTS);
+
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions,
+										   int[] grantResults) {
+		if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				// Permission is granted
+			//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			//	cursorLoaderPhones = mDBManager.cursorLoaderTelefonosDePersonaId(contactId, this,getContentResolver());
+				this.cargarLoaders();
+			} else {
+				Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+
+
+
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_importar_contactos));
         try {
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+			/*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
 				requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
 				//After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
-			}
+			}*/
+			this.askForContactPermission();
         	allMyCursors = new ArrayList<>();
             this.setContentView(R.layout.import_contact);
-            this.cargarLoaders();
+         //   this.cargarLoaders();
             this.registrarWidgets();
             
             me = this;
@@ -710,20 +763,6 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		}
     	allMyCursors = new ArrayList<>();
     }
-
-	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions,
-										   int[] grantResults) {
-		if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
-			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				// Permission is granted
-				DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-				cursorLoaderPhones = mDBManager.cursorLoaderTelefonosDePersonaId(contactId, this,getContentResolver());
-			} else {
-				Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
-			}
-		}
-	}
 
 
 
