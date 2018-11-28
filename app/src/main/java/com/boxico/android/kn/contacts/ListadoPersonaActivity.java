@@ -7,16 +7,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
@@ -24,7 +27,9 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.Editable;
@@ -130,7 +135,86 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private final int CATEGORIAS_PERSONALES_ACTIVAS_CURSOR = 8;
     private final int CONFIGURACION_CURSOR = 9;
 
-	@Override
+    private final int PERMISSIONS_RESTORE_BACKUP = 101;
+
+    private class ImportCSVTask extends AsyncTask<Long, Integer, Integer>{
+        ProgressDialog dialog = null;
+        @Override
+        protected Integer doInBackground(Long... params) {
+
+            try {
+                publishProgress(1);
+                DataBaseManager mDBManager = DataBaseManager.getInstance(me);
+                ConstantsAdmin.importarCSV(me, mDBManager);
+                //   ConstantsAdmin.procesarStringDatos(body, me);
+
+
+            } catch (Exception e) {
+                ConstantsAdmin.mensaje = me.getString(R.string.error_importar_csv);
+            }
+            return 0;
+
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+            dialog = ProgressDialog.show(me, "",
+                    me.getString(R.string.mensaje_importando_contactos), false);
+        }
+
+        @Override
+        protected void onPostExecute(Integer result) {
+            try{
+                dialog.cancel();
+            }catch (Exception e) {
+                // TODO: handle exception
+            }
+            ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
+            ConstantsAdmin.mensaje = null;
+            ConstantsAdmin.contrasenia.setActiva(false);
+            protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
+            configurarSpinner();
+            ConstantsAdmin.resetPersonasOrganizadas();
+            mostrarTodosLosContactos();
+
+        }
+    }
+
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == PERMISSIONS_RESTORE_BACKUP) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                this.importContactosCSV();
+            }
+        }
+    }
+
+
+    public void askForReadStoragePermission(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        PERMISSIONS_RESTORE_BACKUP);
+
+
+            }else{//Ya tiene el permiso...
+                this.importContactosCSV();
+            }
+        }else{
+			this.importContactosCSV();
+		}
+
+
+    }
+
+
+
+    @Override
 	public void onSaveInstanceState(Bundle state) {
 
 	    super.onSaveInstanceState(state);
@@ -1465,7 +1549,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
         	this.exportContacts();
         	return true;
         case ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS_CSV:
-        	this.importContactosCSV();
+        	this.askForReadStoragePermission();
         	return true;        	
         case ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS_ESTETICO:
         	this.exportContactsEstetico();
@@ -1644,50 +1728,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
         }
     }
 */
-    
-    private class ImportCSVTask extends AsyncTask<Long, Integer, Integer>{
-    	ProgressDialog dialog = null;
-        @Override
-        protected Integer doInBackground(Long... params) {
-
-            try {
-                publishProgress(1);
-				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
-                ConstantsAdmin.importarCSV(me, mDBManager);
-             //   ConstantsAdmin.procesarStringDatos(body, me);
 
 
-            } catch (Exception e) {
-                ConstantsAdmin.mensaje = me.getString(R.string.error_importar_csv);
-            }
-            return 0;
 
-        }
-
-        protected void onProgressUpdate(Integer... progress) {
-        	dialog = ProgressDialog.show(me, "",
-                    me.getString(R.string.mensaje_importando_contactos), false);
-        }
-
-        @Override
-        protected void onPostExecute(Integer result) {
-        	try{
-        		dialog.cancel();
-        	}catch (Exception e) {
-				// TODO: handle exception
-			}
-       		ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
-    		ConstantsAdmin.mensaje = null;
-			ConstantsAdmin.contrasenia.setActiva(false);
-			protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
-			configurarSpinner();
-			ConstantsAdmin.resetPersonasOrganizadas();
-			mostrarTodosLosContactos();
-        		
-        }
-    }
-
-    
     private void exportContacts(){
     	if(!personasMap.isEmpty()){
 	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);

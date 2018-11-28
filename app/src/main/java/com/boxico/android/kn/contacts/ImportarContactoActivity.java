@@ -102,12 +102,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 						new String[]{Manifest.permission.READ_CONTACTS},
 						PERMISSIONS_REQUEST_READ_CONTACTS);
 
-			}
-		} else {
-			ActivityCompat.requestPermissions(this,
-					new String[]{Manifest.permission.READ_CONTACTS},
-					PERMISSIONS_REQUEST_READ_CONTACTS);
-
+			}else{
+			    this.inicializarContactosAImportar();
+            }
 		}
 	}
 
@@ -124,10 +121,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		}else{
 			ConstantsAdmin.inicializarBD(mDBManager);
 			String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
-			people = getPeople();
-
-			if(people != null){
-				startManagingCursor(people);
+			if(getPeople() != null){
+			//	startManagingCursor(people);
 				this.buscarSiguienteContacto();
 			}else{
 				ConstantsAdmin.mostrarMensajeDialog(this, getResources().getString(R.string.mensaje_no_hay_contactos));
@@ -168,20 +163,14 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
         super.onCreate(savedInstanceState);
         this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_importar_contactos));
         try {
-			/*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-				requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
-				//After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
-			}*/
-			this.askForContactPermission();
+
         	allMyCursors = new ArrayList<>();
             this.setContentView(R.layout.import_contact);
-         //   this.cargarLoaders();
             this.registrarWidgets();
-            
             me = this;
             this.configurarSpinner();
             this.configurarBotones();
-            
+			this.askForContactPermission();
 		} catch (Exception e) {
 		// TODO: handle exception
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorInicioAplicacion));
