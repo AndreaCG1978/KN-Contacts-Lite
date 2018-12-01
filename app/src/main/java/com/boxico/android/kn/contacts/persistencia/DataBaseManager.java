@@ -875,7 +875,7 @@ public class DataBaseManager {
 	}
 
 
-	public CursorLoader cursorLoaderTelefonosDePersonaId(String contactId, Context context, ContentResolver mDbContentResolver) {
+	public CursorLoader cursorLoaderPersonaId(String contactId, Context context, ContentResolver mDbContentResolver) {
 		String selection = ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId;
 		final ContentResolver cr = mDbContentResolver;
 
@@ -894,6 +894,27 @@ public class DataBaseManager {
 
 	}
 
+	public CursorLoader cursorLoaderPersonaExtraId(String contactId, Context context, ContentResolver mDbContentResolver) {
+		final ContentResolver cr = mDbContentResolver;
+		String selection = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
+		String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
+		//nameCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, null);
+
+
+		return new CursorLoader( context, null, null, selection, whereNameParams, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				Cursor per = cr.query(ContactsContract.Data.CONTENT_URI, getProjection() , getSelection() ,getSelectionArgs(), null);
+				//c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				return per;
+			}
+		};
+
+	}
 
 
 

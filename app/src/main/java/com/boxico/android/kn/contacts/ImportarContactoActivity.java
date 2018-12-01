@@ -6,10 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -37,7 +35,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
@@ -74,8 +71,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private PersonaDTO persona = null;
 	private String contactId = null;
 
-	private final int TELEFONOS_POR_PERSONA_ID_CURSOR = 1;
-	
+	private final int PERSONA_ID_CURSOR = 1;
+	private final int PERSONA_EXTRA_ID_CURSOR = 2;
 
     @Override
     public void startManagingCursor(Cursor c) {
@@ -87,7 +84,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 
 			// Android version is lesser than 6.0 or the permission is already granted.
-			this.getSupportLoaderManager().initLoader(TELEFONOS_POR_PERSONA_ID_CURSOR, null, this);
+			this.getSupportLoaderManager().initLoader(PERSONA_ID_CURSOR, null, this);
+			this.getSupportLoaderManager().initLoader(PERSONA_EXTRA_ID_CURSOR, null, this);
 		//	cursorLoaderPhones = mDBManager.cursorLoaderTelefonosDePersonaId(contactId, this,getContentResolver());
 
 
@@ -464,9 +462,13 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		CursorLoader cl = null;
 		switch(id) {
-			case TELEFONOS_POR_PERSONA_ID_CURSOR:
-				cl = mDBManager.cursorLoaderTelefonosDePersonaId("0", this, getContentResolver());
-				ConstantsAdmin.cursorTelefonosDePer = cl;
+			case PERSONA_ID_CURSOR:
+				cl = mDBManager.cursorLoaderPersonaId("0", this, getContentResolver());
+				ConstantsAdmin.cursorPersona = cl;
+				break; // optional
+			case PERSONA_EXTRA_ID_CURSOR:
+				cl = mDBManager.cursorLoaderPersonaExtraId("0", this, getContentResolver());
+				ConstantsAdmin.cursorPersonaExtra = cl;
 				break; // optional
 			default : // Optional
 		}
@@ -791,13 +793,13 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     	String[] projectionMail = new String[]{
     			Email.DATA,
     			Email.TYPE
-    	};   	
+    	};
 
     	try{
 
-			cursorLoaderPhones = ConstantsAdmin.cursorTelefonosDePer;
+			cursorLoaderPhones = ConstantsAdmin.cursorPersona;
 			if(cursorLoaderPhones == null){
-				cursorLoaderPhones = mDBManager.cursorLoaderTelefonosDePersonaId(contactId, this,getContentResolver());
+				cursorLoaderPhones = mDBManager.cursorLoaderPersonaId(contactId, this,getContentResolver());
 			}
 
 			Cursor phones = cursorLoaderPhones.loadInBackground();
@@ -828,21 +830,37 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     
     private Asociacion obtenerNombreYApellidoDeContactoDeAgenda(String contactId){
     	Asociacion asoc = null;
-    	Cursor nameCur;
+    	Cursor nameCur = null;
+    	CursorLoader nameCurLoader = null;
+
     	String given;
     	String family;
-        String whereName = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
+
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+      /*  String whereName = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
         String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
-        nameCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, null);
+        nameCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, null);*/
+
+		nameCurLoader = ConstantsAdmin.cursorPersonaExtra;
+		if(nameCurLoader == null){
+			nameCurLoader = mDBManager.cursorLoaderPersonaExtraId(contactId, this,getContentResolver());
+		}else{
+			nameCurLoader.setSelection(ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId);
+			nameCurLoader.reset();
+		}
+
+		nameCur = nameCurLoader.loadInBackground();
+
+
         if(nameCur!=null){
-        	super.startManagingCursor(nameCur);
+        //	super.startManagingCursor(nameCur);
 	        if (nameCur.moveToNext()) {
 	            given = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
 	            family = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
 	            asoc = new Asociacion(given, family);
 	        }
-	        nameCur.close();
-            stopManagingCursor(nameCur);
+	     //   nameCur.close();
+          //  stopManagingCursor(nameCur);
 
         }
 

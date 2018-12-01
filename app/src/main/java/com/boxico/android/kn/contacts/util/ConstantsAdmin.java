@@ -55,7 +55,8 @@ public class ConstantsAdmin {
 	public static CursorLoader cursorCategoriasActivas = null;
 	public static CursorLoader cursorCategoriasPersonalesActivas = null;
 	public static CursorLoader cursorConfiguracion = null;
-	public static CursorLoader cursorTelefonosDePer = null;
+	public static CursorLoader cursorPersona = null;
+    public static CursorLoader cursorPersonaExtra = null;
 
 
 
