@@ -73,6 +73,12 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	private final int PERSONA_ID_CURSOR = 1;
 	private final int PERSONA_EXTRA_ID_CURSOR = 2;
+	private final int PERSONA_EMAIL_CURSOR = 3;
+	private final int PERSONA_PHONE_CURSOR = 4;
+
+	private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
+
+	CursorLoader cursorLoaderPhones = null;
 
     @Override
     public void startManagingCursor(Cursor c) {
@@ -81,15 +87,10 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     }
 
 	private void cargarLoaders() {
-
-
-			// Android version is lesser than 6.0 or the permission is already granted.
-			this.getSupportLoaderManager().initLoader(PERSONA_ID_CURSOR, null, this);
-			this.getSupportLoaderManager().initLoader(PERSONA_EXTRA_ID_CURSOR, null, this);
-		//	cursorLoaderPhones = mDBManager.cursorLoaderTelefonosDePersonaId(contactId, this,getContentResolver());
-
-
-
+		this.getSupportLoaderManager().initLoader(PERSONA_ID_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(PERSONA_EXTRA_ID_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(PERSONA_EMAIL_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(PERSONA_PHONE_CURSOR, null, this);
 	}
 
 
@@ -135,7 +136,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	private Cursor getPeople(){
 		if(people == null){
-			String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
+			String sortOrder = ConstantsAdmin.sortOrderForContacts;
 			people = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null,
 					null//if you don't want to google contacts also,
 					,null, sortOrder);
@@ -470,6 +471,14 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 				cl = mDBManager.cursorLoaderPersonaExtraId("0", this, getContentResolver());
 				ConstantsAdmin.cursorPersonaExtra = cl;
 				break; // optional
+			case PERSONA_EMAIL_CURSOR:
+				cl = mDBManager.cursorLoaderEmailPersona("0", this, getContentResolver());
+				ConstantsAdmin.cursorEmailPersona = cl;
+				break; // optional
+			case PERSONA_PHONE_CURSOR:
+				cl = mDBManager.cursorLoaderPhonePersona("0", this, getContentResolver());
+				ConstantsAdmin.cursorPhonePersona = cl;
+				break; // optional
 			default : // Optional
 		}
 		return cl;
@@ -778,29 +787,23 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 
 
-	private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
-	CursorLoader cursorLoaderPhones = null;
 
     private void obtenerContactoCapturado(boolean desdeAgregarTodos){
     	boolean tieneTelefonos;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-    	String[] projectionPhone = new String[]{
-    			Phone.NUMBER,
-    			Phone.TYPE
-    	};
+    	String[] projectionPhone = ConstantsAdmin.projectionPhone;
     	                                      
-    	String[] projectionMail = new String[]{
-    			Email.DATA,
-    			Email.TYPE
-    	};
+    	String[] projectionMail = ConstantsAdmin.projectionMail;
 
     	try{
 
 			cursorLoaderPhones = ConstantsAdmin.cursorPersona;
-			if(cursorLoaderPhones == null){
+		/*	if(cursorLoaderPhones == null){
 				cursorLoaderPhones = mDBManager.cursorLoaderPersonaId(contactId, this,getContentResolver());
-			}
+			}*/
+			cursorLoaderPhones.setSelection(ConstantsAdmin.querySelectionContactsPhoneById + contactId);
+			cursorLoaderPhones.reset();
 
 			Cursor phones = cursorLoaderPhones.loadInBackground();
     	   	tieneTelefonos = phones.getCount() > 0;
@@ -819,7 +822,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	       	if (tieneTelefonos){
 	    	   this.importarTelDeContacto(projectionPhone, persona, contactId);
 	       	}
-	       	this.importarMailDeContacto(projectionMail, persona, contactId);
+	       	this.importarMailDeContacto(persona, contactId);
 			
 		} catch (Exception e) {
 			e.getMessage();
@@ -837,18 +840,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     	String family;
 
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-      /*  String whereName = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
-        String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
-        nameCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, null);*/
-
-		nameCurLoader = ConstantsAdmin.cursorPersonaExtra;
-		if(nameCurLoader == null){
-			nameCurLoader = mDBManager.cursorLoaderPersonaExtraId(contactId, this,getContentResolver());
-		}else{
-			nameCurLoader.setSelection(ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId);
-			nameCurLoader.reset();
-		}
-
+      	nameCurLoader = ConstantsAdmin.cursorPersonaExtra;
+		nameCurLoader.setSelection(ConstantsAdmin.querySelectionContactsById + contactId);
+		nameCurLoader.reset();
 		nameCur = nameCurLoader.loadInBackground();
 
 
@@ -867,13 +861,20 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     	return asoc;
     }
     
-    private void importarMailDeContacto(String[] projectionMail, PersonaDTO per, String contactId){
+    private void importarMailDeContacto(PersonaDTO per, String contactId){
     	String emailAddress;
     	int emailType;
+		Cursor emails = null;
+		CursorLoader nameCurLoader = null;
     	try {
-            Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null); 
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			nameCurLoader = ConstantsAdmin.cursorEmailPersona;
+			nameCurLoader.setSelection(ConstantsAdmin.querySelectionEmailContactsById + contactId);
+			nameCurLoader.reset();
+			emails = nameCurLoader.loadInBackground();
+		//	Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
             if(emails != null){
-    	        super.startManagingCursor(emails);
+    	    //    super.startManagingCursor(emails);
     	        while (emails.moveToNext()) { 
     	           // Tis would allow you get several email addresses 
     	           emailAddress = emails.getString(emails.getColumnIndex(Email.DATA)); 
@@ -895,8 +896,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     					}
     	           }
     	        } 
-    	        emails.close();
-    	        this.stopManagingCursor(emails);
+    	  //      emails.close();
+    	  //      this.stopManagingCursor(emails);
             }
 			
 		} catch (Exception e) {
@@ -912,10 +913,19 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     private void importarTelDeContacto(String[] projectionPhone, PersonaDTO per, String contactId){
     	String phoneNumber;
     	int phoneType;
+		CursorLoader nameCurLoader = null;
     	try {
-    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			nameCurLoader = ConstantsAdmin.cursorPhonePersona;
+			nameCurLoader.setSelection(ConstantsAdmin.querySelectionPhoneContactsById + contactId);
+			nameCurLoader.reset();
+			Cursor phones = nameCurLoader.loadInBackground();
+
+
+
+//    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
             if(phones != null){
-    	        super.startManagingCursor(phones);
+  //  	        super.startManagingCursor(phones);
     	        while (phones.moveToNext()) 
     	        {
     	        	phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
@@ -941,8 +951,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     	        		
     	        	}
     	        }
-    	        phones.close();
-    	        this.stopManagingCursor(phones);
+    //	        phones.close();
+    //	        this.stopManagingCursor(phones);
             }
 		} catch (Exception e) {
 			e.getMessage();

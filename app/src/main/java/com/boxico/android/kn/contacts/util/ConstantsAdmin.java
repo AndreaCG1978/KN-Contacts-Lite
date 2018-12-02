@@ -23,6 +23,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.CursorLoader;
@@ -57,11 +58,51 @@ public class ConstantsAdmin {
 	public static CursorLoader cursorConfiguracion = null;
 	public static CursorLoader cursorPersona = null;
     public static CursorLoader cursorPersonaExtra = null;
+	public static CursorLoader cursorEmailPersona = null;
+	public static CursorLoader cursorPhonePersona = null;
+
+    public static String querySelectionContactsById = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=";
+	public static String querySelectionContactsPhoneById = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ";
+	public static String querySelectionEmailContactsById = ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ";
+	public static String querySelectionPhoneContactsById = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ";
+
+	public static String[] projectionPhone = new String[]{
+			ContactsContract.CommonDataKinds.Phone.NUMBER,
+			ContactsContract.CommonDataKinds.Phone.TYPE
+	};
+
+	public static String[] projectionMail = new String[]{
+			ContactsContract.CommonDataKinds.Email.DATA,
+			ContactsContract.CommonDataKinds.Email.TYPE
+	};
+
+	public static String querySelectionCategoriaByName(String paramNombre){
+		return "(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') ";
+	}
+
+	public static String querySelectionCategoriaActivaByName(String paramNombre) {
+		String selection = null;
+		if (paramNombre != null && !paramNombre.equals("")) {
+			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
+			selection = "(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)";
+		} else {
+			selection = "(" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)";
+		}
+		return selection;
+	}
+
+	public static String querySelectionColumnByValue(String column, Object value) {
+		String selection = null;
+		if (column != null && !column.equals("")) {
+			selection = column + "= '" + value + "'";
+		}
+		return selection;
+	}
 
 
+	public static String sortOrderForContacts = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
 
-
-	public static Map<String, List<PersonaDTO>> obtenerOrganizadosAlfabeticamente(Activity context, DataBaseManager mDBManager){
+    public static Map<String, List<PersonaDTO>> obtenerOrganizadosAlfabeticamente(Activity context, DataBaseManager mDBManager){
 		if(organizadosAlfabeticamente == null){
 			cargarPersonasAlfabeticamenteYPorCategoria(context, mDBManager);
 		}
@@ -1945,11 +1986,21 @@ public class ConstantsAdmin {
     	List<CategoriaDTO> categorias = new ArrayList<>();
 	    inicializarBD(mDBManager);
 
-	    cursorLoader = ConstantsAdmin.cursorCategoriasActivas;
+
+	   /* cursorLoader = ConstantsAdmin.cursorCategoriasActivas;
 	    if(cursorLoader == null){
 	    	cursorLoader = mDBManager.cursorLoaderCategoriasActivasPorNombre(nombre, context);
 		}
-	    cursor = cursorLoader.loadInBackground();
+	    cursor = cursorLoader.loadInBackground();*/
+
+		cursorLoader = ConstantsAdmin.cursorCategoriasActivas;
+		if(cursorLoader == null){
+			cursorLoader = mDBManager.cursorLoaderCategoriasActivasPorNombre(nombre, context);
+		}else if(nombre != null){
+			cursorLoader.setSelection(ConstantsAdmin.querySelectionCategoriaActivaByName(nombre));
+			cursorLoader.reset();
+		}
+		cursor = cursorLoader.loadInBackground();
 
 
 	//    cursor = mDBManager.fetchCategoriasActivasPorNombre(nombre);
@@ -1999,7 +2050,9 @@ public class ConstantsAdmin {
 		cursorLoader = ConstantsAdmin.cursorCategorias;
 		if(cursorLoader == null){
 			cursorLoader = mDBManager.cursorLoaderCategoriasPorNombre(nombre, context);
-
+		}else if(nombre != null){
+			cursorLoader.setSelection(ConstantsAdmin.querySelectionCategoriaByName(nombre));
+			cursorLoader.reset();
 		}
 		cur = cursorLoader.loadInBackground();
 

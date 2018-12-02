@@ -1018,7 +1018,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
                 //ConstantsAdmin.cursorCategorias = cl;
                 break; // optional
             case PREFERIDO_CURSOR:
-                cl = mDBManager.cursorLoaderPreferidos(null, this);
+                cl = mDBManager.cursorLoaderPreferidos(ConstantsAdmin.categoriasProtegidas, this);
                 //ConstantsAdmin.cursorCategoriasPersonales = cl;
                 break; // optional
 

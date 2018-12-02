@@ -711,12 +711,7 @@ public class DataBaseManager {
 
 	public CursorLoader cursorLoaderCategoriasActivasPorNombre(String paramNombre, Context context) {
 		String selection = null;
-		if(paramNombre != null && !paramNombre.equals("")){
-			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
-			selection  = "(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)";
-		}else{
-			selection  = "(" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)";
-		}
+		selection = ConstantsAdmin.querySelectionCategoriaActivaByName(paramNombre);
 
 		return new CursorLoader( context, null, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA}, selection, null, null)
 		{
@@ -739,7 +734,7 @@ public class DataBaseManager {
 		String selection = null;
 		if(paramNombre != null && !paramNombre.equals("")){
 			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
-			selection  = "(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') ";
+			selection  = ConstantsAdmin.querySelectionCategoriaByName(paramNombre);
 		}
 
 		return new CursorLoader( context, null, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA}, selection, null, null)
@@ -848,11 +843,7 @@ public class DataBaseManager {
 
 
 	public CursorLoader cursorLoaderPersonasPorCampo(String column, Object value, Context context) {
-		String selection = null;
-		if(column != null && !column.equals("")){
-			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
-			selection  = column + "= '" + value + "'";
-		}
+		String selection = ConstantsAdmin.querySelectionColumnByValue(column, value);
 
 		return new CursorLoader( context, null, null, selection, null, null)
 		{
@@ -876,7 +867,7 @@ public class DataBaseManager {
 
 
 	public CursorLoader cursorLoaderPersonaId(String contactId, Context context, ContentResolver mDbContentResolver) {
-		String selection = ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId;
+		String selection = ConstantsAdmin.querySelectionContactsPhoneById + contactId;
 		final ContentResolver cr = mDbContentResolver;
 
 		return new CursorLoader( context, null, null, selection, null, null)
@@ -894,9 +885,55 @@ public class DataBaseManager {
 
 	}
 
+	public CursorLoader cursorLoaderEmailPersona (String contactId, Context context, ContentResolver mDbContentResolver) {
+		final ContentResolver cr = mDbContentResolver;
+		String selection = ConstantsAdmin.querySelectionEmailContactsById + contactId;
+		String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
+		String[] projectionMail = ConstantsAdmin.projectionMail;
+
+		return new CursorLoader( context, ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, selection, whereNameParams, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				Cursor per = cr.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, getProjection() , getSelection() ,getSelectionArgs(), null);
+				//c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				return per;
+			}
+		};
+
+	}
+
+	public CursorLoader cursorLoaderPhonePersona (String contactId, Context context, ContentResolver mDbContentResolver) {
+
+	//	Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+		final ContentResolver cr = mDbContentResolver;
+		String selection = ConstantsAdmin.querySelectionPhoneContactsById + contactId;
+		String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
+		String[] projectionPhone = ConstantsAdmin.projectionPhone;
+
+		return new CursorLoader( context, ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone, selection, whereNameParams, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				Cursor per = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, getProjection() , getSelection() ,getSelectionArgs(), null);
+				//c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				return per;
+			}
+		};
+
+	}
+
+
 	public CursorLoader cursorLoaderPersonaExtraId(String contactId, Context context, ContentResolver mDbContentResolver) {
 		final ContentResolver cr = mDbContentResolver;
-		String selection = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
+		//String selection = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
+		String selection = ConstantsAdmin.querySelectionContactsById + contactId;
 		String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
 		//nameCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, null);
 
@@ -970,11 +1007,7 @@ public class DataBaseManager {
 
 
 	public CursorLoader cursorLoaderPreferidoPorCampo(String column, Object value, Context context) {
-		String selection = null;
-		if(column != null && !column.equals("")){
-			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
-			selection  = column + "= '" + value + "'";
-		}
+		String selection = ConstantsAdmin.querySelectionColumnByValue(column, value);
 
 		return new CursorLoader( context, null, null, selection, null, null)
 		{
