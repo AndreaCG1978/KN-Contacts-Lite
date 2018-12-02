@@ -75,6 +75,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private final int PERSONA_EXTRA_ID_CURSOR = 2;
 	private final int PERSONA_EMAIL_CURSOR = 3;
 	private final int PERSONA_PHONE_CURSOR = 4;
+	private final int PERSONA_NOMBRE_APELLIDO_CURSOR = 5;
 
 	private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
@@ -91,6 +92,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		this.getSupportLoaderManager().initLoader(PERSONA_EXTRA_ID_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(PERSONA_EMAIL_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(PERSONA_PHONE_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(PERSONA_NOMBRE_APELLIDO_CURSOR, null, this);
 	}
 
 
@@ -104,6 +106,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			}else{
 			    this.inicializarContactosAImportar();
             }
+		}else{
+			this.inicializarContactosAImportar();
 		}
 	}
 
@@ -119,7 +123,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 		}else{
 			ConstantsAdmin.inicializarBD(mDBManager);
-			String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
+			//String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
+            String sortOrder = ConstantsAdmin.sortOrderForContacts;
 			if(getPeople() != null){
 			//	startManagingCursor(people);
 				this.buscarSiguienteContacto();
@@ -180,7 +185,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private void buscarSiguienteContacto() {
     	boolean encontrado = false;
     	String contactIdTemp;
-		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+	//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	
     	while(!encontrado && getPeople().moveToNext()) {
     		posPeople = getPeople().getPosition();
@@ -200,7 +205,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
      	       		}
 
      	       		if(!family.equals("") || !given.equals("")){
-   	  	        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
+   	  	        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
    	  	        	   if(persona == null){
    	  	        		   persona = new PersonaDTO();   
    	  	        	   }
@@ -257,7 +262,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	   	   	       }
 	   	   	       if((!family.equals("") || given != null && !given.equals("")) && (family != null || given != null)){
 	
-		        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
+		        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
 		        	   if(persona == null){
 		        		   persona = new PersonaDTO();   
 		        	   }
@@ -479,6 +484,10 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 				cl = mDBManager.cursorLoaderPhonePersona("0", this, getContentResolver());
 				ConstantsAdmin.cursorPhonePersona = cl;
 				break; // optional
+			case PERSONA_NOMBRE_APELLIDO_CURSOR:
+				cl = mDBManager.cursorLoaderNombreApellidoPersona(null, null, this);
+				ConstantsAdmin.cursorPersonaByNombreYApellido = cl;
+				break; // optional
 			default : // Optional
 		}
 		return cl;
@@ -547,7 +556,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			   	       family = (String)contactoActual.getValue();
 
 			   	       if(family != null && !family.equals("") || given != null && !given.equals("")){
-			        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
+			        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
 			        	   if(persona == null){
 			        		   persona = new PersonaDTO();   
 			        	   }
@@ -839,7 +848,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     	String given;
     	String family;
 
-		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+	//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
       	nameCurLoader = ConstantsAdmin.cursorPersonaExtra;
 		nameCurLoader.setSelection(ConstantsAdmin.querySelectionContactsById + contactId);
 		nameCurLoader.reset();

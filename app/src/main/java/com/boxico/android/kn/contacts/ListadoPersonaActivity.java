@@ -1074,7 +1074,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	String given;
     	String family;
     	PersonaDTO per = null;
-		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+	//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	String[] projectionPhone = new String[]{
     			Phone.NUMBER,
     			Phone.TYPE
@@ -1090,7 +1090,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	       given = (String)asoc.getKey();
    	       family = (String)asoc.getValue();
    	       if(family != null && !family.equals("") || given != null && !given.equals("")){
-	        	   per = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this, mDBManager);
+	        	   per = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
 	        	   if(per == null){
 	        		   per = new PersonaDTO();   
 	        	   }

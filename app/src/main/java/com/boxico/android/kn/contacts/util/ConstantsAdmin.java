@@ -60,6 +60,7 @@ public class ConstantsAdmin {
     public static CursorLoader cursorPersonaExtra = null;
 	public static CursorLoader cursorEmailPersona = null;
 	public static CursorLoader cursorPhonePersona = null;
+	public static CursorLoader cursorPersonaByNombreYApellido = null;
 
     public static String querySelectionContactsById = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=";
 	public static String querySelectionContactsPhoneById = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ";
@@ -79,6 +80,23 @@ public class ConstantsAdmin {
 	public static String querySelectionCategoriaByName(String paramNombre){
 		return "(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') ";
 	}
+
+
+	public static String querySelectionNombreYApellidoPersona(String nombre, String apellido){
+		String column1 = ConstantsAdmin.KEY_NOMBRES;
+		String column2 = ConstantsAdmin.KEY_APELLIDO;
+		String selection = null;
+		if(nombre != null && apellido != null && !"".equals(nombre) && !"".equals(apellido)){
+			selection = "TRIM(UPPER(" + column1 + ")) = TRIM(UPPER('" + nombre + "')) AND TRIM(UPPER(" + column2 +")) = TRIM(UPPER('" + apellido + "'))";
+		}else  if(nombre != null && !"".equals(nombre)){
+			selection = "TRIM(UPPER(" + column2 + ")) = TRIM(UPPER('" + nombre + "')) AND (" + column1 + " IS NULL)";
+		}else  if(apellido != null && !"".equals(apellido)){
+			selection = "TRIM(UPPER(" + column2 +")) = TRIM(UPPER('" + apellido + "')) AND (" + column1 + " IS NULL)";
+		}
+		return selection;
+
+	}
+
 
 	public static String querySelectionCategoriaActivaByName(String paramNombre) {
 		String selection = null;
@@ -739,10 +757,16 @@ public class ConstantsAdmin {
     }
     
     
-    public static PersonaDTO obtenerPersonaConNombreYApellido(String name, String apellido, Activity context, DataBaseManager mDBManager){
+    public static PersonaDTO obtenerPersonaConNombreYApellido(String name, String apellido, Activity context){
     	Cursor cursor;
+    	CursorLoader cursorLoader = null;
     	PersonaDTO per = null;
-    	cursor = mDBManager.fetchPersonaPorNombreYApellido(name, apellido);
+
+    	cursorLoader = ConstantsAdmin.cursorPersonaByNombreYApellido;
+    	cursorLoader.setSelection(ConstantsAdmin.querySelectionNombreYApellidoPersona(name, apellido));
+    	cursorLoader.reset();
+		//cursor = mDBManager.fetchPersonaPorNombreYApellido(name, apellido);
+		cursor = cursorLoader.loadInBackground();
     	if(cursor != null){
     	//	context.startManagingCursor(cursor);
     		if(cursor.getCount() > 0){
@@ -752,7 +776,13 @@ public class ConstantsAdmin {
     	//	context.stopManagingCursor(cursor);
     	}
     	if(per == null){
-        	cursor = mDBManager.fetchPersonaPorNombreYApellido(apellido, name);
+        //	cursor = mDBManager.fetchPersonaPorNombreYApellido(apellido, name);
+			cursorLoader.setSelection(ConstantsAdmin.querySelectionNombreYApellidoPersona(apellido, name));
+			cursorLoader.reset();
+
+			//cursor = mDBManager.fetchPersonaPorNombreYApellido(name, apellido);
+			cursor = cursorLoader.loadInBackground();
+
         	if(cursor != null){
         	//	context.startManagingCursor(cursor);
         		if(cursor.getCount() > 0){

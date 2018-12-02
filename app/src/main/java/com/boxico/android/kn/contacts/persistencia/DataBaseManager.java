@@ -841,6 +841,29 @@ public class DataBaseManager {
          return mCursor;
      }
 
+    public CursorLoader cursorLoaderNombreApellidoPersona (String nombre, String apellido, Context context) {
+
+        String selection = ConstantsAdmin.querySelectionNombreYApellidoPersona(nombre, apellido);
+
+        return new CursorLoader( context, null, null, selection, null, null)
+        {
+            @Override
+            public Cursor loadInBackground()
+            {
+                // You better know how to get your database.
+                // You can use any query that returns a cursor.
+                Cursor c = null;
+                if(mDb.isOpen()){
+                    c = mDb.query(true, ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+                    if (c != null) {
+                        c.moveToFirst();
+                    }
+                }
+                return c;
+            }
+        };
+
+    }
 
 	public CursorLoader cursorLoaderPersonasPorCampo(String column, Object value, Context context) {
 		String selection = ConstantsAdmin.querySelectionColumnByValue(column, value);
@@ -930,7 +953,9 @@ public class DataBaseManager {
 	}
 
 
-	public CursorLoader cursorLoaderPersonaExtraId(String contactId, Context context, ContentResolver mDbContentResolver) {
+
+
+    public CursorLoader cursorLoaderPersonaExtraId(String contactId, Context context, ContentResolver mDbContentResolver) {
 		final ContentResolver cr = mDbContentResolver;
 		//String selection = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
 		String selection = ConstantsAdmin.querySelectionContactsById + contactId;
