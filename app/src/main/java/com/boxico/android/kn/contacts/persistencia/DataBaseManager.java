@@ -892,7 +892,6 @@ public class DataBaseManager {
 	public CursorLoader cursorLoaderPersonaId(String contactId, Context context, ContentResolver mDbContentResolver) {
 		String selection = ConstantsAdmin.querySelectionContactsPhoneById + contactId;
 		final ContentResolver cr = mDbContentResolver;
-
 		return new CursorLoader( context, null, null, selection, null, null)
 		{
 			@Override
@@ -911,10 +910,12 @@ public class DataBaseManager {
 	public CursorLoader cursorLoaderEmailPersona (String contactId, Context context, ContentResolver mDbContentResolver) {
 		final ContentResolver cr = mDbContentResolver;
 		String selection = ConstantsAdmin.querySelectionEmailContactsById + contactId;
-		String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
+		//Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
+
+		//String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
 		String[] projectionMail = ConstantsAdmin.projectionMail;
 
-		return new CursorLoader( context, ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, selection, whereNameParams, null)
+		return new CursorLoader( context, ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, selection, null, null)
 		{
 			@Override
 			public Cursor loadInBackground()
@@ -934,10 +935,10 @@ public class DataBaseManager {
 	//	Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
 		final ContentResolver cr = mDbContentResolver;
 		String selection = ConstantsAdmin.querySelectionPhoneContactsById + contactId;
-		String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
+	//	String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
 		String[] projectionPhone = ConstantsAdmin.projectionPhone;
 
-		return new CursorLoader( context, ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone, selection, whereNameParams, null)
+		return new CursorLoader( context, ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone, selection, null, null)
 		{
 			@Override
 			public Cursor loadInBackground()
@@ -959,11 +960,11 @@ public class DataBaseManager {
 		final ContentResolver cr = mDbContentResolver;
 		//String selection = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
 		String selection = ConstantsAdmin.querySelectionContactsById + contactId;
-		String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
+		//String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
 		//nameCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, null);
 
 
-		return new CursorLoader( context, null, null, selection, whereNameParams, null)
+		return new CursorLoader( context, null, null, selection, null, null)
 		{
 			@Override
 			public Cursor loadInBackground()

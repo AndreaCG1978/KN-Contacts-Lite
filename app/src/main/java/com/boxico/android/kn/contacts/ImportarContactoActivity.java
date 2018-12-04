@@ -122,12 +122,14 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			ConstantsAdmin.cerrarMainActivity = true;
 
 		}else{
-			ConstantsAdmin.inicializarBD(mDBManager);
+
 			//String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
             String sortOrder = ConstantsAdmin.sortOrderForContacts;
 			if(getPeople() != null){
+				ConstantsAdmin.inicializarBD(mDBManager);
 			//	startManagingCursor(people);
 				this.buscarSiguienteContacto();
+				ConstantsAdmin.finalizarBD(mDBManager);
 			}else{
 				ConstantsAdmin.mostrarMensajeDialog(this, getResources().getString(R.string.mensaje_no_hay_contactos));
 				this.finish();
