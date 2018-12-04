@@ -120,7 +120,8 @@ public class DataBaseManager {
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA, persona.getCategoriaNombre());
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, persona.getCategoriaNombreRelativo());
          initialValues.put(ConstantsAdmin.KEY_DATO_EXTRA, persona.getDatoExtra());
-         
+
+         this.open();
          if(!importando){
         	 if(persona.getId() == -1 ){
         		 returnValue= mDb.insert(ConstantsAdmin.TABLA_PERSONA, null, initialValues);
@@ -132,7 +133,7 @@ public class DataBaseManager {
         	 initialValues.put(ConstantsAdmin.KEY_ROWID, persona.getId());
         	 returnValue= mDb.insert(ConstantsAdmin.TABLA_PERSONA, null, initialValues);
          }
-
+		 this.close();
 
          return returnValue;
          
@@ -962,9 +963,11 @@ public class DataBaseManager {
 		String selection = ConstantsAdmin.querySelectionContactsById + contactId;
 		//String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
 		//nameCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, null);
+		//	String whereName = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + idContact;
+		String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
 
 
-		return new CursorLoader( context, null, null, selection, null, null)
+		return new CursorLoader( context, null, null, selection, whereNameParams, null)
 		{
 			@Override
 			public Cursor loadInBackground()

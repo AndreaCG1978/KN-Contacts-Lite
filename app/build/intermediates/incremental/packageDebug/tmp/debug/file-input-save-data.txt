@@ -1,7 +1,7 @@
 #Internal package file, do not edit.
-#Tue Dec 04 11:50:07 ART 2018
+#Tue Dec 04 17:42:09 ART 2018
 0.baseType=DIRECTORY
-0.base=C\:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+0.base=/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/transforms/dexMerger/debug/0
 0.path=classes.dex
 0.set=DEX
 count=1
