@@ -764,7 +764,7 @@ public class ConstantsAdmin {
 
     	cursorLoader = ConstantsAdmin.cursorPersonaByNombreYApellido;
     	cursorLoader.setSelection(ConstantsAdmin.querySelectionNombreYApellidoPersona(name, apellido));
-    	cursorLoader.reset();
+    //	cursorLoader.reset();
 		//cursor = mDBManager.fetchPersonaPorNombreYApellido(name, apellido);
 		cursor = cursorLoader.loadInBackground();
     	if(cursor != null){
@@ -778,7 +778,7 @@ public class ConstantsAdmin {
     	if(per == null){
         //	cursor = mDBManager.fetchPersonaPorNombreYApellido(apellido, name);
 			cursorLoader.setSelection(ConstantsAdmin.querySelectionNombreYApellidoPersona(apellido, name));
-			cursorLoader.reset();
+		//	cursorLoader.reset();
 
 			//cursor = mDBManager.fetchPersonaPorNombreYApellido(name, apellido);
 			cursor = cursorLoader.loadInBackground();

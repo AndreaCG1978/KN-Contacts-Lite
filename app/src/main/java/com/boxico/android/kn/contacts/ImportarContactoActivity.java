@@ -126,10 +126,10 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			//String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
             String sortOrder = ConstantsAdmin.sortOrderForContacts;
 			if(getPeople() != null){
-				ConstantsAdmin.inicializarBD(mDBManager);
+				//ConstantsAdmin.inicializarBD(mDBManager);
 			//	startManagingCursor(people);
 				this.buscarSiguienteContacto();
-				ConstantsAdmin.finalizarBD(mDBManager);
+				//ConstantsAdmin.finalizarBD(mDBManager);
 			}else{
 				ConstantsAdmin.mostrarMensajeDialog(this, getResources().getString(R.string.mensaje_no_hay_contactos));
 				this.finish();
@@ -198,8 +198,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private void buscarSiguienteContacto() {
     	boolean encontrado = false;
     	String contactIdTemp;
-	//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-    	
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		ConstantsAdmin.inicializarBD(mDBManager);
+
     	while(!encontrado && getPeople().moveToNext()) {
     		posPeople = getPeople().getPosition();
     		contactIdTemp  = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
@@ -236,7 +237,10 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
    	     	    }
    	       		
    	       	}
+
+
     	}
+		ConstantsAdmin.finalizarBD(mDBManager);
     	if(posPeople < getPeople().getCount() - 1){
     		botonSkipContact.setEnabled(true);
     		botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul));
@@ -257,6 +261,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     	boolean encontrado = false;
     	String contactIdTemp;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		ConstantsAdmin.inicializarBD(mDBManager);
        	while(!encontrado && getPeople().moveToPrevious()) {
        	   posPeople = getPeople().getPosition();
 	       contactIdTemp  = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
@@ -293,6 +298,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	   	       }
    	       }
     	}
+		ConstantsAdmin.finalizarBD(mDBManager);
     	if(posPeople == 0){
     		botonPrevContact.setEnabled(false);
     		botonPrevContact.setTextColor(getResources().getColor(R.color.color_azul_oscuro));
