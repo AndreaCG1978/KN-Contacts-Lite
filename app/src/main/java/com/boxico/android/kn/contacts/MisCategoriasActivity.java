@@ -112,6 +112,7 @@ public class MisCategoriasActivity extends ListActivity {
     	ListView listView = this.getListView();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	CategoriaDTO cat;
+    	
 		ConstantsAdmin.inicializarBD(mDBManager);
         Cursor categoriasCursor = mDBManager.fetchAllCategoriasPersonalesPorNombre(null);
         if(categoriasCursor!= null){
