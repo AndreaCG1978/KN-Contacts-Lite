@@ -5,11 +5,15 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -19,8 +23,9 @@ import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 import com.boxico.android.kn.contacts.util.KNArrayAdapter;
+import com.boxico.android.kn.contacts.util.KNListFragment;
 
-public class ListadoCategoriaActivity extends ListActivity {
+public class ListadoCategoriaActivity extends KNListFragment  {
 	
 
 	private ArrayList<Cursor> allMyCursors = null;
@@ -28,16 +33,17 @@ public class ListadoCategoriaActivity extends ListActivity {
 	private int cantActivas = 0;
 	private int cantCategorias = 0;
 	private String titulo = null;
-	
+
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         allMyCursors = new ArrayList<>();
         this.setContentView(R.layout.list_categorias);
         this.registrarWidgets();
-        this.configurarList(getListView()); 
+        this.configurarList(getListView());
         
     }
-	
+
+
 	private void registrarWidgets(){
 		labelCategorias = this.findViewById(R.id.categoriaTextView);
 		titulo = labelCategorias.getText().toString();
@@ -111,13 +117,13 @@ public class ListadoCategoriaActivity extends ListActivity {
         Intent i = new Intent(this, MisCategoriasActivity.class);
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_MIS_CATEGORIAS);
 	}
-	
-    protected void onListItemClick(ListView l, View v, int position, long id) {
+	/*
+    public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         this.activarODesactivarCategoria(l, position, v);
         //this.configurarList(l);
     }
-    
+    */
 /*    private long cantidadCategoriasActivas(ListView list){
     	long result = 0;
     	int iterar = 0;
@@ -185,5 +191,12 @@ public class ListadoCategoriaActivity extends ListActivity {
         super.startManagingCursor(c);
     }
 
-    	
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+	//	super.onListItemClick(l, v, position, id);
+		this.activarODesactivarCategoria(this.getListView(), position, view);
+	}
+
+
 }

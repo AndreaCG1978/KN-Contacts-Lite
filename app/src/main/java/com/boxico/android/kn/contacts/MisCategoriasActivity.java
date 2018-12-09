@@ -8,10 +8,16 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -22,20 +28,24 @@ import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 import com.boxico.android.kn.contacts.util.KNArrayAdapter;
+import com.boxico.android.kn.contacts.util.KNListFragment;
 
-public class MisCategoriasActivity extends ListActivity {
+public class MisCategoriasActivity extends KNListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 	
 	private ArrayList<Cursor> allMyCursors = null;
 	private int cantActivas = 0;
 	private int cantCategorias = 0;
 	private String titulo = null;
 	private TextView labelCategorias = null;
+
+	private final int CATEGORIAS_PERSONALES_CURSOR = 1;
 	
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         allMyCursors = new ArrayList<>();
         this.setContentView(R.layout.admin_categorias);
+        this.cargarLoaders();
         this.configurarBotonCategorias();
         this.configurarList();
     }
@@ -58,7 +68,7 @@ public class MisCategoriasActivity extends ListActivity {
     	allMyCursors = new ArrayList<>();
     }
     
-    protected void onListItemClick(ListView l, View v, int position, long id) {
+    public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         this.activarODesactivarCategoria(l, position, v);
     }
@@ -112,11 +122,21 @@ public class MisCategoriasActivity extends ListActivity {
     	ListView listView = this.getListView();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	CategoriaDTO cat;
+    	CursorLoader cursorLoader = null;
     	
 		ConstantsAdmin.inicializarBD(mDBManager);
-        Cursor categoriasCursor = mDBManager.fetchAllCategoriasPersonalesPorNombre(null);
+
+		cursorLoader = ConstantsAdmin.cursorCategoriasPersonales;
+		if(cursorLoader == null){
+			cursorLoader = mDBManager.cursorLoaderCategoriasPersonalesPorNombre(null, this);
+
+		}
+		Cursor categoriasCursor = cursorLoader.loadInBackground();
+
+
+   //     Cursor categoriasCursor = mDBManager.fetchAllCategoriasPersonalesPorNombre(null);
         if(categoriasCursor!= null){
-	        startManagingCursor(categoriasCursor);
+	   //     startManagingCursor(categoriasCursor);
 	        List<CategoriaDTO> categorias = ConstantsAdmin.categoriasPersonalesCursorToDtos(categoriasCursor);
 	       // stopManagingCursor(categoriasCursor);
 	        Collections.sort(categorias);
@@ -217,5 +237,45 @@ public class MisCategoriasActivity extends ListActivity {
     	allMyCursors.add(c);
         super.startManagingCursor(c);
     }
+
+	@NonNull
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		//   ConstantsAdmin.inicializarBD( mDBManager);
+		CursorLoader cl = null;
+		switch(id) {
+			case CATEGORIAS_PERSONALES_CURSOR:
+				cl = mDBManager.cursorLoaderCategoriasPersonalesPorNombre(null, this);
+				ConstantsAdmin.cursorCategoriasPersonales = cl;
+				break; // optional
+
+			default : // Optional
+				// Statements
+		}
+
+		return cl;
+	}
+
+
+	@Override
+	public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+
+	}
+
+	@Override
+	public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		this.activarODesactivarCategoria(this.getListView(), position, view);
+	}
+
+	private void cargarLoaders() {
+		this.getSupportLoaderManager().initLoader(CATEGORIAS_PERSONALES_CURSOR, null, this);
+
+	}
 
 }

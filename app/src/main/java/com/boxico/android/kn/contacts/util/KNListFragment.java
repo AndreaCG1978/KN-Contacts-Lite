@@ -2,11 +2,9 @@ package com.boxico.android.kn.contacts.util;
 
 
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
@@ -14,21 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.boxico.android.kn.contacts.R;
-
-public class ExpandableListFragment extends FragmentActivity
-        implements OnCreateContextMenuListener,
-        ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupCollapseListener,
-        ExpandableListView.OnGroupExpandListener
+public abstract class KNListFragment extends FragmentActivity implements OnCreateContextMenuListener, ListView.OnItemClickListener
 {
 
     static final int INTERNAL_EMPTY_ID = 0x00ff0001;
@@ -48,8 +38,8 @@ public class ExpandableListFragment extends FragmentActivity
         }
     };
 
-    ExpandableListAdapter mAdapter;
-    ExpandableListView mList;
+    ListAdapter mAdapter;
+    ListView mList;
     View mEmptyView;
     TextView mStandardEmptyView;
     View mListContainer;
@@ -57,7 +47,7 @@ public class ExpandableListFragment extends FragmentActivity
     boolean mListShown;
     boolean mFinishedStart = false;
 
-    public ExpandableListFragment() {
+    public KNListFragment() {
     }
 
     /**
@@ -137,7 +127,7 @@ public class ExpandableListFragment extends FragmentActivity
     /**
      * Provide the cursor for the list view.
      */
-    public void setListAdapter(ExpandableListAdapter adapter) {
+    public void setListAdapter(ListAdapter adapter) {
         boolean hadAdapter = mAdapter != null;
         mAdapter = adapter;
         if (mList != null) {
@@ -165,17 +155,17 @@ public class ExpandableListFragment extends FragmentActivity
         mList.setSelection(position);
     }
 
-    public long getSelectedPosition() {
+    public long getSelectedItemPosition() {
         ensureList();
-        return mList.getSelectedPosition();
+        return mList.getSelectedItemPosition();
     }
 
-    public long getSelectedId() {
+    public long getSelectedItemId() {
         ensureList();
-        return mList.getSelectedId();
+        return mList.getSelectedItemId();
     }
 
-    public ExpandableListView getExpandableListView() {
+    public ListView getListView() {
         ensureList();
         return mList;
     }
@@ -260,7 +250,7 @@ public class ExpandableListFragment extends FragmentActivity
     /**
      * Get the ListAdapter associated with this activity's ListView.
      */
-    public ExpandableListAdapter getExpandableListAdapter() {
+    public ListAdapter getListAdapter() {
         return mAdapter;
     }
 
@@ -269,13 +259,12 @@ public class ExpandableListFragment extends FragmentActivity
             return;
         }
 
-
         View root = findViewById(android.R.id.list);
         if (root == null) {
             throw new IllegalStateException("Content view not yet created");
         }
-        if (root instanceof ExpandableListView) {
-            mList = (ExpandableListView)root;
+        if (root instanceof ListView) {
+            mList = (ListView)root;
         } else {
             mStandardEmptyView = (TextView)root.findViewById(INTERNAL_EMPTY_ID);
             if (mStandardEmptyView == null) {
@@ -287,17 +276,17 @@ public class ExpandableListFragment extends FragmentActivity
 //
             mListContainer = root.findViewById(android.R.id.list_container);
             View rawListView = root.findViewById(android.R.id.list);
-            if (!(rawListView instanceof ExpandableListView)) {
+            if (!(rawListView instanceof ListView)) {
                 if (rawListView == null) {
                     throw new RuntimeException(
-                            "Your content must have a ExpandableListView whose id attribute is " +
+                            "Your content must have a ListView whose id attribute is " +
                                     "'android.R.id.list'");
                 }
                 throw new RuntimeException(
                         "Content has view with id attribute 'android.R.id.list' "
                                 + "that is not a ExpandableListView class");
             }
-            mList = (ExpandableListView)rawListView;
+            mList = (ListView)rawListView;
             if (mEmptyView != null) {
                 mList.setEmptyView(mEmptyView);
             }
@@ -317,46 +306,27 @@ public class ExpandableListFragment extends FragmentActivity
     }
 
     @Override
-    public void onGroupExpand(int arg0) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onGroupCollapse(int arg0) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public boolean onChildClick(ExpandableListView arg0, View arg1, int arg2,
-                                int arg3, long arg4) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
     }
 
     public void onContentChanged() {
         View emptyView = findViewById(android.R.id.empty);
-        mList = (ExpandableListView) findViewById(android.R.id.list);
+        mList = (ListView) findViewById(android.R.id.list);
         if (mList == null) {
             throw new RuntimeException(
-                    "Your content must have a ExpandableListView whose id attribute is " +
+                    "Your content must have a ListView whose id attribute is " +
                             "'android.R.id.list'");
         }
         if (emptyView != null) {
             mList.setEmptyView(emptyView);
         }
-        mList.setOnChildClickListener(this);
-        mList.setOnGroupExpandListener(this);
-        mList.setOnGroupCollapseListener(this);
+        mList.setOnItemClickListener(this);
 
         if (mFinishedStart) {
             setListAdapter(mAdapter);
         }
         mFinishedStart = true;
     }
+
+
 }
