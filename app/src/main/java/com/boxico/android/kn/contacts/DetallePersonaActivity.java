@@ -459,7 +459,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
                 prefCursor = loaderPreferido.loadInBackground();
 				//startManagingCursor(prefCursor);
 				mEsPreferido = prefCursor.getCount() > 0;
-				//prefCursor.close();
+				prefCursor.close();
 				//stopManagingCursor(prefCursor);
 				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_APELLIDO));
 				mApellido.setText(temp.toUpperCase());
@@ -579,7 +579,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				this.configurarListaTelefonos();
 				this.configurarListaMails();
 				this.configurarListaDirecciones();
-			//	perCursor.close();
+				perCursor.close();
 			//	stopManagingCursor(perCursor);
 			}
 

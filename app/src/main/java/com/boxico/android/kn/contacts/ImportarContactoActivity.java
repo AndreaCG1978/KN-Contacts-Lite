@@ -49,7 +49,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private Cursor people = null;
 	private ImportarContactoActivity me = null;
 	// --Commented out by Inspection (12/11/2018 12:34):boolean haciaAdelante = true;
-	private ArrayList<Cursor> allMyCursors = null;
+//	private ArrayList<Cursor> allMyCursors = null;
 	
 	private TextView mPersonaEncontrada;
 	private TextView mTipoPersonaEncontrada;
@@ -80,13 +80,13 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
 	CursorLoader cursorLoaderPhones = null;
-
+/*
     @Override
     public void startManagingCursor(Cursor c) {
     	allMyCursors.add(c);
         super.startManagingCursor(c);
     }
-
+*/
 	private void cargarLoaders() {
 		this.getSupportLoaderManager().initLoader(PERSONA_ID_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(PERSONA_EXTRA_ID_CURSOR, null, this);
@@ -181,7 +181,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
         this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_importar_contactos));
         try {
 
-        	allMyCursors = new ArrayList<>();
+       // 	allMyCursors = new ArrayList<>();
             this.setContentView(R.layout.import_contact);
             this.registrarWidgets();
             me = this;
@@ -565,7 +565,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		String family;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		try {
-
+			ConstantsAdmin.inicializarBD(mDBManager);
 			getPeople().moveToFirst();
 			while(getPeople().moveToNext()) {
 			       contactId  = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
@@ -591,8 +591,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			   	       }
 		   	       }
 		    		
-		    	}
-				ConstantsAdmin.resetPersonasOrganizadas();
+		    }
+			ConstantsAdmin.resetPersonasOrganizadas();
+			ConstantsAdmin.finalizarBD(mDBManager);
 			
 		} catch (Exception e) {
 			e.getMessage();
@@ -604,6 +605,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private void addContact() {
 		long id;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		ConstantsAdmin.inicializarBD(mDBManager);
 		this.obtenerContactoCapturado(false);
 		id = mDBManager.createPersona(persona, false);
 		if(id != -1){
@@ -612,6 +614,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			this.mostrarDatosPersonaEncontrada();
 			mPersonaEncontrada.setText(mPersonaEncontrada.getText() + " #");
 		}
+		ConstantsAdmin.finalizarBD(mDBManager);
 	//	this.buscarSiguienteContacto();
 		
 		
@@ -802,7 +805,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     }
 
     
-            
+  /*
     private void resetAllMyCursors(){
     	Cursor cur;
 		for (Cursor allMyCursor : allMyCursors) {
@@ -814,7 +817,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     }
 
 
-
+*/
 
 
     private void obtenerContactoCapturado(boolean desdeAgregarTodos){
@@ -830,6 +833,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 			Cursor phones = cursorLoaderPhones.loadInBackground();
     	   	tieneTelefonos = phones.getCount() > 0;
+    	   	phones.close();
 		   	if(mCategoriaSeleccionada == null){
 				this.seleccionarPrimerCategoria();
 		   	}
@@ -876,7 +880,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	            family = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
 	            asoc = new Asociacion(given, family);
 	        }
-	     //   nameCur.close();
+	     	nameCur.close();
           //  stopManagingCursor(nameCur);
 
         }
@@ -919,7 +923,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     					}
     	           }
     	        } 
-    	  //      emails.close();
+    	 	    emails.close();
     	  //      this.stopManagingCursor(emails);
             }
 			
@@ -976,7 +980,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     	        		
     	        	}
     	        }
-    //	        phones.close();
+    	        phones.close();
     //	        this.stopManagingCursor(phones);
             }
 		} catch (Exception e) {

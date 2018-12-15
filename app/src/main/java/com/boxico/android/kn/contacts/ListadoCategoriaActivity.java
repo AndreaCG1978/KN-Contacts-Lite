@@ -28,7 +28,7 @@ import com.boxico.android.kn.contacts.util.KNListFragment;
 public class ListadoCategoriaActivity extends KNListFragment  {
 	
 
-	private ArrayList<Cursor> allMyCursors = null;
+//	private ArrayList<Cursor> allMyCursors = null;
 	private TextView labelCategorias = null;
 	private int cantActivas = 0;
 	private int cantCategorias = 0;
@@ -36,7 +36,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        allMyCursors = new ArrayList<>();
+      //  allMyCursors = new ArrayList<>();
         this.setContentView(R.layout.list_categorias);
         this.registrarWidgets();
         this.configurarList(getListView());
@@ -48,7 +48,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 		labelCategorias = this.findViewById(R.id.categoriaTextView);
 		titulo = labelCategorias.getText().toString();
 	}
-	
+/*
     private void resetAllMyCursors(){
     	Cursor cur;
 		for (Cursor allMyCursor : allMyCursors) {
@@ -59,7 +59,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
     	allMyCursors = new ArrayList<>();
     }
   	
-	
+	*/
     private void cambiarNombreCategorias(List<CategoriaDTO> categorias){
   		Iterator<CategoriaDTO> it = categorias.iterator();
   		CategoriaDTO catTemp;
@@ -173,25 +173,21 @@ public class ListadoCategoriaActivity extends KNListFragment  {
         	this.finish();
         	ConstantsAdmin.cerrarMainActivity = true;
 
-        }else{
+        }
+        /*else{
         	this.resetAllMyCursors();	
         }
-        
+        */
     }
 
-	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-    	super.onActivityResult(requestCode, resultCode, intent);
-    	this.resetAllMyCursors();
-    	
-    }
-
+/*
     @Override
     public void startManagingCursor(Cursor c) {
     	allMyCursors.add(c);
         super.startManagingCursor(c);
     }
 
-
+*/
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	//	super.onListItemClick(l, v, position, id);

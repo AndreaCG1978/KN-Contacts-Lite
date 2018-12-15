@@ -23,6 +23,7 @@ public class DataBaseManager {
 	 private DataBaseHelper mDbHelper;
 	 private SQLiteDatabase mDb;
 	 private Context mCtx;
+	 private boolean isOpened = false;
 
 
 
@@ -40,7 +41,15 @@ public class DataBaseManager {
 	}
 
 
-	 public static DataBaseManager getInstance(Context ctx) {
+	public boolean isOpened() {
+		return isOpened;
+	}
+
+	public void setOpened(boolean opened) {
+		isOpened = opened;
+	}
+
+	public static DataBaseManager getInstance(Context ctx) {
 	 	instanciaUnica.setmCtx(ctx);
 	 	return instanciaUnica;
 	 }
@@ -54,12 +63,18 @@ public class DataBaseManager {
 	}
 
      public void open() throws SQLException {
-	      mDbHelper = new DataBaseHelper(mCtx);
-	      mDb = mDbHelper.getWritableDatabase();
+		if(!this.isOpened) {
+			mDbHelper = new DataBaseHelper(mCtx);
+			mDb = mDbHelper.getWritableDatabase();
+			this.isOpened = true;
+		}
 	 }
      
      public void close() {
-         mDbHelper.close();
+		if(this.isOpened) {
+			mDbHelper.close();
+			this.isOpened = false;
+		}
      }
      
      public void createTipoValor(TipoValorDTO tipoVal, String nombreTabla) {
@@ -121,7 +136,7 @@ public class DataBaseManager {
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, persona.getCategoriaNombreRelativo());
          initialValues.put(ConstantsAdmin.KEY_DATO_EXTRA, persona.getDatoExtra());
 
-         this.open();
+      //   this.open();
          if(!importando){
         	 if(persona.getId() == -1 ){
         		 returnValue= mDb.insert(ConstantsAdmin.TABLA_PERSONA, null, initialValues);
@@ -133,7 +148,7 @@ public class DataBaseManager {
         	 initialValues.put(ConstantsAdmin.KEY_ROWID, persona.getId());
         	 returnValue= mDb.insert(ConstantsAdmin.TABLA_PERSONA, null, initialValues);
          }
-		 this.close();
+	//	 this.close();
 
          return returnValue;
          
@@ -299,18 +314,20 @@ public class DataBaseManager {
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_ACTIVA, categoria.getActiva());
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA, categoria.getTipoDatoExtra());
       //   long result = -1;
+	//	 this.open();
          if(!importando){
         	 mDb.insert(ConstantsAdmin.TABLA_CATEGORIA, null, initialValues);
          }else{
         	 initialValues.put(ConstantsAdmin.KEY_ROWID, categoria.getId());
         	 mDb.insert(ConstantsAdmin.TABLA_CATEGORIA, null, initialValues);
          }
+    //     this.close();
 	 }
      
      public void crearPreferido(long preferidoId){
-    	 ContentValues initialValues = new ContentValues();
-         initialValues.put(ConstantsAdmin.KEY_ROWID, preferidoId);
-		 mDb.insert(ConstantsAdmin.TABLA_PREFERIDOS, null, initialValues);
+     	ContentValues initialValues = new ContentValues();
+        initialValues.put(ConstantsAdmin.KEY_ROWID, preferidoId);
+		mDb.insert(ConstantsAdmin.TABLA_PREFERIDOS, null, initialValues);
 	 }
      
      
@@ -320,8 +337,8 @@ public class DataBaseManager {
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA, categoria.getNombreReal());
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_ACTIVA, categoria.getActiva());
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA, categoria.getTipoDatoExtra());
-         
          try {
+        // 	 this.open();
         	 if(!importando){
 	        	 if(categoria.getId() == 0 ){
 	        		 mDb.insert(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, null, initialValues);
@@ -334,6 +351,7 @@ public class DataBaseManager {
         		 initialValues.put(ConstantsAdmin.KEY_ROWID, categoria.getId());
         		 mDb.insert(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, null, initialValues);
         	 }
+        //	 this.close();
          } catch (Exception e) {
 			// TODO: handle exception
 			e.getMessage();
@@ -701,6 +719,9 @@ public class DataBaseManager {
 				Cursor c = null;
 				if(mDb.isOpen()){
 					c = mDb.query(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+					if (c != null) {
+						c.moveToFirst();
+					}
 				}
 				return c;
 			}
@@ -1243,7 +1264,10 @@ public class DataBaseManager {
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA, categoria.getNombreReal());
          
          try {
-       		 mDb.insert(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, null, initialValues);
+
+     //    	this.open();
+         	mDb.insert(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, null, initialValues);
+     //    	this.close();
 
          } catch (Exception e) {
 			// TODO: handle exception

@@ -17,7 +17,7 @@ public class InitActivity extends Activity {
     private boolean _active = true;
     private final int _splashTime = 1200;
     private Activity me = null;
-    private ArrayList<Cursor> allMyCursors = null;
+  //  private ArrayList<Cursor> allMyCursors = null;
 
 
 
@@ -27,9 +27,9 @@ public class InitActivity extends Activity {
         super.onCreate(savedInstanceState);
  //       CargaDePersonasTest test = new CargaDePersonasTest();
         try{
-        	allMyCursors = new ArrayList<>();
+    //    	allMyCursors = new ArrayList<>();
         	inicializarBD();
-        	this.resetAllMyCursors();
+     //   	this.resetAllMyCursors();
         	
    //     	this.cargarDatosFicticios();
         	
@@ -67,7 +67,7 @@ public class InitActivity extends Activity {
 		}
     }
 
-   private void resetAllMyCursors(){
+  /* private void resetAllMyCursors(){
     	Cursor cur;
        for (Cursor allMyCursor : allMyCursors) {
            cur = allMyCursor;
@@ -75,7 +75,7 @@ public class InitActivity extends Activity {
            this.stopManagingCursor(cur);
        }
     	allMyCursors = new ArrayList<>();
-    }
+    }*/
 	
  /*   private void cargarDatosFicticios(){
 		CargaDePersonasTest test = new CargaDePersonasTest();
@@ -104,13 +104,13 @@ public class InitActivity extends Activity {
     	ConstantsAdmin.finalizarBD(mDBManager);
 		
 	}
-	
+/*
     @Override
     public void startManagingCursor(Cursor c) {
     	allMyCursors.add(c);
         super.startManagingCursor(c);
     }
-	
+	*/
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             _active = false;

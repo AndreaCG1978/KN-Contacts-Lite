@@ -32,7 +32,7 @@ import com.boxico.android.kn.contacts.util.KNListFragment;
 
 public class MisCategoriasActivity extends KNListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 	
-	private ArrayList<Cursor> allMyCursors = null;
+//	private ArrayList<Cursor> allMyCursors = null;
 	private int cantActivas = 0;
 	private int cantCategorias = 0;
 	private String titulo = null;
@@ -43,7 +43,7 @@ public class MisCategoriasActivity extends KNListFragment implements LoaderManag
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        allMyCursors = new ArrayList<>();
+     //   allMyCursors = new ArrayList<>();
         this.setContentView(R.layout.admin_categorias);
         this.cargarLoaders();
         this.configurarBotonCategorias();
@@ -57,17 +57,17 @@ public class MisCategoriasActivity extends KNListFragment implements LoaderManag
         	ConstantsAdmin.cerrarMainActivity = true;
         }
     }
-    
+   /*
     private void resetAllMyCursors(){
     	Cursor cur;
 		for (Cursor allMyCursor : allMyCursors) {
 			cur = allMyCursor;
 			cur.close();
-			this.stopManagingCursor(cur);
+		//	this.stopManagingCursor(cur);
 		}
-    	allMyCursors = new ArrayList<>();
+    //	allMyCursors = new ArrayList<>();
     }
-    
+    */
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         this.activarODesactivarCategoria(l, position, v);
@@ -228,15 +228,15 @@ public class MisCategoriasActivity extends KNListFragment implements LoaderManag
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	super.onActivityResult(requestCode, resultCode, intent);
-    	this.resetAllMyCursors();
+    //	this.resetAllMyCursors();
     	this.refreshList();
     }
-	
+	/*
     @Override
     public void startManagingCursor(Cursor c) {
     	allMyCursors.add(c);
         super.startManagingCursor(c);
-    }
+    }*/
 
 	@NonNull
 	@Override
