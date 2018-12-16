@@ -269,7 +269,7 @@ public class ExpandableListFragment extends FragmentActivity
             return;
         }
 
-
+/*
         View root = findViewById(android.R.id.list);
         if (root == null) {
             throw new IllegalStateException("Content view not yet created");
@@ -312,7 +312,7 @@ public class ExpandableListFragment extends FragmentActivity
             setListShown(false, false);
         }
         mHandler.post(mRequestFocus);
-
+*/
 
     }
 

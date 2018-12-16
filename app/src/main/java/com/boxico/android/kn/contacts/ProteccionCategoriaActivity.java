@@ -37,14 +37,14 @@ public class ProteccionCategoriaActivity extends ListActivity {
 	private ImageView imagen = null;
 	private Drawable dCandadoAbierto = null;
 	private Drawable dCandadoCerrado = null;
-	private ArrayList<Cursor> allMyCursors = null;
+//	private ArrayList<Cursor> allMyCursors = null;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		allMyCursors = new ArrayList<>();
+	//	allMyCursors = new ArrayList<>();
 		me = this;
 		this.setContentView(R.layout.proteccion_categorias);
 		this.inicializarList();
@@ -57,13 +57,13 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		
 	}
-	
+	/*
     @Override
     public void startManagingCursor(Cursor c) {
     	allMyCursors.add(c);
         super.startManagingCursor(c);
     }
-	
+	*/
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	super.onActivityResult(requestCode, resultCode, intent);
     	
@@ -75,7 +75,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			//this.configurarSpinner();
 			break;
 		}  	
-    	this.resetAllMyCursors();
+    	//this.resetAllMyCursors();
     	
     }
     
@@ -86,14 +86,15 @@ public class ProteccionCategoriaActivity extends ListActivity {
         	startActivity(LaunchIntent);
         	this.finish();
         	ConstantsAdmin.cerrarMainActivity = true;
-        }else{
+        }
+        /*else{
         	this.resetAllMyCursors();	
         }
-        
+        */
         
     }
 
-    
+   /*
     private void resetAllMyCursors(){
     	Cursor cur;
 		for (Cursor allMyCursor : allMyCursors) {
@@ -103,7 +104,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		}
     	allMyCursors = new ArrayList<>();
     }
-	
+	*/
 	private void habilitarCampos(){
 		if(ConstantsAdmin.contrasenia.isActiva()){// Nunca se registro la contrasenia
 			contrasenia1.setEnabled(true);

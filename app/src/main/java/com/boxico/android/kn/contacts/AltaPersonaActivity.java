@@ -1,5 +1,6 @@
 package com.boxico.android.kn.contacts;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -1138,13 +1139,54 @@ public class AltaPersonaActivity extends Activity  {
 	}
 	
 	private void configurarDatePicker(){
-        mPickDate.setOnClickListener(new View.OnClickListener() {
+    /*    mPickDate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 showDialog(DATE_DIALOG_ID, null);
             }
         });
-        
-        mCheckFechaNac.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+*/
+
+		final Calendar c = Calendar.getInstance();
+		mYear = c.get(Calendar.YEAR);
+		mMonth = c.get(Calendar.MONTH);
+		mDay = c.get(Calendar.DAY_OF_MONTH);
+
+		mPickDate.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				DatePickerDialog dpd = new DatePickerDialog(AltaPersonaActivity.this,
+						new DatePickerDialog.OnDateSetListener() {
+							@Override
+							public void onDateSet(DatePicker view, int year, int month, int day) {
+								c.set(year, month , day);
+						//		String date = new SimpleDateFormat("MM/dd/yyyy").format(c.getTime());
+								//mDateDisplay.setText(date);
+								mYear = c.get(Calendar.YEAR);
+								mMonth = c.get(Calendar.MONTH) + 1;
+								mDay = c.get(Calendar.DAY_OF_MONTH);
+								updateDisplay();
+							}
+						}, mYear, mMonth - 1, mDay);
+				/*dpd.getDatePicker().setMinDate(System.currentTimeMillis());
+
+				Calendar d = Calendar.getInstance();
+				d.add(Calendar.MONTH,1);
+
+				dpd.getDatePicker().setMaxDate(d.getTimeInMillis());*/
+				dpd.show();
+
+
+			}
+
+		});
+
+
+
+
+
+		mCheckFechaNac.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -1154,15 +1196,14 @@ public class AltaPersonaActivity extends Activity  {
 		});
 
         // get the current date
-        final Calendar c = Calendar.getInstance();
-        if(mPersonaSeleccionada == null || mPersonaSeleccionada.getFechaNacimiento() == null){
-        	mYear = c.get(Calendar.YEAR);
-        	mMonth = c.get(Calendar.MONTH) + 1;
-        	mDay = c.get(Calendar.DAY_OF_MONTH);
-        }else{
+		//c = Calendar.getInstance();
+        if(!(mPersonaSeleccionada == null || mPersonaSeleccionada.getFechaNacimiento() == null)){
         	this.cargarVariablesDeFechaNacimiento(mPersonaSeleccionada.getFechaNacimiento());
-        	
-        }
+        }else{
+			mYear = c.get(Calendar.YEAR);
+			mMonth = c.get(Calendar.MONTH) + 1;
+			mDay = c.get(Calendar.DAY_OF_MONTH);
+		}
 
 	}
 	
@@ -1189,7 +1230,7 @@ public class AltaPersonaActivity extends Activity  {
     }
     
  // the callback received when the user "sets" the date in the dialog
-    private final DatePickerDialog.OnDateSetListener mDateSetListener =
+/*    private final DatePickerDialog.OnDateSetListener mDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
 
                 public void onDateSet(DatePicker view, int year, 
@@ -1199,9 +1240,9 @@ public class AltaPersonaActivity extends Activity  {
                     mDay = dayOfMonth;
                     updateDisplay();
                 }
-    };
-            
-    protected Dialog onCreateDialog(int id) {
+    };*/
+
+ /*   protected Dialog onCreateDialog(int id) {
         switch (id) {
         case DATE_DIALOG_ID:
             return new DatePickerDialog(this,
@@ -1210,7 +1251,7 @@ public class AltaPersonaActivity extends Activity  {
         }
         return null;
     }
-
+*/
     private void configurarSpinner(){
       List<CategoriaDTO> categorias;
       List<CategoriaDTO> categoriasPersonales;
