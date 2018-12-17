@@ -79,8 +79,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
-	CursorLoader cursorLoaderPhones = null;
-/*
+	/*
     @Override
     public void startManagingCursor(Cursor c) {
     	allMyCursors.add(c);
@@ -96,7 +95,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	}
 
 
-	public void askForContactPermission(){
+	private void askForContactPermission(){
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
 				ActivityCompat.requestPermissions(this,
@@ -114,7 +113,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private void inicializarContactosAImportar(){
 		this.cargarLoaders();
 
-		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+	//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		if(ConstantsAdmin.mainActivity == null){
 			Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage(this.getPackageName());
 			startActivity(LaunchIntent);
@@ -124,7 +123,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		}else{
 
 			//String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
-            String sortOrder = ConstantsAdmin.sortOrderForContacts;
+         //   String sortOrder = ConstantsAdmin.sortOrderForContacts;
 			if(getPeople() != null){
 				//ConstantsAdmin.inicializarBD(mDBManager);
 			//	startManagingCursor(people);
@@ -151,6 +150,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		return people;
     }
 
+    /*
 
 	private Cursor getPeopleById(String idContact){
 		Cursor cur = null;
@@ -161,7 +161,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 		return cur;
 	}
-
+*/
 	@Override
 	public void onRequestPermissionsResult(int requestCode, String[] permissions,
 										   int[] grantResults) {
@@ -765,36 +765,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
         }
     }
     
-    protected void onResume() {
-        super.onResume();
-	/*	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-        if(ConstantsAdmin.mainActivity == null){
-        	Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage(this.getPackageName());
-        	startActivity(LaunchIntent);
-        	this.finish();
-        	ConstantsAdmin.cerrarMainActivity = true;
 
-        }else{
-        	ConstantsAdmin.inicializarBD(mDBManager);
-            String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
-            if(people == null){
-            	people = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null,
-            		   null//if you don't want to google contacts also,
-            		   ,null, sortOrder);
-            }
-
-            if(people != null){
-    	    	startManagingCursor(people);
-    	    	this.buscarSiguienteContacto();
-        	}else{
-        		ConstantsAdmin.mostrarMensajeDialog(this, getResources().getString(R.string.mensaje_no_hay_contactos));
-        		this.finish();
-        	}
-
-        }
-*/
-    }
-    
     protected void onPause() {
     	super.onPause();
 		/*DataBaseManager mDBManager = DataBaseManager.getInstance(this);
@@ -824,7 +795,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     	boolean tieneTelefonos;
 	   	try{
 
-			cursorLoaderPhones = ConstantsAdmin.cursorPersona;
+			CursorLoader cursorLoaderPhones = ConstantsAdmin.cursorPersona;
 		/*	if(cursorLoaderPhones == null){
 				cursorLoaderPhones = mDBManager.cursorLoaderPersonaId(contactId, this,getContentResolver());
 			}*/

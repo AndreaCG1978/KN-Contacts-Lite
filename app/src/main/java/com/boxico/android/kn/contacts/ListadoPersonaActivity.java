@@ -81,20 +81,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     private String separadorExcel = null;
     private int mGroupSelected = -1;
 	private int mChildSelected = -1;
-	
 
-	private Drawable dbnPref = null;
 
-	private Drawable dexpandir = null;
-	private Drawable dcontraer = null;
-
-	private Drawable dorganizarNombre = null;
-	private Drawable dorganizarCategoria = null;
-
-	private Drawable dlessDesc = null;
-	private Drawable dmoreDesc = null;
-
-	
 	private ImageButton preferidos = null;
 	private static final String CLAVE = "CLAVE";
 	private static final String APELLIDO = "APELLIDO";
@@ -179,7 +167,19 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
         }
     }
 
+	private void configurarBotonExpandContractAll(){
+		expandContractAll = this.findViewById(R.id.buttonExpandContractAll);
+	//	Drawable dexpandir = getResources().getDrawable(R.drawable.expandir_icon);
+	//	Drawable dcontraer = getResources().getDrawable(R.drawable.contraer_icon);
+		expandContractAll.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				expandContractAll();
+			}
+		});
 
+	}
 
 
     @Override
@@ -193,7 +193,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     }
 
 
-    public void askForReadStoragePermission(){
+    private void askForReadStoragePermission(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -564,7 +564,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     
     private void configurarVerPreferidos(){
     	preferidos = this.findViewById(R.id.imagenPreferidos);
-		dbnPref = getResources().getDrawable(R.drawable.pref_icon_bw);
+	//	Drawable dbnPref = getResources().getDrawable(R.drawable.pref_icon_bw);
 		preferidos.setBackgroundResource(R.drawable.pref_icon_bw);
 		imgPrefLeft = this.findViewById(R.id.imgPrefLeft);
 		imgPrefRight = this.findViewById(R.id.imgPrefRight);
@@ -668,7 +668,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     		}else{
     			ConstantsAdmin.config.setMuestraPreferidos(false);
     			catSelectTextView.setVisibility(View.GONE);
-    			preferidos.setBackgroundDrawable(dbnPref);
+    			preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
 	    	    imgPrefLeft.setVisibility(View.GONE);
 	    	    imgPrefRight.setVisibility(View.GONE);
 
@@ -727,8 +727,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
     private void configurarBotonSwitchOrganizacion(){
     	switchOrganizacion = this.findViewById(R.id.buttonSwitchOrganizacion);
-    	dorganizarNombre = getResources().getDrawable(R.drawable.organizar_nombre);
-    	dorganizarCategoria = getResources().getDrawable(R.drawable.organizar_categoria);
+	//	Drawable dorganizarNombre = getResources().getDrawable(R.drawable.organizar_nombre);
+	//	Drawable dorganizarCategoria = getResources().getDrawable(R.drawable.organizar_categoria);
     	switchOrganizacion.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -739,24 +739,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	
     }
     
-    private void configurarBotonExpandContractAll(){
-    	expandContractAll = this.findViewById(R.id.buttonExpandContractAll);
-    	dexpandir = getResources().getDrawable(R.drawable.expandir_icon);
-    	dcontraer = getResources().getDrawable(R.drawable.contraer_icon);
-    	expandContractAll.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				expandContractAll();
-			}
-		});
-    	
-    }
+
 
     private void configurarBotonMasOMenosDesc(){
     	masOMenosDesc = this.findViewById(R.id.buttonMoreOrLess);
-    	dlessDesc = getResources().getDrawable(R.drawable.less_desc_contact);
-    	dmoreDesc = getResources().getDrawable(R.drawable.more_desc_contact);
+	//	Drawable dlessDesc = getResources().getDrawable(R.drawable.less_desc_contact);
+	//	Drawable dmoreDesc = getResources().getDrawable(R.drawable.more_desc_contact);
     	masOMenosDesc.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -782,9 +770,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 		}
     	if(!ConstantsAdmin.config.isListaExpandida()){
-    		expandContractAll.setBackgroundDrawable(dexpandir);
+    		expandContractAll.setBackground(getResources().getDrawable(R.drawable.expandir_icon));
     	}else{
-    		expandContractAll.setBackgroundDrawable(dcontraer);
+    		expandContractAll.setBackground(getResources().getDrawable(R.drawable.contraer_icon));
     	}
     	if(grupoSeleccionado != -1){
 	    	this.getExpandableListView().setSelectedGroup(grupoSeleccionado);
@@ -818,9 +806,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	}
     	
     	if(!ConstantsAdmin.config.isEstanDetallados()){
-    		masOMenosDesc.setBackgroundDrawable(dmoreDesc);
+    		masOMenosDesc.setBackground(getResources().getDrawable(R.drawable.more_desc_contact));
     	}else{
-    		masOMenosDesc.setBackgroundDrawable(dlessDesc);
+    		masOMenosDesc.setBackground(getResources().getDrawable(R.drawable.less_desc_contact));
     	}
     	
         if (mListState != null){
@@ -837,12 +825,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	for (int j = 0; j < this.getExpandableListAdapter().getGroupCount(); j++) {
        		this.getExpandableListView().collapseGroup(j);
 		}
-    	expandContractAll.setBackgroundDrawable(dexpandir);
+    	expandContractAll.setBackground(getResources().getDrawable(R.drawable.expandir_icon));
     	this.getExpandableListView().setSelectedGroup(0);
     	if(ConstantsAdmin.config.isOrdenadoPorCategoria()){
-    		switchOrganizacion.setBackgroundDrawable(dorganizarNombre);
+    		switchOrganizacion.setBackground(getResources().getDrawable(R.drawable.organizar_nombre));
     	}else{
-    		switchOrganizacion.setBackgroundDrawable(dorganizarCategoria);
+    		switchOrganizacion.setBackground(getResources().getDrawable(R.drawable.organizar_categoria));
     	}
 
     	
@@ -852,7 +840,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	entryBusqueda.setText("");
     	mEntryBusquedaNombre = null;
     	categoriasSeleccionadas = null;
-    	preferidos.setBackgroundDrawable(dbnPref);
+    	preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
     	catSelectTextView.setText("");
     	catSelectTextView.setVisibility(View.GONE);
 		imgPrefLeft.setVisibility(View.GONE);
@@ -1383,7 +1371,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     private void cargarPersonasPorApellidoONombre(){
         // Get all of the rows from the database and create the item list
      	preferidos.setVisibility(View.VISIBLE);
-     	preferidos.setBackgroundDrawable(dbnPref);
+     	preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
     	Cursor personasCursor = null;
     	mMostrandoPreferidos = false;
     	try{
@@ -1437,7 +1425,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		this.getExpandableListView().setVisibility(View.GONE);
 
     	preferidos.setVisibility(View.VISIBLE);
-     	preferidos.setBackgroundDrawable(dbnPref);
+     	preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
     	Cursor personasCursor;
     	String labelCateg;
 		catSelectTextView.setText("");
@@ -2033,7 +2021,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	    	protegerCategorias.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					preferidos.setBackgroundDrawable(dbnPref);
+					preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
 					DataBaseManager mDBManager = DataBaseManager.getInstance(me);
 					// TODO Auto-generated method stub
 					if(ConstantsAdmin.categoriasProtegidas.size() == 0 || ConstantsAdmin.contrasenia.getId() == -1){

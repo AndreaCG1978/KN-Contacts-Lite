@@ -31,7 +31,7 @@ public class ExpandableListFragment extends FragmentActivity
         ExpandableListView.OnGroupExpandListener
 {
 
-    static final int INTERNAL_EMPTY_ID = 0x00ff0001;
+    private static final int INTERNAL_EMPTY_ID = 0x00ff0001;
 
     final private Handler mHandler = new Handler();
 
@@ -48,14 +48,14 @@ public class ExpandableListFragment extends FragmentActivity
         }
     };
 
-    ExpandableListAdapter mAdapter;
-    ExpandableListView mList;
+    private ExpandableListAdapter mAdapter;
+    private ExpandableListView mList;
     View mEmptyView;
-    TextView mStandardEmptyView;
+    private TextView mStandardEmptyView;
     View mListContainer;
-    boolean mSetEmptyText;
-    boolean mListShown;
-    boolean mFinishedStart = false;
+    private boolean mSetEmptyText;
+    private boolean mListShown;
+    private boolean mFinishedStart = false;
 
     public ExpandableListFragment() {
     }
@@ -131,13 +131,13 @@ public class ExpandableListFragment extends FragmentActivity
      * @param position The position of the view in the list
      * @param id The row id of the item that was clicked
      */
-    public void onListItemClick(ListView l, View v, int position, long id) {
+    private void onListItemClick(ListView l, View v, int position, long id) {
     }
 
     /**
      * Provide the cursor for the list view.
      */
-    public void setListAdapter(ExpandableListAdapter adapter) {
+    protected void setListAdapter(ExpandableListAdapter adapter) {
         boolean hadAdapter = mAdapter != null;
         mAdapter = adapter;
         if (mList != null) {

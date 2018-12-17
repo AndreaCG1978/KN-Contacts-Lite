@@ -140,7 +140,7 @@ public class AltaCategoriaActivity extends Activity {
 	private void cargarCategoriaDto(String idCatString){
 		int idCat = Integer.valueOf(idCatString);
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		mCategoriaSeleccionada = ConstantsAdmin.obtenerCategoriaPersonalId(this, idCat, mDBManager);
+		mCategoriaSeleccionada = ConstantsAdmin.obtenerCategoriaPersonalId(idCat, mDBManager);
 	}
 	
 	private void cargarEntriesConCategoriaDto(){

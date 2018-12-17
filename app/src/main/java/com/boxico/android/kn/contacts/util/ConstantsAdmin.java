@@ -62,17 +62,17 @@ public class ConstantsAdmin {
 	public static CursorLoader cursorPhonePersona = null;
 	public static CursorLoader cursorPersonaByNombreYApellido = null;
 
-    public static String querySelectionContactsById = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=";
-	public static String querySelectionContactsPhoneById = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ";
-	public static String querySelectionEmailContactsById = ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ";
-	public static String querySelectionPhoneContactsById = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ";
+    public static final String querySelectionContactsById = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=";
+	public static final String querySelectionContactsPhoneById = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ";
+	public static final String querySelectionEmailContactsById = ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ";
+	public static final String querySelectionPhoneContactsById = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ";
 
-	public static String[] projectionPhone = new String[]{
+	public static final String[] projectionPhone = new String[]{
 			ContactsContract.CommonDataKinds.Phone.NUMBER,
 			ContactsContract.CommonDataKinds.Phone.TYPE
 	};
 
-	public static String[] projectionMail = new String[]{
+	public static final String[] projectionMail = new String[]{
 			ContactsContract.CommonDataKinds.Email.DATA,
 			ContactsContract.CommonDataKinds.Email.TYPE
 	};
@@ -118,7 +118,7 @@ public class ConstantsAdmin {
 	}
 
 
-	public static String sortOrderForContacts = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
+	public static final String sortOrderForContacts = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
 
     public static Map<String, List<PersonaDTO>> obtenerOrganizadosAlfabeticamente(Activity context, DataBaseManager mDBManager){
 		if(organizadosAlfabeticamente == null){
@@ -609,7 +609,7 @@ public class ConstantsAdmin {
     	return per;
     }
     
-    public static CategoriaDTO obtenerCategoriaPersonalId(Activity context, long idCat, DataBaseManager mDBManager){
+    public static CategoriaDTO obtenerCategoriaPersonalId(long idCat, DataBaseManager mDBManager){
     	CategoriaDTO cat = new CategoriaDTO();
     	cat.setId(idCat);
     	Cursor catCursor;
@@ -1293,7 +1293,7 @@ public class ConstantsAdmin {
      		msg = (String) canStore.getValue();
      		if(boolValue){
      			body = obtenerCSVdeContactos(context, mDBManager);
-     			almacenarArchivo(folderCSV, fileCSV , body);
+     			almacenarArchivo(fileCSV , body);
      			mensaje = context.getString(R.string.mensaje_exito_exportar_csv);
      		}else{
     			mensaje = msg;
@@ -1342,7 +1342,7 @@ public class ConstantsAdmin {
      		if(boolValue){
      			body = obtenerCSVdeContactosEstetico(context, separador, categoriasProtegidas, mDBManager);
 				String fileEsteticoCSV = "kncontactsExcel.csv";
-				almacenarArchivo(folderCSV, fileEsteticoCSV, body);
+				almacenarArchivo(fileEsteticoCSV, body);
      			mensaje = context.getString(R.string.mensaje_exito_exportar_csv);
      		}else{
     			mensaje = msg;
@@ -1354,8 +1354,8 @@ public class ConstantsAdmin {
     }
     
     
-    private static void almacenarArchivo(String nombreDirectorio, String nombreArchivo, String body) throws IOException {
-    	String path = obtenerPath(nombreDirectorio);
+    private static void almacenarArchivo(String nombreArchivo, String body) throws IOException {
+    	String path = obtenerPath(ConstantsAdmin.folderCSV);
 
 	    File dir = new File(path);
 	    dir.mkdir();
@@ -1438,7 +1438,7 @@ public class ConstantsAdmin {
     	itCat = categorias.iterator();
     	while(itCat.hasNext()){
     		cat = itCat.next();
-    		result.append(obtenerStringCategoriaProtegida(cat, HEAD_CATEGORIA_PROTEGIDA));
+    		result.append(obtenerStringCategoriaProtegida(cat));
     	}
     	result.append(obtenerStringContrasenia());
     	
@@ -1459,9 +1459,9 @@ public class ConstantsAdmin {
     }
     
     
-    private static String obtenerStringCategoriaProtegida(CategoriaDTO cat, String header){
+    private static String obtenerStringCategoriaProtegida(CategoriaDTO cat){
     	String result;
-    	result = header + PUNTO_COMA + cat.getId() + PUNTO_COMA + cat.getNombreReal() + ENTER;
+    	result = ConstantsAdmin.HEAD_CATEGORIA_PROTEGIDA + PUNTO_COMA + cat.getId() + PUNTO_COMA + cat.getNombreReal() + ENTER;
     	return result;
     }
     
@@ -1677,7 +1677,7 @@ public class ConstantsAdmin {
     }
 
 
-    private static String obtenerStringEsteticoPersonaParaEnviar(PersonaDTO per, Activity context, String separador, DataBaseManager mDBManager){
+    private static String obtenerStringEsteticoPersonaParaEnviar(PersonaDTO per, Activity context, DataBaseManager mDBManager){
     	StringBuilder result = new StringBuilder();
     	List<TipoValorDTO> masTVs;
     	TipoValorDTO tv;
@@ -1688,23 +1688,23 @@ public class ConstantsAdmin {
     	
     	result.append("- ").append(per.getApellido()).append(" ");
     	if(per.getNombres() != null && !per.getNombres().equals("")){
-    		result.append(per.getNombres()).append(separador);
+    		result.append(per.getNombres()).append(ConstantsAdmin.ENTER);
     	}
-		result.append(separador);
+		result.append(ConstantsAdmin.ENTER);
     	// TELEFONOS
     	
-    	result = new StringBuilder(separador + result + context.getResources().getString(R.string.label_telefonos) + separador);
+    	result = new StringBuilder(ConstantsAdmin.ENTER + result + context.getResources().getString(R.string.label_telefonos) + ConstantsAdmin.ENTER);
     	
-    	result.append(separador);
+    	result.append(ConstantsAdmin.ENTER);
     	
     	if(per.getTelParticular() != null){
-    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getTelParticular()).append(separador);
+    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getTelParticular()).append(ConstantsAdmin.ENTER);
     	}
     	if(per.getCelular() != null){
-    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_telMovil)).append(SEPARACION_ATRIBUTO).append(per.getCelular()).append(separador);
+    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_telMovil)).append(SEPARACION_ATRIBUTO).append(per.getCelular()).append(ConstantsAdmin.ENTER);
     	}
     	if(per.getTelLaboral() != null){
-    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getTelLaboral()).append(separador);
+    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getTelLaboral()).append(ConstantsAdmin.ENTER);
     	}
     	
     
@@ -1712,52 +1712,52 @@ public class ConstantsAdmin {
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(separador);
+    		result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(ConstantsAdmin.ENTER);
     	}
 
-    	result.append(separador);
+    	result.append(ConstantsAdmin.ENTER);
     	// MAILS
-    	result = new StringBuilder(separador + result + context.getResources().getString(R.string.label_mail) + separador);
+    	result = new StringBuilder(ConstantsAdmin.ENTER + result + context.getResources().getString(R.string.label_mail) + ConstantsAdmin.ENTER);
 
-    	result.append(separador);
+    	result.append(ConstantsAdmin.ENTER);
     	if(per.getEmailParticular() != null){
-    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getEmailParticular()).append(separador);
+    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getEmailParticular()).append(ConstantsAdmin.ENTER);
     	}
     	if(per.getEmailLaboral() != null){
-    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getEmailLaboral()).append(separador);
+    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getEmailLaboral()).append(ConstantsAdmin.ENTER);
     	}
     	if(per.getEmailOtro() != null){
-    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_otro)).append(SEPARACION_ATRIBUTO).append(per.getEmailOtro()).append(separador);
+    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_otro)).append(SEPARACION_ATRIBUTO).append(per.getEmailOtro()).append(ConstantsAdmin.ENTER);
     	}
     	
     	masTVs = obtenerEmailsIdPersona(context, per.getId(),mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(separador);
+    		result.append("* ").append(context.getString(R.string.label_email)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(ConstantsAdmin.ENTER);
     	}
     	
-    	result.append(separador);
+    	result.append(ConstantsAdmin.ENTER);
     	// DIRECCIONES
 
-    	result = new StringBuilder(separador + result + context.getResources().getString(R.string.label_direcciones) + separador);
+    	result = new StringBuilder(ConstantsAdmin.ENTER + result + context.getResources().getString(R.string.label_direcciones) + ConstantsAdmin.ENTER);
 
-    	result.append(separador);
+    	result.append(ConstantsAdmin.ENTER);
     	if(per.getDireccionParticular() != null){
-    		result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getDireccionParticular()).append(separador);
+    		result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getDireccionParticular()).append(ConstantsAdmin.ENTER);
     	}
     	if(per.getDireccionLaboral() != null){
-    		result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getDireccionLaboral()).append(separador);
+    		result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getDireccionLaboral()).append(ConstantsAdmin.ENTER);
     	}
     	
     	masTVs = obtenerDireccionesIdPersona(context, per.getId(), mDBManager);
     	it = masTVs.iterator();
     	while(it.hasNext()){
     		tv = it.next();
-    		result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(separador);
+    		result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(ConstantsAdmin.ENTER);
     	}
     	
-    	result.append(separador);
+    	result.append(ConstantsAdmin.ENTER);
 
     	result.append(ENTER);
     	
@@ -2196,7 +2196,7 @@ public class ConstantsAdmin {
  		if(boolValue){
  			try {
 				String filePassword = "kncontacts.txt";
-				almacenarArchivo(folderCSV, filePassword, body);
+				almacenarArchivo(filePassword, body);
 			} catch (Exception ignored) {
 				
 			}
@@ -2476,7 +2476,7 @@ public class ConstantsAdmin {
 		
 		String result;
 		PersonaDTO per = obtenerPersonaId(activity, id, mDBManager);
-		result = obtenerStringEsteticoPersonaParaEnviar(per, activity, ENTER, mDBManager);
+		result = obtenerStringEsteticoPersonaParaEnviar(per, activity, mDBManager);
 		return result;
 	}
 

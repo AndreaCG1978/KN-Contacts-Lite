@@ -40,14 +40,14 @@ public class DataBaseManager {
 	 	super();
 	}
 
-
+/*
 	public boolean isOpened() {
 		return isOpened;
 	}
-
+*//*
 	public void setOpened(boolean opened) {
 		isOpened = opened;
-	}
+	}*/
 
 	public static DataBaseManager getInstance(Context ctx) {
 	 	instanciaUnica.setmCtx(ctx);
@@ -486,7 +486,6 @@ public class DataBaseManager {
      }
 
 	public CursorLoader cursorLoaderPreferidos(List<CategoriaDTO> categoriasProtegidas, Context context) {
-		Cursor result = null;
 		String categProteg = " (1 = 1) ";
 		if(!ConstantsAdmin.contrasenia.isActiva()){
 			categProteg = categProteg + this.queryParaCategoriaProtegidas(categoriasProtegidas);
@@ -513,7 +512,7 @@ public class DataBaseManager {
 	}
 
 
-
+/*
 
 	public Cursor fetchAllPreferidos(List<CategoriaDTO> categoriasProtegidas){
     	 Cursor result = null;
@@ -536,7 +535,9 @@ public class DataBaseManager {
     	 }
     	 return result;
      }
-     
+     */
+
+     /*
      public Cursor fetchAllPreferidos(){
     	 Cursor result = null;
     	
@@ -555,7 +556,7 @@ public class DataBaseManager {
     	 }
     	 return result;
      }
-
+*/
 
      /*
      public Cursor fetchAllPersonaPorApellidoONombre(String param, CategoriaDTO categoria) {
@@ -644,7 +645,7 @@ public class DataBaseManager {
     	 }
          return result;
      }
-     
+     /*
      public Cursor fetchAllCategoriasPersonalesPorNombre(String paramNombre) {
     	 Cursor result;
     	 if(paramNombre != null && !paramNombre.equals("")){
@@ -654,7 +655,8 @@ public class DataBaseManager {
     	 }
          return result;
      }
-
+*/
+     /*
      public Cursor fetchCategoriasActivasPorNombre(String paramNombre) {
     	 Cursor result;
     	 if(paramNombre != null && !paramNombre.equals("")){
@@ -664,7 +666,8 @@ public class DataBaseManager {
     	 }
          return result;
      }
-
+*/
+     /*
 	public Cursor fetchCategoriasPersonalesActivasPorNombre(String paramNombre) {
 		Cursor result;
 		if(paramNombre != null && !paramNombre.equals("")){
@@ -674,7 +677,7 @@ public class DataBaseManager {
 		}
 		return result;
 	}
-
+*/
 
 	public CursorLoader cursorLoaderCategoriasPersonalesActivasPorNombre(String paramNombre, Context context) {
 		String selection = null;
@@ -801,7 +804,7 @@ public class DataBaseManager {
 
 	}
 
-
+/*
 	public Cursor fetchAllPersonas(List<CategoriaDTO> categoriasProtegidas) {
 		String sortOrder = ConstantsAdmin.KEY_APELLIDO + " COLLATE LOCALIZED ASC";
 		Cursor result = null;
@@ -818,7 +821,7 @@ public class DataBaseManager {
 		return result;
 
 	}
-
+*/
 
 
      /*
@@ -887,7 +890,7 @@ public class DataBaseManager {
 
     }
 
-	public CursorLoader cursorLoaderPersonasPorCampo(String column, Object value, Context context) {
+	private CursorLoader cursorLoaderPersonasPorCampo(String column, Object value, Context context) {
 		String selection = ConstantsAdmin.querySelectionColumnByValue(column, value);
 
 		return new CursorLoader( context, null, null, selection, null, null)
@@ -921,9 +924,8 @@ public class DataBaseManager {
 			{
 				// You better know how to get your database.
 				// You can use any query that returns a cursor.
-				Cursor phones = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, getProjection() , getSelection() ,null, null);
-					//c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
-				return phones;
+				//c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				return cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, getProjection() , getSelection() ,null, null);
 			}
 		};
 
@@ -944,9 +946,8 @@ public class DataBaseManager {
 			{
 				// You better know how to get your database.
 				// You can use any query that returns a cursor.
-				Cursor per = cr.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, getProjection() , getSelection() ,getSelectionArgs(), null);
 				//c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
-				return per;
+				return cr.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, getProjection() , getSelection() ,getSelectionArgs(), null);
 			}
 		};
 
@@ -967,9 +968,8 @@ public class DataBaseManager {
 			{
 				// You better know how to get your database.
 				// You can use any query that returns a cursor.
-				Cursor per = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, getProjection() , getSelection() ,getSelectionArgs(), null);
 				//c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
-				return per;
+				return cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, getProjection() , getSelection() ,getSelectionArgs(), null);
 			}
 		};
 
@@ -995,9 +995,8 @@ public class DataBaseManager {
 			{
 				// You better know how to get your database.
 				// You can use any query that returns a cursor.
-				Cursor per = cr.query(ContactsContract.Data.CONTENT_URI, getProjection() , getSelection() ,getSelectionArgs(), null);
 				//c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
-				return per;
+				return cr.query(ContactsContract.Data.CONTENT_URI, getProjection() , getSelection() ,getSelectionArgs(), null);
 			}
 		};
 
@@ -1056,7 +1055,7 @@ public class DataBaseManager {
 	}
 
 
-	public CursorLoader cursorLoaderPreferidoPorCampo(String column, Object value, Context context) {
+	private CursorLoader cursorLoaderPreferidoPorCampo(String column, Object value, Context context) {
 		String selection = ConstantsAdmin.querySelectionColumnByValue(column, value);
 
 		return new CursorLoader( context, null, null, selection, null, null)
@@ -1078,7 +1077,7 @@ public class DataBaseManager {
 		};
 
 	}
-
+/*
      public Cursor fetchPreferidoPorId(long id){
     //	 return this.fetchPersonaNumber(ConstantsAdmin.KEY_ROWID, id);
 	     Cursor mCursor = null;
@@ -1095,7 +1094,7 @@ public class DataBaseManager {
 		 }
 	     return mCursor;
   	 
-     }
+     }*/
 /*
      public Cursor fetchTelefonoPorIdPersona(long id){
     	 return fetchTipoValorPorIdPersona(id,ConstantsAdmin.TABLA_TELEFONOS);
@@ -1147,14 +1146,14 @@ public class DataBaseManager {
     	 return this.fetchPersonaString(ConstantsAdmin.KEY_NOMBRES, nom);
   	 
      }*/
-     
+     /*
      public Cursor fetchPersonaPorNombreYApellido(String nom, String apellido){
     	 return this.fetchPersonaString(ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_APELLIDO, nom, apellido);
   	 
      }
-     
+     */
      // CAMBIOS PARA AGREGAR CONTRASENIA EN LAS CATEGORIAS
-     
+     /*
      public Cursor fetchAllCategoriasProtegidasPorNombre(String paramNombre) {
     	 Cursor result;
     	 if(paramNombre != null && !paramNombre.equals("")){
@@ -1163,7 +1162,7 @@ public class DataBaseManager {
     		 result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA}, null, null, null, null, null);
     	 }
          return result;
-     }
+     }*/
 
 	public CursorLoader cursorLoaderCategoriasProtegidas(String paramNombre, Context context) {
 		String selection = null;
@@ -1211,7 +1210,7 @@ public class DataBaseManager {
     }
 
 
-     
+     /*
      public Cursor fetchContrasenia() {
     	 Cursor result = null;
     	 try{
@@ -1223,7 +1222,7 @@ public class DataBaseManager {
     	return result;
     	 
      }
-
+*/
 
 
      public CursorLoader cursorLoaderConfiguracion(Context context){
@@ -1245,7 +1244,7 @@ public class DataBaseManager {
 
      }
 
-
+/*
      public Cursor fetchConfig() {
     	 Cursor result = null;
     	 try{
@@ -1257,7 +1256,7 @@ public class DataBaseManager {
     	return result;
     	 
      }
-     
+     */
      public void crearCategoriaProtegida(CategoriaDTO categoria){
     	 //long returnValue = -1;
     	 ContentValues initialValues = new ContentValues();

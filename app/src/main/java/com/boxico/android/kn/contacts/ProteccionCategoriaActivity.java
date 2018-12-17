@@ -35,9 +35,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 	private TextView labelCategorias = null;
 	private ProteccionCategoriaActivity me = null;
 	private ImageView imagen = null;
-	private Drawable dCandadoAbierto = null;
-	private Drawable dCandadoCerrado = null;
-//	private ArrayList<Cursor> allMyCursors = null;
+	//	private ArrayList<Cursor> allMyCursors = null;
 
 
 	@Override
@@ -119,7 +117,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			botonDesactivarContrasenia.setEnabled(true);
 			botonDesactivarContrasenia.setTextColor(getResources().getColor(R.color.color_azul));
 			
-			imagen.setBackgroundDrawable(dCandadoAbierto);
+			imagen.setBackground(getResources().getDrawable(R.drawable.candado_abierto));
 		}else{
 			contrasenia1.setEnabled(false);
 			contrasenia2.setEnabled(false);
@@ -132,7 +130,8 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			
 			botonDesactivarContrasenia.setEnabled(false);
 			botonDesactivarContrasenia.setTextColor(getResources().getColor(R.color.color_negro));
-			imagen.setBackgroundDrawable(dCandadoCerrado);
+			imagen.setBackground(getResources().getDrawable(R.drawable.candado_cerrado));
+		//	imagen.setBackgroundDrawable(dCandadoCerrado);
 		}
 
 		if(ConstantsAdmin.contrasenia.getId() == -1){
@@ -169,8 +168,8 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		botonActivarContrasenia = this.findViewById(R.id.botonActivarContrasenia);
 		botonDesactivarContrasenia = this.findViewById(R.id.botonDesactivarContrasenia);
 		imagen = this.findViewById(R.id.imagenProtegerCategorias);
-    	dCandadoAbierto = getResources().getDrawable(R.drawable.candado_abierto);
-		dCandadoCerrado = getResources().getDrawable(R.drawable.candado_cerrado);
+	//	Drawable dCandadoAbierto = getResources().getDrawable(R.drawable.candado_abierto);
+	//	Drawable dCandadoCerrado = getResources().getDrawable(R.drawable.candado_cerrado);
 	}
 	
     private void configurarBotonRegistrarContrasenia(){

@@ -21,7 +21,7 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 
 	public KNSimpleCursorAdapter(Activity context, int layout, Cursor c,
 								 String[] from, int[] to) {
-		super(context, layout, c, from, to);
+		super(context, layout, c, from, to, 0);
 		localContext = context;
 		// TODO Auto-generated constructor stub
 	}

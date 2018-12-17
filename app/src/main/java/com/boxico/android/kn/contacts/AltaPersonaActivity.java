@@ -98,15 +98,9 @@ public class AltaPersonaActivity extends Activity  {
 	
 	private boolean cambioCategoriaFlag = false;
 	private boolean vieneDesdeDetalle = false;
-	
-	
-	
-	private static final int DATE_DIALOG_ID = 0;
 
 
-
-
-    public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuItem item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS,0, R.string.menu_listar_categoria);
         item.setIcon(R.drawable.categoria_menu_icon);

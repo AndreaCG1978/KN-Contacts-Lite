@@ -52,7 +52,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 	//private ArrayList<Cursor> allMyCursors = null;
 
-	BroadcastReceiver mReceiverConecta = null;
+	private BroadcastReceiver mReceiverConecta = null;
 
 	private static final String VALOR = "VALOR";
 	private static final String TIPO = "TIPO";
@@ -75,12 +75,6 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 	//Drawable shapeLight = null;
 	//Drawable shapeDark = null;
-
-	private Drawable drwPrefColor = null;
-	private Drawable drwPrefBN = null;
-
-	private Drawable drwColorSeleccionado = null;
-	private Drawable drwColorDeseleccionado = null;
 
 	private final int colorSeleccionado = Color.parseColor("#874312");
 	private final int colorDeseleccionado = Color.parseColor("#41289C");
@@ -153,6 +147,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				String action = intent.getAction();
 				switch (action) {
 					case Intent.ACTION_MEDIA_MOUNTED:
+                        finish();
 						break;
 					case Intent.ACTION_MEDIA_UNMOUNTED:
 						break;
@@ -162,16 +157,18 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 						break;
 					case Intent.ACTION_MEDIA_EJECT:
 						break;
-					case Intent.ACTION_UMS_CONNECTED:
+			/*		case Intent.ACTION_UMS_CONNECTED:
 						finish();
 						break;
 					case Intent.ACTION_UMS_DISCONNECTED:
 
-						break;
+						break;*/
+			        default:
+			            break;
 				}
 			}
 		};
-		String SOME_ACTION = Intent.ACTION_UMS_CONNECTED;
+		String SOME_ACTION = Intent.ACTION_MEDIA_MOUNTED;
 		IntentFilter intentFilter = new IntentFilter(SOME_ACTION);
 		registerReceiver(mReceiverConecta, intentFilter);
 
@@ -335,7 +332,8 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 	private void mostrarUOcultarTelefonos() {
 		if (!mMostrarTelefonos) {
-			mTituloTelefonos.setBackgroundDrawable(drwColorDeseleccionado);
+			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
+		//	mTituloTelefonos.setBackgroundDrawable(drwColorDeseleccionado);
 			mTituloTelefonos.setTextColor(colorDeseleccionado);
 			telefonosList.setVisibility(View.GONE);
 		} else {
@@ -350,9 +348,10 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			mTituloTelefonos.setTextColor(colorSeleccionado);
 			mTituloEmails.setTextColor(colorDeseleccionado);
 			mTituloDirecciones.setTextColor(colorDeseleccionado);
-			mTituloTelefonos.setBackgroundDrawable(drwColorSeleccionado);
-			mTituloEmails.setBackgroundDrawable(drwColorDeseleccionado);
-			mTituloDirecciones.setBackgroundDrawable(drwColorDeseleccionado);
+		//	mTituloTelefonos.setBackgroundDrawable(drwColorSeleccionado);
+			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria_desc));
+			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
+			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
 			mMostrarDirecciones = false;
 			mMostrarEmails = false;
 
@@ -363,7 +362,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	private void mostrarUOcultarEmails() {
 		if (!mMostrarEmails) {
 			mailsList.setVisibility(View.GONE);
-			mTituloEmails.setBackgroundDrawable(drwColorDeseleccionado);
+			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
 			mTituloEmails.setTextColor(colorDeseleccionado);
 		} else {
 			mailsList.setVisibility(View.VISIBLE);
@@ -377,9 +376,9 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			mTituloEmails.setTextColor(colorSeleccionado);
 			mTituloDirecciones.setTextColor(colorDeseleccionado);
 			mTituloTelefonos.setTextColor(colorDeseleccionado);
-			mTituloEmails.setBackgroundDrawable(drwColorSeleccionado);
-			mTituloDirecciones.setBackgroundDrawable(drwColorDeseleccionado);
-			mTituloTelefonos.setBackgroundDrawable(drwColorDeseleccionado);
+			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria_desc));
+			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
+			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
 			mMostrarDirecciones = false;
 			mMostrarTelefonos = false;
 
@@ -390,7 +389,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	private void mostrarUOcultarDirecciones() {
 		if (!mMostrarDirecciones) {
 			direccionesList.setVisibility(View.GONE);
-			mTituloDirecciones.setBackgroundDrawable(drwColorDeseleccionado);
+			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
 			mTituloDirecciones.setTextColor(colorDeseleccionado);
 		} else {
 			direccionesList.setVisibility(View.VISIBLE);
@@ -404,9 +403,9 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			mTituloDirecciones.setTextColor(colorSeleccionado);
 			mTituloEmails.setTextColor(colorDeseleccionado);
 			mTituloTelefonos.setTextColor(colorDeseleccionado);
-			mTituloDirecciones.setBackgroundDrawable(drwColorSeleccionado);
-			mTituloEmails.setBackgroundDrawable(drwColorDeseleccionado);
-			mTituloTelefonos.setBackgroundDrawable(drwColorDeseleccionado);
+			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria_desc));
+			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
+			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
 			mMostrarEmails = false;
 			mMostrarTelefonos = false;
 		}
@@ -434,11 +433,11 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 		photo = this.findViewById(R.id.photo);
 
-		drwPrefColor = res.getDrawable(R.drawable.pref_detalle_icon);
-		drwPrefBN = res.getDrawable(R.drawable.pref_detalle_bn_icon);
+	//	Drawable drwPrefColor = res.getDrawable(R.drawable.pref_detalle_icon);
+	//	Drawable drwPrefBN = res.getDrawable(R.drawable.pref_detalle_bn_icon);
 
-		drwColorSeleccionado = res.getDrawable(R.drawable.custom_text_view_categoria_desc);
-		drwColorDeseleccionado = res.getDrawable(R.drawable.custom_text_view_categoria);
+	//	Drawable drwColorSeleccionado = res.getDrawable(R.drawable.custom_text_view_categoria_desc);
+	//	Drawable drwColorDeseleccionado = res.getDrawable(R.drawable.custom_text_view_categoria);
 
 		telefonosList = this.findViewById(R.id.listaTelefonos);
 		mailsList = this.findViewById(R.id.listaMails);
@@ -600,9 +599,9 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 	private void actualizarPreferido() {
 		if (mEsPreferido && mImagenPreferido != null) {
-			mImagenPreferido.setBackgroundDrawable(drwPrefColor);
+			mImagenPreferido.setBackground(getResources().getDrawable(R.drawable.pref_detalle_icon));
 		} else if (mImagenPreferido != null) {
-			mImagenPreferido.setBackgroundDrawable(drwPrefBN);
+			mImagenPreferido.setBackground(getResources().getDrawable(R.drawable.pref_detalle_bn_icon));
 		}
 	}
 
@@ -921,7 +920,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		if(mEsPreferido && mImagenPreferido!= null){
 			mEsPreferido = false;
-			mImagenPreferido.setBackgroundDrawable(drwPrefBN);
+			mImagenPreferido.setBackground(getResources().getDrawable(R.drawable.pref_detalle_bn_icon));
 			try {
 				ConstantsAdmin.eliminarPreferido(mPersonaSeleccionadaId, mDBManager);
 			} catch (Exception e) {
@@ -929,7 +928,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			}			
 		}else if(mImagenPreferido!= null){
 			mEsPreferido = true;
-			mImagenPreferido.setBackgroundDrawable(drwPrefColor);
+			mImagenPreferido.setBackground(getResources().getDrawable(R.drawable.pref_detalle_icon));
 			try {
 				ConstantsAdmin.crearPreferido(mPersonaSeleccionadaId, mDBManager);
 			} catch (Exception e) {

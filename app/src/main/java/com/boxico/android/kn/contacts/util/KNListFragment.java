@@ -21,7 +21,7 @@ import android.widget.TextView;
 public abstract class KNListFragment extends FragmentActivity implements OnCreateContextMenuListener, ListView.OnItemClickListener
 {
 
-    static final int INTERNAL_EMPTY_ID = 0x00ff0001;
+    private static final int INTERNAL_EMPTY_ID = 0x00ff0001;
 
     final private Handler mHandler = new Handler();
 
@@ -38,14 +38,13 @@ public abstract class KNListFragment extends FragmentActivity implements OnCreat
         }
     };
 
-    ListAdapter mAdapter;
-    ListView mList;
-    View mEmptyView;
-    TextView mStandardEmptyView;
-    View mListContainer;
-    boolean mSetEmptyText;
-    boolean mListShown;
-    boolean mFinishedStart = false;
+    private ListAdapter mAdapter;
+    private ListView mList;
+    private View mEmptyView;
+    private TextView mStandardEmptyView;
+    private boolean mSetEmptyText;
+    private boolean mListShown;
+    private boolean mFinishedStart = false;
 
     public KNListFragment() {
     }
@@ -127,7 +126,7 @@ public abstract class KNListFragment extends FragmentActivity implements OnCreat
     /**
      * Provide the cursor for the list view.
      */
-    public void setListAdapter(ListAdapter adapter) {
+    protected void setListAdapter(ListAdapter adapter) {
         boolean hadAdapter = mAdapter != null;
         mAdapter = adapter;
         if (mList != null) {
@@ -274,7 +273,7 @@ public abstract class KNListFragment extends FragmentActivity implements OnCreat
             }
 
 //
-            mListContainer = root.findViewById(android.R.id.list_container);
+     //       View mListContainer = root.findViewById(android.R.id.list_container);
             View rawListView = root.findViewById(android.R.id.list);
             if (!(rawListView instanceof ListView)) {
                 if (rawListView == null) {
