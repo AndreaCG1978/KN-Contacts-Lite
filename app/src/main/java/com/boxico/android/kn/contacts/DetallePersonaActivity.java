@@ -52,6 +52,8 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 	//private ArrayList<Cursor> allMyCursors = null;
 
+	BroadcastReceiver mReceiverConecta = null;
+
 	private static final String VALOR = "VALOR";
 	private static final String TIPO = "TIPO";
 
@@ -146,7 +148,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	}
 
 	private void compruebaCuandoConecta() {
-		BroadcastReceiver mReceiver1 = new BroadcastReceiver() {
+		mReceiverConecta = new BroadcastReceiver() {
 			public void onReceive(Context context, Intent intent) {
 				String action = intent.getAction();
 				switch (action) {
@@ -171,9 +173,18 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		};
 		String SOME_ACTION = Intent.ACTION_UMS_CONNECTED;
 		IntentFilter intentFilter = new IntentFilter(SOME_ACTION);
-		registerReceiver(mReceiver1, intentFilter);
+		registerReceiver(mReceiverConecta, intentFilter);
 
 
+	}
+
+
+
+	@Override
+	protected void onDestroy()
+	{
+	    this.unregisterReceiver(mReceiverConecta);
+		super.onDestroy();
 	}
 /*
 	@Override
