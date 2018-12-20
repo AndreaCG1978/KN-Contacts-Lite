@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Locale;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,12 +16,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -414,8 +411,6 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 
 	private void registrarViews() {
-		Resources res = getResources();
-
 		mApellido = this.findViewById(R.id.detalle_apellido);
 		mNombres = this.findViewById(R.id.detalle_nombres);
 		mFechaNacimiento = this.findViewById(R.id.detalle_fechaNacimiento);

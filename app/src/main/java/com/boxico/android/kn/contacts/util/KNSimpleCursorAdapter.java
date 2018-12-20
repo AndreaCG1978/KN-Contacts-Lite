@@ -5,13 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.boxico.android.kn.contacts.ListadoPersonaActivity;
 import com.boxico.android.kn.contacts.R;
 
 public class KNSimpleCursorAdapter extends SimpleCursorAdapter {

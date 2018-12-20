@@ -143,12 +143,7 @@ public abstract class KNListFragment extends FragmentActivity implements OnCreat
         }
     }
 
-    /**
-     * Set the currently selected list item to the specified
-     * position with the adapter's data
-     *
-     * @param position
-     */
+
     public void setSelection(int position) {
         ensureList();
         mList.setSelection(position);

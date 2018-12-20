@@ -2,11 +2,9 @@ package com.boxico.android.kn.contacts.util;
 
 
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
@@ -14,16 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.boxico.android.kn.contacts.R;
 
 public class ExpandableListFragment extends FragmentActivity
         implements OnCreateContextMenuListener,
@@ -154,12 +148,7 @@ public class ExpandableListFragment extends FragmentActivity
         }
     }
 
-    /**
-     * Set the currently selected list item to the specified
-     * position with the adapter's data
-     *
-     * @param position
-     */
+
     public void setSelection(int position) {
         ensureList();
         mList.setSelection(position);
@@ -266,7 +255,6 @@ public class ExpandableListFragment extends FragmentActivity
 
     private void ensureList() {
         if (mList != null) {
-            return;
         }
 
 /*

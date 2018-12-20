@@ -1,6 +1,5 @@
 package com.boxico.android.kn.contacts;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -278,7 +277,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	   	   	       if(family == null){
 	   	   	    	   family = "";
 	   	   	       }
-	   	   	       if((!family.equals("") || given != null && !given.equals("")) && (family != null || given != null)){
+	   	   	       if((!family.equals("") || !given.equals("")) && (family != null || given != null)){
 	
 		        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
 		        	   if(persona == null){

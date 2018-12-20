@@ -10,14 +10,12 @@ import java.util.Map;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -954,6 +952,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 	}
 
+	/*
     private void importarContactos(){
     	try {
         	PersonaDTO per;
@@ -980,7 +979,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			// TODO: handle exception
 			ConstantsAdmin.mensaje = getString(R.string.errorImportarContacto);
 		}
-    }
+    }*/
+
  /*   
     private CategoriaDTO obtenerCategoriaSeleccionada(){
     	CategoriaDTO result = null;
@@ -990,6 +990,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	return result;
     }
   */
+
+ /*
     private List<PersonaDTO> importarContactosPrivado(){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	ArrayList<PersonaDTO> result = new ArrayList<>();
@@ -1001,44 +1003,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	Cursor people = this.getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
     	Asociacion asoc;
     	if(people != null){
-	    	
-	    	//startManagingCursor(people);
 
 	    	while(people.moveToNext()) {
 	    		try {
 	    	       String contactId = people.getString(people.getColumnIndex(ContactsContract.Contacts._ID));
 		   	       asoc = this.obtenerNombreYApellidoDeContactoDeAgenda(contactId);
 		   	       per = this.obtenerContactoCapturado(asoc, people, cat, contactId);
-/*		   	       given = (String)asoc.getKey();
-		   	       family = (String)asoc.getValue();
-		   	       if((family != null && !family.equals("") || given!= null && !given.equals(""))&&
-			        		   (family != null || given!= null) ){
-			        	   per = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
-			        	   if(per == null){
-			        		   per = new PersonaDTO();
-			        	   }
-					       if ( hasPhone.equalsIgnoreCase("1")){
-					    	   hasPhone = "true";
-					       }else{
-					           hasPhone = "false";
-					       }
-
-					       per.setApellido(family);
-					       per.setNombres(given);
-					       if(per.getId()== -1){
-					    	   per.setCategoriaId(cat.getId());
-						       per.setCategoriaNombre(cat.getNombreReal());
-						       per.setCategoriaNombreRelativo(cat.getNombreRelativo());
-					       }
-
-
-					       if (Boolean.parseBoolean(hasPhone))
-					       {
-					    	   this.importarTelDeContacto(projectionPhone, per, contactId);
-					       }
-					       this.importarMailDeContacto(projectionMail, per, contactId);
-		           }
-	*/
 				} catch (Exception e) {
 					// TODO: handle exception
 				} finally{
@@ -1056,7 +1026,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
       	return result;
 
     }
-
+*/
 
     private PersonaDTO obtenerContactoCapturado(Asociacion asoc, Cursor people, CategoriaDTO cat, String contactId){
     	String given;
@@ -1128,6 +1098,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	            asoc = new Asociacion(given, family);
 	          //  stopManagingCursor(nameCur);
 	        }
+	        nameCur.close();
         }
 
     	return asoc;
@@ -1160,7 +1131,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     						break;
     					}
     	           }
-    	        } 
+    	        }
+                emails.close();
             }
 			
 		} catch (Exception e) {
@@ -1205,6 +1177,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	        		
     	        	}
     	        }
+                phones.close();
             }
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -1249,7 +1222,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
       	spinnerCategorias = this.findViewById(R.id.multi_spinner);
 		CursorLoader cursorLoader;
       	CategoriaDTO cat;
-      	List<CategoriaDTO> categorias = null;
+      	List<CategoriaDTO> categorias = new ArrayList<>();
       	List<CategoriaDTO> categoriasPersonales = null;
       	Iterator<CategoriaDTO> it;
   //    CategoriaDTO cat = null;

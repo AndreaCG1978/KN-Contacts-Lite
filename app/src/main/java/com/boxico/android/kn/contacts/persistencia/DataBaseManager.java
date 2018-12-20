@@ -842,6 +842,8 @@ public class DataBaseManager {
      }
      
      */
+
+     /*
      private Cursor fetchPersonaString(String column1, String column2, Object value1, Object value2) throws SQLException {
          Cursor mCursor = null;
     	 try{
@@ -865,7 +867,7 @@ public class DataBaseManager {
 		}
          return mCursor;
      }
-
+*/
     public CursorLoader cursorLoaderNombreApellidoPersona (String nombre, String apellido, Context context) {
 
         String selection = ConstantsAdmin.querySelectionNombreYApellidoPersona(nombre, apellido);

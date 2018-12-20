@@ -1793,7 +1793,7 @@ public class ConstantsAdmin {
     	while(!cursor.isAfterLast()){
            per = cursorToPersonaDto(cursor);
            result.add(per);
-			cursor.moveToNext();
+           cursor.moveToNext();
     	}
     //	cur.close();
    // 	context.stopManagingCursor(cur);

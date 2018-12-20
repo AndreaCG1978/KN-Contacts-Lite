@@ -1,10 +1,7 @@
 package com.boxico.android.kn.contacts;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MotionEvent;
 
