@@ -15,6 +15,8 @@ import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
+import java.util.Objects;
+
 public class AltaCategoriaActivity extends Activity {
 	
 	private CategoriaDTO mCategoriaSeleccionada = null;
@@ -153,7 +155,7 @@ public class AltaCategoriaActivity extends Activity {
 	private void guardarCategoriaSeleccionada(Intent intent){
 		String idCatString;
 		if(intent.hasExtra(ConstantsAdmin.CATEGORIA_SELECCIONADA)){
-			idCatString = (String)intent.getExtras().get(ConstantsAdmin.CATEGORIA_SELECCIONADA);
+			idCatString = (String)Objects.requireNonNull(intent.getExtras()).get(ConstantsAdmin.CATEGORIA_SELECCIONADA);
 			this.cargarCategoriaDto(idCatString);
 			this.cargarEntriesConCategoriaDto();
 		}else{
@@ -186,7 +188,7 @@ public class AltaCategoriaActivity extends Activity {
 //					mPersonaSeleccionada.setId(idPer);
 
 		} catch (Exception e) {
-			if(mCategoriaSeleccionada.getId() == 0){
+			if(Objects.requireNonNull(mCategoriaSeleccionada).getId() == 0){
 				ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorAltaCategoria));
 			}else{
 				ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorActualizacionCategoria));

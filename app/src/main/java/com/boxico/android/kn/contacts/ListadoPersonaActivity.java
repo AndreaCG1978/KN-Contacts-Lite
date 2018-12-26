@@ -1028,58 +1028,60 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     }
 */
 
-    private PersonaDTO obtenerContactoCapturado(Asociacion asoc, Cursor people, CategoriaDTO cat, String contactId){
-    	String given;
-    	String family;
-    	PersonaDTO per = null;
-	//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-    	String[] projectionPhone = new String[]{
-    			Phone.NUMBER,
-    			Phone.TYPE
-    	};
-    	                                      
-    	String[] projectionMail = new String[]{
-    			Email.DATA,
-    			Email.TYPE
-    	};   	
-
-    	try{
- 		   String hasPhone = people.getString(people.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
-	       given = (String)asoc.getKey();
-   	       family = (String)asoc.getValue();
-   	       if(family != null && !family.equals("") || given != null && !given.equals("")){
-	        	   per = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
-	        	   if(per == null){
-	        		   per = new PersonaDTO();   
-	        	   }
-			       if ( hasPhone.equalsIgnoreCase("1")){
-			    	   hasPhone = "true";
-			       }else{
-			           hasPhone = "false";
-			       }
-			       
-			       per.setApellido(family);
-			       per.setNombres(given);
-			       if(per.getId()== -1){
-			    	   per.setCategoriaId(cat.getId());
-				       per.setCategoriaNombre(cat.getNombreReal());
-				       per.setCategoriaNombreRelativo(cat.getNombreRelativo());
-			       }
-			       
-			       
-			       if (Boolean.parseBoolean(hasPhone)) 
-			       {
-			    	   this.importarTelDeContacto(projectionPhone, per, contactId);
-			       }
-			       this.importarMailDeContacto(projectionMail, per, contactId);
-           }
-			
-		} catch (Exception e) {
-			e.getMessage();
-		} 
-		return per;
-
-    }
+// --Commented out by Inspection START (26/12/2018 09:04):
+//    private PersonaDTO obtenerContactoCapturado(Asociacion asoc, Cursor people, CategoriaDTO cat, String contactId){
+//    	String given;
+//    	String family;
+//    	PersonaDTO per = null;
+//	//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+//    	String[] projectionPhone = new String[]{
+//    			Phone.NUMBER,
+//    			Phone.TYPE
+//    	};
+//
+//    	String[] projectionMail = new String[]{
+//    			Email.DATA,
+//    			Email.TYPE
+//    	};
+//
+//    	try{
+// 		   String hasPhone = people.getString(people.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+//	       given = (String)asoc.getKey();
+//   	       family = (String)asoc.getValue();
+//   	       if(family != null && !family.equals("") || given != null && !given.equals("")){
+//	        	   per = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
+//	        	   if(per == null){
+//	        		   per = new PersonaDTO();
+//	        	   }
+//			       if ( hasPhone.equalsIgnoreCase("1")){
+//			    	   hasPhone = "true";
+//			       }else{
+//			           hasPhone = "false";
+//			       }
+//
+//			       per.setApellido(family);
+//			       per.setNombres(given);
+//			       if(per.getId()== -1){
+//			    	   per.setCategoriaId(cat.getId());
+//				       per.setCategoriaNombre(cat.getNombreReal());
+//				       per.setCategoriaNombreRelativo(cat.getNombreRelativo());
+//			       }
+//
+//
+//			       if (Boolean.parseBoolean(hasPhone))
+//			       {
+//			    	   this.importarTelDeContacto(projectionPhone, per, contactId);
+//			       }
+//			       this.importarMailDeContacto(projectionMail, per, contactId);
+//           }
+//
+//		} catch (Exception e) {
+//			e.getMessage();
+//		}
+//		return per;
+//
+//    }
+// --Commented out by Inspection STOP (26/12/2018 09:04)
 
 
     private Asociacion obtenerNombreYApellidoDeContactoDeAgenda(String contactId){
@@ -1404,35 +1406,31 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		catSelectTextView.setText("");
 		imgPrefLeft.setVisibility(View.GONE);
 		imgPrefRight.setVisibility(View.GONE);
-		try{
-    		ConstantsAdmin.inicializarBD(mDBManager);
-    		if(categoriasSeleccionadas != null && categoriasSeleccionadas.size()>0){
-    			labelCateg = this.recuperarEtiquetaCatSeleccionadas();
-    			catSelectTextView.setText(labelCateg);
-    			catSelectTextView.setVisibility(View.VISIBLE);
-    			spinnerCategorias.setItems(todasLasCategString, this);
-    		}else{
-    			catSelectTextView.setVisibility(View.GONE);
-    		}
-    		ConstantsAdmin.config.setMuestraPreferidos(false);
-    		personasCursor = mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(mEntryBusquedaNombre, categoriasSeleccionadas, ConstantsAdmin.categoriasProtegidas);
-    		
-	    	if(personasCursor != null){
-	    //		startManagingCursor(personasCursor);
-		        // Create an array to specify the fields we want to display in the list (only TITLE)
-		        String[] from;
-		        int[] to;
-				from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
-				to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
-		        
-		        		        
-		        KNSimpleCursorAdapter personas = 
-		            new KNSimpleCursorAdapter(this, R.layout.row_personas, personasCursor, from, to);
-		        listaEspecial.setAdapter(personas);
-		        cantReg.setText("(" + listaEspecial.getAdapter().getCount() + ")");
-	    	}
-    	}catch (Exception e) {
-			e.getMessage();
+		ConstantsAdmin.inicializarBD(mDBManager);
+		if(categoriasSeleccionadas != null && categoriasSeleccionadas.size()>0){
+			labelCateg = this.recuperarEtiquetaCatSeleccionadas();
+			catSelectTextView.setText(labelCateg);
+			catSelectTextView.setVisibility(View.VISIBLE);
+			spinnerCategorias.setItems(todasLasCategString, this);
+		}else{
+			catSelectTextView.setVisibility(View.GONE);
+		}
+		ConstantsAdmin.config.setMuestraPreferidos(false);
+		personasCursor = mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(mEntryBusquedaNombre, categoriasSeleccionadas, ConstantsAdmin.categoriasProtegidas);
+
+		if(personasCursor != null){
+	//		startManagingCursor(personasCursor);
+			// Create an array to specify the fields we want to display in the list (only TITLE)
+			String[] from;
+			int[] to;
+			from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
+			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
+
+
+			KNSimpleCursorAdapter personas =
+				new KNSimpleCursorAdapter(this, R.layout.row_personas, personasCursor, from, to);
+			listaEspecial.setAdapter(personas);
+			cantReg.setText("(" + listaEspecial.getAdapter().getCount() + ")");
 		}
 
     

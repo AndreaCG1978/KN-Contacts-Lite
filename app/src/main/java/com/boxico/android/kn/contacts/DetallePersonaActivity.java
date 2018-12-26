@@ -446,10 +446,10 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		Asociacion asoc;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		if (mPersonaSeleccionadaId != -1) {
-			CursorLoader loaderPersona = null;
-			CursorLoader loaderPreferido = null;
-			Cursor perCursor = null;
-			Cursor prefCursor = null;
+			CursorLoader loaderPersona;
+			CursorLoader loaderPreferido;
+			Cursor perCursor;
+			Cursor prefCursor;
 			ConstantsAdmin.inicializarBD(mDBManager);
 			loaderPersona = mDBManager.cursorLoaderPersonaPorId(mPersonaSeleccionadaId, this);
 			//Cursor perCursor = mDBManager.fetchPersonaPorId(mPersonaSeleccionadaId);h

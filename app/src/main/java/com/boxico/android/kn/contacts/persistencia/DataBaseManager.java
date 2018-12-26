@@ -337,25 +337,21 @@ public class DataBaseManager {
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA, categoria.getNombreReal());
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_ACTIVA, categoria.getActiva());
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA, categoria.getTipoDatoExtra());
-         try {
-        // 	 this.open();
-        	 if(!importando){
-	        	 if(categoria.getId() == 0 ){
-	        		 mDb.insert(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, null, initialValues);
-	        	 }else{
-	        		 mDb.update(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, initialValues, ConstantsAdmin.KEY_ROWID + "=" + categoria.getId() , null);
-	        		 this.actualizarContactosPorCambioCategoriaPersonal(categoria, oldCat);
-	        	//	 categoria.getId();
-	        	 }
-        	 }else{
-        		 initialValues.put(ConstantsAdmin.KEY_ROWID, categoria.getId());
-        		 mDb.insert(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, null, initialValues);
-        	 }
-        //	 this.close();
-         } catch (Exception e) {
-			// TODO: handle exception
-			e.getMessage();
-         }
+         // 	 this.open();
+		 if(!importando){
+			 if(categoria.getId() == 0 ){
+				 mDb.insert(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, null, initialValues);
+			 }else{
+				 mDb.update(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, initialValues, ConstantsAdmin.KEY_ROWID + "=" + categoria.getId() , null);
+				 this.actualizarContactosPorCambioCategoriaPersonal(categoria, oldCat);
+			//	 categoria.getId();
+			 }
+		 }else{
+			 initialValues.put(ConstantsAdmin.KEY_ROWID, categoria.getId());
+			 mDb.insert(ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, null, initialValues);
+		 }
+	//	 this.close();
+
 	 }
      
      private void actualizarContactosPorCambioCategoriaPersonal(CategoriaDTO categoria, String oldCat){
@@ -395,18 +391,14 @@ public class DataBaseManager {
     		 initialValues.put(ConstantsAdmin.KEY_ORDENADO_POR_CATEGORIA, 1);	 
     	 } 
     	// long id = -1;
-         try {
-        	 
-        	 if(config.getId() == -1 ){
-        		 initialValues.put(ConstantsAdmin.KEY_ROWID, 1);
-        		 mDb.insert(ConstantsAdmin.TABLA_CONFIGURACION, null, initialValues);
-        	 }else{
-        		 mDb.update(ConstantsAdmin.TABLA_CONFIGURACION, initialValues, ConstantsAdmin.KEY_ROWID + " = " + config.getId(), null);
-        	 }
-         } catch (Exception e) {
-			// TODO: handle exception
-			e.getMessage();
+
+         if(config.getId() == -1 ){
+             initialValues.put(ConstantsAdmin.KEY_ROWID, 1);
+             mDb.insert(ConstantsAdmin.TABLA_CONFIGURACION, null, initialValues);
+         }else{
+             mDb.update(ConstantsAdmin.TABLA_CONFIGURACION, initialValues, ConstantsAdmin.KEY_ROWID + " = " + config.getId(), null);
          }
+
 
 	 }
      
@@ -429,51 +421,35 @@ public class DataBaseManager {
      }
      
      private long tablaContraseniaSize(){
-    	 long result = 0;
-    	 try {
-			SQLiteStatement s = mDb.compileStatement(DataBaseHelper.SIZE_CONTRASENIA);
-			result = s.simpleQueryForLong();
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		return result;
+	   	 long result = 0;
+	   	 SQLiteStatement s = mDb.compileStatement(DataBaseHelper.SIZE_CONTRASENIA);
+		 result = s.simpleQueryForLong();
+		 return result;
      }
 
      public long tablaCategoriaSize(){
-    	 long result = 0;
-    	 try {
-			SQLiteStatement s = mDb.compileStatement(DataBaseHelper.SIZE_CATEGORIAS);
-			result = s.simpleQueryForLong();
-		} catch (Exception e) {
-			e.getMessage();
-		}
+   	 	long result = 0;
+		SQLiteStatement s = mDb.compileStatement(DataBaseHelper.SIZE_CATEGORIAS);
+		result = s.simpleQueryForLong();
 		return result;
      }
      
      public boolean actualizarTablaCategoria(){
     	boolean result = false;
-    	try {
-    		if(tablaCategoriaSize() > 0){
-    			mDb.execSQL(DataBaseHelper.ACTUALIZAR_TABLA_CATEGORIAS);
-    			result = true;
-    		}
-		} catch (Exception e) {
-			e.getMessage();
+   		if(tablaCategoriaSize() > 0){
+			mDb.execSQL(DataBaseHelper.ACTUALIZAR_TABLA_CATEGORIAS);
+			result = true;
 		}
 		return result;
-		
      }
      
      public void actualizarTablaContrasenia(){
      //	boolean result = false;
-     	try {
-     		if(tablaContraseniaSize() > 0){
-     			mDb.execSQL(DataBaseHelper.ACTUALIZAR_TABLA_CONTRASENIA);
-     		//	result = true;
-     		}
- 		} catch (Exception e) {
- 			e.getMessage();
- 		}
+		if(tablaContraseniaSize() > 0){
+			mDb.execSQL(DataBaseHelper.ACTUALIZAR_TABLA_CONTRASENIA);
+		//	result = true;
+		}
+
 
 	 }
 
@@ -1008,17 +984,13 @@ public class DataBaseManager {
 
 	private Cursor fetchPersonaNumber(String column, Object value) throws SQLException {
 		Cursor mCursor = null;
-		try{
-			mCursor =
-					mDb.query(true, ConstantsAdmin.TABLA_PERSONA, null, column + "= '" + value + "'" , null,
-							null, null, null, null);
-			if (mCursor != null) {
-				mCursor.moveToFirst();
-			}
-		}catch (Exception e) {
-			// TODO: handle exception
-			e.getMessage();
+		mCursor =
+				mDb.query(true, ConstantsAdmin.TABLA_PERSONA, null, column + "= '" + value + "'" , null,
+						null, null, null, null);
+		if (mCursor != null) {
+			mCursor.moveToFirst();
 		}
+
 		return mCursor;
 	}
 
@@ -1026,17 +998,13 @@ public class DataBaseManager {
 
      private Cursor fetchCategoriaPersonalNumber(String column, Object value) throws SQLException {
          Cursor mCursor = null;
-    	 try{
-    		 mCursor =
-             mDb.query(true, ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, null, column + "= '" + value + "'" , null,
-                     null, null, null, null);
-    		 if (mCursor != null) {
-    			 mCursor.moveToFirst();
-    		 }
-    	 }catch (Exception e) {
-			// TODO: handle exception
-    		 e.getMessage();
-		}
+		 mCursor =
+		 mDb.query(true, ConstantsAdmin.TABLA_CATEGORIA_PERSONALES, null, column + "= '" + value + "'" , null,
+				 null, null, null, null);
+		 if (mCursor != null) {
+			 mCursor.moveToFirst();
+		 }
+
          return mCursor;
      }
 
@@ -1263,17 +1231,11 @@ public class DataBaseManager {
     	 //long returnValue = -1;
     	 ContentValues initialValues = new ContentValues();
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA, categoria.getNombreReal());
-         
-         try {
-
      //    	this.open();
-         	mDb.insert(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, null, initialValues);
+		 mDb.insert(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, null, initialValues);
      //    	this.close();
 
-         } catch (Exception e) {
-			// TODO: handle exception
-			e.getMessage();
-         }
+
 	 }
      
      
@@ -1287,18 +1249,12 @@ public class DataBaseManager {
         	 initialValues.put(ConstantsAdmin.KEY_CONTRASENIA_ACTIVA, 0);
          }
          initialValues.put(ConstantsAdmin.KEY_MAIL1, contrasenia.getMail());
-         
-         try {
- 
-        	 if(contrasenia.getId() == -1 ){
-        		 id = mDb.insert(ConstantsAdmin.TABLA_CONTRASENIA, null, initialValues);
-        	 }else{
-        		 id = mDb.update(ConstantsAdmin.TABLA_CONTRASENIA, initialValues, ConstantsAdmin.KEY_ROWID + "=" + contrasenia.getId() , null);
-        	 }
-         } catch (Exception e) {
-			// TODO: handle exception
-			e.getMessage();
-         }  
+		 if(contrasenia.getId() == -1 ){
+			 id = mDb.insert(ConstantsAdmin.TABLA_CONTRASENIA, null, initialValues);
+		 }else{
+			 id = mDb.update(ConstantsAdmin.TABLA_CONTRASENIA, initialValues, ConstantsAdmin.KEY_ROWID + "=" + contrasenia.getId() , null);
+		 }
+
          return id;
      }
      

@@ -277,7 +277,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	   	   	       if(family == null){
 	   	   	    	   family = "";
 	   	   	       }
-	   	   	       if((!family.equals("") || !given.equals("")) && (family != null || given != null)){
+	   	   	       if(!family.equals("") || !given.equals("")){
 	
 		        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
 		        	   if(persona == null){
@@ -544,12 +544,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
         @Override
         protected void onPostExecute(Integer result) {
-        	try{
-        		dialog.cancel();
-		    	finish();
-        	}catch (Exception e) {
-				e.getMessage();
-			}
+       		dialog.cancel();
+	    	finish();
        		ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
     		ConstantsAdmin.mensaje = null;
         }
@@ -563,40 +559,36 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		String given;
 		String family;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		try {
-			ConstantsAdmin.inicializarBD(mDBManager);
-			getPeople().moveToFirst();
-			while(getPeople().moveToNext()) {
-			       contactId  = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
-		   	       contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactId);
-		   	       if(contactoActual != null){
-				       given = (String)contactoActual.getKey();
-			   	       family = (String)contactoActual.getValue();
+		ConstantsAdmin.inicializarBD(mDBManager);
+		getPeople().moveToFirst();
+		while(getPeople().moveToNext()) {
+               contactId  = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
+               contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactId);
+               if(contactoActual != null){
+                   given = (String)contactoActual.getKey();
+                   family = (String)contactoActual.getValue();
 
-			   	       if(family != null && !family.equals("") || given != null && !given.equals("")){
-			        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
-			        	   if(persona == null){
-			        		   persona = new PersonaDTO();   
-			        	   }
-					       persona.setApellido(family);
-					       persona.setNombres(given);
-				   		   if(persona.getNombres() != null && persona.getApellido() == null){
-				   			   persona.setApellido(persona.getNombres());
-				   			   persona.setNombres(null);
-						   }
-				   		   this.obtenerContactoCapturado(true);
-			    	   	   mDBManager.createPersona(persona, false);
+                   if(family != null && !family.equals("") || given != null && !given.equals("")){
+                       persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
+                       if(persona == null){
+                           persona = new PersonaDTO();
+                       }
+                       persona.setApellido(family);
+                       persona.setNombres(given);
+                       if(persona.getNombres() != null && persona.getApellido() == null){
+                           persona.setApellido(persona.getNombres());
+                           persona.setNombres(null);
+                       }
+                       this.obtenerContactoCapturado(true);
+                       mDBManager.createPersona(persona, false);
 
-			   	       }
-		   	       }
-		    		
-		    }
-			ConstantsAdmin.resetPersonasOrganizadas();
-			ConstantsAdmin.finalizarBD(mDBManager);
-			
-		} catch (Exception e) {
-			e.getMessage();
-		}
+                   }
+               }
+
+        }
+        ConstantsAdmin.resetPersonasOrganizadas();
+        ConstantsAdmin.finalizarBD(mDBManager);
+
 		
 	}
 
@@ -792,46 +784,41 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
     private void obtenerContactoCapturado(boolean desdeAgregarTodos){
     	boolean tieneTelefonos;
-	   	try{
+        CursorLoader cursorLoaderPhones = ConstantsAdmin.cursorPersona;
+    /*	if(cursorLoaderPhones == null){
+            cursorLoaderPhones = mDBManager.cursorLoaderPersonaId(contactId, this,getContentResolver());
+        }*/
+        cursorLoaderPhones.setSelection(ConstantsAdmin.querySelectionContactsPhoneById + contactId);
+        cursorLoaderPhones.reset();
 
-			CursorLoader cursorLoaderPhones = ConstantsAdmin.cursorPersona;
-		/*	if(cursorLoaderPhones == null){
-				cursorLoaderPhones = mDBManager.cursorLoaderPersonaId(contactId, this,getContentResolver());
-			}*/
-			cursorLoaderPhones.setSelection(ConstantsAdmin.querySelectionContactsPhoneById + contactId);
-			cursorLoaderPhones.reset();
+        Cursor phones = cursorLoaderPhones.loadInBackground();
+        tieneTelefonos = phones.getCount() > 0;
+        phones.close();
+        if(mCategoriaSeleccionada == null){
+            this.seleccionarPrimerCategoria();
+        }
+        if(!desdeAgregarTodos || (persona.getId() == -1)){// SIGNIFICA QUE ES UN AGREGADO O ACTUALIZACION SIMPLE DE UN CONTACTO
+       // O SI ES DESDE ADD ALL SOLO CONFIGURO CATEGORIA SI EL CONTACTO ES NUEVO
+           persona.setCategoriaId(mCategoriaSeleccionada.getId());
+           persona.setCategoriaNombre(mCategoriaSeleccionada.getNombreReal());
+           persona.setCategoriaNombreRelativo(mCategoriaSeleccionada.getNombreRelativo());
+           persona.setDatoExtra(entryDatoExtra.getText().toString());
+           persona.setDescripcion(entryDescripcion.getText().toString());
+        }
 
-			Cursor phones = cursorLoaderPhones.loadInBackground();
-    	   	tieneTelefonos = phones.getCount() > 0;
-    	   	phones.close();
-		   	if(mCategoriaSeleccionada == null){
-				this.seleccionarPrimerCategoria();
-		   	}
-		   	if(!desdeAgregarTodos || (persona.getId() == -1)){// SIGNIFICA QUE ES UN AGREGADO O ACTUALIZACION SIMPLE DE UN CONTACTO
-		   // O SI ES DESDE ADD ALL SOLO CONFIGURO CATEGORIA SI EL CONTACTO ES NUEVO
-			   persona.setCategoriaId(mCategoriaSeleccionada.getId());
-		       persona.setCategoriaNombre(mCategoriaSeleccionada.getNombreReal());
-		       persona.setCategoriaNombreRelativo(mCategoriaSeleccionada.getNombreRelativo());
-			   persona.setDatoExtra(entryDatoExtra.getText().toString());
-			   persona.setDescripcion(entryDescripcion.getText().toString());
-		   	}
+        if (tieneTelefonos){
+           this.importarTelDeContacto(persona, contactId);
+        }
+        this.importarMailDeContacto(persona, contactId);
 
-	       	if (tieneTelefonos){
-	    	   this.importarTelDeContacto(persona, contactId);
-	       	}
-	       	this.importarMailDeContacto(persona, contactId);
-			
-		} catch (Exception e) {
-			e.getMessage();
-		} 
 
     }
     
     
     private Asociacion obtenerNombreYApellidoDeContactoDeAgenda(String cId){
     	Asociacion asoc = null;
-    	Cursor nameCur = null;
-    	CursorLoader nameCurLoader = null;
+    	Cursor nameCur;
+    	CursorLoader nameCurLoader;
 
     	String given;
     	String family;
@@ -861,45 +848,42 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     private void importarMailDeContacto(PersonaDTO per, String contactId){
     	String emailAddress;
     	int emailType;
-		Cursor emails = null;
-		CursorLoader nameCurLoader = null;
-    	try {
-		//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			nameCurLoader = ConstantsAdmin.cursorEmailPersona;
-			nameCurLoader.setSelection(ConstantsAdmin.querySelectionEmailContactsById + contactId);
-			nameCurLoader.reset();
-			emails = nameCurLoader.loadInBackground();
-		//	Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
-            if(emails != null){
-    	    //    super.startManagingCursor(emails);
-    	        while (emails.moveToNext()) { 
-    	           // Tis would allow you get several email addresses 
-    	           emailAddress = emails.getString(emails.getColumnIndex(Email.DATA)); 
-    	           emailType = emails.getInt(emails.getColumnIndex(Email.TYPE)); 
-    	
-    	           if(!emailAddress.equals("")){
-    	        		switch (emailType) {
-    					case Email.TYPE_HOME :
-    						per.setEmailParticular(emailAddress);
-    						break;
-    					case Email.TYPE_WORK:
-    						per.setEmailLaboral(emailAddress);
-    						break;
-    					case Email.TYPE_OTHER :
-    						per.setEmailOtro(emailAddress);
-    						break;
-    					default:
-    						break;
-    					}
-    	           }
-    	        } 
-    	 	    emails.close();
-    	  //      this.stopManagingCursor(emails);
+		Cursor emails;
+		CursorLoader nameCurLoader;
+
+    //	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+        nameCurLoader = ConstantsAdmin.cursorEmailPersona;
+        nameCurLoader.setSelection(ConstantsAdmin.querySelectionEmailContactsById + contactId);
+        nameCurLoader.reset();
+        emails = nameCurLoader.loadInBackground();
+    //	Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
+        if(emails != null){
+        //    super.startManagingCursor(emails);
+            while (emails.moveToNext()) {
+               // Tis would allow you get several email addresses
+               emailAddress = emails.getString(emails.getColumnIndex(Email.DATA));
+               emailType = emails.getInt(emails.getColumnIndex(Email.TYPE));
+
+               if(!emailAddress.equals("")){
+                    switch (emailType) {
+                    case Email.TYPE_HOME :
+                        per.setEmailParticular(emailAddress);
+                        break;
+                    case Email.TYPE_WORK:
+                        per.setEmailLaboral(emailAddress);
+                        break;
+                    case Email.TYPE_OTHER :
+                        per.setEmailOtro(emailAddress);
+                        break;
+                    default:
+                        break;
+                    }
+               }
             }
-			
-		} catch (Exception e) {
-			e.getMessage();
-		}
+            emails.close();
+      //      this.stopManagingCursor(emails);
+        }
+
 
     	
     }
@@ -910,53 +894,50 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
     private void importarTelDeContacto(PersonaDTO per, String contactId){
     	String phoneNumber;
     	int phoneType;
-		CursorLoader nameCurLoader = null;
-    	try {
+		CursorLoader nameCurLoader;
 
-		//	String[] projectionPhone = ConstantsAdmin.projectionPhone;
-			//DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			nameCurLoader = ConstantsAdmin.cursorPhonePersona;
-			nameCurLoader.setSelection(ConstantsAdmin.querySelectionPhoneContactsById + contactId);
-			nameCurLoader.reset();
-			Cursor phones = nameCurLoader.loadInBackground();
+    //	String[] projectionPhone = ConstantsAdmin.projectionPhone;
+        //DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+        nameCurLoader = ConstantsAdmin.cursorPhonePersona;
+        nameCurLoader.setSelection(ConstantsAdmin.querySelectionPhoneContactsById + contactId);
+        nameCurLoader.reset();
+        Cursor phones = nameCurLoader.loadInBackground();
 
 
 
 //    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
-            if(phones != null){
-  //  	        super.startManagingCursor(phones);
-    	        while (phones.moveToNext()) 
-    	        {
-    	        	phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-    	        	phoneType = phones.getInt(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
-    	        	
-    	        	if(!phoneNumber.equals("")){
-    	        		switch (phoneType) {
-    					case Phone.TYPE_HOME :
-    						per.setTelParticular(phoneNumber);
-    						break;
-    					case Phone.TYPE_MOBILE :
-    						per.setCelular(phoneNumber);
-    						break;
-    					case Phone.TYPE_WORK :
-    						per.setTelLaboral(phoneNumber);
-    						break;
-    					case Phone.TYPE_WORK_MOBILE :
-    						per.setTelLaboral(phoneNumber);
-    						break;
-    					default:
-    						break;
-    					}
-    	        		
-    	        	}
-    	        }
-    	        phones.close();
-    //	        this.stopManagingCursor(phones);
+        if(phones != null){
+//  	        super.startManagingCursor(phones);
+            while (phones.moveToNext())
+            {
+                phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                phoneType = phones.getInt(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
+
+                if(!phoneNumber.equals("")){
+                    switch (phoneType) {
+                    case Phone.TYPE_HOME :
+                        per.setTelParticular(phoneNumber);
+                        break;
+                    case Phone.TYPE_MOBILE :
+                        per.setCelular(phoneNumber);
+                        break;
+                    case Phone.TYPE_WORK :
+                        per.setTelLaboral(phoneNumber);
+                        break;
+                    case Phone.TYPE_WORK_MOBILE :
+                        per.setTelLaboral(phoneNumber);
+                        break;
+                    default:
+                        break;
+                    }
+
+                }
             }
-		} catch (Exception e) {
-			e.getMessage();
-		}
-        
+            phones.close();
+//	        this.stopManagingCursor(phones);
+        }
+
+
     	
     }
     

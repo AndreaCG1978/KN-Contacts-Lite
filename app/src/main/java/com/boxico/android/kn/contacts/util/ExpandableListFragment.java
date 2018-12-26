@@ -94,19 +94,12 @@ public class ExpandableListFragment extends FragmentActivity
         return root;
     }
 
-    /**
-     * Attach to list view once Fragment is ready to run.
-     */
-
     /*
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ensureList();
     }
 */
-    /**
-     * Detach from list view.
-     */
 
   /*  public void onDestroyView() {
         mHandler.removeCallbacks(mRequestFocus);

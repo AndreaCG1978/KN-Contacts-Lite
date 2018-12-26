@@ -849,7 +849,7 @@ public class ConstantsAdmin {
     }
 
     public static void mostrarMensaje(Context context, String message){
-    	Toast t = Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG);
+        Toast t = Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG);
 		t.show();    	
     }
     
@@ -2183,7 +2183,7 @@ public class ConstantsAdmin {
 		finalizarBD(mDBManager);
 		return id;
     }
-    
+    /*
     public static void almacenarContraseniaEnArchivo(Activity context){
     	Asociacion canStore;
     	Boolean boolValue;
@@ -2208,7 +2208,7 @@ public class ConstantsAdmin {
 
    	
     }
-    
+    */
     public static void eliminarCategoriaProtegida(CategoriaDTO cat, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.eliminarCategoriaProtegida(cat.getNombreReal());

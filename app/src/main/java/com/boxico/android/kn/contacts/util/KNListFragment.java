@@ -89,19 +89,12 @@ public abstract class KNListFragment extends FragmentActivity implements OnCreat
         return root;
     }
 
-    /**
-     * Attach to list view once Fragment is ready to run.
-     */
-
     /*
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ensureList();
     }
 */
-    /**
-     * Detach from list view.
-     */
 
   /*  public void onDestroyView() {
         mHandler.removeCallbacks(mRequestFocus);
