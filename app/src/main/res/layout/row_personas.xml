@@ -13,7 +13,7 @@
 			android:layout_height="wrap_content" android:textColor="@color/color_blanco"
 			android:textSize="13sp" android:paddingStart="15dp"
 			android:paddingTop="1dp" android:paddingEnd="4dp"
-			android:paddingBottom="1dp" android:typeface="sans"
+			android:paddingBottom="1dp" android:typeface="monospace"
 			android:maxLength="20"
             android:paddingLeft="15dp"
             android:paddingRight="4dp">
@@ -22,7 +22,7 @@
 			android:layout_width="fill_parent" android:textSize="13sp"
 			android:textColor="@color/color_blanco" android:padding="1dp"
 			android:layout_marginEnd="10dp"
-			android:singleLine="true" android:typeface="sans"
+			android:typeface="sans"
             android:layout_marginRight="10dp">
 		</TextView>
 
@@ -39,15 +39,15 @@
 			<TextView android:id="@+id/rowDatoRelevante"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
 				android:textStyle="bold" android:textColor="@color/color_gris_oscuro"
-				android:textSize="12sp" android:paddingStart="15dp"
+				android:textSize="13sp" android:paddingStart="15dp"
 				android:paddingEnd="15dp"
-				android:paddingTop="1dp" android:paddingBottom="1dp"
+				android:paddingTop="0dp" android:paddingBottom="0dp"
 				android:background="@drawable/custom_text_view_categoria"
-				android:gravity="start" android:layout_marginEnd="25dp"
+				android:gravity="start" android:layout_marginEnd="20dp"
 				android:singleLine="true"
                 android:paddingLeft="15dp"
 				android:paddingRight="15dp"
-                android:layout_marginRight="25dp">
+                android:layout_marginRight="20dp">
 			</TextView>
 			<TextView android:id="@+id/rowDatoRelevante2"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"

@@ -323,7 +323,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 
 	private void configurarExpandableList(){
-	       this.getExpandableListView().setDividerHeight(8);
+	       this.getExpandableListView().setDividerHeight(12);
 
 	}
 

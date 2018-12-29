@@ -436,10 +436,17 @@ public class DataBaseManager {
      
      public boolean actualizarTablaCategoria(){
     	boolean result = false;
-   		if(tablaCategoriaSize() > 0){
-			mDb.execSQL(DataBaseHelper.ACTUALIZAR_TABLA_CATEGORIAS);
-			result = true;
+    	try{
+
+			if(tablaCategoriaSize() > 0){
+				mDb.execSQL(DataBaseHelper.ACTUALIZAR_TABLA_CATEGORIAS);
+				result = true;
+			}
+
+		}catch(Exception e){
+
 		}
+
 		return result;
      }
      

@@ -93,19 +93,19 @@
 		<ExpandableListView android:id="@android:id/list"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:layout_marginBottom="55dp"
-			android:scrollbarAlwaysDrawVerticalTrack="true" android:divider="@android:color/black"
-			android:childDivider="@android:color/transparent"
+			android:scrollbarAlwaysDrawVerticalTrack="true"
 			android:listSelector="@android:color/transparent"
 			android:cacheColorHint="@android:color/transparent"
-			android:background="@android:color/transparent"
-			android:scrollingCache="false">
+			android:background="@color/color_gris_claro"
+			android:scrollingCache="false"
+			>
 		</ExpandableListView>
 		<TextView android:id="@android:id/empty"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:layout_margin="10dp" android:text="@string/text_sinDatos" />
 		<ListView android:id="@+id/listaEspecial"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
-			android:dividerHeight="10dp" android:divider="@color/color_negro"
+			android:dividerHeight="10dp" android:divider="@android:color/holo_blue_dark"
 			android:layout_marginBottom="55dp" android:listSelector="@android:color/transparent"
 			android:cacheColorHint="#00000000" android:smoothScrollbar="true"
 			android:scrollbars="none" />
