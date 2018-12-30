@@ -52,7 +52,7 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 		// TODO Auto-generated method stub
 		 super.bindView(view, context, cursor);
 	//	 int colorPreferidoNaranja = Color.parseColor("#24221F");
-	     TextView textA = view.findViewById(R.id.rowApellido);
+	     TextView text = view.findViewById(R.id.rowApellido);
 	 //    TextView textN = view.findViewById(R.id.rowNombres);
 	     ImageView photo = view.findViewById(R.id.photo);
 	     
@@ -64,8 +64,8 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 	    	 textA.setTextColor(colorPreferidoNaranja);
 	    	 textN.setTextColor(colorPreferidoNaranja);
 	     }*/
-	     textA.setText("- " + textA.getText().toString().toUpperCase());
-	     
+	     text.setText("- " + text.getText().toString().toUpperCase());
+
 	
 	}
 

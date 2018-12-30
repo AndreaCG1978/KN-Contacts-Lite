@@ -16,6 +16,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -402,18 +404,27 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
                 	String clave = mySortedByElements.get(groupPosition);
                 	final PersonaDTO per = (PersonaDTO) personasMap.get(clave).toArray()[childPosition];
                    	final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
-                   	TextView textApe = v.findViewById(R.id.rowApellido);
-                    ImageView photo = v.findViewById(R.id.photo);
-                    textApe.setText("- " + per.getApellido().toUpperCase());
+					TextView textApe = v.findViewById(R.id.rowApellido);
+                   	boolean muestraFoto = mostrarFoto(textApe, per.getId());
+
+              //      ImageView photo = v.findViewById(R.id.photo);
+					if(!muestraFoto) {
+						textApe.setText("*  " + per.getApellido().toUpperCase());
+					}else{
+						textApe.setText(" " + per.getApellido().toUpperCase());
+					}
                     
                     TextView textNom = v.findViewById(R.id.rowNombres);
                     textNom.setText(per.getNombres());
                     TextView text;
+					textApe.setPadding(10, 12, 2, 12);
+					textNom.setPadding(3, 12, 10, 12);
+					textApe.setTextSize(16);
+					textNom.setTextSize(16);
+
+
                     if(!ConstantsAdmin.config.isEstanDetallados()){
-                    	textApe.setPadding(10, 10, 2, 10);
-                    	textNom.setPadding(3, 10, 10, 10);
-                    	textApe.setTextSize(15);
-                    	textNom.setTextSize(15);
+
                     	if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
 	                       	textNom.setText(textNom.getText() + " (" + per.getCategoriaNombreRelativo() +")");
 	                    }else if(per.getDatoExtra() != null && !per.getDatoExtra().equals("")){
@@ -424,23 +435,45 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
                     	text.setVisibility(View.GONE);
                     	text = v.findViewById(R.id.rowDatoRelevante2);
                     	text.setVisibility(View.GONE);
-                    	photo.setVisibility(View.GONE);
+                  //  	photo.setVisibility(View.GONE);
                     }else{
-                    	textApe.setPadding(5, 3, 2, 3);
-                    	textNom.setPadding(3, 3, 5, 3);
-                    	textApe.setTextSize(13);
-                    	textNom.setTextSize(13);
-                    	mostrarFoto(photo, per.getId());
+
+
 	                    text = v.findViewById(R.id.rowDatoRelevante);
+	                    String texto;
                     	if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
-	                    	text.setText(per.getCategoriaNombreRelativo());
+	                    	//text.setText(per.getCategoriaNombreRelativo());
+                            texto = per.getCategoriaNombreRelativo();
 	                    }else{
-	                    	text.setText(per.getDatoExtra());	
+	                    	//text.setText(per.getDatoExtra());
+                            texto = per.getDatoExtra();
 	                    }
-	                    text.setVisibility(View.VISIBLE);
+
+	                    if(texto != null && !texto.equals("")){
+							textApe.setPadding(5, 5, 2, 5);
+							textNom.setPadding(3, 5, 5, 5);
+							textApe.setTextSize(14);
+							textNom.setTextSize(14);
+							if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
+								texto = texto + " (" + per.getDescripcion() + ")";
+
+							}
+							text.setText(texto);
+							text.setTextSize(13);
+							text.setVisibility(View.VISIBLE);
+	                  /*
 	                    text = v.findViewById(R.id.rowDatoRelevante2);
 	                    text.setText(per.getDescripcion());
-	                    text.setVisibility(View.VISIBLE);
+	                    text.setVisibility(View.VISIBLE);*/
+
+
+						}else{
+                    		text.setVisibility(View.GONE);
+
+						}
+                        text = v.findViewById(R.id.rowDatoRelevante2);
+                        text.setVisibility(View.GONE);
+
                     }
 	                final int gp = groupPosition;
                     final int cp = childPosition;
@@ -523,10 +556,24 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     }
 
 
-	private void mostrarFoto(ImageView photo, long idPer){
+	private boolean mostrarFoto(TextView tv, long idPer){
+		boolean muestraFoto = false;
     	try {
     		Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(me);
     		boolean puede = (Boolean) puedeCargar.getKey();
+
+			if(puede){
+			//	Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+				Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+				if(icon != null){
+					tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+					tv.setCompoundDrawablePadding(3);
+					muestraFoto = true;
+				}
+			}
+    		/*
+
+
     		if(puede){
             	Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
             	if(b != null){
@@ -537,11 +584,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
             	}
     		}else{
     			photo.setVisibility(View.GONE);
-    		}
+    		}*/
 
 		} catch (Exception e) {
-			photo.setVisibility(View.GONE);
+			//photo.setVisibility(View.GONE);
 		}
+		return muestraFoto;
 
     	
     }
@@ -1423,8 +1471,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			// Create an array to specify the fields we want to display in the list (only TITLE)
 			String[] from;
 			int[] to;
+//			from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
+//			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
+
 			from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
 			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
+
 
 
 			KNSimpleCursorAdapter personas =
