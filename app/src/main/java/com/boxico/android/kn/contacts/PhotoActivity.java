@@ -104,8 +104,9 @@ public class PhotoActivity extends Activity {
 	                    InputStream imageStream = getContentResolver().openInputStream(selectedImage);
 	                    b = BitmapFactory.decodeStream(imageStream);
 	            	}
-   	               	Bitmap newb = Bitmap.createScaledBitmap(b, 100, 100, true);
-   	            	ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, String.valueOf(mPersonaSeleccionadaId) + ".jpg", newb);
+   	     //       	Bitmap newb = Bitmap.createScaledBitmap(b, 300, 350, true);
+
+   	            	ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, String.valueOf(mPersonaSeleccionadaId) + ".jpg", b);
    	            	File file = new File(ConstantsAdmin.obtenerPathImagen() + fileTemp);
    	            	if(file.exists()){
    	            		file.delete();

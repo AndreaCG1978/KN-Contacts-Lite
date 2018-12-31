@@ -921,7 +921,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		//	Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
 		if (emails != null && emails.getCount() > 0) {
 			//    super.startManagingCursor(emails);
-			mails = this.getString(R.string.label_emails);
+			mails = this.getString(R.string.label_emails) + "\n";
 			while (emails.moveToNext()) {
 				// Tis would allow you get several email addresses
 				emailAddress = emails.getString(emails.getColumnIndex(Email.DATA));
@@ -970,7 +970,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 //    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
 		if (phones != null && phones.getCount() > 0) {
 //  	        super.startManagingCursor(phones);
-			tels = this.getString(R.string.label_telefonos);
+			tels = this.getString(R.string.label_telefonos) + "\n";
 			while (phones.moveToNext()) {
 				phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 				phoneType = phones.getInt(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));

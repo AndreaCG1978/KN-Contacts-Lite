@@ -9,6 +9,7 @@ import java.util.Map;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +18,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -39,8 +42,10 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -50,6 +55,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
@@ -580,19 +586,39 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     }
 
 
-	private boolean mostrarFoto(TextView tv, long idPer){
+	private boolean mostrarFoto(final TextView tv, long idPer){
 		boolean muestraFoto = false;
     	try {
     		Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(me);
     		boolean puede = (Boolean) puedeCargar.getKey();
 
 			if(puede){
-			//	Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
-				Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+				Bitmap small = Bitmap.createScaledBitmap(b, 45, 50, true);
+                final Drawable icon = new BitmapDrawable(getResources(), small);
+                //final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
 				if(icon != null){
 					tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
 					tv.setCompoundDrawablePadding(3);
+				//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
+					Bitmap big = b;
+					final Drawable iconBig = new BitmapDrawable(getResources(), big);
 					muestraFoto = true;
+					tv.setOnTouchListener(new View.OnTouchListener() {
+						@Override
+						public boolean onTouch(View v, MotionEvent event) {
+							if(event.getAction() == MotionEvent.ACTION_UP) {
+								if(event.getRawX() <= tv.getTotalPaddingLeft()) {
+									// your action for drawable click event
+                                    showFotoPopUp(iconBig);
+
+									return true;
+								}
+							}
+							return true;
+						}
+					});
+
 				}
 			}
     		/*
@@ -618,7 +644,25 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	
     }
 
+    public void showFotoPopUp(Drawable icon) {
+        Dialog builder = new Dialog(this);
+        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        builder.getWindow().setBackgroundDrawable(
+                new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                //nothing;
+            }
+        });
 
+        ImageView imageView = new ImageView(this);
+        imageView.setImageDrawable(icon);
+        builder.addContentView(imageView, new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        builder.show();
+    }
     
 
     private void openVerMenuPersona(long id, int groupPosition, int childPosition){

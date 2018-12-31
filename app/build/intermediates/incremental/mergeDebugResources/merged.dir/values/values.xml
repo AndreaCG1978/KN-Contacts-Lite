@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr format="reference" name="coordinatorLayoutStyle"/>
+    <color name="color_azul">#545066</color>
+    <color name="color_azul_oscuro">#474556</color>
+    <color name="color_blanco">#FFFFFF</color>
+    <color name="color_celeste">#354CB5</color>
+    <color name="color_gris">#767777</color>
+    <color name="color_gris_boton">#D3D2CD</color>
+    <color name="color_gris_claro">#D3D2CD</color>
+    <color name="color_gris_oscuro">#2F3242</color>
+    <color name="color_naranja">#4F5354</color>
+    <color name="color_naranja_claro">#979DA0</color>
+    <color name="color_negro">#000000</color>
+    <color name="notification_action_color_filter">#ffffffff</color>
+    <color name="notification_icon_bg_color">#ff9e9e9e</color>
+    <color name="notification_material_background_media_default_color">#ff424242</color>
+    <color name="primary_text_default_material_dark">#ffffffff</color>
+    <color name="ripple_material_light">#1f000000</color>
+    <color name="secondary_text_default_material_dark">#b3ffffff</color>
+    <color name="secondary_text_default_material_light">#8a000000</color>
+    <color name="spinner_color">#B25900</color>
+    <declare-styleable name="CoordinatorLayout"><attr format="reference" name="keylines"/><attr format="color|reference" name="statusBarBackground"/></declare-styleable>
+    <declare-styleable name="CoordinatorLayout_Layout"><attr name="android:layout_gravity"/><attr format="string" name="layout_behavior"/><attr format="reference" name="layout_anchor"/><attr format="integer" name="layout_keyline"/><attr name="layout_anchorGravity">
+            
+            <flag name="top" value="0x30"/>
+            
+            <flag name="bottom" value="0x50"/>
+            
+            <flag name="left" value="0x03"/>
+            
+            <flag name="right" value="0x05"/>
+            
+            <flag name="center_vertical" value="0x10"/>
+            
+            <flag name="fill_vertical" value="0x70"/>
+            
+            <flag name="center_horizontal" value="0x01"/>
+            
+            <flag name="fill_horizontal" value="0x07"/>
+            
+            <flag name="center" value="0x11"/>
+            
+            <flag name="fill" value="0x77"/>
+            
+            <flag name="clip_vertical" value="0x80"/>
+            
+            <flag name="clip_horizontal" value="0x08"/>
+            
+            <flag name="start" value="0x00800003"/>
+            
+            <flag name="end" value="0x00800005"/>
+        </attr><attr format="enum" name="layout_insetEdge">
+            
+            <enum name="none" value="0x0"/>
+            
+            <enum name="top" value="0x30"/>
+            
+            <enum name="bottom" value="0x50"/>
+            
+            <enum name="left" value="0x03"/>
+            
+            <enum name="right" value="0x05"/>
+            
+            <enum name="start" value="0x00800003"/>
+            
+            <enum name="end" value="0x00800005"/>
+        </attr><attr name="layout_dodgeInsetEdges">
+            
+            <flag name="none" value="0x0"/>
+            
+            <flag name="top" value="0x30"/>
+            
+            <flag name="bottom" value="0x50"/>
+            
+            <flag name="left" value="0x03"/>
+            
+            <flag name="right" value="0x05"/>
+            
+            <flag name="start" value="0x00800003"/>
+            
+            <flag name="end" value="0x00800005"/>
+            
+            <flag name="all" value="0x77"/>
+        </attr></declare-styleable>
+    <declare-styleable name="FontFamily"><attr format="string" name="fontProviderAuthority"/><attr format="string" name="fontProviderPackage"/><attr format="string" name="fontProviderQuery"/><attr format="reference" name="fontProviderCerts"/><attr name="fontProviderFetchStrategy">
+            
+            <enum name="blocking" value="0"/>
+            
+            <enum name="async" value="1"/>
+        </attr><attr format="integer" name="fontProviderFetchTimeout">
+          
+            <enum name="forever" value="-1"/>
+        </attr></declare-styleable>
+    <declare-styleable name="FontFamilyFont"><attr name="fontStyle">
+            <enum name="normal" value="0"/>
+            <enum name="italic" value="1"/>
+        </attr><attr format="reference" name="font"/><attr format="integer" name="fontWeight"/><attr name="android:fontStyle"/><attr name="android:font"/><attr name="android:fontWeight"/></declare-styleable>
+    <dimen name="compat_button_inset_horizontal_material">4dp</dimen>
+    <dimen name="compat_button_inset_vertical_material">6dp</dimen>
+    <dimen name="compat_button_padding_horizontal_material">8dp</dimen>
+    <dimen name="compat_button_padding_vertical_material">4dp</dimen>
+    <dimen name="compat_control_corner_material">2dp</dimen>
+    <dimen name="notification_action_icon_size">32dp</dimen>
+    <dimen name="notification_action_text_size">13sp</dimen>
+    <dimen name="notification_big_circle_margin">12dp</dimen>
+    <dimen name="notification_content_margin_start">8dp</dimen>
+    <dimen name="notification_large_icon_height">64dp</dimen>
+    <dimen name="notification_large_icon_width">64dp</dimen>
+    <dimen name="notification_main_column_padding_top">10dp</dimen>
+    <dimen name="notification_media_narrow_margin">@dimen/notification_content_margin_start</dimen>
+    <dimen name="notification_right_icon_size">16dp</dimen>
+    <dimen name="notification_right_side_padding_top">2dp</dimen>
+    <dimen name="notification_small_icon_background_padding">3dp</dimen>
+    <dimen name="notification_small_icon_size_as_large">24dp</dimen>
+    <dimen name="notification_subtext_size">13sp</dimen>
+    <dimen name="notification_top_pad">10dp</dimen>
+    <dimen name="notification_top_pad_large_text">5dp</dimen>
+    <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
+    <drawable name="notification_template_icon_low_bg">#0cffffff</drawable>
+    <item name="line1" type="id"/>
+    <item name="line3" type="id"/>
+    <item name="tag_transition_group" type="id"/>
+    <item name="text" type="id"/>
+    <item name="text2" type="id"/>
+    <item name="title" type="id"/>
+    <integer name="cancel_button_image_alpha">127</integer>
+    <integer name="status_bar_notification_info_maxnum">999</integer>
+    <string name="app_name">KN-Contacts III</string>
+    <string name="blank">%d</string>
+    <string name="cat_Amigo">Friend</string>
+    <string name="cat_Cliente">Client</string>
+    <string name="cat_Colega">Colleague</string>
+    <string name="cat_Companiero">Mate</string>
+    <string name="cat_Conocido">Acquaintance</string>
+    <string name="cat_Familiar">Relative</string>
+    <string name="cat_Jefe">Boss</string>
+    <string name="cat_Medico">Doctor</string>
+    <string name="cat_Otro">Other</string>
+    <string name="cat_Paciente">Patient</string>
+    <string name="cat_Profesor">Teacher</string>
+    <string name="cat_Proveedor">Provider</string>
+    <string name="cat_Socio">Partner</string>
+    <string name="cat_TODAS">ALL</string>
+    <string name="cat_Vecino">Neighbor</string>
+    <string name="coma_separated">USA/UK CSV file ( , )</string>
+    <string name="errorActualizacionCategoria">Failed to update the Category.</string>
+    <string name="errorActualizacionContacto">Failed to update the Contact.</string>
+    <string name="errorAgregarPreferido">Failed to add the Favorite Contact.</string>
+    <string name="errorAltaCategoria">Failed to add the Category.</string>
+    <string name="errorAltaContacto">Failed to add the Contact.</string>
+    <string name="errorDesactivandoCategorias">You can not deactivate all Categories.</string>
+    <string name="errorEfectuarLlamada">Failed to make the call.</string>
+    <string name="errorEliminacionCategoria">Failed to remove the Category.</string>
+    <string name="errorEliminacionContacto">Failed to remove the Contact.</string>
+    <string name="errorEliminacionPreferido">Failed to remove the Favorite Contact.</string>
+    <string name="errorImportarContacto">Failed to import from Contact List.</string>
+    <string name="errorInicioAplicacion">Failed to initialize the Application.</string>
+    <string name="errorMandarMail">Failed to send the email.</string>
+    <string name="errorMandarMensaje">Failed to send the message.</string>
+    <string name="errorSinContactosPorImportar">There is not Contacts to import…</string>
+    <string name="error_alta_categoria_incompleta">You must complete the Category Name and Feature…</string>
+    <string name="error_alta_contrasenia"><![CDATA[Incorrect password…]]></string>
+    <string name="error_alta_persona_incompleta">You must complete the Last Name…</string>
+    <string name="error_alta_tipo_valor_incompleta">You must complete type and value.</string>
+    <string name="error_exportar_csv">Failed to generate the Contacts backup.</string>
+    <string name="error_importar_csv">Unable to retrieve the backup.</string>
+    <string name="error_sin_preferidos">There is no Favorite Contacts.</string>
+    <string name="help_busqueda"><![CDATA[SEARCH BY LAST NAME, NAME, OR ANY DATA ENTERED IN THE CATEGORY OF CONTACT.]]></string>
+    <string name="hint_apellido">LAST NAME</string>
+    <string name="hint_busqueda">SEARCH</string>
+    <string name="hint_caracteristica">FEATURE</string>
+    <string name="hint_categoria">CATEGORY</string>
+    <string name="hint_contrasenia">********</string>
+    <string name="hint_descripcion">DESCRIPTION</string>
+    <string name="hint_empresa">COMPANY</string>
+    <string name="hint_especialidad">SPECIALISING IN</string>
+    <string name="hint_fechaNacimiento">BIRTHDATE</string>
+    <string name="hint_laboral">WORK</string>
+    <string name="hint_lugarOActividad">ACTIVITY</string>
+    <string name="hint_nombre">FIRST NAME</string>
+    <string name="hint_nuevo_tipo">NEW TYPE</string>
+    <string name="hint_obraSocial">MEDICAL INSURANCE</string>
+    <string name="hint_otro">OTHER</string>
+    <string name="hint_parentesco">KINSHIP</string>
+    <string name="hint_particular">HOME</string>
+    <string name="hint_rol">ROLE</string>
+    <string name="hint_telMovil">MOBILE</string>
+    <string name="hint_tipo">TYPE</string>
+    <string name="hint_zona">ZONE</string>
+    <string name="label_activar_categoria"><![CDATA[ACTIVATE]]></string>
+    <string name="label_actualizar"><![CDATA[UPDATE]]></string>
+    <string name="label_agregar"><![CDATA[ADD]]></string>
+    <string name="label_agregar_categoria"><![CDATA[ADD]]></string>
+    <string name="label_agregar_todos"><![CDATA[ADD ALL]]></string>
+    <string name="label_anterior"><![CDATA[PREVIOUS]]></string>
+    <string name="label_bloquear_contrasenia"><![CDATA[LOCK]]></string>
+    <string name="label_borrarPersona">DELETE</string>
+    <string name="label_cantidad_categorias_protegidas"><![CDATA[PROTECTED CATEGORIES]]></string>
+    <string name="label_categorias"><![CDATA[CATEGORIES]]></string>
+    <string name="label_categoriasFijas"><![CDATA[SHOW CATEGORIES]]></string>
+    <string name="label_categorias_personales"><![CDATA[MY CATEGORIES]]></string>
+    <string name="label_contacto_existente"><![CDATA[(Existing Contact -]]></string>
+    <string name="label_contrasenia"><![CDATA[PASSWORD]]></string>
+    <string name="label_datosDeCategoria">CATEGORY</string>
+    <string name="label_desbloquear_contrasenia"><![CDATA[UNLOCK]]></string>
+    <string name="label_direccion">ADDRESS</string>
+    <string name="label_direcciones">ADDRESSES</string>
+    <string name="label_editarPersona">EDIT</string>
+    <string name="label_email">E-MAIL</string>
+    <string name="label_emails">EMAILS</string>
+    <string name="label_enviar_info"><![CDATA[SEND TO]]></string>
+    <string name="label_fechaNacimiento">BIRTHDATE</string>
+    <string name="label_guardar_parcial">Saved…</string>
+    <string name="label_identificacion">IDENTIFICATION</string>
+    <string name="label_llamada">CALL</string>
+    <string name="label_mail"><![CDATA[EMAIL]]></string>
+    <string name="label_misCategorias">SHOW MY CATEGORIES</string>
+    <string name="label_no">NO</string>
+    <string name="label_nuevo_contacto"><![CDATA[New Contact]]></string>
+    <string name="label_ok">OK</string>
+    <string name="label_omitir_todos"><![CDATA[SKIP ALL]]></string>
+    <string name="label_preferidos"><![CDATA[FAVOURITES]]></string>
+    <string name="label_proteger_categoria"><![CDATA[PROTECT]]></string>
+    <string name="label_registrarPersona">SAVE</string>
+    <string name="label_registrarPersonaYSalir">SAVE AND BACK</string>
+    <string name="label_registrar_contrasenia"><![CDATA[RECORD]]></string>
+    <string name="label_repetir_contrasenia"><![CDATA[REPEAT PASSWORD]]></string>
+    <string name="label_si">YES</string>
+    <string name="label_siguiente"><![CDATA[NEXT]]></string>
+    <string name="label_sms">SMS</string>
+    <string name="label_telefono">PHONE</string>
+    <string name="label_telefonos">PHONES</string>
+    <string name="label_ver_detalle"><![CDATA[VIEW DETAILS]]></string>
+    <string name="mensaje_activacion_proteccion"><![CDATA[Categories are protected…]]></string>
+    <string name="mensaje_borrar_categoria">The Category will be removed. Are you sure?</string>
+    <string name="mensaje_borrar_foto"><![CDATA[Do you want to delete the image?]]></string>
+    <string name="mensaje_borrar_persona">The Contact will be removed. Are you sure?</string>
+    <string name="mensaje_complete_contrasenia"><![CDATA[You must enter a password…]]></string>
+    <string name="mensaje_complete_repeticion_contrasenia"><![CDATA[You must repeat the password entered…]]></string>
+    <string name="mensaje_contrasenia_no_coinciden"><![CDATA[Passwords do not match…]]></string>
+    <string name="mensaje_contrasenia_registrada_ok"><![CDATA[The password to protect their categories was registered successfully…]]></string>
+    <string name="mensaje_debe_ingresar_mail"><![CDATA[Enter an email to send your password.]]></string>
+    <string name="mensaje_debe_registrar_contrasenia"><![CDATA[Not yet enabled the protection of categories…]]></string>
+    <string name="mensaje_error_tarjeta_no_formato">Error, the SD-CARD cannot be used, not in a format accepted or not properly formatted.</string>
+    <string name="mensaje_error_tarjeta_no_montada">Error, you need to install an SD-CARD to your mobile.</string>
+    <string name="mensaje_error_tarjeta_shared">Error, the SD-CARD is being shared. Disconnect the USB cable and try again.</string>
+    <string name="mensaje_error_tarjeta_solo_lectura">The SD-CARD is in read-only mode.</string>
+    <string name="mensaje_error_tarjeta_unmountable">Error, the SD-CARD cannot be mounted. \n This may be because is corrupted or damaged.</string>
+    <string name="mensaje_error_tarjeta_unmounted">Error, the SD-CARD is present in the mobile but not mounted. Mount it before using the program.</string>
+    <string name="mensaje_exito_almacenar_password"><![CDATA[Your password has been registered and stored in the file "kncontacts.txt", folder: KN-Contacts.]]></string>
+    <string name="mensaje_exito_exportar_csv">Contacts have been successfully safeguarded.</string>
+    <string name="mensaje_exito_exportar_excel">Contacts information will be exported to a CSV file called "kncontactsExcel.csv" within the "KN-Contacts" folder. Select CSV format:</string>
+    <string name="mensaje_exito_importar_csv">Contacts have been successfully recovered.</string>
+    <string name="mensaje_exportando_contactos">Safeguarding Contacts…</string>
+    <string name="mensaje_exportar_contactos"><![CDATA[The contact information will be protected in the "kncontacts.csv" contained in the "KN-Contacts" folder on your SD-CARD. For your safety, save in some other place a current copy of this file. If there is a backup, it will be overwritten. Continue?]]></string>
+    <string name="mensaje_importando_contactos">Recovering Contacts…</string>
+    <string name="mensaje_importar_contactos_csv"><![CDATA[There will be restoring the last backup performed. Want to continue? (It may take several seconds …)]]></string>
+    <string name="mensaje_importar_todo_1"><![CDATA[All new contacts will be imported as:]]></string>
+    <string name="mensaje_importar_todo_2"><![CDATA[. Existing contacts will be updated (only their phones and email accounts). Continue?]]></string>
+    <string name="mensaje_no_hay_contactos">No contacts to make a backup.</string>
+    <string name="mensaje_registre_contrasenia"><![CDATA[You must register a password to protect categories…]]></string>
+    <string name="mensaje_seleccione_actividad_categoria"><![CDATA[Category Management]]></string>
+    <string name="mensaje_seleccione_categoria_proteger"><![CDATA[You have not selected categories to protect…]]></string>
+    <string name="mensaje_seleccione_llamada_sms">Select communication type:</string>
+    <string name="menu_about_me">About me…</string>
+    <string name="menu_agregar_persona">Add Contact</string>
+    <string name="menu_editar_o_eliminar">Edit/Remove</string>
+    <string name="menu_editar_persona">Edit Contact</string>
+    <string name="menu_eliminar">Remove Contact</string>
+    <string name="menu_exportar_contactos">Do Backup</string>
+    <string name="menu_exportar_excel">Export to Excel</string>
+    <string name="menu_importar_contactos">Import Contacts</string>
+    <string name="menu_importar_contactos_csv">Restore Backup</string>
+    <string name="menu_listar_categoria">Categories</string>
+    <string name="puntocoma_separated">CSV/DSV file ( ; )</string>
+    <string name="smesAbr">April</string>
+    <string name="smesAgo">August</string>
+    <string name="smesDic">December</string>
+    <string name="smesEne">January</string>
+    <string name="smesFeb">February</string>
+    <string name="smesJul">July</string>
+    <string name="smesJun">June</string>
+    <string name="smesMar">March</string>
+    <string name="smesMay">May</string>
+    <string name="smesNov">November</string>
+    <string name="smesOct">October</string>
+    <string name="smesSep">September</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="text_acerca_de">Made by</string>
+    <string name="text_acerca_de_empresa">KN-Apps</string>
+    <string name="text_acerca_de_mail">knapps.mobile@gmail.com</string>
+    <string name="text_acerca_de_sugerencia">For comments, send a message to:</string>
+    <string name="text_acerca_de_verPublicaciones">-ALL PUBLICATIONS-</string>
+    <string name="text_sinDatos">WITHOUT DATA</string>
+    <string name="title_acerca_de">About me…</string>
+    <string name="title_alta_contrasenia"><![CDATA[LOGIN PASSWORD]]></string>
+    <string name="title_capturar_archivo"><![CDATA[FROM FILE]]></string>
+    <string name="title_capturar_foto"><![CDATA[CAPTURE]]></string>
+    <string name="title_detallePersona">Details </string>
+    <string name="title_nueva_categoria">New Category</string>
+    <string name="title_obtener_imagen"><![CDATA[Get Picture]]></string>
+    <string name="title_proteccion_categorias"><![CDATA[PROTECTION OF CATEGORIES]]></string>
+    <style name="TextAppearance.Compat.Notification" parent="@android:style/TextAppearance.StatusBar.EventContent"/>
+    <style name="TextAppearance.Compat.Notification.Info">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Compat.Notification.Info.Media"/>
+    <style name="TextAppearance.Compat.Notification.Line2" parent="TextAppearance.Compat.Notification.Info"/>
+    <style name="TextAppearance.Compat.Notification.Line2.Media" parent="TextAppearance.Compat.Notification.Info.Media"/>
+    <style name="TextAppearance.Compat.Notification.Media"/>
+    <style name="TextAppearance.Compat.Notification.Time">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Compat.Notification.Time.Media"/>
+    <style name="TextAppearance.Compat.Notification.Title" parent="@android:style/TextAppearance.StatusBar.EventContent.Title"/>
+    <style name="TextAppearance.Compat.Notification.Title.Media"/>
+    <style name="Widget.Compat.NotificationActionContainer" parent=""/>
+    <style name="Widget.Compat.NotificationActionText" parent=""/>
+    <style name="Widget.Support.CoordinatorLayout" parent="android:Widget">
+        <item name="statusBarBackground">#000000</item>
+    </style>
+</resources>
