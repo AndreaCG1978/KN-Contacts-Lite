@@ -296,9 +296,33 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			layoutInflater = (LayoutInflater) this.getLayoutInflater();
 			this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+			this.redirigirImportarContactos();
+
 		}catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorInicioAplicacion));
 		}
+    }
+
+    private void redirigirImportarContactos(){
+	    if(personasMap == null || personasMap.size() == 0){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Aun no se han cargado contactos, desea importarlos de la Agenda?")
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            mostrarDialogoImportarContactos();
+                        }
+                    })
+                    .setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            builder.show();
+        }
+
+
+
     }
 
     private void cargarLoaders() {

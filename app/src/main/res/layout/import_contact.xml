@@ -8,27 +8,37 @@
 		android:id="@+id/textPersonaEncontrada"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:textSize="18sp"
+		android:textSize="14sp"
 		android:background="@drawable/custom_text_view_categoria"
 		android:textColor="@color/color_azul_oscuro"
 		android:layout_marginBottom="1dp"
 		android:layout_marginTop="6dp"
-		android:padding="3dp"
+		android:padding="2dp"
 		android:gravity="center"
-		android:textStyle="bold" />
+		/>
 
 	<TextView
-		android:id="@+id/textTipoPersonaEncontrada"
+		android:id="@+id/textTelsPersonaEncontrada"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:textSize="13sp"
 		android:background="@drawable/custom_text_view_categoria_desc"
-		android:textColor="@color/color_gris_oscuro"
+		android:textColor="@color/color_blanco"
 		android:layout_marginBottom="4dp"
 		android:layout_marginTop="6dp"
-		android:padding="3dp"
-		android:gravity="center"
-		android:textStyle="bold" />
+		android:padding="3dp" />
+
+	<TextView
+		android:id="@+id/textMailsPersonaEncontrada"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:textSize="13sp"
+		android:background="@drawable/custom_text_view_categoria_desc"
+		android:textColor="@color/color_blanco"
+		android:layout_marginBottom="4dp"
+		android:layout_marginTop="6dp"
+		android:padding="3dp" />
+
 
 	<View
         android:layout_width="wrap_content"

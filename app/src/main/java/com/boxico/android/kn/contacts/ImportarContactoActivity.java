@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -41,20 +42,21 @@ import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.util.Asociacion;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
-public class ImportarContactoActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor>{
-	
+public class ImportarContactoActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
 	private ArrayAdapter<CategoriaDTO> mSpinnerAdapt = null;
 	private CategoriaDTO mCategoriaSeleccionada = null;
 	private Cursor people = null;
 	private ImportarContactoActivity me = null;
 	// --Commented out by Inspection (12/11/2018 12:34):boolean haciaAdelante = true;
 //	private ArrayList<Cursor> allMyCursors = null;
-	
+
 	private TextView mPersonaEncontrada;
-	private TextView mTipoPersonaEncontrada;
+	private TextView mTelsPersonaEncontrada;
+	private TextView mMailsPersonaEncontrada;
 	private TextView entryDatoExtra;
 	private TextView entryDescripcion;
-	
+
 	private Spinner mSpinner = null;
 
 	private String given = "";
@@ -94,41 +96,41 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	}
 
 
-	private void askForContactPermission(){
+	private void askForContactPermission() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+			if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
 				ActivityCompat.requestPermissions(this,
 						new String[]{Manifest.permission.READ_CONTACTS},
 						PERMISSIONS_REQUEST_READ_CONTACTS);
 
-			}else{
-			    this.inicializarContactosAImportar();
-            }
-		}else{
+			} else {
+				this.inicializarContactosAImportar();
+			}
+		} else {
 			this.inicializarContactosAImportar();
 		}
 	}
 
-	private void inicializarContactosAImportar(){
+	private void inicializarContactosAImportar() {
 		this.cargarLoaders();
 
-	//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		if(ConstantsAdmin.mainActivity == null){
+		//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		if (ConstantsAdmin.mainActivity == null) {
 			Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage(this.getPackageName());
 			startActivity(LaunchIntent);
 			this.finish();
 			ConstantsAdmin.cerrarMainActivity = true;
 
-		}else{
+		} else {
 
 			//String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
-         //   String sortOrder = ConstantsAdmin.sortOrderForContacts;
-			if(getPeople() != null){
+			//   String sortOrder = ConstantsAdmin.sortOrderForContacts;
+			if (getPeople() != null) {
 				//ConstantsAdmin.inicializarBD(mDBManager);
-			//	startManagingCursor(people);
+				//	startManagingCursor(people);
 				this.buscarSiguienteContacto();
 				//ConstantsAdmin.finalizarBD(mDBManager);
-			}else{
+			} else {
 				ConstantsAdmin.mostrarMensajeDialog(this, getResources().getString(R.string.mensaje_no_hay_contactos));
 				this.finish();
 			}
@@ -136,20 +138,19 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		}
 
 
-
 	}
 
-	private Cursor getPeople(){
-		if(people == null){
+	private Cursor getPeople() {
+		if (people == null) {
 			String sortOrder = ConstantsAdmin.sortOrderForContacts;
-			people = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null,
+			people = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null,
 					null//if you don't want to google contacts also,
-					,null, sortOrder);
+					, null, sortOrder);
 		}
 		return people;
-    }
+	}
 
-    /*
+	/*
 
 	private Cursor getPeopleById(String idContact){
 		Cursor cur = null;
@@ -174,282 +175,302 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	}
 
 
-
 	public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_importar_contactos));
-        try {
+		super.onCreate(savedInstanceState);
+		this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_importar_contactos));
+		try {
 
-       // 	allMyCursors = new ArrayList<>();
-            this.setContentView(R.layout.import_contact);
-            this.registrarWidgets();
-            me = this;
-            this.configurarSpinner();
-            this.configurarBotones();
+			// 	allMyCursors = new ArrayList<>();
+			this.setContentView(R.layout.import_contact);
+			this.registrarWidgets();
+			me = this;
+			this.configurarSpinner();
+			this.configurarBotones();
 			this.askForContactPermission();
 		} catch (Exception e) {
-		// TODO: handle exception
+			// TODO: handle exception
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorInicioAplicacion));
 		}
 
 	}
-	
+
 	private void buscarSiguienteContacto() {
-    	boolean encontrado = false;
-    	String contactIdTemp;
+		boolean encontrado = false;
+		String contactIdTemp;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
 
-    	while(!encontrado && getPeople().moveToNext()) {
-    		posPeople = getPeople().getPosition();
-    		contactIdTemp  = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
-   	       	contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactIdTemp);
-   	       	if(contactoActual != null){
-   	   	       	if(contactId == null || !contactId.equals(contactIdTemp)){
-   	     	       //	if(!given.equals(contactoActual.getKey()) && !family.equals(contactoActual.getValue())){
-     	       		contactId = contactIdTemp;
-     	       		given = (String)contactoActual.getKey();
-     	       		family = (String)contactoActual.getValue();
-     	       		if(given == null){
-     	       			given = "";
-     	       		}
-     	       		if(family == null){
-     	       			family = "";
-     	       		}
+		while (!encontrado && getPeople().moveToNext()) {
+			posPeople = getPeople().getPosition();
+			contactIdTemp = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
+			contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactIdTemp);
+			if (contactoActual != null) {
+				if (contactId == null || !contactId.equals(contactIdTemp)) {
+					//	if(!given.equals(contactoActual.getKey()) && !family.equals(contactoActual.getValue())){
+					contactId = contactIdTemp;
+					given = (String) contactoActual.getKey();
+					family = (String) contactoActual.getValue();
+					if (given == null) {
+						given = "";
+					}
+					if (family == null) {
+						family = "";
+					}
 
-     	       		if(!family.equals("") || !given.equals("")){
-   	  	        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
-   	  	        	   if(persona == null){
-   	  	        		   persona = new PersonaDTO();   
-   	  	        	   }
-   	  			       persona.setApellido(family);
-   	  			       persona.setNombres(given);
-   	  		   		   if(persona.getNombres() != null && (persona.getApellido() == null || persona.getApellido().equals(""))){
-   	  		   			   persona.setApellido(persona.getNombres());
-   	  		   			   persona.setNombres(null);
-   	  				   }
-   	  		   		   encontrado = true;
-   	  		   	       mTipoPersonaEncontrada.setText("");
-   	  		   		   this.mostrarDatosPersonaEncontrada();
-   	     	   	    }
-   	     	    	   
-   	     	    }
-   	       		
-   	       	}
+					if (!family.equals("") || !given.equals("")) {
+						persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given, family, this);
+						if (persona == null) {
+							persona = new PersonaDTO();
+						}
+						persona.setApellido(family);
+						persona.setNombres(given);
+						if (persona.getNombres() != null && (persona.getApellido() == null || persona.getApellido().equals(""))) {
+							persona.setApellido(persona.getNombres());
+							persona.setNombres(null);
+						}
+						encontrado = true;
+						mTelsPersonaEncontrada.setText("");
+						mMailsPersonaEncontrada.setText("");
+						this.mostrarDatosPersonaEncontrada();
+					}
+
+				}
+
+			}
 
 
-    	}
+		}
 		ConstantsAdmin.finalizarBD(mDBManager);
-    	if(posPeople < getPeople().getCount() - 1){
-    		botonSkipContact.setEnabled(true);
-    		botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul));
-    	}else{
-    		botonSkipContact.setEnabled(false);
-    		botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul_oscuro));
-    	}
-    	if(posPeople > 0){
-    		botonPrevContact.setEnabled(true);
-    		botonPrevContact.setTextColor(getResources().getColor(R.color.color_azul));
-    	}
+		if (posPeople < getPeople().getCount() - 1) {
+			botonSkipContact.setEnabled(true);
+			botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul));
+		} else {
+			botonSkipContact.setEnabled(false);
+			botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul_oscuro));
+		}
+		if (posPeople > 0) {
+			botonPrevContact.setEnabled(true);
+			botonPrevContact.setTextColor(getResources().getColor(R.color.color_azul));
+		}
 	}
 
 
 	private void buscarAnteriorContacto() {
-    	given = null;
-    	family = null;
-    	boolean encontrado = false;
-    	String contactIdTemp;
+		given = null;
+		family = null;
+		boolean encontrado = false;
+		String contactIdTemp;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
-       	while(!encontrado && getPeople().moveToPrevious()) {
-       	   posPeople = getPeople().getPosition();
-	       contactIdTemp  = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
-   	       contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactIdTemp);
-   	       if(contactoActual != null){
-	           if(contactId == null || !contactId.equals(contactIdTemp)){
-	        	   contactId = contactIdTemp;
-	   //	       if(!given.equals(contactoActual.getKey()) && !family.equals(contactoActual.getValue())){
-	   		       given = (String)contactoActual.getKey();
-	   	   	       family = (String)contactoActual.getValue();
-	   	   	       if(given == null){
-	   	   	    	   given = "";
-	   	   	       }
-	   	   	       if(family == null){
-	   	   	    	   family = "";
-	   	   	       }
-	   	   	       if(!family.equals("") || !given.equals("")){
-	
-		        	   persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
-		        	   if(persona == null){
-		        		   persona = new PersonaDTO();   
-		        	   }
-				       persona.setApellido(family);
-				       persona.setNombres(given);
-			   		   if(persona.getNombres() != null && (persona.getApellido() == null || persona.getApellido().equals(""))){
-			   			   persona.setApellido(persona.getNombres());
-			   			   persona.setNombres(null);
-					   }
-		   			   encontrado = true;
-		   			   mTipoPersonaEncontrada.setText("");
-		   		   	   this.mostrarDatosPersonaEncontrada();
-	
-	   	   	       }
-	   	       }
-   	       }
-    	}
+		while (!encontrado && getPeople().moveToPrevious()) {
+			posPeople = getPeople().getPosition();
+			contactIdTemp = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
+			contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactIdTemp);
+			if (contactoActual != null) {
+				if (contactId == null || !contactId.equals(contactIdTemp)) {
+					contactId = contactIdTemp;
+					//	       if(!given.equals(contactoActual.getKey()) && !family.equals(contactoActual.getValue())){
+					given = (String) contactoActual.getKey();
+					family = (String) contactoActual.getValue();
+					if (given == null) {
+						given = "";
+					}
+					if (family == null) {
+						family = "";
+					}
+					if (!family.equals("") || !given.equals("")) {
+
+						persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given, family, this);
+						if (persona == null) {
+							persona = new PersonaDTO();
+						}
+						persona.setApellido(family);
+						persona.setNombres(given);
+						if (persona.getNombres() != null && (persona.getApellido() == null || persona.getApellido().equals(""))) {
+							persona.setApellido(persona.getNombres());
+							persona.setNombres(null);
+						}
+						encontrado = true;
+						mTelsPersonaEncontrada.setText("");
+						mMailsPersonaEncontrada.setText("");
+						this.mostrarDatosPersonaEncontrada();
+
+					}
+				}
+			}
+		}
 		ConstantsAdmin.finalizarBD(mDBManager);
-    	if(posPeople == 0){
-    		botonPrevContact.setEnabled(false);
-    		botonPrevContact.setTextColor(getResources().getColor(R.color.color_azul_oscuro));
-    	}else{
-    		botonPrevContact.setEnabled(true);
-    		botonPrevContact.setTextColor(getResources().getColor(R.color.color_azul));
-    	}
-    	if(posPeople < getPeople().getCount()){
-    		botonSkipContact.setEnabled(true);
-    		botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul));
-    	}
-	
+		if (posPeople == 0) {
+			botonPrevContact.setEnabled(false);
+			botonPrevContact.setTextColor(getResources().getColor(R.color.color_azul_oscuro));
+		} else {
+			botonPrevContact.setEnabled(true);
+			botonPrevContact.setTextColor(getResources().getColor(R.color.color_azul));
+		}
+		if (posPeople < getPeople().getCount()) {
+			botonSkipContact.setEnabled(true);
+			botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul));
+		}
+
 	}
-	
-	
-	
-	private void mostrarDatosPersonaEncontrada(){
-		String text;
-    	if(persona != null){
-    		mPersonaEncontrada.setText("");
-    		if(persona.getNombres() != null && !persona.getNombres().equals("")){
-    			mPersonaEncontrada.setText(persona.getApellido() + ", " + persona.getNombres());
-    		}else{
-    			mPersonaEncontrada.setText(persona.getApellido());	
-    		}
-    		mPersonaEncontrada.setText(mPersonaEncontrada.getText());
-    		if(persona.getId() == -1){
-    			this.seleccionarPrimerCategoria();
-    			text = getResources().getString(R.string.label_nuevo_contacto);
-    			botonAddContact.setText(getResources().getString(R.string.label_agregar));
-    			entryDatoExtra.setText("");
-    			entryDescripcion.setText("");
-    			
-    		}else{
-    			this.seleccionarCategoriaContactoExistente();
-    			text = getResources().getString(R.string.label_contacto_existente)+ persona.getCategoriaNombreRelativo() + ")";
-    			botonAddContact.setText(getResources().getString(R.string.label_actualizar));
-    			entryDatoExtra.setText(persona.getDatoExtra());
-    			entryDescripcion.setText(persona.getDescripcion());
-    		}
-   // 		tipoPersona = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Data.));
-    		mTipoPersonaEncontrada.setText(text);
-    	}
-		
+
+
+	private void mostrarDatosPersonaEncontrada() {
+		String text = "";
+		if (persona != null) {
+			mPersonaEncontrada.setText("");
+
+			if (persona.getNombres() != null && !persona.getNombres().equals("")) {
+				//mPersonaEncontrada.setText(persona.getApellido() + ", " + persona.getNombres());
+				text = persona.getApellido() + ", " + persona.getNombres();
+			} else {
+				text = persona.getApellido();
+				//mPersonaEncontrada.setText(persona.getApellido());
+			}
+
+			if (persona.getId() == -1) {
+				this.seleccionarPrimerCategoria();
+				text = text + " (" + getResources().getString(R.string.label_nuevo_contacto) + ")";
+				botonAddContact.setText(getResources().getString(R.string.label_agregar));
+				entryDatoExtra.setText("");
+				entryDescripcion.setText("");
+
+			} else {
+				this.seleccionarCategoriaContactoExistente();
+				text = text + getResources().getString(R.string.label_contacto_existente) + persona.getCategoriaNombreRelativo() + ")";
+				botonAddContact.setText(getResources().getString(R.string.label_actualizar));
+				entryDatoExtra.setText(persona.getDatoExtra());
+				entryDescripcion.setText(persona.getDescripcion());
+			}
+			mPersonaEncontrada.setText(text);
+
+			String tels = this.obtenerTelDeContacto(contactId);
+			if(tels != null){
+				mTelsPersonaEncontrada.setVisibility(View.VISIBLE);
+				mTelsPersonaEncontrada.setText(tels);
+			}else{
+				mTelsPersonaEncontrada.setVisibility(View.GONE);
+			}
+
+
+			String mails = this.obtenerMailDeContacto(contactId);
+			if(mails != null){
+				mMailsPersonaEncontrada.setVisibility(View.VISIBLE);
+				mMailsPersonaEncontrada.setText(mails);
+			}else{
+				mMailsPersonaEncontrada.setVisibility(View.GONE);
+			}
+			//mPersonaEncontrada.setText(mPersonaEncontrada.getText());
+			//mTelsPersonaEncontrada.setText(text);
+		}
+
 	}
 
 	private void seleccionarCategoriaContactoExistente() {
 		boolean encontrado = false;
-	    int pos = 0;
-	    CategoriaDTO cat;
-	    int total = mSpinnerAdapt.getCount();
-	    while(!encontrado && pos < total){
-	    	
-	    	cat = mSpinnerAdapt.getItem(pos);
-	    	if(cat.getNombreReal().equals(persona.getCategoriaNombre())){
-	    		encontrado = true;
-	    		mCategoriaSeleccionada = cat;
-	    	}
-	    	pos++;
-	    }
-	    if(encontrado){
-	    	mSpinner.setSelection(pos - 1);
-	    }
+		int pos = 0;
+		CategoriaDTO cat;
+		int total = mSpinnerAdapt.getCount();
+		while (!encontrado && pos < total) {
 
-		
+			cat = mSpinnerAdapt.getItem(pos);
+			if (cat.getNombreReal().equals(persona.getCategoriaNombre())) {
+				encontrado = true;
+				mCategoriaSeleccionada = cat;
+			}
+			pos++;
+		}
+		if (encontrado) {
+			mSpinner.setSelection(pos - 1);
+		}
+
+
 	}
 
 
-	private void  configurarBotones(){
+	private void configurarBotones() {
 		botonAddContact.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	addContact();
-            }
-        });
+			public void onClick(View v) {
+				addContact();
+			}
+		});
 		botonAddAll.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	addAll();
-            }
-        });			
+			public void onClick(View v) {
+				addAll();
+			}
+		});
 		botonSkipContact.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	skipContact();
-            }
-        });		
+			public void onClick(View v) {
+				skipContact();
+			}
+		});
 		botonPrevContact.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	prevContact();
-            }
-        });		
+			public void onClick(View v) {
+				prevContact();
+			}
+		});
 
 		botonSkipAll.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	skipAll();
-            }
-        });		
+			public void onClick(View v) {
+				skipAll();
+			}
+		});
 
 		botonPrevContact.setOnLongClickListener(new View.OnLongClickListener() {
-            public boolean onLongClick(View v) {
-            	prevContact();
-            	return false;
-            }
-        });		
-		
+			public boolean onLongClick(View v) {
+				prevContact();
+				return false;
+			}
+		});
+
 		botonSkipContact.setOnLongClickListener(new View.OnLongClickListener() {
-            public boolean onLongClick(View v) {
-            	skipContact();
-            	return false;
-            }
-        });		
+			public boolean onLongClick(View v) {
+				skipContact();
+				return false;
+			}
+		});
 
 		botonPrevContact.setEnabled(false);
 		botonSkipContact.setEnabled(false);
-	
-		
-    	ImageButton categorias = this.findViewById(R.id.imagenCategorias);
-    	categorias.setOnClickListener(new View.OnClickListener() {
+
+
+		ImageButton categorias = this.findViewById(R.id.imagenCategorias);
+		categorias.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				openListadoCategoria();
-				
+
 			}
 		});
 
 	}
-	
-    
-	
+
+
 	private void skipAll() {
 		this.finish();
-		
+
 	}
 
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-    	super.onActivityResult(requestCode, resultCode, intent); 
-    	ejecutarOnActivityResult(requestCode);
-    }
-    
-    private void ejecutarOnActivityResult(int requestCode){
-    	try {
-        	if(requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS){
-            	this.configurarSpinner();    
-        	}
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		super.onActivityResult(requestCode, resultCode, intent);
+		ejecutarOnActivityResult(requestCode);
+	}
+
+	private void ejecutarOnActivityResult(int requestCode) {
+		try {
+			if (requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS) {
+				this.configurarSpinner();
+			}
 		} catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, e.getMessage());
 		}
 
-    	
-    }
-	
-	
+
+	}
+
+
 	private void skipContact() {
 		this.buscarSiguienteContacto();
 	}
@@ -457,27 +478,27 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private void prevContact() {
 		this.buscarAnteriorContacto();
 	}
-	
-	private void addAll(){
-    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    	builder.setMessage(getResources().getString(R.string.mensaje_importar_todo_1) + mCategoriaSeleccionada.getNombreRelativo() + getResources().getString(R.string.mensaje_importar_todo_2))
-    	       .setCancelable(false)
-    	       .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
-    	           public void onClick(DialogInterface dialog, int id) {
-	   	        	   Long[] params = new Long[1];
-	   		    	   params[0] = 1L;
-	   		    	   dialog.cancel();    	        	   
-    	        	   new ImportContactTask().execute(params);    	  
 
-    	           }
-    	       })
-    	       .setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
-    	           public void onClick(DialogInterface dialog, int id) {
-    	                dialog.cancel();
-    	           }
-    	       });
-    	builder.show();
-		
+	private void addAll() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(getResources().getString(R.string.mensaje_importar_todo_1) + mCategoriaSeleccionada.getNombreRelativo() + getResources().getString(R.string.mensaje_importar_todo_2))
+				.setCancelable(false)
+				.setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						Long[] params = new Long[1];
+						params[0] = 1L;
+						dialog.cancel();
+						new ImportContactTask().execute(params);
+
+					}
+				})
+				.setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+		builder.show();
+
 	}
 
 	@NonNull
@@ -485,7 +506,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		CursorLoader cl = null;
-		switch(id) {
+		switch (id) {
 			case PERSONA_ID_CURSOR:
 				cl = mDBManager.cursorLoaderPersonaId("0", this, getContentResolver());
 				ConstantsAdmin.cursorPersona = cl;
@@ -506,7 +527,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 				cl = mDBManager.cursorLoaderNombreApellidoPersona(null, null, this);
 				ConstantsAdmin.cursorPersonaByNombreYApellido = cl;
 				break; // optional
-			default : // Optional
+			default: // Optional
 		}
 		return cl;
 	}
@@ -521,38 +542,38 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	}
 
-	private class ImportContactTask extends AsyncTask<Long, Integer, Integer>{
-    	ProgressDialog dialog = null;
-        @Override
-        protected Integer doInBackground(Long... params) {
+	private class ImportContactTask extends AsyncTask<Long, Integer, Integer> {
+		ProgressDialog dialog = null;
 
-            try {
-                publishProgress(1);
-                addAllPrivado();
+		@Override
+		protected Integer doInBackground(Long... params) {
 
-            } catch (Exception e) {
-            	ConstantsAdmin.mensaje = me.getString(R.string.errorImportarContacto);
-            }
-            return 0;
+			try {
+				publishProgress(1);
+				addAllPrivado();
 
-        }
+			} catch (Exception e) {
+				ConstantsAdmin.mensaje = me.getString(R.string.errorImportarContacto);
+			}
+			return 0;
 
-        protected void onProgressUpdate(Integer... progress) {
-        	dialog = ProgressDialog.show(me, "", 
-                    me.getString(R.string.mensaje_importando_contactos), false);
-        }
+		}
 
-        @Override
-        protected void onPostExecute(Integer result) {
-       		dialog.cancel();
-	    	finish();
-       		ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
-    		ConstantsAdmin.mensaje = null;
-        }
-    }
+		protected void onProgressUpdate(Integer... progress) {
+			dialog = ProgressDialog.show(me, "",
+					me.getString(R.string.mensaje_importando_contactos), false);
+		}
 
-	
-	
+		@Override
+		protected void onPostExecute(Integer result) {
+			dialog.cancel();
+			finish();
+			ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
+			ConstantsAdmin.mensaje = null;
+		}
+	}
+
+
 	private void addAllPrivado() {
 	/*	this.obtenerContactoCapturado(true);
 		ConstantsAdmin.mDBManager.createPersona(persona, false);*/
@@ -561,35 +582,35 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
 		getPeople().moveToFirst();
-		while(getPeople().moveToNext()) {
-               contactId  = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
-               contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactId);
-               if(contactoActual != null){
-                   given = (String)contactoActual.getKey();
-                   family = (String)contactoActual.getValue();
+		while (getPeople().moveToNext()) {
+			contactId = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
+			contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactId);
+			if (contactoActual != null) {
+				given = (String) contactoActual.getKey();
+				family = (String) contactoActual.getValue();
 
-                   if(family != null && !family.equals("") || given != null && !given.equals("")){
-                       persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given,family,this);
-                       if(persona == null){
-                           persona = new PersonaDTO();
-                       }
-                       persona.setApellido(family);
-                       persona.setNombres(given);
-                       if(persona.getNombres() != null && persona.getApellido() == null){
-                           persona.setApellido(persona.getNombres());
-                           persona.setNombres(null);
-                       }
-                       this.obtenerContactoCapturado(true);
-                       mDBManager.createPersona(persona, false);
+				if (family != null && !family.equals("") || given != null && !given.equals("")) {
+					persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given, family, this);
+					if (persona == null) {
+						persona = new PersonaDTO();
+					}
+					persona.setApellido(family);
+					persona.setNombres(given);
+					if (persona.getNombres() != null && persona.getApellido() == null) {
+						persona.setApellido(persona.getNombres());
+						persona.setNombres(null);
+					}
+					this.obtenerContactoCapturado(true);
+					mDBManager.createPersona(persona, false);
 
-                   }
-               }
+				}
+			}
 
-        }
-        ConstantsAdmin.resetPersonasOrganizadas();
-        ConstantsAdmin.finalizarBD(mDBManager);
+		}
+		ConstantsAdmin.resetPersonasOrganizadas();
+		ConstantsAdmin.finalizarBD(mDBManager);
 
-		
+
 	}
 
 
@@ -599,30 +620,30 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		ConstantsAdmin.inicializarBD(mDBManager);
 		this.obtenerContactoCapturado(false);
 		id = mDBManager.createPersona(persona, false);
-		if(id != -1){
+		if (id != -1) {
 			ConstantsAdmin.resetPersonasOrganizadas();
 			persona.setId(id);
 			this.mostrarDatosPersonaEncontrada();
 			mPersonaEncontrada.setText(mPersonaEncontrada.getText() + " #");
 		}
 		ConstantsAdmin.finalizarBD(mDBManager);
-	//	this.buscarSiguienteContacto();
-		
-		
+		//	this.buscarSiguienteContacto();
+
+
 	}
 
-	
 
-    private void openListadoCategoria(){
-        Intent i = new Intent(this, ListadoCategoriaActivity.class);
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS);
-    }
-    
-    
-	private void registrarWidgets(){
+	private void openListadoCategoria() {
+		Intent i = new Intent(this, ListadoCategoriaActivity.class);
+		this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS);
+	}
+
+
+	private void registrarWidgets() {
 		mSpinner = this.findViewById(R.id.spinnerCategorias_alta_persona);
 		mPersonaEncontrada = this.findViewById(R.id.textPersonaEncontrada);
-		mTipoPersonaEncontrada = this.findViewById(R.id.textTipoPersonaEncontrada);
+		mTelsPersonaEncontrada = this.findViewById(R.id.textTelsPersonaEncontrada);
+		mMailsPersonaEncontrada = this.findViewById(R.id.textMailsPersonaEncontrada);
 		entryDatoExtra = this.findViewById(R.id.entryDatoExtra);
 		entryDescripcion = this.findViewById(R.id.entryDescripcion);
 		botonAddAll = this.findViewById(R.id.botonAddAll);
@@ -632,66 +653,65 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		botonPrevContact = this.findViewById(R.id.botonPrevContact);
 
 	}
-	
-	
-	private void seleccionarPrimerCategoria(){
+
+
+	private void seleccionarPrimerCategoria() {
 		mCategoriaSeleccionada = this.mSpinnerAdapt.getItem(0);
 		mSpinner.setSelection(0);
 	}
 
-    private void configurarSpinner(){
-      List<CategoriaDTO> categorias;
-      List<CategoriaDTO> categoriasPersonales;
-      DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-      categorias = ConstantsAdmin.obtenerCategoriasActivas(this, null, mDBManager);
-      categoriasPersonales = ConstantsAdmin.obtenerCategoriasActivasPersonales(this, mDBManager);
-      categorias.addAll(categoriasPersonales);
-      this.cargarNombreRelativoCategorias(categorias);
-      this.crearSpinnerCategorias(categorias);
-    }
-
-  	private void cargarNombreRelativoCategorias(List<CategoriaDTO> categorias){
-  		Iterator<CategoriaDTO> it = categorias.iterator();
-  		CategoriaDTO catTemp;
-  		String nombreRelativo;
-  		while(it.hasNext()){
-  			catTemp = it.next();
-  			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
-  			if(nombreRelativo == null){
-  				nombreRelativo = catTemp.getNombreReal();
-  			}
-  			catTemp.setNombreRelativo(nombreRelativo);
-  		}
-  		Collections.sort(categorias);
-  	}
-
-  	
-    
-    private void crearSpinnerCategorias(List<CategoriaDTO> categorias){
-	    Spinner spinner = findViewById(R.id.spinnerCategorias_alta_persona);
-	    this.mSpinnerAdapt = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
-	    this.seleccionarPrimerCategoria();
-	    spinner.setAdapter(this.mSpinnerAdapt); 
-	    OnItemSelectedListener spinnerListener = new seleccionSpinnerListener();
-	    spinner.setOnItemSelectedListener(spinnerListener);
-	}
-    
-	private void mostrarDatosPorCategoria(){
-    	String text;
-    	if(mCategoriaSeleccionada != null){
-	    	EditText textViewEntry = this.findViewById(R.id.entryDatoExtra);
-	    	TextView textViewLabel = this.findViewById(R.id.label_datoExtra);
-	    	text = this.obtenerEtiquetaDatoExtra(mCategoriaSeleccionada.getNombreReal());
-	    	if(text == null){
-	    		text = mCategoriaSeleccionada.getTipoDatoExtra();
-	    	}
-	    	textViewEntry.setHint(text.toUpperCase());
-	    	textViewLabel.setText(text.toUpperCase());
-    	}
+	private void configurarSpinner() {
+		List<CategoriaDTO> categorias;
+		List<CategoriaDTO> categoriasPersonales;
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		categorias = ConstantsAdmin.obtenerCategoriasActivas(this, null, mDBManager);
+		categoriasPersonales = ConstantsAdmin.obtenerCategoriasActivasPersonales(this, mDBManager);
+		categorias.addAll(categoriasPersonales);
+		this.cargarNombreRelativoCategorias(categorias);
+		this.crearSpinnerCategorias(categorias);
 	}
 
-    private String obtenerEtiquetaDatoExtra(String nombreEtiqueta){
-    	String result = null;
+	private void cargarNombreRelativoCategorias(List<CategoriaDTO> categorias) {
+		Iterator<CategoriaDTO> it = categorias.iterator();
+		CategoriaDTO catTemp;
+		String nombreRelativo;
+		while (it.hasNext()) {
+			catTemp = it.next();
+			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
+			if (nombreRelativo == null) {
+				nombreRelativo = catTemp.getNombreReal();
+			}
+			catTemp.setNombreRelativo(nombreRelativo);
+		}
+		Collections.sort(categorias);
+	}
+
+
+	private void crearSpinnerCategorias(List<CategoriaDTO> categorias) {
+		Spinner spinner = findViewById(R.id.spinnerCategorias_alta_persona);
+		this.mSpinnerAdapt = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
+		this.seleccionarPrimerCategoria();
+		spinner.setAdapter(this.mSpinnerAdapt);
+		OnItemSelectedListener spinnerListener = new seleccionSpinnerListener();
+		spinner.setOnItemSelectedListener(spinnerListener);
+	}
+
+	private void mostrarDatosPorCategoria() {
+		String text;
+		if (mCategoriaSeleccionada != null) {
+			EditText textViewEntry = this.findViewById(R.id.entryDatoExtra);
+			TextView textViewLabel = this.findViewById(R.id.label_datoExtra);
+			text = this.obtenerEtiquetaDatoExtra(mCategoriaSeleccionada.getNombreReal());
+			if (text == null) {
+				text = mCategoriaSeleccionada.getTipoDatoExtra();
+			}
+			textViewEntry.setHint(text.toUpperCase());
+			textViewLabel.setText(text.toUpperCase());
+		}
+	}
+
+	private String obtenerEtiquetaDatoExtra(String nombreEtiqueta) {
+		String result = null;
 		switch (nombreEtiqueta) {
 			case ConstantsAdmin.CATEGORIA_AMIGOS:
 				result = getString(R.string.hint_lugarOActividad);
@@ -736,35 +756,34 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 				result = getString(R.string.hint_zona);
 				break;
 		}
-    	
-    	
-    	return result;
-    }
-    
-    
-    
-    class seleccionSpinnerListener implements OnItemSelectedListener {
 
 
-        public void onItemSelected(AdapterView<?> parent, View v, int pos, long row) {
-        	mCategoriaSeleccionada = (CategoriaDTO) parent.getSelectedItem();
-        	mostrarDatosPorCategoria();
-        }
+		return result;
+	}
 
-        public void onNothingSelected(AdapterView<?> parent) {
 
-        }
-    }
-    
+	class seleccionSpinnerListener implements OnItemSelectedListener {
 
-    protected void onPause() {
-    	super.onPause();
+
+		public void onItemSelected(AdapterView<?> parent, View v, int pos, long row) {
+			mCategoriaSeleccionada = (CategoriaDTO) parent.getSelectedItem();
+			mostrarDatosPorCategoria();
+		}
+
+		public void onNothingSelected(AdapterView<?> parent) {
+
+		}
+	}
+
+
+	protected void onPause() {
+		super.onPause();
 		/*DataBaseManager mDBManager = DataBaseManager.getInstance(this);
         this.resetAllMyCursors();*/
-        people = null;
-       /* ConstantsAdmin.finalizarBD(mDBManager);*/
+		people = null;
+		/* ConstantsAdmin.finalizarBD(mDBManager);*/
 
-    }
+	}
 
     
   /*
@@ -782,113 +801,208 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 */
 
 
-    private void obtenerContactoCapturado(boolean desdeAgregarTodos){
-    	boolean tieneTelefonos;
-        CursorLoader cursorLoaderPhones = ConstantsAdmin.cursorPersona;
+	private void obtenerContactoCapturado(boolean desdeAgregarTodos) {
+		boolean tieneTelefonos;
+		CursorLoader cursorLoaderPhones = ConstantsAdmin.cursorPersona;
     /*	if(cursorLoaderPhones == null){
             cursorLoaderPhones = mDBManager.cursorLoaderPersonaId(contactId, this,getContentResolver());
         }*/
-        cursorLoaderPhones.setSelection(ConstantsAdmin.querySelectionContactsPhoneById + contactId);
-        cursorLoaderPhones.reset();
+		cursorLoaderPhones.setSelection(ConstantsAdmin.querySelectionContactsPhoneById + contactId);
+		cursorLoaderPhones.reset();
 
-        Cursor phones = cursorLoaderPhones.loadInBackground();
-        tieneTelefonos = phones.getCount() > 0;
-        phones.close();
-        if(mCategoriaSeleccionada == null){
-            this.seleccionarPrimerCategoria();
-        }
-        if(!desdeAgregarTodos || (persona.getId() == -1)){// SIGNIFICA QUE ES UN AGREGADO O ACTUALIZACION SIMPLE DE UN CONTACTO
-       // O SI ES DESDE ADD ALL SOLO CONFIGURO CATEGORIA SI EL CONTACTO ES NUEVO
-           persona.setCategoriaId(mCategoriaSeleccionada.getId());
-           persona.setCategoriaNombre(mCategoriaSeleccionada.getNombreReal());
-           persona.setCategoriaNombreRelativo(mCategoriaSeleccionada.getNombreRelativo());
-           persona.setDatoExtra(entryDatoExtra.getText().toString());
-           persona.setDescripcion(entryDescripcion.getText().toString());
-        }
+		Cursor phones = cursorLoaderPhones.loadInBackground();
+		tieneTelefonos = phones.getCount() > 0;
+		phones.close();
+		if (mCategoriaSeleccionada == null) {
+			this.seleccionarPrimerCategoria();
+		}
+		if (!desdeAgregarTodos || (persona.getId() == -1)) {// SIGNIFICA QUE ES UN AGREGADO O ACTUALIZACION SIMPLE DE UN CONTACTO
+			// O SI ES DESDE ADD ALL SOLO CONFIGURO CATEGORIA SI EL CONTACTO ES NUEVO
+			persona.setCategoriaId(mCategoriaSeleccionada.getId());
+			persona.setCategoriaNombre(mCategoriaSeleccionada.getNombreReal());
+			persona.setCategoriaNombreRelativo(mCategoriaSeleccionada.getNombreRelativo());
+			persona.setDatoExtra(entryDatoExtra.getText().toString());
+			persona.setDescripcion(entryDescripcion.getText().toString());
+		}
 
-        if (tieneTelefonos){
-           this.importarTelDeContacto(persona, contactId);
-        }
-        this.importarMailDeContacto(persona, contactId);
+		if (tieneTelefonos) {
+			this.importarTelDeContacto(persona, contactId);
+		}
+		this.importarMailDeContacto(persona, contactId);
 
 
-    }
-    
-    
-    private Asociacion obtenerNombreYApellidoDeContactoDeAgenda(String cId){
-    	Asociacion asoc = null;
-    	Cursor nameCur;
-    	CursorLoader nameCurLoader;
+	}
 
-    	String given;
-    	String family;
 
-      	nameCurLoader = ConstantsAdmin.cursorPersonaExtra;
+	private Asociacion obtenerNombreYApellidoDeContactoDeAgenda(String cId) {
+		Asociacion asoc = null;
+		Cursor nameCur;
+		CursorLoader nameCurLoader;
+
+		String given;
+		String family;
+
+		nameCurLoader = ConstantsAdmin.cursorPersonaExtra;
 		nameCurLoader.setSelection(ConstantsAdmin.querySelectionContactsById + cId);
 		nameCurLoader.reset();
 		nameCur = nameCurLoader.loadInBackground();
 
-	//	nameCur = this.getPeopleById(contactId);
+		//	nameCur = this.getPeopleById(contactId);
 
-        if(nameCur!=null){
-        //	super.startManagingCursor(nameCur);
-	        if (nameCur.moveToNext()) {
-	            given = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
-	            family = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
-	            asoc = new Asociacion(given, family);
-	        }
-	     	nameCur.close();
-          //  stopManagingCursor(nameCur);
+		if (nameCur != null) {
+			//	super.startManagingCursor(nameCur);
+			if (nameCur.moveToNext()) {
+				given = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
+				family = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
+				asoc = new Asociacion(given, family);
+			}
+			nameCur.close();
+			//  stopManagingCursor(nameCur);
 
-        }
+		}
 
-    	return asoc;
-    }
-    
-    private void importarMailDeContacto(PersonaDTO per, String contactId){
-    	String emailAddress;
-    	int emailType;
+		return asoc;
+	}
+
+	private void importarMailDeContacto(PersonaDTO per, String contactId) {
+		String emailAddress;
+		int emailType;
 		Cursor emails;
 		CursorLoader nameCurLoader;
 
-    //	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-        nameCurLoader = ConstantsAdmin.cursorEmailPersona;
-        nameCurLoader.setSelection(ConstantsAdmin.querySelectionEmailContactsById + contactId);
-        nameCurLoader.reset();
-        emails = nameCurLoader.loadInBackground();
-    //	Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
-        if(emails != null){
-        //    super.startManagingCursor(emails);
-            while (emails.moveToNext()) {
-               // Tis would allow you get several email addresses
-               emailAddress = emails.getString(emails.getColumnIndex(Email.DATA));
-               emailType = emails.getInt(emails.getColumnIndex(Email.TYPE));
+		//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		nameCurLoader = ConstantsAdmin.cursorEmailPersona;
+		nameCurLoader.setSelection(ConstantsAdmin.querySelectionEmailContactsById + contactId);
+		nameCurLoader.reset();
+		emails = nameCurLoader.loadInBackground();
+		//	Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
+		if (emails != null) {
+			//    super.startManagingCursor(emails);
+			while (emails.moveToNext()) {
+				// Tis would allow you get several email addresses
+				emailAddress = emails.getString(emails.getColumnIndex(Email.DATA));
+				emailType = emails.getInt(emails.getColumnIndex(Email.TYPE));
 
-               if(!emailAddress.equals("")){
-                    switch (emailType) {
-                    case Email.TYPE_HOME :
-                        per.setEmailParticular(emailAddress);
-                        break;
-                    case Email.TYPE_WORK:
-                        per.setEmailLaboral(emailAddress);
-                        break;
-                    case Email.TYPE_OTHER :
-                        per.setEmailOtro(emailAddress);
-                        break;
-                    default:
-                        break;
-                    }
-               }
-            }
-            emails.close();
-      //      this.stopManagingCursor(emails);
-        }
+				if (!emailAddress.equals("")) {
+					switch (emailType) {
+						case Email.TYPE_HOME:
+							per.setEmailParticular(emailAddress);
+							break;
+						case Email.TYPE_WORK:
+							per.setEmailLaboral(emailAddress);
+							break;
+						case Email.TYPE_OTHER:
+							per.setEmailOtro(emailAddress);
+							break;
+						default:
+							break;
+					}
+				}
+			}
+			emails.close();
+			//      this.stopManagingCursor(emails);
+		}
 
 
-    	
-    }
-    
-    
+	}
+
+	private String obtenerMailDeContacto(String contactId) {
+		String emailAddress;
+		int emailType;
+		Cursor emails;
+		CursorLoader nameCurLoader;
+		String mails = null;
+
+		//	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		nameCurLoader = ConstantsAdmin.cursorEmailPersona;
+		nameCurLoader.setSelection(ConstantsAdmin.querySelectionEmailContactsById + contactId);
+		nameCurLoader.reset();
+		emails = nameCurLoader.loadInBackground();
+		//	Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
+		if (emails != null && emails.getCount() > 0) {
+			//    super.startManagingCursor(emails);
+			mails = this.getString(R.string.label_emails);
+			while (emails.moveToNext()) {
+				// Tis would allow you get several email addresses
+				emailAddress = emails.getString(emails.getColumnIndex(Email.DATA));
+				emailType = emails.getInt(emails.getColumnIndex(Email.TYPE));
+
+				if (!emailAddress.equals("")) {
+					switch (emailType) {
+						case Email.TYPE_HOME:
+							mails = mails + "\n" + Email.TYPE_HOME + ": " + emailAddress;
+							break;
+						case Email.TYPE_WORK:
+							mails = mails + "\n" + Email.TYPE_WORK + ": " + emailAddress;
+							break;
+						case Email.TYPE_OTHER:
+							mails = mails + "\n" + Email.TYPE_OTHER + ": " + emailAddress;
+							break;
+						default:
+							break;
+					}
+				}
+			}
+			emails.close();
+			//      this.stopManagingCursor(emails);
+		}
+		return mails;
+
+
+	}
+
+
+
+	private String obtenerTelDeContacto(String contactId) {
+		String phoneNumber;
+		int phoneType;
+		CursorLoader nameCurLoader;
+
+		String tels = null;
+
+		//	String[] projectionPhone = ConstantsAdmin.projectionPhone;
+		//DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		nameCurLoader = ConstantsAdmin.cursorPhonePersona;
+		nameCurLoader.setSelection(ConstantsAdmin.querySelectionPhoneContactsById + contactId);
+		nameCurLoader.reset();
+		Cursor phones = nameCurLoader.loadInBackground();
+
+//    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+		if (phones != null && phones.getCount() > 0) {
+//  	        super.startManagingCursor(phones);
+			tels = this.getString(R.string.label_telefonos);
+			while (phones.moveToNext()) {
+				phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+				phoneType = phones.getInt(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
+
+				if (!phoneNumber.equals("")) {
+					switch (phoneType) {
+						case Phone.TYPE_HOME:
+							tels = tels + "\n" + Phone.TYPE_HOME + ": " + phoneNumber;
+							break;
+						case Phone.TYPE_MOBILE:
+							tels = tels + "\n" + Phone.TYPE_MOBILE + ": " + phoneNumber;
+							break;
+						case Phone.TYPE_WORK:
+							tels = tels + "\n" + Phone.TYPE_WORK + ": " + phoneNumber;
+							break;
+						case Phone.TYPE_WORK_MOBILE:
+							tels = tels + "\n" + Phone.TYPE_WORK_MOBILE + ": " + phoneNumber;
+							break;
+						default:
+							break;
+					}
+
+				}
+			}
+			phones.close();
+//	        this.stopManagingCursor(phones);
+		}
+		return tels;
+
+	}
+
+
     
     
     private void importarTelDeContacto(PersonaDTO per, String contactId){

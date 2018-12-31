@@ -267,9 +267,10 @@ id text1
 id text2
 id textAcercaDeMail
 id textCantidad
+id textMailsPersonaEncontrada
 id textName
 id textPersonaEncontrada
-id textTipoPersonaEncontrada
+id textTelsPersonaEncontrada
 id textTodasLasPublicaciones
 id time
 id title
