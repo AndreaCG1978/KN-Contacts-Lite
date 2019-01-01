@@ -2,6 +2,7 @@ package com.boxico.android.kn.contacts;
 
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -763,6 +764,21 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 
 	private void enviarSMS(String tel) {
+
+		try {
+			PackageManager packageManager = this.getPackageManager();
+			Intent i = new Intent(Intent.ACTION_VIEW);
+			String url = "https://api.whatsapp.com/send?phone="+ "+542214881877" +"&text=" + URLEncoder.encode("Hola", "UTF-8");
+			i.setPackage("com.whatsapp");
+			i.setData(Uri.parse(url));
+			if (i.resolveActivity(packageManager) != null) {
+				this.startActivity(i);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+		/*
 		try {
 			Intent smsIntent = new Intent(Intent.ACTION_VIEW);
 			smsIntent.setType("vnd.android-dir/mms-sms");
@@ -773,6 +789,8 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		} catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorMandarMensaje));
 		}
+
+		*/
 
 	}
 
