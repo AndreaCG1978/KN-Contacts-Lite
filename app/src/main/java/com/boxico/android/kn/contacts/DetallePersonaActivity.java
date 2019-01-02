@@ -4,6 +4,7 @@ package com.boxico.android.kn.contacts;
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -39,6 +40,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
@@ -746,7 +748,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	private void efectuarLlamadaGenerico(String numero) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		final String numeroTemp = numero;
-		builder.setMessage(this.getString(R.string.mensaje_seleccione_llamada_sms) + " " + numero)
+		/*builder.setMessage(this.getString(R.string.mensaje_seleccione_llamada_sms) + " " + numero)
 				.setCancelable(true)
 				.setPositiveButton(R.string.label_llamada, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
@@ -757,7 +759,40 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 					public void onClick(DialogInterface dialog, int id) {
 						enviarSMS(numeroTemp);
 					}
-				});
+				});*/
+
+		String[] colors = new String[]{
+				"Norte",
+				"Sur",
+				"Metropolitana",
+
+		};
+
+		// Boolean array for initial selected items
+		final boolean[] checkedColors = new boolean[]{
+				false, // Norte
+				true, // Sur
+				false, // Metropolitana
+		};
+
+		// Convert the color array to list
+		final List<String> colorsList = Arrays.asList(colors);
+
+		builder.setMultiChoiceItems(colors, checkedColors, new DialogInterface.OnMultiChoiceClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+
+				// Update the current focused item's checked status
+				checkedColors[which] = isChecked;
+
+				// Get the current focused item
+				String currentItem = colorsList.get(which);
+
+				// Notify the current action
+				Toast.makeText(getApplicationContext(),
+						currentItem + " " + isChecked, Toast.LENGTH_SHORT).show();
+			}
+		});
 		builder.show();
 
 	}
