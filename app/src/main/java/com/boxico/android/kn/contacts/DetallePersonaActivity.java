@@ -761,40 +761,23 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 					}
 				});*/
 
-		String[] colors = new String[]{
-				"Norte",
-				"Sur",
-				"Metropolitana",
+		final CharSequence[] charSequence = new CharSequence[] {"As Guest","I have account here", "Something else"};
 
-		};
-
-		// Boolean array for initial selected items
-		final boolean[] checkedColors = new boolean[]{
-				false, // Norte
-				true, // Sur
-				false, // Metropolitana
-		};
-
-		// Convert the color array to list
-		final List<String> colorsList = Arrays.asList(colors);
-
-		builder.setMultiChoiceItems(colors, checkedColors, new DialogInterface.OnMultiChoiceClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-
-				// Update the current focused item's checked status
-				checkedColors[which] = isChecked;
-
-				// Get the current focused item
-				String currentItem = colorsList.get(which);
-
-				// Notify the current action
-				Toast.makeText(getApplicationContext(),
-						currentItem + " " + isChecked, Toast.LENGTH_SHORT).show();
-			}
-		});
-		builder.show();
-
+		builder.setTitle("Buy Now")
+				//.setMessage("You can buy our products without registration too. Enjoy the shopping")
+				.setSingleChoiceItems(charSequence, 0, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Toast.makeText(getApplicationContext(), String.valueOf(which), Toast.LENGTH_LONG);
+					}
+				})
+				.setPositiveButton("Go", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+		builder.create().show();
 	}
 
 
