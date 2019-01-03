@@ -5,7 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,7 +28,73 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 	}
 
 
-    private void mostrarFoto(ImageView photo, long idPer){
+	private boolean mostrarFoto(final TextView tv, long idPer, boolean miniFoto){
+		boolean muestraFoto = false;
+		try {
+			Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(localContext);
+			boolean puede = (Boolean) puedeCargar.getKey();
+
+			if(puede){
+				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+				Bitmap small = null;
+				if(miniFoto){
+					small = Bitmap.createScaledBitmap(b, 35, 38, true);
+				}else{
+					small = Bitmap.createScaledBitmap(b, 45, 50, true);
+				}
+
+
+				final Drawable icon = new BitmapDrawable(localContext.getResources(), small);
+				//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+				if(icon != null){
+					tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+					tv.setCompoundDrawablePadding(3);
+					//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
+					Bitmap big = b;
+					final Drawable iconBig = new BitmapDrawable(localContext.getResources(), big);
+					muestraFoto = true;
+					tv.setOnTouchListener(new View.OnTouchListener() {
+						@Override
+						public boolean onTouch(View v, MotionEvent event) {
+							if(event.getAction() == MotionEvent.ACTION_UP) {
+								if(event.getRawX() <= tv.getTotalPaddingLeft()) {
+									// your action for drawable click event
+									ConstantsAdmin.showFotoPopUp(iconBig, localContext);
+
+									return true;
+								}
+							}
+							return true;
+						}
+					});
+
+				}
+			}
+    		/*
+
+
+    		if(puede){
+            	Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+            	if(b != null){
+            		photo.setVisibility(View.VISIBLE);
+            		photo.setImageBitmap(b);
+            	}else{
+            		photo.setVisibility(View.GONE);
+            	}
+    		}else{
+    			photo.setVisibility(View.GONE);
+    		}*/
+
+		} catch (Exception e) {
+			//photo.setVisibility(View.GONE);
+		}
+		return muestraFoto;
+
+
+	}
+
+/*
+	private void mostrarFoto(ImageView photo, long idPer){
     	try {
     		Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(localContext);
     		boolean puede = (Boolean) puedeCargar.getKey();
@@ -47,24 +116,33 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 
     	
     }
+
+    */
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
 		// TODO Auto-generated method stub
-		 super.bindView(view, context, cursor);
-	//	 int colorPreferidoNaranja = Color.parseColor("#24221F");
-	     TextView text = view.findViewById(R.id.rowApellido);
-	 //    TextView textN = view.findViewById(R.id.rowNombres);
-	     ImageView photo = view.findViewById(R.id.photo);
-	     
-	     long id = cursor.getLong(cursor.getColumnIndex(ConstantsAdmin.KEY_ROWID));
-	     
-	     this.mostrarFoto(photo, id);
-	     
-/*	     if(localContext.mMostrandoPreferidos){
-	    	 textA.setTextColor(colorPreferidoNaranja);
-	    	 textN.setTextColor(colorPreferidoNaranja);
-	     }*/
-	     text.setText("- " + text.getText().toString().toUpperCase());
+		super.bindView(view, context, cursor);
+		boolean miniFoto = false;
+		TextView textApe = view.findViewById(R.id.rowApellido);
+		TextView textNom = view.findViewById(R.id.rowNombres);
+		TextView textDR	= view.findViewById(R.id.rowDatoRelevante);
+		textApe.setPadding(5, 5, 2, 5);
+		textNom.setPadding(3, 5, 5, 5);
+		textApe.setTextSize(14);
+		textNom.setTextSize(14);
+		textDR.setTextSize(14);
+		textDR.setVisibility(View.VISIBLE);
+
+		view.findViewById(R.id.rowDatoRelevante2).setVisibility(View.GONE);
+
+		long id = cursor.getLong(cursor.getColumnIndex(ConstantsAdmin.KEY_ROWID));
+		boolean muestraFoto = mostrarFoto(textApe, id, true);
+
+		//      ImageView photo = v.findViewById(R.id.photo);
+		if(!muestraFoto) {
+			textApe.setText("*  " + textApe.getText());
+		}
+
 
 	
 	}

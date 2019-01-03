@@ -623,7 +623,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 							if(event.getAction() == MotionEvent.ACTION_UP) {
 								if(event.getRawX() <= tv.getTotalPaddingLeft()) {
 									// your action for drawable click event
-                                    showFotoPopUp(iconBig);
+                                    ConstantsAdmin.showFotoPopUp(iconBig, me);
 
 									return true;
 								}
@@ -657,25 +657,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	
     }
 
-    public void showFotoPopUp(Drawable icon) {
-        Dialog builder = new Dialog(this);
-        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        builder.getWindow().setBackgroundDrawable(
-                new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                //nothing;
-            }
-        });
 
-        ImageView imageView = new ImageView(this);
-        imageView.setImageDrawable(icon);
-        builder.addContentView(imageView, new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
-        builder.show();
-    }
     
 
     private void openVerMenuPersona(long id, int groupPosition, int childPosition){

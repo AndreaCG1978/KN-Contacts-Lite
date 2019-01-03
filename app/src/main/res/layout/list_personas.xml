@@ -7,30 +7,37 @@
 	<LinearLayout
 		android:layout_width="fill_parent" android:layout_height="fill_parent"
 		android:orientation="vertical"
-		android:scrollbarAlwaysDrawVerticalTrack="true">
+		android:scrollbarAlwaysDrawVerticalTrack="true"
+		android:background="@color/color_gris_oscuro" >
 
 		<LinearLayout android:orientation="vertical"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:gravity="center" android:layout_marginTop="5dp"
+			android:gravity="left" android:layout_marginTop="5dp"
 			android:layout_marginBottom="5dp">
 
 			<LinearLayout android:orientation="horizontal"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:layout_margin="2dp" android:gravity="center_horizontal">
+				android:layout_margin="2dp" android:gravity="left">
+
+
+
+				<EditText android:id="@+id/entryBusquedaPersona"
+					android:inputType="textCapCharacters" android:layout_height="38dp"
+					android:layout_width="110dp" android:maxLength="15"
+					android:paddingStart="7dp" android:paddingEnd="7dp" android:textSize="13sp"
+					android:layout_marginStart="10dp"
+					android:hint="@string/hint_busqueda" android:textColor="@color/color_gris_claro"
+					android:importantForAutofill="no"
+					android:paddingLeft="7dp" android:paddingRight="7dp"
+					android:layout_marginLeft="10dp"
+					android:textStyle="italic"
+					/>
+
 
 				<com.boxico.android.kn.contacts.util.MultiSpinner
 					android:id="@+id/multi_spinner" android:layout_width="38dp"
-					android:layout_height="38dp" android:background="@drawable/categoria_search_icon" />
-
-				<EditText android:id="@+id/entryBusquedaPersona"
-					android:inputType="textPersonName" android:layout_height="38dp"
-					android:layout_width="110dp" android:maxLength="15"
-					android:paddingStart="7dp" android:paddingEnd="7dp" android:textSize="15sp"
-					android:layout_marginStart="22dp"
-					android:hint="@string/hint_busqueda" android:textColor="@color/color_azul_oscuro"
-					android:importantForAutofill="no"
-					android:paddingLeft="7dp" android:paddingRight="7dp"
-					android:layout_marginLeft="22dp" />
+					android:layout_height="38dp" android:background="@drawable/categoria_search_icon"
+					android:layout_marginStart="50dp" android:layout_marginLeft="50dp"/>
 
 
 				<ImageButton android:id="@+id/buttonTodasLasCategorias"
@@ -41,9 +48,12 @@
 
 				<TextView android:id="@+id/cantRegistros"
 					android:layout_height="wrap_content" android:layout_width="wrap_content"
-					android:layout_marginStart="22dp" android:textSize="12sp"
-					android:layout_marginLeft="22dp">
-				</TextView>
+					android:layout_marginStart="22dp" android:textSize="13sp"
+					android:layout_marginLeft="22dp"
+					android:textColor="@color/color_gris_claro"
+					android:gravity="top"/>
+
+
 
 
 
@@ -52,19 +62,17 @@
 			<TextView
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:layout_marginBottom="2dp" android:layout_marginRight="10dp"
-				android:layout_marginLeft="10dp" android:textColor="@color/color_negro"
+				android:layout_marginLeft="10dp" android:textColor="@color/color_gris_claro"
 				android:textSize="7sp" android:text="@string/help_busqueda"
 				android:gravity="center" android:layout_gravity="center"
 				android:visibility="gone" />
 
 
-			<View android:id="@+id/linea1" android:layout_width="wrap_content"
-				android:layout_height="2dp" android:background="@color/color_negro" />
 
 			<LinearLayout android:orientation="horizontal"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:background="@drawable/custom_text_view_categoria"
-				android:gravity="center_horizontal">
+				android:background="@color/color_gris_oscuro"
+				android:gravity="end|center">
 
 				<ImageView android:id="@+id/imgPrefLeft"
 					android:layout_width="13dp" android:layout_height="13dp"
@@ -77,7 +85,7 @@
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
 					android:layout_marginTop="2dp" android:layout_marginBottom="2dp"
-					android:textColor="@color/color_negro" android:textSize="12sp"
+					android:textColor="@color/color_gris_claro" android:textSize="12sp"
 					android:padding="4dp" android:gravity="center" />
 
 				<ImageView android:id="@+id/imgPrefRight"
@@ -96,7 +104,7 @@
 			android:scrollbarAlwaysDrawVerticalTrack="true"
 			android:listSelector="@android:color/transparent"
 			android:cacheColorHint="@android:color/transparent"
-			android:background="@android:color/white"
+			android:background="@color/color_gris_oscuro"
 			android:scrollingCache="false"
 			>
 		</ExpandableListView>
@@ -104,9 +112,10 @@
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:layout_margin="10dp" android:text="@string/text_sinDatos" />
 		<ListView android:id="@+id/listaEspecial"
+			android:background="@color/color_gris_oscuro"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
-			android:dividerHeight="10dp" android:divider="@android:color/white"
-			android:layout_marginBottom="55dp" android:listSelector="@android:color/transparent"
+			android:dividerHeight="10dp"
+			android:layout_marginBottom="55dp"
 			android:cacheColorHint="#00000000" android:smoothScrollbar="true"
 			android:scrollbars="none" />
 

@@ -16,17 +16,24 @@ import java.util.Map;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.CursorLoader;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.boxico.android.kn.contacts.*;
@@ -2478,6 +2485,26 @@ public class ConstantsAdmin {
 		PersonaDTO per = obtenerPersonaId(activity, id, mDBManager);
 		result = obtenerStringEsteticoPersonaParaEnviar(per, activity, mDBManager);
 		return result;
+	}
+
+	public static void showFotoPopUp(Drawable icon, Activity context) {
+		Dialog builder = new Dialog(context);
+		builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		builder.getWindow().setBackgroundDrawable(
+				new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+			@Override
+			public void onDismiss(DialogInterface dialogInterface) {
+				//nothing;
+			}
+		});
+
+		ImageView imageView = new ImageView(context);
+		imageView.setImageDrawable(icon);
+		builder.addContentView(imageView, new RelativeLayout.LayoutParams(
+				ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.MATCH_PARENT));
+		builder.show();
 	}
 
 	public static final int ACTIVITY_EJECUTAR_MENU_PERSONA = 26;
