@@ -432,17 +432,11 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
                 @Override
                 public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
                 	String clave = mySortedByElements.get(groupPosition);
+                	boolean miniFoto = false;
                 	final PersonaDTO per = (PersonaDTO) personasMap.get(clave).toArray()[childPosition];
                    	final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
 					TextView textApe = v.findViewById(R.id.rowApellido);
-                   	boolean muestraFoto = mostrarFoto(textApe, per.getId());
 
-              //      ImageView photo = v.findViewById(R.id.photo);
-					if(!muestraFoto) {
-						textApe.setText("*  " + per.getApellido().toUpperCase());
-					}else{
-						textApe.setText(" " + per.getApellido().toUpperCase());
-					}
                     
                     TextView textNom = v.findViewById(R.id.rowNombres);
                     textNom.setText(per.getNombres());
@@ -491,6 +485,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 							text.setText(texto);
 							text.setTextSize(13);
 							text.setVisibility(View.VISIBLE);
+							miniFoto = true;
 	                  /*
 	                    text = v.findViewById(R.id.rowDatoRelevante2);
 	                    text.setText(per.getDescripcion());
@@ -505,6 +500,17 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
                         text.setVisibility(View.GONE);
 
                     }
+
+					boolean muestraFoto = mostrarFoto(textApe, per.getId(), miniFoto);
+
+					//      ImageView photo = v.findViewById(R.id.photo);
+					if(!muestraFoto) {
+						textApe.setText("*  " + per.getApellido().toUpperCase());
+					}else{
+						textApe.setText(" " + per.getApellido().toUpperCase());
+					}
+
+
 	                final int gp = groupPosition;
                     final int cp = childPosition;
                     
@@ -586,7 +592,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     }
 
 
-	private boolean mostrarFoto(final TextView tv, long idPer){
+	private boolean mostrarFoto(final TextView tv, long idPer, boolean miniFoto){
 		boolean muestraFoto = false;
     	try {
     		Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(me);
@@ -594,7 +600,14 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 			if(puede){
 				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
-				Bitmap small = Bitmap.createScaledBitmap(b, 45, 50, true);
+				Bitmap small = null;
+				if(miniFoto){
+					small = Bitmap.createScaledBitmap(b, 35, 38, true);
+				}else{
+					small = Bitmap.createScaledBitmap(b, 45, 50, true);
+				}
+
+
                 final Drawable icon = new BitmapDrawable(getResources(), small);
                 //final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
 				if(icon != null){

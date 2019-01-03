@@ -761,42 +761,59 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 					}
 				});*/
 
-		final CharSequence[] charSequence = new CharSequence[] {"As Guest","I have account here", "Something else"};
-
-		builder.setTitle("Buy Now")
+		//final CharSequence[] charSequence = new CharSequence[] {"As Guest","I have account here", "Something else"};
+		final CharSequence[] charSequence = new CharSequence[] {
+				this.getString(R.string.label_llamada),
+				this.getString(R.string.label_sms),
+				"WhatsApp"};
+		builder.setTitle(this.getString(R.string.mensaje_seleccione_llamada_sms))
 				//.setMessage("You can buy our products without registration too. Enjoy the shopping")
 				.setSingleChoiceItems(charSequence, 0, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						Toast.makeText(getApplicationContext(), String.valueOf(which), Toast.LENGTH_LONG);
-					}
-				})
-				.setPositiveButton("Go", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
+						switch(which) {
+							case 0:
+								efectuarLlamada(numeroTemp);
+								break; // optional
+							case 1:
+								enviarSMS(numeroTemp);
+								//ConstantsAdmin.cursorCategoriasPersonales = cl;
+								break; // optional
+							case 2:
+								enviarWhatsApp(numeroTemp);
+								//ConstantsAdmin.cursorCategoriasPersonales = cl;
+								break; // optional
+
+							default : // Optional
+								// Statements
+						}
+
+
 					}
 				});
 		builder.create().show();
 	}
 
-
-	private void enviarSMS(String tel) {
+	private void enviarWhatsApp(String tel) {
 
 		try {
 			PackageManager packageManager = this.getPackageManager();
 			Intent i = new Intent(Intent.ACTION_VIEW);
-			String url = "https://api.whatsapp.com/send?phone="+ "+542214881877" +"&text=" + URLEncoder.encode("Hola", "UTF-8");
+			String url = "https://api.whatsapp.com/send?phone=" + tel + "&text=" + URLEncoder.encode("", "UTF-8");
 			i.setPackage("com.whatsapp");
 			i.setData(Uri.parse(url));
 			if (i.resolveActivity(packageManager) != null) {
 				this.startActivity(i);
 			}
-		} catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
 
-		/*
+	private void enviarSMS(String tel) {
+
+
+
 		try {
 			Intent smsIntent = new Intent(Intent.ACTION_VIEW);
 			smsIntent.setType("vnd.android-dir/mms-sms");
@@ -808,7 +825,6 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorMandarMensaje));
 		}
 
-		*/
 
 	}
 
