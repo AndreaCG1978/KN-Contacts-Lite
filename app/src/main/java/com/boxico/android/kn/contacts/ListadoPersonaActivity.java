@@ -437,7 +437,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
                    	final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
 					TextView textApe = v.findViewById(R.id.rowApellido);
 
-                    
+
                     TextView textNom = v.findViewById(R.id.rowNombres);
                     textNom.setText(per.getNombres());
                     TextView text;
@@ -606,10 +606,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				}else{
 					small = Bitmap.createScaledBitmap(b, 45, 50, true);
 				}
-
-
-                final Drawable icon = new BitmapDrawable(getResources(), small);
-                //final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+				final Drawable icon = new BitmapDrawable(getResources(), small);
+				//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
 				if(icon != null){
 					tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
 					tv.setCompoundDrawablePadding(3);
@@ -768,7 +766,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	}else{
     		if(!ConstantsAdmin.config.isMuestraPreferidos()){
 	    		this.mostrarSoloPreferidos();
-    			catSelectTextView.setVisibility(View.VISIBLE);
+    		//	catSelectTextView.setVisibility(View.VISIBLE);
     			catSelectTextView.setText(getResources().getString(R.string.label_preferidos));
 	    		preferidos.setBackgroundResource(R.drawable.pref_icon);
 	    	    spinnerCategorias.setItems(todasLasCategString,this);
@@ -776,7 +774,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	    	    imgPrefRight.setVisibility(View.VISIBLE);
     		}else{
     			ConstantsAdmin.config.setMuestraPreferidos(false);
-    			catSelectTextView.setVisibility(View.GONE);
+    		//	catSelectTextView.setVisibility(View.GONE);
+				catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
     			preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
 	    	    imgPrefLeft.setVisibility(View.GONE);
 	    	    imgPrefRight.setVisibility(View.GONE);
@@ -950,8 +949,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	mEntryBusquedaNombre = null;
     	categoriasSeleccionadas = null;
     	preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
-    	catSelectTextView.setText("");
-    	catSelectTextView.setVisibility(View.GONE);
+		catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
+    //	catSelectTextView.setVisibility(View.GONE);
 		imgPrefLeft.setVisibility(View.GONE);
 		imgPrefRight.setVisibility(View.GONE);
         spinnerCategorias.setItems(todasLasCategString, this);
@@ -1514,17 +1513,17 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
      	preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
     	Cursor personasCursor;
     	String labelCateg;
-		catSelectTextView.setText("");
+		catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
 		imgPrefLeft.setVisibility(View.GONE);
 		imgPrefRight.setVisibility(View.GONE);
 		ConstantsAdmin.inicializarBD(mDBManager);
 		if(categoriasSeleccionadas != null && categoriasSeleccionadas.size()>0){
 			labelCateg = this.recuperarEtiquetaCatSeleccionadas();
 			catSelectTextView.setText(labelCateg);
-			catSelectTextView.setVisibility(View.VISIBLE);
+	//		catSelectTextView.setVisibility(View.VISIBLE);
 			spinnerCategorias.setItems(todasLasCategString, this);
 		}else{
-			catSelectTextView.setVisibility(View.GONE);
+	//		catSelectTextView.setVisibility(View.GONE);
 		}
 		ConstantsAdmin.config.setMuestraPreferidos(false);
 		personasCursor = mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(mEntryBusquedaNombre, categoriasSeleccionadas, ConstantsAdmin.categoriasProtegidas);

@@ -17,7 +17,7 @@
 
 			<LinearLayout android:orientation="horizontal"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:layout_margin="2dp" android:gravity="left">
+				android:layout_margin="2dp" android:gravity="center">
 
 
 
@@ -35,29 +35,27 @@
 
 
 				<com.boxico.android.kn.contacts.util.MultiSpinner
-					android:id="@+id/multi_spinner" android:layout_width="38dp"
-					android:layout_height="38dp" android:background="@drawable/categoria_search_icon"
+					android:id="@+id/multi_spinner" android:layout_width="32dp"
+					android:layout_height="32dp" android:background="@drawable/categoria_search_icon"
 					android:layout_marginStart="50dp" android:layout_marginLeft="50dp"/>
 
 
 				<ImageButton android:id="@+id/buttonTodasLasCategorias"
-					android:layout_width="38dp" android:layout_height="38dp"
+					android:layout_width="32dp" android:layout_height="32dp"
 					android:layout_marginStart="22dp" android:background="@drawable/clear_icon"
 					android:contentDescription="buttonTodasLasCategorias"
 					android:layout_marginLeft="22dp" />
 
-				<TextView android:id="@+id/cantRegistros"
-					android:layout_height="wrap_content" android:layout_width="wrap_content"
-					android:layout_marginStart="22dp" android:textSize="13sp"
-					android:layout_marginLeft="22dp"
-					android:textColor="@color/color_gris_claro"
-					android:gravity="top"/>
+
 
 
 
 
 
 			</LinearLayout>
+
+			<View android:id="@+id/linea1" android:layout_width="wrap_content"
+				android:layout_height="2dp"  android:background="@drawable/custom_text_view_apellido"  />
 
 			<TextView
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -88,6 +86,13 @@
 					android:textColor="@color/color_gris_claro" android:textSize="12sp"
 					android:padding="4dp" android:gravity="center" />
 
+				<TextView android:id="@+id/cantRegistros"
+					android:layout_height="wrap_content" android:layout_width="wrap_content"
+					android:layout_marginStart="22dp" android:textSize="13sp"
+					android:layout_marginLeft="22dp"
+					android:textColor="@color/color_gris_claro"
+					android:gravity="top"/>
+
 				<ImageView android:id="@+id/imgPrefRight"
 					android:layout_width="13dp" android:layout_height="13dp"
 					android:src="@drawable/pref_detalle_icon" android:gravity="end"
@@ -96,6 +101,10 @@
 					android:layout_marginLeft="60dp" />
 
 			</LinearLayout>
+
+			<View android:id="@+id/linea2" android:layout_width="wrap_content"
+				android:layout_height="2dp" android:background="@drawable/custom_text_view_apellido" />
+
 		</LinearLayout>
 
 		<ExpandableListView android:id="@android:id/list"
@@ -106,6 +115,7 @@
 			android:cacheColorHint="@android:color/transparent"
 			android:background="@color/color_gris_oscuro"
 			android:scrollingCache="false"
+
 			>
 		</ExpandableListView>
 		<TextView android:id="@android:id/empty"
