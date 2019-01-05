@@ -13,11 +13,13 @@
 		<LinearLayout android:orientation="vertical"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:gravity="left" android:layout_marginTop="5dp"
-			android:layout_marginBottom="5dp">
+			android:layout_marginBottom="5dp"
+			android:background="@color/color_gris_oscuro">
 
 			<LinearLayout android:orientation="horizontal"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:layout_margin="2dp" android:gravity="center">
+				android:layout_margin="2dp" android:gravity="center"
+				android:background="@color/color_gris_oscuro">
 
 
 
@@ -132,11 +134,13 @@
 	</LinearLayout>
 	<RelativeLayout android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:layout_gravity="bottom"
-		android:gravity="center_vertical" android:layout_margin="5dp">
+		android:gravity="center_vertical" android:layout_margin="5dp"
+		android:background="@color/color_gris_oscuro">
 
 		<LinearLayout android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:gravity="center"
-			android:orientation="horizontal">
+			android:orientation="horizontal"
+			android:background="@color/color_gris_oscuro">
 
 			<ImageButton android:id="@+id/imagenAddContacto"
 				android:background="@drawable/person_add_icon"
@@ -153,7 +157,8 @@
 				android:layout_width="32dp" android:layout_height="32dp"
 				android:layout_marginStart="23dp" android:background="@drawable/more_desc_contact"
 				android:contentDescription="buttonMoreOrLess"
-				android:layout_marginLeft="23dp" />
+				android:layout_marginLeft="23dp"
+				android:visibility="gone"/>
 
 
 			<ImageButton android:id="@+id/buttonExpandContractAll"

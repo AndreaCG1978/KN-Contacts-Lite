@@ -18,6 +18,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -355,8 +356,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 
 	private void configurarExpandableList(){
-	       this.getExpandableListView().setDividerHeight(12);
-
+	    this.getExpandableListView().setDividerHeight(22);
 	}
 
     private void recargarLista(){
@@ -436,17 +436,16 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
                 	final PersonaDTO per = (PersonaDTO) personasMap.get(clave).toArray()[childPosition];
                    	final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
 					TextView textApe = v.findViewById(R.id.rowApellido);
-
-
                     TextView textNom = v.findViewById(R.id.rowNombres);
+					TextView textFoto = v.findViewById(R.id.rowFoto);
                     textNom.setText(per.getNombres());
                     TextView text;
-					textApe.setPadding(10, 12, 2, 12);
+					textApe.setPadding(25, 12, 2, 12);
 					textNom.setPadding(3, 12, 10, 12);
 					textApe.setTextSize(16);
 					textNom.setTextSize(16);
 
-
+/*
                     if(!ConstantsAdmin.config.isEstanDetallados()){
 
                     	if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
@@ -460,55 +459,52 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
                     	text = v.findViewById(R.id.rowDatoRelevante2);
                     	text.setVisibility(View.GONE);
                   //  	photo.setVisibility(View.GONE);
-                    }else{
+                    }else{*/
 
 
-	                    text = v.findViewById(R.id.rowDatoRelevante);
-	                    String texto;
-                    	if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
-	                    	//text.setText(per.getCategoriaNombreRelativo());
-                            texto = per.getCategoriaNombreRelativo();
-	                    }else{
-	                    	//text.setText(per.getDatoExtra());
-                            texto = per.getDatoExtra();
-	                    }
+					text = v.findViewById(R.id.rowDatoRelevante);
+					String texto;
+					if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
+						//text.setText(per.getCategoriaNombreRelativo());
+						texto = per.getCategoriaNombreRelativo();
+					}else{
+						//text.setText(per.getDatoExtra());
+						texto = per.getDatoExtra();
+					}
 
-	                    if(texto != null && !texto.equals("")){
-							textApe.setPadding(5, 5, 2, 5);
-							textNom.setPadding(3, 5, 5, 5);
-							textApe.setTextSize(14);
-							textNom.setTextSize(14);
-							if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
-								texto = texto + " (" + per.getDescripcion() + ")";
-
-							}
-							text.setText(texto);
-							text.setTextSize(13);
-							text.setVisibility(View.VISIBLE);
-							miniFoto = true;
-	                  /*
-	                    text = v.findViewById(R.id.rowDatoRelevante2);
-	                    text.setText(per.getDescripcion());
-	                    text.setVisibility(View.VISIBLE);*/
-
-
-						}else{
-                    		text.setVisibility(View.GONE);
+					if(texto != null && !texto.equals("")){
+						textApe.setPadding(25, 5, 2, 5);
+						textNom.setPadding(3, 5, 5, 5);
+						textApe.setTextSize(14);
+						textNom.setTextSize(14);
+						if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
+							texto = texto + " (" + per.getDescripcion() + ")";
 
 						}
-                        text = v.findViewById(R.id.rowDatoRelevante2);
-                        text.setVisibility(View.GONE);
+						text.setText(texto);
+						text.setTextSize(13);
+						text.setVisibility(View.VISIBLE);
+						miniFoto = true;
+				  /*
+					text = v.findViewById(R.id.rowDatoRelevante2);
+					text.setText(per.getDescripcion());
+					text.setVisibility(View.VISIBLE);*/
 
-                    }
 
-					boolean muestraFoto = mostrarFoto(textApe, per.getId(), miniFoto);
+					}else{
+						text.setVisibility(View.GONE);
+
+					}
+					text = v.findViewById(R.id.rowDatoRelevante2);
+					text.setVisibility(View.GONE);
+
+     //               }
+
+					boolean muestraFoto = mostrarFoto(textFoto, per.getId(), miniFoto);
 
 					//      ImageView photo = v.findViewById(R.id.photo);
-					if(!muestraFoto) {
-						textApe.setText("*  " + per.getApellido().toUpperCase());
-					}else{
-						textApe.setText(" " + per.getApellido().toUpperCase());
-					}
+					textApe.setText(per.getApellido().toUpperCase());
+
 
 
 	                final int gp = groupPosition;
@@ -565,6 +561,10 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
                 	temp = mySortedByElements.get(groupPosition);
                 	label = temp.toUpperCase();
                 	textName.setText(label);
+                	textName.setTextColor(getResources().getColor(R.color.color_blanco));
+                	textName.setTypeface(Typeface.MONOSPACE);
+					textCantidad.setTextColor(getResources().getColor(R.color.color_gris_oscuro));
+					textCantidad.setTypeface(Typeface.MONOSPACE);
                     textCantidad.setText(String.valueOf(personasMap.get(temp).size()));
                     return v;
                 }
@@ -601,34 +601,33 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			if(puede){
 				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
 				Bitmap small = null;
-				if(miniFoto){
-					small = Bitmap.createScaledBitmap(b, 35, 38, true);
-				}else{
-					small = Bitmap.createScaledBitmap(b, 45, 50, true);
-				}
-				final Drawable icon = new BitmapDrawable(getResources(), small);
-				//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
-				if(icon != null){
-					tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
-					tv.setCompoundDrawablePadding(3);
-				//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
-					Bitmap big = b;
-					final Drawable iconBig = new BitmapDrawable(getResources(), big);
-					muestraFoto = true;
-					tv.setOnTouchListener(new View.OnTouchListener() {
-						@Override
-						public boolean onTouch(View v, MotionEvent event) {
-							if(event.getAction() == MotionEvent.ACTION_UP) {
-								if(event.getRawX() <= tv.getTotalPaddingLeft()) {
-									// your action for drawable click event
-                                    ConstantsAdmin.showFotoPopUp(iconBig, me);
-
+				if(b != null){
+					if(miniFoto){
+						small = Bitmap.createScaledBitmap(b, 37, 41, true);
+					}else{
+						small = Bitmap.createScaledBitmap(b, 47, 52, true);
+					}
+					final Drawable icon = new BitmapDrawable(getResources(), small);
+					//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+					if(icon != null){
+						tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+						tv.setCompoundDrawablePadding(3);
+						//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
+						Bitmap big = b;
+						final Drawable iconBig = new BitmapDrawable(getResources(), big);
+						muestraFoto = true;
+						tv.setOnTouchListener(new View.OnTouchListener() {
+							@Override
+							public boolean onTouch(View v, MotionEvent event) {
+								if(event.getAction() == MotionEvent.ACTION_UP) {
+									ConstantsAdmin.showFotoPopUp(iconBig, me);
 									return true;
 								}
+								return true;
 							}
-							return true;
-						}
-					});
+						});
+
+					}
 
 				}
 			}
@@ -898,7 +897,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	    View itemView = getExpandableListView().getChildAt(0);
 	    mItemPosition = itemView == null ? 0 : itemView.getTop();
 
-	    ConstantsAdmin.config.setEstanDetallados(!ConstantsAdmin.config.isEstanDetallados());
+	//    ConstantsAdmin.config.setEstanDetallados(!ConstantsAdmin.config.isEstanDetallados());
     	this.mostrarTodosLosContactos();
     	if(ConstantsAdmin.config.isListaExpandida()){
 	    	for (int j = 0; j < this.getExpandableListAdapter().getGroupCount(); j++) {
@@ -913,11 +912,11 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     		mGroupSelected = -1;
     	}
     	
-    	if(!ConstantsAdmin.config.isEstanDetallados()){
+    /*	if(!ConstantsAdmin.config.isEstanDetallados()){
     		masOMenosDesc.setBackground(getResources().getDrawable(R.drawable.more_desc_contact));
     	}else{
     		masOMenosDesc.setBackground(getResources().getDrawable(R.drawable.less_desc_contact));
-    	}
+    	}*/
     	
         if (mListState != null){
         	getExpandableListView().onRestoreInstanceState(mListState);

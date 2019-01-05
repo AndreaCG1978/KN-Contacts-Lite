@@ -2,29 +2,38 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	android:paddingRight="20dp"
+	android:paddingEnd="20dp"
+	android:paddingLeft="20dp"
+	android:paddingStart="20dp"
+	>
 	<LinearLayout android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:orientation="horizontal"
 		android:background="@drawable/custom_text_view_apellido">
 
+		<TextView android:id="@+id/rowFoto" android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:padding="3dp"
+			android:gravity="center"
+			android:layout_gravity="center"/>
 
 
 		<TextView android:id="@+id/rowApellido" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:textColor="@color/color_blanco"
-			android:textSize="13sp" android:paddingStart="15dp"
+			android:layout_height="wrap_content" android:textColor="@color/color_gris_oscuro"
+			android:textSize="13sp"
 			android:paddingTop="1dp" android:paddingEnd="4dp"
-			android:paddingBottom="1dp" android:typeface="normal"
+			android:paddingBottom="1dp" android:typeface="monospace"
 			android:maxLength="20"
-            android:paddingLeft="15dp"
+            android:paddingLeft="20dp"
+			android:paddingStart="20dp"
             android:paddingRight="4dp"
 			>
 		</TextView>
 		<TextView android:id="@+id/rowNombres" android:layout_height="wrap_content"
-			android:layout_width="fill_parent" android:textSize="13sp"
-			android:textColor="@color/color_blanco" android:padding="1dp"
-			android:layout_marginEnd="10dp"
-			android:typeface="sans"
-            android:layout_marginRight="10dp">
+			android:layout_width="wrap_content" android:textSize="13sp"
+			android:textColor="@color/color_gris_oscuro" android:padding="1dp"
+			android:typeface="monospace">
 		</TextView>
 
 	</LinearLayout>
@@ -36,13 +45,15 @@
 			<TextView android:id="@+id/rowDatoRelevante"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
 				android:textStyle="bold" android:textColor="@color/color_gris_oscuro"
-				android:textSize="13sp" android:paddingStart="15dp"
+				android:textSize="13sp"
 				android:paddingEnd="15dp"
+				android:typeface="monospace"
 				android:paddingTop="0dp" android:paddingBottom="0dp"
 				android:background="@drawable/custom_text_view_categoria"
 				android:gravity="start" android:layout_marginEnd="25dp"
 				android:singleLine="true"
-                android:paddingLeft="15dp"
+                android:paddingLeft="35dp"
+				android:paddingStart="35dp"
 				android:paddingRight="15dp"
                 android:layout_marginRight="25dp">
 			</TextView>
@@ -51,6 +62,7 @@
 				android:textStyle="italic" android:textColor="@color/color_gris_oscuro"
 				android:textSize="12sp" android:paddingStart="15dp"
 				android:paddingEnd="15dp"
+				android:typeface="monospace"
 				android:background="@drawable/custom_text_view_categoria_desc"
 				android:gravity="start" android:layout_marginEnd="55dp"
 				android:singleLine="true"
