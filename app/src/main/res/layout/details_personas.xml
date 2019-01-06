@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@color/color_gris_oscuro">
 
 
 	<LinearLayout android:id="@+id/botonera"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:orientation="horizontal" android:gravity="center"
-		android:layout_marginTop="12dp" android:layout_marginBottom="8dp">
+		android:layout_marginTop="10dp" android:layout_marginBottom="8dp"
+		>
 
-		<Button android:id="@+id/buttonIrAEditarPersona" android:text="@string/label_editarPersona"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:textSize="13sp" android:textColor="@color/color_azul"
-			android:background="@drawable/custom_button" />
+		<ImageButton android:id="@+id/buttonIrAEditarPersona"
+			android:layout_width="35dp" android:layout_height="35dp"
+			android:background="@drawable/about_me_menu"
+			android:contentDescription="imagenEditar"
+			/>
 
-		<Button android:id="@+id/buttonBorrarPersona" android:text="@string/label_borrarPersona"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:textSize="13sp" android:textColor="@color/color_azul"
-			android:background="@drawable/custom_button" android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp" />
+		<ImageButton android:id="@+id/buttonBorrarPersona" android:layout_width="35dp" android:layout_height="35dp"
+			android:layout_marginStart="40dp" android:background="@drawable/contraer_icon"
+			android:contentDescription="imagenBorrar"
+			android:layout_marginLeft="40dp" />
 
 		<ImageButton android:id="@+id/imagenPreferido"
-			android:layout_height="30dp" android:layout_width="30dp"
-			android:layout_marginStart="20dp"
+			android:layout_height="35dp" android:layout_width="35dp"
+			android:layout_marginStart="40dp"
 			android:contentDescription="imagenPreferido"
-			android:layout_marginLeft="20dp" />
+			android:layout_marginLeft="40dp" />
 
 		<ImageButton android:id="@+id/imagenPhoto"
-			android:layout_height="21dp" android:layout_width="29dp"
-			android:layout_marginStart="20dp" android:background="@drawable/camera_icon"
+			android:layout_height="22dp" android:layout_width="31dp"
+			android:layout_marginStart="40dp" android:background="@drawable/camera_icon"
 			android:contentDescription="imagenPhoto"
-			android:layout_marginLeft="20dp" />
+			android:layout_marginLeft="40dp" />
 
 
 	</LinearLayout>
@@ -39,32 +40,36 @@
 
 	<View android:id="@+id/linea1" android:layout_below="@id/botonera"
 		android:layout_width="wrap_content" android:layout_height="1px"
-		android:layout_marginTop="5dp" android:layout_marginBottom="1dp"
-		android:background="@color/color_azul" />
+		android:layout_marginTop="15dp" android:layout_marginBottom="1dp"
+		android:background="@color/color_gris_claro" />
 
-	<ImageView android:id="@+id/photo" android:layout_height="76dp"
+	<ImageView android:id="@+id/photo" android:layout_height="80dp"
 		android:layout_width="92dp" android:layout_below="@id/linea1"
-		android:layout_marginTop="10dp"
-		android:contentDescription="photo" />
+		android:layout_marginTop="8dp"
+		android:contentDescription="photo"
+		/>
 
 	<LinearLayout android:id="@+id/nombres"
 		android:layout_width="fill_parent" android:layout_height="79dp"
 		android:orientation="vertical" android:gravity="center"
 		android:layout_marginTop="8dp" android:background="@drawable/custom_text_view_categoria"
 		android:layout_below="@id/linea1" android:layout_toEndOf="@id/photo"
-		android:layout_toRightOf="@id/photo">
+		android:layout_toRightOf="@id/photo" android:layout_marginBottom="5dp"
+		>
 
 		<TextView android:id="@+id/detalle_apellido"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:textSize="20sp" android:textStyle="bold" android:textColor="@color/color_gris_oscuro"
+			android:textSize="23sp" android:textStyle="bold" android:textColor="@color/color_gris_oscuro"
 			android:paddingStart="15dp" android:paddingEnd="15dp"
 			android:paddingTop="3dp"
+			android:typeface="monospace"
 			android:maxLength="30" android:gravity="center"
 			android:paddingLeft="15dp" android:paddingRight="15dp"/>
 
 		<TextView android:id="@+id/detalle_nombres"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:textColor="@color/color_gris_oscuro" android:textSize="17sp"
+			android:typeface="monospace"
 			android:singleLine="true" android:maxLength="30" android:paddingStart="15dp"
 			android:paddingEnd="15dp" android:paddingTop="1dp" android:paddingBottom="2dp" android:gravity="center"
 			android:paddingLeft="15dp" android:paddingRight="15dp" />
@@ -75,29 +80,37 @@
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:layout_below="@id/nombres" android:textSize="13sp"
 		android:textStyle="bold" android:paddingStart="15dp"
-		android:paddingEnd="15dp"
-		android:paddingTop="8dp" android:paddingBottom="8dp"
+		android:paddingEnd="10dp"
+		android:typeface="monospace"
+		android:paddingTop="5dp" android:paddingBottom="5dp"
 		android:textColor="@color/color_gris_oscuro" android:background="@drawable/custom_text_view_categoria"
 		android:paddingLeft="15dp" android:paddingRight="15dp" />
 
 	<LinearLayout android:id="@+id/cumple"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:orientation="horizontal" android:gravity="center"
-		android:layout_marginBottom="8dp" android:background="@drawable/custom_text_view_categoria_desc"
-		android:layout_below="@id/detalle_categoria">
+		android:gravity="center"
+		android:layout_marginBottom="5dp" android:background="@drawable/custom_text_view_categoria"
+		android:layout_below="@id/detalle_categoria"
+		android:layout_marginTop="5dp"
+		android:paddingTop="3dp"
+		android:paddingBottom="3dp"
+		>
 
 		<TextView android:id="@+id/label_fechaNacimiento"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:text="@string/hint_fechaNacimiento" android:textSize="11sp"
-			android:paddingStart="15dp" android:paddingEnd="15dp" android:paddingBottom="5dp"
-			android:textColor="@color/color_negro"
-			android:paddingLeft="15dp" android:paddingRight="15dp"/>
+			android:paddingStart="15dp" android:paddingEnd="5dp"
+			android:textColor="@color/color_gris_oscuro"
+			android:typeface="monospace"
+			android:textStyle="bold"
+
+			android:paddingLeft="15dp" android:paddingRight="5dp"/>
 
 
 		<TextView android:id="@+id/detalle_fechaNacimiento"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:textSize="11sp" android:textColor="@color/color_negro"
-			android:paddingStart="5dp" android:paddingEnd="5dp" android:paddingBottom="5dp"
+			android:textSize="11sp" android:textColor="@color/color_gris_oscuro"
+			android:paddingStart="5dp" android:paddingEnd="5dp"
 			android:paddingLeft="5dp" android:paddingRight="5dp"/>
 
 	</LinearLayout>
@@ -105,12 +118,12 @@
 	<View android:id="@+id/linea2" android:layout_below="@id/cumple"
 		android:layout_width="wrap_content" android:layout_height="1px"
 		android:layout_marginTop="2dp" android:layout_marginBottom="6dp"
-		android:background="@color/color_azul" />
+		android:background="@color/color_gris_claro" />
 
 	<LinearLayout android:id="@+id/menu" android:orientation="horizontal"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:gravity="center" android:layout_below="@id/linea2"
-		android:layout_marginTop="2dp" android:layout_marginBottom="15dp">
+		android:layout_marginTop="25dp" android:layout_marginBottom="15dp">
 
 		<TextView android:id="@+id/label_telefonos"
 			android:nextFocusUp="@+id/buttonIrAEditarPersona"
@@ -118,15 +131,15 @@
 			android:layout_width="100dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:paddingBottom="6dp"
 			android:paddingTop="6dp" android:focusable="true" android:gravity="center"
-			android:textColor="@color/color_azul" />
+			/>
 
 		<TextView android:id="@+id/label_emails" android:nextFocusUp="@+id/buttonIrAEditarPersona"
 			android:nextFocusDown="@+id/label_emails" android:text="@string/label_emails"
 			android:layout_width="100dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:paddingBottom="6dp"
 			android:paddingTop="6dp" android:layout_marginStart="5dp"
-			android:focusable="true" android:gravity="center" android:textColor="@color/color_azul"
-			android:layout_marginLeft="5dp" />
+			android:focusable="true" android:gravity="center"
+			android:layout_marginLeft="25dp" />
 
 		<TextView android:id="@+id/label_direcciones"
 			android:nextFocusUp="@+id/buttonIrAEditarPersona"
@@ -134,8 +147,8 @@
 			android:layout_width="100dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:paddingBottom="6dp"
 			android:paddingTop="6dp" android:layout_marginStart="5dp"
-			android:focusable="true" android:gravity="center" android:textColor="@color/color_azul"
-			android:layout_marginLeft="5dp" />
+			android:focusable="true" android:gravity="center"
+			android:layout_marginLeft="25dp" />
 
 	</LinearLayout>
 

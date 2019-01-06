@@ -22,6 +22,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -58,7 +60,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	private static final String TIPO = "TIPO";
 
 	private int mPersonaSeleccionadaId = -1;
-
+	private static DetallePersonaActivity me = null;
 	private TextView mFechaNacimiento = null;
 	private TextView mApellido = null;
 	private TextView mNombres = null;
@@ -76,8 +78,10 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	//Drawable shapeLight = null;
 	//Drawable shapeDark = null;
 
-	private final int colorSeleccionado = Color.parseColor("#874312");
-	private final int colorDeseleccionado = Color.parseColor("#41289C");
+//	private final int colorSeleccionado = Color.parseColor("#874312");
+	private final int colorSeleccionado = Color.YELLOW;
+//	private final int colorDeseleccionado = Color.parseColor("#41289C");
+	private final int colorDeseleccionado = Color.DKGRAY;
 
 	private boolean mMostrarTelefonos = false;
 	private boolean mMostrarEmails = false;
@@ -91,6 +95,8 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	private List<Asociacion> telefonos = null;
 	private List<Asociacion> mails = null;
 	private List<Asociacion> direcciones = null;
+
+	private Drawable iconBig = null;
 
 	private final int PERSONAS_CURSOR = 1;
 	private final int PREFERIDO_CURSOR = 2;
@@ -120,6 +126,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		me = this;
 	//	allMyCursors = new ArrayList<>();
 		Intent intent = getIntent();
 		setContentView(R.layout.details_personas);
@@ -573,11 +580,11 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				}
 
 				if (tempDatoExtra != null && !tempDatoExtra.equals("") && tempDesc != null && !tempDesc.equals("")) {
-					tempCategoria = tempCategoria + "*" + tempDatoExtra + "*" + tempDesc;
+					tempCategoria = tempCategoria + "(" + tempDatoExtra + "-" + tempDesc + ")" ;
 				} else if (tempDatoExtra != null && !tempDatoExtra.equals("")) {
-					tempCategoria = tempCategoria + "*" + tempDatoExtra;
+					tempCategoria = tempCategoria + "(" + tempDatoExtra + ")";
 				} else if (tempDesc != null && !tempDesc.equals("")) {
-					tempCategoria = tempCategoria + "*" + tempDesc;
+					tempCategoria = tempCategoria + "(" + tempDesc + ")";;
 
 				}
 
@@ -727,6 +734,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			boolean puede = (Boolean) puedeCargar.getKey();
 			if (puede) {
 				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(mPersonaSeleccionadaId) + ".jpg");
+				iconBig = new BitmapDrawable(getResources(), b);
 				if (b != null) {
 					photo.setVisibility(View.VISIBLE);
 					photo.setImageBitmap(b);
@@ -868,7 +876,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
     }
        
 	private void configurarBotonEditar(){
-		Button boton = this.findViewById(R.id.buttonIrAEditarPersona);
+		ImageButton boton = this.findViewById(R.id.buttonIrAEditarPersona);
 		if(boton != null){
 			boton.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
@@ -893,6 +901,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			imagenPhoto.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
 	            	sacarPhoto();
+
 	            }
 	        });
 		}
@@ -902,9 +911,17 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		if(photo != null){
 			photo.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
-	            	eliminarPhotoDialog();
+
+					ConstantsAdmin.showFotoPopUp(iconBig, me);
 	            }
 	        });
+			photo.setOnLongClickListener(new View.OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View v) {
+					eliminarPhotoDialog();
+					return false;
+				}
+			});
 		}
 	}
 	
@@ -994,7 +1011,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	}
 
 	private void configurarBotonEliminar(){
-		Button boton = this.findViewById(R.id.buttonBorrarPersona);
+		ImageButton boton = this.findViewById(R.id.buttonBorrarPersona);
 		if(boton != null){
 			boton.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
