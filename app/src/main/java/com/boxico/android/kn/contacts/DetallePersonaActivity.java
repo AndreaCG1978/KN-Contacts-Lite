@@ -79,7 +79,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	//Drawable shapeDark = null;
 
 //	private final int colorSeleccionado = Color.parseColor("#874312");
-	private final int colorSeleccionado = Color.YELLOW;
+	private final int colorSeleccionado = Color.WHITE;
 //	private final int colorDeseleccionado = Color.parseColor("#41289C");
 	private final int colorDeseleccionado = Color.DKGRAY;
 
@@ -280,6 +280,27 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 	}
 
+    private void abrirMaps(int pos){
+        SimpleAdapter adapt = (SimpleAdapter) direccionesList.getAdapter();
+        String direccion;
+        HashMap<String, String> map = (HashMap<String, String>) adapt.getItem(pos);
+        direccion = map.get(VALOR);
+        abrirMapsGenerico(direccion);
+    }
+
+    private void abrirMapsGenerico(String adderess){
+		Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + adderess);
+
+		//Uri gmmIntentUri = Uri.parse(String.format(Locale.ENGLISH,"geo:%f,%f", Float.valueOf(-1), Float.valueOf(-1)));
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        }
+
+
+    }
+
 	private void configurarListaDirecciones() {
 		ArrayList<HashMap<String, Object>> listdata = new ArrayList<>();
 		HashMap<String, Object> hm;
@@ -299,6 +320,16 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 		SimpleAdapter adapter = new SimpleAdapter(this, listdata, R.layout.row_item, from, to);
 		direccionesList.setAdapter(adapter);
+        direccionesList.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                // TODO Auto-generated method stub
+                abrirMaps(arg2);
+
+            }
+        });
 	}
 
 	private void configurarMostrarTelefonos() {

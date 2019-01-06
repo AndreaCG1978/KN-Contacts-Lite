@@ -17,7 +17,7 @@
 
 	<TextView android:id="@+id/rowValor" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" 
-		android:textColor="@android:color/holo_blue_bright" android:textSize="16sp"
+		android:textColor="@android:color/holo_orange_light" android:textSize="16sp"
 		android:background="@drawable/custom_text_view_categoria_desc"
 		android:paddingStart="15dp" android:paddingTop="12dp"
 		android:paddingEnd="20dp" android:paddingBottom="12dp"
