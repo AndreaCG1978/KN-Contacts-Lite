@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -434,6 +435,7 @@ public class ConstantsAdmin {
 	public static final String KEY_DESCRIPCION = "descripcion";
     public static final String KEY_ROWID = "_id";
     public static final String KEY_DIRECCION_PARTICULAR = "direccionParticular";
+	public static final String KEY_FOTO = "foto";
     public static final String KEY_DIRECCION_LABORAL = "direccionLaboral";
     public static final String KEY_DATO_EXTRA = "empresa";
     public static final String KEY_NOMBRE_CATEGORIA_RELATIVO = "nombreCategoriaRelativo";
@@ -721,6 +723,7 @@ public class ConstantsAdmin {
     
     private static PersonaDTO cursorToPersonaDto(Cursor perCursor){
     	String temp;
+    	byte[] foto = null;
     	PersonaDTO per = new PersonaDTO();
     	if(perCursor != null){
 	 //   	context.stopManagingCursor(perCursor);
@@ -759,6 +762,8 @@ public class ConstantsAdmin {
 	        per.setDatoExtra(temp);
 	        temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_DESCRIPCION));
 	        per.setDescripcion(temp);
+			foto = perCursor.getBlob(perCursor.getColumnIndex(ConstantsAdmin.KEY_FOTO));
+			per.setFoto(foto);
     	}
     	return per;
     }
