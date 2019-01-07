@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.boxico.android.kn.contacts.R;
 
 public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
-	
+
 	private final Activity localContext;
 
 
@@ -35,7 +35,7 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 			boolean puede = (Boolean) puedeCargar.getKey();
 
 			if(puede){
-				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + "." +String.valueOf(idPer)  + ".jpg");
 				Bitmap small = null;
 				if(miniFoto){
 					small = Bitmap.createScaledBitmap(b, 35, 38, true);
@@ -93,31 +93,31 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 
 	}
 
-/*
-	private void mostrarFoto(ImageView photo, long idPer){
-    	try {
-    		Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(localContext);
-    		boolean puede = (Boolean) puedeCargar.getKey();
-    		if(puede){
-            	Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
-            	if(b != null){
-            		photo.setVisibility(View.VISIBLE);
-            		photo.setImageBitmap(b);
-            	}else{
-            		photo.setVisibility(View.GONE);
-            	}
-    		}else{
-    			photo.setVisibility(View.GONE);
-    		}
+	/*
+        private void mostrarFoto(ImageView photo, long idPer){
+            try {
+                Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(localContext);
+                boolean puede = (Boolean) puedeCargar.getKey();
+                if(puede){
+                    Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+                    if(b != null){
+                        photo.setVisibility(View.VISIBLE);
+                        photo.setImageBitmap(b);
+                    }else{
+                        photo.setVisibility(View.GONE);
+                    }
+                }else{
+                    photo.setVisibility(View.GONE);
+                }
 
-		} catch (Exception e) {
-			photo.setVisibility(View.GONE);
-		}
+            } catch (Exception e) {
+                photo.setVisibility(View.GONE);
+            }
 
-    	
-    }
 
-    */
+        }
+
+        */
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
 		// TODO Auto-generated method stub
@@ -144,7 +144,7 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 		}
 
 
-	
+
 	}
 
 }

@@ -27,7 +27,7 @@ class DataBaseHelper extends SQLiteOpenHelper{
             + ConstantsAdmin.KEY_DESCRIPCION + " text, "
             + ConstantsAdmin.KEY_DIRECCION_LABORAL + " text, "
             + ConstantsAdmin.KEY_DIRECCION_PARTICULAR + " text, "
-            + ConstantsAdmin.KEY_FOTO + " blob, "
+         //   + ConstantsAdmin.KEY_FOTO + " blob, "
             + ConstantsAdmin.KEY_DATO_EXTRA + " text);";
 	
   

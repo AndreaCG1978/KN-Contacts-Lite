@@ -134,7 +134,7 @@ public class DataBaseManager {
          initialValues.put(ConstantsAdmin.KEY_DIRECCION_LABORAL, persona.getDireccionLaboral());
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA, persona.getCategoriaNombre());
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, persona.getCategoriaNombreRelativo());
-         initialValues.put(ConstantsAdmin.KEY_FOTO, persona.getFoto());
+     //    initialValues.put(ConstantsAdmin.KEY_FOTO, persona.getFoto());
          initialValues.put(ConstantsAdmin.KEY_DATO_EXTRA, persona.getDatoExtra());
 
       //   this.open();

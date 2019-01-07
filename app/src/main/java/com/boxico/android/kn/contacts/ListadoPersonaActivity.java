@@ -75,18 +75,18 @@ import com.boxico.android.kn.contacts.util.MultiSpinner.MultiSpinnerListener;
 public class ListadoPersonaActivity extends ExpandableListFragment implements MultiSpinnerListener, LoaderManager.LoaderCallbacks<Cursor> {
 	private String mEntryBusquedaNombre = null;
 	private Map<String, List<PersonaDTO>> personasMap = null;
-    private long mPersonaSelect = -1;
- 	private LayoutInflater layoutInflater = null;
- //   private ArrayList<Cursor> allMyCursors = null;
-    private EditText entryBusqueda = null;
-    private MultiSpinner spinnerCategorias = null;
+	private long mPersonaSelect = -1;
+	private LayoutInflater layoutInflater = null;
+	//   private ArrayList<Cursor> allMyCursors = null;
+	private EditText entryBusqueda = null;
+	private MultiSpinner spinnerCategorias = null;
 	private ImageButton switchOrganizacion = null;
-    private ImageButton expandContractAll = null;
-    private ImageButton protegerCategorias = null;
-    private ImageButton masOMenosDesc = null;
-    private static ListadoPersonaActivity me = null;
-    private String separadorExcel = null;
-    private int mGroupSelected = -1;
+	private ImageButton expandContractAll = null;
+	private ImageButton protegerCategorias = null;
+	private ImageButton masOMenosDesc = null;
+	private static ListadoPersonaActivity me = null;
+	private String separadorExcel = null;
+	private int mGroupSelected = -1;
 	private int mChildSelected = -1;
 
 
@@ -94,9 +94,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private static final String CLAVE = "CLAVE";
 	private static final String APELLIDO = "APELLIDO";
 	private static final String NOMBRE = "NOMBRE";
-	
+
 	private TextView cantReg = null;
-	
+
 	private List<String> categoriasSeleccionadas = new ArrayList<>();
 	private List<CategoriaDTO> todasLasCategorias = new ArrayList<>();
 	private List<String> todasLasCategString = new ArrayList<>();
@@ -104,15 +104,15 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private TextView catSelectTextView = null;
 
 	private List<String> mySortedByElements = null;
-	
-	
+
+
 	private ListView listaEspecial;
 	private MenuItem menuItemExportarContactosEstetico;
 	private MenuItem menuItemExportarContactos;
 
 	private ImageView imgPrefLeft = null;
 	private ImageView imgPrefRight = null;
-	
+
 	private static final String LIST_STATE_KEY = "listState";
 	private static final String LIST_POSITION_KEY = "listPosition";
 	private static final String ITEM_POSITION_KEY = "itemPosition";
@@ -124,60 +124,60 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private final int CATEGORIAS_PERSONALES_CURSOR = 2;
 	private final int CONTRASENIA_CURSOR = 3;
 	private final int CATEGORIAS_PROTEGIDAS_CURSOR = 4;
-    private final int PERSONAS_CURSOR = 5;
+	private final int PERSONAS_CURSOR = 5;
 	private final int PREFERIDOS_CURSOR = 6;
 	private final int CATEGORIAS_ACTIVAS_CURSOR = 7;
 	private final int CATEGORIAS_PERSONALES_ACTIVAS_CURSOR = 8;
-    private final int CONFIGURACION_CURSOR = 9;
+	private final int CONFIGURACION_CURSOR = 9;
 
-    private final int PERMISSIONS_RESTORE_BACKUP = 101;
+	private final int PERMISSIONS_RESTORE_BACKUP = 101;
 
-    private class ImportCSVTask extends AsyncTask<Long, Integer, Integer>{
-        ProgressDialog dialog = null;
-        @Override
-        protected Integer doInBackground(Long... params) {
+	private class ImportCSVTask extends AsyncTask<Long, Integer, Integer>{
+		ProgressDialog dialog = null;
+		@Override
+		protected Integer doInBackground(Long... params) {
 
-            try {
-                publishProgress(1);
-                DataBaseManager mDBManager = DataBaseManager.getInstance(me);
-                ConstantsAdmin.importarCSV(me, mDBManager);
-                //   ConstantsAdmin.procesarStringDatos(body, me);
+			try {
+				publishProgress(1);
+				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
+				ConstantsAdmin.importarCSV(me, mDBManager);
+				//   ConstantsAdmin.procesarStringDatos(body, me);
 
 
-            } catch (Exception e) {
-                ConstantsAdmin.mensaje = me.getString(R.string.error_importar_csv);
-            }
-            return 0;
+			} catch (Exception e) {
+				ConstantsAdmin.mensaje = me.getString(R.string.error_importar_csv);
+			}
+			return 0;
 
-        }
+		}
 
-        protected void onProgressUpdate(Integer... progress) {
-            dialog = ProgressDialog.show(me, "",
-                    me.getString(R.string.mensaje_importando_contactos), false);
-        }
+		protected void onProgressUpdate(Integer... progress) {
+			dialog = ProgressDialog.show(me, "",
+					me.getString(R.string.mensaje_importando_contactos), false);
+		}
 
-        @Override
-        protected void onPostExecute(Integer result) {
-            try{
-                dialog.cancel();
-            }catch (Exception e) {
-                // TODO: handle exception
-            }
-            ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
-            ConstantsAdmin.mensaje = null;
-            ConstantsAdmin.contrasenia.setActiva(false);
-            protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
-            configurarSpinner();
-            ConstantsAdmin.resetPersonasOrganizadas();
-            mostrarTodosLosContactos();
+		@Override
+		protected void onPostExecute(Integer result) {
+			try{
+				dialog.cancel();
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+			ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
+			ConstantsAdmin.mensaje = null;
+			ConstantsAdmin.contrasenia.setActiva(false);
+			protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
+			configurarSpinner();
+			ConstantsAdmin.resetPersonasOrganizadas();
+			mostrarTodosLosContactos();
 
-        }
-    }
+		}
+	}
 
 	private void configurarBotonExpandContractAll(){
 		expandContractAll = this.findViewById(R.id.buttonExpandContractAll);
-	//	Drawable dexpandir = getResources().getDrawable(R.drawable.expandir_icon);
-	//	Drawable dcontraer = getResources().getDrawable(R.drawable.contraer_icon);
+		//	Drawable dexpandir = getResources().getDrawable(R.drawable.expandir_icon);
+		//	Drawable dcontraer = getResources().getDrawable(R.drawable.contraer_icon);
 		expandContractAll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -189,101 +189,101 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
-        if (requestCode == PERMISSIONS_RESTORE_BACKUP) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                this.importContactosCSV();
-            }
-        }
-    }
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions,
+										   int[] grantResults) {
+		if (requestCode == PERMISSIONS_RESTORE_BACKUP) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				this.importContactosCSV();
+			}
+		}
+	}
 
 
-    private void askForReadStoragePermission(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        PERMISSIONS_RESTORE_BACKUP);
+	private void askForReadStoragePermission(){
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+					!= PackageManager.PERMISSION_GRANTED) {
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+						PERMISSIONS_RESTORE_BACKUP);
 
 
-            }else{//Ya tiene el permiso...
-                this.importContactosCSV();
-            }
-        }else{
+			}else{//Ya tiene el permiso...
+				this.importContactosCSV();
+			}
+		}else{
 			this.importContactosCSV();
 		}
 
 
-    }
+	}
 
 
 
-    @Override
+	@Override
 	public void onSaveInstanceState(Bundle state) {
 
-	    super.onSaveInstanceState(state);
+		super.onSaveInstanceState(state);
 
-	    // Save list state
-	    mListState = getExpandableListView().onSaveInstanceState();
-	    state.putParcelable(LIST_STATE_KEY, mListState);
+		// Save list state
+		mListState = getExpandableListView().onSaveInstanceState();
+		state.putParcelable(LIST_STATE_KEY, mListState);
 
-	    // Save position of first visible item
-	    mListPosition = getExpandableListView().getFirstVisiblePosition();
-	    state.putInt(LIST_POSITION_KEY, mListPosition);
+		// Save position of first visible item
+		mListPosition = getExpandableListView().getFirstVisiblePosition();
+		state.putInt(LIST_POSITION_KEY, mListPosition);
 
-	    // Save scroll position of item
-	    View itemView = getExpandableListView().getChildAt(0);
-	    mItemPosition = itemView == null ? 0 : itemView.getTop();
-	    state.putInt(ITEM_POSITION_KEY, mItemPosition);
+		// Save scroll position of item
+		View itemView = getExpandableListView().getChildAt(0);
+		mItemPosition = itemView == null ? 0 : itemView.getTop();
+		state.putInt(ITEM_POSITION_KEY, mItemPosition);
 	}
 
 
-/*
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.list_personas, container, false);
-		me = this;
+	/*
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.list_personas, container, false);
+            me = this;
 
-		try{
-			allMyCursors = new ArrayList<>();
-			ConstantsAdmin.mainActivity = me;
-			this.setTitle(R.string.app_name);
-			this.registerForContextMenu(getExpandableListView());
-	//		this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
-			this.configurarSpinner();
-			this.configurarEntryBusqueda();
-			this.configurarListView();
-			this.configurarExpandableList();
-			this.configurarBotonIrACategoriaTodas();
-			this.configurarBotonProtegerCategorias();
-			this.configurarVerPreferidos();
-			this.configurarAddContact();
-			this.configurarBotonSwitchOrganizacion();
-			this.configurarBotonExpandContractAll();
-			this.configurarBotonMasOMenosDesc();
-			this.recuperarConfiguracion();
-			verBusqueda();
-			layoutInflater = (LayoutInflater) this.getLayoutInflater();
-			this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+            try{
+                allMyCursors = new ArrayList<>();
+                ConstantsAdmin.mainActivity = me;
+                this.setTitle(R.string.app_name);
+                this.registerForContextMenu(getExpandableListView());
+        //		this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
+                this.configurarSpinner();
+                this.configurarEntryBusqueda();
+                this.configurarListView();
+                this.configurarExpandableList();
+                this.configurarBotonIrACategoriaTodas();
+                this.configurarBotonProtegerCategorias();
+                this.configurarVerPreferidos();
+                this.configurarAddContact();
+                this.configurarBotonSwitchOrganizacion();
+                this.configurarBotonExpandContractAll();
+                this.configurarBotonMasOMenosDesc();
+                this.recuperarConfiguracion();
+                verBusqueda();
+                layoutInflater = (LayoutInflater) this.getLayoutInflater();
+                this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-		}catch (Exception e) {
-			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorInicioAplicacion));
-		}
+            }catch (Exception e) {
+                ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorInicioAplicacion));
+            }
 
-		return view;
-	}
+            return view;
+        }
 
-*/
+    */
 	public void onCreate(Bundle savedInstanceState) {
-    	super.onCreate(savedInstanceState);
-        me = this;
-        try{
-		//	allMyCursors = new ArrayList<>();
+		super.onCreate(savedInstanceState);
+		me = this;
+		try{
+			//	allMyCursors = new ArrayList<>();
 			ConstantsAdmin.mainActivity = me;
-            this.setContentView(R.layout.list_personas);
+			this.setContentView(R.layout.list_personas);
 			this.setTitle(R.string.app_name);
 			this.registerForContextMenu(getExpandableListView());
 			this.cargarLoaders();
@@ -308,31 +308,31 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		}catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorInicioAplicacion));
 		}
-    }
+	}
 
-    private void redirigirImportarContactos(){
-	    if(personasMap == null || personasMap.size() == 0){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Aun no se han cargado contactos, desea importarlos de la Agenda?")
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            mostrarDialogoImportarContactos();
-                        }
-                    })
-                    .setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            builder.show();
-        }
+	private void redirigirImportarContactos(){
+		if(personasMap == null || personasMap.size() == 0){
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("Aun no se han cargado contactos, desea importarlos de la Agenda?")
+					.setCancelable(false)
+					.setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							mostrarDialogoImportarContactos();
+						}
+					})
+					.setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							dialog.cancel();
+						}
+					});
+			builder.show();
+		}
 
 
 
-    }
+	}
 
-    private void cargarLoaders() {
+	private void cargarLoaders() {
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_PERSONALES_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CONTRASENIA_CURSOR, null, this);
@@ -341,7 +341,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		this.getSupportLoaderManager().initLoader(PREFERIDOS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_ACTIVAS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(CATEGORIAS_PERSONALES_ACTIVAS_CURSOR, null, this);
-        this.getSupportLoaderManager().initLoader(CONFIGURACION_CURSOR, null, this);
+		this.getSupportLoaderManager().initLoader(CONFIGURACION_CURSOR, null, this);
 
 	}
 
@@ -351,16 +351,16 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		config = ConstantsAdmin.obtenerConfiguracion(me, mDBManager);
 		ConstantsAdmin.config = config;
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	private void configurarExpandableList(){
-	    this.getExpandableListView().setDividerHeight(22);
+		this.getExpandableListView().setDividerHeight(22);
 	}
 
-    private void recargarLista(){
-    	listaEspecial.setVisibility(View.GONE);
+	private void recargarLista(){
+		listaEspecial.setVisibility(View.GONE);
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		if(ConstantsAdmin.contrasenia == null){
 			ConstantsAdmin.inicializarBD(mDBManager);
@@ -369,81 +369,81 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			ConstantsAdmin.finalizarBD(mDBManager);
 		}
 		this.getExpandableListView().setVisibility(View.VISIBLE);
-        List<Map<String, String>> groupData = new ArrayList<>();
-        List<List<Map<String, String>>> childData = new ArrayList<>();
-        
-        List<PersonaDTO> personas;
-        if(ConstantsAdmin.isResetPersonasOrganizadas()){
-        	mGroupSelected = -1;
-        	mChildSelected = -1;
-        }
+		List<Map<String, String>> groupData = new ArrayList<>();
+		List<List<Map<String, String>>> childData = new ArrayList<>();
+
+		List<PersonaDTO> personas;
+		if(ConstantsAdmin.isResetPersonasOrganizadas()){
+			mGroupSelected = -1;
+			mChildSelected = -1;
+		}
 
 
-        if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
-        	personasMap = ConstantsAdmin.obtenerOrganizadosAlfabeticamente(this, mDBManager);
-        }else{
-        	personasMap = ConstantsAdmin.obtenerOrganizadosPorCategoria(this, mDBManager);
-        }
-        mySortedByElements = new ArrayList<>();
-        mySortedByElements.addAll(personasMap.keySet());
-        Collections.sort(mySortedByElements);
-        Map<String, String> curGroupMap;
-        List<Map<String, String>> children;
-        Map<String, String> curChildMap;
-        Iterator<PersonaDTO> itPers;
-        PersonaDTO per;
-        int cantidadTotal = 0;
-        
-        for (String key : mySortedByElements) {
-        	personas = personasMap.get(key);
-            curGroupMap = new HashMap<>();
-            groupData.add(curGroupMap);
-            curGroupMap.put(CLAVE, key);
-               
-            children = new ArrayList<>();
-            itPers = personas.iterator();
-            while(itPers.hasNext()){
-            	per = itPers.next();
-            	curChildMap = new HashMap<>();
-                children.add(curChildMap);
-                curChildMap.put(APELLIDO, per.getApellido());
-                curChildMap.put(NOMBRE, per.getNombres());
-            	cantidadTotal++;
-            }
-            
-            childData.add(children);
-        }
-        this.habilitarDeshabilitarItemMenu();
-        cantReg.setText("(" + cantidadTotal + ")");
+		if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
+			personasMap = ConstantsAdmin.obtenerOrganizadosAlfabeticamente(this, mDBManager);
+		}else{
+			personasMap = ConstantsAdmin.obtenerOrganizadosPorCategoria(this, mDBManager);
+		}
+		mySortedByElements = new ArrayList<>();
+		mySortedByElements.addAll(personasMap.keySet());
+		Collections.sort(mySortedByElements);
+		Map<String, String> curGroupMap;
+		List<Map<String, String>> children;
+		Map<String, String> curChildMap;
+		Iterator<PersonaDTO> itPers;
+		PersonaDTO per;
+		int cantidadTotal = 0;
+
+		for (String key : mySortedByElements) {
+			personas = personasMap.get(key);
+			curGroupMap = new HashMap<>();
+			groupData.add(curGroupMap);
+			curGroupMap.put(CLAVE, key);
+
+			children = new ArrayList<>();
+			itPers = personas.iterator();
+			while(itPers.hasNext()){
+				per = itPers.next();
+				curChildMap = new HashMap<>();
+				children.add(curChildMap);
+				curChildMap.put(APELLIDO, per.getApellido());
+				curChildMap.put(NOMBRE, per.getNombres());
+				cantidadTotal++;
+			}
+
+			childData.add(children);
+		}
+		this.habilitarDeshabilitarItemMenu();
+		cantReg.setText("(" + cantidadTotal + ")");
 
 
 
-        setListAdapter( new SimpleExpandableListAdapter(
-                 this,
-                 groupData,
-                 0,
-                 null,
-                 new int[] {},
-                 childData,
-                 0,
-                 null,
-                 new int[] {}
-            ) {
-                @Override
-                public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-                	String clave = mySortedByElements.get(groupPosition);
-                	boolean miniFoto = false;
-                	final PersonaDTO per = (PersonaDTO) personasMap.get(clave).toArray()[childPosition];
-                   	final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
-					TextView textApe = v.findViewById(R.id.rowApellido);
-                    TextView textNom = v.findViewById(R.id.rowNombres);
-					TextView textFoto = v.findViewById(R.id.rowFoto);
-                    textNom.setText(per.getNombres());
-                    TextView text;
-					textApe.setPadding(25, 12, 2, 12);
-					textNom.setPadding(3, 12, 10, 12);
-					textApe.setTextSize(16);
-					textNom.setTextSize(16);
+		setListAdapter( new SimpleExpandableListAdapter(
+								this,
+								groupData,
+								0,
+								null,
+								new int[] {},
+								childData,
+								0,
+								null,
+								new int[] {}
+						) {
+							@Override
+							public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+								String clave = mySortedByElements.get(groupPosition);
+								boolean miniFoto = false;
+								final PersonaDTO per = (PersonaDTO) personasMap.get(clave).toArray()[childPosition];
+								final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
+								TextView textApe = v.findViewById(R.id.rowApellido);
+								TextView textNom = v.findViewById(R.id.rowNombres);
+								TextView textFoto = v.findViewById(R.id.rowFoto);
+								textNom.setText(per.getNombres());
+								TextView text;
+								textApe.setPadding(25, 12, 2, 12);
+								textNom.setPadding(3, 12, 10, 12);
+								textApe.setTextSize(16);
+								textNom.setTextSize(16);
 
 /*
                     if(!ConstantsAdmin.config.isEstanDetallados()){
@@ -451,7 +451,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
                     	if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
 	                       	textNom.setText(textNom.getText() + " (" + per.getCategoriaNombreRelativo() +")");
 	                    }else if(per.getDatoExtra() != null && !per.getDatoExtra().equals("")){
-	                    	textNom.setText(textNom.getText() + " (" + per.getDatoExtra() + ")");	
+	                    	textNom.setText(textNom.getText() + " (" + per.getDatoExtra() + ")");
 	                    }
 
                     	text = v.findViewById(R.id.rowDatoRelevante);
@@ -462,144 +462,147 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
                     }else{*/
 
 
-					text = v.findViewById(R.id.rowDatoRelevante);
-					String texto;
-					if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
-						//text.setText(per.getCategoriaNombreRelativo());
-						texto = per.getCategoriaNombreRelativo();
-					}else{
-						//text.setText(per.getDatoExtra());
-						texto = per.getDatoExtra();
-					}
+								text = v.findViewById(R.id.rowDatoRelevante);
+								String texto;
+								if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
+									//text.setText(per.getCategoriaNombreRelativo());
+									texto = per.getCategoriaNombreRelativo();
+								}else{
+									//text.setText(per.getDatoExtra());
+									texto = per.getDatoExtra();
+								}
 
-					if(texto != null && !texto.equals("")){
-						textApe.setPadding(25, 5, 2, 5);
-						textNom.setPadding(3, 5, 5, 5);
-						textApe.setTextSize(14);
-						textNom.setTextSize(14);
-						if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
-							texto = texto + " (" + per.getDescripcion() + ")";
+								if(texto != null && !texto.equals("")){
+									textApe.setPadding(25, 5, 2, 5);
+									textNom.setPadding(3, 5, 5, 5);
+									textApe.setTextSize(14);
+									textNom.setTextSize(14);
+									if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
+										texto = texto + " (" + per.getDescripcion() + ")";
 
-						}
-						text.setText(texto);
-						text.setTextSize(13);
-						text.setVisibility(View.VISIBLE);
-						miniFoto = true;
+									}
+									text.setText(texto);
+									text.setTextSize(13);
+									text.setVisibility(View.VISIBLE);
+									miniFoto = true;
 				  /*
 					text = v.findViewById(R.id.rowDatoRelevante2);
 					text.setText(per.getDescripcion());
 					text.setVisibility(View.VISIBLE);*/
 
 
-					}else{
-						text.setVisibility(View.GONE);
+								}else{
+									text.setVisibility(View.GONE);
 
-					}
-					text = v.findViewById(R.id.rowDatoRelevante2);
-					text.setVisibility(View.GONE);
+								}
+								text = v.findViewById(R.id.rowDatoRelevante2);
+								text.setVisibility(View.GONE);
 
-     //               }
+								//               }
 
-					boolean muestraFoto = mostrarFoto(textFoto, per.getId(), miniFoto);
+								boolean muestraFoto = mostrarFoto(textFoto, per.getId(), miniFoto);
+								if(!muestraFoto){
+									textFoto.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+								}
 
-					//      ImageView photo = v.findViewById(R.id.photo);
-					textApe.setText(per.getApellido().toUpperCase());
+								//      ImageView photo = v.findViewById(R.id.photo);
+								textApe.setText(per.getApellido().toUpperCase());
 
 
 
-	                final int gp = groupPosition;
-                    final int cp = childPosition;
-                    
-                    v.setOnClickListener(new View.OnClickListener() {
-	                    public void onClick(View v) {
-	                    	openVerDetallePersona(per.getId());
-	                    }
-	                });
-                    v.setOnLongClickListener(new View.OnLongClickListener() {
-						public boolean onLongClick(View v) {
-							openVerMenuPersona(per.getId(),gp, cp);
-							return false;
+								final int gp = groupPosition;
+								final int cp = childPosition;
+
+								v.setOnClickListener(new View.OnClickListener() {
+									public void onClick(View v) {
+										openVerDetallePersona(per.getId());
+									}
+								});
+								v.setOnLongClickListener(new View.OnLongClickListener() {
+									public boolean onLongClick(View v) {
+										openVerMenuPersona(per.getId(),gp, cp);
+										return false;
+									}
+								});
+								return v;
+							}
+
+							@Override
+							public View newChildView(boolean isLastChild, ViewGroup parent) {
+								if(layoutInflater == null){
+									layoutInflater = (LayoutInflater) getLayoutInflater();
+								}
+								return layoutInflater.inflate(R.layout.row_personas, parent, false);
+							}
+
+							public View newGroupView(boolean isExpanded, ViewGroup parent){
+								if(layoutInflater == null){
+									layoutInflater = (LayoutInflater) (LayoutInflater) getLayoutInflater();
+								}
+
+								return layoutInflater.inflate(R.layout.personas_row_label, parent, false);
+							}
+
+							@Override
+							public void onGroupExpanded(int groupPosition){
+								super.onGroupExpanded(groupPosition);
+								mGroupSelected = groupPosition;
+							}
+
+							public void onGroupCollapsed(int groupPosition){
+								super.onGroupCollapsed(groupPosition);
+								mGroupSelected = -1;
+							}
+
+							public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+								final View v = super.getGroupView(groupPosition, isExpanded, convertView, parent);
+								TextView textName = v.findViewById(R.id.textName);
+								TextView textCantidad = v.findViewById(R.id.textCantidad);
+
+								String temp;
+								String label;
+								temp = mySortedByElements.get(groupPosition);
+								label = temp.toUpperCase();
+								textName.setText(label);
+								textName.setTextColor(getResources().getColor(R.color.color_blanco));
+								textName.setTypeface(Typeface.MONOSPACE);
+								textCantidad.setTextColor(getResources().getColor(R.color.color_gris_oscuro));
+								textCantidad.setTypeface(Typeface.MONOSPACE);
+								textCantidad.setText(String.valueOf(personasMap.get(temp).size()));
+								return v;
+							}
 						}
-					});
-        	        return v;
-                }
-
-                @Override
-                public View newChildView(boolean isLastChild, ViewGroup parent) {
-                	if(layoutInflater == null){
-                		layoutInflater = (LayoutInflater) getLayoutInflater();
-                	}
-                    return layoutInflater.inflate(R.layout.row_personas, parent, false);
-                }
-                
-                public View newGroupView(boolean isExpanded, ViewGroup parent){
-                	if(layoutInflater == null){
-                		layoutInflater = (LayoutInflater) (LayoutInflater) getLayoutInflater();
-                	}
-
-                	return layoutInflater.inflate(R.layout.personas_row_label, parent, false);
-                }
-                
-                @Override
-                public void onGroupExpanded(int groupPosition){
-                	super.onGroupExpanded(groupPosition);
-                	mGroupSelected = groupPosition;
-                }
-                
-                public void onGroupCollapsed(int groupPosition){
-                	super.onGroupCollapsed(groupPosition);
-                	mGroupSelected = -1;
-                }
-                
-                public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-                	final View v = super.getGroupView(groupPosition, isExpanded, convertView, parent);
-                	TextView textName = v.findViewById(R.id.textName);
-                	TextView textCantidad = v.findViewById(R.id.textCantidad);
-
-                	String temp;
-                   	String label;
-                	temp = mySortedByElements.get(groupPosition);
-                	label = temp.toUpperCase();
-                	textName.setText(label);
-                	textName.setTextColor(getResources().getColor(R.color.color_blanco));
-                	textName.setTypeface(Typeface.MONOSPACE);
-					textCantidad.setTextColor(getResources().getColor(R.color.color_gris_oscuro));
-					textCantidad.setTypeface(Typeface.MONOSPACE);
-                    textCantidad.setText(String.valueOf(personasMap.get(temp).size()));
-                    return v;
-                }
-            }
-        );
+		);
 
 
-        if(mGroupSelected != -1 && mGroupSelected < this.getExpandableListAdapter().getGroupCount()){
-        	this.getExpandableListView().expandGroup(mGroupSelected);
-        	this.getExpandableListView().setSelectedGroup(mGroupSelected);
-        	if(mChildSelected != -1){
-            	this.getExpandableListView().setSelectedChild(mGroupSelected, mChildSelected, true);
-            }
+		if(mGroupSelected != -1 && mGroupSelected < this.getExpandableListAdapter().getGroupCount()){
+			this.getExpandableListView().expandGroup(mGroupSelected);
+			this.getExpandableListView().setSelectedGroup(mGroupSelected);
+			if(mChildSelected != -1){
+				this.getExpandableListView().setSelectedChild(mGroupSelected, mChildSelected, true);
+			}
 
-        }
+		}
 
-   	
-    }
 
-    private void openVerDetallePersona(long id){
-        Intent i = new Intent(this, DetallePersonaActivity.class);
-        i.putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(id));
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_DETALLE_PERSONA);
-    	
-    }
+	}
+
+	private void openVerDetallePersona(long id){
+		Intent i = new Intent(this, DetallePersonaActivity.class);
+		i.putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(id));
+		this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_DETALLE_PERSONA);
+
+	}
 
 
 	private boolean mostrarFoto(final TextView tv, long idPer, boolean miniFoto){
 		boolean muestraFoto = false;
-    	try {
-    		Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(me);
-    		boolean puede = (Boolean) puedeCargar.getKey();
+		try {
+			Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(me);
+			boolean puede = (Boolean) puedeCargar.getKey();
 
 			if(puede){
-				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(idPer)  + ".jpg");
 				Bitmap small = null;
 				if(b != null){
 					if(miniFoto){
@@ -651,26 +654,26 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		}
 		return muestraFoto;
 
-    	
-    }
+
+	}
 
 
-    
 
-    private void openVerMenuPersona(long id, int groupPosition, int childPosition){
-        Intent i = new Intent(this, MenuPersonaActivity.class);
-        mGroupSelected = groupPosition;
-        mChildSelected = childPosition;
-        i.putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(id));
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_MENU_PERSONA);
-    	
-    }
-    
 
-    
-    private void configurarVerPreferidos(){
-    	preferidos = this.findViewById(R.id.imagenPreferidos);
-	//	Drawable dbnPref = getResources().getDrawable(R.drawable.pref_icon_bw);
+	private void openVerMenuPersona(long id, int groupPosition, int childPosition){
+		Intent i = new Intent(this, MenuPersonaActivity.class);
+		mGroupSelected = groupPosition;
+		mChildSelected = childPosition;
+		i.putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(id));
+		this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_MENU_PERSONA);
+
+	}
+
+
+
+	private void configurarVerPreferidos(){
+		preferidos = this.findViewById(R.id.imagenPreferidos);
+		//	Drawable dbnPref = getResources().getDrawable(R.drawable.pref_icon_bw);
 		preferidos.setBackgroundResource(R.drawable.pref_icon_bw);
 		imgPrefLeft = this.findViewById(R.id.imgPrefLeft);
 		imgPrefRight = this.findViewById(R.id.imgPrefRight);
@@ -681,10 +684,10 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				verPreferidos();
 			}
 		});
-    	
-    }
+
+	}
     /*
-    
+
     private void configurarSearch(){
     	searchBoton = (ImageView) this.findViewById(R.id.imagenSearch);
     	dcolorSearch = getResources().getDrawable(R.drawable.search_color_icon);
@@ -697,9 +700,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				verBusqueda();
 			}
 		});
-    	
+
     }*/
-/*    
+/*
     private void configurarImport(){
     	ImageView importBoton = (ImageView) this.findViewById(R.id.imagenImport);
     	importBoton.setOnClickListener(new View.OnClickListener() {
@@ -709,9 +712,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				mostrarDialogoImportarContactos();
 			}
 		});
-    	
-    }    
-  */  
+
+    }
+  */
    /* private void configurarCategorias(){
     	ImageView categorias = (ImageView) this.findViewById(R.id.imagenCategorias);
     	categorias.setOnClickListener(new View.OnClickListener() {
@@ -719,25 +722,25 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				mostrarEleccionCategoria();
-				
+
 			}
 		});
-    	
-    }    */    
-    
-    private void configurarAddContact(){
-    	ImageButton addContact = this.findViewById(R.id.imagenAddContacto);
-    	addContact.setOnClickListener(new View.OnClickListener() {
+
+    }    */
+
+	private void configurarAddContact(){
+		ImageButton addContact = this.findViewById(R.id.imagenAddContacto);
+		addContact.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				openAltaPersona();
 			}
 		});
-    	
-    }    
-    
-    private void verBusqueda(){
+
+	}
+
+	private void verBusqueda(){
 		mEntryBusquedaNombre = null;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		if(ConstantsAdmin.contrasenia == null){
@@ -750,309 +753,309 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		}else{
 			protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
 		}
-	
+
 		if(!ConstantsAdmin.config.isMuestraPreferidos()){
 			this.mostrarTodosLosContactos();
 		}
-    	
-    }
-    
-    private void verPreferidos(){
-		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-    	long prefSize = ConstantsAdmin.tablaPreferidosSize(mDBManager);
-    	if(prefSize == 0){
-    		ConstantsAdmin.mostrarMensaje(this,getString(R.string.error_sin_preferidos));
-    	}else{
-    		if(!ConstantsAdmin.config.isMuestraPreferidos()){
-	    		this.mostrarSoloPreferidos();
-    		//	catSelectTextView.setVisibility(View.VISIBLE);
-    			catSelectTextView.setText(getResources().getString(R.string.label_preferidos));
-	    		preferidos.setBackgroundResource(R.drawable.pref_icon);
-	    	    spinnerCategorias.setItems(todasLasCategString,this);
-	    	    imgPrefLeft.setVisibility(View.VISIBLE);
-	    	    imgPrefRight.setVisibility(View.VISIBLE);
-    		}else{
-    			ConstantsAdmin.config.setMuestraPreferidos(false);
-    		//	catSelectTextView.setVisibility(View.GONE);
-				catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
-    			preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
-	    	    imgPrefLeft.setVisibility(View.GONE);
-	    	    imgPrefRight.setVisibility(View.GONE);
 
-    			this.mostrarTodosLosContactos();
-    			
-    		}
-    		preferidos.refreshDrawableState();
-    	}
-    	
-    }
-    
-    
-    private void mostrarSoloPreferidos(){
-    	CursorLoader prefCursorLoader;
-    	Cursor prefCursor;
+	}
+
+	private void verPreferidos(){
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		long prefSize = ConstantsAdmin.tablaPreferidosSize(mDBManager);
+		if(prefSize == 0){
+			ConstantsAdmin.mostrarMensaje(this,getString(R.string.error_sin_preferidos));
+		}else{
+			if(!ConstantsAdmin.config.isMuestraPreferidos()){
+				this.mostrarSoloPreferidos();
+				//	catSelectTextView.setVisibility(View.VISIBLE);
+				catSelectTextView.setText(getResources().getString(R.string.label_preferidos));
+				preferidos.setBackgroundResource(R.drawable.pref_icon);
+				spinnerCategorias.setItems(todasLasCategString,this);
+				imgPrefLeft.setVisibility(View.VISIBLE);
+				imgPrefRight.setVisibility(View.VISIBLE);
+			}else{
+				ConstantsAdmin.config.setMuestraPreferidos(false);
+				//	catSelectTextView.setVisibility(View.GONE);
+				catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
+				preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
+				imgPrefLeft.setVisibility(View.GONE);
+				imgPrefRight.setVisibility(View.GONE);
+
+				this.mostrarTodosLosContactos();
+
+			}
+			preferidos.refreshDrawableState();
+		}
+
+	}
+
+
+	private void mostrarSoloPreferidos(){
+		CursorLoader prefCursorLoader;
+		Cursor prefCursor;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
 		prefCursorLoader = mDBManager.cursorLoaderPreferidos(ConstantsAdmin.categoriasProtegidas, this);
-    	//prefCursorLoader = mDBManager.fetchAllPreferidos(ConstantsAdmin.categoriasProtegidas);
-    	prefCursor = prefCursorLoader.loadInBackground();
-    	if(prefCursor != null){
-    		ConstantsAdmin.config.setMuestraPreferidos(true);
-	      //  startManagingCursor(prefCursor);
-	        // Create an array to specify the fields we want to display in the list (only TITLE)
-	        String[] from;
-	        int[] to;
+		//prefCursorLoader = mDBManager.fetchAllPreferidos(ConstantsAdmin.categoriasProtegidas);
+		prefCursor = prefCursorLoader.loadInBackground();
+		if(prefCursor != null){
+			ConstantsAdmin.config.setMuestraPreferidos(true);
+			//  startManagingCursor(prefCursor);
+			// Create an array to specify the fields we want to display in the list (only TITLE)
+			String[] from;
+			int[] to;
 			from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
 			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
-			KNSimpleCursorAdapter personas = 
-	            new KNSimpleCursorAdapter(this, R.layout.row_personas, prefCursor, from, to);
-	        //PONER UNA LISTA OCULTA PARA LAS BUSQUEDAS ESPECIFICAS
-			
+			KNSimpleCursorAdapter personas =
+					new KNSimpleCursorAdapter(this, R.layout.row_personas, prefCursor, from, to);
+			//PONER UNA LISTA OCULTA PARA LAS BUSQUEDAS ESPECIFICAS
+
 			listaEspecial.setAdapter(personas);
 			ConstantsAdmin.finalizarBD(mDBManager);
 			listaEspecial.setVisibility(View.VISIBLE);
 			this.getExpandableListView().setVisibility(View.GONE);
-	        cantReg.setText("(" + listaEspecial.getAdapter().getCount() + ")");
-    	}
-    	
-    }
-    
-    private void configurarBotonIrACategoriaTodas(){
+			cantReg.setText("(" + listaEspecial.getAdapter().getCount() + ")");
+		}
+
+	}
+
+	private void configurarBotonIrACategoriaTodas(){
 		// --Commented out by Inspection (12/11/2018 12:51):ExpandableListAdapter mAdapter = null;
 		ImageButton irTodos = this.findViewById(R.id.buttonTodasLasCategorias);
-    	irTodos.setOnClickListener(new View.OnClickListener() {
+		irTodos.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				mostrarTodosLosContactos();
 			}
 		});
-    	
-    }
-    
- 
 
-    private void configurarBotonSwitchOrganizacion(){
-    	switchOrganizacion = this.findViewById(R.id.buttonSwitchOrganizacion);
-	//	Drawable dorganizarNombre = getResources().getDrawable(R.drawable.organizar_nombre);
-	//	Drawable dorganizarCategoria = getResources().getDrawable(R.drawable.organizar_categoria);
-    	switchOrganizacion.setOnClickListener(new View.OnClickListener() {
+	}
+
+
+
+	private void configurarBotonSwitchOrganizacion(){
+		switchOrganizacion = this.findViewById(R.id.buttonSwitchOrganizacion);
+		//	Drawable dorganizarNombre = getResources().getDrawable(R.drawable.organizar_nombre);
+		//	Drawable dorganizarCategoria = getResources().getDrawable(R.drawable.organizar_categoria);
+		switchOrganizacion.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				switchOrganizacion();
 			}
 		});
-    	
-    }
-    
+
+	}
 
 
-    private void configurarBotonMasOMenosDesc(){
-    	masOMenosDesc = this.findViewById(R.id.buttonMoreOrLess);
-	//	Drawable dlessDesc = getResources().getDrawable(R.drawable.less_desc_contact);
-	//	Drawable dmoreDesc = getResources().getDrawable(R.drawable.more_desc_contact);
-    	masOMenosDesc.setOnClickListener(new View.OnClickListener() {
+
+	private void configurarBotonMasOMenosDesc(){
+		masOMenosDesc = this.findViewById(R.id.buttonMoreOrLess);
+		//	Drawable dlessDesc = getResources().getDrawable(R.drawable.less_desc_contact);
+		//	Drawable dmoreDesc = getResources().getDrawable(R.drawable.more_desc_contact);
+		masOMenosDesc.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				moreOrLessDesc();
 			}
 		});
-    	
-    }
+
+	}
 
 
-    private void expandContractAll(){
+	private void expandContractAll(){
 
-    	ConstantsAdmin.config.setListaExpandida(!ConstantsAdmin.config.isListaExpandida());
-    	int grupoSeleccionado = mGroupSelected;
-    	this.mostrarTodosLosContactos();
-    	for (int j = 0; j < this.getExpandableListAdapter().getGroupCount(); j++) {
-        	if(ConstantsAdmin.config.isListaExpandida()){
-		   		this.getExpandableListView().expandGroup(j);
-        	}else{
-        		this.getExpandableListView().collapseGroup(j);
-        	}
+		ConstantsAdmin.config.setListaExpandida(!ConstantsAdmin.config.isListaExpandida());
+		int grupoSeleccionado = mGroupSelected;
+		this.mostrarTodosLosContactos();
+		for (int j = 0; j < this.getExpandableListAdapter().getGroupCount(); j++) {
+			if(ConstantsAdmin.config.isListaExpandida()){
+				this.getExpandableListView().expandGroup(j);
+			}else{
+				this.getExpandableListView().collapseGroup(j);
+			}
 
 		}
-    	if(!ConstantsAdmin.config.isListaExpandida()){
-    		expandContractAll.setBackground(getResources().getDrawable(R.drawable.expandir_icon));
-    	}else{
-    		expandContractAll.setBackground(getResources().getDrawable(R.drawable.contraer_icon));
-    	}
-    	if(grupoSeleccionado != -1){
-	    	this.getExpandableListView().setSelectedGroup(grupoSeleccionado);
-    	}else{
-    		mGroupSelected = -1;
-    	}
+		if(!ConstantsAdmin.config.isListaExpandida()){
+			expandContractAll.setBackground(getResources().getDrawable(R.drawable.expandir_icon));
+		}else{
+			expandContractAll.setBackground(getResources().getDrawable(R.drawable.contraer_icon));
+		}
+		if(grupoSeleccionado != -1){
+			this.getExpandableListView().setSelectedGroup(grupoSeleccionado);
+		}else{
+			mGroupSelected = -1;
+		}
 
-    }
+	}
 
-    private void moreOrLessDesc(){
-    	int grupoSeleccionado = mGroupSelected;
-	    mListPosition = getExpandableListView().getFirstVisiblePosition();
+	private void moreOrLessDesc(){
+		int grupoSeleccionado = mGroupSelected;
+		mListPosition = getExpandableListView().getFirstVisiblePosition();
 
-	    // Save scroll position of item
-	    View itemView = getExpandableListView().getChildAt(0);
-	    mItemPosition = itemView == null ? 0 : itemView.getTop();
+		// Save scroll position of item
+		View itemView = getExpandableListView().getChildAt(0);
+		mItemPosition = itemView == null ? 0 : itemView.getTop();
 
-	//    ConstantsAdmin.config.setEstanDetallados(!ConstantsAdmin.config.isEstanDetallados());
-    	this.mostrarTodosLosContactos();
-    	if(ConstantsAdmin.config.isListaExpandida()){
-	    	for (int j = 0; j < this.getExpandableListAdapter().getGroupCount(); j++) {
-	       		this.getExpandableListView().expandGroup(j);
+		//    ConstantsAdmin.config.setEstanDetallados(!ConstantsAdmin.config.isEstanDetallados());
+		this.mostrarTodosLosContactos();
+		if(ConstantsAdmin.config.isListaExpandida()){
+			for (int j = 0; j < this.getExpandableListAdapter().getGroupCount(); j++) {
+				this.getExpandableListView().expandGroup(j);
 			}
-    	}
-     	if(grupoSeleccionado != -1){
-	    	this.getExpandableListView().setSelectedGroup(grupoSeleccionado);
-	    	this.getExpandableListView().expandGroup(grupoSeleccionado);
-	    	mGroupSelected = grupoSeleccionado;
-    	}else{
-    		mGroupSelected = -1;
-    	}
-    	
+		}
+		if(grupoSeleccionado != -1){
+			this.getExpandableListView().setSelectedGroup(grupoSeleccionado);
+			this.getExpandableListView().expandGroup(grupoSeleccionado);
+			mGroupSelected = grupoSeleccionado;
+		}else{
+			mGroupSelected = -1;
+		}
+
     /*	if(!ConstantsAdmin.config.isEstanDetallados()){
     		masOMenosDesc.setBackground(getResources().getDrawable(R.drawable.more_desc_contact));
     	}else{
     		masOMenosDesc.setBackground(getResources().getDrawable(R.drawable.less_desc_contact));
     	}*/
-    	
-        if (mListState != null){
-        	getExpandableListView().onRestoreInstanceState(mListState);
-        }
-        getExpandableListView().setSelectionFromTop(mListPosition, mItemPosition);
-    }
 
-    
-    private void switchOrganizacion(){
-    	ConstantsAdmin.config.setOrdenadoPorCategoria(!ConstantsAdmin.config.isOrdenadoPorCategoria());
-    	this.mostrarTodosLosContactos();
-    	ConstantsAdmin.config.setListaExpandida(false);
-    	for (int j = 0; j < this.getExpandableListAdapter().getGroupCount(); j++) {
-       		this.getExpandableListView().collapseGroup(j);
+		if (mListState != null){
+			getExpandableListView().onRestoreInstanceState(mListState);
 		}
-    	expandContractAll.setBackground(getResources().getDrawable(R.drawable.expandir_icon));
-    	this.getExpandableListView().setSelectedGroup(0);
-    	if(ConstantsAdmin.config.isOrdenadoPorCategoria()){
-    		switchOrganizacion.setBackground(getResources().getDrawable(R.drawable.organizar_nombre));
-    	}else{
-    		switchOrganizacion.setBackground(getResources().getDrawable(R.drawable.organizar_categoria));
-    	}
+		getExpandableListView().setSelectionFromTop(mListPosition, mItemPosition);
+	}
 
-    	
-    }
-    
-    private void mostrarTodosLosContactos(){
-    	entryBusqueda.setText("");
-    	mEntryBusquedaNombre = null;
-    	categoriasSeleccionadas = null;
-    	preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
+
+	private void switchOrganizacion(){
+		ConstantsAdmin.config.setOrdenadoPorCategoria(!ConstantsAdmin.config.isOrdenadoPorCategoria());
+		this.mostrarTodosLosContactos();
+		ConstantsAdmin.config.setListaExpandida(false);
+		for (int j = 0; j < this.getExpandableListAdapter().getGroupCount(); j++) {
+			this.getExpandableListView().collapseGroup(j);
+		}
+		expandContractAll.setBackground(getResources().getDrawable(R.drawable.expandir_icon));
+		this.getExpandableListView().setSelectedGroup(0);
+		if(ConstantsAdmin.config.isOrdenadoPorCategoria()){
+			switchOrganizacion.setBackground(getResources().getDrawable(R.drawable.organizar_nombre));
+		}else{
+			switchOrganizacion.setBackground(getResources().getDrawable(R.drawable.organizar_categoria));
+		}
+
+
+	}
+
+	private void mostrarTodosLosContactos(){
+		entryBusqueda.setText("");
+		mEntryBusquedaNombre = null;
+		categoriasSeleccionadas = null;
+		preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
 		catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
-    //	catSelectTextView.setVisibility(View.GONE);
+		//	catSelectTextView.setVisibility(View.GONE);
 		imgPrefLeft.setVisibility(View.GONE);
 		imgPrefRight.setVisibility(View.GONE);
-        spinnerCategorias.setItems(todasLasCategString, this);
-        this.recargarLista();
-        mGroupSelected = -1;
+		spinnerCategorias.setItems(todasLasCategString, this);
+		this.recargarLista();
+		mGroupSelected = -1;
 
-    }
-    
-    private void configurarListView(){
-    	listaEspecial = this.findViewById(R.id.listaEspecial);
-    	listaEspecial.setFastScrollEnabled(true);
-    	listaEspecial.setVisibility(View.VISIBLE);
-    	listaEspecial.setOnItemClickListener(new OnItemClickListener() {
+	}
+
+	private void configurarListView(){
+		listaEspecial = this.findViewById(R.id.listaEspecial);
+		listaEspecial.setFastScrollEnabled(true);
+		listaEspecial.setVisibility(View.VISIBLE);
+		listaEspecial.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+									long arg3) {
 				// TODO Auto-generated method stub
-				
+
 				Cursor per;
-		        Intent i = new Intent(me, DetallePersonaActivity.class);
-		        per = (Cursor)listaEspecial.getAdapter().getItem(arg2);
-		        long id = per.getLong(0);
-		        i.putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(id));
-		        me.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_DETALLE_PERSONA);
-				
+				Intent i = new Intent(me, DetallePersonaActivity.class);
+				per = (Cursor)listaEspecial.getAdapter().getItem(arg2);
+				long id = per.getLong(0);
+				i.putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(id));
+				me.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_DETALLE_PERSONA);
+
 			}
-		});	
-    	
-    	listaEspecial.setOnItemLongClickListener(new OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-                    int arg2, long arg3) {
+		});
+
+		listaEspecial.setOnItemLongClickListener(new OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+										   int arg2, long arg3) {
 				Cursor per;
-		        Intent i = new Intent(me, MenuPersonaActivity.class);
-		        per = (Cursor)listaEspecial.getAdapter().getItem(arg2);
-		        long id = per.getLong(0);
-		        i.putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(id));
-		        me.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_MENU_PERSONA);
+				Intent i = new Intent(me, MenuPersonaActivity.class);
+				per = (Cursor)listaEspecial.getAdapter().getItem(arg2);
+				long id = per.getLong(0);
+				i.putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(id));
+				me.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_MENU_PERSONA);
 
-		        return true;
-            }
-        });	
-    			
-    			
-    	cantReg = this.findViewById(R.id.cantRegistros);
-    	catSelectTextView = this.findViewById(R.id.categoriasSeleccionadasId);
-    }
-    
-    @Override
+				return true;
+			}
+		});
+
+
+		cantReg = this.findViewById(R.id.cantRegistros);
+		catSelectTextView = this.findViewById(R.id.categoriasSeleccionadasId);
+	}
+
+	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
+									ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
-	    menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_ELIMINAR_CONTACTO, 0, R.string.menu_eliminar);
-		
-        // TODO: fill in rest of method
+		menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_ELIMINAR_CONTACTO, 0, R.string.menu_eliminar);
+
+		// TODO: fill in rest of method
 	}
 
-    @Override
+	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-    	switch(item.getItemId()) {
-        case ConstantsAdmin.ACTIVITY_EJECUTAR_ELIMINAR_CONTACTO:
-            AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-            mPersonaSelect = info.id;
-        	eliminarPersonaDialog();
-            return true;
-        }
-        return super.onContextItemSelected(item);
-		
-        // TODO: fill in rest of method
+		switch(item.getItemId()) {
+			case ConstantsAdmin.ACTIVITY_EJECUTAR_ELIMINAR_CONTACTO:
+				AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+				mPersonaSelect = info.id;
+				eliminarPersonaDialog();
+				return true;
+		}
+		return super.onContextItemSelected(item);
+
+		// TODO: fill in rest of method
 	}
-    
+
 	private void eliminarPersonaDialog(){
 		try {
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 			PersonaDTO per = ConstantsAdmin.obtenerPersonaId(this, mPersonaSelect, mDBManager);
 			String contacto = per.getApellido();
 			if(per.getNombres() != null && !per.getNombres().equals("")){
-				contacto = contacto + ", " + per.getNombres(); 
+				contacto = contacto + ", " + per.getNombres();
 			}
-			contacto = contacto + ": "; 
-	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    	builder.setMessage(contacto + getString(R.string.mensaje_borrar_persona))
-	    	       .setCancelable(false)
-	    	       .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	        	   eliminarPersonaSeleccionada();
-	    	        	   recargarLista();
-	    	           }
-	    	       })
-	    	       .setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	                dialog.cancel();
-	    	           }
-	    	       });
-	    	builder.show();
-			
+			contacto = contacto + ": ";
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(contacto + getString(R.string.mensaje_borrar_persona))
+					.setCancelable(false)
+					.setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							eliminarPersonaSeleccionada();
+							recargarLista();
+						}
+					})
+					.setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							dialog.cancel();
+						}
+					});
+			builder.show();
+
 		} catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEliminacionContacto));
 		}
 	}
 
-	
+
 	private void eliminarPersonaSeleccionada(){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
@@ -1083,14 +1086,14 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
         	}else{
         		ConstantsAdmin.mensaje = getString(R.string.errorSinContactosPorImportar);
         	}
-        	
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			ConstantsAdmin.mensaje = getString(R.string.errorImportarContacto);
 		}
     }*/
 
- /*   
+ /*
     private CategoriaDTO obtenerCategoriaSeleccionada(){
     	CategoriaDTO result = null;
     	if(this.mSpinnerPos != -1){
@@ -1127,9 +1130,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 					per = null;
 				}
 
-	
+
 	    	}
-	
+
     	}
     	ConstantsAdmin.finalizarBD(mDBManager);
       	return result;
@@ -1193,233 +1196,233 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 // --Commented out by Inspection STOP (26/12/2018 09:04)
 
 
-    private Asociacion obtenerNombreYApellidoDeContactoDeAgenda(String contactId){
-    	Asociacion asoc = null;
-    	Cursor nameCur;
-    	String given;
-    	String family;
-        String whereName = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
-        String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
-        nameCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, null);
-        if(nameCur!=null){
-        	//startManagingCursor(nameCur);
-	        if (nameCur.moveToNext()) {
-	            given = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
-	            family = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
-	            asoc = new Asociacion(given, family);
-	          //  stopManagingCursor(nameCur);
-	        }
-	        nameCur.close();
-        }
-
-    	return asoc;
-    }
-
-    private void importarMailDeContacto(String[] projectionMail, PersonaDTO per, String contactId){
-    	String emailAddress;
-    	int emailType;
-    	try {
-            Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
-            if(emails != null){
-    	     //   startManagingCursor(emails);
-    	        while (emails.moveToNext()) { 
-    	           // Tis would allow you get several email addresses 
-    	           emailAddress = emails.getString(emails.getColumnIndex(Email.DATA)); 
-    	           emailType = emails.getInt(emails.getColumnIndex(Email.TYPE)); 
-    	
-    	           if(!emailAddress.equals("")){
-    	        		switch (emailType) {
-    					case Email.TYPE_HOME :
-    						per.setEmailParticular(emailAddress);
-    						break;
-    					case Email.TYPE_WORK:
-    						per.setEmailLaboral(emailAddress);
-    						break;
-    					case Email.TYPE_OTHER :
-    						per.setEmailOtro(emailAddress);
-    						break;
-    					default:
-    						break;
-    					}
-    	           }
-    	        }
-                emails.close();
-            }
-			
-		} catch (Exception e) {
-			// TODO: handle exception
+	private Asociacion obtenerNombreYApellidoDeContactoDeAgenda(String contactId){
+		Asociacion asoc = null;
+		Cursor nameCur;
+		String given;
+		String family;
+		String whereName = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=" + contactId;
+		String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
+		nameCur = getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, whereName, whereNameParams, null);
+		if(nameCur!=null){
+			//startManagingCursor(nameCur);
+			if (nameCur.moveToNext()) {
+				given = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
+				family = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
+				asoc = new Asociacion(given, family);
+				//  stopManagingCursor(nameCur);
+			}
+			nameCur.close();
 		}
 
-    	
-    }
-    
+		return asoc;
+	}
 
-    
+	private void importarMailDeContacto(String[] projectionMail, PersonaDTO per, String contactId){
+		String emailAddress;
+		int emailType;
+		try {
+			Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
+			if(emails != null){
+				//   startManagingCursor(emails);
+				while (emails.moveToNext()) {
+					// Tis would allow you get several email addresses
+					emailAddress = emails.getString(emails.getColumnIndex(Email.DATA));
+					emailType = emails.getInt(emails.getColumnIndex(Email.TYPE));
 
-    private void importarTelDeContacto(String[] projectionPhone, PersonaDTO per, String contactId){
-    	String phoneNumber;
-    	int phoneType;
-    	try {
-    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
-            if(phones != null){
-    	      //  startManagingCursor(phones);
-    	        while (phones.moveToNext())
-    	        {
-    	        	phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-    	        	phoneType = phones.getInt(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
-    	        	
-    	        	if(!phoneNumber.equals("")){
-    	        		switch (phoneType) {
-    					case Phone.TYPE_HOME :
-    						per.setTelParticular(phoneNumber);
-    						break;
-    					case Phone.TYPE_MOBILE :
-    						per.setCelular(phoneNumber);
-    						break;
-    					case Phone.TYPE_WORK :
-    						per.setTelLaboral(phoneNumber);
-    						break;
-    					case Phone.TYPE_WORK_MOBILE :
-    						per.setTelLaboral(phoneNumber);
-    						break;
-    					default:
-    						break;
-    					}
-    	        		
-    	        	}
-    	        }
-                phones.close();
-            }
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-        
-    	
-    }
-
-    private void configurarEntryBusqueda(){
-        entryBusqueda = findViewById(R.id.entryBusquedaPersona);
-        entryBusqueda.addTextChangedListener(new TextWatcher() {
-			
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				mEntryBusquedaNombre = s.toString();
-				if(mEntryBusquedaNombre.equals("") && (categoriasSeleccionadas == null || categoriasSeleccionadas.size() == 0)){
-					recargarLista();
-				}else{
-					cargarPersonasPorApellidoONombreMultipleSeleccion();	
+					if(!emailAddress.equals("")){
+						switch (emailType) {
+							case Email.TYPE_HOME :
+								per.setEmailParticular(emailAddress);
+								break;
+							case Email.TYPE_WORK:
+								per.setEmailLaboral(emailAddress);
+								break;
+							case Email.TYPE_OTHER :
+								per.setEmailOtro(emailAddress);
+								break;
+							default:
+								break;
+						}
+					}
 				}
-				
-		
+				emails.close();
 			}
-			
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				// TODO Auto-generated method stub
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+
+	}
+
+
+
+
+	private void importarTelDeContacto(String[] projectionPhone, PersonaDTO per, String contactId){
+		String phoneNumber;
+		int phoneType;
+		try {
+			Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+			if(phones != null){
+				//  startManagingCursor(phones);
+				while (phones.moveToNext())
+				{
+					phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+					phoneType = phones.getInt(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
+
+					if(!phoneNumber.equals("")){
+						switch (phoneType) {
+							case Phone.TYPE_HOME :
+								per.setTelParticular(phoneNumber);
+								break;
+							case Phone.TYPE_MOBILE :
+								per.setCelular(phoneNumber);
+								break;
+							case Phone.TYPE_WORK :
+								per.setTelLaboral(phoneNumber);
+								break;
+							case Phone.TYPE_WORK_MOBILE :
+								per.setTelLaboral(phoneNumber);
+								break;
+							default:
+								break;
+						}
+
+					}
+				}
+				phones.close();
 			}
-			
-			@Override
-			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
-			}
-        }
-      );
-   	
-    }
-    
-    private void configurarSpinner(){
-    	DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-      	spinnerCategorias = this.findViewById(R.id.multi_spinner);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+
+	}
+
+	private void configurarEntryBusqueda(){
+		entryBusqueda = findViewById(R.id.entryBusquedaPersona);
+		entryBusqueda.addTextChangedListener(new TextWatcher() {
+
+												 @Override
+												 public void onTextChanged(CharSequence s, int start, int before, int count) {
+													 mEntryBusquedaNombre = s.toString();
+													 if(mEntryBusquedaNombre.equals("") && (categoriasSeleccionadas == null || categoriasSeleccionadas.size() == 0)){
+														 recargarLista();
+													 }else{
+														 cargarPersonasPorApellidoONombreMultipleSeleccion();
+													 }
+
+
+												 }
+
+												 @Override
+												 public void beforeTextChanged(CharSequence s, int start, int count,
+																			   int after) {
+													 // TODO Auto-generated method stub
+												 }
+
+												 @Override
+												 public void afterTextChanged(Editable s) {
+													 // TODO Auto-generated method stub
+												 }
+											 }
+		);
+
+	}
+
+	private void configurarSpinner(){
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		spinnerCategorias = this.findViewById(R.id.multi_spinner);
 		CursorLoader cursorLoader;
-      	CategoriaDTO cat;
-      	List<CategoriaDTO> categorias = new ArrayList<>();
-      	List<CategoriaDTO> categoriasPersonales = null;
-      	Iterator<CategoriaDTO> it;
-  //    CategoriaDTO cat = null;
-     	ConstantsAdmin.inicializarBD( mDBManager);
+		CategoriaDTO cat;
+		List<CategoriaDTO> categorias = new ArrayList<>();
+		List<CategoriaDTO> categoriasPersonales = null;
+		Iterator<CategoriaDTO> it;
+		//    CategoriaDTO cat = null;
+		ConstantsAdmin.inicializarBD( mDBManager);
 		cursorLoader = mDBManager.cursorLoaderCategoriasActivasPorNombre(null, this);
 		//		cursor = mDBManager.fetchCategoriasActivasPorNombre(null);
-      	if(cursorLoader != null){
-        //	startManagingCursor(cursor);
-          	categorias = ConstantsAdmin.categoriasCursorToDtos(cursorLoader.loadInBackground());
-      	}
+		if(cursorLoader != null){
+			//	startManagingCursor(cursor);
+			categorias = ConstantsAdmin.categoriasCursorToDtos(cursorLoader.loadInBackground());
+		}
 
 		cursorLoader = mDBManager.cursorLoaderCategoriasPersonalesActivasPorNombre(null, this);
-      	if(cursorLoader != null){
-         // 	startManagingCursor(cursor);
-          	categoriasPersonales = ConstantsAdmin.categoriasCursorToDtos(cursorLoader.loadInBackground());
-      	}
-      
-     	ConstantsAdmin.finalizarBD(mDBManager);
-   //   cat = new CategoriaDTO(0,ConstantsAdmin.CATEGORIA_TODOS, ConstantsAdmin.CATEGORIA_TODOS, 1, "");
-      	categorias.addAll(categoriasPersonales);
-      
-	    if(ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva()){
-          it = categorias.iterator();
-          while(it.hasNext()){
-        	  cat = it.next();
-        	  if(ConstantsAdmin.estaProtegidaCategoria(cat.getNombreReal())){
-        		  it.remove();
-        	  }
-          }
-    	  
-    	}
-      
+		if(cursorLoader != null){
+			// 	startManagingCursor(cursor);
+			categoriasPersonales = ConstantsAdmin.categoriasCursorToDtos(cursorLoader.loadInBackground());
+		}
 
-      	this.cambiarNombreCategorias(categorias);
- 
-      	Collections.sort(categorias);
-   //   categorias.add(0,cat);
-      
-     
-      	Iterator<CategoriaDTO> itCat = categorias.iterator();
-      	todasLasCategString = new ArrayList<>();
-      	todasLasCategorias = new ArrayList<>();
-      	CategoriaDTO cattemp;
-      	while(itCat.hasNext()){
-    	  cattemp = itCat.next();
-    	  todasLasCategorias.add(cattemp);
-    	  if(ConstantsAdmin.estaProtegidaCategoria(cattemp.getNombreReal())){
-    		  todasLasCategString.add("**" + cattemp.getNombreRelativo());
-    	  }else{
-    		  todasLasCategString.add(cattemp.getNombreRelativo());
-    	  }
-    	  
-      	}
-      
-      spinnerCategorias.setItems(todasLasCategString, this);
-      
-  //    this.crearSpinnerCategorias(R.id.spinnerCategorias_list_personas, categorias);
-    }
-    
-  	private void cambiarNombreCategorias(List<CategoriaDTO> categorias){
-  		Iterator<CategoriaDTO> it = categorias.iterator();
-  		CategoriaDTO catTemp;
-  		String nombreRelativo;
-  		while(it.hasNext()){
-  			catTemp = it.next();
-  			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
-  			if(nombreRelativo == null){
-  				nombreRelativo = catTemp.getNombreReal();
-  			}
-  			catTemp.setNombreRelativo(nombreRelativo);
-  		}
-  	}
-  	
-  	
+		ConstantsAdmin.finalizarBD(mDBManager);
+		//   cat = new CategoriaDTO(0,ConstantsAdmin.CATEGORIA_TODOS, ConstantsAdmin.CATEGORIA_TODOS, 1, "");
+		categorias.addAll(categoriasPersonales);
+
+		if(ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva()){
+			it = categorias.iterator();
+			while(it.hasNext()){
+				cat = it.next();
+				if(ConstantsAdmin.estaProtegidaCategoria(cat.getNombreReal())){
+					it.remove();
+				}
+			}
+
+		}
+
+
+		this.cambiarNombreCategorias(categorias);
+
+		Collections.sort(categorias);
+		//   categorias.add(0,cat);
+
+
+		Iterator<CategoriaDTO> itCat = categorias.iterator();
+		todasLasCategString = new ArrayList<>();
+		todasLasCategorias = new ArrayList<>();
+		CategoriaDTO cattemp;
+		while(itCat.hasNext()){
+			cattemp = itCat.next();
+			todasLasCategorias.add(cattemp);
+			if(ConstantsAdmin.estaProtegidaCategoria(cattemp.getNombreReal())){
+				todasLasCategString.add("**" + cattemp.getNombreRelativo());
+			}else{
+				todasLasCategString.add(cattemp.getNombreRelativo());
+			}
+
+		}
+
+		spinnerCategorias.setItems(todasLasCategString, this);
+
+		//    this.crearSpinnerCategorias(R.id.spinnerCategorias_list_personas, categorias);
+	}
+
+	private void cambiarNombreCategorias(List<CategoriaDTO> categorias){
+		Iterator<CategoriaDTO> it = categorias.iterator();
+		CategoriaDTO catTemp;
+		String nombreRelativo;
+		while(it.hasNext()){
+			catTemp = it.next();
+			nombreRelativo = ConstantsAdmin.obtenerNombreCategoria(catTemp.getNombreReal(), this);
+			if(nombreRelativo == null){
+				nombreRelativo = catTemp.getNombreReal();
+			}
+			catTemp.setNombreRelativo(nombreRelativo);
+		}
+	}
+
+
 /*
     protected Spinner crearSpinnerCategorias(int nombreSpinner, List categorias){
-	    
+
 	    spinnerCategorias = (Spinner) findViewById(nombreSpinner);
 	    mSpinnerAdapt = new ArrayAdapter<CategoriaDTO>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
-	    	    
+
 	    spinnerCategorias.setAdapter(mSpinnerAdapt);
 	    OnItemSelectedListener spinnerListener = new seleccionSpinnerListener();
 	    spinnerCategorias.setOnItemSelectedListener(spinnerListener);
 	    return spinnerCategorias;
     }
- */   
+ */
  /*   public class seleccionSpinnerListener implements OnItemSelectedListener {
 
 
@@ -1429,8 +1432,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
         	if(v != null){
         		t.setText(mCategoriaSeleccionada.getNombreRelativo());
         	}
-        	
-        	
+
+
         	parent.setSelection(pos);
         	mSpinnerPos = pos;
         	cargarPersonasPorApellidoONombre();
@@ -1439,10 +1442,10 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
         public void onNothingSelected(AdapterView<?> parent) {
 
         }
-    }    
+    }
 
-  */  
-    
+  */
+
    /* protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Intent i = new Intent(this, DetallePersonaActivity.class);
@@ -1450,7 +1453,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_DETALLE_PERSONA);
     }
 */
-    
+
     /*
     private void cargarPersonasPorApellidoONombre(){
         // Get all of the rows from the database and create the item list
@@ -1460,7 +1463,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	mMostrandoPreferidos = false;
     	try{
     		ConstantsAdmin.inicializarBD(this);
-    		
+
 	    	personasCursor = ConstantsAdmin.mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoria(mEntryBusquedaNombre, mCategoriaSeleccionada);
 	    	if(personasCursor != null){
 	    		startManagingCursor(personasCursor);
@@ -1478,9 +1481,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 					from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
 					to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
 		        }
-		        
-		        		        
-		        KNSimpleCursorAdapter personas = 
+
+
+		        KNSimpleCursorAdapter personas =
 		            new KNSimpleCursorAdapter(this, R.layout.row_personas, personasCursor, from, to);
 		        setListAdapter(personas);
 		        cantReg.setText("(" + this.getListAdapter().getCount() + ")");
@@ -1489,29 +1492,29 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			e.getMessage();
 		}
     }
-   */ 
-    
-    private String recuperarEtiquetaCatSeleccionadas(){
-    	Iterator<String> it = categoriasSeleccionadas.iterator();
-    	StringBuilder temp = new StringBuilder();
-    	while(it.hasNext()){
-    		temp.append(it.next().toUpperCase()).append("*");
-    	}
-    	return temp.substring(0, temp.length() - 1);
-    }
-    
-    
-    
-    private void cargarPersonasPorApellidoONombreMultipleSeleccion(){
-        // Get all of the rows from the database and create the item list
+   */
+
+	private String recuperarEtiquetaCatSeleccionadas(){
+		Iterator<String> it = categoriasSeleccionadas.iterator();
+		StringBuilder temp = new StringBuilder();
+		while(it.hasNext()){
+			temp.append(it.next().toUpperCase()).append("*");
+		}
+		return temp.substring(0, temp.length() - 1);
+	}
+
+
+
+	private void cargarPersonasPorApellidoONombreMultipleSeleccion(){
+		// Get all of the rows from the database and create the item list
 		listaEspecial.setVisibility(View.VISIBLE);
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		this.getExpandableListView().setVisibility(View.GONE);
 
-    	preferidos.setVisibility(View.VISIBLE);
-     	preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
-    	Cursor personasCursor;
-    	String labelCateg;
+		preferidos.setVisibility(View.VISIBLE);
+		preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
+		Cursor personasCursor;
+		String labelCateg;
 		catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
 		imgPrefLeft.setVisibility(View.GONE);
 		imgPrefRight.setVisibility(View.GONE);
@@ -1519,16 +1522,16 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		if(categoriasSeleccionadas != null && categoriasSeleccionadas.size()>0){
 			labelCateg = this.recuperarEtiquetaCatSeleccionadas();
 			catSelectTextView.setText(labelCateg);
-	//		catSelectTextView.setVisibility(View.VISIBLE);
+			//		catSelectTextView.setVisibility(View.VISIBLE);
 			spinnerCategorias.setItems(todasLasCategString, this);
 		}else{
-	//		catSelectTextView.setVisibility(View.GONE);
+			//		catSelectTextView.setVisibility(View.GONE);
 		}
 		ConstantsAdmin.config.setMuestraPreferidos(false);
 		personasCursor = mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(mEntryBusquedaNombre, categoriasSeleccionadas, ConstantsAdmin.categoriasProtegidas);
 
 		if(personasCursor != null){
-	//		startManagingCursor(personasCursor);
+			//		startManagingCursor(personasCursor);
 			// Create an array to specify the fields we want to display in the list (only TITLE)
 			String[] from;
 			int[] to;
@@ -1541,105 +1544,105 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 
 			KNSimpleCursorAdapter personas =
-				new KNSimpleCursorAdapter(this, R.layout.row_personas, personasCursor, from, to);
+					new KNSimpleCursorAdapter(this, R.layout.row_personas, personasCursor, from, to);
 			listaEspecial.setAdapter(personas);
 			cantReg.setText("(" + listaEspecial.getAdapter().getCount() + ")");
 		}
 
-    
-    }
-    
-    private void habilitarDeshabilitarItemMenu(){
-        if(menuItemExportarContactos != null){
-        	if(personasMap != null && personasMap.size()!= 0){
-               	menuItemExportarContactos.setEnabled(true);
-        	}else{
-        		menuItemExportarContactos.setEnabled(false);
-        	}
-        }
-        if(menuItemExportarContactosEstetico != null){
-        	if(personasMap != null && personasMap.size() != 0){
-               	menuItemExportarContactosEstetico.setEnabled(true);
-        	}else{
-        		menuItemExportarContactosEstetico.setEnabled(false);
-        	}
-        }
-    	
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuItem item;
-    	super.onCreateOptionsMenu(menu);
 
-        item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA,0, R.string.menu_agregar_persona);
-        item.setIcon(R.drawable.person_menu_icon);
-        
+	}
+
+	private void habilitarDeshabilitarItemMenu(){
+		if(menuItemExportarContactos != null){
+			if(personasMap != null && personasMap.size()!= 0){
+				menuItemExportarContactos.setEnabled(true);
+			}else{
+				menuItemExportarContactos.setEnabled(false);
+			}
+		}
+		if(menuItemExportarContactosEstetico != null){
+			if(personasMap != null && personasMap.size() != 0){
+				menuItemExportarContactosEstetico.setEnabled(true);
+			}else{
+				menuItemExportarContactosEstetico.setEnabled(false);
+			}
+		}
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuItem item;
+		super.onCreateOptionsMenu(menu);
+
+		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA,0, R.string.menu_agregar_persona);
+		item.setIcon(R.drawable.person_menu_icon);
 
 
-        menuItemExportarContactos = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS,0, R.string.menu_exportar_contactos);
-        menuItemExportarContactos.setIcon(R.drawable.generate_menu);
-        
-        item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS_CSV,0, R.string.menu_importar_contactos_csv);
-        item.setIcon(R.drawable.restore_menu);
-        
-        
-        
-        item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS,0, R.string.menu_importar_contactos);
-        item.setIcon(R.drawable.import_menu_icon);    
-        
-        menuItemExportarContactosEstetico = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS_ESTETICO,0, R.string.menu_exportar_excel);
-        menuItemExportarContactosEstetico.setIcon(R.drawable.export_excel);  
 
-       
-        item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS,0, R.string.menu_listar_categoria);
-        item.setIcon(R.drawable.categoria_menu_icon);
-        
-        item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_ABOUT_ME,0, R.string.menu_about_me);
-        item.setIcon(R.drawable.about_me_menu);
+		menuItemExportarContactos = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS,0, R.string.menu_exportar_contactos);
+		menuItemExportarContactos.setIcon(R.drawable.generate_menu);
 
-        this.habilitarDeshabilitarItemMenu();
+		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS_CSV,0, R.string.menu_importar_contactos_csv);
+		item.setIcon(R.drawable.restore_menu);
+
+
+
+		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS,0, R.string.menu_importar_contactos);
+		item.setIcon(R.drawable.import_menu_icon);
+
+		menuItemExportarContactosEstetico = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS_ESTETICO,0, R.string.menu_exportar_excel);
+		menuItemExportarContactosEstetico.setIcon(R.drawable.export_excel);
+
+
+		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS,0, R.string.menu_listar_categoria);
+		item.setIcon(R.drawable.categoria_menu_icon);
+
+		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_ABOUT_ME,0, R.string.menu_about_me);
+		item.setIcon(R.drawable.about_me_menu);
+
+		this.habilitarDeshabilitarItemMenu();
 
 		return true;
 	}
-    
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        switch(item.getItemId()) {
-        case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA:
-        	this.openAltaPersona();
-        	return true;
-        case ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS:
-	    	this.mostrarEleccionCategoria();
-	    	return true;
-        case ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS:
-	    	this.mostrarDialogoImportarContactos();
-	    	return true;
-        case ConstantsAdmin.ACTIVITY_EJECUTAR_ABOUT_ME:
-	    	this.mostrarAboutMe();
-	    	return true;
-        case ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS:
-        	this.exportContacts();
-        	return true;
-        case ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS_CSV:
-        	this.askForReadStoragePermission();
-        	return true;        	
-        case ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS_ESTETICO:
-        	this.exportContactsEstetico();
-        	return true;	    	
-	    }
-        //return super.onMenuItemSelected(featureId, item);
+
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch(item.getItemId()) {
+			case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA:
+				this.openAltaPersona();
+				return true;
+			case ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS:
+				this.mostrarEleccionCategoria();
+				return true;
+			case ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS:
+				this.mostrarDialogoImportarContactos();
+				return true;
+			case ConstantsAdmin.ACTIVITY_EJECUTAR_ABOUT_ME:
+				this.mostrarAboutMe();
+				return true;
+			case ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS:
+				this.exportContacts();
+				return true;
+			case ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS_CSV:
+				this.askForReadStoragePermission();
+				return true;
+			case ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS_ESTETICO:
+				this.exportContactsEstetico();
+				return true;
+		}
+		//return super.onMenuItemSelected(featureId, item);
 		return true;
-    }
+	}
 
 	@NonNull
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-     //   ConstantsAdmin.inicializarBD( mDBManager);
-        CursorLoader cl = null;
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		//   ConstantsAdmin.inicializarBD( mDBManager);
+		CursorLoader cl = null;
 		switch(id) {
 			case CATEGORIAS_CURSOR:
-                cl = mDBManager.cursorLoaderCategoriasPorNombre(null, this);
+				cl = mDBManager.cursorLoaderCategoriasPorNombre(null, this);
 				ConstantsAdmin.cursorCategorias = cl;
 				break; // optional
 			case CATEGORIAS_PERSONALES_CURSOR:
@@ -1652,10 +1655,10 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			case CATEGORIAS_PROTEGIDAS_CURSOR:
 				cl = mDBManager.cursorLoaderCategoriasProtegidas(null, this);
 				break; 				// optional
-            case PERSONAS_CURSOR:
-                cl = mDBManager.cursorLoaderPersonas(ConstantsAdmin.categoriasProtegidas, this);
+			case PERSONAS_CURSOR:
+				cl = mDBManager.cursorLoaderPersonas(ConstantsAdmin.categoriasProtegidas, this);
 				ConstantsAdmin.cursorPersonas = cl;
-                break;
+				break;
 			case PREFERIDOS_CURSOR:
 				cl = mDBManager.cursorLoaderPreferidos(ConstantsAdmin.categoriasProtegidas, this);
 				ConstantsAdmin.cursorPreferidos = cl;
@@ -1668,11 +1671,11 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				cl = mDBManager.cursorLoaderCategoriasPersonalesActivasPorNombre(null, this);
 				ConstantsAdmin.cursorCategoriasPersonalesActivas = cl;
 				break;			// You can have any number of case statements.
-            case CONFIGURACION_CURSOR:
-                cl = mDBManager.cursorLoaderConfiguracion( this);
-                ConstantsAdmin.cursorConfiguracion = cl;
-                break;
-            default : // Optional
+			case CONFIGURACION_CURSOR:
+				cl = mDBManager.cursorLoaderConfiguracion( this);
+				ConstantsAdmin.cursorConfiguracion = cl;
+				break;
+			default : // Optional
 				// Statements
 		}
 
@@ -1691,78 +1694,78 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 	private static class ExportCSVTask extends AsyncTask<Long, Integer, Integer>{
-    	ProgressDialog dialog = null;
-        @Override
-        protected Integer doInBackground(Long... params) {
+		ProgressDialog dialog = null;
+		@Override
+		protected Integer doInBackground(Long... params) {
 
-            try {
+			try {
 				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
-                publishProgress(1);
-                ConstantsAdmin.exportarCSV(me, mDBManager);
+				publishProgress(1);
+				ConstantsAdmin.exportarCSV(me, mDBManager);
 
 
-            } catch (Exception e) {
-                ConstantsAdmin.mensaje = me.getString(R.string.error_exportar_csv) ;
-            }
-            return 0;
+			} catch (Exception e) {
+				ConstantsAdmin.mensaje = me.getString(R.string.error_exportar_csv) ;
+			}
+			return 0;
 
-        }
+		}
 
-        protected void onProgressUpdate(Integer... progress) {
-        	dialog = ProgressDialog.show(me, "",
-                    me.getString(R.string.mensaje_exportando_contactos), false);
-        }
+		protected void onProgressUpdate(Integer... progress) {
+			dialog = ProgressDialog.show(me, "",
+					me.getString(R.string.mensaje_exportando_contactos), false);
+		}
 
-        @Override
-        protected void onPostExecute(Integer result) {
-        	try{
-        		dialog.cancel();
-        	}catch (Exception e) {
+		@Override
+		protected void onPostExecute(Integer result) {
+			try{
+				dialog.cancel();
+			}catch (Exception e) {
 				// TODO: handle exception
 			}
-       		ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
-    		ConstantsAdmin.mensaje = null;
-        		
-        }
-    }
+			ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
+			ConstantsAdmin.mensaje = null;
 
-    private class ExportCSVEsteticoTask extends AsyncTask<Long, Integer, Integer>{
-    	ProgressDialog dialog = null;
+		}
+	}
 
-        @Override
-        protected Integer doInBackground(Long... params) {
+	private class ExportCSVEsteticoTask extends AsyncTask<Long, Integer, Integer>{
+		ProgressDialog dialog = null;
 
-            try {
-                publishProgress(1);
+		@Override
+		protected Integer doInBackground(Long... params) {
+
+			try {
+				publishProgress(1);
 				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
-                ConstantsAdmin.exportarCSVEstetico(me, separadorExcel, ConstantsAdmin.categoriasProtegidas, mDBManager);
+				ConstantsAdmin.exportarCSVEstetico(me, separadorExcel, ConstantsAdmin.categoriasProtegidas, mDBManager);
 
 
-            } catch (Exception e) {
-                ConstantsAdmin.mensaje = me.getString(R.string.error_exportar_csv) ;
-            }
-            return 0;
+			} catch (Exception e) {
+				ConstantsAdmin.mensaje = me.getString(R.string.error_exportar_csv) ;
+			}
+			return 0;
 
-        }
+		}
 
-        protected void onProgressUpdate(Integer... progress) {
-        	dialog = ProgressDialog.show(me, "",
-                    me.getString(R.string.mensaje_exportando_contactos), false);
-        }
+		protected void onProgressUpdate(Integer... progress) {
+			dialog = ProgressDialog.show(me, "",
+					me.getString(R.string.mensaje_exportando_contactos), false);
+		}
 
-        @Override
-        protected void onPostExecute(Integer result) {
-        	try{
-        		dialog.cancel();
-        	}catch (Exception e) {
+		@Override
+		protected void onPostExecute(Integer result) {
+			try{
+				dialog.cancel();
+			}catch (Exception e) {
 				// TODO: handle exception
 			}
-       		ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
-    		ConstantsAdmin.mensaje = null;
-        		
-        }
-    }
-    
+			ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
+			ConstantsAdmin.mensaje = null;
+
+		}
+	}
+
     /*
 
     private class ImportContactTask extends AsyncTask<Long, Integer, Integer>{
@@ -1796,101 +1799,101 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
        		ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
     		ConstantsAdmin.mensaje = null;
     		ConstantsAdmin.resetPersonasOrganizadas();
-    		recargarLista();    	        	           		
+    		recargarLista();
         }
     }
 */
 
 
 
-    private void exportContacts(){
-    	if(!personasMap.isEmpty()){
-	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    	builder.setMessage(R.string.mensaje_exportar_contactos)
-	    	       .setCancelable(false)
-	    	       .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	        	    Long[] params = new Long[1];
-	    		    		params[0] = 1L;
-	    		    		dialog.cancel();
-	    		    		new ExportCSVTask().execute(params);    	           }
-	    	       })
-	    	       .setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	                dialog.cancel();
-	    	           }
-	    	       });
-	    	builder.show();
-	    }else{
-	    	ConstantsAdmin.mostrarMensajeDialog(this, this.getString(R.string.mensaje_no_hay_contactos));
-	    }
-    	
-    }
-    
-    private void exportContactsEstetico(){
-    	if(!personasMap.isEmpty()){
-	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    	builder.setMessage(R.string.mensaje_exito_exportar_excel)
-	    	       .setCancelable(true)
-	    	       .setPositiveButton(R.string.coma_separated, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	        	    Long[] params = new Long[1];
-	    		    		params[0] = 1L;
-	    		    		dialog.cancel();
-	    		    		separadorExcel = ConstantsAdmin.COMA;
-	    		    		new ExportCSVEsteticoTask().execute(params);
-	    		    	}
-	    	       })
-	    	       .setNegativeButton(R.string.puntocoma_separated, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	        	    Long[] params = new Long[1];
-	    		    		params[0] = 1L;
-	    		    		dialog.cancel();
-	    		    		separadorExcel = ConstantsAdmin.PUNTO_COMA;
-	    		    		new ExportCSVEsteticoTask().execute(params);	    	           }
-	    	       });
-	    	builder.show();
-	    }else{
-	    	ConstantsAdmin.mostrarMensajeDialog(this, this.getString(R.string.mensaje_no_hay_contactos));
-	    }
-    	
-    }
+	private void exportContacts(){
+		if(!personasMap.isEmpty()){
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(R.string.mensaje_exportar_contactos)
+					.setCancelable(false)
+					.setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							Long[] params = new Long[1];
+							params[0] = 1L;
+							dialog.cancel();
+							new ExportCSVTask().execute(params);    	           }
+					})
+					.setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							dialog.cancel();
+						}
+					});
+			builder.show();
+		}else{
+			ConstantsAdmin.mostrarMensajeDialog(this, this.getString(R.string.mensaje_no_hay_contactos));
+		}
 
-    
-    private void importContactosCSV(){
-    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    	builder.setMessage(R.string.mensaje_importar_contactos_csv)
-    	       .setCancelable(false)
-    	       .setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
-    	           public void onClick(DialogInterface dialog, int id) {
-    	        	    Long[] params = new Long[1];
-    		    		params[0] = 1L;
-    		    		dialog.cancel();
-    		    		new ImportCSVTask().execute(params);    	  
-    		    	}
-    	       })
-    	       .setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
-    	           public void onClick(DialogInterface dialog, int id) {
-    	                dialog.cancel();
-    	           }
-    	       });
-    	builder.show();
-    	
-    }    
-    
-   /*
-    @Override
-    public void startManagingCursor(Cursor c) {
-    	allMyCursors.add(c);
-        super.startManagingCursor(c);
-    }
-    */
-    private void mostrarDialogoImportarContactos(){
+	}
 
-        Intent i = new Intent(this, ImportarContactoActivity.class);
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS);
+	private void exportContactsEstetico(){
+		if(!personasMap.isEmpty()){
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(R.string.mensaje_exito_exportar_excel)
+					.setCancelable(true)
+					.setPositiveButton(R.string.coma_separated, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							Long[] params = new Long[1];
+							params[0] = 1L;
+							dialog.cancel();
+							separadorExcel = ConstantsAdmin.COMA;
+							new ExportCSVEsteticoTask().execute(params);
+						}
+					})
+					.setNegativeButton(R.string.puntocoma_separated, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							Long[] params = new Long[1];
+							params[0] = 1L;
+							dialog.cancel();
+							separadorExcel = ConstantsAdmin.PUNTO_COMA;
+							new ExportCSVEsteticoTask().execute(params);	    	           }
+					});
+			builder.show();
+		}else{
+			ConstantsAdmin.mostrarMensajeDialog(this, this.getString(R.string.mensaje_no_hay_contactos));
+		}
+
+	}
+
+
+	private void importContactosCSV(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(R.string.mensaje_importar_contactos_csv)
+				.setCancelable(false)
+				.setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						Long[] params = new Long[1];
+						params[0] = 1L;
+						dialog.cancel();
+						new ImportCSVTask().execute(params);
+					}
+				})
+				.setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+		builder.show();
+
+	}
+
+	/*
+     @Override
+     public void startManagingCursor(Cursor c) {
+         allMyCursors.add(c);
+         super.startManagingCursor(c);
+     }
+     */
+	private void mostrarDialogoImportarContactos(){
+
+		Intent i = new Intent(this, ImportarContactoActivity.class);
+		this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS);
     	/*
-    	
+
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
     	builder.setMessage(R.string.mensaje_importar_contactos)
     	       .setCancelable(false)
@@ -1898,8 +1901,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	           public void onClick(DialogInterface dialog, int id) {
 	   	        	   Long[] params = new Long[1];
 	   		    	   params[0] = new Long(1);
-	   		    	   dialog.cancel();    	        	   
-    	        	   new ImportContactTask().execute(params);    	  
+	   		    	   dialog.cancel();
+    	        	   new ImportContactTask().execute(params);
     	           }
     	       })
     	       .setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
@@ -1909,78 +1912,78 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     	       });
     	builder.show();
     	*/
-    }
-    
- 
-    private void mostrarAboutMe(){
-        Intent i = new Intent(this, AboutMeActivity.class);
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ABOUT_ME);
-    }
-    
-    private void openAltaPersona() {
-        Intent i = new Intent(this, AltaPersonaActivity.class);
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA);
-    }
-    
-    private void openListadoCategoria(){
-        Intent i = new Intent(this, ListadoCategoriaActivity.class);
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS);
-    }
-    
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-    	
-    	super.onActivityResult(requestCode, resultCode, intent); 
-    	ejecutarOnActivityResult(requestCode);
-    }
-    
-    private void ejecutarOnActivityResult(int requestCode){
-    	try {
+	}
+
+
+	private void mostrarAboutMe(){
+		Intent i = new Intent(this, AboutMeActivity.class);
+		this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ABOUT_ME);
+	}
+
+	private void openAltaPersona() {
+		Intent i = new Intent(this, AltaPersonaActivity.class);
+		this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA);
+	}
+
+	private void openListadoCategoria(){
+		Intent i = new Intent(this, ListadoCategoriaActivity.class);
+		this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS);
+	}
+
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+
+		super.onActivityResult(requestCode, resultCode, intent);
+		ejecutarOnActivityResult(requestCode);
+	}
+
+	private void ejecutarOnActivityResult(int requestCode){
+		try {
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-        	if(requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_PROTECCION_CATEGORIA){
-        		categoriasSeleccionadas = null;
-        		mEntryBusquedaNombre = null;   		
-        	}
-        	if(requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA || requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_ELIMINAR_CONTACTO
-        			|| requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_ACTIVAR_CONTRASENIA){
-        		ConstantsAdmin.resetPersonasOrganizadas();
-        		
-        	}
-        	mySortedByElements = null;
-    	//	this.resetAllMyCursors();
-        	this.configurarSpinner();    
-            
-        	if(ConstantsAdmin.contrasenia == null){
-        		ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
-        	}
-        	if(ConstantsAdmin.contrasenia.isActiva()){
-        		protegerCategorias.setBackgroundResource(R.drawable.candado_abierto);
-        	}else{
-        		protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
-        	}
-        	if((mEntryBusquedaNombre!= null && !mEntryBusquedaNombre.equals("")) || (categoriasSeleccionadas != null && categoriasSeleccionadas.size() > 0)){
-            	this.cargarPersonasPorApellidoONombreMultipleSeleccion();
-            }else if(ConstantsAdmin.config.isMuestraPreferidos()){
-            	ConstantsAdmin.config.setMuestraPreferidos(false);
-            	this.verPreferidos();
-            }else{
-            	this.mostrarTodosLosContactos();
-            }			
+			if(requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_PROTECCION_CATEGORIA){
+				categoriasSeleccionadas = null;
+				mEntryBusquedaNombre = null;
+			}
+			if(requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA || requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_ELIMINAR_CONTACTO
+					|| requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_ACTIVAR_CONTRASENIA){
+				ConstantsAdmin.resetPersonasOrganizadas();
+
+			}
+			mySortedByElements = null;
+			//	this.resetAllMyCursors();
+			this.configurarSpinner();
+
+			if(ConstantsAdmin.contrasenia == null){
+				ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
+			}
+			if(ConstantsAdmin.contrasenia.isActiva()){
+				protegerCategorias.setBackgroundResource(R.drawable.candado_abierto);
+			}else{
+				protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
+			}
+			if((mEntryBusquedaNombre!= null && !mEntryBusquedaNombre.equals("")) || (categoriasSeleccionadas != null && categoriasSeleccionadas.size() > 0)){
+				this.cargarPersonasPorApellidoONombreMultipleSeleccion();
+			}else if(ConstantsAdmin.config.isMuestraPreferidos()){
+				ConstantsAdmin.config.setMuestraPreferidos(false);
+				this.verPreferidos();
+			}else{
+				this.mostrarTodosLosContactos();
+			}
 		} catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, e.getMessage());
 		}
 
-    	
-    }
-    
-    public void onPause() {
-        super.onPause();
-      	this.closeContextMenu();
-    	this.closeOptionsMenu();
-    	spinnerCategorias.setPressed(false);
-    	spinnerCategorias.refreshDrawableState();
 
-        
-    }
+	}
+
+	public void onPause() {
+		super.onPause();
+		this.closeContextMenu();
+		this.closeOptionsMenu();
+		spinnerCategorias.setPressed(false);
+		spinnerCategorias.refreshDrawableState();
+
+
+	}
     /*
     private void resetAllMyCursors(){
     	Cursor cur;
@@ -1990,7 +1993,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				cur.close();
 		//		this.stopManagingCursor(cur);
 			}
-    		
+
     	}
     	allMyCursors = new ArrayList<>();
     }
@@ -1998,33 +2001,33 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 
 	public void onResume() {
-        super.onResume();
-        if(ConstantsAdmin.cerrarMainActivity){
-        	ConstantsAdmin.cerrarMainActivity = false;
-        	this.finish();
-        }else{
-	   //     this.resetAllMyCursors();
-	        
-	        if(listaEspecial == null){
-	        	this.configurarListView();
-	        }
-	        if((mEntryBusquedaNombre!= null && !mEntryBusquedaNombre.equals("")) || (categoriasSeleccionadas != null && categoriasSeleccionadas.size() > 0)){
-	        	this.cargarPersonasPorApellidoONombreMultipleSeleccion();
-	        }else if(ConstantsAdmin.config.isMuestraPreferidos()){
-	        	ConstantsAdmin.config.setMuestraPreferidos(false);
-	        	this.verPreferidos();
-	        }
+		super.onResume();
+		if(ConstantsAdmin.cerrarMainActivity){
+			ConstantsAdmin.cerrarMainActivity = false;
+			this.finish();
+		}else{
+			//     this.resetAllMyCursors();
+
+			if(listaEspecial == null){
+				this.configurarListView();
+			}
+			if((mEntryBusquedaNombre!= null && !mEntryBusquedaNombre.equals("")) || (categoriasSeleccionadas != null && categoriasSeleccionadas.size() > 0)){
+				this.cargarPersonasPorApellidoONombreMultipleSeleccion();
+			}else if(ConstantsAdmin.config.isMuestraPreferidos()){
+				ConstantsAdmin.config.setMuestraPreferidos(false);
+				this.verPreferidos();
+			}
 
 		}
-        // Restore list state and list/item positions
-        if (mListState != null) {
+		// Restore list state and list/item positions
+		if (mListState != null) {
 			getExpandableListView().onRestoreInstanceState(mListState);
 		}
-        getExpandableListView().setSelectionFromTop(mListPosition, mItemPosition);
+		getExpandableListView().setSelectionFromTop(mListPosition, mItemPosition);
 
-    }
-    
-    
+	}
+
+
 
 
 	@Override
@@ -2055,93 +2058,93 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		if(categoriasSeleccionadas != null && categoriasSeleccionadas.size() > 0){
 			cargarPersonasPorApellidoONombreMultipleSeleccion();
 		}else{
-			this.mostrarTodosLosContactos(); 
+			this.mostrarTodosLosContactos();
 
 		}
-		
-		
+
+
 	}
-	
+
 	// CAMBIOS PARA AGREGAR CONTRASENIA EN LAS CATEGORIAS
-	
-	
-	   private void mostrarEleccionCategoria(){
-	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    	builder.setMessage(this.getString(R.string.mensaje_seleccione_actividad_categoria))
-	    	       .setCancelable(true)
-	    	       .setPositiveButton(R.string.label_proteger_categoria, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	        	   openProteccionCategoria();
-	    	        }
-	    	       })
-	    	       .setNegativeButton(R.string.label_activar_categoria, new DialogInterface.OnClickListener() {
-	    	           public void onClick(DialogInterface dialog, int id) {
-	    	        	   openListadoCategoria();
-	    	           }
-	    	       });
-	    	builder.show();
-	    	
-	    }
-	   
-	    private void openProteccionCategoria(){
-	        Intent i = new Intent(this, ProteccionCategoriaActivity.class);
-	        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_PROTECCION_CATEGORIA);
-	    }
-	    
-	    private void configurarBotonProtegerCategorias(){
-	    	protegerCategorias = this.findViewById(R.id.botonProtegerCategorias);
-			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			if(ConstantsAdmin.contrasenia == null){
-				ConstantsAdmin.cargarContrasenia(this, mDBManager);
-				ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
-			}
-			if(ConstantsAdmin.contrasenia.isActiva()){
-				protegerCategorias.setBackgroundResource(R.drawable.candado_abierto);
-			}else{
-				protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
-			}
 
-	    	 
-	    	protegerCategorias.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
-					DataBaseManager mDBManager = DataBaseManager.getInstance(me);
-					// TODO Auto-generated method stub
-					if(ConstantsAdmin.categoriasProtegidas.size() == 0 || ConstantsAdmin.contrasenia.getId() == -1){
-						openProteccionCategoria();	
-						if(ConstantsAdmin.categoriasProtegidas.size() == 0){
-							ConstantsAdmin.mostrarMensaje(me, me.getString(R.string.mensaje_seleccione_categoria_proteger));
-						}else{
-							ConstantsAdmin.mostrarMensaje(me, me.getString(R.string.mensaje_registre_contrasenia));
-						}
-						
-						
-					}else if(!ConstantsAdmin.contrasenia.isActiva()){
-						openVerActivarContrasenia();
-					}else{
-						ConstantsAdmin.contrasenia.setActiva(false);
-						ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, mDBManager);
-						protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
-						configurarSpinner();
-						ConstantsAdmin.resetPersonasOrganizadas();
-						mostrarTodosLosContactos();
+
+	private void mostrarEleccionCategoria(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(this.getString(R.string.mensaje_seleccione_actividad_categoria))
+				.setCancelable(true)
+				.setPositiveButton(R.string.label_proteger_categoria, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						openProteccionCategoria();
 					}
-					
+				})
+				.setNegativeButton(R.string.label_activar_categoria, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						openListadoCategoria();
+					}
+				});
+		builder.show();
+
+	}
+
+	private void openProteccionCategoria(){
+		Intent i = new Intent(this, ProteccionCategoriaActivity.class);
+		this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_PROTECCION_CATEGORIA);
+	}
+
+	private void configurarBotonProtegerCategorias(){
+		protegerCategorias = this.findViewById(R.id.botonProtegerCategorias);
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		if(ConstantsAdmin.contrasenia == null){
+			ConstantsAdmin.cargarContrasenia(this, mDBManager);
+			ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
+		}
+		if(ConstantsAdmin.contrasenia.isActiva()){
+			protegerCategorias.setBackgroundResource(R.drawable.candado_abierto);
+		}else{
+			protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
+		}
+
+
+		protegerCategorias.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
+				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
+				// TODO Auto-generated method stub
+				if(ConstantsAdmin.categoriasProtegidas.size() == 0 || ConstantsAdmin.contrasenia.getId() == -1){
+					openProteccionCategoria();
+					if(ConstantsAdmin.categoriasProtegidas.size() == 0){
+						ConstantsAdmin.mostrarMensaje(me, me.getString(R.string.mensaje_seleccione_categoria_proteger));
+					}else{
+						ConstantsAdmin.mostrarMensaje(me, me.getString(R.string.mensaje_registre_contrasenia));
+					}
+
+
+				}else if(!ConstantsAdmin.contrasenia.isActiva()){
+					openVerActivarContrasenia();
+				}else{
+					ConstantsAdmin.contrasenia.setActiva(false);
+					ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, mDBManager);
+					protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
+					configurarSpinner();
+					ConstantsAdmin.resetPersonasOrganizadas();
+					mostrarTodosLosContactos();
 				}
-			});
-	    	
-	    }
-	    
-	    private void openVerActivarContrasenia() {
-	        Intent i = new Intent(this, ActivarContraseniaActivity.class);
-	        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ACTIVAR_CONTRASENIA);
-	    }
-	    
-	    
 
-    
+			}
+		});
 
-    
-    
+	}
+
+	private void openVerActivarContrasenia() {
+		Intent i = new Intent(this, ActivarContraseniaActivity.class);
+		this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ACTIVAR_CONTRASENIA);
+	}
+
+
+
+
+
+
+
 }
