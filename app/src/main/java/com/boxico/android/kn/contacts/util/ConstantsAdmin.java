@@ -1,6 +1,7 @@
 package com.boxico.android.kn.contacts.util;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -24,6 +25,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
@@ -31,6 +33,7 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.CursorLoader;
+import android.util.Base64;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
@@ -1164,6 +1167,14 @@ public class ConstantsAdmin {
 			if(!temp.equals(CAMPO_NULO)){
 				per.setDescripcion(temp);
 			}
+
+			String fotoString = null;
+			Bitmap b = null;
+			i++;
+			fotoString = campos[i];
+			if(!fotoString.equals(CAMPO_NULO)){
+				b = decodeBase64(fotoString);
+			}
 			resultado.add(per);
 
 		}
@@ -1572,9 +1583,21 @@ public class ConstantsAdmin {
 			result.append(CAMPO_NULO).append(PUNTO_COMA);
 		}
 		if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
-			result.append(per.getDescripcion());
+			result.append(per.getDescripcion()).append(PUNTO_COMA);
 		}else{
-			result.append(CAMPO_NULO);
+			result.append(CAMPO_NULO).append(PUNTO_COMA);
+		}
+
+		// FOTO
+		String fotoString = null;
+		Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(per.getId()) + ".jpg");
+		if(b != null){
+			fotoString = encodeTobase64(b);
+		}
+		if(fotoString != null){
+			result.append(fotoString).append(PUNTO_COMA);
+		}else{
+			result.append(CAMPO_NULO).append(PUNTO_COMA);
 		}
 
 		result.append(ENTER);
@@ -1582,6 +1605,20 @@ public class ConstantsAdmin {
 
 		return result.toString();
 
+	}
+
+	public static String encodeTobase64(Bitmap image) {
+		Bitmap immagex = image;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		immagex.compress(Bitmap.CompressFormat.PNG, 100, baos);
+		byte[] b = baos.toByteArray();
+		String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+		return imageEncoded;
+	}
+
+	public static Bitmap decodeBase64(String input) {
+		byte[] decodedByte = Base64.decode(input, 0);
+		return BitmapFactory.decodeByteArray(decodedByte,0,decodedByte.length);
 	}
 
 	private static String obtenerStringEsteticoPersona(PersonaDTO per, Activity context, String separador, DataBaseManager mDBManager){

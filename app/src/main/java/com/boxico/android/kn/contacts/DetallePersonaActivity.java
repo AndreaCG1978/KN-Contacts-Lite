@@ -764,7 +764,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(this);
 			boolean puede = (Boolean) puedeCargar.getKey();
 			if (puede) {
-				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(mPersonaSeleccionadaId) + ".jpg");
+				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(mPersonaSeleccionadaId) + ".jpg");
 				iconBig = new BitmapDrawable(getResources(), b);
 				if (b != null) {
 					photo.setVisibility(View.VISIBLE);
