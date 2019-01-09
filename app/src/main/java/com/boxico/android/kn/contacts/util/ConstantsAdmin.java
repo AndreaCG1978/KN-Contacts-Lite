@@ -1582,24 +1582,33 @@ public class ConstantsAdmin {
 		}else{
 			result.append(CAMPO_NULO).append(PUNTO_COMA);
 		}
+
+		if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
+			result.append(per.getDescripcion());
+		}else{
+			result.append(CAMPO_NULO);
+		}
+
+		/*
 		if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
 			result.append(per.getDescripcion()).append(PUNTO_COMA);
 		}else{
 			result.append(CAMPO_NULO).append(PUNTO_COMA);
 		}
-
+*/
 		// FOTO
 		String fotoString = null;
 		Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(per.getId()) + ".jpg");
 		if(b != null){
-			fotoString = encodeTobase64(b);
-		}
-		if(fotoString != null){
-			result.append(fotoString).append(PUNTO_COMA);
-		}else{
-			result.append(CAMPO_NULO).append(PUNTO_COMA);
+			fotoString = encodeTobase64(b).replaceAll("\n", "%%");
 		}
 
+	/*	if(fotoString != null){
+			result.append(fotoString);
+		}else{
+			result.append(CAMPO_NULO);
+		}
+*/
 		result.append(ENTER);
 
 
