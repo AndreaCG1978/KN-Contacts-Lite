@@ -1,5 +1,6 @@
 package com.boxico.android.kn.contacts;
 
+import java.io.InputStream;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -7,11 +8,14 @@ import java.util.List;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ContentUris;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -848,10 +852,17 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		nameCur = nameCurLoader.loadInBackground();
 
 		//	nameCur = this.getPeopleById(contactId);
-
+		Bitmap photo = null;
 		if (nameCur != null) {
 			//	super.startManagingCursor(nameCur);
 			if (nameCur.moveToNext()) {
+
+				InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.getContentResolver(),
+						ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(cId)));
+
+				if (inputStream != null) {
+					photo = BitmapFactory.decodeStream(inputStream);
+				}
 				given = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
 				family = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
 				asoc = new Asociacion(given, family);
