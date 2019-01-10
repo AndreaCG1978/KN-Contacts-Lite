@@ -1,5 +1,7 @@
 package com.boxico.android.kn.contacts;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.Iterator;
@@ -628,7 +630,12 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		this.obtenerContactoCapturado(false);
 		id = mDBManager.createPersona(persona, false);
 		if (id != -1) {
-			ConstantsAdmin.resetPersonasOrganizadas();
+            try {
+                ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(id) + ".jpg", photo);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ConstantsAdmin.resetPersonasOrganizadas();
 			persona.setId(id);
 			this.mostrarDatosPersonaEncontrada();
 			mPersonaEncontrada.setText(mPersonaEncontrada.getText() + " #");
@@ -810,10 +817,10 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	private void obtenerContactoCapturado(boolean desdeAgregarTodos) {
 		boolean tieneTelefonos;
+
+        InputStream inputStream = null;
+        Bitmap photoTemp = null;
 		CursorLoader cursorLoaderPhones = ConstantsAdmin.cursorPersona;
-    /*	if(cursorLoaderPhones == null){
-            cursorLoaderPhones = mDBManager.cursorLoaderPersonaId(contactId, this,getContentResolver());
-        }*/
 		cursorLoaderPhones.setSelection(ConstantsAdmin.querySelectionContactsPhoneById + contactId);
 		cursorLoaderPhones.reset();
 
@@ -832,7 +839,17 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			persona.setDescripcion(entryDescripcion.getText().toString());
 		}
 
-		if (tieneTelefonos) {
+		inputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.getContentResolver(),
+                    ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(contactId)));
+        if (inputStream != null) {
+            photoTemp = BitmapFactory.decodeStream(inputStream);
+        }
+        try {
+            ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(contactId) + ".jpg", photoTemp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (tieneTelefonos) {
 			this.importarTelDeContacto(persona, contactId);
 		}
 		this.importarMailDeContacto(persona, contactId);
