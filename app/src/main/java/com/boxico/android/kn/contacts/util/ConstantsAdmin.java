@@ -1619,7 +1619,7 @@ public class ConstantsAdmin {
 	public static String encodeTobase64(Bitmap image) {
 		Bitmap immagex = image;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		immagex.compress(Bitmap.CompressFormat.PNG, 100, baos);
+		immagex.compress(Bitmap.CompressFormat.JPEG, 80, baos);
 		byte[] b = baos.toByteArray();
 		String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
 		return imageEncoded;
@@ -2494,7 +2494,7 @@ public class ConstantsAdmin {
 		fOut = new FileOutputStream(file);
 
 
-		bm.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+		bm.compress(Bitmap.CompressFormat.JPEG, 80, fOut);
 		//     bm.compress(Bitmap.CompressFormat.JPEG, 90, fOut);
 		fOut.flush();
 		fOut.close();

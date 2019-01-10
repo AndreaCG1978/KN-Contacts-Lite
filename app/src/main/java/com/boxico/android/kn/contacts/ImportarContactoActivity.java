@@ -16,6 +16,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -75,6 +76,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private Asociacion contactoActual = null;
 	private PersonaDTO persona = null;
 	private String contactId = null;
+
+	private Bitmap photo = null;
 
 	private final int PERSONA_ID_CURSOR = 1;
 	private final int PERSONA_EXTRA_ID_CURSOR = 2;
@@ -852,16 +855,21 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		nameCur = nameCurLoader.loadInBackground();
 
 		//	nameCur = this.getPeopleById(contactId);
-		Bitmap photo = null;
+
 		if (nameCur != null) {
 			//	super.startManagingCursor(nameCur);
 			if (nameCur.moveToNext()) {
 
 				InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.getContentResolver(),
 						ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(cId)));
-
+				TextView tv = this.findViewById(R.id.textPersonaEncontrada);
+				BitmapDrawable iconBig = null;
 				if (inputStream != null) {
 					photo = BitmapFactory.decodeStream(inputStream);
+					iconBig = new BitmapDrawable(getResources(), photo);
+					tv.setCompoundDrawablesRelativeWithIntrinsicBounds(iconBig, null, null, null);
+				}else{
+					tv.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null);
 				}
 				given = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
 				family = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
