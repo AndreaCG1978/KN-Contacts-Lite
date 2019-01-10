@@ -109,7 +109,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
 				ActivityCompat.requestPermissions(this,
-						new String[]{Manifest.permission.READ_CONTACTS},
+						new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE},
 						PERMISSIONS_REQUEST_READ_CONTACTS);
 
 			} else {
@@ -203,6 +203,20 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	}
 
+	private void mostrarFoto(String cId){
+		InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.getContentResolver(),
+				ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(cId)));
+		TextView tv = this.findViewById(R.id.textPersonaEncontrada);
+		BitmapDrawable iconBig = null;
+		if (inputStream != null) {
+			photo = BitmapFactory.decodeStream(inputStream);
+			iconBig = new BitmapDrawable(getResources(), photo);
+			tv.setCompoundDrawablesRelativeWithIntrinsicBounds(iconBig, null, null, null);
+		}else{
+			tv.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null);
+		}
+	}
+
 	private void buscarSiguienteContacto() {
 		boolean encontrado = false;
 		String contactIdTemp;
@@ -213,6 +227,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			posPeople = getPeople().getPosition();
 			contactIdTemp = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
 			contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactIdTemp);
+			this.mostrarFoto(contactIdTemp);
 			if (contactoActual != null) {
 				if (contactId == null || !contactId.equals(contactIdTemp)) {
 					//	if(!given.equals(contactoActual.getKey()) && !family.equals(contactoActual.getValue())){
@@ -275,6 +290,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			posPeople = getPeople().getPosition();
 			contactIdTemp = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
 			contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactIdTemp);
+			this.mostrarFoto(contactIdTemp);
 			if (contactoActual != null) {
 				if (contactId == null || !contactId.equals(contactIdTemp)) {
 					contactId = contactIdTemp;
@@ -843,12 +859,13 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
                     ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(contactId)));
         if (inputStream != null) {
             photoTemp = BitmapFactory.decodeStream(inputStream);
+			try {
+				ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(contactId) + ".jpg", photoTemp);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
         }
-        try {
-            ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(contactId) + ".jpg", photoTemp);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         if (tieneTelefonos) {
 			this.importarTelDeContacto(persona, contactId);
 		}
@@ -876,18 +893,6 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		if (nameCur != null) {
 			//	super.startManagingCursor(nameCur);
 			if (nameCur.moveToNext()) {
-
-				InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.getContentResolver(),
-						ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(cId)));
-				TextView tv = this.findViewById(R.id.textPersonaEncontrada);
-				BitmapDrawable iconBig = null;
-				if (inputStream != null) {
-					photo = BitmapFactory.decodeStream(inputStream);
-					iconBig = new BitmapDrawable(getResources(), photo);
-					tv.setCompoundDrawablesRelativeWithIntrinsicBounds(iconBig, null, null, null);
-				}else{
-					tv.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null);
-				}
 				given = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
 				family = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
 				asoc = new Asociacion(given, family);
