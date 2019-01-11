@@ -929,7 +929,7 @@ public class ConstantsAdmin {
 			if(file != null){
 				if(file.getName().equals(fileCSV)){
 					body = obtenerContenidoArchivo(file, context);
-					procesarStringDatos(body, mDBManager);
+					procesarStringDatos(context, body, mDBManager);
 					mensaje = context.getString(R.string.mensaje_exito_importar_csv);
 				}
 			}
@@ -939,7 +939,7 @@ public class ConstantsAdmin {
 		}
 	}
 
-	private static void procesarStringDatos(String body, DataBaseManager mDBManager){
+	private static void procesarStringDatos(Activity context, String body, DataBaseManager mDBManager) throws IOException {
 
 		String[] lineas = body.split(ENTER);
 		int i = 0;
@@ -964,11 +964,11 @@ public class ConstantsAdmin {
 		List<Long> preferidos = procesarPreferidos(map.get(HEAD_PREFERIDO));
 		List<CategoriaDTO> categoriasProtegidas = procesarCategoriasProtegidas(map.get(HEAD_CATEGORIA_PROTEGIDA));
 		ContraseniaDTO pass = procesarContrasenia(map.get(HEAD_CONTRASENIA));
-		almacenarDatos(personas, categorias, categoriasPersonales, preferidos, categoriasProtegidas, pass, mDBManager );
+		almacenarDatos(context, personas, categorias, categoriasPersonales, preferidos, categoriasProtegidas, pass, mDBManager );
 
 	}
 
-	private static void almacenarDatos(List<PersonaDTO> personas, List<CategoriaDTO> categorias, List<CategoriaDTO> categoriasPersonales, List<Long> preferidos, List<CategoriaDTO> catProtegidas, ContraseniaDTO pass, DataBaseManager mDBManager){
+	private static void almacenarDatos(Activity context, List<PersonaDTO> personas, List<CategoriaDTO> categorias, List<CategoriaDTO> categoriasPersonales, List<Long> preferidos, List<CategoriaDTO> catProtegidas, ContraseniaDTO pass, DataBaseManager mDBManager) throws IOException {
 		PersonaDTO per;
 		CategoriaDTO cat;
 		Long pref;
@@ -988,7 +988,16 @@ public class ConstantsAdmin {
 		mDBManager.deleteAll();
 		while(itPers.hasNext()){
 			per = itPers.next();
-			mDBManager.createPersona(per, true);
+			long idPersona = mDBManager.createPersona(per, true);
+			String fotoString = null;
+			Bitmap b = null;
+			fotoString = per.getFoto();
+			if(!fotoString.equals(CAMPO_NULO)){
+				b = decodeBase64(fotoString);
+			}
+			ConstantsAdmin.almacenarImagen(context, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(idPersona) + ".jpg", b);
+
+
 		}
 		while(itCat.hasNext()){
 			cat = itCat.next();
@@ -1168,13 +1177,13 @@ public class ConstantsAdmin {
 				per.setDescripcion(temp);
 			}
 
-		/*	String fotoString = null;
-			Bitmap b = null;
+			String fotoString = null;
 			i++;
 			fotoString = campos[i];
 			if(!fotoString.equals(CAMPO_NULO)){
-				b = decodeBase64(fotoString);
-			}*/
+				per.setFoto(fotoString);
+			}
+
 			resultado.add(per);
 
 		}

@@ -18,13 +18,13 @@ public class PersonaDTO {
 	private String categoriaNombre = null;
 	private String categoriaNombreRelativo = null;
 	private String datoExtra = null;
-	private byte[] foto = null;
+	private String foto = null;
 
-	public byte[] getFoto() {
+	public String getFoto() {
 		return foto;
 	}
 
-	public void setFoto(byte[] foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 
