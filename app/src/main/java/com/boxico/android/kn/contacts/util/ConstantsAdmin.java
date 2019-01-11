@@ -1168,13 +1168,13 @@ public class ConstantsAdmin {
 				per.setDescripcion(temp);
 			}
 
-			String fotoString = null;
+		/*	String fotoString = null;
 			Bitmap b = null;
 			i++;
 			fotoString = campos[i];
 			if(!fotoString.equals(CAMPO_NULO)){
 				b = decodeBase64(fotoString);
-			}
+			}*/
 			resultado.add(per);
 
 		}
