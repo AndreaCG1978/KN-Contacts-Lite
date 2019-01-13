@@ -39,7 +39,16 @@
 		android:layout_marginTop="6dp"
 		android:padding="3dp" />
 
-
+	<TextView
+		android:id="@+id/textDirsPersonaEncontrada"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:textSize="13sp"
+		android:background="@drawable/custom_text_view_categoria_desc"
+		android:textColor="@color/color_blanco"
+		android:layout_marginBottom="4dp"
+		android:layout_marginTop="6dp"
+		android:padding="3dp" />
 	<View
         android:layout_width="wrap_content"
 		android:layout_height="1px" android:layout_marginBottom="6dp"

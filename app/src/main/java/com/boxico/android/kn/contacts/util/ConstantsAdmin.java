@@ -72,16 +72,24 @@ public class ConstantsAdmin {
 	public static CursorLoader cursorPersonaExtra = null;
 	public static CursorLoader cursorEmailPersona = null;
 	public static CursorLoader cursorPhonePersona = null;
+	public static CursorLoader cursorDirsPersona = null;
 	public static CursorLoader cursorPersonaByNombreYApellido = null;
 
 	public static final String querySelectionContactsById = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + "=";
 	public static final String querySelectionContactsPhoneById = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ";
 	public static final String querySelectionEmailContactsById = ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ";
 	public static final String querySelectionPhoneContactsById = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ";
+	public static final String querySelectionDirsContactsById = ContactsContract.CommonDataKinds.StructuredPostal.CONTACT_ID + " = ";
 
 	public static final String[] projectionPhone = new String[]{
 			ContactsContract.CommonDataKinds.Phone.NUMBER,
 			ContactsContract.CommonDataKinds.Phone.TYPE
+	};
+
+	public static final String[] projectionDirs = new String[]{
+			ContactsContract.CommonDataKinds.StructuredPostal.STREET,
+			ContactsContract.CommonDataKinds.StructuredPostal.CITY,
+			ContactsContract.CommonDataKinds.StructuredPostal.TYPE
 	};
 
 	public static final String[] projectionMail = new String[]{
@@ -101,9 +109,9 @@ public class ConstantsAdmin {
 		if(nombre != null && apellido != null && !"".equals(nombre) && !"".equals(apellido)){
 			selection = "TRIM(UPPER(" + column1 + ")) = TRIM(UPPER('" + nombre + "')) AND TRIM(UPPER(" + column2 +")) = TRIM(UPPER('" + apellido + "'))";
 		}else  if(nombre != null && !"".equals(nombre)){
-			selection = "TRIM(UPPER(" + column2 + ")) = TRIM(UPPER('" + nombre + "')) AND (" + column1 + " IS NULL)";
+			selection = "TRIM(UPPER(" + column2 + ")) = TRIM(UPPER('" + nombre + "')) AND ((" + column1 + " IS NULL) OR (" + column1 + " = '' ))";
 		}else  if(apellido != null && !"".equals(apellido)){
-			selection = "TRIM(UPPER(" + column2 +")) = TRIM(UPPER('" + apellido + "')) AND (" + column1 + " IS NULL)";
+			selection = "TRIM(UPPER(" + column2 +")) = TRIM(UPPER('" + apellido + "')) AND ((" + column1 + " IS NULL) OR (" + column1 + " = '' ))";
 		}
 		return selection;
 
@@ -991,11 +999,12 @@ public class ConstantsAdmin {
 			long idPersona = mDBManager.createPersona(per, true);
 			String fotoString = null;
 			Bitmap b = null;
-			fotoString = per.getFoto();
-			if(!fotoString.equals(CAMPO_NULO)){
+			if(per.getFoto() != null && !per.getFoto().equals("")){
+				fotoString = per.getFoto().replaceAll("%%", "\n");
 				b = decodeBase64(fotoString);
+				ConstantsAdmin.almacenarImagen(context, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(idPersona) + ".jpg", b);
 			}
-			ConstantsAdmin.almacenarImagen(context, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(idPersona) + ".jpg", b);
+
 
 
 		}
@@ -1592,19 +1601,19 @@ public class ConstantsAdmin {
 			result.append(CAMPO_NULO).append(PUNTO_COMA);
 		}
 
-		if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
+	/*	if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
 			result.append(per.getDescripcion());
 		}else{
 			result.append(CAMPO_NULO);
 		}
+*/
 
-		/*
 		if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
 			result.append(per.getDescripcion()).append(PUNTO_COMA);
 		}else{
 			result.append(CAMPO_NULO).append(PUNTO_COMA);
 		}
-*/
+
 		// FOTO
 		String fotoString = null;
 		Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(per.getId()) + ".jpg");
@@ -1612,12 +1621,12 @@ public class ConstantsAdmin {
 			fotoString = encodeTobase64(b).replaceAll("\n", "%%");
 		}
 
-	/*	if(fotoString != null){
+		if(fotoString != null){
 			result.append(fotoString);
 		}else{
 			result.append(CAMPO_NULO);
 		}
-*/
+
 		result.append(ENTER);
 
 
@@ -2062,6 +2071,37 @@ public class ConstantsAdmin {
 		finalizarBD(mDBManager);
 	}
 
+	public static void crearTelefonos(ArrayList<TipoValorDTO> tels, long id, DataBaseManager mDBManager){
+		TipoValorDTO mTipoValor = null;
+		Iterator<TipoValorDTO> it = null;
+		if(tels != null && tels.size() > 0){
+			inicializarBD(mDBManager);
+			it = tels.iterator();
+			while(it.hasNext()){
+				mTipoValor = it.next();
+				if(id != -1){
+					mTipoValor.setIdPersona(String.valueOf(id));
+				}
+				mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_TELEFONOS);
+			}
+			finalizarBD(mDBManager);
+		}
+	}
+
+	public static void crearEmails(ArrayList<TipoValorDTO> mails, DataBaseManager mDBManager){
+		TipoValorDTO mTipoValor = null;
+		Iterator<TipoValorDTO> it = null;
+		if(mails != null && mails.size() > 0){
+			inicializarBD(mDBManager);
+			it = mails.iterator();
+			while(it.hasNext()) {
+				mTipoValor = it.next();
+				mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_EMAILS);
+			}
+			finalizarBD(mDBManager);
+		}
+	}
+
 	public static void crearEmail(TipoValorDTO mTipoValor, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_EMAILS);
@@ -2073,6 +2113,21 @@ public class ConstantsAdmin {
 		mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_DIRECCIONES);
 		finalizarBD(mDBManager);
 	}
+
+	public static void crearDirecciones(ArrayList<TipoValorDTO> dirs, DataBaseManager mDBManager){
+		TipoValorDTO mTipoValor = null;
+		Iterator<TipoValorDTO> it = null;
+		if(dirs != null && dirs.size() > 0){
+			inicializarBD(mDBManager);
+			it = dirs.iterator();
+			while(it.hasNext()) {
+				mTipoValor = it.next();
+				mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_DIRECCIONES);
+			}
+			finalizarBD(mDBManager);
+		}
+	}
+
 
 	public static List<CategoriaDTO> obtenerCategoriasActivas(Activity context, String nombre, DataBaseManager mDBManager){
 		Cursor cursor;

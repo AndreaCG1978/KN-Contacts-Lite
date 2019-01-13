@@ -438,15 +438,16 @@ public final class R {
     public static final int text2=0x7f06009a;
     public static final int textAcercaDeMail=0x7f06009b;
     public static final int textCantidad=0x7f06009c;
-    public static final int textMailsPersonaEncontrada=0x7f06009d;
-    public static final int textName=0x7f06009e;
-    public static final int textPersonaEncontrada=0x7f06009f;
-    public static final int textTelsPersonaEncontrada=0x7f0600a0;
-    public static final int textTodasLasPublicaciones=0x7f0600a1;
-    public static final int time=0x7f0600a2;
-    public static final int title=0x7f0600a3;
-    public static final int tituloCategorias=0x7f0600a4;
-    public static final int top=0x7f0600a5;
+    public static final int textDirsPersonaEncontrada=0x7f06009d;
+    public static final int textMailsPersonaEncontrada=0x7f06009e;
+    public static final int textName=0x7f06009f;
+    public static final int textPersonaEncontrada=0x7f0600a0;
+    public static final int textTelsPersonaEncontrada=0x7f0600a1;
+    public static final int textTodasLasPublicaciones=0x7f0600a2;
+    public static final int time=0x7f0600a3;
+    public static final int title=0x7f0600a4;
+    public static final int tituloCategorias=0x7f0600a5;
+    public static final int top=0x7f0600a6;
   }
   public static final class integer {
     public static final int cancel_button_image_alpha=0x7f070000;

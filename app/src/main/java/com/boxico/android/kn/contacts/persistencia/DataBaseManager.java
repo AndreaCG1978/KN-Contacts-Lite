@@ -961,6 +961,27 @@ public class DataBaseManager {
 
 	}
 
+	public CursorLoader cursorLoaderDirPersona (String contactId, Context context, ContentResolver mDbContentResolver) {
+
+		//	Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+		final ContentResolver cr = mDbContentResolver;
+		String selection = ConstantsAdmin.querySelectionDirsContactsById + contactId;
+		//	String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
+		String[] projectionDirs = ConstantsAdmin.projectionDirs;
+
+		return new CursorLoader( context, ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_URI, projectionDirs, selection, null, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				//c = mDb.query(ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+				return cr.query(ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_URI, getProjection() , getSelection() ,getSelectionArgs(), null);
+			}
+		};
+
+	}
 
 
 
