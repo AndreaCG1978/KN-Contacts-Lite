@@ -534,7 +534,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 				// CARGO LOS TELEFONOS MOVILES
 
-				List<TipoValorDTO> nuevosTV = ConstantsAdmin.obtenerTelefonosIdPersona(this, mPersonaSeleccionadaId, mDBManager);
+				List<TipoValorDTO> nuevosTV = ConstantsAdmin.obtenerTelefonosIdPersona( mPersonaSeleccionadaId, mDBManager);
 				Iterator<TipoValorDTO> it = nuevosTV.iterator();
 				TipoValorDTO tv;
 				while (it.hasNext()) {
@@ -565,7 +565,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 				// CARGO LOS MAILS MOVILES
 
-				nuevosTV = ConstantsAdmin.obtenerEmailsIdPersona(this, mPersonaSeleccionadaId, mDBManager);
+				nuevosTV = ConstantsAdmin.obtenerEmailsIdPersona(mPersonaSeleccionadaId, mDBManager);
 				it = nuevosTV.iterator();
 				while (it.hasNext()) {
 					tv = it.next();
@@ -588,7 +588,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 				// CARGO LAS DIRECCIONES MOVILES
 
-				nuevosTV = ConstantsAdmin.obtenerDireccionesIdPersona(this, mPersonaSeleccionadaId, mDBManager);
+				nuevosTV = ConstantsAdmin.obtenerDireccionesIdPersona(mPersonaSeleccionadaId, mDBManager);
 				it = nuevosTV.iterator();
 				while (it.hasNext()) {
 					tv = it.next();

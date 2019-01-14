@@ -456,7 +456,7 @@ public class AltaPersonaActivity extends Activity  {
 		// RECUPERO LOS TIPOS MOVILES
 		List<TipoValorDTO> masTelefonos;
 		if(mPersonaSeleccionada.getId()!= -1){
-			masTelefonos = ConstantsAdmin.obtenerTelefonosIdPersona(this, mPersonaSeleccionada.getId(), mDBManager);
+			masTelefonos = ConstantsAdmin.obtenerTelefonosIdPersona( mPersonaSeleccionada.getId(), mDBManager);
 			this.cargarMasElementos(masTelefonos, telefonos, tiposTelefono);
 		}else{
 			masTelefonos = ConstantsAdmin.telefonosARegistrar;
@@ -500,7 +500,7 @@ public class AltaPersonaActivity extends Activity  {
 		List<TipoValorDTO> masMails;
 		if(mPersonaSeleccionada.getId()!= -1){
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			masMails = ConstantsAdmin.obtenerEmailsIdPersona(this, mPersonaSeleccionada.getId(), mDBManager);
+			masMails = ConstantsAdmin.obtenerEmailsIdPersona(mPersonaSeleccionada.getId(), mDBManager);
 			this.cargarMasElementos(masMails, mails, tiposEmail);
 		}else{
 			masMails = ConstantsAdmin.mailsARegistrar;
@@ -540,7 +540,7 @@ public class AltaPersonaActivity extends Activity  {
 		// RECUPERO LOS TIPOS MOVILES
 		List<TipoValorDTO> masDirecciones;
 		if(mPersonaSeleccionada.getId()!= -1){
-			masDirecciones = ConstantsAdmin.obtenerDireccionesIdPersona(this, mPersonaSeleccionada.getId(), mDBManager);
+			masDirecciones = ConstantsAdmin.obtenerDireccionesIdPersona( mPersonaSeleccionada.getId(), mDBManager);
 			this.cargarMasElementos(masDirecciones, direcciones, tiposDireccion);
 		}else{
 			masDirecciones = ConstantsAdmin.direccionesARegistrar;

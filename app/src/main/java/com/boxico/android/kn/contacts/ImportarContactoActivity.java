@@ -705,6 +705,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	}
 
 	private void guardarNuevosTelefonos(DataBaseManager mDBManager, long id){
+		//this.filtrarTelefonosExistentes(mDBManager, id);
 		ConstantsAdmin.crearTelefonos(nuevosTelefonos, id, mDBManager);
 	}
 

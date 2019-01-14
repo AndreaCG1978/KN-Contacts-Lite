@@ -1113,11 +1113,12 @@ public class DataBaseManager {
      }
 
 */
-     public Cursor fetchTipoValorPorIdPersona(long id, String nombreTabla){
+     public Cursor fetchTipoValorPorIdPersona(long id, String tipo, String nombreTabla){
     	    //	 return this.fetchPersonaNumber(ConstantsAdmin.KEY_ROWID, id);
 	     Cursor mCursor;
+	     String selection = ConstantsAdmin.KEY_ID_PERSONA + "= '" + id + "' AND " + ConstantsAdmin.KEY_TIPO + " = '" + tipo + "'";
 		 mCursor =
-         mDb.query(true, nombreTabla, null, ConstantsAdmin.KEY_ID_PERSONA + "= '" + id + "'" , null,
+         mDb.query(true, nombreTabla, null, selection, null,
                  null, null, null, null);
 		 if (mCursor != null) {
 			 mCursor.moveToFirst();
@@ -1126,6 +1127,21 @@ public class DataBaseManager {
 	     return mCursor;
     	  	 
      }
+
+	public Cursor fetchTipoValorPorIdPersona(long id, String nombreTabla){
+		//	 return this.fetchPersonaNumber(ConstantsAdmin.KEY_ROWID, id);
+		Cursor mCursor;
+		String selection = ConstantsAdmin.KEY_ID_PERSONA + "= '" + id + "'";
+		mCursor =
+				mDb.query(true, nombreTabla, null, selection, null,
+						null, null, null, null);
+		if (mCursor != null) {
+			mCursor.moveToFirst();
+		}
+
+		return mCursor;
+
+	}
      
 
      

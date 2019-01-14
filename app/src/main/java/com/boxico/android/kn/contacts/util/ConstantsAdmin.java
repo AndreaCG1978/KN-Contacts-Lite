@@ -661,23 +661,37 @@ public class ConstantsAdmin {
 
 
 
-	public static List<TipoValorDTO> obtenerTelefonosIdPersona(Activity context, long id, DataBaseManager mDBManager){
-		return obtenerTipoValorDtosIdPersona(context, id, ConstantsAdmin.TABLA_TELEFONOS, mDBManager);
+	public static List<TipoValorDTO> obtenerTelefonosIdPersona(long id, DataBaseManager mDBManager){
+		return obtenerTipoValorDtosIdPersona(id, ConstantsAdmin.TABLA_TELEFONOS, mDBManager);
 	}
 
-	public static List<TipoValorDTO> obtenerEmailsIdPersona(Activity context, long id, DataBaseManager mDBManager){
-		return obtenerTipoValorDtosIdPersona(context, id, ConstantsAdmin.TABLA_EMAILS, mDBManager);
+	public static List<TipoValorDTO> obtenerEmailsIdPersona(long id, DataBaseManager mDBManager){
+		return obtenerTipoValorDtosIdPersona(id, ConstantsAdmin.TABLA_EMAILS, mDBManager);
 	}
 
-	public static List<TipoValorDTO> obtenerDireccionesIdPersona(Activity context, long id, DataBaseManager mDBManager){
-		return obtenerTipoValorDtosIdPersona(context, id, ConstantsAdmin.TABLA_DIRECCIONES, mDBManager);
+	public static List<TipoValorDTO> obtenerDireccionesIdPersona(long id, DataBaseManager mDBManager){
+		return obtenerTipoValorDtosIdPersona(id, ConstantsAdmin.TABLA_DIRECCIONES, mDBManager);
 	}
 
-	private static List<TipoValorDTO> obtenerTipoValorDtosIdPersona(Activity context, long id, String tablaName, DataBaseManager mDBManager){
+	private static List<TipoValorDTO> obtenerTipoValorDtosIdPersona(long id, String tablaName, DataBaseManager mDBManager){
 		Cursor cur;
 		List<TipoValorDTO> result;
 		inicializarBD(mDBManager);
 		cur = mDBManager.fetchTipoValorPorIdPersona(id, tablaName);
+		//  	context.startManagingCursor(cur);
+		result = cursorToTipoValorDtos(cur);
+		//  	cur.close();
+		//  	context.stopManagingCursor(cur);
+		finalizarBD(mDBManager);
+		return result;
+	}
+
+
+	private static List<TipoValorDTO> obtenerTipoValorDtosIdPersona(long id, String tipo, String tablaName,  DataBaseManager mDBManager){
+		Cursor cur;
+		List<TipoValorDTO> result;
+		inicializarBD(mDBManager);
+		cur = mDBManager.fetchTipoValorPorIdPersona(id, tipo, tablaName);
 		//  	context.startManagingCursor(cur);
 		result = cursorToTipoValorDtos(cur);
 		//  	cur.close();
@@ -1541,7 +1555,7 @@ public class ConstantsAdmin {
 		}
 
 
-		masTVs = obtenerTelefonosIdPersona(context, per.getId(), mDBManager);
+		masTVs = obtenerTelefonosIdPersona(per.getId(), mDBManager);
 		it = masTVs.iterator();
 		while(it.hasNext()){
 			tv = it.next();
@@ -1562,7 +1576,7 @@ public class ConstantsAdmin {
 			result.append(OTRO).append(SEPARACION_ATRIBUTO).append(per.getEmailOtro()).append(PUNTO_COMA);
 		}
 
-		masTVs = obtenerEmailsIdPersona(context, per.getId(), mDBManager);
+		masTVs = obtenerEmailsIdPersona(per.getId(), mDBManager);
 		it = masTVs.iterator();
 		while(it.hasNext()){
 			tv = it.next();
@@ -1581,7 +1595,7 @@ public class ConstantsAdmin {
 			result.append(LABORAL).append(SEPARACION_ATRIBUTO).append(per.getDireccionLaboral()).append(PUNTO_COMA);
 		}
 
-		masTVs = obtenerDireccionesIdPersona(context, per.getId(), mDBManager);
+		masTVs = obtenerDireccionesIdPersona(per.getId(), mDBManager);
 		it = masTVs.iterator();
 		while(it.hasNext()){
 			tv = it.next();
@@ -1694,7 +1708,7 @@ public class ConstantsAdmin {
 		}
 
 
-		masTVs = obtenerTelefonosIdPersona(context, per.getId(), mDBManager);
+		masTVs = obtenerTelefonosIdPersona(per.getId(), mDBManager);
 		it = masTVs.iterator();
 		while(it.hasNext()){
 			tv = it.next();
@@ -1715,7 +1729,7 @@ public class ConstantsAdmin {
 			result.append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_otro)).append(SEPARACION_ATRIBUTO).append(per.getEmailOtro()).append(PIPE);
 		}
 
-		masTVs = obtenerEmailsIdPersona(context, per.getId(), mDBManager);
+		masTVs = obtenerEmailsIdPersona(per.getId(), mDBManager);
 		it = masTVs.iterator();
 		while(it.hasNext()){
 			tv = it.next();
@@ -1733,7 +1747,7 @@ public class ConstantsAdmin {
 			result.append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getDireccionLaboral()).append(PIPE);
 		}
 
-		masTVs = obtenerDireccionesIdPersona(context, per.getId(), mDBManager);
+		masTVs = obtenerDireccionesIdPersona(per.getId(), mDBManager);
 		it = masTVs.iterator();
 		while(it.hasNext()){
 			tv = it.next();
@@ -1781,7 +1795,7 @@ public class ConstantsAdmin {
 		}
 
 
-		masTVs = obtenerTelefonosIdPersona(context, per.getId(), mDBManager);
+		masTVs = obtenerTelefonosIdPersona(per.getId(), mDBManager);
 		it = masTVs.iterator();
 		while(it.hasNext()){
 			tv = it.next();
@@ -1803,7 +1817,7 @@ public class ConstantsAdmin {
 			result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_otro)).append(SEPARACION_ATRIBUTO).append(per.getEmailOtro()).append(ConstantsAdmin.ENTER);
 		}
 
-		masTVs = obtenerEmailsIdPersona(context, per.getId(),mDBManager);
+		masTVs = obtenerEmailsIdPersona(per.getId(),mDBManager);
 		it = masTVs.iterator();
 		while(it.hasNext()){
 			tv = it.next();
@@ -1823,7 +1837,7 @@ public class ConstantsAdmin {
 			result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getDireccionLaboral()).append(ConstantsAdmin.ENTER);
 		}
 
-		masTVs = obtenerDireccionesIdPersona(context, per.getId(), mDBManager);
+		masTVs = obtenerDireccionesIdPersona(per.getId(), mDBManager);
 		it = masTVs.iterator();
 		while(it.hasNext()){
 			tv = it.next();
@@ -2074,15 +2088,23 @@ public class ConstantsAdmin {
 	public static void crearTelefonos(ArrayList<TipoValorDTO> tels, long id, DataBaseManager mDBManager){
 		TipoValorDTO mTipoValor = null;
 		Iterator<TipoValorDTO> it = null;
+		boolean existeTel = false;
 		if(tels != null && tels.size() > 0){
 			inicializarBD(mDBManager);
 			it = tels.iterator();
 			while(it.hasNext()){
 				mTipoValor = it.next();
-				if(id != -1){
-					mTipoValor.setIdPersona(String.valueOf(id));
+				existeTel = false;
+
+				Cursor c = mDBManager.fetchTipoValorPorIdPersona(id, mTipoValor.getTipo(), ConstantsAdmin.TABLA_TELEFONOS);
+//				List<TipoValorDTO> temp = ConstantsAdmin.obtenerTipoValorDtosIdPersona(id, mTipoValor.getTipo(), ConstantsAdmin.TABLA_TELEFONOS, mDBManager);
+				existeTel = c != null && c.getCount() > 0;
+				if(!existeTel){
+					if(id != -1){
+						mTipoValor.setIdPersona(String.valueOf(id));
+					}
+					mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_TELEFONOS);
 				}
-				mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_TELEFONOS);
 			}
 			finalizarBD(mDBManager);
 		}
