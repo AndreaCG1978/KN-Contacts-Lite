@@ -93,6 +93,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 	private ArrayList<TipoValorDTO> nuevosTelefonos;
+	private ArrayList<TipoValorDTO> nuevosMails;
+	private ArrayList<TipoValorDTO> nuevasDirecciones;
 
 	/*
     @Override
@@ -651,6 +653,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 					}
 					this.obtenerContactoCapturado(true);
 					long idPersona = mDBManager.createPersona(persona, false);
+                    this.guardarNuevosTelefonos(mDBManager, idPersona);
+                    this.guardarNuevosMails(mDBManager, idPersona);
+                    this.guardarNuevasDirecciones(mDBManager, idPersona);
 					// Cargo foto
 
 					InputStream inputStream = null;
@@ -695,6 +700,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
             ConstantsAdmin.resetPersonasOrganizadas();
 			persona.setId(id);
 			this.guardarNuevosTelefonos(mDBManager, id);
+			this.guardarNuevosMails(mDBManager, id);
+			this.guardarNuevasDirecciones(mDBManager, id);
 			this.mostrarDatosPersonaEncontrada();
 			mPersonaEncontrada.setText(mPersonaEncontrada.getText() + " #");
 		}
@@ -707,6 +714,16 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private void guardarNuevosTelefonos(DataBaseManager mDBManager, long id){
 		//this.filtrarTelefonosExistentes(mDBManager, id);
 		ConstantsAdmin.crearTelefonos(nuevosTelefonos, id, mDBManager);
+	}
+
+	private void guardarNuevosMails(DataBaseManager mDBManager, long id){
+		//this.filtrarTelefonosExistentes(mDBManager, id);
+		ConstantsAdmin.crearEmails(nuevosMails, id, mDBManager);
+	}
+
+	private void guardarNuevasDirecciones(DataBaseManager mDBManager, long id){
+		//this.filtrarTelefonosExistentes(mDBManager, id);
+		ConstantsAdmin.crearDirecciones(nuevasDirecciones, id, mDBManager);
 	}
 
 
@@ -907,9 +924,11 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 //        if (tieneTelefonos) {
 		nuevosTelefonos = this.importarTelDeContacto(persona, contactId);
+	//	nuevosMails = this.importarMailDeContacto(persona, contactId);
+	//	nuevasDirecciones = this.importarDirDeContacto(persona, contactId);
 //		}
-		this.importarMailDeContacto(persona, contactId);
-		this.importarDirDeContacto(persona, contactId);
+		nuevosMails = this.importarMailDeContacto(persona, contactId);
+		nuevasDirecciones = this.importarDirDeContacto(persona, contactId);
 
 
 	}
@@ -945,7 +964,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		return asoc;
 	}
 
-	private void importarMailDeContacto(PersonaDTO per, String contactId) {
+	private ArrayList<TipoValorDTO> importarMailDeContacto(PersonaDTO per, String contactId) {
+
+		/*
 		String emailAddress;
 		int emailType;
 		Cursor emails;
@@ -983,11 +1004,75 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			emails.close();
 			//      this.stopManagingCursor(emails);
 		}
+*/
 
+		String email;
+		int mailType;
+		CursorLoader nameCurLoader;
+		ArrayList<TipoValorDTO> nuevosMails = new ArrayList<>();
 
+		//	String[] projectionPhone = ConstantsAdmin.projectionPhone;
+		//DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		nameCurLoader = ConstantsAdmin.cursorEmailPersona;
+		nameCurLoader.setSelection(ConstantsAdmin.querySelectionEmailContactsById + contactId);
+		nameCurLoader.reset();
+		Cursor mails = nameCurLoader.loadInBackground();
+		TipoValorDTO nuevoTipo = null;
+
+//    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+		if(mails != null){
+//  	        super.startManagingCursor(phones);
+			while (mails.moveToNext())
+			{
+				email = mails.getString(mails.getColumnIndex(Email.DATA));
+				mailType = mails.getInt(mails.getColumnIndex(Email.TYPE));
+
+				if(!email.equals("")){
+					switch (mailType) {
+						case Email.TYPE_HOME :
+							if(per.getEmailParticular() == null || per.getEmailParticular().equals("")){
+								per.setEmailParticular(email);
+							}else{
+								if(!per.getEmailParticular().equalsIgnoreCase(email)){
+									this.crearNuevoEmail(email, mailType, mails, nuevosMails);
+								}
+							}
+
+							break;
+						case Email.TYPE_OTHER :
+							if(per.getEmailOtro() == null || per.getEmailOtro().equals("")){
+								per.setEmailOtro(email);
+							}else{
+								if(!per.getEmailOtro().equalsIgnoreCase(email)) {
+									this.crearNuevoEmail(email, mailType, mails, nuevosMails);
+								}
+							}
+							break;
+						case Email.TYPE_WORK :
+							if(per.getEmailLaboral() == null || per.getEmailLaboral().equals("")){
+								per.setEmailLaboral(email);
+							}else{
+								if(!per.getEmailLaboral().equalsIgnoreCase(email)) {
+									this.crearNuevoEmail(email, mailType, mails, nuevosMails);
+								}
+							}
+							break;
+
+						default:
+							this.crearNuevoEmail(email, mailType, mails, nuevosMails);
+							//	per.set(phoneNumber);
+							break;
+					}
+
+				}
+			}
+			mails.close();
+//	        this.stopManagingCursor(phones);
+		}
+		return nuevosMails;
 	}
 
-	private void importarDirDeContacto(PersonaDTO per, String contactId) {
+	private ArrayList<TipoValorDTO> importarDirDeContacto(PersonaDTO per, String contactId) {
 		String address;
 		int addressType;
 		Cursor dirsCursor;
@@ -1022,6 +1107,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			dirsCursor.close();
 			//      this.stopManagingCursor(emails);
 		}
+		return null;
 
 
 	}
@@ -1268,6 +1354,18 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		}
 		nuevoTipo.setTipo(label);
 		nuevosTels.add(nuevoTipo);
+
+	}
+
+	private void crearNuevoEmail(String mail, int mailType, Cursor mails, ArrayList nuevosMails){
+		TipoValorDTO nuevoTipo = new TipoValorDTO();
+		nuevoTipo.setValor(mail);
+		String label = this.getResources().getString(ContactsContract.CommonDataKinds.Email.getTypeLabelResource(mailType));
+		if (label.equalsIgnoreCase("Custom")){
+			label = mails.getString(mails.getColumnIndex(ContactsContract.CommonDataKinds.Email.LABEL));
+		}
+		nuevoTipo.setTipo(label);
+		nuevosMails.add(nuevoTipo);
 
 	}
     

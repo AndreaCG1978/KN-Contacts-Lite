@@ -2087,6 +2087,7 @@ public class ConstantsAdmin {
 
 	public static void crearTelefonos(ArrayList<TipoValorDTO> tels, long id, DataBaseManager mDBManager){
 		TipoValorDTO mTipoValor = null;
+		TipoValorDTO mTipoValorTemp = null;
 		Iterator<TipoValorDTO> it = null;
 		boolean existeTel = false;
 		if(tels != null && tels.size() > 0){
@@ -2097,28 +2098,62 @@ public class ConstantsAdmin {
 				existeTel = false;
 
 				Cursor c = mDBManager.fetchTipoValorPorIdPersona(id, mTipoValor.getTipo(), ConstantsAdmin.TABLA_TELEFONOS);
+				List<TipoValorDTO> result = cursorToTipoValorDtos(c);
 //				List<TipoValorDTO> temp = ConstantsAdmin.obtenerTipoValorDtosIdPersona(id, mTipoValor.getTipo(), ConstantsAdmin.TABLA_TELEFONOS, mDBManager);
-				existeTel = c != null && c.getCount() > 0;
-				if(!existeTel){
+			//	existeTel = c != null && c.getCount() > 0;
+				existeTel = result != null && result.size() > 0;
+				if(!existeTel){// ES UN TELEFONO NO CARGADO EN KN
 					if(id != -1){
 						mTipoValor.setIdPersona(String.valueOf(id));
 					}
 					mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_TELEFONOS);
+				}else{// ES UN TELEFONO YA CARGADO EN KN, HAY QUE ACTUALIZARLO
+					Iterator<TipoValorDTO> itTemp = result.iterator();
+					while (itTemp.hasNext()){
+						mTipoValorTemp = itTemp.next();
+						mTipoValor.setId(mTipoValorTemp.getId());
+						mTipoValor.setIdPersona(String.valueOf(id));
+						mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_TELEFONOS);
+					}
+
 				}
 			}
 			finalizarBD(mDBManager);
 		}
 	}
 
-	public static void crearEmails(ArrayList<TipoValorDTO> mails, DataBaseManager mDBManager){
+	public static void crearEmails(ArrayList<TipoValorDTO> mails, long id, DataBaseManager mDBManager){
 		TipoValorDTO mTipoValor = null;
+		TipoValorDTO mTipoValorTemp = null;
 		Iterator<TipoValorDTO> it = null;
+		boolean existeMails = false;
 		if(mails != null && mails.size() > 0){
 			inicializarBD(mDBManager);
 			it = mails.iterator();
-			while(it.hasNext()) {
+			while(it.hasNext()){
 				mTipoValor = it.next();
-				mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_EMAILS);
+				existeMails = false;
+
+				Cursor c = mDBManager.fetchTipoValorPorIdPersona(id, mTipoValor.getTipo(), ConstantsAdmin.TABLA_EMAILS);
+				List<TipoValorDTO> result = cursorToTipoValorDtos(c);
+//				List<TipoValorDTO> temp = ConstantsAdmin.obtenerTipoValorDtosIdPersona(id, mTipoValor.getTipo(), ConstantsAdmin.TABLA_TELEFONOS, mDBManager);
+				//	existeTel = c != null && c.getCount() > 0;
+				existeMails = result != null && result.size() > 0;
+				if(!existeMails){// ES UN MAIL NO CARGADO EN KN
+					if(id != -1){
+						mTipoValor.setIdPersona(String.valueOf(id));
+					}
+					mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_EMAILS);
+				}else{// ES UN MAIL YA CARGADO EN KN, HAY QUE ACTUALIZARLO
+					Iterator<TipoValorDTO> itTemp = result.iterator();
+					while (itTemp.hasNext()){
+						mTipoValorTemp = itTemp.next();
+						mTipoValor.setId(mTipoValorTemp.getId());
+						mTipoValor.setIdPersona(String.valueOf(id));
+						mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_EMAILS);
+					}
+
+				}
 			}
 			finalizarBD(mDBManager);
 		}
@@ -2136,15 +2171,38 @@ public class ConstantsAdmin {
 		finalizarBD(mDBManager);
 	}
 
-	public static void crearDirecciones(ArrayList<TipoValorDTO> dirs, DataBaseManager mDBManager){
+	public static void crearDirecciones(ArrayList<TipoValorDTO> dirs, long id, DataBaseManager mDBManager){
 		TipoValorDTO mTipoValor = null;
+		TipoValorDTO mTipoValorTemp = null;
 		Iterator<TipoValorDTO> it = null;
+		boolean existeDir = false;
 		if(dirs != null && dirs.size() > 0){
 			inicializarBD(mDBManager);
 			it = dirs.iterator();
-			while(it.hasNext()) {
+			while(it.hasNext()){
 				mTipoValor = it.next();
-				mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_DIRECCIONES);
+				existeDir = false;
+
+				Cursor c = mDBManager.fetchTipoValorPorIdPersona(id, mTipoValor.getTipo(), ConstantsAdmin.TABLA_DIRECCIONES);
+				List<TipoValorDTO> result = cursorToTipoValorDtos(c);
+//				List<TipoValorDTO> temp = ConstantsAdmin.obtenerTipoValorDtosIdPersona(id, mTipoValor.getTipo(), ConstantsAdmin.TABLA_TELEFONOS, mDBManager);
+				//	existeTel = c != null && c.getCount() > 0;
+				existeDir = result != null && result.size() > 0;
+				if(!existeDir){// ES UN MAIL NO CARGADO EN KN
+					if(id != -1){
+						mTipoValor.setIdPersona(String.valueOf(id));
+					}
+					mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_DIRECCIONES);
+				}else{// ES UN MAIL YA CARGADO EN KN, HAY QUE ACTUALIZARLO
+					Iterator<TipoValorDTO> itTemp = result.iterator();
+					while (itTemp.hasNext()){
+						mTipoValorTemp = itTemp.next();
+						mTipoValor.setId(mTipoValorTemp.getId());
+						mTipoValor.setIdPersona(String.valueOf(id));
+						mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_DIRECCIONES);
+					}
+
+				}
 			}
 			finalizarBD(mDBManager);
 		}
