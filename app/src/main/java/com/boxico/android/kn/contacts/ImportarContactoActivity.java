@@ -1017,9 +1017,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		nameCurLoader.setSelection(ConstantsAdmin.querySelectionEmailContactsById + contactId);
 		nameCurLoader.reset();
 		Cursor mails = nameCurLoader.loadInBackground();
-		TipoValorDTO nuevoTipo = null;
-
-//    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+	//    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
 		if(mails != null){
 //  	        super.startManagingCursor(phones);
 			while (mails.moveToNext())
@@ -1073,6 +1071,65 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	}
 
 	private ArrayList<TipoValorDTO> importarDirDeContacto(PersonaDTO per, String contactId) {
+
+		String dir;
+		int dirType;
+		CursorLoader nameCurLoader;
+		ArrayList<TipoValorDTO> nuevasDirs = new ArrayList<>();
+
+		//	String[] projectionPhone = ConstantsAdmin.projectionPhone;
+		//DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		nameCurLoader = ConstantsAdmin.cursorDirsPersona;
+		nameCurLoader.setSelection(ConstantsAdmin.querySelectionDirsContactsById + contactId);
+		nameCurLoader.reset();
+		Cursor dirs = nameCurLoader.loadInBackground();
+		//    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+		if(dirs != null){
+//  	        super.startManagingCursor(phones);
+			while (dirs.moveToNext())
+			{
+				dir = dirs.getString(dirs.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.STREET));
+				dirType = dirs.getInt(dirs.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.TYPE));
+
+				if(!dir.equals("")){
+					switch (dirType) {
+						case ContactsContract.CommonDataKinds.StructuredPostal.TYPE_HOME :
+							if(per.getDireccionParticular() == null || per.getDireccionParticular().equals("")){
+								per.setDireccionParticular(dir);
+							}else{
+								if(!per.getDireccionParticular().equalsIgnoreCase(dir)){
+									this.crearNuevaDireccion(dir, dirType, dirs, nuevasDirs);
+								}
+							}
+
+							break;
+						case ContactsContract.CommonDataKinds.StructuredPostal.TYPE_WORK :
+							if(per.getDireccionLaboral() == null || per.getDireccionLaboral().equals("")){
+								per.setDireccionLaboral(dir);
+							}else{
+								if(!per.getDireccionLaboral().equalsIgnoreCase(dir)) {
+									this.crearNuevaDireccion(dir, dirType, dirs, nuevasDirs);
+								}
+							}
+							break;
+
+						default:
+							this.crearNuevaDireccion(dir, dirType, dirs, nuevasDirs);
+							//	per.set(phoneNumber);
+							break;
+					}
+
+				}
+			}
+			dirs.close();
+//	        this.stopManagingCursor(phones);
+		}
+		return nuevasDirs;
+
+
+
+/*
+
 		String address;
 		int addressType;
 		Cursor dirsCursor;
@@ -1108,7 +1165,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			//      this.stopManagingCursor(emails);
 		}
 		return null;
-
+*/
 
 	}
 
@@ -1125,6 +1182,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		nameCurLoader.setSelection(ConstantsAdmin.querySelectionEmailContactsById + contactId);
 		nameCurLoader.reset();
 		emails = nameCurLoader.loadInBackground();
+
+
 		//	Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
 		if (emails != null && emails.getCount() > 0) {
 			//    super.startManagingCursor(emails);
@@ -1134,6 +1193,15 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 				emailAddress = emails.getString(emails.getColumnIndex(Email.DATA));
 				emailType = emails.getInt(emails.getColumnIndex(Email.TYPE));
 
+
+				String label = this.getResources().getString(ContactsContract.CommonDataKinds.Email.getTypeLabelResource(emailType));
+				if (label.equalsIgnoreCase("Custom")){
+					label = emails.getString(emails.getColumnIndex(ContactsContract.CommonDataKinds.Email.LABEL));
+				}
+				if (!emailAddress.equals("")) {
+					mails = mails + "\n" + label + ": " + emailAddress;
+				}
+				/*
 				if (!emailAddress.equals("")) {
 					switch (emailType) {
 						case Email.TYPE_HOME:
@@ -1148,7 +1216,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 						default:
 							break;
 					}
-				}
+				}*/
 			}
 			emails.close();
 			//      this.stopManagingCursor(emails);
@@ -1238,6 +1306,22 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 				city = dirsCursor.getString(dirsCursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.CITY));
 				dirType = dirsCursor.getInt(dirsCursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.TYPE));
 
+
+
+				String label = this.getResources().getString(ContactsContract.CommonDataKinds.StructuredPostal.getTypeLabelResource(dirType));
+				if (label.equalsIgnoreCase("Custom")){
+					label = dirsCursor.getString(dirsCursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.LABEL));
+				}
+				if (!dir.equals("")) {
+                    if(city != null && !city.equals("")){
+                        dir = dir + " " + city;
+                    }
+                    dirs = dirs + "\n" + label + ": " + dir;
+
+				}
+
+
+				/*
 				if (!dir.equals("")) {
 					switch (dirType) {
 						case ContactsContract.CommonDataKinds.StructuredPostal.TYPE_HOME:
@@ -1257,7 +1341,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 					}
 					dir = dir + city;
 
-				}
+				}*/
 			}
 			dirsCursor.close();
 //	        this.stopManagingCursor(phones);
@@ -1366,7 +1450,17 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		}
 		nuevoTipo.setTipo(label);
 		nuevosMails.add(nuevoTipo);
+	}
 
+	private void crearNuevaDireccion(String dir, int dirType, Cursor dirs, ArrayList nuevasDirs){
+		TipoValorDTO nuevoTipo = new TipoValorDTO();
+		nuevoTipo.setValor(dir);
+		String label = this.getResources().getString(ContactsContract.CommonDataKinds.StructuredPostal.getTypeLabelResource(dirType));
+		if (label.equalsIgnoreCase("Custom")){
+			label = dirs.getString(dirs.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.LABEL));
+		}
+		nuevoTipo.setTipo(label);
+		nuevasDirs.add(nuevoTipo);
 	}
     
 
