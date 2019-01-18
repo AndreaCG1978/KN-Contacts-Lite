@@ -83,7 +83,9 @@ public class ConstantsAdmin {
 
 	public static final String[] projectionPhone = new String[]{
 			ContactsContract.CommonDataKinds.Phone.NUMBER,
-			ContactsContract.CommonDataKinds.Phone.TYPE
+			ContactsContract.CommonDataKinds.Phone.TYPE,
+            ContactsContract.CommonDataKinds.Phone.LABEL
+
 	};
 
 	public static final String[] projectionDirs = new String[]{
@@ -94,7 +96,8 @@ public class ConstantsAdmin {
 
 	public static final String[] projectionMail = new String[]{
 			ContactsContract.CommonDataKinds.Email.DATA,
-			ContactsContract.CommonDataKinds.Email.TYPE
+			ContactsContract.CommonDataKinds.Email.TYPE,
+            ContactsContract.CommonDataKinds.Email.LABEL
 	};
 
 	public static String querySelectionCategoriaByName(String paramNombre){
@@ -2091,7 +2094,7 @@ public class ConstantsAdmin {
 		Iterator<TipoValorDTO> it = null;
 		boolean existeTel = false;
 		if(tels != null && tels.size() > 0){
-			inicializarBD(mDBManager);
+		//	inicializarBD(mDBManager);
 			it = tels.iterator();
 			while(it.hasNext()){
 				mTipoValor = it.next();
@@ -2118,7 +2121,7 @@ public class ConstantsAdmin {
 
 				}
 			}
-			finalizarBD(mDBManager);
+		//	finalizarBD(mDBManager);
 		}
 	}
 
@@ -2128,7 +2131,7 @@ public class ConstantsAdmin {
 		Iterator<TipoValorDTO> it = null;
 		boolean existeMails = false;
 		if(mails != null && mails.size() > 0){
-			inicializarBD(mDBManager);
+		//	inicializarBD(mDBManager);
 			it = mails.iterator();
 			while(it.hasNext()){
 				mTipoValor = it.next();
@@ -2155,7 +2158,7 @@ public class ConstantsAdmin {
 
 				}
 			}
-			finalizarBD(mDBManager);
+		//	finalizarBD(mDBManager);
 		}
 	}
 
@@ -2177,7 +2180,7 @@ public class ConstantsAdmin {
 		Iterator<TipoValorDTO> it = null;
 		boolean existeDir = false;
 		if(dirs != null && dirs.size() > 0){
-			inicializarBD(mDBManager);
+		//	inicializarBD(mDBManager);
 			it = dirs.iterator();
 			while(it.hasNext()){
 				mTipoValor = it.next();
@@ -2204,7 +2207,7 @@ public class ConstantsAdmin {
 
 				}
 			}
-			finalizarBD(mDBManager);
+		//	finalizarBD(mDBManager);
 		}
 	}
 
