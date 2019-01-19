@@ -28,7 +28,8 @@ class DataBaseHelper extends SQLiteOpenHelper{
             + ConstantsAdmin.KEY_DIRECCION_LABORAL + " text, "
             + ConstantsAdmin.KEY_DIRECCION_PARTICULAR + " text, "
          //   + ConstantsAdmin.KEY_FOTO + " blob, "
-            + ConstantsAdmin.KEY_DATO_EXTRA + " text);";
+            + ConstantsAdmin.KEY_DATO_EXTRA + " text, "
+            + ConstantsAdmin.KEY_ID_PERSONA_AGENDA + " text);";
 	
   
     private static final String DATABASE_CREATE_CATEGORIAS = "create table if not exists " + ConstantsAdmin.TABLA_CATEGORIA + 
@@ -77,6 +78,8 @@ class DataBaseHelper extends SQLiteOpenHelper{
 	public static final String ACTUALIZAR_TABLA_CATEGORIAS = "ALTER TABLE '" + ConstantsAdmin.TABLA_CATEGORIA + "' ADD COLUMN '" + ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA + "' TEXT NOT NULL DEFAULT 'cambiar'";
 	
 	public static final String ACTUALIZAR_TABLA_CONTRASENIA = "ALTER TABLE '" + ConstantsAdmin.TABLA_CONTRASENIA + "' ADD COLUMN '" + ConstantsAdmin.KEY_CONTRASENIA_ACTIVA + "' integer NOT NULL DEFAULT 0";
+
+    public static final String ACTUALIZAR_TABLA_PERSONA = "ALTER TABLE '" + ConstantsAdmin.TABLA_PERSONA + "' ADD COLUMN '" + ConstantsAdmin.KEY_ID_PERSONA_AGENDA + "' TEXT";
 
     private static final String DATABASE_CREATE_CONFIG = "create table if not exists " + ConstantsAdmin.TABLA_CONFIGURACION  + 
     "(" + ConstantsAdmin.KEY_ROWID +" integer primary key autoincrement, "

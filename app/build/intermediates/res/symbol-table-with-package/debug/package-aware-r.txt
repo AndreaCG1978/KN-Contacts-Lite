@@ -193,6 +193,7 @@ id imagenPreferidos
 id imagenProtegerCategorias
 id imgPrefLeft
 id imgPrefRight
+id importarContacto
 id info
 id invisible
 id italic

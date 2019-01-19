@@ -19,6 +19,15 @@ public class PersonaDTO {
 	private String categoriaNombreRelativo = null;
 	private String datoExtra = null;
 	private String foto = null;
+	private String idPersonaAgenda = null;
+
+	public String getIdPersonaAgenda() {
+		return idPersonaAgenda;
+	}
+
+	public void setIdPersonaAgenda(String idPersonaAgenda) {
+		this.idPersonaAgenda = idPersonaAgenda;
+	}
 
 	public String getFoto() {
 		return foto;
@@ -27,6 +36,9 @@ public class PersonaDTO {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
+
+
+
 
 	public String getCategoriaNombreRelativo() {
 

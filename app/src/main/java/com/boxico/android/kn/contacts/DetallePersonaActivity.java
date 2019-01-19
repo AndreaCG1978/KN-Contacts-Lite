@@ -33,6 +33,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -45,6 +46,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
+import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
 import com.boxico.android.kn.contacts.util.Asociacion;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
@@ -71,7 +73,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	private TextView mTituloDirecciones = null;
 
 	private ImageButton mImagenPreferido = null;
-	private ImageButton imagenPhoto = null;
+	private ImageButton importarContacto = null;
 	private ImageView photo = null;
 	private TextView sinDatos = null;
 
@@ -452,6 +454,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 
 	private void registrarViews() {
+
 		mApellido = this.findViewById(R.id.detalle_apellido);
 		mNombres = this.findViewById(R.id.detalle_nombres);
 		mFechaNacimiento = this.findViewById(R.id.detalle_fechaNacimiento);
@@ -465,9 +468,23 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 
 		mImagenPreferido = this.findViewById(R.id.imagenPreferido);
-		imagenPhoto = this.findViewById(R.id.imagenPhoto);
+		importarContacto = this.findViewById(R.id.importarContacto);
 
 		photo = this.findViewById(R.id.photo);
+		Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.camera_icon);
+		Drawable camara = new BitmapDrawable(getResources(), b);
+		mApellido.setCompoundDrawablesWithIntrinsicBounds(null, null, camara,null);
+		mApellido.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if(event.getAction() == MotionEvent.ACTION_UP) {
+					//ConstantsAdmin.showFotoPopUp(iconBig, me);
+					sacarPhoto();
+					return true;
+				}
+				return true;
+			}
+		});
 
 	//	Drawable drwPrefColor = res.getDrawable(R.drawable.pref_detalle_icon);
 	//	Drawable drwPrefBN = res.getDrawable(R.drawable.pref_detalle_bn_icon);
@@ -928,10 +945,10 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	}
 	
 	private void configurarSacarPhoto(){
-		if(imagenPhoto != null){
-			imagenPhoto.setOnClickListener(new View.OnClickListener() {
+		if(importarContacto != null){
+			importarContacto.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
-	            	sacarPhoto();
+	            	importarContacto();
 
 	            }
 	        });
@@ -954,6 +971,13 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				}
 			});
 		}
+	}
+
+	private boolean importarContacto(){
+		boolean ok = true;
+		//PersonaDTO perTemp = ConstantsAdmin.obtenerPersonaConNombreYApellido(mNombres.getText().toString(), mApellido.getText().toString(), this);
+
+		return ok;
 	}
 	
 	private void eliminarPhoto(){

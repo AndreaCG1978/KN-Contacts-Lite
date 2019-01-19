@@ -136,6 +136,7 @@ public class DataBaseManager {
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, persona.getCategoriaNombreRelativo());
      //    initialValues.put(ConstantsAdmin.KEY_FOTO, persona.getFoto());
          initialValues.put(ConstantsAdmin.KEY_DATO_EXTRA, persona.getDatoExtra());
+		 initialValues.put(ConstantsAdmin.KEY_ID_PERSONA_AGENDA, persona.getIdPersonaAgenda());
 
       //   this.open();
          if(!importando){
@@ -450,6 +451,17 @@ public class DataBaseManager {
 
 		return result;
      }
+
+	public boolean actualizarTablaPersona(){
+		boolean result = false;
+		try{
+			mDb.execSQL(DataBaseHelper.ACTUALIZAR_TABLA_PERSONA);
+			result = true;
+		}catch(Exception e){
+
+		}
+		return result;
+	}
      
      public void actualizarTablaContrasenia(){
      //	boolean result = false;

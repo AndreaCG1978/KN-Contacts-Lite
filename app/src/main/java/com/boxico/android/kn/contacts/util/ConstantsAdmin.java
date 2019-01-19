@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -60,6 +61,8 @@ public class ConstantsAdmin {
 	private static Map<String, List<PersonaDTO>> organizadosPorCategoria = null;
 
 
+	public static final int ACTIVITY_EJECUTAR_MENU_PERSONA = 26;
+
 	public static CursorLoader cursorPersonas = null;
 	public static CursorLoader cursorCategorias = null;
 	public static CursorLoader cursorCategoriasPersonales = null;
@@ -91,7 +94,8 @@ public class ConstantsAdmin {
 	public static final String[] projectionDirs = new String[]{
 			ContactsContract.CommonDataKinds.StructuredPostal.STREET,
 			ContactsContract.CommonDataKinds.StructuredPostal.CITY,
-			ContactsContract.CommonDataKinds.StructuredPostal.TYPE
+			ContactsContract.CommonDataKinds.StructuredPostal.TYPE,
+			ContactsContract.CommonDataKinds.StructuredPostal.LABEL
 	};
 
 	public static final String[] projectionMail = new String[]{
@@ -277,6 +281,9 @@ public class ConstantsAdmin {
 		mDBManager.actualizarTablaContrasenia();
 	}
 
+	public static void actualizarTablaPersona(DataBaseManager mDBManager){
+		mDBManager.actualizarTablaPersona();
+	}
 
 	public static void cargarCategorias(Activity context, DataBaseManager mDBManager){
 		long catSize;
@@ -536,6 +543,7 @@ public class ConstantsAdmin {
 	public static final String KEY_VALOR = "valor";
 	public static final String KEY_TIPO = "tipo";
 	public static final String KEY_ID_PERSONA = "idPersona";
+	public static final String KEY_ID_PERSONA_AGENDA = "idPersonaAgenda";
 	public static final String KEY_ORDENADO_POR_CATEGORIA = "ordenadoPorCateg";
 	public static final String KEY_ESTAN_DETALLADOS = "estanDetallados";
 	public static final String KEY_LISTA_EXPANDIDA = "listaExpandida";
@@ -789,6 +797,9 @@ public class ConstantsAdmin {
 			per.setDatoExtra(temp);
 			temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_DESCRIPCION));
 			per.setDescripcion(temp);
+			temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_ID_PERSONA_AGENDA));
+			per.setIdPersonaAgenda(temp);
+
 		}
 		return per;
 	}
@@ -2704,6 +2715,262 @@ public class ConstantsAdmin {
 		builder.show();
 	}
 
-	public static final int ACTIVITY_EJECUTAR_MENU_PERSONA = 26;
+
+	public static void crearNuevoTel(String phoneNumber, int phoneType, String labelTemp, Cursor phones, ArrayList nuevosTels, Resources res){
+		TipoValorDTO nuevoTipo = new TipoValorDTO();
+		nuevoTipo.setValor(phoneNumber);
+		String label = res.getString(ContactsContract.CommonDataKinds.Phone.getTypeLabelResource(phoneType));
+		if (phoneType == ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM){
+			label = labelTemp;
+		}
+		nuevoTipo.setTipo(label);
+		nuevosTels.add(nuevoTipo);
+
+	}
+
+	public static void crearNuevoEmail(String mail, int mailType, String labelTemp, Cursor mails, ArrayList nuevosMails, Resources res){
+		TipoValorDTO nuevoTipo = new TipoValorDTO();
+		nuevoTipo.setValor(mail);
+
+		String label = res.getString(ContactsContract.CommonDataKinds.Email.getTypeLabelResource(mailType));
+		if (mailType == ContactsContract.CommonDataKinds.Email.TYPE_CUSTOM){
+			label = labelTemp;
+		}
+
+		nuevoTipo.setTipo(label);
+		nuevosMails.add(nuevoTipo);
+	}
+
+	public static void crearNuevaDireccion(String dir, int dirType, String labelTemp, Cursor dirs, ArrayList nuevasDirs, Resources res){
+		TipoValorDTO nuevoTipo = new TipoValorDTO();
+		nuevoTipo.setValor(dir);
+
+		String label = res.getString(ContactsContract.CommonDataKinds.StructuredPostal.getTypeLabelResource(dirType));
+		if (dirType == ContactsContract.CommonDataKinds.Email.TYPE_CUSTOM){
+			label = labelTemp;
+		}
+
+		nuevoTipo.setTipo(label);
+		nuevasDirs.add(nuevoTipo);
+	}
+
+
+	public static ArrayList<TipoValorDTO> importarTelDeContacto(PersonaDTO per, String contactId, Resources res){
+		String phoneNumber;
+		int phoneType;
+		CursorLoader nameCurLoader;
+		ArrayList<TipoValorDTO> nuevosTels = new ArrayList<>();
+
+
+		//	String[] projectionPhone = ConstantsAdmin.projectionPhone;
+		//DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		nameCurLoader = ConstantsAdmin.cursorPhonePersona;
+		nameCurLoader.setSelection(ConstantsAdmin.querySelectionPhoneContactsById + contactId);
+		nameCurLoader.reset();
+		Cursor phones = nameCurLoader.loadInBackground();
+		TipoValorDTO nuevoTipo = null;
+		String label = null;
+
+//    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+		if(phones != null){
+//  	        super.startManagingCursor(phones);
+			while (phones.moveToNext())
+			{
+				phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+				phoneType = phones.getInt(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
+				int lblIndex = phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL);
+				if(phoneType == ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM){
+					label = phones.getString(lblIndex);
+				}
+				//	label = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.));
+
+				if(!phoneNumber.equals("")){
+					switch (phoneType) {
+						case ContactsContract.CommonDataKinds.Phone.TYPE_HOME :
+							if(per.getTelParticular() == null || per.getTelParticular().equals("")){
+								per.setTelParticular(phoneNumber);
+							}else{
+								if(!per.getTelParticular().equalsIgnoreCase(phoneNumber)){
+									ConstantsAdmin.crearNuevoTel(phoneNumber, phoneType, label, phones, nuevosTels, res);
+								}
+							}
+
+							break;
+						case ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE :
+							if(per.getCelular() == null || per.getCelular().equals("")){
+								per.setCelular(phoneNumber);
+							}else{
+								if(!per.getCelular().equalsIgnoreCase(phoneNumber)) {
+									ConstantsAdmin.crearNuevoTel(phoneNumber, phoneType, label, phones, nuevosTels, res);
+								}
+							}
+							break;
+						case ContactsContract.CommonDataKinds.Phone.TYPE_WORK :
+							if(per.getTelLaboral() == null || per.getTelLaboral().equals("")){
+								per.setTelLaboral(phoneNumber);
+							}else{
+								if(!per.getTelLaboral().equalsIgnoreCase(phoneNumber)) {
+									ConstantsAdmin.crearNuevoTel(phoneNumber, phoneType, label, phones, nuevosTels, res);
+								}
+							}
+							break;
+						case ContactsContract.CommonDataKinds.Phone.TYPE_WORK_MOBILE :
+							if(per.getTelLaboral() == null || per.getTelLaboral().equals("")){
+								per.setTelLaboral(phoneNumber);
+							}else{
+								ConstantsAdmin.crearNuevoTel(phoneNumber, phoneType, label,  phones, nuevosTels, res);
+							}
+							break;
+						default:
+							ConstantsAdmin.crearNuevoTel(phoneNumber, phoneType, label, phones, nuevosTels, res);
+							//	per.set(phoneNumber);
+							break;
+					}
+
+				}
+			}
+			phones.close();
+//	        this.stopManagingCursor(phones);
+		}
+		return nuevosTels;
+
+
+
+	}
+
+	public static ArrayList<TipoValorDTO> importarMailDeContacto(PersonaDTO per, String contactId, Resources res) {
+
+
+		String email;
+		int mailType;
+		String label = null;
+		CursorLoader nameCurLoader;
+		ArrayList<TipoValorDTO> nuevosMails = new ArrayList<>();
+
+		//	String[] projectionPhone = ConstantsAdmin.projectionPhone;
+		//DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		nameCurLoader = ConstantsAdmin.cursorEmailPersona;
+		nameCurLoader.setSelection(ConstantsAdmin.querySelectionEmailContactsById + contactId);
+		nameCurLoader.reset();
+		Cursor mails = nameCurLoader.loadInBackground();
+		//    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+		if(mails != null){
+//  	        super.startManagingCursor(phones);
+			while (mails.moveToNext())
+			{
+				email = mails.getString(mails.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+				mailType = mails.getInt(mails.getColumnIndex(ContactsContract.CommonDataKinds.Email.TYPE));
+				int lblIndex = mails.getColumnIndex(ContactsContract.CommonDataKinds.Email.LABEL);
+				if(mailType == ContactsContract.CommonDataKinds.Email.TYPE_CUSTOM){
+					label = mails.getString(lblIndex);
+				}
+
+				if(!email.equals("")){
+					switch (mailType) {
+						case ContactsContract.CommonDataKinds.Email.TYPE_HOME :
+							if(per.getEmailParticular() == null || per.getEmailParticular().equals("")){
+								per.setEmailParticular(email);
+							}else{
+								if(!per.getEmailParticular().equalsIgnoreCase(email)){
+									ConstantsAdmin.crearNuevoEmail(email, mailType, label, mails, nuevosMails, res);
+								}
+							}
+
+							break;
+						case ContactsContract.CommonDataKinds.Email.TYPE_OTHER :
+							if(per.getEmailOtro() == null || per.getEmailOtro().equals("")){
+								per.setEmailOtro(email);
+							}else{
+								if(!per.getEmailOtro().equalsIgnoreCase(email)) {
+									ConstantsAdmin.crearNuevoEmail(email, mailType, label, mails, nuevosMails, res);
+								}
+							}
+							break;
+						case ContactsContract.CommonDataKinds.Email.TYPE_WORK :
+							if(per.getEmailLaboral() == null || per.getEmailLaboral().equals("")){
+								per.setEmailLaboral(email);
+							}else{
+								if(!per.getEmailLaboral().equalsIgnoreCase(email)) {
+									ConstantsAdmin.crearNuevoEmail(email, mailType, label, mails, nuevosMails, res);
+								}
+							}
+							break;
+
+						default:
+							ConstantsAdmin.crearNuevoEmail(email, mailType, label, mails, nuevosMails, res);
+							//	per.set(phoneNumber);
+							break;
+					}
+
+				}
+			}
+			mails.close();
+//	        this.stopManagingCursor(phones);
+		}
+		return nuevosMails;
+	}
+
+	public static ArrayList<TipoValorDTO> importarDirDeContacto(PersonaDTO per, String contactId, Resources res) {
+
+		String dir;
+		String label = null;
+		int dirType;
+		CursorLoader nameCurLoader;
+		ArrayList<TipoValorDTO> nuevasDirs = new ArrayList<>();
+
+		//	String[] projectionPhone = ConstantsAdmin.projectionPhone;
+		//DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		nameCurLoader = ConstantsAdmin.cursorDirsPersona;
+		nameCurLoader.setSelection(ConstantsAdmin.querySelectionDirsContactsById + contactId);
+		nameCurLoader.reset();
+		Cursor dirs = nameCurLoader.loadInBackground();
+		//    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
+		if (dirs != null) {
+//  	        super.startManagingCursor(phones);
+			while (dirs.moveToNext()) {
+				dir = dirs.getString(dirs.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.STREET));
+				dirType = dirs.getInt(dirs.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.TYPE));
+				int lblIndex = dirs.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.LABEL);
+				if (dirType == ContactsContract.CommonDataKinds.Email.TYPE_CUSTOM) {
+					label = dirs.getString(lblIndex);
+				}
+				if (!dir.equals("")) {
+					switch (dirType) {
+						case ContactsContract.CommonDataKinds.StructuredPostal.TYPE_HOME:
+							if (per.getDireccionParticular() == null || per.getDireccionParticular().equals("")) {
+								per.setDireccionParticular(dir);
+							} else {
+								if (!per.getDireccionParticular().equalsIgnoreCase(dir)) {
+									ConstantsAdmin.crearNuevaDireccion(dir, dirType, label, dirs, nuevasDirs, res);
+								}
+							}
+
+							break;
+						case ContactsContract.CommonDataKinds.StructuredPostal.TYPE_WORK:
+							if (per.getDireccionLaboral() == null || per.getDireccionLaboral().equals("")) {
+								per.setDireccionLaboral(dir);
+							} else {
+								if (!per.getDireccionLaboral().equalsIgnoreCase(dir)) {
+									ConstantsAdmin.crearNuevaDireccion(dir, dirType, label, dirs, nuevasDirs, res);
+								}
+							}
+							break;
+
+						default:
+							ConstantsAdmin.crearNuevaDireccion(dir, dirType, label, dirs, nuevasDirs, res);
+							//	per.set(phoneNumber);
+							break;
+					}
+
+				}
+			}
+			dirs.close();
+//	        this.stopManagingCursor(phones);
+		}
+		return nuevasDirs;
+
+
+	}
+
 
 }

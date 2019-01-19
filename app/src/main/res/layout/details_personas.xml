@@ -26,10 +26,10 @@
 			android:contentDescription="imagenPreferido"
 			android:layout_marginLeft="40dp" />
 
-		<ImageButton android:id="@+id/imagenPhoto"
+		<ImageButton android:id="@+id/importarContacto"
 			android:layout_height="22dp" android:layout_width="31dp"
-			android:layout_marginStart="40dp" android:background="@drawable/camera_icon"
-			android:contentDescription="imagenPhoto"
+			android:layout_marginStart="40dp" android:background="@drawable/expandir_icon"
+			android:contentDescription="importContact"
 			android:layout_marginLeft="40dp" />
 
 

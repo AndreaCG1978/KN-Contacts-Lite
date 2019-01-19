@@ -98,6 +98,7 @@ public class InitActivity extends Activity {
     	ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
     	ConstantsAdmin.actualizarTablaContrasenia(mDBManager);
     	ConstantsAdmin.cargarContrasenia(this, mDBManager);
+    	ConstantsAdmin.actualizarTablaPersona( mDBManager);
     	ConstantsAdmin.finalizarBD(mDBManager);
 		
 	}
