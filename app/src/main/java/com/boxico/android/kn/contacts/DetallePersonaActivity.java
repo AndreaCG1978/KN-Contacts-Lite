@@ -2,6 +2,8 @@ package com.boxico.android.kn.contacts;
 
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +15,7 @@ import java.util.Locale;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +30,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -62,6 +66,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	private static final String TIPO = "TIPO";
 
 	private int mPersonaSeleccionadaId = -1;
+    private String mPersonaSeleccionadaIdAgenda = null;
 	private static DetallePersonaActivity me = null;
 	private TextView mFechaNacimiento = null;
 	private TextView mApellido = null;
@@ -102,6 +107,11 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 	private final int PERSONAS_CURSOR = 1;
 	private final int PREFERIDO_CURSOR = 2;
+    private final int PERSONA_EXTRA_ID_CURSOR = 3;
+    private final int PERSONA_EMAIL_CURSOR = 4;
+    private final int PERSONA_PHONE_CURSOR = 5;
+    private final int PERSONA_DIR_CURSOR = 6;
+
 
 
 	public DetallePersonaActivity() {
@@ -124,7 +134,12 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	private void cargarLoaders() {
 		this.getSupportLoaderManager().initLoader(PERSONAS_CURSOR, null, this);
 		this.getSupportLoaderManager().initLoader(PREFERIDO_CURSOR, null, this);
-	}
+        this.getSupportLoaderManager().initLoader(PERSONA_EXTRA_ID_CURSOR, null, this);
+        this.getSupportLoaderManager().initLoader(PERSONA_EMAIL_CURSOR, null, this);
+        this.getSupportLoaderManager().initLoader(PERSONA_PHONE_CURSOR, null, this);
+        this.getSupportLoaderManager().initLoader(PERSONA_DIR_CURSOR, null, this);
+
+    }
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -142,7 +157,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		this.configurarMostrarMails();
 		this.configurarMostrarDirecciones();
 		this.configurarSeleccionarPreferido();
-		this.configurarSacarPhoto();
+		this.configurarImportarContacto();
 		this.configurarBorrarPhoto();
 		this.compruebaCuandoConecta();
 		this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_detallePersona));
@@ -636,6 +651,13 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 				}
 
+				String idPerAgenda = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_ID_PERSONA_AGENDA));
+				if(idPerAgenda == null || idPerAgenda.equals("")){
+				    importarContacto.setVisibility(View.GONE);
+                }else{
+				    mPersonaSeleccionadaIdAgenda = idPerAgenda;
+				    importarContacto.setVisibility(View.VISIBLE);
+                }
 
 				this.actualizarView(mCategoria, null, tempCategoria);
 				this.actualizarPreferido();
@@ -944,11 +966,26 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		}
 	}
 	
-	private void configurarSacarPhoto(){
+	private void configurarImportarContacto(){
 		if(importarContacto != null){
 			importarContacto.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
-	            	importarContacto();
+
+					AlertDialog.Builder builder = new AlertDialog.Builder(me);
+					builder.setMessage(getResources().getString(R.string.mensaje_importando_contactos))
+							.setCancelable(false)
+							.setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									importarContacto();
+									populateFields();
+								}
+							})
+							.setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									dialog.cancel();
+								}
+							});
+					builder.show();
 
 	            }
 	        });
@@ -974,9 +1011,69 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	}
 
 	private boolean importarContacto(){
-		boolean ok = true;
-		//PersonaDTO perTemp = ConstantsAdmin.obtenerPersonaConNombreYApellido(mNombres.getText().toString(), mApellido.getText().toString(), this);
+		boolean ok = false;
 
+        Cursor nameCur;
+        CursorLoader nameCurLoader;
+
+        String given = null;
+        String family = null;
+		Bitmap foto = null;
+
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+
+		PersonaDTO perTemp = ConstantsAdmin.obtenerPersonaId(this, mPersonaSeleccionadaId, mDBManager);
+
+		// SE ACTUALIZAN LOS DATOS BASICOS (APELLIDO Y NOMBRE)
+        nameCurLoader = ConstantsAdmin.cursorPersonaExtra;
+        nameCurLoader.setSelection(ConstantsAdmin.querySelectionContactsById + mPersonaSeleccionadaIdAgenda);
+        nameCurLoader.reset();
+        nameCur = nameCurLoader.loadInBackground();
+
+
+        if (nameCur != null) {
+            if (nameCur.moveToNext()) {
+                given = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
+                family = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
+            }
+            nameCur.close();
+            perTemp.setApellido(family);
+            perTemp.setNombres(given);
+			if (perTemp.getNombres() != null && (perTemp.getApellido() == null || perTemp.getApellido().equals(""))) {
+				perTemp.setApellido(perTemp.getNombres());
+				perTemp.setNombres(null);
+			}
+        }
+
+		// OBTENGO LOS TELEFONOS, EMAILS Y DIRECCIONES DE LA AGENDA
+
+		ArrayList<TipoValorDTO> nuevosTelefonos = ConstantsAdmin.importarTelDeContacto(perTemp, mPersonaSeleccionadaIdAgenda, this.getResources());
+		ArrayList<TipoValorDTO> nuevosMails = ConstantsAdmin.importarMailDeContacto(perTemp, mPersonaSeleccionadaIdAgenda, this.getResources());
+		ArrayList<TipoValorDTO> nuevasDirecciones = ConstantsAdmin.importarDirDeContacto(perTemp, mPersonaSeleccionadaIdAgenda, this.getResources());
+
+		ConstantsAdmin.inicializarBD(mDBManager);
+
+		long idP = mDBManager.createPersona(perTemp, false);
+		if (idP != -1) {
+			InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.getContentResolver(),
+					ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(mPersonaSeleccionadaIdAgenda)));
+			if (inputStream != null) {
+				foto = BitmapFactory.decodeStream(inputStream);
+			}
+			if(foto != null) {
+				try {
+					ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(idP) + ".jpg", foto);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			ConstantsAdmin.crearTelefonos(nuevosTelefonos, idP, mDBManager);
+			ConstantsAdmin.crearEmails(nuevosMails, idP, mDBManager);
+			ConstantsAdmin.crearDirecciones(nuevasDirecciones, idP, mDBManager);
+			ok = true;
+
+		}
+		ConstantsAdmin.finalizarBD(mDBManager);
 		return ok;
 	}
 	
@@ -1150,6 +1247,23 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
                 cl = mDBManager.cursorLoaderPreferidos(ConstantsAdmin.categoriasProtegidas, this);
                 //ConstantsAdmin.cursorCategoriasPersonales = cl;
                 break; // optional
+            case PERSONA_EXTRA_ID_CURSOR:
+                cl = mDBManager.cursorLoaderPersonaExtraId("0", this, getContentResolver());
+                ConstantsAdmin.cursorPersonaExtra = cl;
+                break;
+            case PERSONA_EMAIL_CURSOR:
+                cl = mDBManager.cursorLoaderEmailPersona("0", this, getContentResolver());
+                ConstantsAdmin.cursorEmailPersona = cl;
+                break; // optional
+            case PERSONA_DIR_CURSOR:
+                cl = mDBManager.cursorLoaderDirPersona("0", this, getContentResolver());
+                ConstantsAdmin.cursorDirsPersona = cl;
+                break;
+            case PERSONA_PHONE_CURSOR:
+                cl = mDBManager.cursorLoaderPhonePersona("0", this, getContentResolver());
+                ConstantsAdmin.cursorPhonePersona = cl;
+                break; // optional
+
 
             default : // Optional
                 // Statements

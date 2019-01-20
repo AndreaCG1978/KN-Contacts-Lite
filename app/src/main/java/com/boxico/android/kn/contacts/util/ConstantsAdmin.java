@@ -1213,6 +1213,12 @@ public class ConstantsAdmin {
 			if(!temp.equals(CAMPO_NULO)){
 				per.setDescripcion(temp);
 			}
+			i++;
+			temp = campos[i];
+			if(!temp.equals(CAMPO_NULO)){
+				per.setIdPersonaAgenda(temp);
+			}
+
 
 			String fotoString = null;
 			i++;
@@ -1638,6 +1644,12 @@ public class ConstantsAdmin {
 
 		if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
 			result.append(per.getDescripcion()).append(PUNTO_COMA);
+		}else{
+			result.append(CAMPO_NULO).append(PUNTO_COMA);
+		}
+
+		if(per.getIdPersonaAgenda() != null && !per.getIdPersonaAgenda().equals("")){
+			result.append(per.getIdPersonaAgenda()).append(PUNTO_COMA);
 		}else{
 			result.append(CAMPO_NULO).append(PUNTO_COMA);
 		}
@@ -2931,7 +2943,7 @@ public class ConstantsAdmin {
 				dir = dirs.getString(dirs.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.STREET));
 				dirType = dirs.getInt(dirs.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.TYPE));
 				int lblIndex = dirs.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.LABEL);
-				if (dirType == ContactsContract.CommonDataKinds.Email.TYPE_CUSTOM) {
+				if (dirType == ContactsContract.CommonDataKinds.StructuredPostal.TYPE_CUSTOM) {
 					label = dirs.getString(lblIndex);
 				}
 				if (!dir.equals("")) {
