@@ -1,4 +1,4 @@
-#Sun Jan 20 09:56:05 ART 2019
+#Sun Jan 20 10:24:11 ART 2019
 base.0=/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

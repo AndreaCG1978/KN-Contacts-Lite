@@ -978,6 +978,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 								public void onClick(DialogInterface dialog, int id) {
 									importarContacto();
 									populateFields();
+									mostrarFoto();
 								}
 							})
 							.setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
@@ -1082,10 +1083,10 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		boolean puede = (Boolean)asoc.getKey();
 		String msg = (String) asoc.getValue();
 		if(puede){
-	       	File file = new File(ConstantsAdmin.obtenerPathImagen() + String.valueOf(mPersonaSeleccionadaId) + ".jpg");
+	       	File file = new File(ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(mPersonaSeleccionadaId) + ".jpg");
 	       	if(file.exists()){
 	       		file.delete();
-	       	}			
+	       	}
 		}else{
 			ConstantsAdmin.mostrarMensajeDialog(this, msg);
 		}
