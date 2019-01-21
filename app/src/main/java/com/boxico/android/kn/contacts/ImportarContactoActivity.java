@@ -257,10 +257,10 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 						}
 						persona.setApellido(family);
 						persona.setNombres(given);
-						if (persona.getNombres() != null && (persona.getApellido() == null || persona.getApellido().equals(""))) {
+					/*	if (persona.getNombres() != null && (persona.getApellido() == null || persona.getApellido().equals(""))) {
 							persona.setApellido(persona.getNombres());
 							persona.setNombres(null);
-						}
+						}*/
 						encontrado = true;
 						mTelsPersonaEncontrada.setText("");
 						mMailsPersonaEncontrada.setText("");
@@ -321,10 +321,10 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 						}
 						persona.setApellido(family);
 						persona.setNombres(given);
-						if (persona.getNombres() != null && (persona.getApellido() == null || persona.getApellido().equals(""))) {
+					/*	if (persona.getNombres() != null && (persona.getApellido() == null || persona.getApellido().equals(""))) {
 							persona.setApellido(persona.getNombres());
 							persona.setNombres(null);
-						}
+						}*/
 						encontrado = true;
 						mTelsPersonaEncontrada.setText("");
 						mMailsPersonaEncontrada.setText("");
@@ -355,13 +355,16 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		String text = "";
 		if (persona != null) {
 			mPersonaEncontrada.setText("");
-
-			if (persona.getNombres() != null && !persona.getNombres().equals("")) {
-				//mPersonaEncontrada.setText(persona.getApellido() + ", " + persona.getNombres());
-				text = persona.getApellido() + ", " + persona.getNombres();
-			} else {
-				text = persona.getApellido();
-				//mPersonaEncontrada.setText(persona.getApellido());
+			if(persona.getApellido() != null && !persona.getApellido().equals("")){
+				if (persona.getNombres() != null && !persona.getNombres().equals("")) {
+					//mPersonaEncontrada.setText(persona.getApellido() + ", " + persona.getNombres());
+					text = persona.getApellido() + ", " + persona.getNombres();
+				} else {
+					text = persona.getApellido();
+					//mPersonaEncontrada.setText(persona.getApellido());
+				}
+			}else{
+				text = persona.getNombres();
 			}
 
 			if (persona.getId() == -1) {
@@ -647,10 +650,10 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 					}
 					persona.setApellido(family);
 					persona.setNombres(given);
-					if (persona.getNombres() != null && persona.getApellido() == null) {
+				/*	if (persona.getNombres() != null && persona.getApellido() == null) {
 						persona.setApellido(persona.getNombres());
 						persona.setNombres(null);
-					}
+					}*/
 
 					this.obtenerContactoCapturado(true);
 					long idPersona = mDBManager.createPersona(persona, false);

@@ -45,9 +45,13 @@ public class MenuPersonaActivity extends Activity {
 		PersonaDTO per;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		per = ConstantsAdmin.obtenerPersonaId(this, mPersonaSeleccionadaId, mDBManager);
-    	String nombre = per.getApellido() + " ";
+		String nombre = "";
+		if(per.getApellido() != null){
+			nombre = per.getApellido() + ", ";
+		}
+
     	if(per.getNombres() != null && !per.getNombres().equals("")){
-    		nombre = nombre + ", " + per.getNombres();	
+    		nombre = nombre + per.getNombres();
     	}
 		dialog.setTitle(nombre);
 		Button btn = dialog.findViewById(R.id.buttonVerPersona);

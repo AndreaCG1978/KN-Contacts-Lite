@@ -540,7 +540,9 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				prefCursor.close();
 				//stopManagingCursor(prefCursor);
 				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_APELLIDO));
-				mApellido.setText(temp.toUpperCase());
+				if(temp != null){
+					mApellido.setText(temp.toUpperCase());
+				}
 				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_NOMBRES));
 				if (temp != null && !temp.equals("")) {
 					mNombres.setText(temp);
@@ -1036,14 +1038,15 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
             if (nameCur.moveToNext()) {
                 given = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
                 family = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
+				perTemp.setApellido(family);
+				perTemp.setNombres(given);
             }
             nameCur.close();
-            perTemp.setApellido(family);
-            perTemp.setNombres(given);
-			if (perTemp.getNombres() != null && (perTemp.getApellido() == null || perTemp.getApellido().equals(""))) {
+
+	/*		if (perTemp.getNombres() != null && (perTemp.getApellido() == null || perTemp.getApellido().equals(""))) {
 				perTemp.setApellido(perTemp.getNombres());
 				perTemp.setNombres(null);
-			}
+			}*/
         }
 
 		// OBTENGO LOS TELEFONOS, EMAILS Y DIRECCIONES DE LA AGENDA

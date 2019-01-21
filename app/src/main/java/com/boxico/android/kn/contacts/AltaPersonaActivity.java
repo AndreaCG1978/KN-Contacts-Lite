@@ -688,7 +688,10 @@ public class AltaPersonaActivity extends Activity  {
 			this.cargarPersonaDto(idPerString);
 			this.cargarEntriesConPersonaDto();
 			mNombContact.setVisibility(View.VISIBLE);
-			String nombC = mPersonaSeleccionada.getApellido().toUpperCase();
+			String nombC = null;
+			if(mPersonaSeleccionada.getApellido() != null){
+                nombC = mPersonaSeleccionada.getApellido().toUpperCase();
+            }
 			if(mPersonaSeleccionada.getNombres() != null){
 				nombC = nombC + " " + mPersonaSeleccionada.getNombres();
 			}
@@ -757,7 +760,8 @@ public class AltaPersonaActivity extends Activity  {
 	private boolean validarEntradaDeDatos(){
 		boolean estaOk;
 		String apellidoText = mEntryApellido.getText().toString();
-		estaOk = !apellidoText.equals("");
+		String nombreText = mEntryNombre.getText().toString();
+		estaOk = !apellidoText.equals("") || !nombreText.equals("");
 		return estaOk;
 	}
 	
@@ -806,8 +810,13 @@ public class AltaPersonaActivity extends Activity  {
 			mCategoriaSeleccionada = null;
 			mPersonaSeleccionada.setId(idPer);
 			mNombContact.setVisibility(View.VISIBLE);
+			if(mPersonaSeleccionada.getApellido() != null){
+                mNombContact.setText(mPersonaSeleccionada.getApellido().toUpperCase() + getString(R.string.blank) + mPersonaSeleccionada.getNombres());
+            }else{
+                mNombContact.setText(mPersonaSeleccionada.getNombres());
+            }
 
-			mNombContact.setText(mPersonaSeleccionada.getApellido().toUpperCase() + getString(R.string.blank) + mPersonaSeleccionada.getNombres());
+
 			//mNombContact.setText(mPersonaSeleccionada.getApellido().toUpperCase() + " " + mPersonaSeleccionada.getNombres());
 			ConstantsAdmin.resetPersonasOrganizadas();
 		} catch (Exception e) {

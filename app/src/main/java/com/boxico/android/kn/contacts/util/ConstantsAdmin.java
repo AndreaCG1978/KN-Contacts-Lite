@@ -185,7 +185,7 @@ public class ConstantsAdmin {
 			per = it.next();
 
 			// ORGANIZO ALFABETICAMENTE
-			if(!per.getApellido().equals("")){
+			if(per.getApellido() != null && !per.getApellido().equals("")){
 				primeraLetra = per.getApellido().substring(0, 1).toUpperCase();
 			}else{
 				primeraLetra = "";
@@ -1548,7 +1548,14 @@ public class ConstantsAdmin {
 
 		// DATOS PERSONALES
 
-		result.append(HEAD_PERSONA).append(PUNTO_COMA).append(per.getId()).append(PUNTO_COMA).append(per.getApellido()).append(PUNTO_COMA);
+		//result.append(HEAD_PERSONA).append(PUNTO_COMA).append(per.getId()).append(PUNTO_COMA).append(per.getApellido()).append(PUNTO_COMA);
+
+		if(per.getApellido() != null && !per.getApellido().equals("")){
+			result.append(per.getApellido()).append(PUNTO_COMA);
+		}else{
+			result.append(CAMPO_NULO).append(PUNTO_COMA);
+		}
+
 		if(per.getNombres() != null && !per.getNombres().equals("")){
 			result.append(per.getNombres()).append(PUNTO_COMA);
 		}else{
@@ -1697,7 +1704,14 @@ public class ConstantsAdmin {
 
 		// DATOS PERSONALES
 
-		result.append(per.getApellido()).append(separador);
+		//result.append(per.getApellido()).append(separador);
+
+		if(per.getApellido() != null && !per.getApellido().equals("")){
+			result.append(per.getApellido()).append(separador);
+		}else{
+			result.append(separador);
+		}
+
 		if(per.getNombres() != null && !per.getNombres().equals("")){
 			result.append(per.getNombres()).append(separador);
 		}else{

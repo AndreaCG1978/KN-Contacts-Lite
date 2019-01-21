@@ -406,8 +406,17 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				per = itPers.next();
 				curChildMap = new HashMap<>();
 				children.add(curChildMap);
-				curChildMap.put(APELLIDO, per.getApellido());
-				curChildMap.put(NOMBRE, per.getNombres());
+				if(per.getApellido() != null) {
+					curChildMap.put(APELLIDO, per.getApellido());
+				}else{
+					curChildMap.put(APELLIDO, "");
+				}
+				if(per.getNombres() != null) {
+					curChildMap.put(NOMBRE, per.getNombres());
+				}else{
+					curChildMap.put(NOMBRE, "");
+				}
+				//curChildMap.put(NOMBRE, per.getNombres());
 				cantidadTotal++;
 			}
 
@@ -506,10 +515,17 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 								}
 
 								//      ImageView photo = v.findViewById(R.id.photo);
-								textApe.setText(per.getApellido().toUpperCase());
+								if(per.getApellido() != null){
+									textApe.setText(per.getApellido().toUpperCase());
+								}else{
+									textApe.setText("");
+								}
 
-
-
+								if(per.getNombres() != null){
+									textNom.setText(per.getNombres().toUpperCase());
+								}else{
+									textNom.setText("");
+								}
 								final int gp = groupPosition;
 								final int cp = childPosition;
 
@@ -1030,8 +1046,13 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 			PersonaDTO per = ConstantsAdmin.obtenerPersonaId(this, mPersonaSelect, mDBManager);
 			String contacto = per.getApellido();
+			if(contacto == null){
+				contacto = "";
+			}else{
+				contacto = contacto + ", " ;
+			}
 			if(per.getNombres() != null && !per.getNombres().equals("")){
-				contacto = contacto + ", " + per.getNombres();
+				contacto = contacto + per.getNombres();
 			}
 			contacto = contacto + ": ";
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
