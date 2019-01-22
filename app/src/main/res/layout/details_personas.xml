@@ -59,7 +59,7 @@
 
 		<TextView android:id="@+id/detalle_apellido"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:textSize="23sp" android:textStyle="bold" android:textColor="@color/color_gris_oscuro"
+			android:textSize="18sp" android:textStyle="bold" android:textColor="@color/color_gris_oscuro"
 			android:paddingStart="15dp" android:paddingEnd="15dp"
 			android:paddingTop="3dp"
 			android:typeface="monospace"
@@ -68,7 +68,7 @@
 
 		<TextView android:id="@+id/detalle_nombres"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:textColor="@color/color_gris_oscuro" android:textSize="17sp"
+			android:textColor="@color/color_gris_oscuro" android:textSize="15sp"
 			android:typeface="monospace"
 			android:singleLine="true" android:maxLength="30" android:paddingStart="15dp"
 			android:paddingEnd="15dp" android:paddingTop="1dp" android:paddingBottom="2dp" android:gravity="center"

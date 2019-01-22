@@ -116,7 +116,7 @@ public class ConstantsAdmin {
 		if(nombre != null && apellido != null && !"".equals(nombre) && !"".equals(apellido)){
 			selection = "TRIM(UPPER(" + column1 + ")) = TRIM(UPPER('" + nombre + "')) AND TRIM(UPPER(" + column2 +")) = TRIM(UPPER('" + apellido + "'))";
 		}else  if(nombre != null && !"".equals(nombre)){
-			selection = "TRIM(UPPER(" + column2 + ")) = TRIM(UPPER('" + nombre + "')) AND ((" + column1 + " IS NULL) OR (" + column1 + " = '' ))";
+			selection = "TRIM(UPPER(" + column1 + ")) = TRIM(UPPER('" + nombre + "')) AND ((" + column2 + " IS NULL) OR (" + column2 + " = '' ))";
 		}else  if(apellido != null && !"".equals(apellido)){
 			selection = "TRIM(UPPER(" + column2 +")) = TRIM(UPPER('" + apellido + "')) AND ((" + column1 + " IS NULL) OR (" + column1 + " = '' ))";
 		}

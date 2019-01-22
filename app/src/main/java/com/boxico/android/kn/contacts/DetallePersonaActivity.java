@@ -162,7 +162,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		this.compruebaCuandoConecta();
 		this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_detallePersona));
 		mPersonaSeleccionadaId = Integer.valueOf((String) intent.getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
-		this.mostrarFoto();
+	//	this.mostrarFoto();
 	}
 
 	private void compruebaCuandoConecta() {
@@ -979,8 +979,8 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 							.setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog, int id) {
 									importarContacto();
-									populateFields();
-									mostrarFoto();
+									resetearVista();
+
 								}
 							})
 							.setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
@@ -1222,17 +1222,22 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
         	ConstantsAdmin.cerrarMainActivity = true;
         }else{
 	     //   this.resetAllMyCursors();
-	        this.limpiarDatos();
-	        this.populateFields();
-	        if(!mMostrarDirecciones && !mMostrarEmails && !mMostrarTelefonos){
-	            mMostrarDirecciones = false;
-	            mMostrarEmails = false;
-	            mMostrarTelefonos = true;
-	        }
-	        this.mostrarUOcultarDirecciones();
-	        this.mostrarUOcultarEmails();
-	        this.mostrarUOcultarTelefonos();
+            this.resetearVista();
         }
+    }
+
+    private void resetearVista(){
+        this.limpiarDatos();
+        this.populateFields();
+        if(!mMostrarDirecciones && !mMostrarEmails && !mMostrarTelefonos){
+            mMostrarDirecciones = false;
+            mMostrarEmails = false;
+            mMostrarTelefonos = true;
+        }
+        this.mostrarUOcultarDirecciones();
+        this.mostrarUOcultarEmails();
+        this.mostrarUOcultarTelefonos();
+        this.mostrarFoto();
     }
 
 
