@@ -1,21 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<ScrollView android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@color/color_gris_oscuro"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	>
 
 	<TextView
 		android:id="@+id/textPersonaEncontrada"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:textSize="14sp"
+		android:textSize="16sp"
 		android:background="@drawable/custom_text_view_categoria"
 		android:textColor="@color/color_azul_oscuro"
-		android:layout_marginBottom="1dp"
+		android:layout_marginBottom="3dp"
 		android:layout_marginTop="6dp"
 		android:padding="2dp"
 		android:gravity="center"
 		/>
+
+	<View android:id="@+id/linea3" android:layout_width="wrap_content"
+		android:layout_height="1px" android:layout_marginBottom="3dp"
+		android:layout_marginTop="6dp" android:background="@color/color_azul" />
+
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:gravity="center">
+
+
+		<Button android:id="@+id/botonPrevContact" android:text="@string/label_anterior"
+			android:layout_width="wrap_content" android:layout_height="30dp"
+			android:layout_margin="3dp" android:textSize="14sp"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
+			android:layout_gravity="center" />
+
+		<Button android:id="@+id/botonSkipContact" android:text="@string/label_siguiente"
+			android:layout_width="wrap_content" android:layout_height="30dp"
+			android:layout_margin="3dp" android:textSize="14sp"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
+			android:layout_gravity="center" />
+
+
+
+
+	</LinearLayout>
+
+	<View android:id="@+id/linea2" android:layout_width="wrap_content"
+		android:layout_height="1px" android:layout_marginBottom="3dp"
+		android:layout_marginTop="3dp" android:background="@color/color_azul" />
+
+
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:gravity="center">
+
+		<Button android:id="@+id/botonAddContact" android:layout_width="wrap_content"
+			android:layout_height="30dp" android:layout_margin="5dp"
+			android:textSize="12sp" android:textColor="@color/color_azul"
+			android:background="@drawable/custom_button" android:layout_gravity="center" />
+
+		<Button android:id="@+id/botonAddAll" android:text="@string/label_agregar_todos"
+			android:layout_width="wrap_content" android:layout_height="30dp"
+			android:layout_margin="5dp" android:textSize="11sp"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
+			android:layout_gravity="center" />
+
+
+		<Button android:id="@+id/botonSkipAll" android:text="@string/label_omitir_todos"
+			android:layout_width="wrap_content" android:layout_height="30dp"
+			android:layout_margin="5dp" android:textSize="11sp"
+			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
+			android:layout_gravity="center" />
+
+	</LinearLayout>
+
+
+	<View
+		android:layout_width="wrap_content"
+		android:layout_height="1px" android:layout_marginBottom="6dp"
+		android:layout_marginTop="6dp" android:background="@color/color_azul" />
+
+
 
 	<TextView
 		android:id="@+id/textTelsPersonaEncontrada"
@@ -62,7 +130,7 @@
 
 		<Spinner android:id="@+id/spinnerCategorias_alta_persona"
             android:layout_width="wrap_content"
-			android:layout_height="38dp" android:layout_marginStart="5dp"
+			android:layout_height="30dp" android:layout_marginStart="5dp"
 			android:background="@drawable/custom_button"
 			android:layout_marginLeft="5dp" />
 
@@ -77,19 +145,19 @@
 
 	<LinearLayout android:id="@+id/linearCaracteristica"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:orientation="horizontal" android:layout_margin="5dp"
+		android:orientation="horizontal" android:layout_margin="4dp"
 		>
 
 		<TextView android:id="@+id/label_datoExtra"
 			android:layout_width="130dp" android:layout_height="wrap_content"
-			android:textSize="13sp" android:padding="8dp" android:gravity="end"
+			android:textSize="13sp" android:padding="5dp" android:gravity="end"
 			android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" />
 
 		<EditText android:id="@+id/entryDatoExtra" android:inputType="textCapWords"
-			android:layout_height="35dp" android:textStyle="bold"
-			android:textColor="@color/color_azul_oscuro" 
-			android:padding="5dp" android:textSize="14sp"
+			android:layout_height="30dp" android:textStyle="bold"
+			android:textColor="@color/color_gris_claro"
+			android:padding="5dp" android:textSize="15sp"
 			android:layout_marginStart="3dp" android:layout_marginEnd="4dp"
 			android:layout_width="fill_parent" android:maxLength="30"
 			android:importantForAutofill="no"
@@ -100,20 +168,20 @@
 
 	<LinearLayout
         android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:orientation="horizontal" android:layout_margin="5dp"
+		android:orientation="horizontal" android:layout_margin="4dp"
 		>
 
 		<TextView android:id="@+id/label_descripcion" android:text="@string/hint_descripcion"
 			android:layout_width="130dp" android:layout_height="wrap_content"
-			android:textSize="13sp" android:padding="8dp" android:gravity="end"
+			android:textSize="13sp" android:padding="5dp" android:gravity="end"
 			android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" />
 
 		<EditText android:id="@+id/entryDescripcion" android:hint="@string/hint_descripcion"
-			android:inputType="textCapWords" android:layout_height="35dp"
-			android:textStyle="bold" android:textColor="@color/color_azul_oscuro"
+			android:inputType="textCapWords" android:layout_height="30dp"
+			android:textStyle="bold" android:textColor="@color/color_gris_claro"
 			android:padding="5dp"
-			android:textSize="14sp" android:layout_marginStart="3dp"
+			android:textSize="15sp" android:layout_marginStart="3dp"
 			android:layout_marginEnd="4dp" android:layout_width="fill_parent"
 			android:maxLength="40"
 			android:importantForAutofill="no"
@@ -123,58 +191,8 @@
 
 
 
-	<View
-        android:layout_width="wrap_content"
-		android:layout_height="1px" android:layout_marginBottom="6dp"
-		android:layout_marginTop="6dp" android:background="@color/color_azul" />
 
-	<LinearLayout android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:orientation="horizontal"
-		android:gravity="center">
-
-
-		<Button android:id="@+id/botonPrevContact" android:text="@string/label_anterior"
-			android:layout_width="wrap_content" android:layout_height="35dp"
-			android:layout_margin="5dp" android:textSize="12sp"
-			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-			android:layout_gravity="center" style="?android:buttonBarButtonStyle"/>
-
-		<Button android:id="@+id/botonSkipContact" android:text="@string/label_siguiente"
-			android:layout_width="wrap_content" android:layout_height="35dp"
-			android:layout_margin="5dp" android:textSize="12sp"
-			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-			android:layout_gravity="center" style="?android:buttonBarButtonStyle"/>
-
-		<Button android:id="@+id/botonAddContact" android:layout_width="wrap_content"
-			android:layout_height="35dp" android:layout_margin="5dp"
-			android:textSize="12sp" android:textColor="@color/color_azul"
-			android:background="@drawable/custom_button" android:layout_gravity="center" style="?android:buttonBarButtonStyle"/>
-
-
-	</LinearLayout>
-
-	<View android:id="@+id/linea2" android:layout_width="wrap_content"
-		android:layout_height="1px" android:layout_marginBottom="6dp"
-		android:layout_marginTop="6dp" android:background="@color/color_azul" />
-
-
-	<LinearLayout android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:orientation="horizontal"
-		android:gravity="center">
-
-		<Button android:id="@+id/botonAddAll" android:text="@string/label_agregar_todos"
-			android:layout_width="wrap_content" android:layout_height="35dp"
-			android:layout_margin="10dp" android:textSize="12sp"
-			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-			android:layout_gravity="center" style="?android:buttonBarButtonStyle"/>
-
-
-		<Button android:id="@+id/botonSkipAll" android:text="@string/label_omitir_todos"
-			android:layout_width="wrap_content" android:layout_height="35dp"
-			android:layout_margin="10dp" android:textSize="12sp"
-			android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-			android:layout_gravity="center" style="?android:buttonBarButtonStyle"/>
-
-	</LinearLayout>
 
 </LinearLayout>
+
+</ScrollView>

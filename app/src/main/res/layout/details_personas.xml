@@ -40,7 +40,7 @@
 
 	<View android:id="@+id/linea1" android:layout_below="@id/botonera"
 		android:layout_width="wrap_content" android:layout_height="1px"
-		android:layout_marginTop="15dp" android:layout_marginBottom="1dp"
+		android:layout_marginTop="8dp" android:layout_marginBottom="1dp"
 		android:background="@color/color_gris_claro" />
 
 	<ImageView android:id="@+id/photo" android:layout_height="80dp"
@@ -91,7 +91,7 @@
 		android:gravity="center"
 		android:layout_marginBottom="5dp" android:background="@drawable/custom_text_view_categoria"
 		android:layout_below="@id/detalle_categoria"
-		android:layout_marginTop="5dp"
+		android:layout_marginTop="1dp"
 		android:paddingTop="3dp"
 		android:paddingBottom="3dp"
 		>
@@ -117,13 +117,13 @@
 
 	<View android:id="@+id/linea2" android:layout_below="@id/cumple"
 		android:layout_width="wrap_content" android:layout_height="1px"
-		android:layout_marginTop="2dp" android:layout_marginBottom="6dp"
+		android:layout_marginTop="7dp" android:layout_marginBottom="6dp"
 		android:background="@color/color_gris_claro" />
 
 	<LinearLayout android:id="@+id/menu" android:orientation="horizontal"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:gravity="center" android:layout_below="@id/linea2"
-		android:layout_marginTop="25dp" android:layout_marginBottom="15dp">
+		android:layout_marginTop="10dp" android:layout_marginBottom="15dp">
 
 		<TextView android:id="@+id/label_telefonos"
 			android:nextFocusUp="@+id/buttonIrAEditarPersona"
@@ -131,6 +131,7 @@
 			android:layout_width="100dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:paddingBottom="6dp"
 			android:paddingTop="6dp" android:focusable="true" android:gravity="center"
+
 			/>
 
 		<TextView android:id="@+id/label_emails" android:nextFocusUp="@+id/buttonIrAEditarPersona"
@@ -139,7 +140,7 @@
 			android:textSize="13sp" android:paddingBottom="6dp"
 			android:paddingTop="6dp" android:layout_marginStart="5dp"
 			android:focusable="true" android:gravity="center"
-			android:layout_marginLeft="25dp" />
+			android:layout_marginLeft="27dp" />
 
 		<TextView android:id="@+id/label_direcciones"
 			android:nextFocusUp="@+id/buttonIrAEditarPersona"
@@ -148,7 +149,7 @@
 			android:textSize="13sp" android:paddingBottom="6dp"
 			android:paddingTop="6dp" android:layout_marginStart="5dp"
 			android:focusable="true" android:gravity="center"
-			android:layout_marginLeft="25dp" />
+			android:layout_marginLeft="27dp" />
 
 	</LinearLayout>
 

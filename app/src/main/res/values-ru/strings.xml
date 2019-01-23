@@ -191,8 +191,8 @@
 <string name="label_actualizar"><![CDATA[ОБНОВИТЬ]]></string>
 <string name="mensaje_importar_todo_1"><![CDATA[Все новые контакты будут импортированы в качестве:]]></string>
 <string name="mensaje_importar_todo_2"><![CDATA[. Существующие контакты будут обновляться (только свои телефоны и почтовые аккаунты). Продолжить?]]></string>
-<string name="label_anterior"><![CDATA[ПРЕДЫДУЩАЯ]]></string>
-<string name="label_siguiente"><![CDATA[СЛЕДУЮЩИЙ]]></string>
+<string name="label_anterior"><![CDATA[<<]]></string>
+<string name="label_siguiente"><![CDATA[>>]]></string>
 <string name="label_agregar_todos"><![CDATA[Добавить все]]></string>
 <string name="label_omitir_todos"><![CDATA[Пропустить все]]></string>
 <string name="label_preferidos"><![CDATA[ИЗБРАННОЕ]]></string>

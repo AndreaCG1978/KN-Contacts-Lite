@@ -220,6 +220,7 @@ id line1
 id line3
 id linea1
 id linea2
+id linea3
 id linearApellido
 id linearCaracteristica
 id linearCumple
@@ -314,6 +315,7 @@ layout proteccion_categorias
 layout row_item
 layout row_item_alta
 layout row_personas
+layout spinner_item
 layout splash
 string app_name
 string blank

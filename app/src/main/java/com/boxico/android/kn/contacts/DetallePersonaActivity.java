@@ -387,7 +387,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 	private void mostrarUOcultarTelefonos() {
 		if (!mMostrarTelefonos) {
-			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
+			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_button));
 		//	mTituloTelefonos.setBackgroundDrawable(drwColorDeseleccionado);
 			mTituloTelefonos.setTextColor(colorDeseleccionado);
 			telefonosList.setVisibility(View.GONE);
@@ -403,10 +403,9 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			mTituloTelefonos.setTextColor(colorSeleccionado);
 			mTituloEmails.setTextColor(colorDeseleccionado);
 			mTituloDirecciones.setTextColor(colorDeseleccionado);
-		//	mTituloTelefonos.setBackgroundDrawable(drwColorSeleccionado);
-			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria_desc));
-			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
-			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
+			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_button));
+			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_button));
+			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_button));
 			mMostrarDirecciones = false;
 			mMostrarEmails = false;
 
@@ -417,7 +416,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	private void mostrarUOcultarEmails() {
 		if (!mMostrarEmails) {
 			mailsList.setVisibility(View.GONE);
-			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
+			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_button));
 			mTituloEmails.setTextColor(colorDeseleccionado);
 		} else {
 			mailsList.setVisibility(View.VISIBLE);
@@ -431,9 +430,9 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			mTituloEmails.setTextColor(colorSeleccionado);
 			mTituloDirecciones.setTextColor(colorDeseleccionado);
 			mTituloTelefonos.setTextColor(colorDeseleccionado);
-			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria_desc));
-			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
-			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
+			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_button));
+			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_button));
+			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_button));
 			mMostrarDirecciones = false;
 			mMostrarTelefonos = false;
 
@@ -444,7 +443,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	private void mostrarUOcultarDirecciones() {
 		if (!mMostrarDirecciones) {
 			direccionesList.setVisibility(View.GONE);
-			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
+			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_button));
 			mTituloDirecciones.setTextColor(colorDeseleccionado);
 		} else {
 			direccionesList.setVisibility(View.VISIBLE);
@@ -458,9 +457,9 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			mTituloDirecciones.setTextColor(colorSeleccionado);
 			mTituloEmails.setTextColor(colorDeseleccionado);
 			mTituloTelefonos.setTextColor(colorDeseleccionado);
-			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria_desc));
-			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
-			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_text_view_categoria));
+			mTituloDirecciones.setBackground(getResources().getDrawable(R.drawable.custom_button));
+			mTituloEmails.setBackground(getResources().getDrawable(R.drawable.custom_button));
+			mTituloTelefonos.setBackground(getResources().getDrawable(R.drawable.custom_button));
 			mMostrarEmails = false;
 			mMostrarTelefonos = false;
 		}
@@ -633,7 +632,15 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_FECHA_NACIMIENTO));
 				temp = formatFechaToView(temp);
+
+				View cumple = this.findViewById(R.id.cumple);
 				this.actualizarView(mFechaNacimiento, mFechaNacimientoLabel, temp);
+
+				if(temp == null || temp.equals("")){
+					cumple.setVisibility(View.GONE);
+				}else{
+					cumple.setVisibility(View.VISIBLE);
+				}
 
 				String tempCategoria = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO));
 				String tempDatoExtra = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_DATO_EXTRA));

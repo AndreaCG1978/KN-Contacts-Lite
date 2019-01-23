@@ -788,7 +788,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	private void crearSpinnerCategorias(List<CategoriaDTO> categorias) {
 		Spinner spinner = findViewById(R.id.spinnerCategorias_alta_persona);
-		this.mSpinnerAdapt = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categorias);
+		this.mSpinnerAdapt = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, categorias);
 		this.seleccionarPrimerCategoria();
 		spinner.setAdapter(this.mSpinnerAdapt);
 		OnItemSelectedListener spinnerListener = new seleccionSpinnerListener();

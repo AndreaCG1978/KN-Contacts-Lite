@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@color/color_gris_oscuro">
 
 	<RelativeLayout android:layout_width="fill_parent"
-		android:layout_height="fill_parent">
+		android:layout_height="fill_parent" android:background="@color/color_gris_oscuro">
 
 
 		<TextView android:id="@+id/invisible" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:visibility="invisible"
-			android:textSize="42sp" />
+			android:textSize="55sp" />
 
 		<LinearLayout android:id="@+id/menu_icons"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -26,30 +26,30 @@
 
 			<ImageButton android:id="@+id/menu_icon_phone"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:layout_marginStart="16dp" android:nextFocusRight="@+id/menu_icon_mail"
+				android:layout_marginStart="20dp" android:nextFocusRight="@+id/menu_icon_mail"
                 android:contentDescription="menu_icon_phone"
-				android:layout_marginLeft="16dp" />
+				android:layout_marginLeft="20dp" />
 
 			<ImageButton android:id="@+id/menu_icon_mail"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:layout_marginStart="22dp" android:nextFocusRight="@+id/menu_icon_addres"
+				android:layout_marginStart="26dp" android:nextFocusRight="@+id/menu_icon_addres"
 				android:focusable="true"
                 android:contentDescription="menu_icon_mail"
-				android:layout_marginLeft="22dp" />
+				android:layout_marginLeft="26dp" />
 
 			<ImageButton android:id="@+id/menu_icon_addres"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:layout_marginStart="22dp" android:nextFocusRight="@+id/menu_icon_category"
+				android:layout_marginStart="26dp" android:nextFocusRight="@+id/menu_icon_category"
 				android:focusable="true"
                 android:contentDescription="menu_icon_addres"
-				android:layout_marginLeft="22dp" />
+				android:layout_marginLeft="26dp" />
 
 			<ImageButton android:id="@+id/menu_icon_category"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:layout_marginStart="22dp" android:nextFocusRight="@+id/butttonRegistrarYSalir"
+				android:layout_marginStart="26dp" android:nextFocusRight="@+id/butttonRegistrarYSalir"
 				android:focusable="true"
                 android:contentDescription="menu_icon_category"
-				android:layout_marginLeft="22dp" />
+				android:layout_marginLeft="26dp" />
 
 
 		</LinearLayout>
@@ -61,7 +61,8 @@
 			android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_height="25dp" android:textSize="14sp"
-			android:layout_marginBottom="20dp" android:gravity="center" />
+			android:layout_marginBottom="20dp" android:gravity="center"
+			android:typeface="monospace"/>
 
 		<LinearLayout android:id="@+id/linearApellido"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -71,8 +72,10 @@
 			<TextView android:id="@+id/label_apellido" android:text="@string/hint_apellido"
 				android:layout_width="130dp" android:layout_height="wrap_content"
 				android:textSize="13sp" android:padding="8dp" android:gravity="end"
+				android:typeface="monospace"
 				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_azul_oscuro" />
+				android:textColor="@color/color_azul_oscuro"
+				/>
 
 
 
@@ -98,6 +101,7 @@
 				android:layout_width="130dp" android:textSize="13sp"
 				android:layout_height="wrap_content" android:padding="8dp"
 				android:gravity="end" android:singleLine="true"
+				android:typeface="monospace"
 				android:background="@drawable/custom_text_view_categoria_desc"
 				android:textColor="@color/color_azul_oscuro" />
 
@@ -130,6 +134,7 @@
 				android:nextFocusDown="@+id/butttonRegistrarPersonaFinal"
 				android:layout_width="wrap_content" android:layout_height="30dp"
 				android:textSize="12sp" android:textColor="@color/color_azul"
+				android:typeface="monospace"
 				android:background="@drawable/custom_button"
 				android:layout_marginStart="5dp"
 				android:layout_marginLeft="5dp" />
@@ -140,7 +145,7 @@
 
 		<TextView android:id="@+id/labelDateDisplay"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:textSize="14sp" android:textStyle="bold"
+			android:textSize="14sp" android:textStyle="bold" android:typeface="monospace"
 			android:layout_below="@id/linearCumple" android:layout_marginStart="15dp"
 			android:layout_marginLeft="15dp" />
 
@@ -148,7 +153,8 @@
 			android:layout_width="36dp" android:layout_height="36dp"
 			android:layout_marginRight="10dp" android:layout_marginLeft="10dp"
 			android:layout_below="@id/menu_icons" android:src="@drawable/add_icon"
-            android:contentDescription="addTelefono">
+            android:contentDescription="addTelefono"
+			android:background="@color/color_gris_oscuro">
 		</ImageButton>
 
 
@@ -157,7 +163,7 @@
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_toEndOf="@id/addTelefono" android:layout_height="25dp"
 			android:textSize="14sp" android:layout_marginBottom="6dp"
-			android:gravity="center"
+			android:gravity="center" android:typeface="monospace"
 			android:layout_toRightOf="@id/addTelefono" />
 
 
@@ -182,6 +188,7 @@
 			android:layout_height="25dp" android:textSize="14sp"
 			android:layout_marginBottom="6dp" android:layout_toEndOf="@id/addMail"
 			android:gravity="center"
+			android:typeface="monospace"
 			android:layout_toRightOf="@id/addMail" />
 
 		<ListView android:id="@+id/listaMailsAlta"
@@ -206,6 +213,7 @@
 			android:layout_height="25dp" android:textSize="14sp"
 			android:layout_marginBottom="6dp" android:layout_toEndOf="@id/addDir"
 			android:gravity="center"
+			android:typeface="monospace"
 			android:layout_toRightOf="@id/addDir" />
 
 
@@ -225,12 +233,14 @@
 			android:paddingEnd="15dp"
 			android:layout_marginTop="50dp"
 			android:paddingLeft="15dp"
-			android:paddingRight="15dp"/>
+			android:paddingRight="15dp"
+			android:typeface="monospace"/>
 
 		<TextView android:id="@+id/label_category" android:text="@string/label_datosDeCategoria"
 			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
 			android:layout_height="25dp" android:textSize="14sp"
+			android:typeface="monospace"
 			android:layout_marginBottom="20dp" android:gravity="center" />
 
 		<Spinner android:id="@+id/spinnerCategorias_alta_persona"
@@ -251,7 +261,8 @@
 				android:layout_width="130dp" android:layout_height="wrap_content"
 				android:textSize="13sp" android:padding="8dp" android:gravity="end"
 				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_azul_oscuro" />
+				android:textColor="@color/color_azul_oscuro"
+				android:typeface="monospace"/>
 
 			<EditText android:id="@+id/entryDatoExtra"
 				android:inputType="textCapWords" android:layout_height="35dp"
@@ -275,7 +286,8 @@
 				android:layout_width="130dp" android:layout_height="wrap_content"
 				android:textSize="13sp" android:padding="8dp" android:gravity="end"
 				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_azul_oscuro" />
+				android:textColor="@color/color_azul_oscuro"
+				android:typeface="monospace"/>
 
 			<EditText android:id="@+id/entryDescripcion" android:hint="@string/hint_descripcion"
 				android:inputType="textMultiLine" android:layout_height="35dp"
@@ -304,16 +316,17 @@
 			android:textSize="15sp" android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_gris_oscuro"
 			android:layout_marginBottom="4dp" android:layout_marginTop="6dp"
+			android:typeface="monospace"
 			android:padding="6dp" android:gravity="center" android:textStyle="bold" />
 
 		<LinearLayout android:id="@+id/botonera"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:orientation="vertical" android:layout_below="@id/nombre_contacto"
-			android:layout_marginBottom="7dp" android:layout_marginTop="5dp">
+			android:layout_marginBottom="5dp" android:layout_marginTop="5dp">
 
 			<View
                 android:layout_width="wrap_content" android:layout_height="1px"
-				android:layout_marginBottom="8dp" android:background="@color/color_azul" />
+				android:layout_marginBottom="5dp" android:background="@color/color_azul" />
 
 			<LinearLayout
                 android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -321,23 +334,43 @@
 
 				<Button android:id="@+id/butttonRegistrarPersonaFinal"
 					android:nextFocusRight="@+id/butttonRegistrarYSalir" android:text="@string/label_registrarPersona"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:textSize="13sp" android:textColor="@color/color_azul"
-					android:background="@drawable/custom_button"
+
+					android:layout_width="wrap_content"
+					android:layout_height="30dp" android:layout_margin="5dp"
+					android:textSize="12sp" android:textColor="@color/color_azul"
+					android:background="@drawable/custom_button" android:layout_gravity="center"
+					android:paddingBottom="3dp"
+					android:paddingTop="3dp"
+					android:paddingStart="15dp"
+					android:paddingLeft="15dp"
+					android:paddingEnd="15dp"
+					android:paddingRight="15dp"
+					android:typeface="monospace"
 					android:layout_marginEnd="25dp"
-					style="?android:buttonBarButtonStyle"
-					android:layout_marginRight="25dp" />
+					android:layout_marginRight="25dp"
+					/>
 
 				<Button android:id="@+id/butttonRegistrarYSalir"
 					android:text="@string/label_registrarPersonaYSalir"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:textSize="13sp" android:textColor="@color/color_azul"
-					android:background="@drawable/custom_button" style="?android:buttonBarButtonStyle"/>
+					android:layout_width="wrap_content"
+					android:layout_height="30dp" android:layout_margin="5dp"
+					android:textSize="12sp" android:textColor="@color/color_azul"
+					android:background="@drawable/custom_button" android:layout_gravity="center"
+					android:paddingBottom="3dp"
+					android:paddingTop="3dp"
+					android:paddingStart="15dp"
+					android:paddingLeft="15dp"
+					android:paddingEnd="15dp"
+					android:paddingRight="15dp"
+					android:typeface="monospace"
+
+					/>
+
 			</LinearLayout>
 
 			<View
                 android:layout_width="wrap_content" android:layout_height="1px"
-				android:layout_marginTop="8dp" android:background="@color/color_azul" />
+				android:layout_marginTop="5dp" android:background="@color/color_azul" />
 		</LinearLayout>
 
 	</RelativeLayout>
