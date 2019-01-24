@@ -250,6 +250,7 @@ id notification_background
 id notification_main_column
 id notification_main_column_container
 id photo
+id removeButton
 id right
 id right_icon
 id right_side
@@ -314,6 +315,7 @@ layout personas_row_label
 layout proteccion_categorias
 layout row_item
 layout row_item_alta
+layout row_item_alta_numerico
 layout row_personas
 layout spinner_item
 layout splash

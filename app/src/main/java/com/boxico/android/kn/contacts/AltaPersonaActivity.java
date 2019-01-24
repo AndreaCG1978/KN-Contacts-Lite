@@ -37,6 +37,7 @@ import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
+import com.boxico.android.kn.contacts.util.KNSimpleCustomAdapter;
 
 public class AltaPersonaActivity extends Activity  {
 	
@@ -90,6 +91,9 @@ public class AltaPersonaActivity extends Activity  {
 	
 	private static final String VALOR = "VALOR";
 	private static final String TIPO = "TIPO";
+	private static final String ID_TIPO_VALOR = "ID_TIPO_VALOR";
+	private static final String ID_PERSONA = "ID_PERSONA";
+
 	
 	private TextView sinDatos = null;
 	
@@ -141,11 +145,11 @@ public class AltaPersonaActivity extends Activity  {
 			break;
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_TELEFONO:
 			this.cargarTelefonos();
-	        telefonosList.setAdapter(obtenerAdapter(telefonos)); 			
+	        telefonosList.setAdapter(obtenerAdapterTelefono(telefonos));
 			break;
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_TELEFONO:
 			this.cargarTelefonos();
-	        telefonosList.setAdapter(obtenerAdapter(telefonos)); 			
+	        telefonosList.setAdapter(obtenerAdapterTelefono(telefonos));
 			break;	
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_EMAIL:
 			this.cargarEmails();
@@ -228,7 +232,7 @@ public class AltaPersonaActivity extends Activity  {
 	}
 	
     private void configurarListaTelefonos(){
-        SimpleAdapter adapter = obtenerAdapter(telefonos);
+        SimpleAdapter adapter = obtenerAdapterTelefono(telefonos);
         telefonosList.setAdapter(adapter);   
        	telefonosList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -348,6 +352,7 @@ public class AltaPersonaActivity extends Activity  {
     private SimpleAdapter obtenerAdapter(List<TipoValorDTO> lista){
     	ArrayList<HashMap<String,Object>> listdata= new ArrayList<>();
     	HashMap<String, Object> hm;
+
     	TipoValorDTO tv;
     	if(lista != null){
 			for (TipoValorDTO aLista : lista) {
@@ -362,10 +367,37 @@ public class AltaPersonaActivity extends Activity  {
         
         String[] from = {TIPO, VALOR};
         int[] to={R.id.rowTipo,R.id.rowValor};
+        SimpleAdapter sa = new SimpleAdapter(this, listdata, R.layout.row_item_alta, from, to);
 
-		return new SimpleAdapter(this, listdata, R.layout.row_item_alta, from, to);
+		return sa;
     }
-	
+
+	private SimpleAdapter obtenerAdapterTelefono(List<TipoValorDTO> lista){
+		ArrayList<HashMap<String,Object>> listdata= new ArrayList<>();
+		HashMap<String, Object> hm;
+
+		TipoValorDTO tv;
+		if(lista != null){
+			for (TipoValorDTO aLista : lista) {
+				tv = aLista;
+				hm = new HashMap<>();
+				hm.put(TIPO, tv.getTipo());
+				hm.put(VALOR, tv.getValor());
+				hm.put(ID_TIPO_VALOR, tv.getId());
+				hm.put(ID_PERSONA, tv.getIdPersona());
+				listdata.add(hm);
+
+			}
+		}
+
+		String[] from = {TIPO, VALOR};
+		int[] to={R.id.rowTipo,R.id.rowValor};
+		KNSimpleCustomAdapter sa = new KNSimpleCustomAdapter(this, listdata, R.layout.row_item_alta_numerico, from, to);
+
+		return sa;
+	}
+
+
 	private void registrarWidgets(){
 		mDateDisplay = this.findViewById(R.id.labelDateDisplay);
 		mPickDate = this.findViewById(R.id.buttonPickDate);

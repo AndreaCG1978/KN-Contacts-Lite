@@ -2107,6 +2107,12 @@ public class ConstantsAdmin {
 		finalizarBD(mDBManager);
 	}
 
+	public static void eliminarTelefonoConId(long id, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
+		mDBManager.eliminarTelefono(id);
+		finalizarBD(mDBManager);
+	}
+
 	public static void eliminarEmail(TipoValorDTO tv, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.eliminarEmail(tv.getId());

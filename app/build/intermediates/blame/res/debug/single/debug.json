@@ -176,6 +176,10 @@
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\src\\main\\res\\drawable-hdpi\\person_add_icon.png"
     },
     {
+        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\build\\intermediates\\res\\merged\\debug\\layout_row_item_alta_numerico.xml.flat",
+        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\src\\main\\res\\layout\\row_item_alta_numerico.xml"
+    },
+    {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_export_excel.png.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\src\\main\\res\\drawable-mdpi\\export_excel.png"
     },
