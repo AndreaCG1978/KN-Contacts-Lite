@@ -546,6 +546,8 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				if (temp != null && !temp.equals("")) {
 					mNombres.setText(temp);
 				}
+
+				/*
 				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_TEL_PARTICULAR));
 				if (temp != null && !temp.equals("")) {
 					asoc = new Asociacion(this.getString(R.string.hint_particular), temp);
@@ -563,7 +565,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				if (temp != null && !temp.equals("")) {
 					asoc = new Asociacion(this.getString(R.string.hint_laboral), temp);
 					telefonos.add(asoc);
-				}
+				}*/
 
 				// CARGO LOS TELEFONOS MOVILES
 
@@ -576,7 +578,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 					telefonos.add(asoc);
 				}
 
-
+/*
 				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_EMAIL_PARTICULAR));
 				if (temp != null && !temp.equals("")) {
 					asoc = new Asociacion(this.getString(R.string.hint_particular), temp);
@@ -594,7 +596,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 					asoc = new Asociacion(this.getString(R.string.hint_otro), temp);
 					mails.add(asoc);
 				}
-
+*/
 
 				// CARGO LOS MAILS MOVILES
 
@@ -605,7 +607,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 					asoc = new Asociacion(tv.getTipo(), tv.getValor());
 					mails.add(asoc);
 				}
-
+/*
 
 				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_DIRECCION_PARTICULAR));
 				if (temp != null && !temp.equals("")) {
@@ -617,7 +619,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				if (temp != null && !temp.equals("")) {
 					asoc = new Asociacion(this.getString(R.string.hint_laboral), temp);
 					direcciones.add(asoc);
-				}
+				}*/
 
 				// CARGO LAS DIRECCIONES MOVILES
 

@@ -6,20 +6,20 @@ public class PersonaDTO {
 	private String nombres = null;
 	private String fechaNacimiento = null;
 	private long categoriaId = -1;
-	private String emailParticular = null;
+/*	private String emailParticular = null;
 	private String emailLaboral = null;
 	private String emailOtro = null;
 	private String celular = null;
 	private String telLaboral = null;
 	private String telParticular = null;
-	private String descripcion = null;
 	private String direccionParticular = null;
-	private String direccionLaboral = null;	
+	private String direccionLaboral = null;	*/
 	private String categoriaNombre = null;
 	private String categoriaNombreRelativo = null;
 	private String datoExtra = null;
 	private String foto = null;
 	private String idPersonaAgenda = null;
+	private String descripcion = null;
 
 	public String getIdPersonaAgenda() {
 		return idPersonaAgenda;
@@ -48,7 +48,8 @@ public class PersonaDTO {
 	public void setCategoriaNombreRelativo(String categoriaNombreRelativo) {
 		this.categoriaNombreRelativo = categoriaNombreRelativo;
 	}
-	
+
+	/*
 	public String getEmailParticular() {
 		return emailParticular;
 	}
@@ -78,7 +79,7 @@ public class PersonaDTO {
 	}
 	public void setDireccionLaboral(String direccionLaboral) {
 		this.direccionLaboral = direccionLaboral;
-	}
+	}*/
 	public String getDatoExtra() {
 		return datoExtra;
 	}
@@ -117,7 +118,7 @@ public class PersonaDTO {
 	public void setCategoriaId(long categoriaId) {
 		this.categoriaId = categoriaId;
 	}
-
+/*
 	public String getCelular() {
 		return celular;
 	}
@@ -136,6 +137,8 @@ public class PersonaDTO {
 	public void setTelParticular(String telParticular) {
 		this.telParticular = telParticular;
 	}
+
+	*/
 	public String getDescripcion() {
 		return descripcion;
 	}

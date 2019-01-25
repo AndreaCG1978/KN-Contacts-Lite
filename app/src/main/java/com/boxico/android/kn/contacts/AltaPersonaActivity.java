@@ -469,6 +469,8 @@ public class AltaPersonaActivity extends Activity  {
 		this.cargarTiposTelefono();
 		String idPer = String.valueOf(mPersonaSeleccionada.getId());
 
+		/*
+
 		if(mPersonaSeleccionada.getTelParticular() != null){
 			tv = cargarTipoValor(this.getString(R.string.hint_particular).toUpperCase(),mPersonaSeleccionada.getTelParticular(), idPer);
 			telefonos.add(tv);
@@ -485,6 +487,8 @@ public class AltaPersonaActivity extends Activity  {
 			tv = cargarTipoValor(this.getString(R.string.hint_laboral).toUpperCase(),mPersonaSeleccionada.getTelLaboral(), idPer);
 			telefonos.add(tv);
 		}
+
+		*/
 		
 		// RECUPERO LOS TIPOS MOVILES
 		List<TipoValorDTO> masTelefonos;
@@ -512,6 +516,8 @@ public class AltaPersonaActivity extends Activity  {
 		this.cargarTiposEmail();
 		String idPer = String.valueOf(mPersonaSeleccionada.getId());
 
+
+		/*
 		if(mPersonaSeleccionada.getEmailParticular() != null){
 			tv = cargarTipoValor(this.getString(R.string.hint_particular).toUpperCase(),mPersonaSeleccionada.getEmailParticular(), idPer);
 			mails.add(tv);
@@ -528,7 +534,7 @@ public class AltaPersonaActivity extends Activity  {
 			tv = cargarTipoValor(this.getString(R.string.hint_otro).toUpperCase(),mPersonaSeleccionada.getEmailOtro(), idPer);
 			mails.add(tv);
 		}
-		
+		*/
 		// RECUPERO LOS TIPOS MOVILES
 		List<TipoValorDTO> masMails;
 		if(mPersonaSeleccionada.getId()!= -1){
@@ -556,7 +562,7 @@ public class AltaPersonaActivity extends Activity  {
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		this.cargarTiposDireccion();
 		String idPer = String.valueOf(mPersonaSeleccionada.getId());
-
+/*
 		if(mPersonaSeleccionada.getDireccionParticular() != null){
 			tv = cargarTipoValor(this.getString(R.string.hint_particular).toUpperCase(),mPersonaSeleccionada.getDireccionParticular(), idPer);
 			direcciones.add(tv);
@@ -568,7 +574,7 @@ public class AltaPersonaActivity extends Activity  {
 			direcciones.add(tv);
 
 		}
-		
+		*/
 		
 		// RECUPERO LOS TIPOS MOVILES
 		List<TipoValorDTO> masDirecciones;

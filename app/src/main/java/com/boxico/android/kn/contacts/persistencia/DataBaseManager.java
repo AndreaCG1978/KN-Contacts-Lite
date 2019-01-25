@@ -123,15 +123,15 @@ public class DataBaseManager {
          initialValues.put(ConstantsAdmin.KEY_NOMBRES, persona.getNombres());
          initialValues.put(ConstantsAdmin.KEY_FECHA_NACIMIENTO, persona.getFechaNacimiento());
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA, persona.getCategoriaId());
-         initialValues.put(ConstantsAdmin.KEY_EMAIL_PARTICULAR, persona.getEmailParticular());
+     /*    initialValues.put(ConstantsAdmin.KEY_EMAIL_PARTICULAR, persona.getEmailParticular());
          initialValues.put(ConstantsAdmin.KEY_EMAIL_LABORAL, persona.getEmailLaboral());
          initialValues.put(ConstantsAdmin.KEY_EMAIL_OTRO, persona.getEmailOtro());
          initialValues.put(ConstantsAdmin.KEY_TEL_CELULAR, persona.getCelular());
          initialValues.put(ConstantsAdmin.KEY_TEL_LABORAL, persona.getTelLaboral());
          initialValues.put(ConstantsAdmin.KEY_TEL_PARTICULAR, persona.getTelParticular());
-         initialValues.put(ConstantsAdmin.KEY_DESCRIPCION, persona.getDescripcion());
          initialValues.put(ConstantsAdmin.KEY_DIRECCION_PARTICULAR, persona.getDireccionParticular());
-         initialValues.put(ConstantsAdmin.KEY_DIRECCION_LABORAL, persona.getDireccionLaboral());
+         initialValues.put(ConstantsAdmin.KEY_DIRECCION_LABORAL, persona.getDireccionLaboral());*/
+		 initialValues.put(ConstantsAdmin.KEY_DESCRIPCION, persona.getDescripcion());
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA, persona.getCategoriaNombre());
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, persona.getCategoriaNombreRelativo());
      //    initialValues.put(ConstantsAdmin.KEY_FOTO, persona.getFoto());

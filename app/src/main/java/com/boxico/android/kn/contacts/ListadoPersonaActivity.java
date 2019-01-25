@@ -1239,6 +1239,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		return asoc;
 	}
 
+	/*
 	private void importarMailDeContacto(String[] projectionMail, PersonaDTO per, String contactId){
 		String emailAddress;
 		int emailType;
@@ -1277,9 +1278,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 	}
 
+*/
 
-
-
+/*
 	private void importarTelDeContacto(String[] projectionPhone, PersonaDTO per, String contactId){
 		String phoneNumber;
 		int phoneType;
@@ -1320,6 +1321,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 
 	}
+
+	*/
 
 	private void configurarEntryBusqueda(){
 		entryBusqueda = findViewById(R.id.entryBusquedaPersona);

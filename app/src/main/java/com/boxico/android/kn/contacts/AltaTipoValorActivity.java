@@ -248,7 +248,7 @@ public class AltaTipoValorActivity extends Activity {
     
 	private void eliminarTelefono(){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		if(esTipoFijoTelefono(mTipoValor.getTipo())){
+	/*	if(esTipoFijoTelefono(mTipoValor.getTipo())){
 			this.setearTelefonoPersona(null, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
 
@@ -257,20 +257,20 @@ public class AltaTipoValorActivity extends Activity {
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 			
-		}else{
+		}else{*/
 			if(personaSeleccionada.getId() != -1){
 				ConstantsAdmin.eliminarTelefono(mTipoValor, mDBManager);
 			}else{
 				this.eliminarTipoValor(ConstantsAdmin.telefonosARegistrar, mTipoValor);
 			}
 			
-		}
+	//	}
 				
 	}
 	
 	private void eliminarMail(){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		if(esTipoFijoMail(mTipoValor.getTipo())){
+	/*	if(esTipoFijoMail(mTipoValor.getTipo())){
 			this.setearMailPersona(null, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
 				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
@@ -278,21 +278,21 @@ public class AltaTipoValorActivity extends Activity {
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 			
-		}else{
+		}else{*/
 			if(personaSeleccionada.getId() != -1){
 				ConstantsAdmin.eliminarEmail(mTipoValor, mDBManager);
 			}else{
 				this.eliminarTipoValor(ConstantsAdmin.mailsARegistrar, mTipoValor);
 			}
 			
-		}
+	//	}
 				
 	}
    
 	
 	private void eliminarDireccion(){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		if(esTipoFijoDireccion(mTipoValor.getTipo())){
+	/*	if(esTipoFijoDireccion(mTipoValor.getTipo())){
 			this.setearDireccionPersona(null, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
 				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
@@ -300,14 +300,14 @@ public class AltaTipoValorActivity extends Activity {
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 			
-		}else{
+		}else{*/
 			if(personaSeleccionada.getId() != -1){
 				ConstantsAdmin.eliminarDireccion(mTipoValor, mDBManager);
 			}else{
 				this.eliminarTipoValor(ConstantsAdmin.direccionesARegistrar, mTipoValor);
 			}
 			
-		}
+	//	}
 				
 	}
    	
@@ -361,7 +361,7 @@ public class AltaTipoValorActivity extends Activity {
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
 		
-		if(esTipoFijoTelefono(mTipoValor.getTipo())){
+	/*	if(esTipoFijoTelefono(mTipoValor.getTipo())){
 			this.setearTelefonoPersona(valor, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
 				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
@@ -369,14 +369,14 @@ public class AltaTipoValorActivity extends Activity {
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 			
-		}else{
+		}else{*/
 			if(personaSeleccionada.getId() != -1){
 				ConstantsAdmin.crearTelefono(mTipoValor, mDBManager);
 			}else{
 				ConstantsAdmin.telefonosARegistrar.add(mTipoValor);
 				
 			}
-		}
+	//	}
 
 		
 	}
@@ -389,7 +389,7 @@ public class AltaTipoValorActivity extends Activity {
 		if(!tipo.equals("")){
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
-		if(esTipoFijoMail(mTipoValor.getTipo())){
+	/*	if(esTipoFijoMail(mTipoValor.getTipo())){
 			this.setearMailPersona(valor, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
 				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
@@ -397,7 +397,7 @@ public class AltaTipoValorActivity extends Activity {
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 		}else{
-			
+			*/
 			if(personaSeleccionada.getId() != -1){
 				ConstantsAdmin.crearEmail(mTipoValor, mDBManager);
 			}else{
@@ -405,7 +405,7 @@ public class AltaTipoValorActivity extends Activity {
 				
 			}
 			
-		}
+	//	}
 		
 		
 	}
@@ -419,7 +419,7 @@ public class AltaTipoValorActivity extends Activity {
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
 		
-		if(esTipoFijoDireccion(mTipoValor.getTipo())){
+	/*	if(esTipoFijoDireccion(mTipoValor.getTipo())){
 			this.setearDireccionPersona(valor, mTipoValor.getTipo());
 			if(personaSeleccionada.getId() != -1){
 				ConstantsAdmin.crearPersona(personaSeleccionada, false, mDBManager);
@@ -427,19 +427,19 @@ public class AltaTipoValorActivity extends Activity {
 				ConstantsAdmin.personaSeleccionada = personaSeleccionada;
 			}
 
-		}else{
+		}else{*/
 			if(personaSeleccionada.getId() != -1){
 				ConstantsAdmin.crearDireccion(mTipoValor, mDBManager);
 			}else{
 				ConstantsAdmin.direccionesARegistrar.add(mTipoValor);
 			}
 			
-		}
+	//	}
 		
 		
 	}
 	
-	
+	/*
 	private void setearTelefonoPersona(String valor, String tipo){
 		if(tipo.equals(this.getString(R.string.hint_particular))){
 			personaSeleccionada.setTelParticular(valor);
@@ -468,7 +468,7 @@ public class AltaTipoValorActivity extends Activity {
 		}		
 	}
 	
-	
+	*/
 
 	
 	private void eliminarTipoValor(List<TipoValorDTO> listado, TipoValorDTO tv){
@@ -494,7 +494,7 @@ public class AltaTipoValorActivity extends Activity {
 		if(tipo.equals("")){
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
-		
+	/*
 		if(esTipoFijoTelefono(mTipoValorAnterior.getTipo()) && esTipoFijoTelefono(mTipoValor.getTipo())){
 			this.setearTelefonoPersona(null, mTipoValorAnterior.getTipo());
 			this.setearTelefonoPersona(valor, mTipoValor.getTipo());
@@ -531,7 +531,7 @@ public class AltaTipoValorActivity extends Activity {
 				this.eliminarTipoValor(ConstantsAdmin.telefonosARegistrar, mTipoValorAnterior);
 			}
 			
-		}else{
+		}else{*/
 			
 			if(personaSeleccionada.getId()!= -1){
 				mTipoValor.setId(mTipoValorAnterior.getId());
@@ -540,7 +540,7 @@ public class AltaTipoValorActivity extends Activity {
 				this.eliminarTipoValor(ConstantsAdmin.telefonosARegistrar, mTipoValorAnterior);
 				ConstantsAdmin.telefonosARegistrar.add(mTipoValor);
 			}
-		}
+	//	}
 
 		
 	}
@@ -553,7 +553,7 @@ public class AltaTipoValorActivity extends Activity {
 		if(! tipo.equals("")){
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
-		
+		/*
 		if(esTipoFijoMail(mTipoValorAnterior.getTipo()) && esTipoFijoMail(mTipoValor.getTipo())){
 			this.setearMailPersona(null, mTipoValorAnterior.getTipo());
 			this.setearMailPersona(valor, mTipoValor.getTipo());
@@ -591,7 +591,7 @@ public class AltaTipoValorActivity extends Activity {
 			}
 			
 		}else{
-			
+			*/
 			if(personaSeleccionada.getId()!= -1){
 				mTipoValor.setId(mTipoValorAnterior.getId());
 				ConstantsAdmin.crearEmail(mTipoValor, mDBManager);
@@ -599,7 +599,7 @@ public class AltaTipoValorActivity extends Activity {
 				this.eliminarTipoValor(ConstantsAdmin.mailsARegistrar, mTipoValorAnterior);
 				ConstantsAdmin.mailsARegistrar.add(mTipoValor);
 			}
-		}
+	//	}
 
 		
 	}
@@ -612,7 +612,7 @@ public class AltaTipoValorActivity extends Activity {
 		if(tipo.equals("")){
 			mTipoValor.setTipo(tipo.toUpperCase());
 		}
-		
+	/*
 		if(esTipoFijoDireccion(mTipoValorAnterior.getTipo()) && esTipoFijoDireccion(mTipoValor.getTipo())){
 			this.setearDireccionPersona(null, mTipoValorAnterior.getTipo());
 			this.setearDireccionPersona(valor, mTipoValor.getTipo());
@@ -650,7 +650,7 @@ public class AltaTipoValorActivity extends Activity {
 			}
 			
 		}else{
-			
+			*/
 			if(personaSeleccionada.getId()!= -1){
 				mTipoValor.setId(mTipoValorAnterior.getId());
 				ConstantsAdmin.crearDireccion(mTipoValor, mDBManager);
@@ -658,7 +658,7 @@ public class AltaTipoValorActivity extends Activity {
 				this.eliminarTipoValor(ConstantsAdmin.direccionesARegistrar, mTipoValorAnterior);
 				ConstantsAdmin.direccionesARegistrar.add(mTipoValor);
 			}
-		}
+		//}
 
 		
 	}	

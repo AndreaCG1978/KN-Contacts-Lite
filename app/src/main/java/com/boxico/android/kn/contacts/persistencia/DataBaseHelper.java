@@ -15,19 +15,18 @@ class DataBaseHelper extends SQLiteOpenHelper{
             + ConstantsAdmin.KEY_APELLIDO + " text, "
             + ConstantsAdmin.KEY_NOMBRES + " text, "
             + ConstantsAdmin.KEY_FECHA_NACIMIENTO + " text, "
-            + ConstantsAdmin.KEY_TEL_PARTICULAR + " text, "
+        /*    + ConstantsAdmin.KEY_TEL_PARTICULAR + " text, "
             + ConstantsAdmin.KEY_TEL_CELULAR + " text, "
             + ConstantsAdmin.KEY_TEL_LABORAL + " text, "
             + ConstantsAdmin.KEY_EMAIL_PARTICULAR + " text, "
             + ConstantsAdmin.KEY_EMAIL_LABORAL + " text, "
-            + ConstantsAdmin.KEY_EMAIL_OTRO + " text, "
+            + ConstantsAdmin.KEY_EMAIL_OTRO + " text, "*/
             + ConstantsAdmin.KEY_CATEGORIA + " integer not null, "
             + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " text not null, "
             + ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO + " text not null, "
             + ConstantsAdmin.KEY_DESCRIPCION + " text, "
-            + ConstantsAdmin.KEY_DIRECCION_LABORAL + " text, "
-            + ConstantsAdmin.KEY_DIRECCION_PARTICULAR + " text, "
-         //   + ConstantsAdmin.KEY_FOTO + " blob, "
+         /*   + ConstantsAdmin.KEY_DIRECCION_LABORAL + " text, "
+            + ConstantsAdmin.KEY_DIRECCION_PARTICULAR + " text, "*/
             + ConstantsAdmin.KEY_DATO_EXTRA + " text, "
             + ConstantsAdmin.KEY_ID_PERSONA_AGENDA + " text);";
 	
