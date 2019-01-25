@@ -77,7 +77,7 @@ public class AltaPersonaActivity extends Activity  {
 	private ListView mailsList = null;
 	private ListView direccionesList = null;
 	
-	private ImageButton botonAddTel = null;
+	private Button botonAddTel = null;
 	private ImageButton botonAddMail = null;
 	private ImageButton botonAddDir = null;
 	
@@ -233,7 +233,8 @@ public class AltaPersonaActivity extends Activity  {
 	
     private void configurarListaTelefonos(){
         SimpleAdapter adapter = obtenerAdapterTelefono(telefonos);
-        telefonosList.setAdapter(adapter);   
+        telefonosList.setAdapter(adapter);
+        telefonosList.setDividerHeight(0);
        	telefonosList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override

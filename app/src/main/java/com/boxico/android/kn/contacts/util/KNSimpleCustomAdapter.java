@@ -11,6 +11,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -54,7 +55,7 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = super.getView(position, convertView, parent);
-		ImageButton btn = (ImageButton) view.findViewById(R.id.removeButton);
+		Button btn = view.findViewById(R.id.removeButton);
 		final int pos = position;
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

@@ -149,22 +149,36 @@
 			android:layout_below="@id/linearCumple" android:layout_marginStart="15dp"
 			android:layout_marginLeft="15dp" />
 
-		<ImageButton android:id="@+id/addTelefono"
-			android:layout_width="36dp" android:layout_height="36dp"
-			android:layout_marginRight="10dp" android:layout_marginLeft="10dp"
-			android:layout_below="@id/menu_icons" android:src="@drawable/add_icon"
-            android:contentDescription="addTelefono"
-			android:background="@color/color_gris_oscuro">
-		</ImageButton>
-
-
 		<TextView android:id="@+id/label_phones" android:text="@string/label_telefonos"
 			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
-			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
-			android:layout_toEndOf="@id/addTelefono" android:layout_height="25dp"
+			android:textColor="@color/color_naranja" android:layout_width="305dp"
+			android:layout_height="28dp"
 			android:textSize="14sp" android:layout_marginBottom="6dp"
-			android:gravity="center" android:typeface="monospace"
-			android:layout_toRightOf="@id/addTelefono" />
+			android:gravity="start|center" android:typeface="monospace"
+			android:paddingStart="10dp"
+			/>
+
+		<Button android:id="@+id/addTelefono"
+			android:layout_width="32dp" android:layout_height="28dp"
+			android:text="+"
+			android:textColor="@color/color_azul"
+			android:textSize="18sp"
+			android:textStyle="bold"
+			android:layout_gravity="center"
+			android:layout_marginRight="10dp" android:layout_marginLeft="10dp"
+			android:layout_below="@id/menu_icons"
+            android:contentDescription="addTelefono"
+			android:paddingBottom="3dp"
+			android:paddingTop="1dp"
+			android:typeface="monospace"
+			android:background="@drawable/custom_button"
+			android:layout_toRightOf="@id/label_phones"
+			android:layout_toEndOf="@id/label_phones"
+			>
+		</Button>
+
+
+
 
 
 		<ListView android:id="@+id/listaTelefonosAlta"
@@ -172,7 +186,8 @@
 			android:dividerHeight="7dp" android:divider="@color/color_negro"
 			android:layout_below="@id/addTelefono" android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp" android:layout_marginTop="15dp"
-			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent">
+			android:background="@color/color_gris_oscuro"
+			android:layout_marginBottom="5dp" android:listSelector="@color/color_gris_oscuro">
 		</ListView>
 
 		<ImageButton android:id="@+id/addMail"
