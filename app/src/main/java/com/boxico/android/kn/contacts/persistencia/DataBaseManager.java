@@ -103,6 +103,10 @@ public class DataBaseManager {
      public void createDireccion(TipoValorDTO tipoVal) {
 		 createTipoValor(tipoVal, ConstantsAdmin.TABLA_DIRECCIONES);
 	 }
+
+	public void eliminarTipoValor(long id, String nombreTabla){
+		mDb.delete(nombreTabla, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(id), null);
+	}
      
      public void eliminarTelefono(long id){
 		 mDb.delete(ConstantsAdmin.TABLA_TELEFONOS, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(id), null);

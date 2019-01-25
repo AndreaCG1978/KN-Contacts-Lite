@@ -216,7 +216,7 @@ public class AltaTipoValorActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 					eliminarTipoValor();
-					finish();
+				//	finish();
             		
             	}
 		});
@@ -258,11 +258,11 @@ public class AltaTipoValorActivity extends Activity {
 			}
 			
 		}else{*/
-			if(personaSeleccionada.getId() != -1){
-				ConstantsAdmin.eliminarTelefono(mTipoValor, mDBManager);
-			}else{
-				this.eliminarTipoValor(ConstantsAdmin.telefonosARegistrar, mTipoValor);
-			}
+		if(personaSeleccionada.getId() != -1){
+			ConstantsAdmin.eliminarTelefono(mTipoValor, mDBManager);
+		}else{
+			this.eliminarTipoValor(ConstantsAdmin.telefonosARegistrar, mTipoValor);
+		}
 			
 	//	}
 				

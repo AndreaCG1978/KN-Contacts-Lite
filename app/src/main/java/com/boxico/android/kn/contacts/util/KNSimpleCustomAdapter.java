@@ -20,6 +20,7 @@ import com.boxico.android.kn.contacts.AltaPersonaActivity;
 import com.boxico.android.kn.contacts.R;
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -54,17 +55,19 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		View view = super.getView(position, convertView, parent);
+		final View view = super.getView(position, convertView, parent);
 		Button btn = view.findViewById(R.id.removeButton);
 		final int pos = position;
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				DataBaseManager mDBManager = DataBaseManager.getInstance(localContext);
+			//	DataBaseManager mDBManager = DataBaseManager.getInstance(localContext);
 			//	Object idPersona = (lista.get(pos)).get(ID_PERSONA);
 				Object idTipoValor = (lista.get(pos)).get(ID_TIPO_VALOR);
 				String idTVString = idTipoValor.toString();
 				long idTV = Long.valueOf(idTVString);
-				ConstantsAdmin.eliminarTelefonoConId(idTV, mDBManager);
+				ConstantsAdmin.getTelefonosAEliminar().add(new Long(idTV));
+				view.setVisibility(View.GONE);
+			//	ConstantsAdmin.eliminarTelefonoConId(idTV, mDBManager);
 			}
 		});
 		return view;

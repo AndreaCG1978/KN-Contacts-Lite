@@ -838,6 +838,12 @@ public class AltaPersonaActivity extends Activity  {
 				this.registrarTelefonos(ConstantsAdmin.telefonosARegistrar, idPer);
 				ConstantsAdmin.telefonosARegistrar = null;
 			}
+
+			if(ConstantsAdmin.getTelefonosAEliminar() != null && ConstantsAdmin.getTelefonosAEliminar().size() > 0){
+				ConstantsAdmin.eliminarTelefonos(ConstantsAdmin.getTelefonosAEliminar(), mDBManager);
+				ConstantsAdmin.setTelefonosAEliminar(null);
+			}
+
 			if(ConstantsAdmin.mailsARegistrar != null && ConstantsAdmin.mailsARegistrar.size() > 0){
 				this.registrarMails(ConstantsAdmin.mailsARegistrar, idPer);
 				ConstantsAdmin.mailsARegistrar = null;
@@ -867,7 +873,8 @@ public class AltaPersonaActivity extends Activity  {
 		}
 
 	}
-	
+
+
 	private void registrarTelefonos(List<TipoValorDTO> telefonos, long idPer){
 		Iterator<TipoValorDTO> it = telefonos.iterator();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);

@@ -84,7 +84,51 @@ public class ConstantsAdmin {
 	public static final String querySelectionPhoneContactsById = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ";
 	public static final String querySelectionDirsContactsById = ContactsContract.CommonDataKinds.StructuredPostal.CONTACT_ID + " = ";
 
-	public static final String[] projectionPhone = new String[]{
+
+	private static ArrayList<Long> telefonosAEliminar = null;
+
+
+	public static ArrayList<Long> getTelefonosAEliminar() {
+		if(telefonosAEliminar == null){
+            telefonosAEliminar = new ArrayList<>();
+		}
+		return telefonosAEliminar;
+	}
+
+    public static void setTelefonosAEliminar(ArrayList<Long> telefonosAEliminar) {
+        ConstantsAdmin.telefonosAEliminar = telefonosAEliminar;
+    }
+
+    private static ArrayList<Long> mailsAEliminar = null;
+
+
+    public static ArrayList<Long> getMailsAEliminar() {
+        if(mailsAEliminar == null){
+            mailsAEliminar = new ArrayList<>();
+        }
+        return mailsAEliminar;
+    }
+
+    public static void setMailsAEliminar(ArrayList<Long> mailsAEliminar) {
+        ConstantsAdmin.mailsAEliminar = mailsAEliminar;
+    }
+
+    private static ArrayList<Long> direccionesAEliminar = null;
+
+
+    public static ArrayList<Long> getDireccionesAEliminar() {
+        if(direccionesAEliminar == null){
+            direccionesAEliminar = new ArrayList<>();
+        }
+        return direccionesAEliminar;
+    }
+
+    public static void setDireccionesAEliminar(ArrayList<Long> direccionesAEliminar) {
+        ConstantsAdmin.direccionesAEliminar = direccionesAEliminar;
+    }
+
+
+    public static final String[] projectionPhone = new String[]{
 			ContactsContract.CommonDataKinds.Phone.NUMBER,
 			ContactsContract.CommonDataKinds.Phone.TYPE,
             ContactsContract.CommonDataKinds.Phone.LABEL
@@ -305,6 +349,19 @@ public class ConstantsAdmin {
 		registrarTipoValor(direcciones, TABLA_DIRECCIONES, mDBManager);
 	}
 
+
+	public static void eliminarTelefonos(List<Long> telefonos, DataBaseManager mDBManager){
+		eliminarTiposValor(telefonos, TABLA_TELEFONOS, mDBManager);
+	}
+
+	public static void eliminarMails(List<Long> mails, DataBaseManager mDBManager){
+		eliminarTiposValor(mails, TABLA_EMAILS, mDBManager);
+	}
+
+	public static void eliminarDirecciones(List<Long> direcciones, DataBaseManager mDBManager){
+		eliminarTiposValor(direcciones, TABLA_DIRECCIONES, mDBManager);
+	}
+
 	private static void registrarTipoValor(List<TipoValorDTO> valores, String tablaNombre, DataBaseManager mDBManager){
 		Iterator<TipoValorDTO> it = valores.iterator();
 		TipoValorDTO tv;
@@ -315,6 +372,17 @@ public class ConstantsAdmin {
 		}
 		finalizarBD(mDBManager);
 	}
+
+    private static void eliminarTiposValor(List<Long> valores, String tablaNombre, DataBaseManager mDBManager){
+        Iterator<Long> it = valores.iterator();
+        Long idVal;
+        inicializarBD(mDBManager);
+        while(it.hasNext()){
+            idVal = it.next();
+            mDBManager.eliminarTipoValor(idVal.longValue(), tablaNombre);
+        }
+        finalizarBD(mDBManager);
+    }
 
 	public static long tablaPreferidosSize(DataBaseManager mDBManager){
 		long valor;
@@ -1112,7 +1180,9 @@ public class ConstantsAdmin {
 			campos = linea.split(PUNTO_COMA);
 			per = new PersonaDTO();
 			per.setId(Long.valueOf(campos[1]));
-			per.setApellido(campos[2]);
+			if(!campos[2].equals(CAMPO_NULO)){
+				per.setApellido(campos[2]);
+			}
 			if(!campos[3].equals(CAMPO_NULO)){
 				per.setNombres(campos[3]);
 			}
@@ -1556,7 +1626,7 @@ public class ConstantsAdmin {
 
 		// DATOS PERSONALES
 
-		//result.append(HEAD_PERSONA).append(PUNTO_COMA).append(per.getId()).append(PUNTO_COMA).append(per.getApellido()).append(PUNTO_COMA);
+		result.append(HEAD_PERSONA).append(PUNTO_COMA).append(per.getId()).append(PUNTO_COMA);
 
 		if(per.getApellido() != null && !per.getApellido().equals("")){
 			result.append(per.getApellido()).append(PUNTO_COMA);
