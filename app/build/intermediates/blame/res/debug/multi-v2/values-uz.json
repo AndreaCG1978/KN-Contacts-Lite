@@ -4,7 +4,7 @@
             "outputFile": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uz/values-uz.xml",
             "map": [
                 {
-                    "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/128366f1703785702ad6229df4352b00/res/values-uz/values-uz.xml",
+                    "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/dc2c0812e7a706da6547d170d3681b29/res/values-uz/values-uz.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

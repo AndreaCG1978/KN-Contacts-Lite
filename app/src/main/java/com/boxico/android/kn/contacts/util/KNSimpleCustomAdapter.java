@@ -21,16 +21,25 @@ import com.boxico.android.kn.contacts.R;
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class KNSimpleCustomAdapter extends SimpleAdapter {
 
 	private AltaPersonaActivity localContext = null;
-	private List<? extends Map<String, ?>> lista = null;
+	private ArrayList<HashMap<String,Object>> lista = null;
 	private static final String ID_TIPO_VALOR = "ID_TIPO_VALOR";
 	private static final String ID_PERSONA = "ID_PERSONA";
+	private boolean habilitado = true;
 
+	public boolean isHabilitado() {
+		return habilitado;
+	}
+
+	public void setHabilitado(boolean habilitado) {
+		this.habilitado = habilitado;
+	}
 
 	/**
 	 * Constructor
@@ -46,13 +55,35 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 	 * @param to       The views that should display column in the "from" parameter. These should all be
 	 *                 TextViews. The first N views in this list are given the values of the first N columns
 	 */
-	public KNSimpleCustomAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
+	public KNSimpleCustomAdapter(Context context, ArrayList<HashMap<String,Object>> data, int resource, String[] from, int[] to) {
 		super(context, data, resource, from, to);
 		localContext = (AltaPersonaActivity) context;
 		lista = data;
 	}
 
 
+	public ArrayList<HashMap<String,Object>> getLista() {
+		return lista;
+	}
+
+	public void setLista(ArrayList<HashMap<String,Object>> lista) {
+		this.lista = lista;
+	}
+
+
+	/*
+	@Override
+	public boolean isEnabled(int position) {
+	//	return super.isEnabled(position);
+		return habilitado;
+	}
+
+	@Override
+	public boolean areAllItemsEnabled() {
+	//	return super.areAllItemsEnabled();
+		return habilitado;
+	}
+*/
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final View view = super.getView(position, convertView, parent);

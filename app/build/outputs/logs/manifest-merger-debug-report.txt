@@ -4,16 +4,16 @@ ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/Android
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-MERGED from [com.android.support:support-v4:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/53ac571291de4341d1713aa3dee69350/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-media-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/4bc68d70532e111746d0f571d3744632/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-fragment:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/022e6e2d09b302bb583141b501d31bf3/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/6c16bf80efd38f43e05493e613bba585/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/32fe0751b645e13361cd04dd7aa4695c/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/128366f1703785702ad6229df4352b00/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/d41440a6be7bad29e7332e2775430e61/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/299c1a410479d24088a824c32e69d48c/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/1104fd3e6cfa29db5c2fac0ae7ec1827/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/ebd430460efd352cee11b9f522b8a248/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-v4:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/d6d83add8414dad549eea30d61b72c63/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/ff29e6da17e1bbb3d7a443c794d54deb/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/dacf7e987920001849dd7c0e728e69b0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/4cec733bd4e4d9cfd5b58e394923b91e/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/2375c501317ac6b5ed6632dd36fc1fb3/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/dc2c0812e7a706da6547d170d3681b29/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/95c658a97c5f53370acf5218e37f7c15/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/cddf7573b0a74c8d2f952d5200487663/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/1deec7d776b39f0d9caef7345921247e/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/965e517c9a2a5d3cfd2ada67ab1723be/AndroidManifest.xml:17:1-22:12
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
@@ -165,26 +165,26 @@ uses-sdk
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
-MERGED from [com.android.support:support-v4:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/53ac571291de4341d1713aa3dee69350/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/53ac571291de4341d1713aa3dee69350/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/4bc68d70532e111746d0f571d3744632/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/4bc68d70532e111746d0f571d3744632/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/022e6e2d09b302bb583141b501d31bf3/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/022e6e2d09b302bb583141b501d31bf3/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/6c16bf80efd38f43e05493e613bba585/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/6c16bf80efd38f43e05493e613bba585/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/32fe0751b645e13361cd04dd7aa4695c/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/32fe0751b645e13361cd04dd7aa4695c/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/128366f1703785702ad6229df4352b00/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/128366f1703785702ad6229df4352b00/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/d41440a6be7bad29e7332e2775430e61/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/d41440a6be7bad29e7332e2775430e61/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/299c1a410479d24088a824c32e69d48c/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/299c1a410479d24088a824c32e69d48c/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/1104fd3e6cfa29db5c2fac0ae7ec1827/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/1104fd3e6cfa29db5c2fac0ae7ec1827/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/ebd430460efd352cee11b9f522b8a248/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/ebd430460efd352cee11b9f522b8a248/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/d6d83add8414dad549eea30d61b72c63/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/d6d83add8414dad549eea30d61b72c63/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/ff29e6da17e1bbb3d7a443c794d54deb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/ff29e6da17e1bbb3d7a443c794d54deb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/dacf7e987920001849dd7c0e728e69b0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/dacf7e987920001849dd7c0e728e69b0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/4cec733bd4e4d9cfd5b58e394923b91e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/4cec733bd4e4d9cfd5b58e394923b91e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/2375c501317ac6b5ed6632dd36fc1fb3/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/2375c501317ac6b5ed6632dd36fc1fb3/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/dc2c0812e7a706da6547d170d3681b29/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/dc2c0812e7a706da6547d170d3681b29/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/95c658a97c5f53370acf5218e37f7c15/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/95c658a97c5f53370acf5218e37f7c15/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/cddf7573b0a74c8d2f952d5200487663/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/cddf7573b0a74c8d2f952d5200487663/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/1deec7d776b39f0d9caef7345921247e/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/1deec7d776b39f0d9caef7345921247e/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/965e517c9a2a5d3cfd2ada67ab1723be/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/965e517c9a2a5d3cfd2ada67ab1723be/AndroidManifest.xml:20:5-44
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion

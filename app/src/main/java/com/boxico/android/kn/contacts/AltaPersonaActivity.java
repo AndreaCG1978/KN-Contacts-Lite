@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -26,6 +28,7 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
@@ -69,10 +72,13 @@ public class AltaPersonaActivity extends Activity  {
 	private EditText mEntryDatoExtra = null;
 	private EditText mEntryDescripcion = null;
 
-	
-	
-	
-	
+    private EditText mEntryNuevoTipoTel = null;
+    private EditText mEntryNuevoTipoMail = null;
+    private EditText mEntryNuevoTipoDir = null;
+    private EditText mEntryNuevoValTel = null;
+    private EditText mEntryNuevoValMail = null;
+    private EditText mEntryNuevoValDir = null;
+
 	private ListView telefonosList = null;
 	private ListView mailsList = null;
 	private ListView direccionesList = null;
@@ -305,8 +311,55 @@ public class AltaPersonaActivity extends Activity  {
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_TELEFONO);
     	
     }
-    
+
+
+    private void habilitarListaTelefono(boolean b){
+    /*	int size = telefonosList.getAdapter().getCount();
+		for (int j = 0; j < size; j++) {
+			telefonosList.getChildAt(j).setEnabled(b);
+		}
+		telefonosList.setEnabled(b);
+
+    	telefonosList.invalidateViews();*/
+	//	((KNSimpleCustomAdapter)telefonosList.getAdapter()).setHabilitado(b);
+		LinearLayout ly = null;
+		EditText eTemp = null;
+		Button btn = null;
+		int size = telefonosList.getAdapter().getCount();
+		for (int j = 0; j < size; j++) {
+			ly = (LinearLayout)telefonosList.getChildAt(j);
+			eTemp = ly.findViewById(R.id.rowValor);
+			eTemp.setEnabled(b);
+			btn = ly.findViewById(R.id.removeButton);
+			btn.setEnabled(b);
+		}
+//		telefonosList.invalidate();
+	}
+
     private void openAltaTelefono(){
+    	if(mEntryNuevoValTel.getVisibility() == View.VISIBLE){
+			mEntryNuevoTipoTel.setVisibility(View.GONE);
+			mEntryNuevoValTel.setVisibility(View.GONE);
+			this.habilitarListaTelefono(true);
+
+			//telefonosList.setEnabled(true);
+			/*this.cargarTelefonos();
+			telefonosList.setAdapter(obtenerAdapterTelefono(telefonos));*/
+
+		}else {
+			mEntryNuevoTipoTel.setVisibility(View.VISIBLE);
+			mEntryNuevoValTel.setVisibility(View.VISIBLE);
+
+			mEntryNuevoTipoTel.setText(getResources().getText(R.string.hint_tipo));
+			mEntryNuevoTipoTel.setSelectAllOnFocus(true);
+			mEntryNuevoTipoTel.requestFocus();
+
+			this.habilitarListaTelefono(false);
+			//telefonosList.setEnabled(false);
+
+		}
+
+        /*
     	ConstantsAdmin.tipoValorSeleccionado = new TipoValorDTO();
     	ConstantsAdmin.tipoValorSeleccionado.setIdPersona(String.valueOf(mPersonaSeleccionada.getId()));
     	ConstantsAdmin.tipoValorAnteriorSeleccionado = null;
@@ -315,6 +368,8 @@ public class AltaPersonaActivity extends Activity  {
         Intent i = new Intent(this, AltaTipoValorActivity.class);
         i.putExtra(ConstantsAdmin.TIPO_ELEMENTO, ConstantsAdmin.TIPO_TELEFONO);
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_TELEFONO);
+
+        */
     	
     }    
     
@@ -412,9 +467,16 @@ public class AltaPersonaActivity extends Activity  {
 		mEntryDatoExtra = this.findViewById(R.id.entryDatoExtra);
 		mEntryDescripcion = this.findViewById(R.id.entryDescripcion);
 		mNombContact = this.findViewById(R.id.nombre_contacto);
-		
-		
-		telefonosList = this.findViewById(R.id.listaTelefonosAlta);
+
+        mEntryNuevoTipoTel = this.findViewById(R.id.nuevoTipoTel);
+        mEntryNuevoTipoMail = null;
+        mEntryNuevoTipoDir = null;
+
+        mEntryNuevoValTel = this.findViewById(R.id.nuevoValorTel);
+        mEntryNuevoValMail = null;
+        mEntryNuevoValDir = null;
+
+        telefonosList = this.findViewById(R.id.listaTelefonosAlta);
 		mailsList = this.findViewById(R.id.listaMailsAlta);
 		direccionesList = this.findViewById(R.id.listaDireccionesAlta);
 
@@ -834,10 +896,10 @@ public class AltaPersonaActivity extends Activity  {
 			long idPer = ConstantsAdmin.crearPersona(mPersonaSeleccionada, false, mDBManager);
 			this.getIntent().putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(idPer));
 
-			if(ConstantsAdmin.telefonosARegistrar != null && ConstantsAdmin.telefonosARegistrar.size() > 0){
-				this.registrarTelefonos(ConstantsAdmin.telefonosARegistrar, idPer);
-				ConstantsAdmin.telefonosARegistrar = null;
-			}
+			//if(ConstantsAdmin.telefonosARegistrar != null && ConstantsAdmin.telefonosARegistrar.size() > 0){
+			this.registrarTelefonos(idPer);
+			//	ConstantsAdmin.telefonosARegistrar = null;
+			//}
 
 			if(ConstantsAdmin.getTelefonosAEliminar() != null && ConstantsAdmin.getTelefonosAEliminar().size() > 0){
 				ConstantsAdmin.eliminarTelefonos(ConstantsAdmin.getTelefonosAEliminar(), mDBManager);
@@ -874,7 +936,64 @@ public class AltaPersonaActivity extends Activity  {
 
 	}
 
+	private void registrarTelefonos(long idPer){
+		ArrayList<HashMap<String,Object>> listdata= new ArrayList<>();
+		HashMap<String, Object> hm;
+    	TipoValorDTO tv = null;
+		List<TipoValorDTO> telefonos = new ArrayList<>();
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 
+		// VERIFICO SI HAY ALGUN NUEVO TELEFONO A REGISTRAR
+    	if(mEntryNuevoValTel.getVisibility() == View.VISIBLE && !mEntryNuevoTipoTel.getText().toString().equals("")
+		&& !mEntryNuevoValTel.getText().toString().equals("")){
+    		tv = new TipoValorDTO();
+    		tv.setTipo(mEntryNuevoTipoTel.getText().toString());
+    		tv.setValor(mEntryNuevoValTel.getText().toString());
+    		tv.setIdPersona(String.valueOf(idPer));
+			telefonos.add(tv);
+		}
+
+		KNSimpleCustomAdapter adapter = (KNSimpleCustomAdapter) telefonosList.getAdapter();
+    	listdata = adapter.getLista();
+
+    	int i = 0;
+    	LinearLayout vLayout = null;
+    	EditText eTemp = null;
+    	String tipoTemp, valTemp = null;
+		if(listdata != null){
+			for (HashMap hmTemp : listdata) {
+				hm = hmTemp;
+				vLayout = (LinearLayout) telefonosList.getChildAt(i);
+				eTemp = vLayout.findViewById(R.id.rowTipo);
+				tipoTemp = eTemp.getText().toString();
+				eTemp = vLayout.findViewById(R.id.rowValor);
+				valTemp = eTemp.getText().toString();
+				if(!tipoTemp.equals("") && !valTemp.equals("")){
+					tv = new TipoValorDTO();
+					tv.setIdPersona((String)hm.get(ID_PERSONA));
+					tv.setId((Long) hm.get(ID_TIPO_VALOR));
+					tv.setTipo(tipoTemp);
+					tv.setValor(valTemp);
+
+					/*hm.put(TIPO, tv.getTipo());
+					hm.put(VALOR, tv.getValor());
+					hm.put(ID_TIPO_VALOR, tv.getId());
+					hm.put(ID_PERSONA, tv.getIdPersona());*/
+					telefonos.add(tv);
+
+				}
+				i++;
+
+			}
+		}
+		ConstantsAdmin.registrarTelefonos(telefonos, mDBManager);
+
+
+
+
+	}
+
+/*
 	private void registrarTelefonos(List<TipoValorDTO> telefonos, long idPer){
 		Iterator<TipoValorDTO> it = telefonos.iterator();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
@@ -886,7 +1005,7 @@ public class AltaPersonaActivity extends Activity  {
 		ConstantsAdmin.registrarTelefonos(telefonos, mDBManager);
 		
 	}
-
+*/
 	private void registrarMails(List<TipoValorDTO> mails, long idPer){
 		Iterator<TipoValorDTO> it = mails.iterator();
 		TipoValorDTO tv;
@@ -1018,6 +1137,8 @@ public class AltaPersonaActivity extends Activity  {
 //		Drawable d = res.getDrawable(R.drawable.phone_am_icon);
 		ImageButton icon = this.findViewById(R.id.menu_icon_phone);
 		TextView text = this.findViewById(R.id.label_phones);
+        mEntryNuevoTipoTel.setVisibility(View.GONE);
+        mEntryNuevoValTel.setVisibility(View.GONE);
 		if(!mMostrarTelefonosBoolean){
 			if(text != null){
 				text.setVisibility(View.GONE);
@@ -1026,6 +1147,7 @@ public class AltaPersonaActivity extends Activity  {
 		//	icon.setBackgroundDrawable(dbw);
 			botonAddTel.setVisibility(View.GONE);
 			telefonosList.setVisibility(View.GONE);
+
 		}else{
 			if(text != null){
 				text.setVisibility(View.VISIBLE);
