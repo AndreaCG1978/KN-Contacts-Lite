@@ -77,18 +77,20 @@ public class DataBaseManager {
 		}
      }
      
-     public void createTipoValor(TipoValorDTO tipoVal, String nombreTabla) {
-    //	 long returnValue;
+     public long createTipoValor(TipoValorDTO tipoVal, String nombreTabla) {
+    	 long returnValue = tipoVal.getId();
          ContentValues initialValues = new ContentValues();
          initialValues.put(ConstantsAdmin.KEY_TIPO, tipoVal.getTipo());
          initialValues.put(ConstantsAdmin.KEY_VALOR, tipoVal.getValor());
          initialValues.put(ConstantsAdmin.KEY_ID_PERSONA, tipoVal.getIdPersona());
     	 if(tipoVal.getId() == -1 ){
-    		 mDb.insert(nombreTabla, null, initialValues);
+			 returnValue = mDb.insert(nombreTabla, null, initialValues);
     	 }else{
-    		 mDb.update(nombreTabla, initialValues, ConstantsAdmin.KEY_ROWID + "=" + tipoVal.getId() , null);
+			 mDb.update(nombreTabla, initialValues, ConstantsAdmin.KEY_ROWID + "=" + tipoVal.getId() , null);
+
     		// tipoVal.getId();
     	 }
+    	 return returnValue;
 
 	 }
      

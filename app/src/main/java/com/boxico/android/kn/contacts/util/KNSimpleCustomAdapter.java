@@ -8,11 +8,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -88,17 +91,24 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final View view = super.getView(position, convertView, parent);
 		Button btn = view.findViewById(R.id.removeButton);
+		EditText etxt = view.findViewById(R.id.rowValor);
 		final int pos = position;
+		final KNSimpleCustomAdapter me = this;
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-			//	DataBaseManager mDBManager = DataBaseManager.getInstance(localContext);
-			//	Object idPersona = (lista.get(pos)).get(ID_PERSONA);
 				Object idTipoValor = (lista.get(pos)).get(ID_TIPO_VALOR);
 				String idTVString = idTipoValor.toString();
 				long idTV = Long.valueOf(idTVString);
 				ConstantsAdmin.getTelefonosAEliminar().add(new Long(idTV));
-				view.setVisibility(View.GONE);
-			//	ConstantsAdmin.eliminarTelefonoConId(idTV, mDBManager);
+				lista.remove(pos);
+				me.notifyDataSetChanged();
+			}
+		});
+
+		etxt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				return false;
 			}
 		});
 		return view;

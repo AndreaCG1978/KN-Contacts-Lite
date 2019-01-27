@@ -365,10 +365,15 @@ public class ConstantsAdmin {
 	private static void registrarTipoValor(List<TipoValorDTO> valores, String tablaNombre, DataBaseManager mDBManager){
 		Iterator<TipoValorDTO> it = valores.iterator();
 		TipoValorDTO tv;
+		long idTV = -1;
 		inicializarBD(mDBManager);
 		while(it.hasNext()){
 			tv = it.next();
-			mDBManager.createTipoValor(tv, tablaNombre);
+			idTV = mDBManager.createTipoValor(tv, tablaNombre);
+			if(idTV != 0){
+				tv.setId(idTV);
+			}
+
 		}
 		finalizarBD(mDBManager);
 	}
