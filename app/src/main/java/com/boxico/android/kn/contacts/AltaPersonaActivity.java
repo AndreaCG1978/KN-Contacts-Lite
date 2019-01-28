@@ -108,6 +108,9 @@ public class AltaPersonaActivity extends Activity  {
 	private boolean cambioCategoriaFlag = false;
 	private boolean vieneDesdeDetalle = false;
 
+	public void realzarBotonGuardar(){
+		botonGuardar.setTextColor(Color.WHITE);
+	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -305,7 +308,8 @@ public class AltaPersonaActivity extends Activity  {
     } 
     
     private void enModoEdicion(){
-    	botonGuardar.setTextColor(Color.WHITE);
+    //	botonGuardar.setTextColor(Color.WHITE);
+		this.realzarBotonGuardar();
 
     	/*
     	ConstantsAdmin.tipoValorSeleccionado = telefonos.get(pos);
@@ -349,7 +353,8 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryNuevoValTel.setVisibility(View.GONE);
 			mEntryNuevoTipoTel.setText("");
 			mEntryNuevoValTel.setText("");
-			botonGuardar.setTextColor(getResources().getColor(R.color.color_azul));
+		//  botonGuardar.setTextColor(getResources().getColor(R.color.color_azul));
+			opacarBotonGuardar();
 
 
 			this.habilitarListaTelefono(true, Color.WHITE);
@@ -361,7 +366,8 @@ public class AltaPersonaActivity extends Activity  {
 		}else {
 			mEntryNuevoTipoTel.setVisibility(View.VISIBLE);
 			mEntryNuevoValTel.setVisibility(View.VISIBLE);
-			botonGuardar.setTextColor(Color.WHITE);
+			//botonGuardar.setTextColor(Color.WHITE);
+			realzarBotonGuardar();
 			mEntryNuevoTipoTel.setText(getResources().getText(R.string.hint_tipo));
 			mEntryNuevoTipoTel.setSelectAllOnFocus(true);
 			mEntryNuevoTipoTel.requestFocus();
@@ -1139,12 +1145,16 @@ public class AltaPersonaActivity extends Activity  {
 	}
 	
 	private void mostrarTodo(){
-		botonGuardar.setTextColor(getResources().getColor(R.color.color_azul));
+		this.opacarBotonGuardar();
 		this.mostrarDatosPersonales();
 		this.mostrarTelefonos();
 		this.mostrarEmails();
 		this.mostrarDirecciones();
 		this.mostrarDatosPorCategoria();
+	}
+
+	private void opacarBotonGuardar(){
+		botonGuardar.setTextColor(getResources().getColor(R.color.color_azul));
 	}
 	
 	private void configurarMasOMenosDatosPorCategoria(){

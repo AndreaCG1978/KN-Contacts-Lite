@@ -1,32 +1,19 @@
 package com.boxico.android.kn.contacts.util;
 
-import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-
-import com.boxico.android.kn.contacts.AltaPersonaActivity;
 import com.boxico.android.kn.contacts.R;
-import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
+import com.boxico.android.kn.contacts.AltaPersonaActivity;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class KNSimpleCustomAdapter extends SimpleAdapter {
 
@@ -102,15 +89,11 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 				ConstantsAdmin.getTelefonosAEliminar().add(new Long(idTV));
 				lista.remove(pos);
 				me.notifyDataSetChanged();
+				localContext.realzarBotonGuardar();
 			}
 		});
 
-		etxt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				return false;
-			}
-		});
+
 		return view;
 	}
 }
