@@ -92,6 +92,13 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 				localContext.realzarBotonGuardar();
 			}
 		});
+		etxt.setOnKeyListener(new View.OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				localContext.realzarBotonGuardar();
+				return false;
+			}
+		});
 
 
 		return view;

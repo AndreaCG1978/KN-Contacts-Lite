@@ -107,6 +107,7 @@ public class AltaPersonaActivity extends Activity  {
 	
 	private boolean cambioCategoriaFlag = false;
 	private boolean vieneDesdeDetalle = false;
+	private boolean cambioLista = false;
 
 	public void realzarBotonGuardar(){
 		botonGuardar.setTextColor(Color.WHITE);
@@ -247,17 +248,14 @@ public class AltaPersonaActivity extends Activity  {
         telefonosList.setAdapter(adapter);
         telefonosList.setDividerHeight(0);
 
-       	telefonosList.setOnItemClickListener(new OnItemClickListener() {
-
+     /*   telefonosList.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				// TODO Auto-generated method stub
-
-				enModoEdicion();
-				
+			public void onFocusChange(View v, boolean hasFocus) {
+				//enModoEdicion();
+				realzarBotonGuardar();
 			}
 		});
+*/
     }
 
     
@@ -847,6 +845,7 @@ public class AltaPersonaActivity extends Activity  {
             public void onClick(View v) {
             	if(validarEntradaDeDatos()){
                     registrarPersona();
+                    cambioLista = false;
                     setResult(RESULT_OK);
                    	finish();
 
@@ -868,6 +867,7 @@ public class AltaPersonaActivity extends Activity  {
             public void onClick(View v) {
             	if(validarEntradaDeDatos()){
                     registrarPersona();
+					cambioLista = false;
             		Toast t = Toast.makeText(getApplicationContext(), R.string.label_guardar_parcial, Toast.LENGTH_LONG);
             		t.show();
             		mostrarTodo();
@@ -918,6 +918,9 @@ public class AltaPersonaActivity extends Activity  {
 			}
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 			long idPer = ConstantsAdmin.crearPersona(mPersonaSeleccionada, false, mDBManager);
+			if(idPer != -1 && idPer != 0){
+			    mPersonaSeleccionada.setId(idPer);
+            }
 			this.getIntent().putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(idPer));
 
 			//if(ConstantsAdmin.telefonosARegistrar != null && ConstantsAdmin.telefonosARegistrar.size() > 0){
