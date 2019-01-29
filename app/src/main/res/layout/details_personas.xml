@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@color/color_gris_oscuro">
 
+
+	<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@color/color_gris_oscuro"
+		android:overScrollMode="always"
+		android:scrollbarStyle="insideOverlay"
+		android:scrollbars="vertical"
+	>
 
 	<LinearLayout android:id="@+id/botonera"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:orientation="horizontal" android:gravity="center"
-		android:layout_marginTop="10dp" android:layout_marginBottom="8dp"
+		android:layout_marginTop="10dp" android:layout_marginBottom="8dp" android:background="@color/color_gris_oscuro"
 		>
 
 		<ImageButton android:id="@+id/buttonIrAEditarPersona"
@@ -154,20 +160,20 @@
 	</LinearLayout>
 
 	<ListView android:id="@+id/listaTelefonos"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
 		android:dividerHeight="2dp" android:divider="@color/color_negro"
 		android:layout_below="@id/menu" android:layout_margin="5dp"
 		android:listSelector="@android:color/transparent">
 	</ListView>
 
 	<ListView android:id="@+id/listaMails" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:dividerHeight="2dp"
+		android:layout_height="fill_parent" android:dividerHeight="2dp"
 		android:divider="@color/color_negro" android:layout_below="@id/menu"
 		android:layout_margin="5dp" android:listSelector="@android:color/transparent">
 	</ListView>
 
 	<ListView android:id="@+id/listaDirecciones"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
 		android:dividerHeight="2dp" android:divider="@color/color_negro"
 		android:layout_below="@id/menu" android:layout_margin="5dp"
 		android:listSelector="@android:color/transparent">
@@ -182,5 +188,4 @@
 
 
 </RelativeLayout>
-		
 

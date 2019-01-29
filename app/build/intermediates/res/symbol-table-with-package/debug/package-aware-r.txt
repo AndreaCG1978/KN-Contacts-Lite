@@ -187,7 +187,6 @@ id icon
 id icon_group
 id imagenAddContacto
 id imagenCategorias
-id imagenPhoto
 id imagenPreferido
 id imagenPreferidos
 id imagenProtegerCategorias
@@ -214,7 +213,6 @@ id label_sinDatos
 id label_telefonos
 id label_tipo_dato_extra
 id label_valor
-id layout_botones
 id left
 id line1
 id line3

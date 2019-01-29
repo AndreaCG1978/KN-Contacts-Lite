@@ -11,6 +11,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -366,9 +368,16 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryNuevoValTel.setVisibility(View.VISIBLE);
 			//botonGuardar.setTextColor(Color.WHITE);
 			realzarBotonGuardar();
+
+
 			mEntryNuevoTipoTel.setText(getResources().getText(R.string.hint_tipo));
 			mEntryNuevoTipoTel.setSelectAllOnFocus(true);
 			mEntryNuevoTipoTel.requestFocus();
+//			this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.showSoftInput(mEntryNuevoTipoTel, InputMethodManager.SHOW_IMPLICIT);
+
+
 
 			this.habilitarListaTelefono(false, Color.LTGRAY);
 			//telefonosList.setEnabled(false);
@@ -941,7 +950,7 @@ public class AltaPersonaActivity extends Activity  {
 			mPersonaSeleccionada.setId(idPer);
 			mNombContact.setVisibility(View.VISIBLE);
 			if(mPersonaSeleccionada.getApellido() != null){
-                mNombContact.setText(mPersonaSeleccionada.getApellido().toUpperCase() + getString(R.string.blank) + mPersonaSeleccionada.getNombres());
+                mNombContact.setText(mPersonaSeleccionada.getApellido().toUpperCase() + " " + mPersonaSeleccionada.getNombres());
             }else{
                 mNombContact.setText(mPersonaSeleccionada.getNombres());
             }
@@ -1148,6 +1157,8 @@ public class AltaPersonaActivity extends Activity  {
 	}
 	
 	private void mostrarTodo(){
+		ConstantsAdmin.telefonosARegistrar = null;
+		ConstantsAdmin.setTelefonosAEliminar(null);
 		this.opacarBotonGuardar();
 		this.mostrarDatosPersonales();
 		this.mostrarTelefonos();
@@ -1206,6 +1217,7 @@ public class AltaPersonaActivity extends Activity  {
 			mailsList.setVisibility(View.GONE);
 			direccionesList.setVisibility(View.GONE);
 			icon.setBackgroundResource(R.drawable.phone_am_icon);
+			telefonosList.setAdapter(this.obtenerAdapterTelefono(telefonos));
 			//icon.setBackgroundDrawable(d);
 		}
 	}
