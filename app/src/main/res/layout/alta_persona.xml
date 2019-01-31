@@ -268,7 +268,7 @@
 		</EditText>
 
 		<EditText android:id="@+id/nuevoValorMail"
-			android:inputType="phone"
+			android:inputType="textEmailAddress"
 			android:layout_height="35dp"
 			android:layout_below="@id/label_emails"
 			android:layout_toRightOf="@id/nuevoTipoMail"

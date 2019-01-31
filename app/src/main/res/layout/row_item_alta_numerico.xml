@@ -17,7 +17,6 @@
 	</EditText>
 
 	<EditText android:id="@+id/rowValor"
-		android:inputType="phone"
 		android:layout_height="35dp"
 		android:textColor="@android:color/white"
 		android:typeface="monospace"

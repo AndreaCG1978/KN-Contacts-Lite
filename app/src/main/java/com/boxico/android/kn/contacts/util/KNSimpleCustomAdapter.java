@@ -1,6 +1,7 @@
 package com.boxico.android.kn.contacts.util;
 
 import android.content.Context;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,12 +82,25 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 		EditText etxt = view.findViewById(R.id.rowValor);
 		final int pos = position;
 		final KNSimpleCustomAdapter me = this;
+		if(localContext.ismMostrarTelefonosBoolean()){
+		    etxt.setInputType(InputType.TYPE_CLASS_PHONE);
+        }else if(localContext.ismMostrarEmailsBoolean()){
+		    etxt.setInputType(InputType.TYPE_CLASS_TEXT);
+        }else if(localContext.ismMostrarDireccionesBoolean()){
+		    etxt.setInputType(InputType.TYPE_CLASS_TEXT);
+        }
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Object idTipoValor = (lista.get(pos)).get(ID_TIPO_VALOR);
 				String idTVString = idTipoValor.toString();
 				long idTV = Long.valueOf(idTVString);
-				ConstantsAdmin.getTelefonosAEliminar().add(new Long(idTV));
+                if(localContext.ismMostrarTelefonosBoolean()){
+                    ConstantsAdmin.getTelefonosAEliminar().add(new Long(idTV));
+                }else if(localContext.ismMostrarEmailsBoolean()){
+                    ConstantsAdmin.getMailsAEliminar().add(new Long(idTV));
+                }else if(localContext.ismMostrarDireccionesBoolean()){
+                    ConstantsAdmin.getDireccionesAEliminar().add(new Long(idTV));
+                }
 				lista.remove(pos);
 				me.notifyDataSetChanged();
 				localContext.realzarBotonGuardar();

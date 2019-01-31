@@ -88,7 +88,7 @@ public class AltaPersonaActivity extends Activity  {
 	private ListView direccionesList = null;
 	
 	private Button botonAddTel = null;
-	private ImageButton botonAddMail = null;
+	private Button botonAddMail = null;
 	private ImageButton botonAddDir = null;
 	
 	private List<TipoValorDTO> telefonos = new ArrayList<>();
@@ -111,7 +111,31 @@ public class AltaPersonaActivity extends Activity  {
 	private boolean vieneDesdeDetalle = false;
 	private boolean cambioLista = false;
 
-	public void realzarBotonGuardar(){
+    public boolean ismMostrarTelefonosBoolean() {
+        return mMostrarTelefonosBoolean;
+    }
+
+    public void setmMostrarTelefonosBoolean(boolean mMostrarTelefonosBoolean) {
+        this.mMostrarTelefonosBoolean = mMostrarTelefonosBoolean;
+    }
+
+    public boolean ismMostrarEmailsBoolean() {
+        return mMostrarEmailsBoolean;
+    }
+
+    public void setmMostrarEmailsBoolean(boolean mMostrarEmailsBoolean) {
+        this.mMostrarEmailsBoolean = mMostrarEmailsBoolean;
+    }
+
+    public boolean ismMostrarDireccionesBoolean() {
+        return mMostrarDireccionesBoolean;
+    }
+
+    public void setmMostrarDireccionesBoolean(boolean mMostrarDireccionesBoolean) {
+        this.mMostrarDireccionesBoolean = mMostrarDireccionesBoolean;
+    }
+
+    public void realzarBotonGuardar(){
 		botonGuardar.setTextColor(Color.WHITE);
 	}
 
@@ -167,11 +191,11 @@ public class AltaPersonaActivity extends Activity  {
 			break;	
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_EMAIL:
 			this.cargarEmails();
-	        mailsList.setAdapter(obtenerAdapter(mails)); 			
+	        mailsList.setAdapter(obtenerAdapterMails(mails));
 			break;
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_EMAIL:
 			this.cargarEmails();
-	        mailsList.setAdapter(obtenerAdapter(mails)); 		
+	        mailsList.setAdapter(obtenerAdapterMails(mails));
 			break;	
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_DIRECCION:
 			this.cargarDirecciones();
@@ -374,17 +398,6 @@ public class AltaPersonaActivity extends Activity  {
 		}
 		sinDatos.setText("");
 
-        /*
-    	ConstantsAdmin.tipoValorSeleccionado = new TipoValorDTO();
-    	ConstantsAdmin.tipoValorSeleccionado.setIdPersona(String.valueOf(mPersonaSeleccionada.getId()));
-    	ConstantsAdmin.tipoValorAnteriorSeleccionado = null;
-    	ConstantsAdmin.tiposValores = tiposTelefono;
-    	ConstantsAdmin.personaSeleccionada = mPersonaSeleccionada;
-        Intent i = new Intent(this, AltaTipoValorActivity.class);
-        i.putExtra(ConstantsAdmin.TIPO_ELEMENTO, ConstantsAdmin.TIPO_TELEFONO);
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_TELEFONO);
-
-        */
     	
     }
 
@@ -469,7 +482,7 @@ public class AltaPersonaActivity extends Activity  {
 
 		String[] from = {TIPO, VALOR};
 		int[] to={R.id.rowTipo,R.id.rowValor};
-		KNSimpleCustomAdapter sa = new KNSimpleCustomAdapter(this, listdata, R.layout.row_item_alta_numerico, from, to);
+		KNSimpleCustomAdapter sa = new KNSimpleCustomAdapter(this, listdata, R.layout.row_item_alta, from, to);
 
 		return sa;
 	}
@@ -518,7 +531,7 @@ public class AltaPersonaActivity extends Activity  {
         mEntryNuevoTipoDir = null;
 
         mEntryNuevoValTel = this.findViewById(R.id.nuevoValorTel);
-        mEntryNuevoValMail = null;
+        mEntryNuevoValMail = this.findViewById(R.id.nuevoValorMail);
         mEntryNuevoValDir = null;
 
         telefonosList = this.findViewById(R.id.listaTelefonosAlta);
@@ -619,34 +632,10 @@ public class AltaPersonaActivity extends Activity  {
 
 	
 	private void cargarEmails(){
-		// ACA DEBERIA RECUPERAR LOS TELEFONOS EXTRAS
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		mails = ConstantsAdmin.obtenerEmailsIdPersona( mPersonaSeleccionada.getId(), mDBManager);
 
-		TipoValorDTO tv;
-		mails = new ArrayList<>();
-		tiposEmail = new ArrayList<>();
-		this.cargarTiposEmail();
-		String idPer = String.valueOf(mPersonaSeleccionada.getId());
-
-
-		/*
-		if(mPersonaSeleccionada.getEmailParticular() != null){
-			tv = cargarTipoValor(this.getString(R.string.hint_particular).toUpperCase(),mPersonaSeleccionada.getEmailParticular(), idPer);
-			mails.add(tv);
-
-		}
-		
-		if(mPersonaSeleccionada.getEmailLaboral() != null){
-			tv = cargarTipoValor(this.getString(R.string.hint_laboral).toUpperCase(),mPersonaSeleccionada.getEmailLaboral(), idPer);
-			mails.add(tv);
-
-		}
-		
-		if(mPersonaSeleccionada.getEmailOtro() != null){
-			tv = cargarTipoValor(this.getString(R.string.hint_otro).toUpperCase(),mPersonaSeleccionada.getEmailOtro(), idPer);
-			mails.add(tv);
-		}
-		*/
-		// RECUPERO LOS TIPOS MOVILES
+/*
 		List<TipoValorDTO> masMails;
 		if(mPersonaSeleccionada.getId()!= -1){
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
@@ -659,7 +648,7 @@ public class AltaPersonaActivity extends Activity  {
 			}
 			
 		}
-		
+		*/
 
 	}
 	
@@ -949,22 +938,20 @@ public class AltaPersonaActivity extends Activity  {
 			if(idPer != -1 && idPer != 0){
 			    mPersonaSeleccionada.setId(idPer);
             }
-			this.getIntent().putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(idPer));
+	//		this.getIntent().putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(idPer));
 
-			//if(ConstantsAdmin.telefonosARegistrar != null && ConstantsAdmin.telefonosARegistrar.size() > 0){
-			this.registrarTelefonos(idPer);
-			//	ConstantsAdmin.telefonosARegistrar = null;
-			//}
-
-
-			if(ConstantsAdmin.mailsARegistrar != null && ConstantsAdmin.mailsARegistrar.size() > 0){
-				this.registrarMails(ConstantsAdmin.mailsARegistrar, idPer);
-				ConstantsAdmin.mailsARegistrar = null;
+			if(mMostrarTelefonosBoolean) {
+				this.registrarTelefonos(idPer);
+			}else if(mMostrarEmailsBoolean){
+				this.registrarMails(idPer);
+			}else if(mMostrarDireccionesBoolean){
+				//this.registrarDirecciones(idPer);
 			}
+			/*
 			if(ConstantsAdmin.direccionesARegistrar != null && ConstantsAdmin.direccionesARegistrar.size() > 0){
 				this.registrarDirecciones(ConstantsAdmin.direccionesARegistrar, idPer);
 				ConstantsAdmin.direccionesARegistrar = null;
-			}			
+			}*/
 			mCategoriaSeleccionada = null;
 			mPersonaSeleccionada.setId(idPer);
 			mNombContact.setVisibility(View.VISIBLE);
@@ -1037,11 +1024,12 @@ public class AltaPersonaActivity extends Activity  {
 				}
 			}
 		}
-		ConstantsAdmin.registrarTelefonos(mailsTemp, mDBManager);
+		ConstantsAdmin.registrarMails(mailsTemp, mDBManager);
 
 		if(ConstantsAdmin.getMailsAEliminar() != null && ConstantsAdmin.getMailsAEliminar().size() > 0){
 			ConstantsAdmin.eliminarMails(ConstantsAdmin.getMailsAEliminar(), mDBManager);
 			ConstantsAdmin.setMailsAEliminar(null);
+			huboCambios = true;
 		}
 
 
@@ -1114,6 +1102,7 @@ public class AltaPersonaActivity extends Activity  {
 		if(ConstantsAdmin.getTelefonosAEliminar() != null && ConstantsAdmin.getTelefonosAEliminar().size() > 0){
 			ConstantsAdmin.eliminarTelefonos(ConstantsAdmin.getTelefonosAEliminar(), mDBManager);
 			ConstantsAdmin.setTelefonosAEliminar(null);
+			huboCambios = true;
 		}
 
 
@@ -1244,6 +1233,10 @@ public class AltaPersonaActivity extends Activity  {
 	private void mostrarTodo(){
 		ConstantsAdmin.telefonosARegistrar = null;
 		ConstantsAdmin.setTelefonosAEliminar(null);
+		ConstantsAdmin.mailsARegistrar = null;
+		ConstantsAdmin.setMailsAEliminar(null);
+		ConstantsAdmin.direccionesARegistrar = null;
+		ConstantsAdmin.setDireccionesAEliminar(null);
 		this.opacarBotonGuardar();
 		this.mostrarDatosPersonales();
 		this.mostrarTelefonos();
@@ -1292,6 +1285,7 @@ public class AltaPersonaActivity extends Activity  {
 			if(text != null){
 				text.setVisibility(View.VISIBLE);
 			}
+			telefonosList.setAdapter(this.obtenerAdapterTelefono(telefonos));
 			telefonosList.setVisibility(View.VISIBLE);
 			if(telefonosList.getCount()== 0){
 				sinDatos.setVisibility(View.VISIBLE);
@@ -1302,7 +1296,7 @@ public class AltaPersonaActivity extends Activity  {
 			mailsList.setVisibility(View.GONE);
 			direccionesList.setVisibility(View.GONE);
 			icon.setBackgroundResource(R.drawable.phone_am_icon);
-			telefonosList.setAdapter(this.obtenerAdapterTelefono(telefonos));
+
 			//icon.setBackgroundDrawable(d);
 		}
 	}
@@ -1396,6 +1390,7 @@ public class AltaPersonaActivity extends Activity  {
 			if(text != null){
 				text.setVisibility(View.VISIBLE);
 			}
+			mailsList.setAdapter(this.obtenerAdapterMails(mails));
 			mailsList.setVisibility(View.VISIBLE);
 			if(mailsList.getCount()== 0){
 				sinDatos.setVisibility(View.VISIBLE);
@@ -1406,7 +1401,7 @@ public class AltaPersonaActivity extends Activity  {
 			telefonosList.setVisibility(View.GONE);
 			direccionesList.setVisibility(View.GONE);
 			icon.setBackgroundResource(R.drawable.mail_am_icon);
-			mailsList.setAdapter(this.obtenerAdapterMails(mails));
+
 			//icon.setBackgroundDrawable(d);
 		}
 	}

@@ -3,23 +3,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="horizontal" android:layout_margin="5dp"
-	android:gravity="center_vertical">
-	
-	<TextView android:id="@+id/rowTipo" android:layout_width="120dp"
-		android:layout_height="wrap_content" android:textSize="13sp"
-		android:padding="8dp" android:gravity="end" android:singleLine="true"
-		android:background="@drawable/custom_text_view_categoria_desc"
-		android:textColor="@color/color_azul_oscuro">
-	</TextView>
+	android:gravity="center_vertical"
+	android:descendantFocusability="beforeDescendants"
+	android:background="@color/color_gris_oscuro">
 
-	<TextView android:id="@+id/rowValor" android:layout_width="fill_parent"
-		android:layout_height="35dp" android:textStyle="bold"
-		android:textColor="@color/color_azul_oscuro" 
-		android:padding="5dp" android:textSize="14sp"
-		android:layout_marginStart="3dp" android:layout_marginEnd="4dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="4dp">
-	</TextView>
+	<EditText android:id="@+id/rowTipo" android:layout_width="120dp"
+		android:layout_height="wrap_content" android:textSize="13sp"
+		android:padding="7dp" android:gravity="end"
+		android:background="@drawable/custom_text_view_categoria_desc"
+		android:typeface="monospace"
+		android:focusable="false"
+		android:textColor="@color/color_gris_oscuro">
+	</EditText>
+
+	<EditText android:id="@+id/rowValor"
+		android:layout_height="35dp"
+		android:textColor="@android:color/white"
+		android:typeface="monospace"
+		android:padding="5dp" android:textSize="17sp"
+		android:layout_marginStart="5dp" android:layout_marginEnd="4dp"
+		android:maxLength="25" android:layout_width="172dp"
+		android:selectAllOnFocus="true"
+		android:layout_marginRight="4dp"
+		android:layout_marginLeft="5dp" />
+
+
+	<Button android:id="@+id/removeButton"
+		android:layout_width="30dp" android:layout_height="28dp"
+		android:text="-"
+		android:textColor="@android:color/holo_red_light"
+		android:textSize="18sp"
+		android:textStyle="bold"
+		android:layout_gravity="center"
+		android:layout_marginRight="10dp" android:layout_marginLeft="10dp"
+		android:contentDescription="-"
+		android:paddingBottom="3dp"
+		android:paddingTop="1dp"
+		android:typeface="monospace"
+		android:background="@drawable/custom_button"
+		android:src="@drawable/add_icon">
+	</Button>
+
 
 
 
