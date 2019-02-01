@@ -15,6 +15,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -136,7 +139,8 @@ public class AltaPersonaActivity extends Activity  {
     }
 
     public void realzarBotonGuardar(){
-		botonGuardar.setTextColor(Color.WHITE);
+
+        botonGuardar.setTextColor(Color.WHITE);
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -543,6 +547,19 @@ public class AltaPersonaActivity extends Activity  {
 		botonAddMail = this.findViewById(R.id.addMail);
 		botonAddDir = this.findViewById(R.id.addDir);
 
+	/*	mEntryApellido.setOnKeyListener(new View.OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				realzarBotonGuardar();
+				return false;
+			}
+		});*/
+
+
+
+
+
+
 	}
 	
 	private void cargarPersonaDto(String idPerString){
@@ -553,9 +570,141 @@ public class AltaPersonaActivity extends Activity  {
 	
 	private void cargarEntriesConPersonaDto(){
 		mEntryApellido.setText(mPersonaSeleccionada.getApellido());
+		mEntryApellido.addTextChangedListener(new TextWatcher() {
+
+			private String temp = null;
+
+			public void onTextChanged(CharSequence s, int start, int before,
+									  int count) {
+
+			}
+
+
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+										  int after) {
+				temp = s.toString();
+			}
+
+			public void afterTextChanged(Editable s) {
+				String t = null;
+				if(s != null){
+					t = s.toString();
+				}
+				if(t!= null && !(t.equals(temp.toString()))) {
+					realzarBotonGuardar();//do your work here
+				}
+
+			}
+		});
+
 		mEntryNombre.setText(mPersonaSeleccionada.getNombres());
+		mEntryNombre.addTextChangedListener(new TextWatcher() {
+
+			private String temp = null;
+
+			public void onTextChanged(CharSequence s, int start, int before,
+									  int count) {
+
+			}
+
+
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+										  int after) {
+				temp = s.toString();
+			}
+
+			public void afterTextChanged(Editable s) {
+				String t = null;
+				if(s != null){
+					t = s.toString();
+				}
+				if(t!= null && !(t.equals(temp.toString()))) {
+					realzarBotonGuardar();//do your work here
+				}
+
+			}
+		});
+
 		mEntryDatoExtra.setText(mPersonaSeleccionada.getDatoExtra());
+		mEntryDatoExtra.addTextChangedListener(new TextWatcher() {
+
+			private String temp = null;
+
+			public void onTextChanged(CharSequence s, int start, int before,
+									  int count) {
+
+			}
+
+
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+										  int after) {
+				temp = s.toString();
+			}
+
+			public void afterTextChanged(Editable s) {
+				String t = null;
+				if(s != null){
+					t = s.toString();
+				}
+				if(t!= null && !(t.equals(temp.toString()))) {
+					realzarBotonGuardar();//do your work here
+				}
+
+			}
+		});
+
+
 		mEntryDescripcion.setText(mPersonaSeleccionada.getDescripcion());
+		mEntryDescripcion.addTextChangedListener(new TextWatcher() {
+
+			private String temp = null;
+
+			public void onTextChanged(CharSequence s, int start, int before,
+									  int count) {
+
+			}
+
+
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+										  int after) {
+				temp = s.toString();
+			}
+
+			public void afterTextChanged(Editable s) {
+				String t = null;
+				if(s != null){
+					t = s.toString();
+				}
+				if(t!= null && !(t.equals(temp.toString()))) {
+					realzarBotonGuardar();//do your work here
+				}
+
+			}
+		});
+
+
+		mCheckFechaNac.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				realzarBotonGuardar();
+			}
+		});
+
+		mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				realzarBotonGuardar();
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+
+			}
+		});
 
 		this.cargarTelefonos();
 		this.cargarEmails();

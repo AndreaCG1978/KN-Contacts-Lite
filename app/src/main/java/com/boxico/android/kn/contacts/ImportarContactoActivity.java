@@ -1160,6 +1160,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 				int lblIndex = emails.getColumnIndex(ContactsContract.CommonDataKinds.Email.LABEL);
 				if(emailType == Email.TYPE_CUSTOM){
 					label = emails.getString(lblIndex);
+					if(label == null){
+						label = this.getResources().getString(R.string.label_mail);
+					}
 				}else {
 					label = this.getResources().getString(ContactsContract.CommonDataKinds.Email.getTypeLabelResource(emailType));
 				}

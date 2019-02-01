@@ -1,7 +1,9 @@
 package com.boxico.android.kn.contacts.util;
 
 import android.content.Context;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +77,9 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 		return habilitado;
 	}
 */
+
+
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final View view = super.getView(position, convertView, parent);
@@ -106,13 +111,36 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 				localContext.realzarBotonGuardar();
 			}
 		});
-		etxt.setOnKeyListener(new View.OnKeyListener() {
-			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				localContext.realzarBotonGuardar();
-				return false;
+		etxt.addTextChangedListener(new TextWatcher() {
+
+			private String temp = null;
+
+			public void onTextChanged(CharSequence s, int start, int before,
+									  int count) {
+				String t = null;
+				if(s != null){
+					t = s.toString();
+				}
+				if(t!= null && !(t.equals(temp.toString()))) {
+					localContext.realzarBotonGuardar();//do your work here
+					temp = t;
+				}
+
+			}
+
+
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+										  int after) {
+				temp = s.toString();
+			}
+
+			public void afterTextChanged(Editable s) {
+
+
 			}
 		});
+
 
 
 		return view;

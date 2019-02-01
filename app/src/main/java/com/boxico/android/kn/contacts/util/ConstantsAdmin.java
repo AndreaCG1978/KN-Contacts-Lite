@@ -34,6 +34,8 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.CursorLoader;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -153,9 +155,21 @@ public class ConstantsAdmin {
 	}
 
 
+
+	private static String normalizarString(String val){
+		String valTemp = val;
+		if(val != null && val.contains("'")){
+			valTemp = val.replaceAll("'", "''");
+
+		}
+		return valTemp;
+	}
+
 	public static String querySelectionNombreYApellidoPersona(String nombre, String apellido){
 		String column1 = ConstantsAdmin.KEY_NOMBRES;
 		String column2 = ConstantsAdmin.KEY_APELLIDO;
+		nombre = normalizarString(nombre);
+		apellido = normalizarString(apellido);
 		String selection = null;
 		if(nombre != null && apellido != null && !"".equals(nombre) && !"".equals(apellido)){
 			selection = "TRIM(UPPER(" + column1 + ")) = TRIM(UPPER('" + nombre + "')) AND TRIM(UPPER(" + column2 +")) = TRIM(UPPER('" + apellido + "'))";
