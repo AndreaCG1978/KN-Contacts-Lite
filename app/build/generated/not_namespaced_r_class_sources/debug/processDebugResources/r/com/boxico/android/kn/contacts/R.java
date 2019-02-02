@@ -491,10 +491,9 @@ public final class R {
     public static final int proteccion_categorias=0x7f08001d;
     public static final int row_item=0x7f08001e;
     public static final int row_item_alta=0x7f08001f;
-    public static final int row_item_alta_numerico=0x7f080020;
-    public static final int row_personas=0x7f080021;
-    public static final int spinner_item=0x7f080022;
-    public static final int splash=0x7f080023;
+    public static final int row_personas=0x7f080020;
+    public static final int spinner_item=0x7f080021;
+    public static final int splash=0x7f080022;
   }
   public static final class string {
     public static final int app_name=0x7f090000;

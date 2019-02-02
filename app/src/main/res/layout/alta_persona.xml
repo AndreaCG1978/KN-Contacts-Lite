@@ -91,7 +91,9 @@
 				android:typeface="monospace"
 				android:importantForAutofill="no"
 				android:layout_marginRight="4dp"
-				android:layout_marginLeft="3dp" />
+				android:layout_marginLeft="3dp"
+
+				/>
 
 		</LinearLayout>
 		<LinearLayout android:id="@+id/linearNombre"

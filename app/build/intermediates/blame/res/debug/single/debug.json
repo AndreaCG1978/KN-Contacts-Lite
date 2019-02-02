@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_splash.xml.flat",
-        "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/layout/splash.xml"
-    },
-    {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_row_personas.xml.flat",
         "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/layout/row_personas.xml"
+    },
+    {
+        "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_splash.xml.flat",
+        "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/layout/splash.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_action_tombstone.xml.flat",
@@ -54,10 +54,6 @@
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi_camera_icon.png.flat",
         "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/drawable-mdpi/camera_icon.png"
-    },
-    {
-        "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_row_item_alta_numerico.xml.flat",
-        "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/layout/row_item_alta_numerico.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_import_menu_icon.png.flat",

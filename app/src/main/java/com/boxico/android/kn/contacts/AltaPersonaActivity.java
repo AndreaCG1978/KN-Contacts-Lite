@@ -21,6 +21,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -113,8 +114,17 @@ public class AltaPersonaActivity extends Activity  {
 	private boolean cambioCategoriaFlag = false;
 	private boolean vieneDesdeDetalle = false;
 	private boolean cambioLista = false;
+	private boolean terminoCargaListado = true;
 
-    public boolean ismMostrarTelefonosBoolean() {
+	public boolean isTerminoCargaListado() {
+		return terminoCargaListado;
+	}
+
+	public void setTerminoCargaListado(boolean terminoCargaListado) {
+		this.terminoCargaListado = terminoCargaListado;
+	}
+
+	public boolean ismMostrarTelefonosBoolean() {
         return mMostrarTelefonosBoolean;
     }
 
@@ -572,86 +582,54 @@ public class AltaPersonaActivity extends Activity  {
 		mEntryApellido.setText(mPersonaSeleccionada.getApellido());
 		mEntryApellido.addTextChangedListener(new TextWatcher() {
 
-			private String temp = null;
-
 			public void onTextChanged(CharSequence s, int start, int before,
 									  int count) {
-
+				realzarBotonGuardar();
 			}
 
 
 
 			public void beforeTextChanged(CharSequence s, int start, int count,
 										  int after) {
-				temp = s.toString();
 			}
 
 			public void afterTextChanged(Editable s) {
-				String t = null;
-				if(s != null){
-					t = s.toString();
-				}
-				if(t!= null && !(t.equals(temp.toString()))) {
-					realzarBotonGuardar();//do your work here
-				}
 
 			}
 		});
 
 		mEntryNombre.setText(mPersonaSeleccionada.getNombres());
 		mEntryNombre.addTextChangedListener(new TextWatcher() {
-
-			private String temp = null;
-
 			public void onTextChanged(CharSequence s, int start, int before,
 									  int count) {
-
+				realzarBotonGuardar();
 			}
 
 
 
 			public void beforeTextChanged(CharSequence s, int start, int count,
 										  int after) {
-				temp = s.toString();
 			}
 
 			public void afterTextChanged(Editable s) {
-				String t = null;
-				if(s != null){
-					t = s.toString();
-				}
-				if(t!= null && !(t.equals(temp.toString()))) {
-					realzarBotonGuardar();//do your work here
-				}
 
 			}
 		});
 
 		mEntryDatoExtra.setText(mPersonaSeleccionada.getDatoExtra());
 		mEntryDatoExtra.addTextChangedListener(new TextWatcher() {
-
-			private String temp = null;
-
 			public void onTextChanged(CharSequence s, int start, int before,
 									  int count) {
-
+				realzarBotonGuardar();
 			}
 
 
 
 			public void beforeTextChanged(CharSequence s, int start, int count,
 										  int after) {
-				temp = s.toString();
 			}
 
 			public void afterTextChanged(Editable s) {
-				String t = null;
-				if(s != null){
-					t = s.toString();
-				}
-				if(t!= null && !(t.equals(temp.toString()))) {
-					realzarBotonGuardar();//do your work here
-				}
 
 			}
 		});
@@ -659,33 +637,21 @@ public class AltaPersonaActivity extends Activity  {
 
 		mEntryDescripcion.setText(mPersonaSeleccionada.getDescripcion());
 		mEntryDescripcion.addTextChangedListener(new TextWatcher() {
-
-			private String temp = null;
-
 			public void onTextChanged(CharSequence s, int start, int before,
 									  int count) {
-
+				realzarBotonGuardar();
 			}
 
 
 
 			public void beforeTextChanged(CharSequence s, int start, int count,
 										  int after) {
-				temp = s.toString();
 			}
 
 			public void afterTextChanged(Editable s) {
-				String t = null;
-				if(s != null){
-					t = s.toString();
-				}
-				if(t!= null && !(t.equals(temp.toString()))) {
-					realzarBotonGuardar();//do your work here
-				}
 
 			}
 		});
-
 
 		mCheckFechaNac.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -1257,7 +1223,11 @@ public class AltaPersonaActivity extends Activity  {
 
 		if(huboCambios){
 			this.cargarTelefonos();
-			telefonosList.setAdapter(obtenerAdapterTelefono(telefonos));
+			this.recargarListView(telefonosList, telefonos);
+			/*
+			this.setTerminoCargaListado(false);
+			telefonosList.setAdapter(obtenerAdapterTelefono(telefonos));*/
+
 		}
 
 
@@ -1434,7 +1404,18 @@ public class AltaPersonaActivity extends Activity  {
 			if(text != null){
 				text.setVisibility(View.VISIBLE);
 			}
-			telefonosList.setAdapter(this.obtenerAdapterTelefono(telefonos));
+			this.recargarListView(telefonosList, telefonos);
+/*
+			this.setTerminoCargaListado(false);
+			final ViewTreeObserver.OnPreDrawListener opd = new ViewTreeObserver.OnPreDrawListener() {
+				@Override
+				public boolean onPreDraw() {
+					setTerminoCargaListado(true);
+					return true;
+				}
+			};
+			telefonosList.getViewTreeObserver().addOnPreDrawListener(opd);
+			telefonosList.setAdapter(this.obtenerAdapterTelefono(telefonos));*/
 			telefonosList.setVisibility(View.VISIBLE);
 			if(telefonosList.getCount()== 0){
 				sinDatos.setVisibility(View.VISIBLE);
@@ -1449,7 +1430,23 @@ public class AltaPersonaActivity extends Activity  {
 			//icon.setBackgroundDrawable(d);
 		}
 	}
-	
+
+	private void recargarListView(ListView lv, List<TipoValorDTO> valores){
+		this.setTerminoCargaListado(false);
+
+
+		final ViewTreeObserver.OnDrawListener ol = new ViewTreeObserver.OnDrawListener() {
+            @Override
+            public void onDraw() {
+                setTerminoCargaListado(true);
+            }
+        };
+		lv.getViewTreeObserver().addOnDrawListener(ol);
+		lv.setAdapter(this.obtenerAdapterTelefono(valores));
+
+
+	}
+
 	
 	private void mostrarDatosPersonales(){
 	//	Drawable dbw = res.getDrawable(R.drawable.person_am_icon_bw);

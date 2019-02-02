@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SimpleAdapter;
@@ -111,38 +112,27 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 				localContext.realzarBotonGuardar();
 			}
 		});
-		etxt.addTextChangedListener(new TextWatcher() {
 
-			private String temp = null;
+        etxt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-			public void onTextChanged(CharSequence s, int start, int before,
-									  int count) {
-				String t = null;
-				if(s != null){
-					t = s.toString();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+				if(localContext.isTerminoCargaListado()){
+					localContext.realzarBotonGuardar();
 				}
-				if(t!= null && !(t.equals(temp.toString()))) {
-					localContext.realzarBotonGuardar();//do your work here
-					temp = t;
-				}
+            }
+        });
 
-			}
-
-
-
-			public void beforeTextChanged(CharSequence s, int start, int count,
-										  int after) {
-				temp = s.toString();
-			}
-
-			public void afterTextChanged(Editable s) {
-
-
-			}
-		});
-
-
-
+		localContext.setTerminoCargaListado(false);
 		return view;
 	}
 }
