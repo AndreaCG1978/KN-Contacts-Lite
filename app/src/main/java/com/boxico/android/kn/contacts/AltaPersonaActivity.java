@@ -93,16 +93,12 @@ public class AltaPersonaActivity extends Activity  {
 	
 	private Button botonAddTel = null;
 	private Button botonAddMail = null;
-	private ImageButton botonAddDir = null;
+	private Button botonAddDir = null;
 	
 	private List<TipoValorDTO> telefonos = new ArrayList<>();
 	private List<TipoValorDTO> mails = new ArrayList<>();
 	private List<TipoValorDTO> direcciones = new ArrayList<>();
-	
-	private ArrayList<String> tiposTelefono = new ArrayList<>();
-	private ArrayList<String> tiposEmail = new ArrayList<>();
-	private ArrayList<String> tiposDireccion = new ArrayList<>();
-	
+
 	private static final String VALOR = "VALOR";
 	private static final String TIPO = "TIPO";
 	private static final String ID_TIPO_VALOR = "ID_TIPO_VALOR";
@@ -197,27 +193,27 @@ public class AltaPersonaActivity extends Activity  {
 			break;
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_TELEFONO:
 			this.cargarTelefonos();
-	        telefonosList.setAdapter(obtenerAdapterTelefono(telefonos));
+	        telefonosList.setAdapter(obtenerAdapter(telefonos));
 			break;
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_TELEFONO:
 			this.cargarTelefonos();
-	        telefonosList.setAdapter(obtenerAdapterTelefono(telefonos));
+	        telefonosList.setAdapter(obtenerAdapter(telefonos));
 			break;	
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_EMAIL:
 			this.cargarEmails();
-	        mailsList.setAdapter(obtenerAdapterMails(mails));
+	        mailsList.setAdapter(obtenerAdapter(mails));
 			break;
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_EMAIL:
 			this.cargarEmails();
-	        mailsList.setAdapter(obtenerAdapterMails(mails));
+	        mailsList.setAdapter(obtenerAdapter(mails));
 			break;	
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_DIRECCION:
 			this.cargarDirecciones();
-	        direccionesList.setAdapter(obtenerAdapter(direcciones)); 			
+	        direccionesList.setAdapter(obtenerAdapter(direcciones));
 			break;
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_DIRECCION:
 			this.cargarDirecciones();
-			direccionesList.setAdapter(obtenerAdapter(direcciones)); 		
+			direccionesList.setAdapter(obtenerAdapter(direcciones));
 			break;			
 		default:
 			this.configurarSpinner();
@@ -283,62 +279,9 @@ public class AltaPersonaActivity extends Activity  {
         });		
 	}
 	
-    private void configurarListaTelefonos(){
-        SimpleAdapter adapter = obtenerAdapterTelefono(telefonos);
-        telefonosList.setAdapter(adapter);
-        telefonosList.setDividerHeight(0);
-    }
+
 
     
-    private void openEdicionMail(int pos){
-    	ConstantsAdmin.tipoValorSeleccionado = mails.get(pos);
-    	ConstantsAdmin.tipoValorAnteriorSeleccionado = ConstantsAdmin.tipoValorSeleccionado.getCopy();
-    	ConstantsAdmin.tiposValores = tiposEmail;
-    	ConstantsAdmin.personaSeleccionada = mPersonaSeleccionada;
-        Intent i = new Intent(this, AltaTipoValorActivity.class);
-        i.putExtra(ConstantsAdmin.TIPO_ELEMENTO, ConstantsAdmin.TIPO_EMAIL);
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_EMAIL);
-    	
-    }
-    
-    private void openEdicionDireccion(int pos){
-    	ConstantsAdmin.tipoValorSeleccionado = direcciones.get(pos);
-    	ConstantsAdmin.tipoValorAnteriorSeleccionado = ConstantsAdmin.tipoValorSeleccionado.getCopy();
-    	ConstantsAdmin.tiposValores = tiposDireccion;
-    	ConstantsAdmin.personaSeleccionada = mPersonaSeleccionada;
-        Intent i = new Intent(this, AltaTipoValorActivity.class);
-        i.putExtra(ConstantsAdmin.TIPO_ELEMENTO, ConstantsAdmin.TIPO_DIRECCION);
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_DIRECCION);
-    	
-    }    
-    
-
-    private void openAltaDireccion(){
-    	ConstantsAdmin.tipoValorSeleccionado = new TipoValorDTO();
-    	ConstantsAdmin.tipoValorSeleccionado.setIdPersona(String.valueOf(mPersonaSeleccionada.getId()));
-    	ConstantsAdmin.tipoValorAnteriorSeleccionado = null;
-    	ConstantsAdmin.tiposValores = tiposDireccion;
-    	ConstantsAdmin.personaSeleccionada = mPersonaSeleccionada;
-        Intent i = new Intent(this, AltaTipoValorActivity.class);
-        i.putExtra(ConstantsAdmin.TIPO_ELEMENTO, ConstantsAdmin.TIPO_DIRECCION);
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_DIRECCION);
-    	
-    } 
-    
-    private void enModoEdicion(){
-    //	botonGuardar.setTextColor(Color.WHITE);
-		this.realzarBotonGuardar();
-
-    	/*
-    	ConstantsAdmin.tipoValorSeleccionado = telefonos.get(pos);
-    	ConstantsAdmin.tipoValorAnteriorSeleccionado = ConstantsAdmin.tipoValorSeleccionado.getCopy();
-    	ConstantsAdmin.tiposValores = tiposTelefono;
-    	ConstantsAdmin.personaSeleccionada = mPersonaSeleccionada;
-        Intent i = new Intent(this, AltaTipoValorActivity.class);
-        i.putExtra(ConstantsAdmin.TIPO_ELEMENTO, ConstantsAdmin.TIPO_TELEFONO);
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_TELEFONO);*/
-    	
-    }
 
 
     private void habilitarListaTelefono(boolean b, int color){
@@ -370,8 +313,25 @@ public class AltaPersonaActivity extends Activity  {
             btn = ly.findViewById(R.id.removeButton);
             btn.setEnabled(b);
         }
-//		telefonosList.invalidate();
+
     }
+
+    private void habilitarListaDireccion(boolean b, int color){
+        LinearLayout ly = null;
+        EditText eTemp = null;
+        Button btn = null;
+        int size = direccionesList.getAdapter().getCount();
+        for (int j = 0; j < size; j++) {
+            ly = (LinearLayout)direccionesList.getChildAt(j);
+            eTemp = ly.findViewById(R.id.rowValor);
+            eTemp.setEnabled(b);
+            eTemp.setTextColor(color);
+            btn = ly.findViewById(R.id.removeButton);
+            btn.setEnabled(b);
+        }
+
+    }
+
 
 
     private void openAltaTelefono(){
@@ -380,34 +340,19 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryNuevoValTel.setVisibility(View.GONE);
 			mEntryNuevoTipoTel.setText("");
 			mEntryNuevoValTel.setText("");
-		//  botonGuardar.setTextColor(getResources().getColor(R.color.color_azul));
 			opacarBotonGuardar();
-
-
 			this.habilitarListaTelefono(true, Color.WHITE);
-
-			//telefonosList.setEnabled(true);
-			/*this.cargarTelefonos();
-			telefonosList.setAdapter(obtenerAdapterTelefono(telefonos));*/
-
 		}else {
 			mEntryNuevoTipoTel.setVisibility(View.VISIBLE);
 			mEntryNuevoValTel.setVisibility(View.VISIBLE);
-			//botonGuardar.setTextColor(Color.WHITE);
 			realzarBotonGuardar();
-
-
 			mEntryNuevoTipoTel.setText(getResources().getText(R.string.hint_tipo));
 			mEntryNuevoTipoTel.setSelectAllOnFocus(true);
 			mEntryNuevoTipoTel.requestFocus();
-//			this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.showSoftInput(mEntryNuevoTipoTel, InputMethodManager.SHOW_IMPLICIT);
-
-
-
 			this.habilitarListaTelefono(false, Color.LTGRAY);
-			//telefonosList.setEnabled(false);
+
 
 		}
 		sinDatos.setText("");
@@ -439,8 +384,38 @@ public class AltaPersonaActivity extends Activity  {
         sinDatos.setText("");
     }
 
+    private void openAltaDireccion(){
+        if(mEntryNuevoValDir.getVisibility() == View.VISIBLE){
+            mEntryNuevoTipoDir.setVisibility(View.GONE);
+            mEntryNuevoValDir.setVisibility(View.GONE);
+            mEntryNuevoTipoDir.setText("");
+            mEntryNuevoValDir.setText("");
+            opacarBotonGuardar();
+
+            this.habilitarListaMail(true, Color.WHITE);
+        }else {
+            mEntryNuevoTipoDir.setVisibility(View.VISIBLE);
+            mEntryNuevoValDir.setVisibility(View.VISIBLE);
+            realzarBotonGuardar();
+            mEntryNuevoTipoDir.setText(getResources().getText(R.string.hint_tipo));
+            mEntryNuevoTipoDir.setSelectAllOnFocus(true);
+            mEntryNuevoTipoDir.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(mEntryNuevoTipoDir, InputMethodManager.SHOW_IMPLICIT);
+            this.habilitarListaMail(false, Color.LTGRAY);
+        }
+        sinDatos.setText("");
+
+    }
+
+    private void configurarListaTelefonos(){
+        SimpleAdapter adapter = obtenerAdapter(telefonos);
+        telefonosList.setAdapter(adapter);
+        telefonosList.setDividerHeight(0);
+    }
+
     private void configurarListaEmails(){
-        SimpleAdapter adapter = obtenerAdapterMails(mails);
+        SimpleAdapter adapter = obtenerAdapter(mails);
         mailsList.setAdapter(adapter);
         mailsList.setDividerHeight(0);
     }
@@ -452,56 +427,8 @@ public class AltaPersonaActivity extends Activity  {
         direccionesList.setDividerHeight(0);
     }
 
-    
-    private SimpleAdapter obtenerAdapter(List<TipoValorDTO> lista){
-    	ArrayList<HashMap<String,Object>> listdata= new ArrayList<>();
-    	HashMap<String, Object> hm;
 
-    	TipoValorDTO tv;
-    	if(lista != null){
-			for (TipoValorDTO aLista : lista) {
-				tv = aLista;
-				hm = new HashMap<>();
-				hm.put(TIPO, tv.getTipo());
-				hm.put(VALOR, tv.getValor());
-				listdata.add(hm);
-
-			}
-    	}
-        
-        String[] from = {TIPO, VALOR};
-        int[] to={R.id.rowTipo,R.id.rowValor};
-        SimpleAdapter sa = new SimpleAdapter(this, listdata, R.layout.row_item_alta, from, to);
-
-		return sa;
-    }
-
-	private SimpleAdapter obtenerAdapterTelefono(List<TipoValorDTO> lista){
-		ArrayList<HashMap<String,Object>> listdata= new ArrayList<>();
-		HashMap<String, Object> hm;
-
-		TipoValorDTO tv;
-		if(lista != null){
-			for (TipoValorDTO aLista : lista) {
-				tv = aLista;
-				hm = new HashMap<>();
-				hm.put(TIPO, tv.getTipo());
-				hm.put(VALOR, tv.getValor());
-				hm.put(ID_TIPO_VALOR, tv.getId());
-				hm.put(ID_PERSONA, tv.getIdPersona());
-				listdata.add(hm);
-
-			}
-		}
-
-		String[] from = {TIPO, VALOR};
-		int[] to={R.id.rowTipo,R.id.rowValor};
-		KNSimpleCustomAdapter sa = new KNSimpleCustomAdapter(this, listdata, R.layout.row_item_alta, from, to);
-
-		return sa;
-	}
-
-	private SimpleAdapter obtenerAdapterMails(List<TipoValorDTO> lista){
+	private SimpleAdapter obtenerAdapter(List<TipoValorDTO> lista){
 		ArrayList<HashMap<String,Object>> listdata= new ArrayList<>();
 		HashMap<String, Object> hm;
 
@@ -542,11 +469,11 @@ public class AltaPersonaActivity extends Activity  {
 
         mEntryNuevoTipoTel = this.findViewById(R.id.nuevoTipoTel);
         mEntryNuevoTipoMail = this.findViewById(R.id.nuevoTipoMail);
-        mEntryNuevoTipoDir = null;
+        mEntryNuevoTipoDir = this.findViewById(R.id.nuevoTipoDir);
 
         mEntryNuevoValTel = this.findViewById(R.id.nuevoValorTel);
         mEntryNuevoValMail = this.findViewById(R.id.nuevoValorMail);
-        mEntryNuevoValDir = null;
+        mEntryNuevoValDir = this.findViewById(R.id.nuevoValorDir);
 
         telefonosList = this.findViewById(R.id.listaTelefonosAlta);
 		mailsList = this.findViewById(R.id.listaMailsAlta);
@@ -579,7 +506,9 @@ public class AltaPersonaActivity extends Activity  {
 	}
 	
 	private void cargarEntriesConPersonaDto(){
-		mEntryApellido.setText(mPersonaSeleccionada.getApellido());
+    	if(mPersonaSeleccionada.getApellido() != null && !mPersonaSeleccionada.getApellido().equals("")){
+			mEntryApellido.setText(mPersonaSeleccionada.getApellido());
+		}
 		mEntryApellido.addTextChangedListener(new TextWatcher() {
 
 			public void onTextChanged(CharSequence s, int start, int before,
@@ -598,7 +527,9 @@ public class AltaPersonaActivity extends Activity  {
 			}
 		});
 
-		mEntryNombre.setText(mPersonaSeleccionada.getNombres());
+		if(mPersonaSeleccionada.getNombres() != null && !mPersonaSeleccionada.getNombres().equals("")){
+			mEntryNombre.setText(mPersonaSeleccionada.getNombres());
+		}
 		mEntryNombre.addTextChangedListener(new TextWatcher() {
 			public void onTextChanged(CharSequence s, int start, int before,
 									  int count) {
@@ -677,7 +608,7 @@ public class AltaPersonaActivity extends Activity  {
 		this.cargarDirecciones();
 		this.cargarEntryFechaNacimiento();
 	}
-	
+	/*
 	private void cargarTiposTelefono(){
 		tiposTelefono.add(this.getString(R.string.hint_particular).toUpperCase());
 		tiposTelefono.add(this.getString(R.string.hint_telMovil).toUpperCase());
@@ -693,55 +624,12 @@ public class AltaPersonaActivity extends Activity  {
 	private void cargarTiposDireccion(){
 		tiposDireccion.add(this.getString(R.string.hint_particular).toUpperCase());
 		tiposDireccion.add(this.getString(R.string.hint_laboral).toUpperCase());
-	}
+	}*/
 	
 	private void cargarTelefonos(){
 		// ACA DEBERIA RECUPERAR LOS TELEFONOS EXTRAS
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-	//	TipoValorDTO tv;
-	//	telefonos = new ArrayList<>();
-	//	tiposTelefono = new ArrayList<>();
-	//	this.cargarTiposTelefono();
-	//	String idPer = String.valueOf(mPersonaSeleccionada.getId());
-	//	List<TipoValorDTO> masTelefonos;
 		telefonos = ConstantsAdmin.obtenerTelefonosIdPersona( mPersonaSeleccionada.getId(), mDBManager);
-
-	/*
-		if(mPersonaSeleccionada.getId()!= -1){
-			masTelefonos = ConstantsAdmin.obtenerTelefonosIdPersona( mPersonaSeleccionada.getId(), mDBManager);
-			this.cargarMasElementos(masTelefonos, telefonos);
-		}else{
-			masTelefonos = ConstantsAdmin.telefonosARegistrar;
-			if(masTelefonos!= null && masTelefonos.size() > 0){
-				this.cargarMasElementos(masTelefonos, telefonos);
-			}
-
-		}*/
-
-		/*
-
-		if(mPersonaSeleccionada.getTelParticular() != null){
-			tv = cargarTipoValor(this.getString(R.string.hint_particular).toUpperCase(),mPersonaSeleccionada.getTelParticular(), idPer);
-			telefonos.add(tv);
-
-		}
-		
-		if(mPersonaSeleccionada.getCelular() != null){
-			tv = cargarTipoValor(this.getString(R.string.hint_telMovil).toUpperCase(),mPersonaSeleccionada.getCelular(), idPer);
-			telefonos.add(tv);
-
-		}
-		
-		if(mPersonaSeleccionada.getTelLaboral() != null){
-			tv = cargarTipoValor(this.getString(R.string.hint_laboral).toUpperCase(),mPersonaSeleccionada.getTelLaboral(), idPer);
-			telefonos.add(tv);
-		}
-
-		*/
-		
-		// RECUPERO LOS TIPOS MOVILES
-
-		
 
 	}
 
@@ -750,64 +638,16 @@ public class AltaPersonaActivity extends Activity  {
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		mails = ConstantsAdmin.obtenerEmailsIdPersona( mPersonaSeleccionada.getId(), mDBManager);
 
-/*
-		List<TipoValorDTO> masMails;
-		if(mPersonaSeleccionada.getId()!= -1){
-			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			masMails = ConstantsAdmin.obtenerEmailsIdPersona(mPersonaSeleccionada.getId(), mDBManager);
-			this.cargarMasElementos(masMails, mails);
-		}else{
-			masMails = ConstantsAdmin.mailsARegistrar;
-			if(masMails!= null && masMails.size() > 0){
-				this.cargarMasElementos(masMails, mails);
-			}
-			
-		}
-		*/
-
 	}
 	
 	
 	private void cargarDirecciones(){
-		// ACA DEBERIA RECUPERAR LOS TELEFONOS EXTRAS
-
-		TipoValorDTO tv;
-		direcciones = new ArrayList<>();
-		tiposDireccion = new ArrayList<>();
-		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		this.cargarTiposDireccion();
-		String idPer = String.valueOf(mPersonaSeleccionada.getId());
-/*
-		if(mPersonaSeleccionada.getDireccionParticular() != null){
-			tv = cargarTipoValor(this.getString(R.string.hint_particular).toUpperCase(),mPersonaSeleccionada.getDireccionParticular(), idPer);
-			direcciones.add(tv);
-
-		}
-		
-		if(mPersonaSeleccionada.getDireccionLaboral() != null){
-			tv = cargarTipoValor(this.getString(R.string.hint_laboral).toUpperCase(),mPersonaSeleccionada.getDireccionLaboral(), idPer);
-			direcciones.add(tv);
-
-		}
-		*/
-		
-		// RECUPERO LOS TIPOS MOVILES
-		List<TipoValorDTO> masDirecciones;
-		if(mPersonaSeleccionada.getId()!= -1){
-			masDirecciones = ConstantsAdmin.obtenerDireccionesIdPersona( mPersonaSeleccionada.getId(), mDBManager);
-			this.cargarMasElementos(masDirecciones, direcciones);
-		}else{
-			masDirecciones = ConstantsAdmin.direccionesARegistrar;
-			if(masDirecciones!= null && masDirecciones.size() > 0){
-				this.cargarMasElementos(masDirecciones, direcciones);
-			}
-			
-		}
-		
+        DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+        direcciones = ConstantsAdmin.obtenerDireccionesIdPersona(mPersonaSeleccionada.getId(), mDBManager);
 
 	}
 	
-	
+
 	private void cargarMasElementos(List<TipoValorDTO> listaOrigen, List<TipoValorDTO> listaDestino){
 		Iterator<TipoValorDTO> it = listaOrigen.iterator();
 		TipoValorDTO tv;
@@ -829,7 +669,7 @@ public class AltaPersonaActivity extends Activity  {
 		tv.setValor(valor);
 		return tv;
 	}
-	
+
 	private void cargarEntryFechaNacimiento(){
 		
 		if(mPersonaSeleccionada.getFechaNacimiento()!= null && !mPersonaSeleccionada.getFechaNacimiento().equals("")){
@@ -934,15 +774,15 @@ public class AltaPersonaActivity extends Activity  {
 	
 	private void guardarPersonaSeleccionada(Intent intent){
 		String idPerString;
-		this.cargarTiposTelefono();
-		this.cargarTiposEmail();
-		this.cargarTiposDireccion();
+	//	this.cargarTiposTelefono();
+	//	this.cargarTiposEmail();
+	//	this.cargarTiposDireccion();
 		if(intent.hasExtra(ConstantsAdmin.PERSONA_SELECCIONADA)){
 			idPerString = (String)intent.getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA);
 			this.cargarPersonaDto(idPerString);
 			this.cargarEntriesConPersonaDto();
 			mNombContact.setVisibility(View.VISIBLE);
-			String nombC = null;
+			String nombC = "";
 			if(mPersonaSeleccionada.getApellido() != null){
                 nombC = mPersonaSeleccionada.getApellido().toUpperCase();
             }
@@ -1060,7 +900,7 @@ public class AltaPersonaActivity extends Activity  {
 			}else if(mMostrarEmailsBoolean){
 				this.registrarMails(idPer);
 			}else if(mMostrarDireccionesBoolean){
-				//this.registrarDirecciones(idPer);
+				this.registrarDirecciones(idPer);
 			}
 			/*
 			if(ConstantsAdmin.direccionesARegistrar != null && ConstantsAdmin.direccionesARegistrar.size() > 0){
@@ -1150,7 +990,7 @@ public class AltaPersonaActivity extends Activity  {
 
 		if(huboCambios){
 			this.cargarEmails();
-			mailsList.setAdapter(obtenerAdapterMails(mails));
+			mailsList.setAdapter(obtenerAdapter(mails));
 		}
 	}
 
@@ -1235,7 +1075,75 @@ public class AltaPersonaActivity extends Activity  {
 
 	}
 
-/*
+
+    private void registrarDirecciones(long idPer){
+        ArrayList<HashMap<String,Object>> listdata= new ArrayList<>();
+        HashMap<String, Object> hm;
+        TipoValorDTO tv = null;
+        List<TipoValorDTO> dirsTemp = new ArrayList<>();
+        DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+        boolean huboCambios = false;
+
+        // VERIFICO SI HAY ALGUN NUEVO TELEFONO A REGISTRAR
+        if(mEntryNuevoValDir.getVisibility() == View.VISIBLE && !mEntryNuevoTipoDir.getText().toString().equals("")
+                && !mEntryNuevoValDir.getText().toString().equals("")){
+            tv = new TipoValorDTO();
+            tv.setTipo(mEntryNuevoTipoDir.getText().toString());
+            tv.setValor(mEntryNuevoValDir.getText().toString());
+            tv.setIdPersona(String.valueOf(idPer));
+            dirsTemp.add(tv);
+            mEntryNuevoTipoDir.setText("");
+            mEntryNuevoValDir.setText("");
+            huboCambios = true;
+        }else {
+
+            KNSimpleCustomAdapter adapter = (KNSimpleCustomAdapter) direccionesList.getAdapter();
+            listdata = adapter.getLista();
+
+            int i = 0;
+            LinearLayout vLayout = null;
+            EditText eTemp = null;
+            String tipoTemp, valTemp = null;
+            if (listdata != null) {
+                for (HashMap hmTemp : listdata) {
+                    hm = hmTemp;
+                    vLayout = (LinearLayout) direccionesList.getChildAt(i);
+                    eTemp = vLayout.findViewById(R.id.rowTipo);
+                    tipoTemp = eTemp.getText().toString();
+                    eTemp = vLayout.findViewById(R.id.rowValor);
+                    valTemp = eTemp.getText().toString();
+                    if (!tipoTemp.equals("") && !valTemp.equals("")) {
+                        tv = new TipoValorDTO();
+                        tv.setIdPersona((String) hm.get(ID_PERSONA));
+                        tv.setId((Long) hm.get(ID_TIPO_VALOR));
+                        tv.setTipo(tipoTemp);
+                        tv.setValor(valTemp);
+                        dirsTemp.add(tv);
+                        huboCambios = true;
+
+                    }
+                    i++;
+
+                }
+            }
+        }
+        ConstantsAdmin.registrarDirecciones(dirsTemp, mDBManager);
+
+        if(ConstantsAdmin.getDireccionesAEliminar() != null && ConstantsAdmin.getDireccionesAEliminar().size() > 0){
+            ConstantsAdmin.eliminarDirecciones(ConstantsAdmin.getDireccionesAEliminar(), mDBManager);
+            ConstantsAdmin.setDireccionesAEliminar(null);
+            huboCambios = true;
+        }
+
+        if(huboCambios){
+            this.cargarDirecciones();
+            this.recargarListView(direccionesList, direcciones);
+	    }
+
+    }
+
+
+    /*
 	private void registrarTelefonos(List<TipoValorDTO> telefonos, long idPer){
 		Iterator<TipoValorDTO> it = telefonos.iterator();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
@@ -1259,7 +1167,7 @@ public class AltaPersonaActivity extends Activity  {
 		ConstantsAdmin.registrarMails(mails, mDBManager);
 		
 	}
-		
+
 	private void registrarDirecciones(List<TipoValorDTO> direcciones, long idPer){
 		Iterator<TipoValorDTO> it = direcciones.iterator();
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
@@ -1442,7 +1350,7 @@ public class AltaPersonaActivity extends Activity  {
             }
         };
 		lv.getViewTreeObserver().addOnDrawListener(ol);
-		lv.setAdapter(this.obtenerAdapterTelefono(valores));
+		lv.setAdapter(this.obtenerAdapter(valores));
 
 
 	}
@@ -1459,8 +1367,9 @@ public class AltaPersonaActivity extends Activity  {
 			this.findViewById(R.id.labelDateDisplay).setVisibility(View.GONE);
 								
 			
-			if(text != null)
+			if(text != null) {
 				text.setVisibility(View.GONE);
+			}
 			mEntryApellido.setVisibility(View.GONE);
 			mEntryNombre.setVisibility(View.GONE);
 			mCheckFechaNac.setVisibility(View.GONE);
@@ -1472,8 +1381,9 @@ public class AltaPersonaActivity extends Activity  {
 
 
 		}else{
-			if(text != null)
+			if(text != null) {
 				text.setVisibility(View.VISIBLE);
+			}
 			sinDatos.setVisibility(View.GONE);
 			this.findViewById(R.id.label_apellido).setVisibility(View.VISIBLE);
 			this.findViewById(R.id.label_nombre).setVisibility(View.VISIBLE);
@@ -1536,7 +1446,7 @@ public class AltaPersonaActivity extends Activity  {
 			if(text != null){
 				text.setVisibility(View.VISIBLE);
 			}
-			mailsList.setAdapter(this.obtenerAdapterMails(mails));
+			mailsList.setAdapter(this.obtenerAdapter(mails));
 			mailsList.setVisibility(View.VISIBLE);
 			if(mailsList.getCount()== 0){
 				sinDatos.setVisibility(View.VISIBLE);
@@ -1555,21 +1465,23 @@ public class AltaPersonaActivity extends Activity  {
 
 
 	private void mostrarDirecciones(){
-	//	Drawable dbw = res.getDrawable(R.drawable.home_am_icon_bw);
-	//	Drawable d = res.getDrawable(R.drawable.home_am_icon);
 		ImageButton icon = this.findViewById(R.id.menu_icon_addres);
 		TextView text = this.findViewById(R.id.label_address);
+		mEntryNuevoTipoDir.setVisibility(View.GONE);
+		mEntryNuevoValDir.setVisibility(View.GONE);
 		if(!mMostrarDireccionesBoolean){
 			if(text != null){
 				text.setVisibility(View.GONE);
 			}
 			icon.setBackgroundResource(R.drawable.home_am_icon_bw);
-			direccionesList.setVisibility(View.GONE);
 			botonAddDir.setVisibility(View.GONE);
+			direccionesList.setVisibility(View.GONE);
+
 		}else{
 			if(text != null){
 				text.setVisibility(View.VISIBLE);
 			}
+			direccionesList.setAdapter(this.obtenerAdapter(direcciones));
 			direccionesList.setVisibility(View.VISIBLE);
 			if(direccionesList.getCount()== 0){
 				sinDatos.setVisibility(View.VISIBLE);

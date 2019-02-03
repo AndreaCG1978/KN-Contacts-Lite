@@ -247,8 +247,10 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id nuevoTipoDir
 id nuevoTipoMail
 id nuevoTipoTel
+id nuevoValorDir
 id nuevoValorMail
 id nuevoValorTel
 id photo
