@@ -28,6 +28,7 @@ public class ContraseniaDTO{
 		this.contrasenia = contrasenia;
 	}
 	public boolean isActiva() {
+
 		return activa;
 	}
 	public void setActiva(boolean activa) {

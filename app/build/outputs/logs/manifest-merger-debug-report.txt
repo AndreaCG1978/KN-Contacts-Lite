@@ -1,197 +1,197 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-MERGED from [com.android.support:support-v4:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/d6d83add8414dad549eea30d61b72c63/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-media-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/ff29e6da17e1bbb3d7a443c794d54deb/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-fragment:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/dacf7e987920001849dd7c0e728e69b0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/4cec733bd4e4d9cfd5b58e394923b91e/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/2375c501317ac6b5ed6632dd36fc1fb3/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/dc2c0812e7a706da6547d170d3681b29/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/95c658a97c5f53370acf5218e37f7c15/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/cddf7573b0a74c8d2f952d5200487663/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/1deec7d776b39f0d9caef7345921247e/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/965e517c9a2a5d3cfd2ada67ab1723be/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:2:1-87:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:2:1-87:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:2:1-87:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:2:1-87:12
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\2260613ff7793fe7ef9cff293a111037\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\fbf3952f712ab390978162059fa323c9\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\b3ccb3beeb69fef638b181f2145e82f3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\676c26daf92586667777924ea1294ff0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\52c42f5a5c8db4101c22665d6985467c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\10806cbaa1a91a61885dbbd1271e6040\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\a20f5b3683d6a0bd28820fbf7045f108\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\a26568399293d156c5c754f7985d3b61\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\94f3989555d5c60736ad5d64f1db82c1\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\0ea7ae3b558fccc25843d6fc3afcede3\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:2:1-87:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:2:1-87:12
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:2:1-87:12
 	package
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:4:2-42
-		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
-		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:4:2-42
+		INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
 	android:versionName
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:5:2-27
-		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
-		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:5:2-27
+		INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
 	xmlns:tools
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:3:2-48
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:3:2-48
 	xmlns:android
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:4:43-67
-		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
-		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:4:43-67
+		INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.READ_CONTACTS
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:7:5-71
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:7:5-71
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:7:22-69
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:7:22-69
 uses-permission#android.permission.CALL_PHONE
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:8:2-66
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:8:2-66
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:8:19-63
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:8:19-63
 uses-permission#android.permission.INTERNET
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:9:2-64
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:9:2-64
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:9:19-61
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:9:19-61
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:12:2-78
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:12:2-78
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:12:19-75
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:12:19-75
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:13:2-77
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:13:2-77
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:13:19-74
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:13:19-74
 uses-feature#android.hardware.camera
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:14:2-57
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:14:2-57
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:14:16-54
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:14:16-54
 uses-feature#android.hardware.telephony
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:17:2-18:30
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:17:2-18:30
 	android:required
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:18:3-27
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:18:3-27
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:17:16-57
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:17:16-57
 uses-feature#android.hardware.touchscreen
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:19:2-20:29
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:19:2-20:29
 	android:required
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:20:3-26
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:20:3-26
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:19:16-59
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:19:16-59
 application
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:23:2-86:16
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:23:2-86:16
 	android:supportsRtl
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:25:3-29
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:25:3-29
 	android:label
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:24:3-35
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:24:3-35
 	android:fullBackupContent
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:27:3-53
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:27:3-53
 	tools:ignore
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:26:3-42
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:26:3-42
 	android:icon
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:23:15-53
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:23:15-53
 	android:allowBackup
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:28:3-29
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:28:3-29
 activity#com.boxico.android.kn.contacts.InitActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:30:3-38:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:30:3-38:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:30:13-40
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:30:13-40
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:31:4-34:20
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:31:4-34:20
 action#android.intent.action.MAIN
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:32:5-57
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:32:5-57
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:32:13-54
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:32:13-54
 category#android.intent.category.LAUNCHER
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:33:5-65
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:33:5-65
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:33:15-62
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:33:15-62
 intent-filter#action:name:android.permission.READ_CONTACTS
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:35:4-37:20
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:35:4-37:20
 action#android.permission.READ_CONTACTS
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:36:5-63
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:36:5-63
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:36:13-60
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:36:13-60
 activity#com.boxico.android.kn.contacts.ListadoPersonaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:39:3-44:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:39:3-44:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:39:13-50
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:39:13-50
 activity#com.boxico.android.kn.contacts.DetallePersonaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:45:3-50:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:45:3-50:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:45:13-50
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:45:13-50
 intent-filter#action:name:android.permission.CALL_PHONE
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:46:4-48:20
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:46:4-48:20
 action#android.permission.CALL_PHONE
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:47:5-60
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:47:5-60
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:47:13-57
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:47:13-57
 activity#com.boxico.android.kn.contacts.ListadoCategoriaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:51:3-52:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:51:3-52:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:51:13-52
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:51:13-52
 activity#com.boxico.android.kn.contacts.AltaPersonaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:53:3-54:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:53:3-54:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:53:13-47
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:53:13-47
 activity#com.boxico.android.kn.contacts.AboutMeActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:56:3-57:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:56:3-57:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:56:13-43
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:56:13-43
 activity#com.boxico.android.kn.contacts.MisCategoriasActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:59:3-60:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:59:3-60:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:59:13-49
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:59:13-49
 activity#com.boxico.android.kn.contacts.AltaCategoriaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:62:3-63:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:62:3-63:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:62:13-49
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:62:13-49
 activity#com.boxico.android.kn.contacts.AltaTipoValorActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:65:3-66:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:65:3-66:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:65:13-49
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:65:13-49
 activity#com.boxico.android.kn.contacts.ProteccionCategoriaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:68:3-69:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:68:3-69:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:68:13-55
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:68:13-55
 activity#com.boxico.android.kn.contacts.ActivarContraseniaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:71:3-72:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:71:3-72:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:71:13-54
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:71:13-54
 activity#com.boxico.android.kn.contacts.PhotoActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:74:3-75:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:74:3-75:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:74:13-41
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:74:13-41
 activity#com.boxico.android.kn.contacts.ImportarContactoActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:77:3-81:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:77:3-81:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:77:13-52
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:77:13-52
 activity#com.boxico.android.kn.contacts.MenuPersonaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:83:3-84:14
+ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:83:3-84:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:83:13-47
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml:83:13-47
 uses-sdk
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
-MERGED from [com.android.support:support-v4:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/d6d83add8414dad549eea30d61b72c63/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/d6d83add8414dad549eea30d61b72c63/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/ff29e6da17e1bbb3d7a443c794d54deb/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/ff29e6da17e1bbb3d7a443c794d54deb/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/dacf7e987920001849dd7c0e728e69b0/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/dacf7e987920001849dd7c0e728e69b0/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/4cec733bd4e4d9cfd5b58e394923b91e/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/4cec733bd4e4d9cfd5b58e394923b91e/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/2375c501317ac6b5ed6632dd36fc1fb3/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/2375c501317ac6b5ed6632dd36fc1fb3/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/dc2c0812e7a706da6547d170d3681b29/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/dc2c0812e7a706da6547d170d3681b29/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/95c658a97c5f53370acf5218e37f7c15/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/95c658a97c5f53370acf5218e37f7c15/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/cddf7573b0a74c8d2f952d5200487663/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/cddf7573b0a74c8d2f952d5200487663/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/1deec7d776b39f0d9caef7345921247e/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/1deec7d776b39f0d9caef7345921247e/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/965e517c9a2a5d3cfd2ada67ab1723be/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/965e517c9a2a5d3cfd2ada67ab1723be/AndroidManifest.xml:20:5-44
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\2260613ff7793fe7ef9cff293a111037\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\2260613ff7793fe7ef9cff293a111037\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\fbf3952f712ab390978162059fa323c9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\fbf3952f712ab390978162059fa323c9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\b3ccb3beeb69fef638b181f2145e82f3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\b3ccb3beeb69fef638b181f2145e82f3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\676c26daf92586667777924ea1294ff0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\676c26daf92586667777924ea1294ff0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\52c42f5a5c8db4101c22665d6985467c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\52c42f5a5c8db4101c22665d6985467c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\10806cbaa1a91a61885dbbd1271e6040\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\10806cbaa1a91a61885dbbd1271e6040\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\a20f5b3683d6a0bd28820fbf7045f108\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\a20f5b3683d6a0bd28820fbf7045f108\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\a26568399293d156c5c754f7985d3b61\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\a26568399293d156c5c754f7985d3b61\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\94f3989555d5c60736ad5d64f1db82c1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\94f3989555d5c60736ad5d64f1db82c1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\0ea7ae3b558fccc25843d6fc3afcede3\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\a.grassano.spb\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\0ea7ae3b558fccc25843d6fc3afcede3\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
-		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
+		INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
-		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
+		INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\a.grassano.spb\ProyectosAndroid\KN-Contacts-I\app\src\main\AndroidManifest.xml

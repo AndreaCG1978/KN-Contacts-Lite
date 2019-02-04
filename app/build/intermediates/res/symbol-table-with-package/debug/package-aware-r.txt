@@ -196,10 +196,10 @@ id importarContacto
 id info
 id invisible
 id italic
-id labelDateDisplay
 id label_address
 id label_apellido
 id label_category
+id label_cumple
 id label_datoExtra
 id label_descripcion
 id label_direcciones

@@ -195,10 +195,10 @@ int id importarContacto 0x7f060051
 int id info 0x7f060052
 int id invisible 0x7f060053
 int id italic 0x7f060054
-int id labelDateDisplay 0x7f060055
-int id label_address 0x7f060056
-int id label_apellido 0x7f060057
-int id label_category 0x7f060058
+int id label_address 0x7f060055
+int id label_apellido 0x7f060056
+int id label_category 0x7f060057
+int id label_cumple 0x7f060058
 int id label_datoExtra 0x7f060059
 int id label_descripcion 0x7f06005a
 int id label_direcciones 0x7f06005b

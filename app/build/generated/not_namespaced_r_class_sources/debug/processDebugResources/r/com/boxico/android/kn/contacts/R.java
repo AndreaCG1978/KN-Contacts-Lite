@@ -366,10 +366,10 @@ public final class R {
     public static final int info=0x7f060052;
     public static final int invisible=0x7f060053;
     public static final int italic=0x7f060054;
-    public static final int labelDateDisplay=0x7f060055;
-    public static final int label_address=0x7f060056;
-    public static final int label_apellido=0x7f060057;
-    public static final int label_category=0x7f060058;
+    public static final int label_address=0x7f060055;
+    public static final int label_apellido=0x7f060056;
+    public static final int label_category=0x7f060057;
+    public static final int label_cumple=0x7f060058;
     public static final int label_datoExtra=0x7f060059;
     public static final int label_descripcion=0x7f06005a;
     public static final int label_direcciones=0x7f06005b;

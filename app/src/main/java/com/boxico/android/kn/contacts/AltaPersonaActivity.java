@@ -56,7 +56,7 @@ public class AltaPersonaActivity extends Activity  {
 	
 	//private ArrayList<Cursor> allMyCursors = null;
 	
-	private TextView mDateDisplay;
+//	private TextView mDateDisplay;
 	private Button mPickDate;
 	private CheckBox mCheckFechaNac;
 	private int mYear;
@@ -454,7 +454,7 @@ public class AltaPersonaActivity extends Activity  {
 	}
 
 	private void registrarWidgets(){
-		mDateDisplay = this.findViewById(R.id.labelDateDisplay);
+	//	mDateDisplay = this.findViewById(R.id.labelDateDisplay);
 		mPickDate = this.findViewById(R.id.buttonPickDate);
 		mCheckFechaNac = this.findViewById(R.id.checkFechaNacimiento);
      //   Resources res = getResources();
@@ -673,13 +673,15 @@ public class AltaPersonaActivity extends Activity  {
 	private void cargarEntryFechaNacimiento(){
 		
 		if(mPersonaSeleccionada.getFechaNacimiento()!= null && !mPersonaSeleccionada.getFechaNacimiento().equals("")){
-			mDateDisplay.setVisibility(View.VISIBLE);
-			mDateDisplay.setText(formatFechaToView(mPersonaSeleccionada.getFechaNacimiento()));
+		//	mDateDisplay.setVisibility(View.VISIBLE);
+		//	mDateDisplay.setText(formatFechaToView(mPersonaSeleccionada.getFechaNacimiento()));
 			mPickDate.setEnabled(true);
+			mPickDate.setText(formatFechaToView(mPersonaSeleccionada.getFechaNacimiento()));
 			mCheckFechaNac.setChecked(true);
 		}else{
-			mDateDisplay.setVisibility(View.GONE);
+	//		mDateDisplay.setVisibility(View.GONE);
 			mPickDate.setEnabled(false);
+			mPickDate.setText(getResources().getString(R.string.label_fechaNacimiento));
 			mCheckFechaNac.setChecked(false);
 			
 		}
@@ -1364,7 +1366,7 @@ public class AltaPersonaActivity extends Activity  {
 		if(!mMostrarDatosPersonalesBoolean){
 			this.findViewById(R.id.label_apellido).setVisibility(View.GONE);
 			this.findViewById(R.id.label_nombre).setVisibility(View.GONE);
-			this.findViewById(R.id.labelDateDisplay).setVisibility(View.GONE);
+			this.findViewById(R.id.label_cumple).setVisibility(View.GONE);
 								
 			
 			if(text != null) {
@@ -1373,7 +1375,7 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryApellido.setVisibility(View.GONE);
 			mEntryNombre.setVisibility(View.GONE);
 			mCheckFechaNac.setVisibility(View.GONE);
-			mDateDisplay.setVisibility(View.GONE);
+//			mDateDisplay.setVisibility(View.GONE);
 			mPickDate.setVisibility(View.GONE);
 
 			icon.setBackgroundResource(R.drawable.person_am_icon_bw);
@@ -1387,11 +1389,12 @@ public class AltaPersonaActivity extends Activity  {
 			sinDatos.setVisibility(View.GONE);
 			this.findViewById(R.id.label_apellido).setVisibility(View.VISIBLE);
 			this.findViewById(R.id.label_nombre).setVisibility(View.VISIBLE);
-			this.findViewById(R.id.labelDateDisplay).setVisibility(View.VISIBLE);
+			this.findViewById(R.id.label_cumple).setVisibility(View.VISIBLE);
+	//		this.findViewById(R.id.labelDateDisplay).setVisibility(View.VISIBLE);
 			mEntryApellido.setVisibility(View.VISIBLE);
 			mEntryNombre.setVisibility(View.VISIBLE);
 			mCheckFechaNac.setVisibility(View.VISIBLE);
-			mDateDisplay.setVisibility(View.VISIBLE);
+	//		mDateDisplay.setVisibility(View.VISIBLE);
 			mPickDate.setVisibility(View.VISIBLE);
 			mEntryApellido.setPressed(false);
 			icon.setBackgroundResource(R.drawable.person_am_icon);
@@ -1607,11 +1610,14 @@ public class AltaPersonaActivity extends Activity  {
 		if(isChecked){
 			mPickDate.setEnabled(true);
 			mPickDate.setTextColor(getResources().getColor(R.color.color_azul));
-			mDateDisplay.setVisibility(View.VISIBLE);
+			//this.findViewById(R.id.label_cumple).setVisibility(View.VISIBLE);
+	//		mDateDisplay.setVisibility(View.VISIBLE);
+			updateDisplay();
 		}else{
 			mPickDate.setEnabled(false);
 			mPickDate.setTextColor(Color.GRAY);
-			mDateDisplay.setVisibility(View.INVISIBLE);
+			//this.findViewById(R.id.label_cumple).setVisibility(View.);
+//			mDateDisplay.setVisibility(View.INVISIBLE);
 			
 		}
 	}
@@ -1622,7 +1628,8 @@ public class AltaPersonaActivity extends Activity  {
         .append(mDay).append(ConstantsAdmin.SEPARADOR_FECHA)
         .append(mMonth).append(ConstantsAdmin.SEPARADOR_FECHA)
         .append(mYear).append(" ");
-        mDateDisplay.setText(formatFechaToView(text.toString()));
+        //mDateDisplay.setText(formatFechaToView(text.toString()));
+        mPickDate.setText(formatFechaToView(text.toString()));
     }
     
  // the callback received when the user "sets" the date in the dialog
