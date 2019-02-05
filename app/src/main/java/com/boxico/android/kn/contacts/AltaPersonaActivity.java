@@ -109,8 +109,9 @@ public class AltaPersonaActivity extends Activity  {
 	
 	private boolean cambioCategoriaFlag = false;
 	private boolean vieneDesdeDetalle = false;
-	private boolean cambioLista = false;
 	private boolean terminoCargaListado = true;
+
+	private boolean inicioActivity = false;
 
 	public boolean isTerminoCargaListado() {
 		return terminoCargaListado;
@@ -591,17 +592,6 @@ public class AltaPersonaActivity extends Activity  {
 			}
 		});
 
-		mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				realzarBotonGuardar();
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-
-			}
-		});
 
 		this.cargarTelefonos();
 		this.cargarEmails();
@@ -819,7 +809,6 @@ public class AltaPersonaActivity extends Activity  {
             public void onClick(View v) {
             	if(validarEntradaDeDatos()){
                     registrarPersona();
-                    cambioLista = false;
                     setResult(RESULT_OK);
                    	finish();
 
@@ -841,8 +830,7 @@ public class AltaPersonaActivity extends Activity  {
             public void onClick(View v) {
             	if(validarEntradaDeDatos()){
                     registrarPersona();
-					cambioLista = false;
-            		Toast t = Toast.makeText(getApplicationContext(), R.string.label_guardar_parcial, Toast.LENGTH_LONG);
+	           		Toast t = Toast.makeText(getApplicationContext(), R.string.label_guardar_parcial, Toast.LENGTH_LONG);
             		t.show();
             		mostrarTodo();
              
@@ -1685,7 +1673,7 @@ public class AltaPersonaActivity extends Activity  {
     
     private void crearSpinnerCategorias(List<CategoriaDTO> categorias){
 	    Spinner spinner = findViewById(R.id.spinnerCategorias_alta_persona);
-	    	    int pos = 0;
+	    int pos = 0;
 	    CategoriaDTO cat;
 	    boolean encontrado = false;
 	    Iterator<CategoriaDTO> it = categorias.iterator();
@@ -1715,7 +1703,12 @@ public class AltaPersonaActivity extends Activity  {
         	mCategoriaSeleccionada = (CategoriaDTO) parent.getSelectedItem();
         	cambioCategoriaFlag = true;
         	mostrarDatosPorCategoria();
-           
+        	if(!inicioActivity){
+				inicioActivity = true;
+			}else{
+				realzarBotonGuardar();
+			}
+
         }
 
         public void onNothingSelected(AdapterView<?> parent) {
