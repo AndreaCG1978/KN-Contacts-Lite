@@ -1685,7 +1685,7 @@ public class AltaPersonaActivity extends Activity  {
     
     private void crearSpinnerCategorias(List<CategoriaDTO> categorias){
 	    Spinner spinner = findViewById(R.id.spinnerCategorias_alta_persona);
-	    int pos = 0;
+	    	    int pos = 0;
 	    CategoriaDTO cat;
 	    boolean encontrado = false;
 	    Iterator<CategoriaDTO> it = categorias.iterator();

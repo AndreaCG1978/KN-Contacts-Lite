@@ -110,6 +110,7 @@ drawable pref_detalle_icon
 drawable pref_icon
 drawable pref_icon_bw
 drawable restore_menu
+drawable spinner_layout
 drawable splash
 id action0
 id action_container
@@ -221,6 +222,7 @@ id linea2
 id linea3
 id linearApellido
 id linearCaracteristica
+id linearCategoria
 id linearCumple
 id linearNombre
 id listaDirecciones
@@ -497,6 +499,7 @@ string title_detallePersona
 string title_nueva_categoria
 string title_obtener_imagen
 string title_proteccion_categorias
+style SpinnerTheme
 style TextAppearance_Compat_Notification
 style TextAppearance_Compat_Notification_Info
 style TextAppearance_Compat_Notification_Info_Media

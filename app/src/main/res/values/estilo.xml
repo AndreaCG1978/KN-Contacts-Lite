@@ -14,4 +14,8 @@
     <color name="color_gris_boton">#D3D2CD</color>
 	<color name="color_celeste">#354CB5</color>
 
+    <style name="SpinnerTheme" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/spinner_layout</item>
+    </style>
+
 </resources>

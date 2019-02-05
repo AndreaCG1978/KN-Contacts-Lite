@@ -128,6 +128,7 @@
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:orientation="horizontal" android:layout_margin="7dp"
 			android:layout_below="@id/linearNombre"
+			android:gravity="center"
 			android:background="@drawable/custom_text_view_categoria_desc">
 
 			<CheckBox android:id="@+id/checkFechaNacimiento"
@@ -146,10 +147,10 @@
 
 			<Button android:id="@+id/buttonPickDate" android:text="@string/label_fechaNacimiento"
 				android:nextFocusDown="@+id/butttonRegistrarPersonaFinal"
-				android:layout_width="wrap_content" android:layout_height="25dp"
+				android:layout_width="wrap_content" android:layout_height="28dp"
 				android:textSize="10sp" android:textColor="@color/color_gris_oscuro"
 				android:typeface="monospace"
-				android:layout_marginEnd="2dp"
+				android:layout_margin="5dp"
 				android:background="@drawable/custom_button"
 				/>
 
@@ -396,18 +397,27 @@
 			android:typeface="monospace" android:paddingStart="10dp" android:paddingLeft="10dp"
 			android:layout_marginBottom="20dp" android:gravity="start|center" />
 
-		<Spinner android:id="@+id/spinnerCategorias_alta_persona"
-			android:layout_below="@id/label_category" android:layout_width="wrap_content"
-			android:layout_height="32dp" android:layout_marginStart="10dp"
-			android:layout_marginTop="10dp" android:layout_marginBottom="10dp"
-			android:background="@drawable/custom_button"
-			android:layout_marginLeft="5dp" />
 
+        <LinearLayout android:id="@+id/linearCategoria"
+            android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_margin="5dp"
+            android:layout_below="@id/label_category"
+            android:gravity="right"
+            android:background="@drawable/custom_text_view_apellido">
+
+			<Spinner android:id="@+id/spinnerCategorias_alta_persona"
+				android:layout_below="@id/label_category" android:layout_width="310dp"
+				android:layout_height="33dp" android:layout_marginEnd="10dp"
+				android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
+				style="@style/SpinnerTheme"
+				android:layout_marginRight="10dp" />
+
+        </LinearLayout>
 
 		<LinearLayout android:id="@+id/linearCaracteristica"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:orientation="horizontal" android:layout_margin="5dp"
-			android:layout_below="@id/spinnerCategorias_alta_persona">
+			android:layout_below="@id/linearCategoria">
 
 			<TextView android:id="@+id/label_datoExtra"
 

@@ -248,6 +248,10 @@
         "source": "C:\\Users\\a.grassano.spb\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\10806cbaa1a91a61885dbbd1271e6040\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
+        "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\build\\intermediates\\res\\merged\\debug\\drawable_spinner_layout.xml.flat",
+        "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\src\\main\\res\\drawable\\spinner_layout.xml"
+    },
+    {
         "merged": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\build\\intermediates\\res\\merged\\debug\\drawable_custom_text_view_apellido.xml.flat",
         "source": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\src\\main\\res\\drawable\\custom_text_view_apellido.xml"
     },
