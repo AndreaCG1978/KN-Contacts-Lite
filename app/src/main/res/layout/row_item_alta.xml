@@ -42,8 +42,7 @@
 		android:paddingBottom="3dp"
 		android:paddingTop="1dp"
 		android:typeface="monospace"
-		android:background="@drawable/custom_button"
-		android:src="@drawable/add_icon">
+		android:background="@drawable/custom_button">
 	</Button>
 
 

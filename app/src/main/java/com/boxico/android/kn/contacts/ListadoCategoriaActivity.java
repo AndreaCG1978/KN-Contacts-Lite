@@ -158,6 +158,25 @@ public class ListadoCategoriaActivity extends KNListFragment  {
     	}
     }
 
+	public void activarODesactivarCategoria(int position){
+		CategoriaDTO catSelected = (CategoriaDTO) getListView().getItemAtPosition(position);
+		if(!(cantActivas == 1 && catSelected.getActiva() == 1)){
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			if(catSelected.getActiva()==1){
+				catSelected.setActiva(0);
+				cantActivas--;
+			}else{
+				catSelected.setActiva(1);
+				cantActivas++;
+			}
+			ConstantsAdmin.actualizarCategoria(catSelected, mDBManager);
+			labelCategorias.setText(titulo + " (" + cantActivas + "/" + cantCategorias + ")");
+
+		}
+	}
+
+
+
 
 	protected void onResume() {
         super.onResume();
@@ -185,7 +204,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	//	super.onListItemClick(l, v, position, id);
-		this.activarODesactivarCategoria(this.getListView(), position, view);
+	//	this.activarODesactivarCategoria(this.getListView(), position, view);
 	}
 
 

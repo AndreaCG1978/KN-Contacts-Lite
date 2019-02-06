@@ -158,6 +158,7 @@ id categoriasSeleccionadasId
 id center
 id center_horizontal
 id center_vertical
+id checkActivada
 id checkFechaNacimiento
 id chronometer
 id clip_horizontal
