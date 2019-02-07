@@ -2075,7 +2075,7 @@ public class ConstantsAdmin {
 		return obtenerCategorias(context, null, mDBManager);
 	}
 
-	private static List<CategoriaDTO> obtenerCategoriasPersonales(Activity context, DataBaseManager mDBManager){
+	public static List<CategoriaDTO> obtenerCategoriasPersonales(Activity context, DataBaseManager mDBManager){
 		CategoriaDTO cat;
 		CursorLoader cursorLoader = null;
 		Cursor cur = null;
@@ -2095,6 +2095,7 @@ public class ConstantsAdmin {
 		cur.moveToFirst();
 		while(!cur.isAfterLast()){
 			cat = cursorToCategoriaDto(cur);
+			cat.setCategoriaPersonal(true);
 			result.add(cat);
 			cur.moveToNext();
 		}

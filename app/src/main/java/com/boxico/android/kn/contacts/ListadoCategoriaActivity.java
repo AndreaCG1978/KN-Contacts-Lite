@@ -76,8 +76,12 @@ public class ListadoCategoriaActivity extends KNListFragment  {
         listView.setFastScrollEnabled(true);
 
         List<CategoriaDTO> categorias = ConstantsAdmin.obtenerCategorias(this, null, mDBManager);
+		List<CategoriaDTO> categoriasPersonales = ConstantsAdmin.obtenerCategoriasPersonales(this, mDBManager);
 		this.cambiarNombreCategorias(categorias);
+		this.cambiarNombreCategorias(categoriasPersonales);
+		categorias.addAll(categoriasPersonales);
 		Collections.sort(categorias);
+
         
         setListAdapter(new KNArrayAdapter(this, R.layout.categoria_row, R.id.text1, categorias, false));
         CategoriaDTO cat;
