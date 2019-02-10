@@ -118,6 +118,7 @@ id action_divider
 id action_image
 id action_text
 id actions
+id addCategoria
 id addDir
 id addMail
 id addTelefono
@@ -198,6 +199,7 @@ id importarContacto
 id info
 id invisible
 id italic
+id labelNombreCategoria
 id label_address
 id label_apellido
 id label_category
@@ -225,6 +227,8 @@ id linearApellido
 id linearCaracteristica
 id linearCategoria
 id linearCumple
+id linearDatos
+id linearLista
 id linearNombre
 id listaDirecciones
 id listaDireccionesAlta

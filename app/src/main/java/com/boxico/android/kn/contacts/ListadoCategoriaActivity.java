@@ -4,11 +4,16 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,13 +25,18 @@ import com.boxico.android.kn.contacts.util.KNArrayAdapter;
 import com.boxico.android.kn.contacts.util.KNListFragment;
 
 public class ListadoCategoriaActivity extends KNListFragment  {
-	
 
-//	private ArrayList<Cursor> allMyCursors = null;
+
 	private TextView labelCategorias = null;
+	private TextView labelNombreCategoria = null;
+	private TextView labelTipoDatoExtra = null;
+	private EditText entryNombreCategoria = null;
+	private EditText entryTipoDatoExtra = null;
+	private Button addCategoria = null;
 	private int cantActivas = 0;
 	private int cantCategorias = 0;
 	private String titulo = null;
+
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +51,100 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 	private void registrarWidgets(){
 		labelCategorias = this.findViewById(R.id.categoriaTextView);
 		titulo = labelCategorias.getText().toString();
+		labelNombreCategoria = this.findViewById(R.id.labelNombreCategoria);
+		labelTipoDatoExtra = this.findViewById(R.id.label_tipo_dato_extra);
+		entryNombreCategoria = this.findViewById(R.id.entryNombreCategoria);
+		entryTipoDatoExtra = this.findViewById(R.id.entryTipoDatoExtra);
+		addCategoria = this.findViewById(R.id.addCategoria);
+		addCategoria.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				openAltaCategoria();
+			}
+		});
 	}
-/*
+
+	private void openAltaCategoria(){
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		if(entryNombreCategoria.getVisibility() == View.VISIBLE){
+			this.habilitarLista(true, Color.WHITE);
+			entryTipoDatoExtra.setVisibility(View.GONE);
+			entryNombreCategoria.setVisibility(View.GONE);
+			labelNombreCategoria.setVisibility(View.GONE);
+			labelTipoDatoExtra.setVisibility(View.GONE);
+			entryTipoDatoExtra.setText("");
+			entryNombreCategoria.setText("");
+			//opacarBotonGuardar();
+			imm.hideSoftInputFromWindow(entryNombreCategoria.getWindowToken(), 0);
+
+		}else {
+			this.habilitarLista(false, Color.LTGRAY);
+			entryTipoDatoExtra.setVisibility(View.VISIBLE);
+			entryNombreCategoria.setVisibility(View.VISIBLE);
+			labelNombreCategoria.setVisibility(View.VISIBLE);
+			labelTipoDatoExtra.setVisibility(View.VISIBLE);
+			//	realzarBotonGuardar();
+			entryNombreCategoria.setText(getResources().getText(R.string.hint_categoria));
+			entryNombreCategoria.setSelectAllOnFocus(true);
+			entryNombreCategoria.requestFocus();
+
+			imm.showSoftInput(entryNombreCategoria, InputMethodManager.SHOW_IMPLICIT);
+
+
+		}
+
+	}
+
+
+	public View getViewByPosition(int position, ListView listView) {
+		final int firstListItemPosition = listView.getFirstVisiblePosition();
+		final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+        boolean val = position < firstListItemPosition || position > lastListItemPosition;
+        if (val) {
+			return listView.getAdapter().getView(position, null, listView);
+		} else {
+			final int childIndex = position - firstListItemPosition;
+			return listView.getChildAt(childIndex);
+		}
+	}
+
+
+
+	private void habilitarLista(boolean b, int color){
+		LinearLayout ly1, ly2 = null;
+		CheckBox chk = null;
+		Button btn = null;
+		TextView txt = null;
+
+		if(b){
+			this.getListView().setVisibility(View.VISIBLE);
+		}else{
+			this.getListView().setVisibility(View.GONE);
+		}
+
+
+
+	/*
+		int size = getListView().getAdapter().getCount();
+		for (int j = 0; j < size; j++) {
+		//	ly1 = (LinearLayout)getListView().getChildAt(j);
+
+
+			ly1 = (LinearLayout) this.getViewByPosition(j, getListView());
+			txt = (TextView) ly1.findViewById(R.id.text1);
+			txt.setEnabled(b);
+			ly2 = (LinearLayout)ly1.findViewById(R.id.linearDatos);
+			chk = ly2.findViewById(R.id.checkActivada);
+			chk.setEnabled(b);
+			//eTemp.setTextColor(color);
+			btn = ly2.findViewById(R.id.removeButton);
+			btn.setEnabled(b);
+		}
+
+		*/
+
+	}
+
+	/*
     private void resetAllMyCursors(){
     	Cursor cur;
 		for (Cursor allMyCursor : allMyCursors) {
@@ -52,7 +154,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 		}
     	allMyCursors = new ArrayList<>();
     }
-  	
+
 	*/
     private void cambiarNombreCategorias(List<CategoriaDTO> categorias){
   		Iterator<CategoriaDTO> it = categorias.iterator();
@@ -97,10 +199,10 @@ public class ListadoCategoriaActivity extends KNListFragment  {
         }
         labelCategorias.setText(titulo + " (" + cantActivas + "/" + cantCategorias + ")");
 
-        this.configurarBotonMisCategorias();
+      //  this.configurarBotonMisCategorias();
 		
 	}
-	
+	/*
 	private void configurarBotonMisCategorias(){
 		Button misCat;
 		misCat = this.findViewById(R.id.botonMisCategorias);
@@ -110,11 +212,16 @@ public class ListadoCategoriaActivity extends KNListFragment  {
             }
         });
 	}
-	
+	*/
+
+	/*
 	private void verMisCategorias(){
         Intent i = new Intent(this, MisCategoriasActivity.class);
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_MIS_CATEGORIAS);
 	}
+
+
+	*/
 	/*
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);

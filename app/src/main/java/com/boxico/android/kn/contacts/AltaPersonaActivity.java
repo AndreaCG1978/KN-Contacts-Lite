@@ -279,41 +279,66 @@ public class AltaPersonaActivity extends Activity  {
             }
         });		
 	}
-	
 
 
-    
 
+
+	public View getViewByPosition(int position, ListView listView) {
+		final int firstListItemPosition = listView.getFirstVisiblePosition();
+		final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+		if (position < firstListItemPosition || position > lastListItemPosition ) {
+			return listView.getAdapter().getView(position, null, listView);
+		} else {
+			final int childIndex = position - firstListItemPosition;
+			return listView.getChildAt(childIndex);
+		}
+	}
 
     private void habilitarListaTelefono(boolean b, int color){
     	LinearLayout ly = null;
 		EditText eTemp = null;
 		Button btn = null;
+		if(b) {
+			telefonosList.setVisibility(View.VISIBLE);
+		}else{
+			telefonosList.setVisibility(View.GONE);
+		}
+
+		/*
+
 		int size = telefonosList.getAdapter().getCount();
 		for (int j = 0; j < size; j++) {
-			ly = (LinearLayout)telefonosList.getChildAt(j);
+			ly = (LinearLayout)this.getViewByPosition(j, telefonosList);
 			eTemp = ly.findViewById(R.id.rowValor);
 			eTemp.setEnabled(b);
 			eTemp.setTextColor(color);
 			btn = ly.findViewById(R.id.removeButton);
 			btn.setEnabled(b);
-		}
-//		telefonosList.invalidate();
+		}*/
+
 	}
 
     private void habilitarListaMail(boolean b, int color){
         LinearLayout ly = null;
         EditText eTemp = null;
         Button btn = null;
+		if(b) {
+			mailsList.setVisibility(View.VISIBLE);
+		}else{
+			mailsList.setVisibility(View.GONE);
+		}
+
+        /*
         int size = mailsList.getAdapter().getCount();
         for (int j = 0; j < size; j++) {
-            ly = (LinearLayout)mailsList.getChildAt(j);
+ 			ly = (LinearLayout)this.getViewByPosition(j, mailsList);
             eTemp = ly.findViewById(R.id.rowValor);
             eTemp.setEnabled(b);
             eTemp.setTextColor(color);
             btn = ly.findViewById(R.id.removeButton);
             btn.setEnabled(b);
-        }
+        }*/
 
     }
 
@@ -321,55 +346,62 @@ public class AltaPersonaActivity extends Activity  {
         LinearLayout ly = null;
         EditText eTemp = null;
         Button btn = null;
+		if(b) {
+			direccionesList.setVisibility(View.VISIBLE);
+		}else{
+			direccionesList.setVisibility(View.GONE);
+		}
+
+      /*
         int size = direccionesList.getAdapter().getCount();
         for (int j = 0; j < size; j++) {
-            ly = (LinearLayout)direccionesList.getChildAt(j);
+          	ly = (LinearLayout)this.getViewByPosition(j, direccionesList);
             eTemp = ly.findViewById(R.id.rowValor);
             eTemp.setEnabled(b);
             eTemp.setTextColor(color);
             btn = ly.findViewById(R.id.removeButton);
             btn.setEnabled(b);
-        }
+        }*/
 
     }
 
 
 
     private void openAltaTelefono(){
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
     	if(mEntryNuevoValTel.getVisibility() == View.VISIBLE){
 			mEntryNuevoTipoTel.setVisibility(View.GONE);
 			mEntryNuevoValTel.setVisibility(View.GONE);
 			mEntryNuevoTipoTel.setText("");
 			mEntryNuevoValTel.setText("");
 			opacarBotonGuardar();
+			imm.hideSoftInputFromWindow(mEntryNuevoTipoTel.getWindowToken(), 0);
 			this.habilitarListaTelefono(true, Color.WHITE);
+
 		}else {
+			this.habilitarListaTelefono(false, Color.LTGRAY);
 			mEntryNuevoTipoTel.setVisibility(View.VISIBLE);
 			mEntryNuevoValTel.setVisibility(View.VISIBLE);
 			realzarBotonGuardar();
 			mEntryNuevoTipoTel.setText(getResources().getText(R.string.hint_tipo));
 			mEntryNuevoTipoTel.setSelectAllOnFocus(true);
 			mEntryNuevoTipoTel.requestFocus();
-			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.showSoftInput(mEntryNuevoTipoTel, InputMethodManager.SHOW_IMPLICIT);
-			this.habilitarListaTelefono(false, Color.LTGRAY);
-
-
 		}
 		sinDatos.setText("");
 
-    	
     }
 
 
     private void openAltaMail(){
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if(mEntryNuevoValMail.getVisibility() == View.VISIBLE){
             mEntryNuevoTipoMail.setVisibility(View.GONE);
             mEntryNuevoValMail.setVisibility(View.GONE);
             mEntryNuevoTipoMail.setText("");
             mEntryNuevoValMail.setText("");
             opacarBotonGuardar();
-
+			imm.hideSoftInputFromWindow(mEntryNuevoTipoMail.getWindowToken(), 0);
             this.habilitarListaMail(true, Color.WHITE);
         }else {
             mEntryNuevoTipoMail.setVisibility(View.VISIBLE);
@@ -378,7 +410,6 @@ public class AltaPersonaActivity extends Activity  {
             mEntryNuevoTipoMail.setText(getResources().getText(R.string.hint_tipo));
             mEntryNuevoTipoMail.setSelectAllOnFocus(true);
             mEntryNuevoTipoMail.requestFocus();
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(mEntryNuevoTipoMail, InputMethodManager.SHOW_IMPLICIT);
             this.habilitarListaMail(false, Color.LTGRAY);
         }
@@ -386,14 +417,15 @@ public class AltaPersonaActivity extends Activity  {
     }
 
     private void openAltaDireccion(){
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if(mEntryNuevoValDir.getVisibility() == View.VISIBLE){
             mEntryNuevoTipoDir.setVisibility(View.GONE);
             mEntryNuevoValDir.setVisibility(View.GONE);
             mEntryNuevoTipoDir.setText("");
             mEntryNuevoValDir.setText("");
             opacarBotonGuardar();
-
-            this.habilitarListaMail(true, Color.WHITE);
+			imm.hideSoftInputFromWindow(mEntryNuevoTipoDir.getWindowToken(), 0);
+            this.habilitarListaDireccion(true, Color.WHITE);
         }else {
             mEntryNuevoTipoDir.setVisibility(View.VISIBLE);
             mEntryNuevoValDir.setVisibility(View.VISIBLE);
@@ -401,9 +433,8 @@ public class AltaPersonaActivity extends Activity  {
             mEntryNuevoTipoDir.setText(getResources().getText(R.string.hint_tipo));
             mEntryNuevoTipoDir.setSelectAllOnFocus(true);
             mEntryNuevoTipoDir.requestFocus();
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(mEntryNuevoTipoDir, InputMethodManager.SHOW_IMPLICIT);
-            this.habilitarListaMail(false, Color.LTGRAY);
+            this.habilitarListaDireccion(false, Color.LTGRAY);
         }
         sinDatos.setText("");
 
@@ -909,6 +940,10 @@ public class AltaPersonaActivity extends Activity  {
 
 			//mNombContact.setText(mPersonaSeleccionada.getApellido().toUpperCase() + " " + mPersonaSeleccionada.getNombres());
 			ConstantsAdmin.resetPersonasOrganizadas();
+
+			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(null, 0);
+
 		} catch (Exception e) {
 			if(mPersonaSeleccionada.getId() == -1){
 				ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorAltaContacto));
