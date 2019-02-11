@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
@@ -33,17 +34,27 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 	private EditText entryNombreCategoria = null;
 	private EditText entryTipoDatoExtra = null;
 	private Button addCategoria = null;
+	private Button saveCategoria = null;
 	private int cantActivas = 0;
 	private int cantCategorias = 0;
 	private String titulo = null;
+	private CategoriaDTO categoriaSeleccionada = null;
 
+	public CategoriaDTO getCategoriaSeleccionada() {
+		return categoriaSeleccionada;
+	}
+
+	public void setCategoriaSeleccionada(CategoriaDTO categoriaSeleccionada) {
+		this.categoriaSeleccionada = categoriaSeleccionada;
+	}
 
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
       //  allMyCursors = new ArrayList<>();
         this.setContentView(R.layout.list_categorias);
         this.registrarWidgets();
-        this.configurarList(getListView());
+        //this.configurarList(getListView());
+		this.refreshList();
         
     }
 
@@ -61,9 +72,60 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 				openAltaCategoria();
 			}
 		});
+		saveCategoria = this.findViewById(R.id.saveCategoria);
+		saveCategoria.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				salvarCategoria();
+				refreshList();
+				openAltaCategoria();
+			}
+		});
+
 	}
 
-	private void openAltaCategoria(){
+	public void refreshList(){
+		configurarList(getListView());
+	}
+
+	private boolean validarNuevaCategoria(){
+		boolean estaOk;
+		String nomCatStr = entryNombreCategoria.getText().toString();
+		String nomDatoRelStr = entryTipoDatoExtra.getText().toString();
+		estaOk = !nomCatStr.equals("") && !nomDatoRelStr.equals("");
+		return estaOk;
+	}
+
+	private void salvarCategoria(){
+		String oldNameCat = "-";
+		boolean reset = false;
+		if(validarNuevaCategoria()){
+			if(categoriaSeleccionada == null){
+				categoriaSeleccionada = new CategoriaDTO();
+			}else{
+				oldNameCat = categoriaSeleccionada.getNombreReal();
+				reset = true;
+			}
+
+			categoriaSeleccionada.setNombreReal(entryNombreCategoria.getText().toString());
+			categoriaSeleccionada.setTipoDatoExtra(entryTipoDatoExtra.getText().toString());
+			categoriaSeleccionada.setActiva(1);
+			categoriaSeleccionada.setCategoriaPersonal(true);
+			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+			ConstantsAdmin.crearCategoriaPersonal(categoriaSeleccionada, oldNameCat, false, mDBManager);
+			if(reset){
+				ConstantsAdmin.resetPersonasOrganizadas();
+			}
+			categoriaSeleccionada = null;
+		}else{
+			Toast t = Toast.makeText(getApplicationContext(), R.string.error_alta_categoria_incompleta, Toast.LENGTH_LONG);
+			t.show();
+			//   		mEntryApellido.clearFocus();
+
+		}
+
+	}
+
+	public void openAltaCategoria(){
 		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		if(entryNombreCategoria.getVisibility() == View.VISIBLE){
 			this.habilitarLista(true, Color.WHITE);
@@ -71,6 +133,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 			entryNombreCategoria.setVisibility(View.GONE);
 			labelNombreCategoria.setVisibility(View.GONE);
 			labelTipoDatoExtra.setVisibility(View.GONE);
+			saveCategoria.setVisibility(View.GONE);
 			entryTipoDatoExtra.setText("");
 			entryNombreCategoria.setText("");
 			//opacarBotonGuardar();
@@ -83,10 +146,16 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 			labelNombreCategoria.setVisibility(View.VISIBLE);
 			labelTipoDatoExtra.setVisibility(View.VISIBLE);
 			//	realzarBotonGuardar();
-			entryNombreCategoria.setText(getResources().getText(R.string.hint_categoria));
-			entryNombreCategoria.setSelectAllOnFocus(true);
-			entryNombreCategoria.requestFocus();
+			if(categoriaSeleccionada != null){
+				entryNombreCategoria.setText(categoriaSeleccionada.getNombreReal());
+				entryTipoDatoExtra.setText(categoriaSeleccionada.getTipoDatoExtra());
+			}else{
+				entryNombreCategoria.setText(getResources().getText(R.string.hint_categoria));
+				entryNombreCategoria.setSelectAllOnFocus(true);
+			}
 
+			entryNombreCategoria.requestFocus();
+			saveCategoria.setVisibility(View.VISIBLE);
 			imm.showSoftInput(entryNombreCategoria, InputMethodManager.SHOW_IMPLICIT);
 
 
@@ -183,8 +252,6 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 		this.cambiarNombreCategorias(categoriasPersonales);
 		categorias.addAll(categoriasPersonales);
 		Collections.sort(categorias);
-
-        
         setListAdapter(new KNArrayAdapter(this, R.layout.categoria_row, R.id.text1, categorias, false));
         CategoriaDTO cat;
         int pos = 0;
@@ -280,7 +347,12 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 				catSelected.setActiva(1);
 				cantActivas++;
 			}
-			ConstantsAdmin.actualizarCategoria(catSelected, mDBManager);
+			if(!catSelected.isCategoriaPersonal()){
+                ConstantsAdmin.actualizarCategoria(catSelected, mDBManager);
+            }else {
+                ConstantsAdmin.actualizarCategoriaPersonal(catSelected, mDBManager);
+            }
+
 			labelCategorias.setText(titulo + " (" + cantActivas + "/" + cantCategorias + ")");
 
 		}

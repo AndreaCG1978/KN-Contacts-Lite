@@ -2,7 +2,9 @@ package com.boxico.android.kn.contacts.util;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +19,15 @@ import android.widget.TextView;
 import com.boxico.android.kn.contacts.ListadoCategoriaActivity;
 import com.boxico.android.kn.contacts.MisCategoriasActivity;
 import com.boxico.android.kn.contacts.R;
+import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 
 public class KNArrayAdapter extends ArrayAdapter<CategoriaDTO> {
 
-	private ListadoCategoriaActivity activityA = null;
-    private MisCategoriasActivity activityP = null;
+	private ListadoCategoriaActivity activity = null;
+ //   private MisCategoriasActivity activityP = null;
 	private boolean paraProteccion;
-	private boolean desdeMisCategorias = false;
+	//private boolean desdeMisCategorias = false;
 	
 // --Commented out by Inspection START (12/11/2018 12:34):
 //	public KNArrayAdapter(Context context, int textViewResourceId,
@@ -39,13 +42,13 @@ public class KNArrayAdapter extends ArrayAdapter<CategoriaDTO> {
 		// TODO Auto-generated constructor stub
 		super(context, resourceId, textViewResourceId, objects);
 		paraProteccion = paraProtec;
-		try{
-            activityA = (ListadoCategoriaActivity) context;
-        }catch (ClassCastException exc){
+	//	try{
+        activity = (ListadoCategoriaActivity) context;
+    /*    }catch (ClassCastException exc){
 		    activityP = (MisCategoriasActivity) context;
 		    desdeMisCategorias = true;
         }
-
+*/
 	}
 
 	@NonNull
@@ -54,19 +57,41 @@ public class KNArrayAdapter extends ArrayAdapter<CategoriaDTO> {
 		// TODO Auto-generated method stub
 		View v = super.getView(position, convertView, parent);
 		ListView lv = (ListView)parent;
-		CategoriaDTO cat = (CategoriaDTO) lv.getAdapter().getItem(position);
+		final CategoriaDTO cat = (CategoriaDTO) lv.getAdapter().getItem(position);
 		TextView tv;
 		LinearLayout ll;
 		ll = (LinearLayout)v;
 		tv = (TextView) ll.getChildAt(0);
 		final int pos = position;
-		Button btn = ll.findViewById(R.id.removeButton);
+		Button btnR = ll.findViewById(R.id.removeButton);
 
 		if(!cat.isCategoriaPersonal()){
-			btn.setVisibility(View.GONE);
+			btnR.setVisibility(View.GONE);
 		}else{
-			btn.setVisibility(View.VISIBLE);
+			btnR.setVisibility(View.VISIBLE);
 		}
+
+		btnR.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				mostrarEliminarCategoria(cat);
+			}
+		});
+
+
+
+		Button btnE = ll.findViewById(R.id.editButton);
+
+		if(!cat.isCategoriaPersonal()){
+			btnE.setVisibility(View.GONE);
+		}else{
+			btnE.setVisibility(View.VISIBLE);
+		}
+
+		btnE.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				mostrarEditarCategoria(cat);
+			}
+		});
 
 		CheckBox cb = ll.findViewById(R.id.checkActivada);
 	//	final ListadoCategoriaActivity act = (ListadoCategoriaActivity) activity;
@@ -74,10 +99,7 @@ public class KNArrayAdapter extends ArrayAdapter<CategoriaDTO> {
 		cb.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-			    if(!desdeMisCategorias) {
-                    activityA.activarODesactivarCategoria(pos);
-                }
-
+                activity.activarODesactivarCategoria(pos);
 			}
 		});
 
@@ -99,6 +121,41 @@ public class KNArrayAdapter extends ArrayAdapter<CategoriaDTO> {
 			}
 		}
 		return ll;
+	}
+
+	private void mostrarEditarCategoria(CategoriaDTO cat){
+		activity.setCategoriaSeleccionada(cat);
+		activity.openAltaCategoria();
+	}
+
+	private void mostrarEliminarCategoria(CategoriaDTO cat){
+		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+		final CategoriaDTO myCat = cat;
+		builder.setMessage(R.string.mensaje_borrar_categoria)
+				.setCancelable(false)
+				.setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						eliminarCategoriaSeleccionada(myCat);
+						activity.refreshList();
+
+					}
+				})
+				.setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+		builder.show();
+	}
+
+	private void eliminarCategoriaSeleccionada(CategoriaDTO cat){
+		try {
+			DataBaseManager mDBManager = DataBaseManager.getInstance(activity);
+			ConstantsAdmin.eliminarCategoriaPersonal(cat, mDBManager);
+		} catch (Exception e) {
+			ConstantsAdmin.mostrarMensaje(activity, activity.getString(R.string.errorEliminacionCategoria));
+		}
+
 	}
 	
 	

@@ -2478,6 +2478,12 @@ public class ConstantsAdmin {
 		finalizarBD(mDBManager);
 	}
 
+	public static void actualizarCategoriaPersonal(CategoriaDTO catSelected, DataBaseManager mDBManager){
+		inicializarBD(mDBManager);
+		mDBManager.actualizarCategoriaPersonal(catSelected);
+		finalizarBD(mDBManager);
+	}
+
 	public static void actualizarConfig(DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.actualizarConfig(config);

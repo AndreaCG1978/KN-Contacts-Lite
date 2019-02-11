@@ -5,8 +5,12 @@
 	android:orientation="horizontal"
 	android:gravity="start">
 
+	<CheckBox android:id="@+id/checkActivada"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_marginStart="8dp" android:textColor="@color/color_gris_claro"
+		android:layout_marginLeft="8dp" />
 
-	<TextView android:id="@+id/text1" android:layout_width="245dp"
+	<TextView android:id="@+id/text1" android:layout_width="225dp"
 		android:layout_height="wrap_content" android:background="@drawable/custom_text_expandable_group_label"
 		android:textSize="13sp" android:paddingTop="9dp"
 		android:typeface="monospace" android:paddingStart="15dp"
@@ -22,24 +26,38 @@
 		android:orientation="horizontal"
 		android:gravity="end">
 
-	<CheckBox android:id="@+id/checkActivada"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:layout_marginStart="3dp" android:textColor="@color/color_gris_claro"
-		android:layout_marginLeft="3dp" />
+
+
+	<Button android:id="@+id/editButton"
+		android:layout_width="26dp" android:layout_height="24dp"
+		android:text="►"
+		android:textColor="@android:color/holo_green_light"
+		android:textSize="18sp"
+		android:textStyle="bold"
+		android:layout_gravity="center"
+		android:layout_marginLeft="12dp"
+		android:layout_marginStart="12dp"
+		android:contentDescription="►"
+		android:paddingBottom="5dp"
+		android:paddingTop="1dp"
+		android:typeface="monospace"
+		android:background="@drawable/custom_button">
+	</Button>
 
 	<Button android:id="@+id/removeButton"
-		android:layout_width="30dp" android:layout_height="28dp"
+		android:layout_width="26dp" android:layout_height="24dp"
 		android:text="-"
 		android:textColor="@android:color/holo_red_light"
 		android:textSize="18sp"
 		android:textStyle="bold"
 		android:layout_gravity="center"
-		android:layout_marginRight="10dp" android:layout_marginLeft="10dp"
+		android:layout_marginLeft="12dp"
+		android:layout_marginStart="12dp"
 		android:contentDescription="-"
-		android:paddingBottom="3dp"
-		android:paddingTop="1dp"
 		android:typeface="monospace"
-		android:background="@drawable/custom_button">
+		android:background="@drawable/custom_button"
+		android:paddingTop="1dp"
+		android:paddingBottom="5dp">
 	</Button>
 
 	</LinearLayout>

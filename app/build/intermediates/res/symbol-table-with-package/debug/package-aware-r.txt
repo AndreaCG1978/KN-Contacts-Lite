@@ -171,6 +171,7 @@ id detalle_apellido
 id detalle_categoria
 id detalle_fechaNacimiento
 id detalle_nombres
+id editButton
 id end
 id end_padder
 id entryApellido
@@ -272,6 +273,7 @@ id rowFoto
 id rowNombres
 id rowTipo
 id rowValor
+id saveCategoria
 id spinnerCategorias_alta_persona
 id spinnerTipoValor
 id start

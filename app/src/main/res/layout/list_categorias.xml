@@ -4,13 +4,14 @@
 
 
 	<LinearLayout android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:orientation="vertical">
+		android:layout_height="fill_parent" android:orientation="vertical"
+		android:background="@color/color_gris_oscuro">
 
 		<LinearLayout android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:orientation="horizontal">
 
 			<TextView android:id="@+id/categoriaTextView" android:background="@drawable/custom_text_view_categoria"
-				android:textColor="@color/color_azul_oscuro" android:layout_width="280dp"
+				android:textColor="@color/color_azul_oscuro" android:layout_width="250dp"
 				android:layout_height="30dp" android:textSize="14sp"
 				android:textStyle="bold" android:layout_margin="10dp" android:gravity="center"
 				android:text="@string/label_categorias">
@@ -19,17 +20,35 @@
 			<Button android:id="@+id/addCategoria"
 				android:layout_width="32dp" android:layout_height="28dp"
 				android:text="+"
-				android:textColor="@color/color_azul"
+				android:textColor="@color/color_blanco"
 				android:textSize="18sp"
 				android:textStyle="bold"
 				android:layout_gravity="center"
-				android:layout_marginRight="10dp" android:layout_marginLeft="10dp"
+				android:layout_marginLeft="7dp"
 				android:layout_below="@id/menu_icons"
 				android:contentDescription="addCategory"
 				android:paddingBottom="3dp"
 				android:paddingTop="1dp"
 				android:typeface="monospace"
 				android:background="@drawable/custom_button"
+				>
+			</Button>
+
+			<Button android:id="@+id/saveCategoria"
+				android:layout_width="32dp" android:layout_height="28dp"
+				android:text="►"
+				android:textColor="@color/color_blanco"
+				android:textSize="18sp"
+				android:textStyle="bold"
+				android:layout_gravity="center"
+				android:layout_marginLeft="7dp"
+				android:layout_below="@id/menu_icons"
+				android:contentDescription="addCategory"
+				android:paddingBottom="1dp"
+				android:paddingTop="1dp"
+				android:typeface="monospace"
+				android:background="@drawable/custom_button"
+				android:visibility="gone"
 				>
 			</Button>
 
@@ -54,11 +73,11 @@
 
 			<EditText android:id="@+id/entryNombreCategoria"
 				android:layout_width="fill_parent" android:layout_height="35dp"
-				android:hint="@string/hint_categoria" android:inputType="textCapWords"
+				android:hint="@string/hint_categoria" android:inputType="textCapCharacters"
 				android:maxLength="15" android:nextFocusUp="@+id/label_tipo_dato_extra"
 				android:padding="8dp" android:textSize="14sp"
 				android:layout_marginStart="9dp"
-				android:textColor="@color/color_azul_oscuro"
+				android:textColor="@color/color_blanco"
 				android:importantForAutofill="no"
 				android:layout_marginLeft="9dp"
 				android:visibility="gone"/>
@@ -79,8 +98,9 @@
 
 			<EditText android:id="@+id/entryTipoDatoExtra"
 				android:layout_width="fill_parent" android:layout_height="35dp"
-				android:hint="@string/hint_caracteristica" android:inputType="textCapWords"
-				android:layout_marginStart="9dp" android:maxLength="15" android:textColor="@color/color_azul_oscuro"
+				android:hint="@string/hint_caracteristica" android:inputType="textCapCharacters"
+				android:layout_marginStart="9dp" android:maxLength="15"
+				android:textColor="@color/color_blanco"
 				android:textSize="14sp" android:padding="8dp"
 				android:importantForAutofill="no"
 				android:layout_marginLeft="9dp"
