@@ -22,33 +22,19 @@ import com.boxico.android.kn.contacts.R;
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 
-public class KNArrayAdapter extends ArrayAdapter<CategoriaDTO> {
+public class KNCategoryListAdapter extends ArrayAdapter<CategoriaDTO> {
 
 	private ListadoCategoriaActivity activity = null;
- //   private MisCategoriasActivity activityP = null;
-	private boolean paraProteccion;
-	//private boolean desdeMisCategorias = false;
-	
-// --Commented out by Inspection START (12/11/2018 12:34):
-//	public KNArrayAdapter(Context context, int textViewResourceId,
-//			List<CategoriaDTO> objects) {
-//		super(context, textViewResourceId, objects);
-//		// TODO Auto-generated constructor stub
-//	}
-// --Commented out by Inspection STOP (12/11/2018 12:34)
+ 	private boolean paraProteccion;
 
-	public KNArrayAdapter(Context context, int resourceId, int textViewResourceId,
-			List<CategoriaDTO> objects, boolean paraProtec) {
+	public KNCategoryListAdapter(Context context, int resourceId, int textViewResourceId,
+								 List<CategoriaDTO> objects, boolean paraProtec) {
 		// TODO Auto-generated constructor stub
 		super(context, resourceId, textViewResourceId, objects);
 		paraProteccion = paraProtec;
-	//	try{
+
         activity = (ListadoCategoriaActivity) context;
-    /*    }catch (ClassCastException exc){
-		    activityP = (MisCategoriasActivity) context;
-		    desdeMisCategorias = true;
-        }
-*/
+
 	}
 
 	@NonNull

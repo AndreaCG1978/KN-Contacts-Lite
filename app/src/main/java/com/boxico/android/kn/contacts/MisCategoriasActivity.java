@@ -25,7 +25,7 @@ import android.widget.TextView;
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
-import com.boxico.android.kn.contacts.util.KNArrayAdapter;
+import com.boxico.android.kn.contacts.util.KNCategoryListAdapter;
 import com.boxico.android.kn.contacts.util.KNListFragment;
 
 public class MisCategoriasActivity extends KNListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -139,7 +139,7 @@ public class MisCategoriasActivity extends KNListFragment implements LoaderManag
 	       // stopManagingCursor(categoriasCursor);
 	        Collections.sort(categorias);
 	        
-	        setListAdapter(new KNArrayAdapter(this, R.layout.categoria_row, R.id.text1, categorias, false));
+	        setListAdapter(new KNCategoryListAdapter(this, R.layout.categoria_row, R.id.text1, categorias, false));
 	        int pos = 0;
 	        cantActivas = 0;
 	        cantCategorias = categorias.size();

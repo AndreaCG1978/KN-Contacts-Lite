@@ -18,13 +18,29 @@
 				android:contentDescription="imagenProtegerCategorias" />
 
 			<TextView android:background="@drawable/custom_text_view_categoria"
-				android:textColor="@color/color_azul_oscuro" android:layout_width="fill_parent"
+				android:textColor="@color/color_azul_oscuro" android:layout_width="250dp"
 				android:layout_height="30dp" android:textSize="14sp"
 				android:textStyle="bold" android:layout_marginBottom="10dp"
 				android:layout_marginStart="8dp" android:gravity="center"
 				android:text="@string/title_proteccion_categorias"
 				android:layout_marginLeft="8dp">
 			</TextView>
+
+			<Button android:id="@+id/botonRegistrarContrasenia"
+				android:layout_width="32dp" android:layout_height="28dp"
+				android:text="►"
+				android:textColor="@android:color/white"
+				android:textSize="18sp"
+				android:textStyle="bold"
+				android:layout_gravity="center"
+				android:layout_marginLeft="7dp"
+				android:layout_below="@id/menu_icons"
+				android:contentDescription="savePassword"
+				android:paddingBottom="1dp"
+				android:paddingTop="1dp"
+				android:typeface="monospace"
+				android:background="@drawable/custom_button"
+				/>
 		</LinearLayout>
 
 
@@ -102,16 +118,6 @@
 		</LinearLayout>
 
 
-		<Button android:id="@+id/botonRegistrarContrasenia"
-			android:layout_width="wrap_content" android:layout_height="30dp"
-			android:layout_margin="8dp" android:textColor="@color/color_azul_oscuro"
-			android:background="@drawable/custom_button" android:text="@string/label_registrar_contrasenia"
-			android:textSize="12sp" android:layout_gravity="end" />
-
-		<View android:id="@+id/linea2" android:layout_width="wrap_content"
-			android:layout_height="1px" android:layout_margin="4dp"
-			android:background="@color/color_azul" />
-
 		<LinearLayout android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:gravity="center"
 			android:layout_margin="6dp" android:orientation="horizontal">
@@ -119,22 +125,14 @@
 
 			<Button android:id="@+id/botonActivarContrasenia"
 				android:layout_width="wrap_content" android:layout_height="30dp"
-				android:textColor="@color/color_azul_oscuro" android:background="@drawable/custom_button"
-				android:text="@string/label_desbloquear_contrasenia"
-				android:textSize="12sp" style="?android:buttonBarButtonStyle"/>
-
-			<Button android:id="@+id/botonDesactivarContrasenia"
-				android:layout_width="wrap_content" android:layout_height="30dp"
 				android:layout_marginStart="20dp" android:textColor="@color/color_azul_oscuro"
 				android:background="@drawable/custom_button" android:text="@string/label_bloquear_contrasenia"
 				android:textSize="12sp" style="?android:buttonBarButtonStyle"
-				android:layout_marginLeft="20dp" />
+				android:layout_marginLeft="20dp"
+				android:visibility="gone"/>
 
 		</LinearLayout>
 
-		<View android:id="@+id/linea1" android:layout_width="wrap_content"
-			android:layout_height="1px" android:layout_margin="4dp"
-			android:background="@color/color_azul" />
 	</LinearLayout>
 
 
@@ -143,14 +141,34 @@
 		android:layout_height="fill_parent" android:layout_margin="3dp"
 		android:orientation="vertical">
 
-		<TextView android:id="@+id/tituloCategorias"
-			android:background="@drawable/custom_text_view_categoria"
-			android:textColor="@color/color_azul_oscuro" android:layout_width="fill_parent"
-			android:layout_height="25dp" android:textSize="12sp"
-			android:textStyle="bold" android:layout_marginBottom="10dp"
-			android:layout_marginStart="8dp" android:gravity="center"
-			android:layout_marginLeft="8dp">
-		</TextView>
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:layout_margin="3dp"
+			android:orientation="horizontal">
+
+			<TextView android:id="@+id/tituloCategorias"
+				android:background="@drawable/custom_text_view_categoria"
+				android:textColor="@color/color_azul_oscuro" android:layout_width="280dp"
+				android:layout_height="25dp" android:textSize="12sp"
+				android:textStyle="bold" android:layout_marginBottom="10dp"
+				android:layout_marginStart="8dp" android:gravity="center"
+				android:layout_marginLeft="8dp">
+			</TextView>
+
+			<Button android:id="@+id/botonDesactivarContrasenia"
+				android:layout_width="32dp" android:layout_height="28dp"
+				android:text="►"
+				android:textColor="@android:color/white"
+				android:textSize="18sp"
+				android:textStyle="bold"
+				android:layout_gravity="center"
+				android:layout_marginLeft="7dp"
+				android:layout_below="@id/menu_icons"
+				android:contentDescription="savePassword"
+				android:paddingBottom="1dp"
+				android:paddingTop="1dp"
+				android:typeface="monospace"
+				android:background="@drawable/custom_button"/>
+		</LinearLayout>
 
 
 		<ListView android:id="@android:id/list"

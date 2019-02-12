@@ -468,16 +468,19 @@ public class DataBaseManager {
 		}
 		return result;
 	}
-     
-     public void actualizarTablaContrasenia(){
-     //	boolean result = false;
-		if(tablaContraseniaSize() > 0){
-			mDb.execSQL(DataBaseHelper.ACTUALIZAR_TABLA_CONTRASENIA);
-		//	result = true;
+
+	public void actualizarTablaContrasenia(){
+		//	boolean result = false;
+		try {
+			if(tablaContraseniaSize() > 0){
+				mDb.execSQL(DataBaseHelper.ACTUALIZAR_TABLA_CONTRASENIA);
+				//	result = true;
+			}
+		} catch (Exception e) {
+			e.getMessage();
 		}
 
-
-	 }
+	}
 
      public void upgradeDB(){
     	 mDbHelper.onUpgrade(mDb, 1, 2);

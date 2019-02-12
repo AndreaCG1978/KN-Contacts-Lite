@@ -19,7 +19,8 @@ import android.widget.TextView;
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
-import com.boxico.android.kn.contacts.util.KNArrayAdapter;
+import com.boxico.android.kn.contacts.util.KNCategoryListAdapter;
+import com.boxico.android.kn.contacts.util.KNCategoryProtectionAdapter;
 
 public class ProteccionCategoriaActivity extends ListActivity {
 	
@@ -212,12 +213,12 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		});
     	
     }
-    
+    /*
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         this.activarODesactivarCategoria(l, position, v);   
         
-    }
+    }*/
     
     private void activarODesactivarCategoria(ListView list, int position, View v){
     	CategoriaDTO catSelected = (CategoriaDTO) list.getItemAtPosition(position);
@@ -234,6 +235,17 @@ public class ProteccionCategoriaActivity extends ListActivity {
      	layoutInflater.inflate(R.layout.categoria_row, ll);*/
     	this.mostrarCantidadCategoriasProtegidas();
     }
+
+
+	public void activarODesactivarCategoria(CategoriaDTO catSelected){
+		if(this.estaRegistradaCategoria(catSelected)){
+			this.eliminarCategoriaProtegida(catSelected);
+		}else{
+			this.agregarCategoriaProtegida(catSelected);
+		}
+
+		this.mostrarCantidadCategoriasProtegidas();
+	}
     
     private boolean estaRegistradaCategoria(CategoriaDTO catSelected){
     	boolean result = false;
@@ -346,8 +358,8 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		this.cambiarNombreCategorias(categoriasActivas);
 		Collections.sort(categoriasActivas);
 		
-//        setListAdapter(new KNArrayAdapter(this,R.layout.categoria_row, categoriasActivas));
-        setListAdapter(new KNArrayAdapter(this, R.layout.categoria_row, R.id.text1, categoriasActivas, true));
+//        setListAdapter(new KNCategoryListAdapter(this,R.layout.categoria_row, categoriasActivas));
+        setListAdapter(new KNCategoryProtectionAdapter(this, R.layout.categoria_row, R.id.text1, categoriasActivas, true));
 
 
 	}

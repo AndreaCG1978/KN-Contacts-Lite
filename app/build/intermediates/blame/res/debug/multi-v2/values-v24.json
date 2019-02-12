@@ -4,7 +4,7 @@
             "outputFile": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/ff29e6da17e1bbb3d7a443c794d54deb/res/values-v24/values-v24.xml",
+                    "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/5a7d8ade1b1a000e37dc5c49a5abbf90/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
