@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -25,14 +26,12 @@ import com.boxico.android.kn.contacts.util.KNCategoryProtectionAdapter;
 public class ProteccionCategoriaActivity extends ListActivity {
 	
 	private Button botonRegistrarContrasenia = null;
-	private Button botonActivarContrasenia = null;
-	private Button botonDesactivarContrasenia = null;
 	private EditText contrasenia1 = null;
 	private EditText contrasenia2 = null;
 	private EditText mailPassword = null;
 	private TextView labelCategorias = null;
 	private ProteccionCategoriaActivity me = null;
-	private ImageView imagen = null;
+	private ImageButton botonActivarDesactivarPass = null;
 	//	private ArrayList<Cursor> allMyCursors = null;
 
 
@@ -47,19 +46,13 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		this.inicializarCategoriasProtegidas();
 		this.registrarWidgets();
 		this.configurarBotonRegistrarContrasenia();
-		this.configurarBotonActivarContrasenia();
-		this.configurarBotonDesactivarContrasenia();
+		this.configurarBotonActivarDesactivarPass();
+	//	this.configurarBotonDesactivarContrasenia();
 		this.habilitarCampos();
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		
 	}
-	/*
-    @Override
-    public void startManagingCursor(Cursor c) {
-    	allMyCursors.add(c);
-        super.startManagingCursor(c);
-    }
-	*/
+
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	super.onActivityResult(requestCode, resultCode, intent);
     	
@@ -68,10 +61,10 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			this.habilitarCampos();
 			break;
 		default:
-			//this.configurarSpinner();
+
 			break;
 		}  	
-    	//this.resetAllMyCursors();
+
     	
     }
     
@@ -83,65 +76,55 @@ public class ProteccionCategoriaActivity extends ListActivity {
         	this.finish();
         	ConstantsAdmin.cerrarMainActivity = true;
         }
-        /*else{
-        	this.resetAllMyCursors();	
-        }
-        */
-        
+
     }
 
-   /*
-    private void resetAllMyCursors(){
-    	Cursor cur;
-		for (Cursor allMyCursor : allMyCursors) {
-			cur = allMyCursor;
-			cur.close();
-			this.stopManagingCursor(cur);
-		}
-    	allMyCursors = new ArrayList<>();
-    }
-	*/
 	private void habilitarCampos(){
-		if(ConstantsAdmin.contrasenia.isActiva()){// Nunca se registro la contrasenia
+		if(ConstantsAdmin.contrasenia.isActiva()){
 			contrasenia1.setEnabled(true);
 			contrasenia2.setEnabled(true);
 			botonRegistrarContrasenia.setEnabled(true);
 			mailPassword.setEnabled(true);
-			botonRegistrarContrasenia.setTextColor(getResources().getColor(R.color.color_azul));
-
+			botonRegistrarContrasenia.setTextColor(getResources().getColor(R.color.color_blanco));
+/*
 			botonActivarContrasenia.setEnabled(false);
 			botonActivarContrasenia.setTextColor(getResources().getColor(R.color.color_negro));
-
-			botonDesactivarContrasenia.setEnabled(true);
-			botonDesactivarContrasenia.setTextColor(getResources().getColor(R.color.color_azul));
+*/
+			//botonActivarDesactivarPass.setEnabled(true);
+			botonActivarDesactivarPass.setImageResource(R.drawable.candado_abierto);
 			
-			imagen.setBackground(getResources().getDrawable(R.drawable.candado_abierto));
+			//imagen.setBackground(getResources().getDrawable(R.drawable.candado_abierto));
 		}else{
 			contrasenia1.setEnabled(false);
 			contrasenia2.setEnabled(false);
 			botonRegistrarContrasenia.setEnabled(false);			
 			mailPassword.setEnabled(false);
 			botonRegistrarContrasenia.setTextColor(getResources().getColor(R.color.color_negro));
+			botonActivarDesactivarPass.setImageResource(R.drawable.candado_cerrado);
 
-			botonActivarContrasenia.setEnabled(true);
+		/*	botonActivarContrasenia.setEnabled(true);
 			botonActivarContrasenia.setTextColor(getResources().getColor(R.color.color_azul));
 			
 			botonDesactivarContrasenia.setEnabled(false);
 			botonDesactivarContrasenia.setTextColor(getResources().getColor(R.color.color_negro));
-			imagen.setBackground(getResources().getDrawable(R.drawable.candado_cerrado));
+			imagen.setBackground(getResources().getDrawable(R.drawable.candado_cerrado));*/
+
+
+
 		//	imagen.setBackgroundDrawable(dCandadoCerrado);
 		}
 
+		// NO ESTA REGISTRADA EN LA BASE LA CONTRASEÑA
 		if(ConstantsAdmin.contrasenia.getId() == -1){
 			this.getListView().setVisibility(View.GONE);
 			labelCategorias.setVisibility(View.GONE);
-		}else if(ConstantsAdmin.contrasenia.isActiva()){
+		}else if(ConstantsAdmin.contrasenia.isActiva()){// ESTA REGISTRADA EN LA BD LA CONTRASEÑA, Y ESTA EN MODO ON
 			this.getListView().setVisibility(View.VISIBLE);
 			labelCategorias.setVisibility(View.VISIBLE);
 			this.mostrarCantidadCategoriasProtegidas();
 			this.getListView().setEnabled(true);
 			
-		}else{
+		}else{// ESTA REGISTRADA LA CONTRASEÑA, Y ESTA EN MODO OFF
 			this.getListView().setVisibility(View.GONE);
 			labelCategorias.setVisibility(View.GONE);
 
@@ -163,11 +146,13 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			mailPassword.setText(ConstantsAdmin.contrasenia.getMail());
 		}
 		botonRegistrarContrasenia = this.findViewById(R.id.botonRegistrarContrasenia);
+		botonActivarDesactivarPass = this.findViewById(R.id.botonActivarDesactivarPass);
+/*
 		botonActivarContrasenia = this.findViewById(R.id.botonActivarContrasenia);
 		botonDesactivarContrasenia = this.findViewById(R.id.botonDesactivarContrasenia);
-		imagen = this.findViewById(R.id.imagenProtegerCategorias);
-	//	Drawable dCandadoAbierto = getResources().getDrawable(R.drawable.candado_abierto);
-	//	Drawable dCandadoCerrado = getResources().getDrawable(R.drawable.candado_cerrado);
+		imagen = this.findViewById(R.id.imagenProtegerCategorias);*/
+
+
 	}
 	
     private void configurarBotonRegistrarContrasenia(){
@@ -181,17 +166,34 @@ public class ProteccionCategoriaActivity extends ListActivity {
     	
     }
     
-    private void configurarBotonActivarContrasenia(){
-    	botonActivarContrasenia.setOnClickListener(new View.OnClickListener() {
+    private void configurarBotonActivarDesactivarPass(){
+    	botonActivarDesactivarPass.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				openVerActivarContrasenia();
+				if(ConstantsAdmin.contrasenia.isActiva()){
+					if(ConstantsAdmin.contrasenia.getId() != -1){
+						DataBaseManager mDBManager = DataBaseManager.getInstance(me);
+						ConstantsAdmin.contrasenia.setActiva(false);
+						ConstantsAdmin.actualizarContrasenia(ConstantsAdmin.contrasenia, mDBManager);
+						ConstantsAdmin.resetPersonasOrganizadas();
+						habilitarCampos();
+						contrasenia1.setText(ConstantsAdmin.contrasenia.getContrasenia());
+						contrasenia2.setText(ConstantsAdmin.contrasenia.getContrasenia());
+						ConstantsAdmin.mostrarMensaje(me,  me.getString(R.string.mensaje_activacion_proteccion));
+					}else{
+						ConstantsAdmin.mostrarMensaje(me, me.getString(R.string.mensaje_debe_registrar_contrasenia));
+					}
+				}else{
+					openVerActivarContrasenia();
+				}
+
 			}
 		});
     	
     }
-    
+
+    /*
     private void configurarBotonDesactivarContrasenia(){
     	botonDesactivarContrasenia.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -212,14 +214,16 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			}
 		});
     	
-    }
+    }*/
+
     /*
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         this.activarODesactivarCategoria(l, position, v);   
         
     }*/
-    
+
+    /*
     private void activarODesactivarCategoria(ListView list, int position, View v){
     	CategoriaDTO catSelected = (CategoriaDTO) list.getItemAtPosition(position);
 		LinearLayout ll = (LinearLayout)v;
@@ -231,11 +235,10 @@ public class ProteccionCategoriaActivity extends ListActivity {
     		this.agregarCategoriaProtegida(catSelected);
     		tv.setTextColor(getResources().getColor(R.color.color_gris_oscuro));
     	}
-/*    	LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-     	layoutInflater.inflate(R.layout.categoria_row, ll);*/
+
     	this.mostrarCantidadCategoriasProtegidas();
     }
-
+*/
 
 	public void activarODesactivarCategoria(CategoriaDTO catSelected){
 		if(this.estaRegistradaCategoria(catSelected)){
@@ -246,7 +249,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 
 		this.mostrarCantidadCategoriasProtegidas();
 	}
-    
+
     private boolean estaRegistradaCategoria(CategoriaDTO catSelected){
     	boolean result = false;
     	CategoriaDTO cat;
@@ -273,7 +276,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
     		}
     	}
     }
-    
+
     private void agregarCategoriaProtegida(CategoriaDTO catSelected){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	ConstantsAdmin.categoriasProtegidas.add(catSelected);
@@ -322,6 +325,8 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			} catch (Exception e) {
 				ConstantsAdmin.mostrarMensajeDialog(this, e.getMessage());
 			}
+			mailPassword.clearFocus();
+
     		
     		
     	}

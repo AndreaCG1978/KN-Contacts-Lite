@@ -126,10 +126,10 @@ id all
 id async
 id blocking
 id botonActivarContrasenia
+id botonActivarDesactivarPass
 id botonAddAll
 id botonAddContact
 id botonAgregarCategoria
-id botonDesactivarContrasenia
 id botonMisCategorias
 id botonPrevContact
 id botonProtegerCategorias
@@ -193,7 +193,6 @@ id imagenAddContacto
 id imagenCategorias
 id imagenPreferido
 id imagenPreferidos
-id imagenProtegerCategorias
 id imgPrefLeft
 id imgPrefRight
 id importarContacto

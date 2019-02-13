@@ -1168,12 +1168,14 @@ public class ConstantsAdmin {
 			mDBManager.createDireccion(tv);
 		}
 
+
 		contrasenia = pass;
 		if(pass.getId() != -1){
 			pass.setId(-1);
 			long id = mDBManager.crearContrasenia(pass);
 			contrasenia.setId(id);
 		}
+
 		finalizarBD(mDBManager);
 		telefonosARegistrar = null;
 		mailsARegistrar = null;
@@ -1416,7 +1418,10 @@ public class ConstantsAdmin {
 				campos = linea.split(PUNTO_COMA);
 				id = Long.valueOf(campos[1]);
 				pass.setId(id);
-				pass.setContrasenia(campos[2]);
+				if(!campos[2].equals(CAMPO_NULO)){
+					pass.setContrasenia(campos[2]);
+				}
+
 
 			}
 		}
@@ -1623,7 +1628,12 @@ public class ConstantsAdmin {
 
 	private static String obtenerStringContrasenia(){
 		String result;
-		result = HEAD_CONTRASENIA + PUNTO_COMA + contrasenia.getId() + PUNTO_COMA + contrasenia.getContrasenia() + ENTER;
+		if(contrasenia.getContrasenia() != null){
+			result = HEAD_CONTRASENIA + PUNTO_COMA + contrasenia.getId() + PUNTO_COMA + contrasenia.getContrasenia() + ENTER;
+		}else{
+			result = HEAD_CONTRASENIA + PUNTO_COMA + contrasenia.getId() + PUNTO_COMA + CAMPO_NULO + ENTER;
+		}
+
 		return result;
 	}
 
@@ -2041,11 +2051,10 @@ public class ConstantsAdmin {
 		Cursor cur = null;
 		List<PersonaDTO> result = new ArrayList<>();
 		inicializarBD(mDBManager);
-		cursorLoader = ConstantsAdmin.cursorPersonas;
-		if(cursorLoader == null){
+//		cursorLoader = ConstantsAdmin.cursorPersonas;
+//		if(cursorLoader == null) {
 			cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
-
-		}
+//		}
 		cur = cursorLoader.loadInBackground();
 		//	cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
 		//	Cursor cur = cursorLoader.loadInBackground();

@@ -141,6 +141,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				publishProgress(1);
 				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
 				ConstantsAdmin.importarCSV(me, mDBManager);
+
 				//   ConstantsAdmin.procesarStringDatos(body, me);
 
 
@@ -165,8 +166,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			}
 			ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
 			ConstantsAdmin.mensaje = null;
-			ConstantsAdmin.contrasenia.setActiva(false);
-			protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
+		/*	ConstantsAdmin.contrasenia.setActiva(false);
+			protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);*/
 			configurarSpinner();
 			ConstantsAdmin.resetPersonasOrganizadas();
 			mostrarTodosLosContactos();
@@ -362,12 +363,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private void recargarLista(){
 		listaEspecial.setVisibility(View.GONE);
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		if(ConstantsAdmin.contrasenia == null){
+	//	if(ConstantsAdmin.contrasenia == null){
 			ConstantsAdmin.inicializarBD(mDBManager);
 			ConstantsAdmin.cargarContrasenia(this, mDBManager);
 			ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
 			ConstantsAdmin.finalizarBD(mDBManager);
-		}
+	//	}
 		this.getExpandableListView().setVisibility(View.VISIBLE);
 		List<Map<String, String>> groupData = new ArrayList<>();
 		List<List<Map<String, String>>> childData = new ArrayList<>();
