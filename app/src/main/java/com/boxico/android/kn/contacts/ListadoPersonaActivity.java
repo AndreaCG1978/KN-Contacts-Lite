@@ -141,6 +141,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				publishProgress(1);
 				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
 				ConstantsAdmin.importarCSV(me, mDBManager);
+			//	ConstantsAdmin.contrasenia.setActiva(false);
 
 				//   ConstantsAdmin.procesarStringDatos(body, me);
 
@@ -166,8 +167,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			}
 			ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
 			ConstantsAdmin.mensaje = null;
-		/*	ConstantsAdmin.contrasenia.setActiva(false);
-			protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);*/
+			if(ConstantsAdmin.contrasenia.isActiva()){
+				protegerCategorias.setBackgroundResource(R.drawable.candado_abierto);
+			}else{
+				protegerCategorias.setBackgroundResource(R.drawable.candado_cerrado);
+			}
+
 			configurarSpinner();
 			ConstantsAdmin.resetPersonasOrganizadas();
 			mostrarTodosLosContactos();
@@ -363,12 +368,10 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private void recargarLista(){
 		listaEspecial.setVisibility(View.GONE);
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-	//	if(ConstantsAdmin.contrasenia == null){
-			ConstantsAdmin.inicializarBD(mDBManager);
-			ConstantsAdmin.cargarContrasenia(this, mDBManager);
-			ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
-			ConstantsAdmin.finalizarBD(mDBManager);
-	//	}
+		ConstantsAdmin.inicializarBD(mDBManager);
+		ConstantsAdmin.cargarContrasenia(this, mDBManager);
+		ConstantsAdmin.cargarCategoriasProtegidas(this, mDBManager);
+		ConstantsAdmin.finalizarBD(mDBManager);
 		this.getExpandableListView().setVisibility(View.VISIBLE);
 		List<Map<String, String>> groupData = new ArrayList<>();
 		List<List<Map<String, String>>> childData = new ArrayList<>();
@@ -813,7 +816,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		Cursor prefCursor;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
-		prefCursorLoader = mDBManager.cursorLoaderPreferidos(ConstantsAdmin.categoriasProtegidas, this);
+		prefCursorLoader = mDBManager.cursorLoaderPreferidos(!ConstantsAdmin.contrasenia.isActiva(), ConstantsAdmin.categoriasProtegidas, this);
 		//prefCursorLoader = mDBManager.fetchAllPreferidos(ConstantsAdmin.categoriasProtegidas);
 		prefCursor = prefCursorLoader.loadInBackground();
 		if(prefCursor != null){
@@ -964,7 +967,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 	private void mostrarTodosLosContactos(){
-		entryBusqueda.setText("");
+		//entryBusqueda.setText("");
+
 		mEntryBusquedaNombre = null;
 		categoriasSeleccionadas = null;
 		preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
@@ -1553,7 +1557,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			//		catSelectTextView.setVisibility(View.GONE);
 		}
 		ConstantsAdmin.config.setMuestraPreferidos(false);
-		personasCursor = mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(mEntryBusquedaNombre, categoriasSeleccionadas, ConstantsAdmin.categoriasProtegidas);
+		boolean noActivaContraseña = !ConstantsAdmin.contrasenia.isActiva();
+		personasCursor = mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(noActivaContraseña, mEntryBusquedaNombre, categoriasSeleccionadas, ConstantsAdmin.categoriasProtegidas);
 
 		if(personasCursor != null){
 			//		startManagingCursor(personasCursor);
@@ -1665,6 +1670,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		//   ConstantsAdmin.inicializarBD( mDBManager);
 		CursorLoader cl = null;
+		boolean noActivaContraseña = ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva();
 		switch(id) {
 			case CATEGORIAS_CURSOR:
 				cl = mDBManager.cursorLoaderCategoriasPorNombre(null, this);
@@ -1681,11 +1687,11 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				cl = mDBManager.cursorLoaderCategoriasProtegidas(null, this);
 				break; 				// optional
 			case PERSONAS_CURSOR:
-				cl = mDBManager.cursorLoaderPersonas(ConstantsAdmin.categoriasProtegidas, this);
+				cl = mDBManager.cursorLoaderPersonas(noActivaContraseña, ConstantsAdmin.categoriasProtegidas, this);
 				ConstantsAdmin.cursorPersonas = cl;
 				break;
 			case PREFERIDOS_CURSOR:
-				cl = mDBManager.cursorLoaderPreferidos(ConstantsAdmin.categoriasProtegidas, this);
+				cl = mDBManager.cursorLoaderPreferidos(noActivaContraseña, ConstantsAdmin.categoriasProtegidas, this);
 				ConstantsAdmin.cursorPreferidos = cl;
 				break;
 			case CATEGORIAS_ACTIVAS_CURSOR:

@@ -207,39 +207,46 @@ public class DataBaseManager {
     
     */ 
      
-     private String queryParaCategoriaProtegidas(List<CategoriaDTO> catProt){
+     public String queryParaCategoriaProtegidas(boolean noActivaCategoria, List<CategoriaDTO> catProt){
     	 StringBuilder result = new StringBuilder();
-    	 com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO cat;
-    	 
+    	 CategoriaDTO cat;
+    	 result.append(" (1 = 1) ");
     	 Iterator<CategoriaDTO> it;
-    	 it = catProt.iterator();
-    	 while(it.hasNext()){
-             cat = it.next();
-    		 result.append(" AND (").append(ConstantsAdmin.KEY_NOMBRE_CATEGORIA).append(" <> '").append(cat.getNombreReal()).append("') ");
-    	 }
+
+    	 if(noActivaCategoria && catProt != null){
+			 it = catProt.iterator();
+			 while(it.hasNext()){
+				 cat = it.next();
+				 result.append(" AND (").append(ConstantsAdmin.KEY_NOMBRE_CATEGORIA).append(" <> '").append(cat.getNombreReal()).append("') ");
+			 }
+
+		 }
     	 return result.toString();
      }
      
-     public Cursor fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(String param, List<String> categorias, List<CategoriaDTO> categoriasProtegidas) {
+     public Cursor fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(boolean noActivaContraseña, String param, List<String> categorias, List<CategoriaDTO> categoriasProtegidas) {
     	 String sortOrder = ConstantsAdmin.KEY_APELLIDO + " COLLATE LOCALIZED ASC";
     	 Cursor result = null;
     	 StringBuilder consultaPorCategoria = new StringBuilder(" (1 = 2) ");
     	 Iterator<String> catSelect;
     	 String catTemp;
+
+    	 String selection = this.queryParaCategoriaProtegidas(noActivaContraseña, categoriasProtegidas);
+    	 /*
     	 String categProteg = " (1 = 1) ";
-    	 if(!ConstantsAdmin.contrasenia.isActiva()){
+    	 if(noActivaContraseña){
     		 categProteg = categProteg + this.queryParaCategoriaProtegidas(categoriasProtegidas);
     	 }
+    	 */
     	 
-    	 
-    	 String consulta = categProteg + " AND " + ConstantsAdmin.KEY_APELLIDO + " LIKE '%" + param +"%' OR " + ConstantsAdmin.KEY_NOMBRES + " LIKE '%" + param + "%' OR " + ConstantsAdmin.KEY_DATO_EXTRA + " LIKE '%" + param + "%' OR " + ConstantsAdmin.KEY_DESCRIPCION + " LIKE '%" + param + "%'";
+    	 String consulta = selection + " AND " + ConstantsAdmin.KEY_APELLIDO + " LIKE '%" + param +"%' OR " + ConstantsAdmin.KEY_NOMBRES + " LIKE '%" + param + "%' OR " + ConstantsAdmin.KEY_DATO_EXTRA + " LIKE '%" + param + "%' OR " + ConstantsAdmin.KEY_DESCRIPCION + " LIKE '%" + param + "%'";
     	 String[] atr = new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_APELLIDO,ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_DATO_EXTRA, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DESCRIPCION};
     	 try{
     		 if(categorias == null || categorias.size() == 0){// Categoria 0 - incluye todos
 		    	 if(param != null && !param.equals("")){
 		    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, atr, consulta , null, null, null, sortOrder);
 		    	 }else{
-		    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, atr, categProteg, null, null, null, sortOrder);
+		    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, atr, selection, null, null, null, sortOrder);
 		    	 }
     		 }else{// Categoria distinta de 0, es selectivo
     			 catSelect = categorias.iterator();
@@ -250,7 +257,7 @@ public class DataBaseManager {
 		    	 if(param != null && !param.equals("")){
 		    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, atr, "(" + consulta + ") AND (" + consultaPorCategoria + ")", null, null, null, sortOrder);
 		    	 }else{
-		    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, atr, categProteg + " AND " + consultaPorCategoria, null, null, null, sortOrder);
+		    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, atr, selection + " AND " + consultaPorCategoria, null, null, null, sortOrder);
 		    	 }
     			 
     		 }
@@ -490,13 +497,16 @@ public class DataBaseManager {
     	 mDbHelper.deleteAll(mDb);
      }
 
-	public CursorLoader cursorLoaderPreferidos(List<CategoriaDTO> categoriasProtegidas, Context context) {
-		String categProteg = " (1 = 1) ";
-		if(!ConstantsAdmin.contrasenia.isActiva()){
+	public CursorLoader cursorLoaderPreferidos(boolean noActivaContraseña, List<CategoriaDTO> categoriasProtegidas, Context context) {
+/*		String categProteg = " (1 = 1) ";
+		if(noActivaContraseña){
 			categProteg = categProteg + this.queryParaCategoriaProtegidas(categoriasProtegidas);
 		}
+		*/
 
-		String query = "SELECT * FROM " + ConstantsAdmin.TABLA_PERSONA + " a INNER JOIN " + ConstantsAdmin.TABLA_PREFERIDOS + " b ON a._id = b._id WHERE " + categProteg;
+		String selection = this.queryParaCategoriaProtegidas(noActivaContraseña, categoriasProtegidas);
+
+		String query = "SELECT * FROM " + ConstantsAdmin.TABLA_PERSONA + " a INNER JOIN " + ConstantsAdmin.TABLA_PREFERIDOS + " b ON a._id = b._id WHERE " + selection;
 
 
 		return new CursorLoader( context, null, null, query, null, null)
@@ -784,15 +794,17 @@ public class DataBaseManager {
 
 	}
 
-	public CursorLoader cursorLoaderPersonas(List<CategoriaDTO> categoriasProtegidas, Context context) {
+
+
+	public CursorLoader cursorLoaderPersonas(boolean noActivaContraseña, List<CategoriaDTO> categoriasProtegidas, Context context) {
 		String sortOrder = ConstantsAdmin.KEY_APELLIDO + " COLLATE LOCALIZED ASC";
-		String categProteg = " (1 = 1) ";
-		if(ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva()){
-			categProteg = categProteg + this.queryParaCategoriaProtegidas(categoriasProtegidas);
-		}
+//		String selection = " (1 = 1) ";
+//		if(noActivaContraseña){
+		String selection = this.queryParaCategoriaProtegidas(noActivaContraseña, categoriasProtegidas);
+//		}
 
 
-		return new CursorLoader( context, null, null, categProteg, null, sortOrder)
+		return new CursorLoader( context, null, null, selection, null, sortOrder)
 		{
 			@Override
 			public Cursor loadInBackground()

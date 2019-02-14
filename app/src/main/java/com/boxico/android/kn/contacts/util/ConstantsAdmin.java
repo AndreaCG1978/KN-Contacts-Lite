@@ -1421,6 +1421,14 @@ public class ConstantsAdmin {
 				if(!campos[2].equals(CAMPO_NULO)){
 					pass.setContrasenia(campos[2]);
 				}
+				if(campos[3].equals("1")){
+					pass.setActiva(true);
+				}else{
+					pass.setActiva(false);
+				}
+				if(!campos[4].equals(CAMPO_NULO)){
+					pass.setMail(campos[4]);
+				}
 
 
 			}
@@ -1572,7 +1580,7 @@ public class ConstantsAdmin {
 
 
 		// RECUPERO PERSONAS
-		List<PersonaDTO> personas = obtenerPersonas(context, mDBManager);
+		List<PersonaDTO> personas = obtenerTodasLasPersonas(context, mDBManager);
 		for (PersonaDTO persona : personas) {
 			per = persona;
 			result.append(obtenerStringPersona(per, context, mDBManager));
@@ -1628,10 +1636,14 @@ public class ConstantsAdmin {
 
 	private static String obtenerStringContrasenia(){
 		String result;
+		int val = 0;
+		if(contrasenia.isActiva()){
+			val = 1;
+		}
 		if(contrasenia.getContrasenia() != null){
-			result = HEAD_CONTRASENIA + PUNTO_COMA + contrasenia.getId() + PUNTO_COMA + contrasenia.getContrasenia() + ENTER;
+			result = HEAD_CONTRASENIA + PUNTO_COMA + contrasenia.getId() + PUNTO_COMA + contrasenia.getContrasenia() + PUNTO_COMA + val + PUNTO_COMA + contrasenia.getMail() + ENTER;
 		}else{
-			result = HEAD_CONTRASENIA + PUNTO_COMA + contrasenia.getId() + PUNTO_COMA + CAMPO_NULO + ENTER;
+			result = HEAD_CONTRASENIA + PUNTO_COMA + contrasenia.getId() + PUNTO_COMA + CAMPO_NULO + PUNTO_COMA + val + PUNTO_COMA + CAMPO_NULO + ENTER;
 		}
 
 		return result;
@@ -2025,7 +2037,7 @@ public class ConstantsAdmin {
 
 		CursorLoader cursorLoader = ConstantsAdmin.cursorPersonas;
 		if(cursorLoader == null){
-			cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
+			cursorLoader = mDBManager.cursorLoaderPersonas(!contrasenia.isActiva(), categoriasProtegidas, context);
 
 		}
 		cursor = cursorLoader.loadInBackground();
@@ -2045,16 +2057,44 @@ public class ConstantsAdmin {
 		return result;
 	}
 
-	private static List<PersonaDTO> obtenerPersonas(Activity context, DataBaseManager mDBManager){
+
+	private static List<PersonaDTO> obtenerTodasLasPersonas(Activity context, DataBaseManager mDBManager){
 		PersonaDTO per;
 		CursorLoader cursorLoader = null;
 		Cursor cur = null;
 		List<PersonaDTO> result = new ArrayList<>();
 		inicializarBD(mDBManager);
-//		cursorLoader = ConstantsAdmin.cursorPersonas;
-//		if(cursorLoader == null) {
-			cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
-//		}
+		cursorLoader = ConstantsAdmin.cursorPersonas;
+		if(cursorLoader == null) {
+			cursorLoader = mDBManager.cursorLoaderPersonas(false, null, context);
+		}else{
+			cursorLoader.setSelection(mDBManager.queryParaCategoriaProtegidas(false, null));
+		}
+		cur = cursorLoader.loadInBackground();
+		cur.moveToFirst();
+		while(!cur.isAfterLast()){
+			per = cursorToPersonaDto(cur);
+			result.add(per);
+			cur.moveToNext();
+		}
+		cur.close();
+		finalizarBD(mDBManager);
+		return result;
+	}
+
+	private static List<PersonaDTO> obtenerPersonas(Activity context, DataBaseManager mDBManager){
+		PersonaDTO per;
+		CursorLoader cursorLoader = null;
+		Cursor cur = null;
+		boolean noActivaContrasenia = contrasenia != null && !contrasenia.isActiva();
+		List<PersonaDTO> result = new ArrayList<>();
+		inicializarBD(mDBManager);
+		cursorLoader = ConstantsAdmin.cursorPersonas;
+		if(cursorLoader == null) {
+			cursorLoader = mDBManager.cursorLoaderPersonas(noActivaContrasenia, categoriasProtegidas, context);
+		}else{
+			cursorLoader.setSelection(mDBManager.queryParaCategoriaProtegidas(noActivaContrasenia, categoriasProtegidas));
+		}
 		cur = cursorLoader.loadInBackground();
 		//	cursorLoader = mDBManager.cursorLoaderPersonas(categoriasProtegidas, context);
 		//	Cursor cur = cursorLoader.loadInBackground();
@@ -2127,7 +2167,7 @@ public class ConstantsAdmin {
 
 		cursorLoader = ConstantsAdmin.cursorPreferidos;
 		if(cursorLoader == null){
-			cursorLoader = mDBManager.cursorLoaderPreferidos(null, context);
+			cursorLoader = mDBManager.cursorLoaderPreferidos(!contrasenia.isActiva(), null, context);
 
 		}
 		cur = cursorLoader.loadInBackground();

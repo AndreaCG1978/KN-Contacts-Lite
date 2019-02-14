@@ -1256,13 +1256,14 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
         DataBaseManager mDBManager = DataBaseManager.getInstance(this);
         //   ConstantsAdmin.inicializarBD( mDBManager);
         CursorLoader cl = null;
+        boolean noActivaContraseña = ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva();
         switch(id) {
             case PERSONAS_CURSOR:
                 cl = mDBManager.cursorLoaderPersonaPorId(0, this);
                 //ConstantsAdmin.cursorCategorias = cl;
                 break; // optional
             case PREFERIDO_CURSOR:
-                cl = mDBManager.cursorLoaderPreferidos(ConstantsAdmin.categoriasProtegidas, this);
+                cl = mDBManager.cursorLoaderPreferidos(noActivaContraseña, ConstantsAdmin.categoriasProtegidas, this);
                 //ConstantsAdmin.cursorCategoriasPersonales = cl;
                 break; // optional
             case PERSONA_EXTRA_ID_CURSOR:
