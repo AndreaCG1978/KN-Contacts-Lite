@@ -101,7 +101,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private List<CategoriaDTO> todasLasCategorias = new ArrayList<>();
 	private List<String> todasLasCategString = new ArrayList<>();
 
-	private TextView catSelectTextView = null;
+//	private TextView catSelectTextView = null;
 
 	private List<String> mySortedByElements = null;
 
@@ -110,7 +110,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private MenuItem menuItemExportarContactosEstetico;
 	private MenuItem menuItemExportarContactos;
 
-	private ImageView imgPrefLeft = null;
+//	private ImageView imgPrefLeft = null;
 	private ImageView imgPrefRight = null;
 
 	private static final String LIST_STATE_KEY = "listState";
@@ -695,7 +695,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		preferidos = this.findViewById(R.id.imagenPreferidos);
 		//	Drawable dbnPref = getResources().getDrawable(R.drawable.pref_icon_bw);
 		preferidos.setBackgroundResource(R.drawable.pref_icon_bw);
-		imgPrefLeft = this.findViewById(R.id.imgPrefLeft);
+		//imgPrefLeft = this.findViewById(R.id.imgPrefLeft);
 		imgPrefRight = this.findViewById(R.id.imgPrefRight);
 		preferidos.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -789,17 +789,17 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			if(!ConstantsAdmin.config.isMuestraPreferidos()){
 				this.mostrarSoloPreferidos();
 				//	catSelectTextView.setVisibility(View.VISIBLE);
-				catSelectTextView.setText(getResources().getString(R.string.label_preferidos));
+		//		catSelectTextView.setText(getResources().getString(R.string.label_preferidos));
 				preferidos.setBackgroundResource(R.drawable.pref_icon);
 				spinnerCategorias.setItems(todasLasCategString,this);
-				imgPrefLeft.setVisibility(View.VISIBLE);
+			//	imgPrefLeft.setVisibility(View.VISIBLE);
 				imgPrefRight.setVisibility(View.VISIBLE);
 			}else{
 				ConstantsAdmin.config.setMuestraPreferidos(false);
 				//	catSelectTextView.setVisibility(View.GONE);
-				catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
+			//	catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
 				preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
-				imgPrefLeft.setVisibility(View.GONE);
+			//	imgPrefLeft.setVisibility(View.GONE);
 				imgPrefRight.setVisibility(View.GONE);
 
 				this.mostrarTodosLosContactos();
@@ -967,18 +967,17 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 	private void mostrarTodosLosContactos(){
-		//entryBusqueda.setText("");
-
 		mEntryBusquedaNombre = null;
 		categoriasSeleccionadas = null;
 		preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
-		catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
+	//	catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
 		//	catSelectTextView.setVisibility(View.GONE);
-		imgPrefLeft.setVisibility(View.GONE);
+	//	imgPrefLeft.setVisibility(View.GONE);
 		imgPrefRight.setVisibility(View.GONE);
 		spinnerCategorias.setItems(todasLasCategString, this);
 		this.recargarLista();
 		mGroupSelected = -1;
+		entryBusqueda.setText("");
 
 	}
 
@@ -1020,7 +1019,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 
 		cantReg = this.findViewById(R.id.cantRegistros);
-		catSelectTextView = this.findViewById(R.id.categoriasSeleccionadasId);
+	//	catSelectTextView = this.findViewById(R.id.categoriasSeleccionadasId);
 	}
 
 	@Override
@@ -1333,29 +1332,29 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		entryBusqueda = findViewById(R.id.entryBusquedaPersona);
 		entryBusqueda.addTextChangedListener(new TextWatcher() {
 
-												 @Override
-												 public void onTextChanged(CharSequence s, int start, int before, int count) {
-													 mEntryBusquedaNombre = s.toString();
-													 if(mEntryBusquedaNombre.equals("") && (categoriasSeleccionadas == null || categoriasSeleccionadas.size() == 0)){
-														 recargarLista();
-													 }else{
-														 cargarPersonasPorApellidoONombreMultipleSeleccion();
-													 }
+				 @Override
+				 public void onTextChanged(CharSequence s, int start, int before, int count) {
+					 mEntryBusquedaNombre = s.toString();
+					 if(mEntryBusquedaNombre.equals("") && (categoriasSeleccionadas == null || categoriasSeleccionadas.size() == 0)){
+						 recargarLista();
+					 }else{
+						 cargarPersonasPorApellidoONombreMultipleSeleccion();
+					 }
 
 
-												 }
+				 }
 
-												 @Override
-												 public void beforeTextChanged(CharSequence s, int start, int count,
-																			   int after) {
-													 // TODO Auto-generated method stub
-												 }
+				 @Override
+				 public void beforeTextChanged(CharSequence s, int start, int count,
+											   int after) {
+					 // TODO Auto-generated method stub
+				 }
 
-												 @Override
-												 public void afterTextChanged(Editable s) {
-													 // TODO Auto-generated method stub
-												 }
-											 }
+				 @Override
+				 public void afterTextChanged(Editable s) {
+					 // TODO Auto-generated method stub
+				 }
+			 }
 		);
 
 	}
@@ -1543,14 +1542,14 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		preferidos.setVisibility(View.VISIBLE);
 		preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
 		Cursor personasCursor;
-		String labelCateg;
-		catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
-		imgPrefLeft.setVisibility(View.GONE);
+	//	String labelCateg;
+		//catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
+	//	imgPrefLeft.setVisibility(View.GONE);
 		imgPrefRight.setVisibility(View.GONE);
 		ConstantsAdmin.inicializarBD(mDBManager);
 		if(categoriasSeleccionadas != null && categoriasSeleccionadas.size()>0){
-			labelCateg = this.recuperarEtiquetaCatSeleccionadas();
-			catSelectTextView.setText(labelCateg);
+		//	labelCateg = this.recuperarEtiquetaCatSeleccionadas();
+		//	catSelectTextView.setText(labelCateg);
 			//		catSelectTextView.setVisibility(View.VISIBLE);
 			spinnerCategorias.setItems(todasLasCategString, this);
 		}else{

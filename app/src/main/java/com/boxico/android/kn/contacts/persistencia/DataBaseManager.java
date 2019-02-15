@@ -239,7 +239,7 @@ public class DataBaseManager {
     	 }
     	 */
     	 
-    	 String consulta = selection + " AND " + ConstantsAdmin.KEY_APELLIDO + " LIKE '%" + param +"%' OR " + ConstantsAdmin.KEY_NOMBRES + " LIKE '%" + param + "%' OR " + ConstantsAdmin.KEY_DATO_EXTRA + " LIKE '%" + param + "%' OR " + ConstantsAdmin.KEY_DESCRIPCION + " LIKE '%" + param + "%'";
+    	 String consulta = selection + " AND (" + ConstantsAdmin.KEY_APELLIDO + " LIKE '%" + param +"%' OR " + ConstantsAdmin.KEY_NOMBRES + " LIKE '%" + param + "%' OR " + ConstantsAdmin.KEY_DATO_EXTRA + " LIKE '%" + param + "%' OR " + ConstantsAdmin.KEY_DESCRIPCION + " LIKE '%" + param + "%')";
     	 String[] atr = new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_APELLIDO,ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_DATO_EXTRA, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DESCRIPCION};
     	 try{
     		 if(categorias == null || categorias.size() == 0){// Categoria 0 - incluye todos
@@ -326,6 +326,7 @@ public class DataBaseManager {
      public void crearCategoria(CategoriaDTO categoria, boolean importando){
     	 ContentValues initialValues = new ContentValues();
          initialValues.put(ConstantsAdmin.KEY_NOMBRE_CATEGORIA, categoria.getNombreReal());
+
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_ACTIVA, categoria.getActiva());
          initialValues.put(ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA, categoria.getTipoDatoExtra());
       //   long result = -1;
@@ -1312,7 +1313,6 @@ public class DataBaseManager {
      //    	this.open();
 		 mDb.insert(ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA, null, initialValues);
      //    	this.close();
-
 
 	 }
      

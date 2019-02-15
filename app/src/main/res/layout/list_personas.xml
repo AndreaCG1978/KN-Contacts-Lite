@@ -8,31 +8,32 @@
 		android:layout_width="fill_parent" android:layout_height="fill_parent"
 		android:orientation="vertical"
 		android:scrollbarAlwaysDrawVerticalTrack="true"
-		android:background="@color/color_gris_oscuro" >
+		android:background="@color/color_gris_claro" >
 
 		<LinearLayout android:orientation="vertical"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:gravity="left" android:layout_marginTop="5dp"
-			android:layout_marginBottom="5dp"
-			android:background="@color/color_gris_oscuro">
+			android:gravity="left"
+			android:background="@color/color_gris_claro">
 
 			<LinearLayout android:orientation="horizontal"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:layout_margin="2dp" android:gravity="center"
+				android:layout_width="fill_parent" android:layout_height="45dp"
+				android:layout_margin="5dp" android:gravity="center"
 				android:background="@color/color_gris_oscuro">
 
 
 
 				<EditText android:id="@+id/entryBusquedaPersona"
-					android:inputType="textCapCharacters" android:layout_height="38dp"
+					android:inputType="textCapCharacters" android:layout_height="30dp"
 					android:layout_width="110dp" android:maxLength="15"
 					android:paddingStart="7dp" android:paddingEnd="7dp" android:textSize="13sp"
-					android:layout_marginStart="10dp"
-					android:hint="@string/hint_busqueda" android:textColor="@color/color_gris_claro"
+					android:hint="@string/hint_busqueda" android:textColor="@color/color_gris_oscuro"
+					android:textColorHint="@color/color_gris"
 					android:importantForAutofill="no"
 					android:paddingLeft="7dp" android:paddingRight="7dp"
-					android:layout_marginLeft="10dp"
+					android:layout_marginLeft="5dp"
+					android:layout_marginStart="5dp"
 					android:textStyle="italic"
+					android:background="@color/color_gris_claro"
 					/>
 
 
@@ -48,46 +49,6 @@
 					android:contentDescription="buttonTodasLasCategorias"
 					android:layout_marginLeft="22dp" />
 
-
-
-
-
-
-
-			</LinearLayout>
-
-			<View android:id="@+id/linea1" android:layout_width="wrap_content"
-				android:layout_height="2dp"  android:background="@drawable/custom_text_view_apellido"  />
-
-			<TextView
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_marginBottom="2dp" android:layout_marginRight="10dp"
-				android:layout_marginLeft="10dp" android:textColor="@color/color_gris_claro"
-				android:textSize="7sp" android:text="@string/help_busqueda"
-				android:gravity="center" android:layout_gravity="center"
-				android:visibility="gone" />
-
-
-
-			<LinearLayout android:orientation="horizontal"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:background="@color/color_gris_oscuro"
-				android:gravity="end|center">
-
-				<ImageView android:id="@+id/imgPrefLeft"
-					android:layout_width="13dp" android:layout_height="13dp"
-					android:src="@drawable/pref_detalle_icon" android:gravity="start"
-					android:layout_marginTop="6dp" android:layout_marginEnd="60dp"
-					android:contentDescription="imgPrefLeft"
-					android:layout_marginRight="60dp" />
-
-				<TextView android:id="@+id/categoriasSeleccionadasId"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
-					android:layout_marginTop="2dp" android:layout_marginBottom="2dp"
-					android:textColor="@color/color_gris_claro" android:textSize="12sp"
-					android:padding="4dp" android:gravity="center" />
-
 				<TextView android:id="@+id/cantRegistros"
 					android:layout_height="wrap_content" android:layout_width="wrap_content"
 					android:layout_marginStart="22dp" android:textSize="13sp"
@@ -97,15 +58,12 @@
 
 				<ImageView android:id="@+id/imgPrefRight"
 					android:layout_width="13dp" android:layout_height="13dp"
-					android:src="@drawable/pref_detalle_icon" android:gravity="end"
-					android:layout_marginTop="6dp" android:layout_marginStart="60dp"
+					android:src="@drawable/pref_detalle_icon"
+					android:layout_marginStart="10dp"
 					android:contentDescription="imgPrefRight"
-					android:layout_marginLeft="60dp" />
+					android:layout_marginLeft="10dp" />
 
 			</LinearLayout>
-
-			<View android:id="@+id/linea2" android:layout_width="wrap_content"
-				android:layout_height="2dp" android:background="@drawable/custom_text_view_apellido" />
 
 		</LinearLayout>
 
@@ -115,16 +73,21 @@
 			android:scrollbarAlwaysDrawVerticalTrack="true"
 			android:listSelector="@android:color/transparent"
 			android:cacheColorHint="@android:color/transparent"
-			android:background="@color/color_gris_oscuro"
+			android:background="@color/color_gris_claro"
 			android:scrollingCache="false"
+			android:layout_marginLeft="10dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginRight="10dp"
 
-			>
-		</ExpandableListView>
+			/>
+
+
 		<TextView android:id="@android:id/empty"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:layout_margin="10dp" android:text="@string/text_sinDatos" />
 		<ListView android:id="@+id/listaEspecial"
-			android:background="@color/color_gris_oscuro"
+			android:background="@color/color_gris_claro"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:dividerHeight="10dp"
 			android:layout_marginBottom="55dp"
@@ -135,11 +98,12 @@
 	<RelativeLayout android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:layout_gravity="bottom"
 		android:gravity="center_vertical" android:layout_margin="5dp"
-		android:background="@color/color_gris_oscuro">
+		android:background="@color/color_gris_claro">
 
 		<LinearLayout android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:gravity="center"
 			android:orientation="horizontal"
+			android:padding="7dp"
 			android:background="@color/color_gris_oscuro">
 
 			<ImageButton android:id="@+id/imagenAddContacto"
@@ -149,35 +113,40 @@
 
 			<ImageButton android:id="@+id/buttonSwitchOrganizacion"
 				android:layout_width="32dp" android:layout_height="32dp"
-				android:layout_marginStart="23dp" android:background="@drawable/organizar_nombre"
+				android:background="@drawable/organizar_nombre"
 				android:contentDescription="buttonSwitchOrganizacion"
-				android:layout_marginLeft="23dp" />
+				android:layout_marginLeft="25dp"
+				android:layout_marginStart="25dp" />
 
 			<ImageButton android:id="@+id/buttonMoreOrLess"
 				android:layout_width="32dp" android:layout_height="32dp"
-				android:layout_marginStart="23dp" android:background="@drawable/more_desc_contact"
+				android:background="@drawable/more_desc_contact"
 				android:contentDescription="buttonMoreOrLess"
-				android:layout_marginLeft="23dp"
-				android:visibility="gone"/>
-
+				android:visibility="gone"
+				android:layout_marginLeft="25dp"
+				android:layout_marginStart="25dp" />
 
 			<ImageButton android:id="@+id/buttonExpandContractAll"
 				android:layout_width="30dp" android:layout_height="30dp"
-				android:layout_marginStart="23dp" android:background="@drawable/expandir_icon"
+				android:background="@drawable/expandir_icon"
 				android:contentDescription="buttonExpandContractAll"
-				android:layout_marginLeft="23dp" />
+				android:layout_marginLeft="25dp"
+				android:layout_marginStart="25dp" />
+
 
 			<ImageButton android:id="@+id/imagenPreferidos"
 				android:layout_height="30dp" android:layout_width="30dp"
-				android:layout_marginStart="23dp"
 				android:contentDescription="imagenPreferidos"
-				android:layout_marginLeft="23dp" />
+				android:layout_marginLeft="25dp"
+				android:layout_marginStart="25dp" />
+
 
 			<ImageButton android:id="@+id/botonProtegerCategorias"
 				android:layout_height="30dp" android:layout_width="30dp"
-				android:layout_marginStart="23dp"
 				android:contentDescription="botonProtegerCategorias"
-				android:layout_marginLeft="23dp" />
+				android:layout_marginLeft="25dp"
+				android:layout_marginStart="25dp" />
+
 
 
 		</LinearLayout>

@@ -155,7 +155,6 @@ id butttonRegistrarYSalir
 id cancel_action
 id cantRegistros
 id categoriaTextView
-id categoriasSeleccionadasId
 id center
 id center_horizontal
 id center_vertical
@@ -193,7 +192,6 @@ id imagenAddContacto
 id imagenCategorias
 id imagenPreferido
 id imagenPreferidos
-id imgPrefLeft
 id imgPrefRight
 id importarContacto
 id info

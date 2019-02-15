@@ -93,31 +93,7 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 
 	}
 
-	/*
-        private void mostrarFoto(ImageView photo, long idPer){
-            try {
-                Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(localContext);
-                boolean puede = (Boolean) puedeCargar.getKey();
-                if(puede){
-                    Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
-                    if(b != null){
-                        photo.setVisibility(View.VISIBLE);
-                        photo.setImageBitmap(b);
-                    }else{
-                        photo.setVisibility(View.GONE);
-                    }
-                }else{
-                    photo.setVisibility(View.GONE);
-                }
 
-            } catch (Exception e) {
-                photo.setVisibility(View.GONE);
-            }
-
-
-        }
-
-        */
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
 		// TODO Auto-generated method stub
@@ -138,10 +114,22 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 		long id = cursor.getLong(cursor.getColumnIndex(ConstantsAdmin.KEY_ROWID));
 		boolean muestraFoto = mostrarFoto(textApe, id, true);
 
-		//      ImageView photo = v.findViewById(R.id.photo);
-		if(!muestraFoto) {
-			textApe.setText("*  " + textApe.getText());
+		String dato1 = cursor.getString(cursor.getColumnIndex(ConstantsAdmin.KEY_DATO_EXTRA));
+		String dato2 = cursor.getString(cursor.getColumnIndex(ConstantsAdmin.KEY_DESCRIPCION));
+		String texto = textDR.getText().toString();
+
+		if(dato1 != null && !dato1.equals("") && dato2 != null && !dato2.equals("")){
+			texto = texto + "(" + dato1 + "-" + dato2 + ")";
+		}else if(dato1!= null && !dato1.equals("")){
+			texto = texto + "(" + dato1 + ")";
+		}else if(dato2!= null && !dato2.equals("")){
+			texto = texto + "(" + dato2 + ")";
 		}
+		textDR.setText(texto);
+
+
+		//      ImageView photo = v.findViewById(R.id.photo);
+
 
 
 
