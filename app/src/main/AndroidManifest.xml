@@ -25,7 +25,9 @@
 		android:supportsRtl="true"
 		tools:ignore="GoogleAppIndexingWarning"
 		android:fullBackupContent="@xml/backup_descriptor"
-		android:allowBackup="true">
+		android:allowBackup="true"
+		android:hardwareAccelerated="false"
+		android:largeHeap="true">
 
 		<activity android:name="InitActivity">
 			<intent-filter>
@@ -46,7 +48,9 @@
 			<intent-filter>
 				<action android:name="android.permission.CALL_PHONE" />
 			</intent-filter>
-
+			<intent-filter>
+				<action android:name="android.permission.READ_CONTACTS" />
+			</intent-filter>
 		</activity>
 		<activity android:name="ListadoCategoriaActivity">
 		</activity>

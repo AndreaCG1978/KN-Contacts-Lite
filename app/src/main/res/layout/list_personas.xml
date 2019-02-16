@@ -20,15 +20,15 @@
 
 
 				<EditText android:id="@+id/entryBusquedaPersona"
-					android:inputType="textCapCharacters" android:layout_height="30dp"
+					android:inputType="textCapCharacters" android:layout_height="28dp"
 					android:layout_width="110dp" android:maxLength="15"
 					android:paddingStart="7dp" android:paddingEnd="7dp" android:textSize="13sp"
 					android:hint="@string/hint_busqueda" android:textColor="@color/color_gris_oscuro"
 					android:textColorHint="@color/color_gris"
 					android:importantForAutofill="no"
 					android:paddingLeft="7dp" android:paddingRight="7dp"
-					android:layout_marginLeft="5dp"
-					android:layout_marginStart="5dp"
+					android:layout_marginLeft="3dp"
+					android:layout_marginStart="3dp"
 					android:textStyle="italic"
 					android:background="@color/color_gris_claro"
 					/>
@@ -41,7 +41,7 @@
 
 
 				<ImageButton android:id="@+id/buttonTodasLasCategorias"
-					android:layout_width="32dp" android:layout_height="32dp"
+					android:layout_width="30dp" android:layout_height="30dp"
 					android:layout_marginStart="22dp" android:background="@drawable/clear_icon"
 					android:contentDescription="buttonTodasLasCategorias"
 					android:layout_marginLeft="22dp" />
@@ -66,7 +66,6 @@
 
 		<ExpandableListView android:id="@android:id/list"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginBottom="55dp"
 			android:scrollbarAlwaysDrawVerticalTrack="true"
 			android:listSelector="@android:color/transparent"
 			android:cacheColorHint="@android:color/transparent"
@@ -77,6 +76,8 @@
 			android:layout_marginStart="10dp"
 			android:layout_marginEnd="10dp"
 			android:layout_marginRight="10dp"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="55dp"
 
 			/>
 
@@ -88,6 +89,8 @@
 			android:background="@color/color_gris_claro"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:dividerHeight="10dp"
+			android:divider="@color/color_gris_claro"
+			android:childDivider="@color/color_gris_claro"
 			android:layout_marginBottom="55dp"
 			android:cacheColorHint="#00000000" android:smoothScrollbar="true"
 			android:scrollbars="none" />
@@ -113,37 +116,37 @@
 				android:layout_width="32dp" android:layout_height="32dp"
 				android:background="@drawable/organizar_nombre"
 				android:contentDescription="buttonSwitchOrganizacion"
-				android:layout_marginLeft="25dp"
-				android:layout_marginStart="25dp" />
+				android:layout_marginLeft="28dp"
+				android:layout_marginStart="28dp" />
 
 			<ImageButton android:id="@+id/buttonMoreOrLess"
 				android:layout_width="32dp" android:layout_height="32dp"
 				android:background="@drawable/more_desc_contact"
 				android:contentDescription="buttonMoreOrLess"
 				android:visibility="gone"
-				android:layout_marginLeft="25dp"
-				android:layout_marginStart="25dp" />
+				android:layout_marginLeft="28dp"
+				android:layout_marginStart="28dp" />
 
 			<ImageButton android:id="@+id/buttonExpandContractAll"
 				android:layout_width="30dp" android:layout_height="30dp"
 				android:background="@drawable/expandir_icon"
 				android:contentDescription="buttonExpandContractAll"
-				android:layout_marginLeft="25dp"
-				android:layout_marginStart="25dp" />
+				android:layout_marginLeft="28dp"
+				android:layout_marginStart="28dp" />
 
 
 			<ImageButton android:id="@+id/imagenPreferidos"
 				android:layout_height="30dp" android:layout_width="30dp"
 				android:contentDescription="imagenPreferidos"
-				android:layout_marginLeft="25dp"
-				android:layout_marginStart="25dp" />
+				android:layout_marginLeft="28dp"
+				android:layout_marginStart="28dp" />
 
 
 			<ImageButton android:id="@+id/botonProtegerCategorias"
 				android:layout_height="30dp" android:layout_width="30dp"
 				android:contentDescription="botonProtegerCategorias"
-				android:layout_marginLeft="25dp"
-				android:layout_marginStart="25dp" />
+				android:layout_marginLeft="28dp"
+				android:layout_marginStart="28dp" />
 
 
 

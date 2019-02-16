@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -96,21 +97,31 @@ public class PhotoActivity extends Activity {
 				{
 					try{
 						Bitmap b;
+
+						BitmapFactory.Options options = new BitmapFactory.Options();
+						options.inSampleSize = 8;
+
 						if(capturoConCamara){
-							b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() +fileTemp);
+							b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() +fileTemp, options);
 
 						}else{
 							Uri selectedImage = data.getData();
 							InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-							b = BitmapFactory.decodeStream(imageStream);
+							Rect r = new Rect();
+							r.set(-1,-1,-1,-1);
+							//b = BitmapFactory.decodeStream(imageStream);
+							b = BitmapFactory.decodeStream(imageStream, r, options);
 						}
 						//       	Bitmap newb = Bitmap.createScaledBitmap(b, 300, 350, true);
 
 						ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(mPersonaSeleccionadaId) + ".jpg", b);
-						File file = new File(ConstantsAdmin.obtenerPathImagen() + fileTemp);
+					/*	File file = new File(ConstantsAdmin.obtenerPathImagen() + fileTemp);
 						if(file.exists()){
 							file.delete();
-						}
+						}*/
+			/*			if(sdImageMainDirectory != null){
+							sdImageMainDirectory.delete();
+						}*/
 
 
 

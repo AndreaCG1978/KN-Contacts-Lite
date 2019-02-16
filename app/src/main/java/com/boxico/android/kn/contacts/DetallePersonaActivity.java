@@ -813,17 +813,17 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		try {
 			Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(this);
 			boolean puede = (Boolean) puedeCargar.getKey();
+			photo.setVisibility(View.GONE);
 			if (puede) {
-				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(mPersonaSeleccionadaId) + ".jpg");
-				iconBig = new BitmapDrawable(getResources(), b);
-				if (b != null) {
-					photo.setVisibility(View.VISIBLE);
-					photo.setImageBitmap(b);
-				} else {
-					photo.setVisibility(View.GONE);
+				String path = ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(mPersonaSeleccionadaId) + ".jpg";
+				if(ConstantsAdmin.existeArchivo(path)){
+					Bitmap b = BitmapFactory.decodeFile(path);
+					iconBig = new BitmapDrawable(getResources(), b);
+					if (b != null) {
+						photo.setVisibility(View.VISIBLE);
+						photo.setImageBitmap(b);
+					}
 				}
-			} else {
-				photo.setVisibility(View.GONE);
 			}
 
 		} catch (Exception e) {

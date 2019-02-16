@@ -35,39 +35,44 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 			boolean puede = (Boolean) puedeCargar.getKey();
 
 			if(puede){
-				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + "." +String.valueOf(idPer)  + ".jpg");
-				Bitmap small = null;
-				if(miniFoto){
-					small = Bitmap.createScaledBitmap(b, 35, 38, true);
-				}else{
-					small = Bitmap.createScaledBitmap(b, 45, 50, true);
-				}
+				String path = ConstantsAdmin.obtenerPathImagen() + "." +String.valueOf(idPer)  + ".jpg";
+				if(ConstantsAdmin.existeArchivo(path)){
 
 
-				final Drawable icon = new BitmapDrawable(localContext.getResources(), small);
-				//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
-				if(icon != null){
-					tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
-					tv.setCompoundDrawablePadding(3);
-					//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
-					Bitmap big = b;
-					final Drawable iconBig = new BitmapDrawable(localContext.getResources(), big);
-					muestraFoto = true;
-					tv.setOnTouchListener(new View.OnTouchListener() {
-						@Override
-						public boolean onTouch(View v, MotionEvent event) {
-							if(event.getAction() == MotionEvent.ACTION_UP) {
-								if(event.getRawX() <= tv.getTotalPaddingLeft()) {
-									// your action for drawable click event
-									ConstantsAdmin.showFotoPopUp(iconBig, localContext);
+					Bitmap b = BitmapFactory.decodeFile(path);
+					Bitmap small = null;
+					if(miniFoto){
+						small = Bitmap.createScaledBitmap(b, 35, 38, true);
+					}else{
+						small = Bitmap.createScaledBitmap(b, 45, 50, true);
+					}
 
-									return true;
+
+					final Drawable icon = new BitmapDrawable(localContext.getResources(), small);
+					//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+					if(icon != null){
+						tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+						tv.setCompoundDrawablePadding(3);
+						//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
+						Bitmap big = b;
+						final Drawable iconBig = new BitmapDrawable(localContext.getResources(), big);
+						muestraFoto = true;
+						tv.setOnTouchListener(new View.OnTouchListener() {
+							@Override
+							public boolean onTouch(View v, MotionEvent event) {
+								if(event.getAction() == MotionEvent.ACTION_UP) {
+									if(event.getRawX() <= tv.getTotalPaddingLeft()) {
+										// your action for drawable click event
+										ConstantsAdmin.showFotoPopUp(iconBig, localContext);
+
+										return true;
+									}
 								}
+								return true;
 							}
-							return true;
-						}
-					});
+						});
 
+					}
 				}
 			}
     		/*

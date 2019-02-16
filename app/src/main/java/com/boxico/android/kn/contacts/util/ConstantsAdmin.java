@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +21,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,7 +32,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.net.UrlQuerySanitizer;
 import android.os.Environment;
+import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -1333,6 +1339,11 @@ public class ConstantsAdmin {
 
 	}
 
+	public static boolean existeArchivo(String path){
+		File file = new File(path);
+		return file.exists();
+	}
+
 	private static List<CategoriaDTO> procesarCategorias(ArrayList<String> lista){
 		String linea;
 		List<CategoriaDTO> resultado = new ArrayList<>();
@@ -1787,9 +1798,12 @@ public class ConstantsAdmin {
 
 		// FOTO
 		String fotoString = null;
-		Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(per.getId()) + ".jpg");
-		if(b != null){
-			fotoString = encodeTobase64(b).replaceAll("\n", "%%");
+		String path = ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(per.getId()) + ".jpg";
+		if(ConstantsAdmin.existeArchivo(path)){
+			Bitmap b = BitmapFactory.decodeFile(path);
+			if(b != null){
+				fotoString = encodeTobase64(b).replaceAll("\n", "%%");
+			}
 		}
 
 		if(fotoString != null){
@@ -2852,7 +2866,34 @@ public class ConstantsAdmin {
 		fOut.flush();
 		fOut.close();
 
-		MediaStore.Images.Media.insertImage(context.getContentResolver(),file.getAbsolutePath(),file.getName(),file.getName());
+		String fileTemp = null;
+		Bitmap bmTemp = null;
+		try {
+			fileTemp = MediaStore.Images.Media.insertImage(context.getContentResolver(),file.getAbsolutePath(),file.getName(),file.getName());
+			bmTemp = getThumbnail(context.getContentResolver(), file.getName());
+		}catch (Exception exc){
+			exc.printStackTrace();
+		}
+
+
+	/*	if(file.exists()){
+			file.delete();
+		}*/
+
+	}
+
+	public static Bitmap getThumbnail(ContentResolver cr, String path) throws Exception {
+
+		Cursor ca = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[] { MediaStore.MediaColumns._ID }, MediaStore.MediaColumns.DATA + "=?", new String[] {path}, null);
+		if (ca != null && ca.moveToFirst()) {
+			int id = ca.getInt(ca.getColumnIndex(MediaStore.MediaColumns._ID));
+			ca.close();
+			return MediaStore.Images.Thumbnails.getThumbnail(cr, id, MediaStore.Images.Thumbnails.MICRO_KIND, null );
+		}
+
+		ca.close();
+		return null;
+
 	}
 
 

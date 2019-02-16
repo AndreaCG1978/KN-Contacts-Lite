@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-91:12
+INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-91:12
+INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-91:12
+INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-91:12
 MERGED from [com.android.support:support-v4:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/7ab3aa614b5787954709f4406c48b376/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-media-compat:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/5a7d8ade1b1a000e37dc5c49a5abbf90/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-fragment:27.1.1] /home/andrea/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/aab719ba99b9baedf4cfbfe90659de98/AndroidManifest.xml:17:1-22:12
@@ -14,9 +14,9 @@ MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/andrea/.gradle/caches/t
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/0417bd96219f0e9bed927d3720b86a64/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/b8b32ddaf8bc4bcea1b2d3a01b8fe165/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] /home/andrea/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/2b103f63aa133895a5a971c33ab4daa4/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
-INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-87:12
+INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-91:12
+INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-91:12
+INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:1-91:12
 	package
 		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:4:2-42
 		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
@@ -70,97 +70,101 @@ ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/Android
 	android:name
 		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:19:16-59
 application
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:23:2-86:16
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:23:2-90:16
 	android:supportsRtl
 		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:25:3-29
 	android:label
 		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:24:3-35
+	android:hardwareAccelerated
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:29:3-38
 	android:fullBackupContent
 		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:27:3-53
 	tools:ignore
 		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:26:3-42
+	android:largeHeap
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:30:3-27
 	android:icon
 		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:23:15-53
 	android:allowBackup
 		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:28:3-29
 activity#com.boxico.android.kn.contacts.InitActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:30:3-38:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:32:3-40:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:30:13-40
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:32:13-40
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:31:4-34:20
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:33:4-36:20
 action#android.intent.action.MAIN
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:32:5-57
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:34:5-57
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:32:13-54
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:34:13-54
 category#android.intent.category.LAUNCHER
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:33:5-65
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:35:5-65
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:33:15-62
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:35:15-62
 intent-filter#action:name:android.permission.READ_CONTACTS
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:35:4-37:20
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:37:4-39:20
 action#android.permission.READ_CONTACTS
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:36:5-63
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:38:5-63
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:36:13-60
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:38:13-60
 activity#com.boxico.android.kn.contacts.ListadoPersonaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:39:3-44:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:41:3-46:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:39:13-50
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:41:13-50
 activity#com.boxico.android.kn.contacts.DetallePersonaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:45:3-50:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:47:3-54:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:45:13-50
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:47:13-50
 intent-filter#action:name:android.permission.CALL_PHONE
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:46:4-48:20
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:48:4-50:20
 action#android.permission.CALL_PHONE
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:47:5-60
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:49:5-60
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:47:13-57
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:49:13-57
 activity#com.boxico.android.kn.contacts.ListadoCategoriaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:51:3-52:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:55:3-56:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:51:13-52
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:55:13-52
 activity#com.boxico.android.kn.contacts.AltaPersonaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:53:3-54:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:57:3-58:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:53:13-47
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:57:13-47
 activity#com.boxico.android.kn.contacts.AboutMeActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:56:3-57:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:60:3-61:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:56:13-43
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:60:13-43
 activity#com.boxico.android.kn.contacts.MisCategoriasActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:59:3-60:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:63:3-64:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:59:13-49
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:63:13-49
 activity#com.boxico.android.kn.contacts.AltaCategoriaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:62:3-63:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:66:3-67:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:62:13-49
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:66:13-49
 activity#com.boxico.android.kn.contacts.AltaTipoValorActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:65:3-66:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:69:3-70:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:65:13-49
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:69:13-49
 activity#com.boxico.android.kn.contacts.ProteccionCategoriaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:68:3-69:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:72:3-73:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:68:13-55
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:72:13-55
 activity#com.boxico.android.kn.contacts.ActivarContraseniaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:71:3-72:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:75:3-76:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:71:13-54
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:75:13-54
 activity#com.boxico.android.kn.contacts.PhotoActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:74:3-75:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:78:3-79:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:74:13-41
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:78:13-41
 activity#com.boxico.android.kn.contacts.ImportarContactoActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:77:3-81:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:81:3-85:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:77:13-52
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:81:13-52
 activity#com.boxico.android.kn.contacts.MenuPersonaActivity
-ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:83:3-84:14
+ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:87:3-88:14
 	android:name
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:83:13-47
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:87:13-47
 uses-sdk
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml

@@ -1,5 +1,6 @@
 package com.boxico.android.kn.contacts;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -71,6 +72,9 @@ import com.boxico.android.kn.contacts.util.KNSimpleCursorAdapter;
 import com.boxico.android.kn.contacts.util.MultiSpinner;
 import com.boxico.android.kn.contacts.util.MultiSpinner.MultiSpinnerListener;
 
+import static com.boxico.android.kn.contacts.util.ConstantsAdmin.obtenerPathImagen;
+import static com.boxico.android.kn.contacts.util.ConstantsAdmin.personaSeleccionada;
+
 
 public class ListadoPersonaActivity extends ExpandableListFragment implements MultiSpinnerListener, LoaderManager.LoaderCallbacks<Cursor> {
 	private String mEntryBusquedaNombre = null;
@@ -131,6 +135,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private final int CONFIGURACION_CURSOR = 9;
 
 	private final int PERMISSIONS_RESTORE_BACKUP = 101;
+	private final int PERMISSIONS_READ_CONTACTS = 102;
 
 	private class ImportCSVTask extends AsyncTask<Long, Integer, Integer>{
 		ProgressDialog dialog = null;
@@ -203,6 +208,31 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				this.importContactosCSV();
 			}
 		}
+		if (requestCode == PERMISSIONS_READ_CONTACTS) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				this.openVerDetallePersona(personaSeleccionada.getId());
+			}
+		}
+	}
+
+
+	private void askForReadContactsPermission(long idPer){
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+					!= PackageManager.PERMISSION_GRANTED) {
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.READ_CONTACTS},
+						PERMISSIONS_READ_CONTACTS);
+
+
+			}else{//Ya tiene el permiso...
+				this.openVerDetallePersona(idPer);
+			}
+		}else{
+			this.openVerDetallePersona(idPer);
+		}
+
+
 	}
 
 
@@ -363,7 +393,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 	private void configurarExpandableList(){
 
-		this.getExpandableListView().setDividerHeight(15);
+		this.getExpandableListView().setDividerHeight(18);
 
 	}
 
@@ -449,6 +479,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 								String clave = mySortedByElements.get(groupPosition);
 								boolean miniFoto = false;
 								final PersonaDTO per = (PersonaDTO) personasMap.get(clave).toArray()[childPosition];
+								personaSeleccionada = per;
 								final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
 								TextView textApe = v.findViewById(R.id.rowApellido);
 								TextView textNom = v.findViewById(R.id.rowNombres);
@@ -459,24 +490,6 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 								textNom.setPadding(3, 12, 10, 12);
 								textApe.setTextSize(16);
 								textNom.setTextSize(16);
-
-/*
-                    if(!ConstantsAdmin.config.isEstanDetallados()){
-
-                    	if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
-	                       	textNom.setText(textNom.getText() + " (" + per.getCategoriaNombreRelativo() +")");
-	                    }else if(per.getDatoExtra() != null && !per.getDatoExtra().equals("")){
-	                    	textNom.setText(textNom.getText() + " (" + per.getDatoExtra() + ")");
-	                    }
-
-                    	text = v.findViewById(R.id.rowDatoRelevante);
-                    	text.setVisibility(View.GONE);
-                    	text = v.findViewById(R.id.rowDatoRelevante2);
-                    	text.setVisibility(View.GONE);
-                  //  	photo.setVisibility(View.GONE);
-                    }else{*/
-
-
 								text = v.findViewById(R.id.rowDatoRelevante);
 								String texto;
 								if(!ConstantsAdmin.config.isOrdenadoPorCategoria()){
@@ -487,33 +500,25 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 									texto = per.getDatoExtra();
 								}
 
+								textApe.setPadding(25, 5, 2, 5);
+								textNom.setPadding(3, 5, 5, 5);
+								textApe.setTextSize(14);
+								textNom.setTextSize(14);
 								if(texto != null && !texto.equals("")){
-									textApe.setPadding(25, 5, 2, 5);
-									textNom.setPadding(3, 5, 5, 5);
-									textApe.setTextSize(14);
-									textNom.setTextSize(14);
 									if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
 										texto = texto + " (" + per.getDescripcion() + ")";
 
 									}
-									text.setText(texto);
-									text.setTextSize(13);
-									text.setVisibility(View.VISIBLE);
-									miniFoto = true;
-				  /*
-					text = v.findViewById(R.id.rowDatoRelevante2);
-					text.setText(per.getDescripcion());
-					text.setVisibility(View.VISIBLE);*/
-
-
 								}else{
-									text.setVisibility(View.GONE);
-
+									texto = per.getCategoriaNombreRelativo();
 								}
+								text.setText(texto);
+								text.setTextSize(13);
+								text.setVisibility(View.VISIBLE);
+								miniFoto = true;
 								text = v.findViewById(R.id.rowDatoRelevante2);
 								text.setVisibility(View.GONE);
 
-								//               }
 
 								boolean muestraFoto = mostrarFoto(textFoto, per.getId(), miniFoto);
 								if(!muestraFoto){
@@ -537,7 +542,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 								v.setOnClickListener(new View.OnClickListener() {
 									public void onClick(View v) {
-										openVerDetallePersona(per.getId());
+										//openVerDetallePersona(per.getId());
+										askForReadContactsPermission(per.getId());
 									}
 								});
 								v.setOnLongClickListener(new View.OnLongClickListener() {
@@ -586,9 +592,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 								temp = mySortedByElements.get(groupPosition);
 								label = temp.toUpperCase();
 								textName.setText(label);
-								textName.setTextColor(getResources().getColor(R.color.color_blanco));
+								textName.setTextColor(getResources().getColor(R.color.color_gris_oscuro));
 								textName.setTypeface(Typeface.MONOSPACE);
-								textCantidad.setTextColor(getResources().getColor(R.color.color_gris_oscuro));
+								textCantidad.setTextColor(getResources().getColor(R.color.color_gris_claro));
 								textCantidad.setTypeface(Typeface.MONOSPACE);
 								textCantidad.setText(String.valueOf(personasMap.get(temp).size()));
 								return v;
@@ -617,6 +623,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 
+
+
 	private boolean mostrarFoto(final TextView tv, long idPer, boolean miniFoto){
 		boolean muestraFoto = false;
 		try {
@@ -624,34 +632,37 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			boolean puede = (Boolean) puedeCargar.getKey();
 
 			if(puede){
-				Bitmap b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(idPer)  + ".jpg");
-				Bitmap small = null;
-				if(b != null){
-					if(miniFoto){
-						small = Bitmap.createScaledBitmap(b, 37, 41, true);
-					}else{
-						small = Bitmap.createScaledBitmap(b, 47, 52, true);
-					}
-					final Drawable icon = new BitmapDrawable(getResources(), small);
-					//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
-					if(icon != null){
-						tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
-						tv.setCompoundDrawablePadding(3);
-						//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
-						Bitmap big = b;
-						final Drawable iconBig = new BitmapDrawable(getResources(), big);
-						muestraFoto = true;
-						tv.setOnTouchListener(new View.OnTouchListener() {
-							@Override
-							public boolean onTouch(View v, MotionEvent event) {
-								if(event.getAction() == MotionEvent.ACTION_UP) {
-									ConstantsAdmin.showFotoPopUp(iconBig, me);
+				String path = obtenerPathImagen() + "." + String.valueOf(idPer)  + ".jpg";
+				if(ConstantsAdmin.existeArchivo(path)){
+					Bitmap b = BitmapFactory.decodeFile(path);
+					Bitmap small = null;
+					if(b != null){
+						if(miniFoto){
+							small = Bitmap.createScaledBitmap(b, 37, 41, true);
+						}else{
+							small = Bitmap.createScaledBitmap(b, 47, 52, true);
+						}
+						final Drawable icon = new BitmapDrawable(getResources(), small);
+						//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
+						if(icon != null){
+							tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+							tv.setCompoundDrawablePadding(3);
+							//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
+							Bitmap big = b;
+							final Drawable iconBig = new BitmapDrawable(getResources(), big);
+							muestraFoto = true;
+							tv.setOnTouchListener(new View.OnTouchListener() {
+								@Override
+								public boolean onTouch(View v, MotionEvent event) {
+									if(event.getAction() == MotionEvent.ACTION_UP) {
+										ConstantsAdmin.showFotoPopUp(iconBig, me);
+										return true;
+									}
 									return true;
 								}
-								return true;
-							}
-						});
+							});
 
+						}
 					}
 
 				}
