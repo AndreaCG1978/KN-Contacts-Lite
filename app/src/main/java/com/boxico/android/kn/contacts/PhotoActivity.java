@@ -99,18 +99,18 @@ public class PhotoActivity extends Activity {
 						Bitmap b;
 
 						BitmapFactory.Options options = new BitmapFactory.Options();
-						options.inSampleSize = 8;
+						options.inSampleSize = 20;
 
 						if(capturoConCamara){
-							b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() +fileTemp, options);
-
+							//b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() +fileTemp, options);
+                            b = BitmapFactory.decodeFile(ConstantsAdmin.obtenerPathImagen() +fileTemp, null);
 						}else{
 							Uri selectedImage = data.getData();
 							InputStream imageStream = getContentResolver().openInputStream(selectedImage);
 							Rect r = new Rect();
 							r.set(-1,-1,-1,-1);
-							//b = BitmapFactory.decodeStream(imageStream);
-							b = BitmapFactory.decodeStream(imageStream, r, options);
+							b = BitmapFactory.decodeStream(imageStream);
+							//b = BitmapFactory.decodeStream(imageStream, r, options);
 						}
 						//       	Bitmap newb = Bitmap.createScaledBitmap(b, 300, 350, true);
 

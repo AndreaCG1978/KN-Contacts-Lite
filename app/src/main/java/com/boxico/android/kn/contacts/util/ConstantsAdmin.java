@@ -2866,11 +2866,13 @@ public class ConstantsAdmin {
 		fOut.flush();
 		fOut.close();
 
-		String fileTemp = null;
-		Bitmap bmTemp = null;
+		String uriString = null;
+		Uri uriTemp = null;
+	//	Uri uriThumbnail = null;
 		try {
-			fileTemp = MediaStore.Images.Media.insertImage(context.getContentResolver(),file.getAbsolutePath(),file.getName(),file.getName());
-			bmTemp = getThumbnail(context.getContentResolver(), file.getName());
+			uriString = MediaStore.Images.Media.insertImage(context.getContentResolver(),file.getAbsolutePath(),file.getName(),file.getName());
+			uriTemp = Uri.parse(uriString);
+			deletePictureAndThumbnail(uriTemp, context.getContentResolver());
 		}catch (Exception exc){
 			exc.printStackTrace();
 		}
@@ -2882,6 +2884,78 @@ public class ConstantsAdmin {
 
 	}
 
+
+
+	private static void deletePictureAndThumbnail(Uri selectedImageUri, ContentResolver cr) {
+		try {
+			String uri = getThumbnailPath(selectedImageUri, cr);
+			if (uri != null) {
+				File file = new File(uri);
+				if(file != null && file.exists()){
+					file.delete();
+				}
+
+			}
+			uri = getPicturePath(selectedImageUri, cr);
+			if (uri != null) {
+				File file = new File(uri);
+				if(file != null && file.exists()){
+					file.delete();
+				}
+
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+	}
+
+	private static String getThumbnailPath(Uri uri, ContentResolver cr) {
+		String[] projection = { MediaStore.Images.Media._ID};
+		String result = null;
+		Cursor cursor = cr.query(uri, projection, null, null, null);
+		if (cursor != null && cursor.getCount() > 0) {
+			int column_index = cursor
+					.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+
+			cursor.moveToFirst();
+			long imageId = cursor.getLong(column_index);
+			cursor.close();
+			Cursor cursor2 = MediaStore.Images.Thumbnails.queryMiniThumbnail(
+					cr, imageId,
+					MediaStore.Images.Thumbnails.MINI_KIND,
+					null);
+			if (cursor2 != null && cursor2.getCount() > 0) {
+				cursor2.moveToFirst();
+				result = cursor2.getString(cursor2.getColumnIndexOrThrow(MediaStore.Images.Thumbnails
+						.DATA));
+				cursor2.close();
+			}
+		}
+		return result; //always null for pictures from the Camera
+	}
+
+	private static String getPicturePath(Uri uri, ContentResolver cr) {
+		String[] projection = {MediaStore.Images.Media.DATA};
+		String result = null;
+		Cursor cursor = cr.query(uri, projection, null, null, null);
+		if (cursor != null && cursor.getCount() > 0) {
+			//int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+			int column_data = cursor
+					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+
+			cursor.moveToFirst();
+		//	long imageId = cursor.getLong(column_index);
+			String imageData = cursor.getString(column_data);
+			cursor.close();
+			result = imageData;
+
+
+		}
+		return result; //always null for pictures from the Camera
+	}
+
+/*
 	public static Bitmap getThumbnail(ContentResolver cr, String path) throws Exception {
 
 		Cursor ca = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[] { MediaStore.MediaColumns._ID }, MediaStore.MediaColumns.DATA + "=?", new String[] {path}, null);
@@ -2895,7 +2969,7 @@ public class ConstantsAdmin {
 		return null;
 
 	}
-
+*/
 
 	public static void enviarMailContraseniaCategoriasProtegidas(Activity activity) {
 		// TODO Auto-generated method stub
