@@ -62,6 +62,10 @@ public class MultiSpinner extends Spinner implements
 					new String[]{""});
 	        setAdapter(adapter);
 	        listener.onItemsSelected(selected);
+
+			this.setBackgroundResource(R.drawable.categoria_search_icon);
+			this.refreshDrawableState();
+
 	    }
 
 	    @Override
@@ -80,7 +84,7 @@ public class MultiSpinner extends Spinner implements
 	                });
 	        builder.setOnCancelListener(this);
 	        builder.show();
-	        
+
 	        return true;
 	    }
 

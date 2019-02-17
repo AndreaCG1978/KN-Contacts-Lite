@@ -1,6 +1,5 @@
 package com.boxico.android.kn.contacts;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,7 +9,6 @@ import java.util.Map;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,18 +16,14 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -47,7 +41,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -57,7 +50,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
@@ -277,42 +269,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 
-	/*
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.list_personas, container, false);
-            me = this;
 
-            try{
-                allMyCursors = new ArrayList<>();
-                ConstantsAdmin.mainActivity = me;
-                this.setTitle(R.string.app_name);
-                this.registerForContextMenu(getExpandableListView());
-        //		this.getSupportLoaderManager().initLoader(CATEGORIAS_CURSOR, null, this);
-                this.configurarSpinner();
-                this.configurarEntryBusqueda();
-                this.configurarListView();
-                this.configurarExpandableList();
-                this.configurarBotonIrACategoriaTodas();
-                this.configurarBotonProtegerCategorias();
-                this.configurarVerPreferidos();
-                this.configurarAddContact();
-                this.configurarBotonSwitchOrganizacion();
-                this.configurarBotonExpandContractAll();
-                this.configurarBotonMasOMenosDesc();
-                this.recuperarConfiguracion();
-                verBusqueda();
-                layoutInflater = (LayoutInflater) this.getLayoutInflater();
-                this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
-            }catch (Exception e) {
-                ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorInicioAplicacion));
-            }
-
-            return view;
-        }
-
-    */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		me = this;
@@ -592,7 +549,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 								temp = mySortedByElements.get(groupPosition);
 								label = temp.toUpperCase();
 								textName.setText(label);
-								textName.setTextColor(getResources().getColor(R.color.color_gris_oscuro));
+								textName.setTextColor(getResources().getColor(R.color.color_negro));
 								textName.setTypeface(Typeface.MONOSPACE);
 								textCantidad.setTextColor(getResources().getColor(R.color.color_gris_claro));
 								textCantidad.setTypeface(Typeface.MONOSPACE);
@@ -1434,7 +1391,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 		spinnerCategorias.setItems(todasLasCategString, this);
 
-		//    this.crearSpinnerCategorias(R.id.spinnerCategorias_list_personas, categorias);
+
+				//    this.crearSpinnerCategorias(R.id.spinnerCategorias_list_personas, categorias);
 	}
 
 	private void cambiarNombreCategorias(List<CategoriaDTO> categorias){
@@ -1534,7 +1492,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		}
     }
    */
-
+/*
 	private String recuperarEtiquetaCatSeleccionadas(){
 		Iterator<String> it = categoriasSeleccionadas.iterator();
 		StringBuilder temp = new StringBuilder();
@@ -1543,7 +1501,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		}
 		return temp.substring(0, temp.length() - 1);
 	}
-
+*/
 
 
 	private void cargarPersonasPorApellidoONombreMultipleSeleccion(){
@@ -1555,41 +1513,31 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		preferidos.setVisibility(View.VISIBLE);
 		preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
 		Cursor personasCursor;
-	//	String labelCateg;
-		//catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
-	//	imgPrefLeft.setVisibility(View.GONE);
+
 		imgPrefRight.setVisibility(View.GONE);
 		ConstantsAdmin.inicializarBD(mDBManager);
-		if(categoriasSeleccionadas != null && categoriasSeleccionadas.size()>0){
-		//	labelCateg = this.recuperarEtiquetaCatSeleccionadas();
-		//	catSelectTextView.setText(labelCateg);
-			//		catSelectTextView.setVisibility(View.VISIBLE);
+/*		if(categoriasSeleccionadas != null && categoriasSeleccionadas.size()>0){
 			spinnerCategorias.setItems(todasLasCategString, this);
-		}else{
-			//		catSelectTextView.setVisibility(View.GONE);
-		}
+		}*/
 		ConstantsAdmin.config.setMuestraPreferidos(false);
 		boolean noActivaContraseña = !ConstantsAdmin.contrasenia.isActiva();
 		personasCursor = mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(noActivaContraseña, mEntryBusquedaNombre, categoriasSeleccionadas, ConstantsAdmin.categoriasProtegidas);
 
 		if(personasCursor != null){
-			//		startManagingCursor(personasCursor);
-			// Create an array to specify the fields we want to display in the list (only TITLE)
 			String[] from;
 			int[] to;
-//			from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
-//			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
-
 			from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
 			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
-
-
-
 			KNSimpleCursorAdapter personas =
 					new KNSimpleCursorAdapter(this, R.layout.row_personas, personasCursor, from, to);
 			listaEspecial.setAdapter(personas);
 			cantReg.setText("(" + listaEspecial.getAdapter().getCount() + ")");
-		}
+		}/*
+		this.closeContextMenu();
+		this.closeOptionsMenu();
+		spinnerCategorias.setPressed(false);
+		spinnerCategorias.refreshDrawableState();
+*/
 
 
 	}
@@ -2022,8 +1970,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		super.onPause();
 		this.closeContextMenu();
 		this.closeOptionsMenu();
-		spinnerCategorias.setPressed(false);
-		spinnerCategorias.refreshDrawableState();
+
 
 
 	}

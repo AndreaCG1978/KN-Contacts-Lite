@@ -37,7 +37,8 @@
 				<com.boxico.android.kn.contacts.util.MultiSpinner
 					android:id="@+id/multi_spinner" android:layout_width="32dp"
 					android:layout_height="32dp" android:background="@drawable/categoria_search_icon"
-					android:layout_marginStart="50dp" android:layout_marginLeft="50dp"/>
+					android:layout_marginStart="50dp" android:layout_marginLeft="50dp"
+					/>
 
 
 				<ImageButton android:id="@+id/buttonTodasLasCategorias"

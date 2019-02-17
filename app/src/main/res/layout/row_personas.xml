@@ -21,7 +21,7 @@
 
 
 		<TextView android:id="@+id/rowApellido" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:textColor="@color/color_gris_oscuro"
+			android:layout_height="wrap_content" android:textColor="@color/color_negro"
 			android:textSize="13sp"
 			android:paddingTop="1dp" android:paddingEnd="4dp"
 			android:paddingBottom="1dp" android:typeface="monospace"
@@ -33,7 +33,7 @@
 		</TextView>
 		<TextView android:id="@+id/rowNombres" android:layout_height="wrap_content"
 			android:layout_width="wrap_content" android:textSize="13sp"
-			android:textColor="@color/color_gris_oscuro" android:padding="1dp"
+			android:textColor="@color/color_negro" android:padding="1dp"
 			android:typeface="monospace">
 		</TextView>
 
