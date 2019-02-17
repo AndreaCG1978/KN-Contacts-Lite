@@ -434,7 +434,6 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 							@Override
 							public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 								String clave = mySortedByElements.get(groupPosition);
-								boolean miniFoto = false;
 								final PersonaDTO per = (PersonaDTO) personasMap.get(clave).toArray()[childPosition];
 								personaSeleccionada = per;
 								final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
@@ -472,14 +471,15 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 								text.setText(texto);
 								text.setTextSize(13);
 								text.setVisibility(View.VISIBLE);
-								miniFoto = true;
-								text = v.findViewById(R.id.rowDatoRelevante2);
-								text.setVisibility(View.GONE);
 
+							//	text = v.findViewById(R.id.rowDatoRelevante2);
+							//	text.setVisibility(View.GONE);
 
-								boolean muestraFoto = mostrarFoto(textFoto, per.getId(), miniFoto);
+								textFoto.setVisibility(View.VISIBLE);
+								boolean muestraFoto = mostrarFoto(textFoto, per.getId());
 								if(!muestraFoto){
 									textFoto.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+									textFoto.setVisibility(View.GONE);
 								}
 
 								//      ImageView photo = v.findViewById(R.id.photo);
@@ -582,7 +582,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 
 
-	private boolean mostrarFoto(final TextView tv, long idPer, boolean miniFoto){
+	private boolean mostrarFoto(final TextView tv, long idPer){
 		boolean muestraFoto = false;
 		try {
 			Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(me);
@@ -594,16 +594,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 					Bitmap b = BitmapFactory.decodeFile(path);
 					Bitmap small = null;
 					if(b != null){
-						if(miniFoto){
-							small = Bitmap.createScaledBitmap(b, 37, 41, true);
-						}else{
-							small = Bitmap.createScaledBitmap(b, 47, 52, true);
-						}
+						small = Bitmap.createScaledBitmap(b, 55, 65, true);
 						final Drawable icon = new BitmapDrawable(getResources(), small);
 						//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
 						if(icon != null){
 							tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
-							tv.setCompoundDrawablePadding(3);
+							//tv.setCompoundDrawablePadding(3);
 							//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
 							Bitmap big = b;
 							final Drawable iconBig = new BitmapDrawable(getResources(), big);
@@ -795,8 +791,13 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			// Create an array to specify the fields we want to display in the list (only TITLE)
 			String[] from;
 			int[] to;
+//			from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
+//			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
+
+
 			from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
-			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
+			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante};
+
 			KNSimpleCursorAdapter personas =
 					new KNSimpleCursorAdapter(this, R.layout.row_personas, prefCursor, from, to);
 			//PONER UNA LISTA OCULTA PARA LAS BUSQUEDAS ESPECIFICAS
@@ -1526,8 +1527,13 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		if(personasCursor != null){
 			String[] from;
 			int[] to;
+//			from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
+//			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
+
 			from = new String[]{ConstantsAdmin.KEY_APELLIDO, ConstantsAdmin.KEY_NOMBRES, ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO, ConstantsAdmin.KEY_DATO_EXTRA};
-			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante, R.id.rowDatoRelevante2};
+			to = new int[]{R.id.rowApellido, R.id.rowNombres, R.id.rowDatoRelevante};
+
+
 			KNSimpleCursorAdapter personas =
 					new KNSimpleCursorAdapter(this, R.layout.row_personas, personasCursor, from, to);
 			listaEspecial.setAdapter(personas);
@@ -1970,6 +1976,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		super.onPause();
 		this.closeContextMenu();
 		this.closeOptionsMenu();
+		spinnerCategorias.setPressed(false);
+		spinnerCategorias.refreshDrawableState();
 
 
 

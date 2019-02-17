@@ -28,7 +28,7 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 	}
 
 
-	private boolean mostrarFoto(final TextView tv, long idPer, boolean miniFoto){
+	private boolean mostrarFoto(final TextView tv, long idPer){
 		boolean muestraFoto = false;
 		try {
 			Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(localContext);
@@ -41,18 +41,12 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 
 					Bitmap b = BitmapFactory.decodeFile(path);
 					Bitmap small = null;
-					if(miniFoto){
-						small = Bitmap.createScaledBitmap(b, 35, 38, true);
-					}else{
-						small = Bitmap.createScaledBitmap(b, 45, 50, true);
-					}
-
-
+					small = Bitmap.createScaledBitmap(b, 55, 65, true);
 					final Drawable icon = new BitmapDrawable(localContext.getResources(), small);
 					//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
 					if(icon != null){
 						tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
-						tv.setCompoundDrawablePadding(3);
+						tv.setCompoundDrawablePadding(1);
 						//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
 						Bitmap big = b;
 						final Drawable iconBig = new BitmapDrawable(localContext.getResources(), big);
@@ -60,13 +54,12 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 						tv.setOnTouchListener(new View.OnTouchListener() {
 							@Override
 							public boolean onTouch(View v, MotionEvent event) {
-								if(event.getAction() == MotionEvent.ACTION_UP) {
-									if(event.getRawX() <= tv.getTotalPaddingLeft()) {
+								if(event.getAction() == MotionEvent.ACTION_DOWN) {
+								//	if(event.getRawX() <= tv.getTotalPaddingLeft()) {
 										// your action for drawable click event
-										ConstantsAdmin.showFotoPopUp(iconBig, localContext);
-
-										return true;
-									}
+									ConstantsAdmin.showFotoPopUp(iconBig, localContext);
+									return true;
+								//	}
 								}
 								return true;
 							}
@@ -107,17 +100,23 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 		TextView textApe = view.findViewById(R.id.rowApellido);
 		TextView textNom = view.findViewById(R.id.rowNombres);
 		TextView textDR	= view.findViewById(R.id.rowDatoRelevante);
-		textApe.setPadding(5, 5, 2, 5);
+		TextView textFoto = view.findViewById(R.id.rowFoto);
+		textApe.setPadding(2, 5, 2, 5);
 		textNom.setPadding(3, 5, 5, 5);
 		textApe.setTextSize(14);
 		textNom.setTextSize(14);
 		textDR.setTextSize(14);
 		textDR.setVisibility(View.VISIBLE);
 
-		view.findViewById(R.id.rowDatoRelevante2).setVisibility(View.GONE);
+	//	view.findViewById(R.id.rowDatoRelevante2).setVisibility(View.GONE);
 
 		long id = cursor.getLong(cursor.getColumnIndex(ConstantsAdmin.KEY_ROWID));
-		boolean muestraFoto = mostrarFoto(textApe, id, true);
+		textFoto.setVisibility(View.VISIBLE);
+		boolean muestraFoto = mostrarFoto(textFoto, id);
+		if(!muestraFoto){
+			textFoto.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+			textFoto.setVisibility(View.GONE);
+		}
 
 		String dato1 = cursor.getString(cursor.getColumnIndex(ConstantsAdmin.KEY_DATO_EXTRA));
 		String dato2 = cursor.getString(cursor.getColumnIndex(ConstantsAdmin.KEY_DESCRIPCION));

@@ -265,7 +265,6 @@ id right_icon
 id right_side
 id rowApellido
 id rowDatoRelevante
-id rowDatoRelevante2
 id rowFoto
 id rowNombres
 id rowTipo
