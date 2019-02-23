@@ -39,33 +39,13 @@ public class MultiSpinner extends Spinner implements
 
 	    @Override
 	    public void onCancel(DialogInterface dialog) {
-/*
-	        StringBuilder spinnerBuffer = new StringBuilder();
 
-	        for (int i = 0; i < items.size(); i++) {
-	            if (selected[i]) {
-	                spinnerBuffer.append(items.get(i));
-	                spinnerBuffer.append(", ");
-	            }
-	        }*/
-
-	      /*  String spinnerText;
-	        if (someUnselected) {
-	            spinnerText = spinnerBuffer.toString();
-	            if (spinnerText.length() > 2)
-	                spinnerText = spinnerText.substring(0, spinnerText.length() - 2);
-	        } else {
-	            spinnerText = defaultText;
-	        }*/
-	        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+	      /*  ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
 					android.R.layout.simple_spinner_item,
 					new String[]{""});
-	        setAdapter(adapter);
+	        setAdapter(adapter);*/
+
 	        listener.onItemsSelected(selected);
-
-			this.setBackgroundResource(R.drawable.categoria_search_icon);
-			this.refreshDrawableState();
-
 	    }
 
 	    @Override
@@ -85,23 +65,18 @@ public class MultiSpinner extends Spinner implements
 	        builder.setOnCancelListener(this);
 	        builder.show();
 
-	        return true;
+	        return false;
 	    }
 
 	    public void setItems(List<String> items,
 	            MultiSpinnerListener listener) {
 	        this.items = items;
 			this.listener = listener;
-
-	        // all selected by default
 	        selected = new boolean[items.size()];
-	/*        for (int i = 0; i < selected.length; i++)
-	            selected[i] = true;
-*/
-	        // all text on the spinner
+/*
 	        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                     android.R.layout.simple_spinner_item, new String[]{""});
-	        setAdapter(adapter);
+	        setAdapter(adapter);*/
 	    }
 
 	    public interface MultiSpinnerListener {

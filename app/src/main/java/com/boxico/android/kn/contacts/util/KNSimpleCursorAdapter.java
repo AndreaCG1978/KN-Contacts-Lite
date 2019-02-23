@@ -101,11 +101,11 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 		TextView textNom = view.findViewById(R.id.rowNombres);
 		TextView textDR	= view.findViewById(R.id.rowDatoRelevante);
 		TextView textFoto = view.findViewById(R.id.rowFoto);
-		textApe.setPadding(2, 5, 2, 5);
-		textNom.setPadding(3, 5, 5, 5);
-		textApe.setTextSize(14);
-		textNom.setTextSize(14);
-		textDR.setTextSize(14);
+	//	textApe.setPadding(5, 5, 5, 5);
+	//	textNom.setPadding(5, 5, 5, 5);
+		textApe.setTextSize(15);
+		textNom.setTextSize(15);
+		textDR.setTextSize(13);
 		textDR.setVisibility(View.VISIBLE);
 
 	//	view.findViewById(R.id.rowDatoRelevante2).setVisibility(View.GONE);

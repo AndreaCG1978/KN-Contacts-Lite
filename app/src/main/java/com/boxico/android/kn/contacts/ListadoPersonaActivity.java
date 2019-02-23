@@ -349,9 +349,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 
 	private void configurarExpandableList(){
-
-		this.getExpandableListView().setDividerHeight(18);
-
+		this.getExpandableListView().setDividerHeight(20);
 	}
 
 	private void recargarLista(){
@@ -594,7 +592,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 					Bitmap b = BitmapFactory.decodeFile(path);
 					Bitmap small = null;
 					if(b != null){
-						small = Bitmap.createScaledBitmap(b, 55, 65, true);
+						small = Bitmap.createScaledBitmap(b, 59, 67, true);
 						final Drawable icon = new BitmapDrawable(getResources(), small);
 						//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
 						if(icon != null){
@@ -2059,6 +2057,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			this.mostrarTodosLosContactos();
 
 		}
+		entryBusqueda.requestFocus();
 
 
 	}
