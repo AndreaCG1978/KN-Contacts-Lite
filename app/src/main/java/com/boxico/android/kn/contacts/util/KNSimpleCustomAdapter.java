@@ -22,10 +22,18 @@ import java.util.HashMap;
 public class KNSimpleCustomAdapter extends SimpleAdapter {
 
 	private AltaPersonaActivity localContext = null;
-	private ArrayList<HashMap<String,Object>> lista = null;
+	private ArrayList<HashMap<String,Object>> data = null;
 	private static final String ID_TIPO_VALOR = "ID_TIPO_VALOR";
 	private static final String ID_PERSONA = "ID_PERSONA";
 	private boolean habilitado = true;
+
+    public ArrayList<HashMap<String, Object>> getData() {
+        return data;
+    }
+
+	public void setData(ArrayList<HashMap<String, Object>> data) {
+		this.data = data;
+	}
 
 	public boolean isHabilitado() {
 		return habilitado;
@@ -52,17 +60,9 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 	public KNSimpleCustomAdapter(Context context, ArrayList<HashMap<String,Object>> data, int resource, String[] from, int[] to) {
 		super(context, data, resource, from, to);
 		localContext = (AltaPersonaActivity) context;
-		lista = data;
+		this.data = data;
 	}
 
-
-	public ArrayList<HashMap<String,Object>> getLista() {
-		return lista;
-	}
-
-	public void setLista(ArrayList<HashMap<String,Object>> lista) {
-		this.lista = lista;
-	}
 
 
 	/*
@@ -86,8 +86,8 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 		final View view = super.getView(position, convertView, parent);
 		Button btn = view.findViewById(R.id.removeButton);
 		EditText etxt = view.findViewById(R.id.rowValor);
-		final int pos = position;
-		final KNSimpleCustomAdapter me = this;
+	//	final int pos = position;
+	//	final KNSimpleCustomAdapter me = this;
 		if(localContext.ismMostrarTelefonosBoolean()){
 		    etxt.setInputType(InputType.TYPE_CLASS_PHONE);
         }else if(localContext.ismMostrarEmailsBoolean()){
@@ -95,9 +95,14 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
         }else if(localContext.ismMostrarDireccionesBoolean()){
 		    etxt.setInputType(InputType.TYPE_CLASS_TEXT);
         }
+		btn.setTag(position);
+
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Object idTipoValor = (lista.get(pos)).get(ID_TIPO_VALOR);
+				//Object element = (lista.get(pos));
+				int position = (int) v.getTag();
+				localContext.realzarBotonGuardar();
+				Object idTipoValor = (data.get(position)).get(ID_TIPO_VALOR);
 				String idTVString = idTipoValor.toString();
 				long idTV = Long.valueOf(idTVString);
                 if(localContext.ismMostrarTelefonosBoolean()){
@@ -107,9 +112,17 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
                 }else if(localContext.ismMostrarDireccionesBoolean()){
                     ConstantsAdmin.getDireccionesAEliminar().add(new Long(idTV));
                 }
-				lista.remove(pos);
-				me.notifyDataSetChanged();
-				localContext.realzarBotonGuardar();
+            //   lista.remove(element);
+				//data.remove(pos);
+
+               // data.remove(position);
+				localContext.eliminarItemListView(data, position);
+          //      localContext.resetAdapter(data);
+
+		//		localContext.realzarBotonGuardar();
+        //        localContext.resetAdapter(data);
+
+
 			}
 		});
 

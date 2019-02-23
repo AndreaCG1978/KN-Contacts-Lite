@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -17,15 +16,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,7 +32,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,10 +82,6 @@ public class AltaPersonaActivity extends Activity  {
     private EditText mEntryNuevoValMail = null;
     private EditText mEntryNuevoValDir = null;
 
-	private ListView telefonosList = null;
-	private ListView mailsList = null;
-	private ListView direccionesList = null;
-	
 	private Button botonAddTel = null;
 	private Button botonAddMail = null;
 	private Button botonAddDir = null;
@@ -98,6 +89,16 @@ public class AltaPersonaActivity extends Activity  {
 	private List<TipoValorDTO> telefonos = new ArrayList<>();
 	private List<TipoValorDTO> mails = new ArrayList<>();
 	private List<TipoValorDTO> direcciones = new ArrayList<>();
+
+
+	ArrayList<HashMap<String,Object>> telefonosData = null;
+	ArrayList<HashMap<String,Object>> mailsData = null;
+	ArrayList<HashMap<String,Object>> direccionesData = null;
+
+	KNSimpleCustomAdapter telefonosAdapter = null;
+	KNSimpleCustomAdapter mailsAdapter = null;
+	KNSimpleCustomAdapter direccionesAdapter = null;
+
 
 	private static final String VALOR = "VALOR";
 	private static final String TIPO = "TIPO";
@@ -110,14 +111,25 @@ public class AltaPersonaActivity extends Activity  {
 	private boolean cambioCategoriaFlag = false;
 	private boolean vieneDesdeDetalle = false;
 	private boolean terminoCargaListado = true;
-
 	private boolean inicioActivity = false;
 
 	public boolean isTerminoCargaListado() {
 		return terminoCargaListado;
 	}
 
-	public void setTerminoCargaListado(boolean terminoCargaListado) {
+    public ListView getTelefonosList() {
+        return this.findViewById(R.id.listaTelefonosAlta);
+    }
+
+	public ListView getMailsList() {
+		return this.findViewById(R.id.listaMailsAlta);
+	}
+
+	public ListView getDireccionesList() {
+		return this.findViewById(R.id.listaDireccionesAlta);
+	}
+
+    public void setTerminoCargaListado(boolean terminoCargaListado) {
 		this.terminoCargaListado = terminoCargaListado;
 	}
 
@@ -150,6 +162,7 @@ public class AltaPersonaActivity extends Activity  {
         botonGuardar.setTextColor(Color.WHITE);
 	}
 
+
 	public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuItem item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS,0, R.string.menu_listar_categoria);
@@ -165,6 +178,13 @@ public class AltaPersonaActivity extends Activity  {
     }
 
 */
+
+
+	public void eliminarItemListView(ArrayList<HashMap<String,Object>> data, int position){
+		data.remove(position);
+		this.resetAdapter(data, false);
+
+	}
     
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch(item.getItemId()) {
@@ -194,27 +214,33 @@ public class AltaPersonaActivity extends Activity  {
 			break;
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_TELEFONO:
 			this.cargarTelefonos();
-	        telefonosList.setAdapter(obtenerAdapter(telefonos));
+	        //telefonosList.setAdapter(obtenerAdapter(telefonos, telefonosData));
+			this.resetAdapterTelefonos(null, true);
 			break;
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_TELEFONO:
 			this.cargarTelefonos();
-	        telefonosList.setAdapter(obtenerAdapter(telefonos));
+	        //telefonosList.setAdapter(obtenerAdapter(telefonos, telefonosData));
+			this.resetAdapterTelefonos(null, true);
 			break;	
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_EMAIL:
 			this.cargarEmails();
-	        mailsList.setAdapter(obtenerAdapter(mails));
+	        //mailsList.setAdapter(obtenerAdapter(mails, mailsData));
+			this.resetAdapterMails(null, true);
 			break;
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_EMAIL:
 			this.cargarEmails();
-	        mailsList.setAdapter(obtenerAdapter(mails));
+	        //mailsList.setAdapter(obtenerAdapter(mails, mailsData));
+			this.resetAdapterMails(null, true);
 			break;	
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_EDICION_DIRECCION:
 			this.cargarDirecciones();
-	        direccionesList.setAdapter(obtenerAdapter(direcciones));
+	        //direccionesList.setAdapter(obtenerAdapter(direcciones, direccionesData));
+			this.resetAdapterDirecciones(null, true);
 			break;
 		case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_DIRECCION:
 			this.cargarDirecciones();
-			direccionesList.setAdapter(obtenerAdapter(direcciones));
+		//	direccionesList.setAdapter(obtenerAdapter(direcciones, direccionesData));
+			this.resetAdapterDirecciones(null, true);
 			break;			
 		default:
 			this.configurarSpinner();
@@ -227,6 +253,7 @@ public class AltaPersonaActivity extends Activity  {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
+
         	ConstantsAdmin.telefonosARegistrar = new ArrayList<>();
         	ConstantsAdmin.mailsARegistrar = new ArrayList<>();
         	ConstantsAdmin.direccionesARegistrar = new ArrayList<>();
@@ -253,6 +280,8 @@ public class AltaPersonaActivity extends Activity  {
             }else{
                 this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_editar_persona));
             }
+
+
 
             
 		} catch (Exception e) {
@@ -300,9 +329,9 @@ public class AltaPersonaActivity extends Activity  {
 		EditText eTemp = null;
 		Button btn = null;
 		if(b) {
-			telefonosList.setVisibility(View.VISIBLE);
+            getTelefonosList().setVisibility(View.VISIBLE);
 		}else{
-			telefonosList.setVisibility(View.GONE);
+            getTelefonosList().setVisibility(View.GONE);
 		}
 
 		/*
@@ -324,46 +353,24 @@ public class AltaPersonaActivity extends Activity  {
         EditText eTemp = null;
         Button btn = null;
 		if(b) {
-			mailsList.setVisibility(View.VISIBLE);
+			getMailsList().setVisibility(View.VISIBLE);
 		}else{
-			mailsList.setVisibility(View.GONE);
+			getMailsList().setVisibility(View.GONE);
 		}
 
-        /*
-        int size = mailsList.getAdapter().getCount();
-        for (int j = 0; j < size; j++) {
- 			ly = (LinearLayout)this.getViewByPosition(j, mailsList);
-            eTemp = ly.findViewById(R.id.rowValor);
-            eTemp.setEnabled(b);
-            eTemp.setTextColor(color);
-            btn = ly.findViewById(R.id.removeButton);
-            btn.setEnabled(b);
-        }*/
-
-    }
+	}
 
     private void habilitarListaDireccion(boolean b, int color){
         LinearLayout ly = null;
         EditText eTemp = null;
         Button btn = null;
 		if(b) {
-			direccionesList.setVisibility(View.VISIBLE);
+			getDireccionesList().setVisibility(View.VISIBLE);
 		}else{
-			direccionesList.setVisibility(View.GONE);
+			getDireccionesList().setVisibility(View.GONE);
 		}
 
-      /*
-        int size = direccionesList.getAdapter().getCount();
-        for (int j = 0; j < size; j++) {
-          	ly = (LinearLayout)this.getViewByPosition(j, direccionesList);
-            eTemp = ly.findViewById(R.id.rowValor);
-            eTemp.setEnabled(b);
-            eTemp.setTextColor(color);
-            btn = ly.findViewById(R.id.removeButton);
-            btn.setEnabled(b);
-        }*/
-
-    }
+	}
 
 
 
@@ -404,6 +411,7 @@ public class AltaPersonaActivity extends Activity  {
 			imm.hideSoftInputFromWindow(mEntryNuevoTipoMail.getWindowToken(), 0);
             this.habilitarListaMail(true, Color.WHITE);
         }else {
+			this.habilitarListaMail(false, Color.LTGRAY);
             mEntryNuevoTipoMail.setVisibility(View.VISIBLE);
             mEntryNuevoValMail.setVisibility(View.VISIBLE);
             realzarBotonGuardar();
@@ -411,7 +419,7 @@ public class AltaPersonaActivity extends Activity  {
             mEntryNuevoTipoMail.setSelectAllOnFocus(true);
             mEntryNuevoTipoMail.requestFocus();
             imm.showSoftInput(mEntryNuevoTipoMail, InputMethodManager.SHOW_IMPLICIT);
-            this.habilitarListaMail(false, Color.LTGRAY);
+
         }
         sinDatos.setText("");
     }
@@ -427,6 +435,7 @@ public class AltaPersonaActivity extends Activity  {
 			imm.hideSoftInputFromWindow(mEntryNuevoTipoDir.getWindowToken(), 0);
             this.habilitarListaDireccion(true, Color.WHITE);
         }else {
+			this.habilitarListaDireccion(false, Color.LTGRAY);
             mEntryNuevoTipoDir.setVisibility(View.VISIBLE);
             mEntryNuevoValDir.setVisibility(View.VISIBLE);
             realzarBotonGuardar();
@@ -434,55 +443,159 @@ public class AltaPersonaActivity extends Activity  {
             mEntryNuevoTipoDir.setSelectAllOnFocus(true);
             mEntryNuevoTipoDir.requestFocus();
             imm.showSoftInput(mEntryNuevoTipoDir, InputMethodManager.SHOW_IMPLICIT);
-            this.habilitarListaDireccion(false, Color.LTGRAY);
+
         }
         sinDatos.setText("");
 
     }
 
     private void configurarListaTelefonos(){
-        SimpleAdapter adapter = obtenerAdapter(telefonos);
-        telefonosList.setAdapter(adapter);
-        telefonosList.setDividerHeight(0);
+   //     KNSimpleCustomAdapter adapter = obtenerAdapter(telefonos, telefonosData);
+		this.resetAdapterTelefonos(null, true);
+//        telefonosList.setAdapter(adapter);
+		getTelefonosList().setDividerHeight(0);
     }
 
     private void configurarListaEmails(){
-        SimpleAdapter adapter = obtenerAdapter(mails);
-        mailsList.setAdapter(adapter);
-        mailsList.setDividerHeight(0);
+//		KNSimpleCustomAdapter adapter = obtenerAdapter(mails, mailsData);
+  //      mailsList.setAdapter(adapter);
+		this.resetAdapterMails(null, true);
+        getMailsList().setDividerHeight(0);
     }
 
     
     private void configurarListaDirecciones(){
-        SimpleAdapter adapter = obtenerAdapter(direcciones);
-        direccionesList.setAdapter(adapter);   
-        direccionesList.setDividerHeight(0);
+		//KNSimpleCustomAdapter adapter = obtenerAdapter(direcciones, direccionesData);
+        //direccionesList.setAdapter(adapter);
+		this.resetAdapterDirecciones(null, true);
+        getDireccionesList().setDividerHeight(0);
     }
 
 
-	private SimpleAdapter obtenerAdapter(List<TipoValorDTO> lista){
-		ArrayList<HashMap<String,Object>> listdata= new ArrayList<>();
-		HashMap<String, Object> hm;
-
-		TipoValorDTO tv;
-		if(lista != null){
-			for (TipoValorDTO aLista : lista) {
-				tv = aLista;
-				hm = new HashMap<>();
-				hm.put(TIPO, tv.getTipo());
-				hm.put(VALOR, tv.getValor());
-				hm.put(ID_TIPO_VALOR, tv.getId());
-				hm.put(ID_PERSONA, tv.getIdPersona());
-				listdata.add(hm);
-
+	public void resetAdapterTelefonos(ArrayList<HashMap<String,Object>> listdata, boolean limpiarDatos){
+		if(listdata == null){
+			if(telefonosData == null){
+				telefonosData = new ArrayList<>();
+			}else if(limpiarDatos) {
+				telefonosData.clear();
 			}
+			HashMap<String, Object> hm = null;
+
+			TipoValorDTO tv;
+			if(telefonos != null){
+				for (TipoValorDTO aLista : telefonos) {
+					tv = aLista;
+					hm = new HashMap<>();
+					hm.put(TIPO, tv.getTipo());
+					hm.put(VALOR, tv.getValor());
+					hm.put(ID_TIPO_VALOR, tv.getId());
+					hm.put(ID_PERSONA, tv.getIdPersona());
+					telefonosData.add(hm);
+
+				}
+			}
+		}else{
+			telefonosData = listdata;
 		}
+
 
 		String[] from = {TIPO, VALOR};
 		int[] to={R.id.rowTipo,R.id.rowValor};
-		KNSimpleCustomAdapter sa = new KNSimpleCustomAdapter(this, listdata, R.layout.row_item_alta, from, to);
+		if(telefonosAdapter == null) {
+			telefonosAdapter = new KNSimpleCustomAdapter(this, telefonosData, R.layout.row_item_alta, from, to);
+		}else {
+			telefonosAdapter.setData(telefonosData);
+		}
+		getTelefonosList().setAdapter(telefonosAdapter);
+		telefonosAdapter.notifyDataSetChanged();
+	}
 
-		return sa;
+	private void resetAdapterDirecciones(ArrayList<HashMap<String,Object>> listdata, boolean limpiarDatos){
+		if(listdata == null){
+			if(direccionesData == null){
+				direccionesData = new ArrayList<>();
+			}else if(limpiarDatos) {
+				direccionesData.clear();
+			}
+			HashMap<String, Object> hm = null;
+
+			TipoValorDTO tv;
+			if(direcciones != null){
+				for (TipoValorDTO aLista : direcciones) {
+					tv = aLista;
+					hm = new HashMap<>();
+					hm.put(TIPO, tv.getTipo());
+					hm.put(VALOR, tv.getValor());
+					hm.put(ID_TIPO_VALOR, tv.getId());
+					hm.put(ID_PERSONA, tv.getIdPersona());
+					direccionesData.add(hm);
+
+				}
+			}
+		}else{
+			direccionesData = listdata;
+		}
+
+
+		String[] from = {TIPO, VALOR};
+		int[] to={R.id.rowTipo,R.id.rowValor};
+		if(direccionesAdapter == null) {
+			direccionesAdapter = new KNSimpleCustomAdapter(this, direccionesData, R.layout.row_item_alta, from, to);
+		}else {
+			direccionesAdapter.setData(direccionesData);
+		}
+		getDireccionesList().setAdapter(direccionesAdapter);
+		direccionesAdapter.notifyDataSetChanged();
+	}
+
+	private void resetAdapterMails(ArrayList<HashMap<String,Object>> listdata, boolean limpiarDatos){
+		if(listdata == null){
+			if(mailsData == null){
+				mailsData = new ArrayList<>();
+			}else if(limpiarDatos) {
+				mailsData.clear();
+			}
+			HashMap<String, Object> hm = null;
+
+			TipoValorDTO tv;
+			if(mails != null){
+				for (TipoValorDTO aLista : mails) {
+					tv = aLista;
+					hm = new HashMap<>();
+					hm.put(TIPO, tv.getTipo());
+					hm.put(VALOR, tv.getValor());
+					hm.put(ID_TIPO_VALOR, tv.getId());
+					hm.put(ID_PERSONA, tv.getIdPersona());
+					mailsData.add(hm);
+
+				}
+			}
+		}else{
+			mailsData = listdata;
+		}
+
+
+		String[] from = {TIPO, VALOR};
+		int[] to={R.id.rowTipo,R.id.rowValor};
+		if(mailsAdapter == null) {
+			mailsAdapter = new KNSimpleCustomAdapter(this, mailsData, R.layout.row_item_alta, from, to);
+		}else {
+			mailsAdapter.setData(mailsData);
+		}
+		getMailsList().setAdapter(mailsAdapter);
+		mailsAdapter.notifyDataSetChanged();
+	}
+
+
+	public void resetAdapter(ArrayList<HashMap<String,Object>> data, boolean limpiarDatos){
+    	if(this.ismMostrarTelefonosBoolean()){
+    		this.resetAdapterTelefonos(data, limpiarDatos);
+		}else if(this.ismMostrarEmailsBoolean()){
+    		this.resetAdapterMails(data, limpiarDatos);
+		}else if(this.ismMostrarDireccionesBoolean()){
+    		this.resetAdapterDirecciones(data, limpiarDatos);
+		}
+
 	}
 
 	private void registrarWidgets(){
@@ -507,9 +620,9 @@ public class AltaPersonaActivity extends Activity  {
         mEntryNuevoValMail = this.findViewById(R.id.nuevoValorMail);
         mEntryNuevoValDir = this.findViewById(R.id.nuevoValorDir);
 
-        telefonosList = this.findViewById(R.id.listaTelefonosAlta);
-		mailsList = this.findViewById(R.id.listaMailsAlta);
-		direccionesList = this.findViewById(R.id.listaDireccionesAlta);
+     //   telefonosList = this.findViewById(R.id.listaTelefonosAlta);
+//		mailsList = this.findViewById(R.id.listaMailsAlta);
+//		direccionesList = this.findViewById(R.id.listaDireccionesAlta);
 
 		sinDatos = this.findViewById(R.id.label_sinDatos);
 		botonAddTel = this.findViewById(R.id.addTelefono);
@@ -975,8 +1088,8 @@ public class AltaPersonaActivity extends Activity  {
 			huboCambios = true;
 		}else {
 
-			KNSimpleCustomAdapter adapter = (KNSimpleCustomAdapter) mailsList.getAdapter();
-			listdata = adapter.getLista();
+			KNSimpleCustomAdapter adapter = (KNSimpleCustomAdapter) getMailsList().getAdapter();
+			listdata = adapter.getData();
 
 			int i = 0;
 			LinearLayout vLayout = null;
@@ -985,7 +1098,7 @@ public class AltaPersonaActivity extends Activity  {
 			if (listdata != null) {
 				for (HashMap hmTemp : listdata) {
 					hm = hmTemp;
-					vLayout = (LinearLayout) mailsList.getChildAt(i);
+					vLayout = (LinearLayout) getMailsList().getChildAt(i);
 					eTemp = vLayout.findViewById(R.id.rowTipo);
 					tipoTemp = eTemp.getText().toString();
 					eTemp = vLayout.findViewById(R.id.rowValor);
@@ -1015,7 +1128,9 @@ public class AltaPersonaActivity extends Activity  {
 
 		if(huboCambios){
 			this.cargarEmails();
-			mailsList.setAdapter(obtenerAdapter(mails));
+		//	mailsList.setAdapter(obtenerAdapter(mails, mailsData));
+			this.configListView(getMailsList());
+			this.resetAdapterMails(null, true);
 		}
 	}
 
@@ -1042,8 +1157,8 @@ public class AltaPersonaActivity extends Activity  {
 			huboCambios = true;
 		}else {
 
-			KNSimpleCustomAdapter adapter = (KNSimpleCustomAdapter) telefonosList.getAdapter();
-			listdata = adapter.getLista();
+			KNSimpleCustomAdapter adapter = (KNSimpleCustomAdapter) getTelefonosList().getAdapter();
+			listdata = adapter.getData();
 
 			int i = 0;
 			LinearLayout vLayout = null;
@@ -1052,7 +1167,7 @@ public class AltaPersonaActivity extends Activity  {
 			if (listdata != null) {
 				for (HashMap hmTemp : listdata) {
 					hm = hmTemp;
-					vLayout = (LinearLayout) telefonosList.getChildAt(i);
+					vLayout = (LinearLayout) getTelefonosList().getChildAt(i);
 					eTemp = vLayout.findViewById(R.id.rowTipo);
 					tipoTemp = eTemp.getText().toString();
 					eTemp = vLayout.findViewById(R.id.rowValor);
@@ -1088,7 +1203,8 @@ public class AltaPersonaActivity extends Activity  {
 
 		if(huboCambios){
 			this.cargarTelefonos();
-			this.recargarListView(telefonosList, telefonos);
+			this.configListView(getTelefonosList());
+			this.resetAdapterTelefonos(null, true);
 			/*
 			this.setTerminoCargaListado(false);
 			telefonosList.setAdapter(obtenerAdapterTelefono(telefonos));*/
@@ -1122,8 +1238,8 @@ public class AltaPersonaActivity extends Activity  {
             huboCambios = true;
         }else {
 
-            KNSimpleCustomAdapter adapter = (KNSimpleCustomAdapter) direccionesList.getAdapter();
-            listdata = adapter.getLista();
+            KNSimpleCustomAdapter adapter = (KNSimpleCustomAdapter) getDireccionesList().getAdapter();
+            listdata = adapter.getData();
 
             int i = 0;
             LinearLayout vLayout = null;
@@ -1132,7 +1248,7 @@ public class AltaPersonaActivity extends Activity  {
             if (listdata != null) {
                 for (HashMap hmTemp : listdata) {
                     hm = hmTemp;
-                    vLayout = (LinearLayout) direccionesList.getChildAt(i);
+                    vLayout = (LinearLayout) getDireccionesList().getChildAt(i);
                     eTemp = vLayout.findViewById(R.id.rowTipo);
                     tipoTemp = eTemp.getText().toString();
                     eTemp = vLayout.findViewById(R.id.rowValor);
@@ -1162,7 +1278,8 @@ public class AltaPersonaActivity extends Activity  {
 
         if(huboCambios){
             this.cargarDirecciones();
-            this.recargarListView(direccionesList, direcciones);
+            this.configListView(getDireccionesList());
+			this.resetAdapterDirecciones(null, true);
 	    }
 
     }
@@ -1317,54 +1434,10 @@ public class AltaPersonaActivity extends Activity  {
         });
 	}
 	
-	private void mostrarTelefonos(){
-	//	Drawable dbw = res.getDrawable(R.drawable.phone_am_icon_bw);
-//		Drawable d = res.getDrawable(R.drawable.phone_am_icon);
-		ImageButton icon = this.findViewById(R.id.menu_icon_phone);
-		TextView text = this.findViewById(R.id.label_phones);
-        mEntryNuevoTipoTel.setVisibility(View.GONE);
-        mEntryNuevoValTel.setVisibility(View.GONE);
-		if(!mMostrarTelefonosBoolean){
-			if(text != null){
-				text.setVisibility(View.GONE);
-			}
-			icon.setBackgroundResource(R.drawable.phone_am_icon_bw);
-		//	icon.setBackgroundDrawable(dbw);
-			botonAddTel.setVisibility(View.GONE);
-			telefonosList.setVisibility(View.GONE);
 
-		}else{
-			if(text != null){
-				text.setVisibility(View.VISIBLE);
-			}
-			this.recargarListView(telefonosList, telefonos);
-/*
-			this.setTerminoCargaListado(false);
-			final ViewTreeObserver.OnPreDrawListener opd = new ViewTreeObserver.OnPreDrawListener() {
-				@Override
-				public boolean onPreDraw() {
-					setTerminoCargaListado(true);
-					return true;
-				}
-			};
-			telefonosList.getViewTreeObserver().addOnPreDrawListener(opd);
-			telefonosList.setAdapter(this.obtenerAdapterTelefono(telefonos));*/
-			telefonosList.setVisibility(View.VISIBLE);
-			if(telefonosList.getCount()== 0){
-				sinDatos.setVisibility(View.VISIBLE);
-			}else{
-				sinDatos.setVisibility(View.GONE);
-			}
-			botonAddTel.setVisibility(View.VISIBLE);
-			mailsList.setVisibility(View.GONE);
-			direccionesList.setVisibility(View.GONE);
-			icon.setBackgroundResource(R.drawable.phone_am_icon);
 
-			//icon.setBackgroundDrawable(d);
-		}
-	}
 
-	private void recargarListView(ListView lv, List<TipoValorDTO> valores){
+	private void configListView(ListView lv){
 		this.setTerminoCargaListado(false);
 
 
@@ -1375,7 +1448,7 @@ public class AltaPersonaActivity extends Activity  {
             }
         };
 		lv.getViewTreeObserver().addOnDrawListener(ol);
-		lv.setAdapter(this.obtenerAdapter(valores));
+
 
 
 	}
@@ -1455,6 +1528,51 @@ public class AltaPersonaActivity extends Activity  {
 		}
 	}
 */
+
+
+	private void mostrarTelefonos(){
+		//	Drawable dbw = res.getDrawable(R.drawable.phone_am_icon_bw);
+//		Drawable d = res.getDrawable(R.drawable.phone_am_icon);
+		ImageButton icon = this.findViewById(R.id.menu_icon_phone);
+		TextView text = this.findViewById(R.id.label_phones);
+		mEntryNuevoTipoTel.setVisibility(View.GONE);
+		mEntryNuevoValTel.setVisibility(View.GONE);
+		if(!mMostrarTelefonosBoolean){
+			if(text != null){
+				text.setVisibility(View.GONE);
+			}
+			icon.setBackgroundResource(R.drawable.phone_am_icon_bw);
+			//	icon.setBackgroundDrawable(dbw);
+			botonAddTel.setVisibility(View.GONE);
+            getTelefonosList().setVisibility(View.GONE);
+
+		}else{
+			if(text != null){
+				text.setVisibility(View.VISIBLE);
+			}
+
+	//		telefonosList.setAdapter(this.obtenerAdapter(telefonos, telefonosData));
+
+			getTelefonosList().setVisibility(View.VISIBLE);
+			this.resetAdapterTelefonos(null, true);
+			this.configListView(getTelefonosList());
+
+			if(getTelefonosList().getCount()== 0){
+				sinDatos.setVisibility(View.VISIBLE);
+			}else{
+				sinDatos.setVisibility(View.GONE);
+			}
+			botonAddTel.setVisibility(View.VISIBLE);
+			getMailsList().setVisibility(View.GONE);
+			getDireccionesList().setVisibility(View.GONE);
+			icon.setBackgroundResource(R.drawable.phone_am_icon);
+
+			//icon.setBackgroundDrawable(d);
+		}
+	}
+
+
+
 	private void mostrarEmails(){
 		ImageButton icon = this.findViewById(R.id.menu_icon_mail);
 		TextView text = this.findViewById(R.id.label_emails);
@@ -1466,22 +1584,24 @@ public class AltaPersonaActivity extends Activity  {
 			}
 			icon.setBackgroundResource(R.drawable.mail_am_icon_bw);
 			botonAddMail.setVisibility(View.GONE);
-			mailsList.setVisibility(View.GONE);
+			getMailsList().setVisibility(View.GONE);
 
 		}else{
 			if(text != null){
 				text.setVisibility(View.VISIBLE);
 			}
-			mailsList.setAdapter(this.obtenerAdapter(mails));
-			mailsList.setVisibility(View.VISIBLE);
-			if(mailsList.getCount()== 0){
+		//	mailsList.setAdapter(this.obtenerAdapter(mails, mailsData));
+			this.configListView(getMailsList());
+			this.resetAdapterMails(null, true);
+			getMailsList().setVisibility(View.VISIBLE);
+			if(getMailsList().getCount()== 0){
 				sinDatos.setVisibility(View.VISIBLE);
 			}else{
 				sinDatos.setVisibility(View.GONE);
 			}
 			botonAddMail.setVisibility(View.VISIBLE);
-			telefonosList.setVisibility(View.GONE);
-			direccionesList.setVisibility(View.GONE);
+            getTelefonosList().setVisibility(View.GONE);
+			getDireccionesList().setVisibility(View.GONE);
 			icon.setBackgroundResource(R.drawable.mail_am_icon);
 
 			//icon.setBackgroundDrawable(d);
@@ -1501,22 +1621,24 @@ public class AltaPersonaActivity extends Activity  {
 			}
 			icon.setBackgroundResource(R.drawable.home_am_icon_bw);
 			botonAddDir.setVisibility(View.GONE);
-			direccionesList.setVisibility(View.GONE);
+			getDireccionesList().setVisibility(View.GONE);
 
 		}else{
 			if(text != null){
 				text.setVisibility(View.VISIBLE);
 			}
-			direccionesList.setAdapter(this.obtenerAdapter(direcciones));
-			direccionesList.setVisibility(View.VISIBLE);
-			if(direccionesList.getCount()== 0){
+		//	direccionesList.setAdapter(this.obtenerAdapter(direcciones, direccionesData));
+			this.configListView(getDireccionesList());
+			this.resetAdapterDirecciones(null, true);
+			getDireccionesList().setVisibility(View.VISIBLE);
+			if(getDireccionesList().getCount()== 0){
 				sinDatos.setVisibility(View.VISIBLE);
 			}else{
 				sinDatos.setVisibility(View.GONE);
 			}
 			botonAddDir.setVisibility(View.VISIBLE);
-			telefonosList.setVisibility(View.GONE);
-			mailsList.setVisibility(View.GONE);
+            getTelefonosList().setVisibility(View.GONE);
+			getMailsList().setVisibility(View.GONE);
 			icon.setBackgroundResource(R.drawable.home_am_icon);
 
 		}

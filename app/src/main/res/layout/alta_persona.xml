@@ -225,11 +225,10 @@
 
 		<ListView android:id="@+id/listaTelefonosAlta"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:dividerHeight="7dp" android:divider="@color/color_negro"
+			android:dividerHeight="7dp"
 			android:layout_below="@id/nuevoTipoTel" android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp" android:layout_marginTop="15dp"
-			android:background="@color/color_gris_oscuro"
-			android:layout_marginBottom="5dp" android:listSelector="@color/color_gris_oscuro">
+			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent">
 		</ListView>
 
 
@@ -301,8 +300,7 @@
 			android:dividerHeight="7dp" android:divider="@color/color_negro"
 			android:layout_below="@id/nuevoTipoMail" android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp" android:layout_marginTop="15dp"
-			android:background="@color/color_gris_oscuro"
-			android:layout_marginBottom="5dp" android:listSelector="@color/color_gris_oscuro">
+			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent">
 		</ListView>
 
 
@@ -375,8 +373,7 @@
 			android:dividerHeight="5dp" android:divider="@color/color_negro"
 			android:layout_below="@id/nuevoTipoDir" android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp" android:layout_marginTop="15dp"
-			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent"
-			android:background="@color/color_gris_oscuro">
+			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent"	>
 		</ListView>
 
 		<TextView android:id="@+id/label_sinDatos"
