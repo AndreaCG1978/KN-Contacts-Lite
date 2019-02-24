@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@color/color_gris_oscuro">
+	android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@color/color_gris_claro">
 
 	<RelativeLayout android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:background="@color/color_gris_oscuro">
+		android:layout_height="fill_parent" android:background="@color/color_gris_claro">
 
 
 		<TextView android:id="@+id/invisible" android:layout_width="wrap_content"
@@ -12,10 +12,19 @@
 			android:textSize="55sp" />
 
 		<LinearLayout android:id="@+id/menu_icons"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginTop="42dp" android:layout_marginBottom="8dp"
-			android:orientation="horizontal" android:gravity="center_horizontal"
-			android:layout_below="@id/invisible">
+			android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+			android:layout_marginTop="25dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+			android:orientation="horizontal"
+            android:gravity="center_horizontal"
+			android:layout_below="@id/invisible"
+            android:background="@color/color_gris_oscuro"
+            android:padding="5dp">
 
 			<ImageButton android:id="@+id/menu_icon_identification"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
@@ -58,12 +67,18 @@
 
 		<TextView android:id="@+id/label_identificacion"
             android:text="@string/label_identificacion" android:layout_below="@id/menu_icons"
-			android:background="@drawable/custom_text_view_categoria"
-			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
-			android:layout_height="28dp" android:textSize="14sp"
-			android:layout_marginBottom="20dp" android:gravity="start|center"
+			android:layout_width="fill_parent"
+			android:layout_height="28dp"
+			android:textColor="@color/color_negro"
+            android:textSize="14sp"
+			android:layout_marginBottom="20dp"
+            android:gravity="start|center"
 			android:typeface="monospace"
-			android:paddingStart="10dp" android:paddingLeft="10dp"/>
+            android:background="@drawable/custom_text_view_categoria_desc"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:layout_margin="5dp"
+            />
 
 		<LinearLayout android:id="@+id/linearApellido"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -71,29 +86,31 @@
 			android:layout_margin="5dp">
 
 			<TextView android:id="@+id/label_apellido" android:text="@string/hint_apellido"
-				android:layout_width="160dp" android:layout_height="wrap_content"
+				android:layout_width="110dp" android:layout_height="wrap_content"
 				android:textSize="13sp" android:padding="8dp" android:gravity="end"
 				android:typeface="monospace"
 				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_azul_oscuro"
+				android:textColor="@color/color_negro"
 				/>
 
 
 
 			<EditText android:id="@+id/entryApellido" android:hint="@string/hint_apellido"
 				android:nextFocusUp="@+id/menu_icon_identification"
-				android:inputType="textCapWords" android:layout_height="35dp"
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:inputType="textCapWords"
 				android:textStyle="bold"
 				android:padding="5dp"
-				android:textSize="14sp" android:layout_marginStart="3dp"
-				android:layout_marginEnd="4dp" android:maxLength="25"
-				android:layout_width="fill_parent"
-				android:textColor="@android:color/white"
+				android:textSize="17sp"
+                android:maxLength="22"
+				android:textColor="@color/color_negro"
 				android:typeface="monospace"
 				android:importantForAutofill="no"
 				android:layout_marginRight="4dp"
 				android:layout_marginLeft="3dp"
-
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="4dp"
 				/>
 
 		</LinearLayout>
@@ -103,19 +120,19 @@
 			android:layout_below="@id/linearApellido">
 
 			<TextView android:id="@+id/label_nombre" android:text="@string/hint_nombre"
-				android:layout_width="160dp" android:textSize="13sp"
+				android:layout_width="110dp" android:textSize="13sp"
 				android:layout_height="wrap_content" android:padding="8dp"
 				android:gravity="end" android:singleLine="true"
 				android:typeface="monospace"
 				android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_azul_oscuro" />
+				android:textColor="@color/color_negro" />
 
 			<EditText android:id="@+id/entryNombre" android:hint="@string/hint_nombre"
 				android:nextFocusDown="@+id/checkFechaNacimiento" android:inputType="textCapWords"
 				android:layout_height="35dp" android:textStyle="bold"
-				android:textColor="@android:color/white"
+				android:textColor="@color/color_negro"
 				android:typeface="monospace"
-				android:padding="5dp" android:textSize="14sp"
+				android:padding="5dp" android:textSize="17sp"
 				android:layout_marginStart="3dp" android:layout_marginEnd="4dp"
 				android:maxLength="25" android:layout_width="fill_parent"
 				android:importantForAutofill="no"
@@ -126,16 +143,16 @@
 
 		<LinearLayout android:id="@+id/linearCumple"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:orientation="horizontal" android:layout_margin="7dp"
+			android:orientation="horizontal" android:layout_margin="5dp"
 			android:layout_below="@id/linearNombre"
 			android:gravity="center"
 			android:background="@drawable/custom_text_view_categoria_desc">
 
 			<CheckBox android:id="@+id/checkFechaNacimiento"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:layout_marginStart="3dp" android:textColor="@color/color_gris_claro"
+				android:layout_marginStart="2dp" android:textColor="@color/color_gris_claro"
 				android:nextFocusRight="@+id/buttonPickDate"
-				android:layout_marginLeft="3dp" />
+				android:layout_marginLeft="2dp" />
 
             <TextView android:id="@+id/label_cumple" android:text="@string/label_fechaNacimiento"
                 android:layout_width="140dp" android:textSize="10sp"
@@ -160,30 +177,41 @@
 
 
 		<TextView android:id="@+id/label_phones" android:text="@string/label_telefonos"
-			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
-			android:textColor="@color/color_naranja" android:layout_width="285dp"
+			android:layout_below="@id/menu_icons"
 			android:layout_height="28dp"
-			android:textSize="14sp" android:layout_marginBottom="6dp"
-			android:gravity="start|center" android:typeface="monospace"
-			android:paddingStart="10dp"
+			android:textColor="@color/color_negro"
+			android:textSize="14sp"
+			android:gravity="start|center"
+			android:typeface="monospace"
+			android:background="@drawable/custom_text_view_categoria_desc"
+			android:paddingStart="15dp"
+			android:paddingLeft="15dp"
+			android:layout_margin="5dp"
+			android:layout_width="285dp"
+			android:layout_marginBottom="6dp"
 			/>
 
 		<Button android:id="@+id/addTelefono"
-			android:layout_width="32dp" android:layout_height="28dp"
+			android:layout_toRightOf="@id/label_phones"
+			android:layout_toEndOf="@id/label_phones"
+			android:layout_below="@id/menu_icons"
+			android:contentDescription="addTelefono"
+			android:layout_width="32dp"
+			android:layout_height="28dp"
 			android:text="+"
-			android:textColor="@color/color_azul"
+			android:textColor="@color/color_blanco"
 			android:textSize="18sp"
 			android:textStyle="bold"
 			android:layout_gravity="center"
-			android:layout_marginRight="10dp" android:layout_marginLeft="20dp"
-			android:layout_below="@id/menu_icons"
-            android:contentDescription="addTelefono"
+			android:layout_marginRight="7dp"
+			android:layout_marginEnd="7dp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginTop="5dp"
 			android:paddingBottom="3dp"
 			android:paddingTop="1dp"
-			android:typeface="monospace"
+			android:typeface="sans"
 			android:background="@drawable/custom_button"
-			android:layout_toRightOf="@id/label_phones"
-			android:layout_toEndOf="@id/label_phones"
+
 			>
 		</Button>
 
@@ -199,7 +227,8 @@
 			android:textColor="@color/color_blanco"
 			android:layout_marginTop="10dp"
 			android:inputType="textCapCharacters"
-			android:visibility="gone">
+			android:visibility="gone"
+			android:maxLength="19">
 
 		</EditText>
 
@@ -225,7 +254,7 @@
 
 		<ListView android:id="@+id/listaTelefonosAlta"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:dividerHeight="7dp"
+			android:dividerHeight="10dp"
 			android:layout_below="@id/nuevoTipoTel" android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp" android:layout_marginTop="15dp"
 			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent">
@@ -233,28 +262,38 @@
 
 
 		<TextView android:id="@+id/label_emails" android:text="@string/label_emails"
-			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
-			android:textColor="@color/color_naranja" android:layout_width="285dp"
+			android:layout_below="@id/menu_icons"
 			android:layout_height="28dp"
-			android:textSize="14sp" android:layout_marginBottom="6dp"
-			android:gravity="start|center" android:typeface="monospace"
+			android:textColor="@color/color_negro"
+			android:textSize="14sp"
+			android:gravity="start|center"
+			android:typeface="monospace"
+			android:background="@drawable/custom_text_view_categoria_desc"
 			android:paddingStart="10dp"
+			android:paddingLeft="10dp"
+			android:layout_margin="5dp"
+			android:layout_width="285dp"
+			android:layout_marginBottom="6dp"
 			/>
 
 		<Button android:id="@+id/addMail"
-			android:layout_width="32dp" android:layout_height="28dp"
+			android:layout_width="32dp"
+			android:layout_height="28dp"
 			android:text="+"
-			android:textColor="@color/color_azul"
+			android:textColor="@color/color_blanco"
 			android:textSize="18sp"
 			android:textStyle="bold"
 			android:layout_gravity="center"
-			android:layout_marginRight="10dp" android:layout_marginLeft="20dp"
-			android:layout_below="@id/menu_icons"
-			android:contentDescription="addMail"
+			android:layout_marginRight="7dp"
+			android:layout_marginEnd="7dp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginTop="5dp"
 			android:paddingBottom="3dp"
 			android:paddingTop="1dp"
-			android:typeface="monospace"
+			android:typeface="sans"
 			android:background="@drawable/custom_button"
+			android:layout_below="@id/menu_icons"
+			android:contentDescription="addMail"
 			android:layout_toRightOf="@id/label_emails"
 			android:layout_toEndOf="@id/label_emails"
 			>
@@ -272,7 +311,8 @@
 			android:textColor="@color/color_blanco"
 			android:layout_marginTop="10dp"
 			android:inputType="textCapCharacters"
-			android:visibility="gone">
+			android:visibility="gone"
+			android:maxLength="19">
 
 		</EditText>
 
@@ -286,7 +326,7 @@
 			android:typeface="monospace"
 			android:padding="8dp" android:textSize="15sp"
 			android:layout_marginStart="5dp" android:layout_marginEnd="4dp"
-			android:maxLength="25" android:layout_width="172dp"
+			android:maxLength="35" android:layout_width="172dp"
 			android:importantForAutofill="no"
 			android:layout_marginRight="4dp"
 			android:layout_marginLeft="5dp"
@@ -297,7 +337,7 @@
 
 		<ListView android:id="@+id/listaMailsAlta"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:dividerHeight="7dp" android:divider="@color/color_negro"
+			android:dividerHeight="10dp"
 			android:layout_below="@id/nuevoTipoMail" android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp" android:layout_marginTop="15dp"
 			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent">
@@ -306,28 +346,39 @@
 
 
 		<TextView android:id="@+id/label_address" android:text="@string/label_direcciones"
-			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
-			android:textColor="@color/color_naranja" android:layout_width="285dp"
+			android:layout_below="@id/menu_icons"
 			android:layout_height="28dp"
-			android:textSize="14sp" android:layout_marginBottom="6dp"
-			android:gravity="start|center" android:typeface="monospace"
+			android:textColor="@color/color_negro"
+			android:textSize="14sp"
+			android:gravity="start|center"
+			android:typeface="monospace"
+			android:background="@drawable/custom_text_view_categoria_desc"
 			android:paddingStart="10dp"
+			android:paddingLeft="10dp"
+			android:layout_margin="5dp"
+			android:layout_width="285dp"
+			android:layout_marginBottom="6dp"
+
 			/>
 
 		<Button android:id="@+id/addDir"
-			android:layout_width="32dp" android:layout_height="28dp"
+			android:layout_width="32dp"
+			android:layout_height="28dp"
 			android:text="+"
-			android:textColor="@color/color_azul"
+			android:textColor="@color/color_blanco"
 			android:textSize="18sp"
 			android:textStyle="bold"
 			android:layout_gravity="center"
-			android:layout_marginRight="10dp" android:layout_marginLeft="20dp"
-			android:layout_below="@id/menu_icons"
-			android:contentDescription=""
+			android:layout_marginRight="7dp"
+			android:layout_marginEnd="7dp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginTop="5dp"
 			android:paddingBottom="3dp"
 			android:paddingTop="1dp"
-			android:typeface="monospace"
+			android:typeface="sans"
 			android:background="@drawable/custom_button"
+			android:layout_below="@id/menu_icons"
+			android:contentDescription=""
 			android:layout_toRightOf="@id/label_address"
 			android:layout_toEndOf="@id/label_address"
 			>
@@ -345,7 +396,8 @@
 			android:textColor="@color/color_blanco"
 			android:layout_marginTop="10dp"
 			android:inputType="textCapCharacters"
-			android:visibility="gone">
+			android:visibility="gone"
+			android:maxLength="19">
 
 		</EditText>
 
@@ -359,7 +411,7 @@
 			android:typeface="monospace"
 			android:padding="8dp" android:textSize="15sp"
 			android:layout_marginStart="5dp" android:layout_marginEnd="4dp"
-			android:maxLength="25" android:layout_width="172dp"
+			android:maxLength="40" android:layout_width="172dp"
 			android:importantForAutofill="no"
 			android:layout_marginRight="4dp"
 			android:layout_marginLeft="5dp"
@@ -370,7 +422,7 @@
 
 		<ListView android:id="@+id/listaDireccionesAlta"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:dividerHeight="5dp" android:divider="@color/color_negro"
+			android:dividerHeight="10dp"
 			android:layout_below="@id/nuevoTipoDir" android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp" android:layout_marginTop="15dp"
 			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent"	>
@@ -378,21 +430,30 @@
 
 		<TextView android:id="@+id/label_sinDatos"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:text="@string/text_sinDatos" android:textSize="12sp"
+			android:text="@string/text_sinDatos" android:textSize="14sp"
 			android:layout_below="@id/menu_icons" android:paddingStart="15dp"
 			android:paddingEnd="15dp"
-			android:textColor="@color/color_blanco"
+			android:textColor="@color/color_gris_oscuro"
 			android:layout_marginTop="50dp"
 			android:paddingLeft="15dp"
 			android:paddingRight="15dp"
+			android:gravity="center"
 			android:typeface="monospace"/>
 
 		<TextView android:id="@+id/label_category" android:text="@string/label_datosDeCategoria"
-			android:layout_below="@id/menu_icons" android:background="@drawable/custom_text_view_categoria"
-			android:textColor="@color/color_naranja" android:layout_width="fill_parent"
-			android:layout_height="28dp" android:textSize="14sp"
-			android:typeface="monospace" android:paddingStart="10dp" android:paddingLeft="10dp"
-			android:layout_marginBottom="20dp" android:gravity="start|center" />
+			android:layout_below="@id/menu_icons"
+
+			android:layout_width="fill_parent"
+			android:layout_height="28dp"
+			android:textColor="@color/color_negro"
+			android:textSize="14sp"
+			android:layout_marginBottom="20dp"
+			android:gravity="start|center"
+			android:typeface="monospace"
+			android:background="@drawable/custom_text_view_categoria_desc"
+			android:paddingStart="10dp"
+			android:paddingLeft="10dp"
+			android:layout_margin="5dp"/>
 
 
         <LinearLayout android:id="@+id/linearCategoria"
@@ -421,13 +482,13 @@
 				android:layout_width="130dp" android:layout_height="wrap_content"
 				android:textSize="13sp" android:padding="8dp" android:gravity="end"
 				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_azul_oscuro"
+				android:textColor="@color/color_negro"
 				android:typeface="monospace"/>
 
 			<EditText android:id="@+id/entryDatoExtra"
 				android:inputType="textCapWords" android:layout_height="35dp"
 				android:textStyle="bold"
-				android:textColor="@android:color/white"
+				android:textColor="@color/color_negro"
 				android:typeface="monospace"
 				android:padding="5dp"
 				android:textSize="14sp" android:layout_marginStart="3dp"
@@ -448,22 +509,23 @@
 				android:layout_width="130dp" android:layout_height="wrap_content"
 				android:textSize="13sp" android:padding="8dp" android:gravity="end"
 				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_azul_oscuro"
+				android:textColor="@color/color_negro"
 				android:typeface="monospace"/>
 
 			<EditText android:id="@+id/entryDescripcion" android:hint="@string/hint_descripcion"
 				android:inputType="textMultiLine" android:layout_height="35dp"
 				android:textStyle="bold"
-				android:textColor="@android:color/white"
+				android:textColor="@color/color_negro"
 				android:typeface="monospace"
 				android:padding="5dp"
 				android:textSize="14sp" android:layout_marginStart="3dp"
 				android:layout_marginEnd="4dp" android:layout_width="fill_parent"
-				android:maxLength="100" android:gravity="top|start" android:lines="4"
+				android:maxLength="60" android:gravity="top|start" android:lines="4"
 				android:singleLine="false"
 				android:importantForAutofill="no"
 				android:layout_marginRight="4dp"
-				android:layout_marginLeft="3dp" />
+				android:layout_marginLeft="3dp"
+				android:maxLines="4"/>
 				
 		</LinearLayout>
 
@@ -477,34 +539,36 @@
 
 		<TextView android:id="@+id/nombre_contacto"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:textSize="15sp" android:background="@drawable/custom_text_view_categoria"
-			android:textColor="@color/color_gris_oscuro"
-			android:layout_marginBottom="4dp" android:layout_marginTop="6dp"
+			android:textSize="15sp" android:background="@drawable/custom_text_view_categoria_desc"
+			android:textColor="@color/color_negro"
+			android:layout_margin="5dp"
 			android:typeface="monospace"
-			android:padding="6dp" android:gravity="center" android:textStyle="bold" />
+			android:padding="5dp" android:gravity="center" android:textStyle="bold" />
 
 		<LinearLayout android:id="@+id/botonera"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:orientation="vertical" android:layout_below="@id/nombre_contacto"
-			android:layout_marginBottom="5dp" android:layout_marginTop="5dp">
+			android:layout_marginBottom="5dp" >
 
 			<View
                 android:layout_width="wrap_content" android:layout_height="1px"
-				android:layout_marginBottom="5dp" android:background="@color/color_azul" />
+				android:layout_margin="3dp" android:background="@color/color_azul" />
 
 			<LinearLayout
                 android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:orientation="horizontal" android:gravity="center">
+				android:orientation="horizontal" android:gravity="center"
+				android:layout_margin="5dp"
+				android:background="@color/color_gris_oscuro">
 
 				<Button android:id="@+id/butttonRegistrarPersonaFinal"
 					android:nextFocusRight="@+id/butttonRegistrarYSalir" android:text="@string/label_registrarPersona"
 
 					android:layout_width="wrap_content"
 					android:layout_height="30dp" android:layout_margin="5dp"
-					android:textSize="12sp" android:textColor="@color/color_azul"
+					android:textSize="12sp" android:textColor="@color/color_negro"
 					android:background="@drawable/custom_button" android:layout_gravity="center"
-					android:paddingBottom="3dp"
-					android:paddingTop="3dp"
+					android:paddingBottom="5dp"
+					android:paddingTop="5dp"
 					android:paddingStart="15dp"
 					android:paddingLeft="15dp"
 					android:paddingEnd="15dp"
@@ -518,10 +582,10 @@
 					android:text="@string/label_registrarPersonaYSalir"
 					android:layout_width="wrap_content"
 					android:layout_height="30dp" android:layout_margin="5dp"
-					android:textSize="12sp" android:textColor="@color/color_azul"
+					android:textSize="12sp" android:textColor="@color/color_negro"
 					android:background="@drawable/custom_button" android:layout_gravity="center"
-					android:paddingBottom="3dp"
-					android:paddingTop="3dp"
+					android:paddingBottom="5dp"
+					android:paddingTop="5dp"
 					android:paddingStart="15dp"
 					android:paddingLeft="15dp"
 					android:paddingEnd="15dp"
@@ -532,9 +596,6 @@
 
 			</LinearLayout>
 
-			<View
-                android:layout_width="wrap_content" android:layout_height="1px"
-				android:layout_marginTop="5dp" android:background="@color/color_azul" />
 		</LinearLayout>
 
 	</RelativeLayout>

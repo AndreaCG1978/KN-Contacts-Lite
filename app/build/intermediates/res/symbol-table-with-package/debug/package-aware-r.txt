@@ -18,6 +18,7 @@ attr layout_insetEdge
 attr layout_keyline
 attr statusBarBackground
 bool abc_action_bar_embed_tabs
+color color_amarillo
 color color_azul
 color color_azul_oscuro
 color color_blanco
@@ -28,6 +29,7 @@ color color_gris_claro
 color color_gris_oscuro
 color color_naranja
 color color_naranja_claro
+color color_naranja_oscuro
 color color_negro
 color notification_action_color_filter
 color notification_icon_bg_color
@@ -36,7 +38,6 @@ color primary_text_default_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
 color secondary_text_default_material_light
-color spinner_color
 dimen compat_button_inset_horizontal_material
 dimen compat_button_inset_vertical_material
 dimen compat_button_padding_horizontal_material
@@ -226,6 +227,7 @@ id linearCaracteristica
 id linearCategoria
 id linearCumple
 id linearDatos
+id linearLayoutImagen
 id linearLista
 id linearNombre
 id listaDirecciones

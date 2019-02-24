@@ -453,14 +453,14 @@ public class AltaPersonaActivity extends Activity  {
    //     KNSimpleCustomAdapter adapter = obtenerAdapter(telefonos, telefonosData);
 		this.resetAdapterTelefonos(null, true);
 //        telefonosList.setAdapter(adapter);
-		getTelefonosList().setDividerHeight(0);
+		getTelefonosList().setDividerHeight(10);
     }
 
     private void configurarListaEmails(){
 //		KNSimpleCustomAdapter adapter = obtenerAdapter(mails, mailsData);
   //      mailsList.setAdapter(adapter);
 		this.resetAdapterMails(null, true);
-        getMailsList().setDividerHeight(0);
+        getMailsList().setDividerHeight(10);
     }
 
     
@@ -468,7 +468,7 @@ public class AltaPersonaActivity extends Activity  {
 		//KNSimpleCustomAdapter adapter = obtenerAdapter(direcciones, direccionesData);
         //direccionesList.setAdapter(adapter);
 		this.resetAdapterDirecciones(null, true);
-        getDireccionesList().setDividerHeight(0);
+        getDireccionesList().setDividerHeight(10);
     }
 
 
@@ -1415,7 +1415,7 @@ public class AltaPersonaActivity extends Activity  {
 	}
 
 	private void opacarBotonGuardar(){
-		botonGuardar.setTextColor(getResources().getColor(R.color.color_azul));
+		botonGuardar.setTextColor(getResources().getColor(R.color.color_negro));
 	}
 	
 	private void configurarMasOMenosDatosPorCategoria(){

@@ -86,9 +86,9 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	//Drawable shapeDark = null;
 
 //	private final int colorSeleccionado = Color.parseColor("#874312");
-	private final int colorSeleccionado = Color.WHITE;
+	private final int colorSeleccionado = Color.parseColor("#FFFFFF");
 //	private final int colorDeseleccionado = Color.parseColor("#41289C");
-	private final int colorDeseleccionado = Color.DKGRAY;
+	private final int colorDeseleccionado = Color.BLACK;
 
 	private boolean mMostrarTelefonos = false;
 	private boolean mMostrarEmails = false;
@@ -488,6 +488,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.camera_icon);
 		Drawable camara = new BitmapDrawable(getResources(), b);
 		mApellido.setCompoundDrawablesWithIntrinsicBounds(null, null, camara,null);
+		mApellido.setCompoundDrawablePadding(7);
 		mApellido.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
