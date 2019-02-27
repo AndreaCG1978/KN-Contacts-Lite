@@ -304,7 +304,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 	private void redirigirImportarContactos(){
-		if(personasMap == null || personasMap.size() == 0){
+		if((personasMap == null || personasMap.size() == 0)&&(!ConstantsAdmin.config.isMuestraPreferidos())){
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage("Aun no se han cargado contactos, desea importarlos de la Agenda?")
 					.setCancelable(false)
