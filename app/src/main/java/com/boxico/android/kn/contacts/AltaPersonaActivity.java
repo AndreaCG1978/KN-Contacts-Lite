@@ -379,8 +379,11 @@ public class AltaPersonaActivity extends Activity  {
     	if(mEntryNuevoValTel.getVisibility() == View.VISIBLE){
 			mEntryNuevoTipoTel.setVisibility(View.GONE);
 			mEntryNuevoValTel.setVisibility(View.GONE);
-			mEntryNuevoTipoTel.setText("");
-			mEntryNuevoValTel.setText("");
+			mEntryNuevoTipoTel.getText().clear();
+			mEntryNuevoTipoTel.append("");
+			mEntryNuevoValTel.getText().clear();
+			mEntryNuevoValTel.append("");
+
 			opacarBotonGuardar();
 	//		imm.hideSoftInputFromWindow(mEntryNuevoTipoTel.getWindowToken(), 0);
 			this.habilitarListaTelefono(true, Color.WHITE);
@@ -390,12 +393,17 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryNuevoTipoTel.setVisibility(View.VISIBLE);
 			mEntryNuevoValTel.setVisibility(View.VISIBLE);
 			realzarBotonGuardar();
-			mEntryNuevoTipoTel.setText(getResources().getText(R.string.hint_tipo));
+			mEntryNuevoTipoTel.getText().clear();
+			mEntryNuevoTipoTel.append(getResources().getText(R.string.hint_tipo));
+
+			//mEntryNuevoTipoTel.setText(getResources().getText(R.string.hint_tipo));
 			mEntryNuevoTipoTel.setSelectAllOnFocus(true);
 			mEntryNuevoTipoTel.requestFocus();
 			//imm.showSoftInput(mEntryNuevoTipoTel, InputMethodManager.SHOW_IMPLICIT);
 			ConstantsAdmin.showKeyboard(this, mEntryNuevoTipoTel);
 		}
+
+
 		sinDatos.setText("");
 
     }
@@ -406,8 +414,14 @@ public class AltaPersonaActivity extends Activity  {
         if(mEntryNuevoValMail.getVisibility() == View.VISIBLE){
             mEntryNuevoTipoMail.setVisibility(View.GONE);
             mEntryNuevoValMail.setVisibility(View.GONE);
-            mEntryNuevoTipoMail.setText("");
-            mEntryNuevoValMail.setText("");
+         //   mEntryNuevoTipoMail.setText("");
+			mEntryNuevoTipoMail.getText().clear();
+			mEntryNuevoTipoMail.append("");
+
+
+			mEntryNuevoValMail.getText().clear();
+			mEntryNuevoValMail.append("");
+           // mEntryNuevoValMail.setText("");
             opacarBotonGuardar();
 		//	imm.hideSoftInputFromWindow(mEntryNuevoTipoMail.getWindowToken(), 0);
             this.habilitarListaMail(true, Color.WHITE);
@@ -417,7 +431,11 @@ public class AltaPersonaActivity extends Activity  {
             mEntryNuevoTipoMail.setVisibility(View.VISIBLE);
             mEntryNuevoValMail.setVisibility(View.VISIBLE);
             realzarBotonGuardar();
-            mEntryNuevoTipoMail.setText(getResources().getText(R.string.hint_tipo));
+      //      mEntryNuevoTipoMail.setText(getResources().getText(R.string.hint_tipo));
+
+			mEntryNuevoTipoMail.getText().clear();
+			mEntryNuevoTipoMail.append(getResources().getText(R.string.hint_tipo));
+
             mEntryNuevoTipoMail.setSelectAllOnFocus(true);
             mEntryNuevoTipoMail.requestFocus();
             ConstantsAdmin.showKeyboard(this, mEntryNuevoTipoMail);
@@ -432,8 +450,16 @@ public class AltaPersonaActivity extends Activity  {
         if(mEntryNuevoValDir.getVisibility() == View.VISIBLE){
             mEntryNuevoTipoDir.setVisibility(View.GONE);
             mEntryNuevoValDir.setVisibility(View.GONE);
-            mEntryNuevoTipoDir.setText("");
-            mEntryNuevoValDir.setText("");
+        //    mEntryNuevoTipoDir.setText("");
+
+			mEntryNuevoTipoDir.getText().clear();
+			mEntryNuevoTipoDir.append("");
+
+          //  mEntryNuevoValDir.setText("");
+
+			mEntryNuevoValDir.getText().clear();
+			mEntryNuevoValDir.append("");
+
             opacarBotonGuardar();
             //imm.hideSoftInputFromWindow(mEntryNuevoTipoDir.getWindowToken(), 0);
             this.habilitarListaDireccion(true, Color.WHITE);
@@ -443,7 +469,10 @@ public class AltaPersonaActivity extends Activity  {
             mEntryNuevoTipoDir.setVisibility(View.VISIBLE);
             mEntryNuevoValDir.setVisibility(View.VISIBLE);
             realzarBotonGuardar();
-            mEntryNuevoTipoDir.setText(getResources().getText(R.string.hint_tipo));
+           // mEntryNuevoTipoDir.setText(getResources().getText(R.string.hint_tipo));
+
+			mEntryNuevoTipoDir.getText().clear();
+			mEntryNuevoTipoDir.append(getResources().getText(R.string.hint_tipo));
             mEntryNuevoTipoDir.setSelectAllOnFocus(true);
             mEntryNuevoTipoDir.requestFocus();
             ConstantsAdmin.showKeyboard(this, mEntryNuevoTipoDir);
@@ -657,7 +686,9 @@ public class AltaPersonaActivity extends Activity  {
 	
 	private void cargarEntriesConPersonaDto(){
     	if(mPersonaSeleccionada.getApellido() != null && !mPersonaSeleccionada.getApellido().equals("")){
-			mEntryApellido.setText(mPersonaSeleccionada.getApellido());
+	//		mEntryApellido.setText(mPersonaSeleccionada.getApellido());
+			mEntryApellido.getText().clear();
+			mEntryApellido.append(mPersonaSeleccionada.getApellido());
 		}
 		mEntryApellido.addTextChangedListener(new TextWatcher() {
 
@@ -678,7 +709,9 @@ public class AltaPersonaActivity extends Activity  {
 		});
 
 		if(mPersonaSeleccionada.getNombres() != null && !mPersonaSeleccionada.getNombres().equals("")){
-			mEntryNombre.setText(mPersonaSeleccionada.getNombres());
+	//		mEntryNombre.setText(mPersonaSeleccionada.getNombres());
+			mEntryNombre.getText().clear();
+			mEntryNombre.append(mPersonaSeleccionada.getNombres());
 		}
 		mEntryNombre.addTextChangedListener(new TextWatcher() {
 			public void onTextChanged(CharSequence s, int start, int before,
@@ -697,7 +730,11 @@ public class AltaPersonaActivity extends Activity  {
 			}
 		});
 
-		mEntryDatoExtra.setText(mPersonaSeleccionada.getDatoExtra());
+	//mEntryDatoExtra.setText(mPersonaSeleccionada.getDatoExtra());
+
+		mEntryDatoExtra.getText().clear();
+		mEntryDatoExtra.append(mPersonaSeleccionada.getDatoExtra());
+
 		mEntryDatoExtra.addTextChangedListener(new TextWatcher() {
 			public void onTextChanged(CharSequence s, int start, int before,
 									  int count) {
@@ -716,7 +753,11 @@ public class AltaPersonaActivity extends Activity  {
 		});
 
 
-		mEntryDescripcion.setText(mPersonaSeleccionada.getDescripcion());
+//		mEntryDescripcion.setText(mPersonaSeleccionada.getDescripcion());
+		mEntryDescripcion.getText().clear();
+		mEntryDescripcion.append(mPersonaSeleccionada.getDescripcion());
+
+
 		mEntryDescripcion.addTextChangedListener(new TextWatcher() {
 			public void onTextChanged(CharSequence s, int start, int before,
 									  int count) {
@@ -1088,8 +1129,16 @@ public class AltaPersonaActivity extends Activity  {
 			tv.setValor(mEntryNuevoValMail.getText().toString());
 			tv.setIdPersona(String.valueOf(idPer));
 			mailsTemp.add(tv);
-			mEntryNuevoTipoMail.setText("");
-			mEntryNuevoValMail.setText("");
+
+
+			mEntryNuevoTipoMail.getText().clear();
+			mEntryNuevoTipoMail.append("");
+
+			mEntryNuevoValMail.getText().clear();
+			mEntryNuevoValMail.append("");
+
+//			mEntryNuevoTipoMail.setText("");
+	//		mEntryNuevoValMail.setText("");
 			huboCambios = true;
 		}else {
 
@@ -1157,8 +1206,17 @@ public class AltaPersonaActivity extends Activity  {
     		tv.setValor(mEntryNuevoValTel.getText().toString());
     		tv.setIdPersona(String.valueOf(idPer));
 			telefonosTemp.add(tv);
-			mEntryNuevoTipoTel.setText("");
-			mEntryNuevoValTel.setText("");
+
+			mEntryNuevoTipoTel.getText().clear();
+			mEntryNuevoTipoTel.append("");
+
+			mEntryNuevoValTel.getText().clear();
+			mEntryNuevoValTel.append("");
+
+
+
+			//mEntryNuevoTipoTel.setText("");
+		//	mEntryNuevoValTel.setText("");
 			huboCambios = true;
 		}else {
 
@@ -1238,8 +1296,17 @@ public class AltaPersonaActivity extends Activity  {
             tv.setValor(mEntryNuevoValDir.getText().toString());
             tv.setIdPersona(String.valueOf(idPer));
             dirsTemp.add(tv);
-            mEntryNuevoTipoDir.setText("");
-            mEntryNuevoValDir.setText("");
+
+			mEntryNuevoTipoDir.getText().clear();
+			mEntryNuevoTipoDir.append("");
+
+			mEntryNuevoValDir.getText().clear();
+			mEntryNuevoValDir.append("");
+
+
+
+          //  mEntryNuevoTipoDir.setText("");
+         //   mEntryNuevoValDir.setText("");
             huboCambios = true;
         }else {
 
@@ -1417,6 +1484,7 @@ public class AltaPersonaActivity extends Activity  {
 		this.mostrarEmails();
 		this.mostrarDirecciones();
 		this.mostrarDatosPorCategoria();
+	//	ConstantsAdmin.hideKeyboard(this);
 	}
 
 	private void opacarBotonGuardar(){

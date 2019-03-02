@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="@color/color_gris_claro">
+android:layout_width="match_parent" android:layout_height="match_parent"
+android:background="@color/color_gris_claro">
+
+	<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent">
+
 
 	<RelativeLayout android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:background="@color/color_gris_claro">
+		android:layout_height="fill_parent" android:background="@color/color_gris_claro"
+		android:clickable="true">
 
 
 		<TextView android:id="@+id/invisible" android:layout_width="wrap_content"
@@ -75,8 +81,8 @@
             android:gravity="start|center"
 			android:typeface="monospace"
             android:background="@drawable/custom_text_view_categoria_desc"
-            android:paddingStart="10dp"
-            android:paddingLeft="10dp"
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp"
             android:layout_margin="5dp"
             />
 
@@ -111,6 +117,7 @@
 				android:layout_marginLeft="3dp"
                 android:layout_marginStart="3dp"
                 android:layout_marginEnd="4dp"
+				android:textColorHint="@color/color_gris_oscuro"
 				/>
 
 		</LinearLayout>
@@ -137,7 +144,8 @@
 				android:maxLength="25" android:layout_width="fill_parent"
 				android:importantForAutofill="no"
 				android:layout_marginRight="4dp"
-				android:layout_marginLeft="3dp" />
+				android:layout_marginLeft="3dp"
+				android:textColorHint="@color/color_gris_oscuro"/>
 
 		</LinearLayout>
 
@@ -176,66 +184,75 @@
 		</LinearLayout>
 
 
-		<TextView android:id="@+id/label_phones" android:text="@string/label_telefonos"
+		<LinearLayout android:id="@+id/ll_phones"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:layout_margin="5dp"
 			android:layout_below="@id/menu_icons"
-			android:layout_height="28dp"
-			android:textColor="@color/color_negro"
-			android:textSize="14sp"
-			android:gravity="start|center"
-			android:typeface="monospace"
-			android:background="@drawable/custom_text_view_categoria_desc"
-			android:paddingStart="15dp"
-			android:paddingLeft="15dp"
-			android:layout_margin="5dp"
-			android:layout_width="285dp"
-			android:layout_marginBottom="6dp"
-			/>
-
-		<Button android:id="@+id/addTelefono"
-			android:layout_toRightOf="@id/label_phones"
-			android:layout_toEndOf="@id/label_phones"
-			android:layout_below="@id/menu_icons"
-			android:contentDescription="addTelefono"
-			android:layout_width="32dp"
-			android:layout_height="28dp"
-			android:text="+"
-			android:textColor="@color/color_blanco"
-			android:textSize="18sp"
-			android:textStyle="bold"
-			android:layout_gravity="center"
-			android:layout_marginRight="7dp"
-			android:layout_marginEnd="7dp"
-			android:layout_marginLeft="20dp"
-			android:layout_marginTop="5dp"
-			android:paddingBottom="3dp"
-			android:paddingTop="1dp"
-			android:typeface="sans"
-			android:background="@drawable/custom_button"
-
 			>
-		</Button>
+
+
+			<TextView android:id="@+id/label_phones" android:text="@string/label_telefonos"
+				android:layout_height="28dp"
+				android:textColor="@color/color_negro"
+				android:textSize="14sp"
+				android:gravity="start|center"
+				android:typeface="monospace"
+				android:background="@drawable/custom_text_view_categoria_desc"
+				android:paddingStart="15dp"
+				android:paddingLeft="15dp"
+				android:layout_width="250dp"
+				android:layout_marginBottom="6dp"
+				/>
+
+			<Button android:id="@+id/addTelefono"
+				android:layout_toRightOf="@id/label_phones"
+				android:layout_toEndOf="@id/label_phones"
+				android:layout_below="@id/menu_icons"
+				android:contentDescription="addTelefono"
+				android:text="@string/label_agregar"
+				android:textStyle="bold"
+				android:layout_marginRight="7dp"
+				android:layout_marginEnd="7dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginStart="10dp"
+				android:padding="2dp"
+				android:clickable="true"
+				android:contextClickable="true"
+				android:layout_width="wrap_content"
+				android:layout_height="30dp"
+				android:textSize="11sp"
+				android:textColor="@color/color_blanco"
+				android:background="@drawable/custom_button"
+				android:layout_gravity="center"
+				android:typeface="monospace"
+
+				>
+			</Button>
+		</LinearLayout>
 
 		<EditText android:id="@+id/nuevoTipoTel" android:layout_width="120dp"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/label_phones"
+			android:layout_below="@id/ll_phones"
 			android:textSize="15sp"
-			android:padding="10dp" android:gravity="end"
+			android:padding="10dp"
+			android:gravity="end"
 			android:background="@drawable/custom_text_view_categoria_desc"
 			android:typeface="monospace"
 			android:layout_marginStart="10dp"
 			android:layout_marginLeft="10dp"
 			android:textColor="@color/color_negro"
-			android:layout_marginTop="10dp"
+			android:layout_marginTop="15dp"
 			android:inputType="textCapCharacters"
 			android:visibility="gone"
-			android:maxLength="19">
+			android:maxLength="19"
+			android:textColorHint="@color/color_gris_oscuro">
 
 		</EditText>
 
 		<EditText android:id="@+id/nuevoValorTel"
 			android:inputType="phone"
 			android:layout_height="35dp"
-			android:layout_below="@id/label_phones"
+			android:layout_below="@id/ll_phones"
 			android:layout_toRightOf="@id/nuevoTipoTel"
 			android:layout_toEndOf="@id/nuevoTipoTel"
 			android:textColor="@color/color_negro"
@@ -249,8 +266,9 @@
 			android:importantForAutofill="no"
 			android:layout_marginRight="4dp"
 			android:layout_marginLeft="5dp"
-			android:layout_marginTop="10dp"
-			android:visibility="gone"/>
+			android:layout_marginTop="15dp"
+			android:visibility="gone"
+			android:textColorHint="@color/color_gris_oscuro"/>
 
 
 
@@ -272,8 +290,8 @@
 			android:gravity="start|center"
 			android:typeface="monospace"
 			android:background="@drawable/custom_text_view_categoria_desc"
-			android:paddingStart="10dp"
-			android:paddingLeft="10dp"
+			android:paddingStart="15dp"
+			android:paddingLeft="15dp"
 			android:layout_margin="5dp"
 			android:layout_width="285dp"
 			android:layout_marginBottom="6dp"
@@ -306,7 +324,8 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@id/label_emails"
 			android:textSize="15sp"
-			android:padding="10dp" android:gravity="end"
+			android:padding="10dp"
+			android:gravity="end"
 			android:background="@drawable/custom_text_view_categoria_desc"
 			android:typeface="monospace"
 			android:layout_marginStart="10dp"
@@ -315,7 +334,8 @@
 			android:layout_marginTop="10dp"
 			android:inputType="textCapCharacters"
 			android:visibility="gone"
-			android:maxLength="19">
+			android:maxLength="19"
+			android:textColorHint="@color/color_gris_oscuro">
 
 		</EditText>
 
@@ -337,7 +357,8 @@
 			android:layout_marginRight="4dp"
 			android:layout_marginLeft="5dp"
 			android:layout_marginTop="10dp"
-			android:visibility="gone"/>
+			android:visibility="gone"
+			android:textColorHint="@color/color_gris_oscuro"/>
 
 
 
@@ -359,8 +380,8 @@
 			android:gravity="start|center"
 			android:typeface="monospace"
 			android:background="@drawable/custom_text_view_categoria_desc"
-			android:paddingStart="10dp"
-			android:paddingLeft="10dp"
+			android:paddingStart="15dp"
+			android:paddingLeft="15dp"
 			android:layout_margin="5dp"
 			android:layout_width="285dp"
 			android:layout_marginBottom="6dp"
@@ -404,7 +425,8 @@
 			android:layout_marginTop="10dp"
 			android:inputType="textCapCharacters"
 			android:visibility="gone"
-			android:maxLength="19">
+			android:maxLength="19"
+			android:textColorHint="@color/color_gris_oscuro">
 
 		</EditText>
 
@@ -426,7 +448,8 @@
 			android:layout_marginRight="4dp"
 			android:layout_marginLeft="5dp"
 			android:layout_marginTop="10dp"
-			android:visibility="gone"/>
+			android:visibility="gone"
+			android:textColorHint="@color/color_gris_oscuro"/>
 
 
 
@@ -452,7 +475,6 @@
 
 		<TextView android:id="@+id/label_category" android:text="@string/label_datosDeCategoria"
 			android:layout_below="@id/menu_icons"
-
 			android:layout_width="fill_parent"
 			android:layout_height="28dp"
 			android:textColor="@color/color_negro"
@@ -461,89 +483,118 @@
 			android:gravity="start|center"
 			android:typeface="monospace"
 			android:background="@drawable/custom_text_view_categoria_desc"
-			android:paddingStart="10dp"
-			android:paddingLeft="10dp"
+			android:paddingStart="15dp"
+			android:paddingLeft="15dp"
 			android:layout_margin="5dp"/>
 
 
-        <LinearLayout android:id="@+id/linearCategoria"
-            android:layout_width="fill_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:layout_margin="5dp"
-            android:layout_below="@id/label_category"
-            android:gravity="right"
-            android:background="@drawable/custom_text_view_apellido">
 
-			<Spinner android:id="@+id/spinnerCategorias_alta_persona"
-				android:layout_below="@id/label_category" android:layout_width="310dp"
-				android:layout_height="33dp" android:layout_marginEnd="10dp"
-				android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
-				style="@style/SpinnerTheme"
-				android:layout_marginRight="10dp" />
 
-        </LinearLayout>
 
-		<LinearLayout android:id="@+id/linearCaracteristica"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:orientation="horizontal" android:layout_margin="5dp"
-			android:layout_below="@id/linearCategoria">
-
-			<TextView android:id="@+id/label_datoExtra"
-
-				android:layout_width="130dp" android:layout_height="wrap_content"
-				android:textSize="13sp" android:padding="8dp" android:gravity="end"
-				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_negro"
-				android:typeface="monospace"/>
-
-			<EditText android:id="@+id/entryDatoExtra"
-				android:inputType="textCapWords" android:layout_height="35dp"
-				android:textStyle="bold"
-				android:textColor="@color/color_negro"
-				android:typeface="monospace"
-				android:padding="5dp"
-				android:textSize="14sp" android:layout_marginStart="3dp"
-				android:layout_marginEnd="4dp" android:layout_width="fill_parent"
-				android:maxLength="30"
-                android:hint="@string/hint_descripcion"
-				android:importantForAutofill="no"
-				android:layout_marginRight="4dp"
-				android:layout_marginLeft="3dp" />
-		</LinearLayout>
+		<android.support.v4.widget.NestedScrollView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/label_category">
 
 		<LinearLayout
-            android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:orientation="horizontal" android:layout_margin="5dp"
-			android:layout_below="@id/linearCaracteristica">
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
 
-			<TextView android:id="@+id/label_descripcion" android:text="@string/hint_descripcion"
-				android:layout_width="130dp" android:layout_height="wrap_content"
-				android:textSize="13sp" android:padding="8dp" android:gravity="end"
-				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_negro"
-				android:typeface="monospace"/>
+			<LinearLayout android:id="@+id/linearCategoria"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:orientation="horizontal" android:layout_margin="5dp"
+				android:gravity="right"
+				android:background="@drawable/custom_text_view_apellido">
 
-			<EditText android:id="@+id/entryDescripcion" android:hint="@string/hint_descripcion"
-				android:inputType="textMultiLine|textCapSentences"
-				android:layout_height="wrap_content"
-				android:textStyle="bold"
-				android:textColor="@color/color_negro"
-				android:typeface="monospace"
-				android:padding="5dp"
-				android:textSize="14sp" android:layout_marginStart="3dp"
-				android:layout_marginEnd="4dp" android:layout_width="fill_parent"
-				android:maxLength="70" android:gravity="top|start" android:lines="7"
-				android:singleLine="false"
-				android:importantForAutofill="no"
-				android:layout_marginRight="4dp"
-				android:layout_marginLeft="3dp"
-				android:minLines="4"
-				android:scrollHorizontally="false"
-				android:scrollbars="vertical"
+				<Spinner android:id="@+id/spinnerCategorias_alta_persona"
+					android:layout_below="@id/label_category" android:layout_width="310dp"
+					android:layout_height="33dp"
+					android:layout_marginEnd="10dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginBottom="8dp"
+					style="@style/SpinnerTheme"
+					android:layout_marginRight="10dp" />
 
-				/>
-				
+			</LinearLayout>
+
+
+			<LinearLayout android:id="@+id/linearCaracteristica"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:orientation="horizontal" android:layout_margin="5dp"
+				>
+
+				<TextView android:id="@+id/label_datoExtra"
+
+					android:layout_width="130dp" android:layout_height="wrap_content"
+					android:textSize="13sp" android:padding="8dp" android:gravity="end"
+					android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
+					android:textColor="@color/color_negro"
+					android:typeface="monospace"/>
+
+				<EditText android:id="@+id/entryDatoExtra"
+					android:inputType="textCapWords" android:layout_height="35dp"
+					android:textStyle="bold"
+					android:textColor="@color/color_negro"
+					android:typeface="monospace"
+					android:padding="5dp"
+					android:textSize="15sp"
+					android:layout_marginStart="3dp"
+					android:layout_marginEnd="4dp"
+					android:layout_width="fill_parent"
+					android:maxLength="30"
+					android:hint="@string/hint_descripcion"
+					android:importantForAutofill="no"
+					android:layout_marginRight="4dp"
+					android:layout_marginLeft="3dp"
+					android:textColorHint="@color/color_gris_oscuro"/>
+			</LinearLayout>
+
+
+
+
+
+			<LinearLayout
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:orientation="horizontal" android:layout_margin="5dp"
+				android:layout_below="@id/linearCaracteristica">
+
+				<TextView android:id="@+id/label_descripcion" android:text="@string/hint_descripcion"
+					android:layout_width="130dp" android:layout_height="wrap_content"
+					android:textSize="13sp" android:padding="8dp" android:gravity="end"
+					android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
+					android:textColor="@color/color_negro"
+					android:typeface="monospace"/>
+
+				<EditText android:id="@+id/entryDescripcion" android:hint="@string/hint_descripcion"
+					android:inputType="textCapSentences|textMultiLine"
+					android:layout_height="wrap_content"
+					android:textStyle="bold"
+					android:textColor="@color/color_negro"
+					android:typeface="monospace"
+					android:padding="5dp"
+					android:textSize="15sp"
+					android:layout_marginStart="3dp"
+					android:layout_marginEnd="4dp"
+					android:layout_width="fill_parent"
+					android:maxLength="70"
+					android:gravity="top|start"
+					android:lines="3"
+					android:singleLine="false"
+					android:importantForAutofill="no"
+					android:layout_marginRight="4dp"
+					android:layout_marginLeft="3dp"
+					android:minLines="3"
+					android:scrollHorizontally="false"
+					android:scrollbars="vertical"
+					android:textColorHint="@color/color_gris_oscuro"
+
+					/>
+
+			</LinearLayout>
+
 		</LinearLayout>
-
+	</android.support.v4.widget.NestedScrollView>
 
 	</RelativeLayout>
 
@@ -614,5 +665,7 @@
 		</LinearLayout>
 
 	</RelativeLayout>
+
+</FrameLayout>
 
 </merge>
