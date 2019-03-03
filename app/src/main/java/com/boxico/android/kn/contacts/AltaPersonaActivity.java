@@ -383,6 +383,7 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryNuevoTipoTel.append("");
 			mEntryNuevoValTel.getText().clear();
 			mEntryNuevoValTel.append("");
+			botonAddTel.setTextColor(Color.WHITE);
 
 			opacarBotonGuardar();
 	//		imm.hideSoftInputFromWindow(mEntryNuevoTipoTel.getWindowToken(), 0);
@@ -395,6 +396,7 @@ public class AltaPersonaActivity extends Activity  {
 			realzarBotonGuardar();
 			mEntryNuevoTipoTel.getText().clear();
 			mEntryNuevoTipoTel.append(getResources().getText(R.string.hint_tipo));
+			botonAddTel.setTextColor(Color.DKGRAY);
 
 			//mEntryNuevoTipoTel.setText(getResources().getText(R.string.hint_tipo));
 			mEntryNuevoTipoTel.setSelectAllOnFocus(true);
@@ -421,6 +423,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoValMail.getText().clear();
 			mEntryNuevoValMail.append("");
+			botonAddMail.setTextColor(Color.WHITE);
            // mEntryNuevoValMail.setText("");
             opacarBotonGuardar();
 		//	imm.hideSoftInputFromWindow(mEntryNuevoTipoMail.getWindowToken(), 0);
@@ -435,6 +438,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoTipoMail.getText().clear();
 			mEntryNuevoTipoMail.append(getResources().getText(R.string.hint_tipo));
+			botonAddMail.setTextColor(Color.DKGRAY);
 
             mEntryNuevoTipoMail.setSelectAllOnFocus(true);
             mEntryNuevoTipoMail.requestFocus();
@@ -454,7 +458,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoTipoDir.getText().clear();
 			mEntryNuevoTipoDir.append("");
-
+			botonAddDir.setTextColor(Color.WHITE);
           //  mEntryNuevoValDir.setText("");
 
 			mEntryNuevoValDir.getText().clear();
@@ -473,6 +477,8 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoTipoDir.getText().clear();
 			mEntryNuevoTipoDir.append(getResources().getText(R.string.hint_tipo));
+
+			botonAddDir.setTextColor(Color.DKGRAY);
             mEntryNuevoTipoDir.setSelectAllOnFocus(true);
             mEntryNuevoTipoDir.requestFocus();
             ConstantsAdmin.showKeyboard(this, mEntryNuevoTipoDir);
@@ -733,8 +739,9 @@ public class AltaPersonaActivity extends Activity  {
 	//mEntryDatoExtra.setText(mPersonaSeleccionada.getDatoExtra());
 
 		mEntryDatoExtra.getText().clear();
-		mEntryDatoExtra.append(mPersonaSeleccionada.getDatoExtra());
-
+		if(mPersonaSeleccionada.getDatoExtra() != null) {
+			mEntryDatoExtra.append(mPersonaSeleccionada.getDatoExtra());
+		}
 		mEntryDatoExtra.addTextChangedListener(new TextWatcher() {
 			public void onTextChanged(CharSequence s, int start, int before,
 									  int count) {
@@ -755,7 +762,9 @@ public class AltaPersonaActivity extends Activity  {
 
 //		mEntryDescripcion.setText(mPersonaSeleccionada.getDescripcion());
 		mEntryDescripcion.getText().clear();
-		mEntryDescripcion.append(mPersonaSeleccionada.getDescripcion());
+		if(mPersonaSeleccionada.getDescripcion() != null) {
+			mEntryDescripcion.append(mPersonaSeleccionada.getDescripcion());
+		}
 
 
 		mEntryDescripcion.addTextChangedListener(new TextWatcher() {

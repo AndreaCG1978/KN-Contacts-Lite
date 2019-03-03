@@ -1,5 +1,6 @@
 package com.boxico.android.kn.contacts;
 
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -33,8 +35,10 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.style.TextAppearanceSpan;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,6 +51,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -542,12 +547,20 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 								TextView textName = v.findViewById(R.id.textName);
 								TextView textCantidad = v.findViewById(R.id.textCantidad);
 
+
+
 								String temp;
 								String label;
 								temp = mySortedByElements.get(groupPosition);
 								label = temp.toUpperCase();
 								textName.setText(label);
-								textName.setTextColor(getResources().getColor(R.color.color_negro));
+								if(((ExpandableListView) parent).isGroupExpanded(groupPosition)){
+									textName.setTextColor(Color.WHITE);
+								}else{
+									textName.setTextColor(Color.BLACK);
+
+								}
+							//	textName.setTextColor(getResources().getColor(R.color.color_negro));
 								textName.setTypeface(Typeface.MONOSPACE);
 								textCantidad.setTextColor(getResources().getColor(R.color.color_gris_claro));
 								textCantidad.setTypeface(Typeface.MONOSPACE);

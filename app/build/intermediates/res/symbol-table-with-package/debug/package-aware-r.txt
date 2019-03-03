@@ -222,6 +222,7 @@ id line3
 id linea1
 id linea2
 id linea3
+id linearAddress
 id linearApellido
 id linearCaracteristica
 id linearCategoria
@@ -229,7 +230,9 @@ id linearCumple
 id linearDatos
 id linearLayoutImagen
 id linearLista
+id linearMails
 id linearNombre
+id linearPhones
 id listaDirecciones
 id listaDireccionesAlta
 id listaEspecial
@@ -237,7 +240,6 @@ id listaMails
 id listaMailsAlta
 id listaTelefonos
 id listaTelefonosAlta
-id ll_phones
 id mailPassword
 id media_actions
 id menu
