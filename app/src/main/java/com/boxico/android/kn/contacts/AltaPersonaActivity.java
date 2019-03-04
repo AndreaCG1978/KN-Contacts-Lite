@@ -383,7 +383,7 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryNuevoTipoTel.append("");
 			mEntryNuevoValTel.getText().clear();
 			mEntryNuevoValTel.append("");
-			botonAddTel.setTextColor(Color.WHITE);
+			botonAddTel.setTextColor(Color.DKGRAY);
 
 			opacarBotonGuardar();
 	//		imm.hideSoftInputFromWindow(mEntryNuevoTipoTel.getWindowToken(), 0);
@@ -396,7 +396,7 @@ public class AltaPersonaActivity extends Activity  {
 			realzarBotonGuardar();
 			mEntryNuevoTipoTel.getText().clear();
 			mEntryNuevoTipoTel.append(getResources().getText(R.string.hint_tipo));
-			botonAddTel.setTextColor(Color.DKGRAY);
+			botonAddTel.setTextColor(Color.GRAY);
 
 			//mEntryNuevoTipoTel.setText(getResources().getText(R.string.hint_tipo));
 			mEntryNuevoTipoTel.setSelectAllOnFocus(true);
@@ -423,7 +423,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoValMail.getText().clear();
 			mEntryNuevoValMail.append("");
-			botonAddMail.setTextColor(Color.WHITE);
+			botonAddMail.setTextColor(Color.DKGRAY);
            // mEntryNuevoValMail.setText("");
             opacarBotonGuardar();
 		//	imm.hideSoftInputFromWindow(mEntryNuevoTipoMail.getWindowToken(), 0);
@@ -438,7 +438,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoTipoMail.getText().clear();
 			mEntryNuevoTipoMail.append(getResources().getText(R.string.hint_tipo));
-			botonAddMail.setTextColor(Color.DKGRAY);
+			botonAddMail.setTextColor(Color.GRAY);
 
             mEntryNuevoTipoMail.setSelectAllOnFocus(true);
             mEntryNuevoTipoMail.requestFocus();
@@ -458,7 +458,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoTipoDir.getText().clear();
 			mEntryNuevoTipoDir.append("");
-			botonAddDir.setTextColor(Color.WHITE);
+			botonAddDir.setTextColor(Color.DKGRAY);
           //  mEntryNuevoValDir.setText("");
 
 			mEntryNuevoValDir.getText().clear();
@@ -478,7 +478,7 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryNuevoTipoDir.getText().clear();
 			mEntryNuevoTipoDir.append(getResources().getText(R.string.hint_tipo));
 
-			botonAddDir.setTextColor(Color.DKGRAY);
+			botonAddDir.setTextColor(Color.GRAY);
             mEntryNuevoTipoDir.setSelectAllOnFocus(true);
             mEntryNuevoTipoDir.requestFocus();
             ConstantsAdmin.showKeyboard(this, mEntryNuevoTipoDir);
@@ -494,6 +494,7 @@ public class AltaPersonaActivity extends Activity  {
 		this.resetAdapterTelefonos(null, true);
 //        telefonosList.setAdapter(adapter);
 		getTelefonosList().setDividerHeight(10);
+
     }
 
     private void configurarListaEmails(){

@@ -35,19 +35,20 @@
 
 
 	<Button android:id="@+id/removeButton"
-		android:layout_width="30dp" android:layout_height="28dp"
+		android:layout_width="30dp" android:layout_height="26dp"
 		android:text="-"
-		android:textColor="@android:color/holo_red_light"
-		android:textSize="18sp"
+		android:textColor="@android:color/white"
+		android:textSize="22sp"
 		android:textStyle="bold"
 		android:layout_gravity="center"
 		android:layout_marginRight="10dp"
 		android:layout_marginLeft="10dp"
 		android:contentDescription="-"
-		android:paddingBottom="3dp"
+		android:paddingBottom="5dp"
 		android:paddingTop="1dp"
 		android:typeface="serif"
-		android:background="@drawable/custom_button">
+		android:background="@color/color_gris_oscuro"
+		>
 	</Button>
 
 
