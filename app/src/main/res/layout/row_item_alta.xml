@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:layout_width="match_parent" android:layout_height="match_parent"
 	android:orientation="horizontal" android:layout_margin="5dp"
 	android:gravity="center_vertical"
 	android:descendantFocusability="beforeDescendants"
@@ -20,34 +20,41 @@
 	</EditText>
 
 	<EditText android:id="@+id/rowValor"
-		android:layout_height="35dp"
+		android:layout_height="wrap_content"
         android:layout_width="200dp"
 		android:textColor="@color/color_negro"
 		android:typeface="monospace"
 		android:padding="5dp"
 		android:textSize="15sp"
 		android:layout_marginStart="5dp" android:layout_marginEnd="4dp"
-		android:maxLength="30"
+		android:maxLength="60"
 		android:selectAllOnFocus="true"
 		android:layout_marginRight="4dp"
-        android:singleLine="true"
-		android:layout_marginLeft="5dp" />
+       	android:layout_marginLeft="5dp"
+		android:lines="4"
+		android:minLines="1"
+		android:maxLines="4"
+		android:ellipsize="none"
+		android:singleLine="false"
+		android:scrollHorizontally="false"
+		android:scrollbars="vertical"
+		android:gravity="top|start"/>
 
 
 	<Button android:id="@+id/removeButton"
 		android:layout_width="30dp" android:layout_height="26dp"
-		android:text="-"
+		android:text="X"
 		android:textColor="@android:color/white"
-		android:textSize="22sp"
+		android:textSize="12sp"
 		android:textStyle="bold"
-		android:layout_gravity="center"
+		android:gravity="center"
 		android:layout_marginRight="10dp"
 		android:layout_marginLeft="10dp"
 		android:contentDescription="-"
-		android:paddingBottom="5dp"
+		android:paddingBottom="1dp"
 		android:paddingTop="1dp"
-		android:typeface="serif"
-		android:background="@color/color_gris_oscuro"
+		android:typeface="monospace"
+		android:background="@drawable/custom_button"
 		>
 	</Button>
 

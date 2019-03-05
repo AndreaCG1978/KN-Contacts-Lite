@@ -113,20 +113,30 @@ public class AltaPersonaActivity extends Activity  {
 	private boolean terminoCargaListado = true;
 	private boolean inicioActivity = false;
 
+	private ListView mailsList = null;
+	private ListView telefonosList = null;
+	private ListView direccionesList = null;
+
 	public boolean isTerminoCargaListado() {
+
 		return terminoCargaListado;
 	}
 
     public ListView getTelefonosList() {
-        return this.findViewById(R.id.listaTelefonosAlta);
+
+	//	return this.findViewById(R.id.listaTelefonosAlta);
+		return telefonosList;
     }
 
 	public ListView getMailsList() {
-		return this.findViewById(R.id.listaMailsAlta);
+		//return this.findViewById(R.id.listaMailsAlta);
+		return mailsList;
 	}
 
 	public ListView getDireccionesList() {
-		return this.findViewById(R.id.listaDireccionesAlta);
+
+		//return this.findViewById(R.id.listaDireccionesAlta);
+		return direccionesList;
 	}
 
     public void setTerminoCargaListado(boolean terminoCargaListado) {
@@ -383,7 +393,7 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryNuevoTipoTel.append("");
 			mEntryNuevoValTel.getText().clear();
 			mEntryNuevoValTel.append("");
-			botonAddTel.setTextColor(Color.DKGRAY);
+			botonAddTel.setTextColor(Color.WHITE);
 
 			opacarBotonGuardar();
 	//		imm.hideSoftInputFromWindow(mEntryNuevoTipoTel.getWindowToken(), 0);
@@ -396,7 +406,7 @@ public class AltaPersonaActivity extends Activity  {
 			realzarBotonGuardar();
 			mEntryNuevoTipoTel.getText().clear();
 			mEntryNuevoTipoTel.append(getResources().getText(R.string.hint_tipo));
-			botonAddTel.setTextColor(Color.GRAY);
+			botonAddTel.setTextColor(Color.LTGRAY);
 
 			//mEntryNuevoTipoTel.setText(getResources().getText(R.string.hint_tipo));
 			mEntryNuevoTipoTel.setSelectAllOnFocus(true);
@@ -423,7 +433,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoValMail.getText().clear();
 			mEntryNuevoValMail.append("");
-			botonAddMail.setTextColor(Color.DKGRAY);
+			botonAddMail.setTextColor(Color.WHITE);
            // mEntryNuevoValMail.setText("");
             opacarBotonGuardar();
 		//	imm.hideSoftInputFromWindow(mEntryNuevoTipoMail.getWindowToken(), 0);
@@ -438,7 +448,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoTipoMail.getText().clear();
 			mEntryNuevoTipoMail.append(getResources().getText(R.string.hint_tipo));
-			botonAddMail.setTextColor(Color.GRAY);
+			botonAddMail.setTextColor(Color.LTGRAY);
 
             mEntryNuevoTipoMail.setSelectAllOnFocus(true);
             mEntryNuevoTipoMail.requestFocus();
@@ -458,7 +468,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoTipoDir.getText().clear();
 			mEntryNuevoTipoDir.append("");
-			botonAddDir.setTextColor(Color.DKGRAY);
+			botonAddDir.setTextColor(Color.WHITE);
           //  mEntryNuevoValDir.setText("");
 
 			mEntryNuevoValDir.getText().clear();
@@ -478,7 +488,7 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryNuevoTipoDir.getText().clear();
 			mEntryNuevoTipoDir.append(getResources().getText(R.string.hint_tipo));
 
-			botonAddDir.setTextColor(Color.GRAY);
+			botonAddDir.setTextColor(Color.LTGRAY);
             mEntryNuevoTipoDir.setSelectAllOnFocus(true);
             mEntryNuevoTipoDir.requestFocus();
             ConstantsAdmin.showKeyboard(this, mEntryNuevoTipoDir);
@@ -661,9 +671,9 @@ public class AltaPersonaActivity extends Activity  {
         mEntryNuevoValMail = this.findViewById(R.id.nuevoValorMail);
         mEntryNuevoValDir = this.findViewById(R.id.nuevoValorDir);
 
-     //   telefonosList = this.findViewById(R.id.listaTelefonosAlta);
-//		mailsList = this.findViewById(R.id.listaMailsAlta);
-//		direccionesList = this.findViewById(R.id.listaDireccionesAlta);
+        telefonosList = this.findViewById(R.id.listaTelefonosAlta);
+		mailsList = this.findViewById(R.id.listaMailsAlta);
+		direccionesList = this.findViewById(R.id.listaDireccionesAlta);
 
 		sinDatos = this.findViewById(R.id.label_sinDatos);
 		botonAddTel = this.findViewById(R.id.addTelefono);
@@ -1282,6 +1292,7 @@ public class AltaPersonaActivity extends Activity  {
 			this.setTerminoCargaListado(false);
 			telefonosList.setAdapter(obtenerAdapterTelefono(telefonos));*/
 
+
 		}
 
 
@@ -1494,6 +1505,9 @@ public class AltaPersonaActivity extends Activity  {
 		this.mostrarEmails();
 		this.mostrarDirecciones();
 		this.mostrarDatosPorCategoria();
+		botonAddTel.setTextColor(Color.WHITE);
+		botonAddMail.setTextColor(Color.WHITE);
+		botonAddDir.setTextColor(Color.WHITE);
 	//	ConstantsAdmin.hideKeyboard(this);
 	}
 

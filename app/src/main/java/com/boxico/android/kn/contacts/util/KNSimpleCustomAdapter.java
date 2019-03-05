@@ -89,11 +89,11 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 	//	final int pos = position;
 	//	final KNSimpleCustomAdapter me = this;
 		if(localContext.ismMostrarTelefonosBoolean()){
-		    etxt.setInputType(InputType.TYPE_CLASS_PHONE);
-        }else if(localContext.ismMostrarEmailsBoolean()){
-		    etxt.setInputType(InputType.TYPE_CLASS_TEXT);
+		    etxt.setInputType(InputType.TYPE_CLASS_PHONE );
+		}else if(localContext.ismMostrarEmailsBoolean()){
+		    etxt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         }else if(localContext.ismMostrarDireccionesBoolean()){
-		    etxt.setInputType(InputType.TYPE_CLASS_TEXT);
+		    etxt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         }
 		btn.setTag(position);
 

@@ -5,7 +5,7 @@
 android:layout_width="match_parent" android:layout_height="match_parent"
 android:background="@color/color_gris_claro">
 
-<FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
+<FrameLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/color_gris_claro">
 
 	<RelativeLayout android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:background="@color/color_gris_claro"
@@ -72,16 +72,18 @@ android:background="@color/color_gris_claro">
 
 		<TextView android:id="@+id/label_identificacion"
             android:text="@string/label_identificacion" android:layout_below="@id/menu_icons"
-			android:layout_width="250dp"
-			android:layout_height="28dp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:textColor="@color/color_negro"
             android:textSize="14sp"
 			android:layout_marginBottom="20dp"
             android:gravity="start|center"
 			android:typeface="monospace"
-            android:background="@drawable/custom_text_view_categoria_desc"
-            android:paddingStart="15dp"
-            android:paddingLeft="15dp"
+            android:background="@drawable/custom_text_view_categoria"
+            android:paddingStart="20dp"
+            android:paddingLeft="20dp"
+			android:paddingTop="10dp"
+			android:paddingBottom="10dp"
             android:layout_margin="5dp"
             />
 
@@ -188,7 +190,7 @@ android:background="@color/color_gris_claro">
 			android:orientation="horizontal" android:layout_margin="5dp"
 			android:layout_below="@id/menu_icons"
 			android:gravity="center"
-			android:background="@drawable/custom_text_view_categoria_desc">
+			android:background="@drawable/custom_text_view_categoria">
 
 			<TextView android:id="@+id/label_phones" android:text="@string/label_telefonos"
 				android:layout_height="28dp"
@@ -199,7 +201,7 @@ android:background="@color/color_gris_claro">
 				android:paddingStart="15dp"
 				android:paddingLeft="15dp"
 				android:layout_margin="5dp"
-				android:layout_width="240dp"
+				android:layout_width="220dp"
 				android:layout_marginBottom="6dp"
 				/>
 
@@ -210,13 +212,16 @@ android:background="@color/color_gris_claro">
 				android:textStyle="bold"
 				android:layout_marginLeft="5dp"
 				android:layout_marginStart="5dp"
-				android:padding="8dp"
+				android:paddingBottom="8dp"
+				android:paddingTop="8dp"
+				android:paddingStart="20dp"
+				android:paddingEnd="15dp"
 				android:layout_width="wrap_content"
-				android:layout_height="40dp"
+				android:layout_height="32dp"
 				android:textSize="12sp"
-				android:textColor="@color/color_gris_oscuro"
+				android:textColor="@color/color_blanco"
 				android:typeface="monospace"
-
+				android:background="@android:color/transparent"
 				>
 			</Button>
 
@@ -260,7 +265,8 @@ android:background="@color/color_gris_claro">
 			android:layout_marginLeft="5dp"
 			android:layout_marginTop="15dp"
 			android:visibility="gone"
-			android:textColorHint="@color/color_gris_oscuro"/>
+			android:hint="+99-999-99999999..."
+            android:textColorHint="@color/color_gris"/>
 
 
 
@@ -278,7 +284,7 @@ android:background="@color/color_gris_claro">
 			android:orientation="horizontal" android:layout_margin="5dp"
 			android:layout_below="@id/menu_icons"
 			android:gravity="center"
-			android:background="@drawable/custom_text_view_categoria_desc">
+			android:background="@drawable/custom_text_view_categoria">
 
 
 			<TextView android:id="@+id/label_emails" android:text="@string/label_emails"
@@ -290,22 +296,26 @@ android:background="@color/color_gris_claro">
 				android:paddingStart="15dp"
 				android:paddingLeft="15dp"
 				android:layout_margin="5dp"
-				android:layout_width="240dp"
+				android:layout_width="220dp"
 				android:layout_marginBottom="6dp"
 				/>
 
 			<Button android:id="@+id/addMail"
-				android:contentDescription="addTelefono"
+				android:contentDescription="addMail"
 				android:text="@string/label_agregar"
 				android:textStyle="bold"
 				android:layout_marginLeft="5dp"
 				android:layout_marginStart="5dp"
-				android:padding="8dp"
+				android:paddingBottom="8dp"
+				android:paddingTop="8dp"
+				android:paddingStart="20dp"
+				android:paddingEnd="15dp"
 				android:layout_width="wrap_content"
-				android:layout_height="40dp"
+				android:layout_height="32dp"
 				android:textSize="12sp"
-				android:textColor="@color/color_gris_oscuro"
+				android:textColor="@color/color_blanco"
 				android:typeface="monospace"
+				android:background="@android:color/transparent"
 				>
 			</Button>
 
@@ -349,7 +359,16 @@ android:background="@color/color_gris_claro">
 			android:layout_marginLeft="5dp"
 			android:layout_marginTop="10dp"
 			android:visibility="gone"
-			android:textColorHint="@color/color_gris_oscuro"/>
+			android:textColorHint="@color/color_gris"
+			android:hint="abc@mail.com..."
+			android:lines="2"
+			android:minLines="1"
+			android:maxLines="2"
+			android:ellipsize="none"
+			android:singleLine="false"
+			android:scrollHorizontally="false"
+			android:scrollbars="vertical"
+			android:gravity="top|start"/>
 
 
 
@@ -366,7 +385,7 @@ android:background="@color/color_gris_claro">
 			android:orientation="horizontal" android:layout_margin="5dp"
 			android:layout_below="@id/menu_icons"
 			android:gravity="center"
-			android:background="@drawable/custom_text_view_categoria_desc">
+			android:background="@drawable/custom_text_view_categoria">
 
 			<TextView android:id="@+id/label_address" android:text="@string/label_direcciones"
 				android:layout_height="28dp"
@@ -377,23 +396,28 @@ android:background="@color/color_gris_claro">
 				android:paddingStart="15dp"
 				android:paddingLeft="15dp"
 				android:layout_margin="5dp"
-				android:layout_width="240dp"
+				android:layout_width="220dp"
 				android:layout_marginBottom="6dp"
 
 				/>
 
 			<Button android:id="@+id/addDir"
-				android:contentDescription="addTelefono"
+				android:contentDescription="addAddress"
 				android:text="@string/label_agregar"
 				android:textStyle="bold"
 				android:layout_marginLeft="5dp"
 				android:layout_marginStart="5dp"
-				android:padding="8dp"
+				android:paddingBottom="8dp"
+				android:paddingTop="8dp"
+				android:paddingStart="20dp"
+				android:paddingEnd="15dp"
 				android:layout_width="wrap_content"
-				android:layout_height="40dp"
+				android:layout_height="32dp"
 				android:textSize="12sp"
-				android:textColor="@color/color_gris_oscuro"
+				android:textColor="@color/color_blanco"
 				android:typeface="monospace"
+				android:background="@android:color/transparent"
+
 				>
 			</Button>
 
@@ -419,8 +443,8 @@ android:background="@color/color_gris_claro">
 		</EditText>
 
 		<EditText android:id="@+id/nuevoValorDir"
-			android:inputType="textPostalAddress|textCapCharacters"
-			android:layout_height="35dp"
+			android:inputType="textPostalAddress|textCapCharacters|textMultiLine"
+			android:layout_height="wrap_content"
 			android:layout_below="@id/linearAddress"
 			android:layout_toRightOf="@id/nuevoTipoDir"
 			android:layout_toEndOf="@id/nuevoTipoDir"
@@ -437,7 +461,17 @@ android:background="@color/color_gris_claro">
 			android:layout_marginLeft="5dp"
 			android:layout_marginTop="10dp"
 			android:visibility="gone"
-			android:textColorHint="@color/color_gris_oscuro"/>
+			android:textColorHint="@color/color_gris"
+			android:hint="abcd 1234..."
+			android:lines="4"
+			android:minLines="1"
+			android:maxLines="4"
+			android:ellipsize="none"
+			android:singleLine="false"
+			android:scrollHorizontally="false"
+			android:scrollbars="vertical"
+			android:gravity="top|start"
+			/>
 
 
 
@@ -467,16 +501,18 @@ android:background="@color/color_gris_claro">
 
 		<TextView android:id="@+id/label_category" android:text="@string/label_datosDeCategoria"
 			android:layout_below="@id/menu_icons"
-			android:layout_width="250dp"
-			android:layout_height="28dp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:textColor="@color/color_negro"
 			android:textSize="14sp"
 			android:layout_marginBottom="20dp"
 			android:gravity="start|center"
 			android:typeface="monospace"
-			android:background="@drawable/custom_text_view_categoria_desc"
-			android:paddingStart="15dp"
-			android:paddingLeft="15dp"
+			android:background="@drawable/custom_text_view_categoria"
+			android:paddingStart="20dp"
+			android:paddingLeft="20dp"
+			android:paddingTop="10dp"
+			android:paddingBottom="10dp"
 			android:layout_margin="5dp"/>
 
 
@@ -609,7 +645,7 @@ android:background="@color/color_gris_claro">
 
 		<TextView android:id="@+id/nombre_contacto"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:textSize="15sp" android:background="@drawable/custom_text_view_categoria_desc"
+			android:textSize="15sp" android:background="@drawable/custom_text_view_categoria"
 			android:textColor="@color/color_negro"
 			android:layout_margin="5dp"
 			android:typeface="monospace"
