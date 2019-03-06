@@ -24,8 +24,12 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 	private AltaPersonaActivity localContext = null;
 	private ArrayList<HashMap<String,Object>> data = null;
 	private static final String ID_TIPO_VALOR = "ID_TIPO_VALOR";
-	private static final String ID_PERSONA = "ID_PERSONA";
+	private static final String ID_PERSONA = "ID_VALOR";
 	private boolean habilitado = true;
+	private static final String VALOR = "VALOR";
+	private static final String TIPO = "TIPO";
+	private ArrayList<HashMap<String,String>> datosEnLista = null;
+
 
     public ArrayList<HashMap<String, Object>> getData() {
         return data;
@@ -61,8 +65,23 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 		super(context, data, resource, from, to);
 		localContext = (AltaPersonaActivity) context;
 		this.data = data;
+		this.cargarDatosEnLista();
 	}
 
+	private void cargarDatosEnLista() {
+		HashMap<String, String> hm = null;
+		HashMap<String, Object> hmData = null;
+		datosEnLista = new ArrayList<>();
+		if (data != null) {
+			for (HashMap hmTemp : data) {
+				hmData = hmTemp;
+				hm = new HashMap<>();
+				hm.put(TIPO, (String) hmData.get(TIPO));
+				hm.put(VALOR, (String) hmData.get(VALOR));
+				datosEnLista.add(hm);
+			}
+		}
+	}
 
 
 	/*
@@ -85,8 +104,8 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final View view = super.getView(position, convertView, parent);
 		Button btn = view.findViewById(R.id.removeButton);
-		EditText etxt = view.findViewById(R.id.rowValor);
-	//	final int pos = position;
+		final EditText etxt = view.findViewById(R.id.rowValor);
+		final int pos = position;
 	//	final KNSimpleCustomAdapter me = this;
 		if(localContext.ismMostrarTelefonosBoolean()){
 		    etxt.setInputType(InputType.TYPE_CLASS_PHONE );
@@ -96,6 +115,7 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 		    etxt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         }
 		btn.setTag(position);
+		etxt.setTag(position);
 
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -126,7 +146,19 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 			}
 		});
 
-        etxt.addTextChangedListener(new TextWatcher() {
+		etxt.setOnKeyListener(new View.OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				HashMap<String, String> hm = null;
+				int position = (int) etxt.getTag();
+				hm = datosEnLista.get(position);
+				hm.put(VALOR, etxt.getText().toString());
+				return true;
+			}
+		});
+
+
+		etxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -135,11 +167,12 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-				if(localContext.isTerminoCargaListado()){
+            	if(localContext.isTerminoCargaListado()){
 					localContext.realzarBotonGuardar();
 				}
             }

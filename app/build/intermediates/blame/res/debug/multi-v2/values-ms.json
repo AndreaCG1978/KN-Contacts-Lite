@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ms/values-ms.xml",
+            "outputFile": "C:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-I\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ms\\values-ms.xml",
             "map": [
                 {
-                    "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/9dc20d5cfc8e4ae948a0277ba280a7db/res/values-ms/values-ms.xml",
+                    "source": "C:\\Users\\a.grassano.spb\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\12327f130b1d40f84fb3391f6a7fdfb2\\res\\values-ms\\values-ms.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
