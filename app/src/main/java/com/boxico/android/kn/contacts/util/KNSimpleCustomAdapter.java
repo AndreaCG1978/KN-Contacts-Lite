@@ -146,7 +146,7 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 			}
 		});
 
-		etxt.setOnKeyListener(new View.OnKeyListener() {
+	/*	etxt.setOnKeyListener(new View.OnKeyListener() {
 			@Override
 			public boolean onKey(View v, int keyCode, KeyEvent event) {
 				HashMap<String, String> hm = null;
@@ -156,7 +156,7 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 				return true;
 			}
 		});
-
+*/
 
 		etxt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -166,8 +166,7 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
+				boolean hasFocus = etxt.hasFocus();
             }
 
             @Override
