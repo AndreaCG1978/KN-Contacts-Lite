@@ -28,8 +28,16 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 	private boolean habilitado = true;
 	private static final String VALOR = "VALOR";
 	private static final String TIPO = "TIPO";
-	private ArrayList<HashMap<String,String>> datosEnLista = null;
+	private HashMap<Integer,String> datosEnLista = null;
+    private static final String ID_CAMPO = "idCampo";
 
+    public HashMap<Integer,String> getDatosEnLista() {
+        return datosEnLista;
+    }
+
+    public void setDatosEnLista(HashMap<Integer,String> datosEnLista) {
+        this.datosEnLista = datosEnLista;
+    }
 
     public ArrayList<HashMap<String, Object>> getData() {
         return data;
@@ -65,23 +73,10 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 		super(context, data, resource, from, to);
 		localContext = (AltaPersonaActivity) context;
 		this.data = data;
-		this.cargarDatosEnLista();
+		//this.cargarDatosEnLista();
 	}
 
-	private void cargarDatosEnLista() {
-		HashMap<String, String> hm = null;
-		HashMap<String, Object> hmData = null;
-		datosEnLista = new ArrayList<>();
-		if (data != null) {
-			for (HashMap hmTemp : data) {
-				hmData = hmTemp;
-				hm = new HashMap<>();
-				hm.put(TIPO, (String) hmData.get(TIPO));
-				hm.put(VALOR, (String) hmData.get(VALOR));
-				datosEnLista.add(hm);
-			}
-		}
-	}
+
 
 
 	/*
@@ -167,6 +162,11 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 				boolean hasFocus = etxt.hasFocus();
+				if(hasFocus){
+					datosEnLista.put((Integer)etxt.getTag(), s.toString());
+
+				}
+
             }
 
             @Override

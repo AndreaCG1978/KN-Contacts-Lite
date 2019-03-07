@@ -19,6 +19,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -102,6 +103,7 @@ public class AltaPersonaActivity extends Activity  {
 
 	private static final String VALOR = "VALOR";
 	private static final String TIPO = "TIPO";
+    private static final String ID_CAMPO = "idCampo";
 	private static final String ID_TIPO_VALOR = "ID_TIPO_VALOR";
 	private static final String ID_PERSONA = "ID_PERSONA";
 
@@ -520,6 +522,27 @@ public class AltaPersonaActivity extends Activity  {
         //direccionesList.setAdapter(adapter);
 		this.resetAdapterDirecciones(null, true);
         getDireccionesList().setDividerHeight(10);
+    }
+
+    private HashMap<Integer,String> cargarDatosEnLista() {
+       	String val = null;
+        HashMap<String, Object> hmData = null;
+        int i = 0;
+        LinearLayout ll = null;
+        EditText etxt = null;
+		HashMap<Integer,String> datosEnLista =  new HashMap<>();
+        if (telefonosData != null) {
+            for (HashMap hmTemp : telefonosData) {
+                hmData = hmTemp;
+                val = (String) hmData.get(VALOR);                //datosEnLista.add(hm);
+				datosEnLista.put(i,val);
+	            ll = (LinearLayout) getTelefonosList().getAdapter().getView(i, null,getTelefonosList());
+                etxt = ll.findViewById(R.id.rowValor);
+                etxt.setTag(i);
+                i++;
+            }
+        }
+        return datosEnLista;
     }
 
 
@@ -1250,11 +1273,12 @@ public class AltaPersonaActivity extends Activity  {
 			if (listdata != null) {
 				for (HashMap hmTemp : listdata) {
 					hm = hmTemp;
-					vLayout = (LinearLayout) getTelefonosList().getChildAt(i);
-					eTemp = vLayout.findViewById(R.id.rowTipo);
-					tipoTemp = eTemp.getText().toString();
-					eTemp = vLayout.findViewById(R.id.rowValor);
-					valTemp = eTemp.getText().toString();
+				//	vLayout = (LinearLayout) getTelefonosList().getChildAt(i);
+				//	eTemp = vLayout.findViewById(R.id.rowTipo);
+				//	tipoTemp = eTemp.getText().toString();
+                    tipoTemp = (String)telefonosAdapter.getData().get(i).get(TIPO);
+				//	eTemp = vLayout.findViewById(R.id.rowValor);
+					valTemp = telefonosAdapter.getDatosEnLista().get(i);
 					if (!tipoTemp.equals("") && !valTemp.equals("")) {
 						tv = new TipoValorDTO();
 						tv.setIdPersona((String) hm.get(ID_PERSONA));
@@ -1663,6 +1687,11 @@ public class AltaPersonaActivity extends Activity  {
 			getMailsList().setVisibility(View.GONE);
 			getDireccionesList().setVisibility(View.GONE);
 			icon.setBackgroundResource(R.drawable.phone_am_icon);
+         //   ViewGroup parent =(ViewGroup) getTelefonosList().getParent();
+       //     this.getLayoutInflater().inflate(R.layout.alta_persona, parent);
+			HashMap<Integer,String> datosEnLista = this.cargarDatosEnLista();
+			telefonosAdapter.setDatosEnLista(datosEnLista);
+
 
 			//icon.setBackgroundDrawable(d);
 		}
