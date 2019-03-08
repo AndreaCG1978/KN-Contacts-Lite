@@ -524,7 +524,7 @@ public class AltaPersonaActivity extends Activity  {
         getDireccionesList().setDividerHeight(10);
     }
 
-    private HashMap<Integer,String> cargarDatosEnLista() {
+    private HashMap<Integer,String> cargarDatosTelefonosEnLista() {
        	String val = null;
         HashMap<String, Object> hmData = null;
         int i = 0;
@@ -544,6 +544,48 @@ public class AltaPersonaActivity extends Activity  {
         }
         return datosEnLista;
     }
+
+	private HashMap<Integer,String> cargarDatosMailsEnLista() {
+		String val = null;
+		HashMap<String, Object> hmData = null;
+		int i = 0;
+		LinearLayout ll = null;
+		EditText etxt = null;
+		HashMap<Integer,String> datosEnLista =  new HashMap<>();
+		if (mailsData != null) {
+			for (HashMap hmTemp : mailsData) {
+				hmData = hmTemp;
+				val = (String) hmData.get(VALOR);                //datosEnLista.add(hm);
+				datosEnLista.put(i,val);
+				ll = (LinearLayout) getMailsList().getAdapter().getView(i, null,getMailsList());
+				etxt = ll.findViewById(R.id.rowValor);
+				etxt.setTag(i);
+				i++;
+			}
+		}
+		return datosEnLista;
+	}
+
+	private HashMap<Integer,String> cargarDatosDireccionesEnLista() {
+		String val = null;
+		HashMap<String, Object> hmData = null;
+		int i = 0;
+		LinearLayout ll = null;
+		EditText etxt = null;
+		HashMap<Integer,String> datosEnLista =  new HashMap<>();
+		if (direccionesData != null) {
+			for (HashMap hmTemp : direccionesData) {
+				hmData = hmTemp;
+				val = (String) hmData.get(VALOR);                //datosEnLista.add(hm);
+				datosEnLista.put(i,val);
+				ll = (LinearLayout) getDireccionesList().getAdapter().getView(i, null,getDireccionesList());
+				etxt = ll.findViewById(R.id.rowValor);
+				etxt.setTag(i);
+				i++;
+			}
+		}
+		return datosEnLista;
+	}
 
 
 	public void resetAdapterTelefonos(ArrayList<HashMap<String,Object>> listdata, boolean limpiarDatos){
@@ -1192,7 +1234,7 @@ public class AltaPersonaActivity extends Activity  {
 			LinearLayout vLayout = null;
 			EditText eTemp = null;
 			String tipoTemp, valTemp = null;
-			if (listdata != null) {
+		/*	if (listdata != null) {
 				for (HashMap hmTemp : listdata) {
 					hm = hmTemp;
 					vLayout = (LinearLayout) getMailsList().getChildAt(i);
@@ -1211,6 +1253,26 @@ public class AltaPersonaActivity extends Activity  {
 					}
 					i++;
 
+				}
+			}*/
+
+
+
+			if (listdata != null) {
+				for (HashMap hmTemp : listdata) {
+					hm = hmTemp;
+					tipoTemp = (String)mailsAdapter.getData().get(i).get(TIPO);
+					valTemp = mailsAdapter.getDatosEnLista().get(i);
+					if (!tipoTemp.equals("") && !valTemp.equals("")) {
+						tv = new TipoValorDTO();
+						tv.setIdPersona((String) hm.get(ID_PERSONA));
+						tv.setId((Long) hm.get(ID_TIPO_VALOR));
+						tv.setTipo(tipoTemp);
+						tv.setValor(valTemp);
+						mailsTemp.add(tv);
+						huboCambios = true;
+					}
+					i++;
 				}
 			}
 		}
@@ -1273,11 +1335,7 @@ public class AltaPersonaActivity extends Activity  {
 			if (listdata != null) {
 				for (HashMap hmTemp : listdata) {
 					hm = hmTemp;
-				//	vLayout = (LinearLayout) getTelefonosList().getChildAt(i);
-				//	eTemp = vLayout.findViewById(R.id.rowTipo);
-				//	tipoTemp = eTemp.getText().toString();
                     tipoTemp = (String)telefonosAdapter.getData().get(i).get(TIPO);
-				//	eTemp = vLayout.findViewById(R.id.rowValor);
 					valTemp = telefonosAdapter.getDatosEnLista().get(i);
 					if (!tipoTemp.equals("") && !valTemp.equals("")) {
 						tv = new TipoValorDTO();
@@ -1285,17 +1343,10 @@ public class AltaPersonaActivity extends Activity  {
 						tv.setId((Long) hm.get(ID_TIPO_VALOR));
 						tv.setTipo(tipoTemp);
 						tv.setValor(valTemp);
-
-						/*hm.put(TIPO, tv.getTipo());
-						hm.put(VALOR, tv.getValor());
-						hm.put(ID_TIPO_VALOR, tv.getId());
-						hm.put(ID_PERSONA, tv.getIdPersona());*/
 						telefonosTemp.add(tv);
 						huboCambios = true;
-
 					}
 					i++;
-
 				}
 			}
 		}
@@ -1687,13 +1738,8 @@ public class AltaPersonaActivity extends Activity  {
 			getMailsList().setVisibility(View.GONE);
 			getDireccionesList().setVisibility(View.GONE);
 			icon.setBackgroundResource(R.drawable.phone_am_icon);
-         //   ViewGroup parent =(ViewGroup) getTelefonosList().getParent();
-       //     this.getLayoutInflater().inflate(R.layout.alta_persona, parent);
-			HashMap<Integer,String> datosEnLista = this.cargarDatosEnLista();
+			HashMap<Integer,String> datosEnLista = this.cargarDatosTelefonosEnLista();
 			telefonosAdapter.setDatosEnLista(datosEnLista);
-
-
-			//icon.setBackgroundDrawable(d);
 		}
 	}
 
@@ -1729,8 +1775,9 @@ public class AltaPersonaActivity extends Activity  {
             getTelefonosList().setVisibility(View.GONE);
 			getDireccionesList().setVisibility(View.GONE);
 			icon.setBackgroundResource(R.drawable.mail_am_icon);
+			HashMap<Integer,String> datosEnLista = this.cargarDatosMailsEnLista();
+			mailsAdapter.setDatosEnLista(datosEnLista);
 
-			//icon.setBackgroundDrawable(d);
 		}
 	}
 
@@ -1766,7 +1813,8 @@ public class AltaPersonaActivity extends Activity  {
             getTelefonosList().setVisibility(View.GONE);
 			getMailsList().setVisibility(View.GONE);
 			icon.setBackgroundResource(R.drawable.home_am_icon);
-
+			HashMap<Integer,String> datosEnLista = this.cargarDatosDireccionesEnLista();
+			direccionesAdapter.setDatosEnLista(datosEnLista);
 		}
 	}
 	
