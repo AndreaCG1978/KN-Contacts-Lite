@@ -1073,21 +1073,24 @@ public class ConstantsAdmin {
 	public static final String folderCSV = "KN-Contacts";
 	private static final String fileCSV = ".kncontacts.csv";
 
+
+	public static boolean existsBackupFile(Activity context){
+		File file = obtenerFileCSV(context);
+		return file != null && file.exists();
+	}
+
 	public static void importarCSV(Activity context, DataBaseManager mDBManager){
 		String body;
 		File file;
 		mensaje = context.getString(R.string.error_importar_csv);
 		try {
-
-
-			file = obtenerFileCSV(context);
-			if(file != null){
-				if(file.getName().equals(fileCSV)){
-					body = obtenerContenidoArchivo(file, context);
-					procesarStringDatos(context, body, mDBManager);
-					mensaje = context.getString(R.string.mensaje_exito_importar_csv);
-				}
+			if(existsBackupFile(context)) {
+				file = obtenerFileCSV(context);
+				body = obtenerContenidoArchivo(file, context);
+				procesarStringDatos(context, body, mDBManager);
+				mensaje = context.getString(R.string.mensaje_exito_importar_csv);
 			}
+
 		} catch (Exception e) {
 			mensaje = context.getString(R.string.error_importar_csv);
 

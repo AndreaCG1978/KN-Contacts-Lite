@@ -309,7 +309,53 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 	private void redirigirImportarContactos(){
-		if((personasMap == null || personasMap.size() == 0)&&(!ConstantsAdmin.config.isMuestraPreferidos())){
+		if((personasMap == null || personasMap.size() == 0)&&(!ConstantsAdmin.config.isMuestraPreferidos())) {
+			boolean existsBU = false;
+			int size;
+			if (ConstantsAdmin.existsBackupFile(this)) {
+				existsBU = true;
+				size = 3;
+			} else {
+				size = 2;
+			}
+			final CharSequence[] charSequence = new CharSequence[size];
+
+			charSequence[0] = this.getString(R.string.menu_agregar_persona);
+			charSequence[1] = this.getString(R.string.menu_importar_contactos);
+			if (existsBU) {
+				charSequence[2] = this.getString(R.string.menu_importar_contactos_csv);
+			}
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Aun no se han cargado contactos...")
+					//.setMessage("You can buy our products without registration too. Enjoy the shopping")
+					.setSingleChoiceItems(charSequence, -1, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							switch (which) {
+								case 0:
+									openAltaPersona();
+									break; // optional
+								case 1:
+									mostrarDialogoImportarContactos();
+									//ConstantsAdmin.cursorCategoriasPersonales = cl;
+									break; // optional
+								case 2:
+									askForReadStoragePermission();
+									//ConstantsAdmin.cursorCategoriasPersonales = cl;
+									break; // optional
+
+								default: // Optional
+									// Statements
+							}
+							dialog.cancel();
+
+						}
+					});
+			builder.create().show();
+		}
+
+		/*if((personasMap == null || personasMap.size() == 0)&&(!ConstantsAdmin.config.isMuestraPreferidos())){
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage("Aun no se han cargado contactos, desea importarlos de la Agenda?")
 					.setCancelable(false)
@@ -324,9 +370,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 						}
 					});
 			builder.show();
-		}
-
-
+		}*/
 
 	}
 

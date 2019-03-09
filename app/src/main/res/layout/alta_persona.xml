@@ -109,7 +109,7 @@ android:background="@color/color_gris_claro">
                 android:inputType="textCapWords"
 				android:textStyle="bold"
 				android:padding="5dp"
-				android:textSize="17sp"
+				android:textSize="15sp"
                 android:maxLength="22"
 				android:textColor="@color/color_negro"
 				android:typeface="monospace"
@@ -118,7 +118,7 @@ android:background="@color/color_gris_claro">
 				android:layout_marginLeft="3dp"
                 android:layout_marginStart="3dp"
                 android:layout_marginEnd="4dp"
-				android:textColorHint="@color/color_gris_oscuro"
+				android:textColorHint="@color/color_gris"
 				/>
 
 		</LinearLayout>
@@ -140,13 +140,13 @@ android:background="@color/color_gris_claro">
 				android:layout_height="35dp" android:textStyle="bold"
 				android:textColor="@color/color_negro"
 				android:typeface="monospace"
-				android:padding="5dp" android:textSize="17sp"
+				android:padding="5dp" android:textSize="15sp"
 				android:layout_marginStart="3dp" android:layout_marginEnd="4dp"
 				android:maxLength="25" android:layout_width="fill_parent"
 				android:importantForAutofill="no"
 				android:layout_marginRight="4dp"
 				android:layout_marginLeft="3dp"
-				android:textColorHint="@color/color_gris_oscuro"/>
+				android:textColorHint="@color/color_gris"/>
 
 		</LinearLayout>
 
@@ -576,9 +576,9 @@ android:background="@color/color_gris_claro">
 					android:importantForAutofill="no"
 					android:layout_marginRight="4dp"
 					android:layout_marginLeft="3dp"
-					android:textColorHint="@color/color_gris_oscuro"
+					android:textColorHint="@color/color_gris"
                     android:lines="2"
-					android:minLines="2"
+					android:minLines="1"
                     android:maxLines="2"
                     android:ellipsize="none"
                     android:singleLine="false"
@@ -623,11 +623,11 @@ android:background="@color/color_gris_claro">
 					android:importantForAutofill="no"
 					android:layout_marginRight="4dp"
 					android:layout_marginLeft="3dp"
-					android:minLines="4"
+					android:minLines="1"
 					android:maxLines="4"
 					android:scrollHorizontally="false"
 					android:scrollbars="vertical"
-					android:textColorHint="@color/color_gris_oscuro"
+					android:textColorHint="@color/color_gris"
 
 					/>
 

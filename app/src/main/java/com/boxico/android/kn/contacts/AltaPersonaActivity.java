@@ -16,6 +16,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -272,6 +273,8 @@ public class AltaPersonaActivity extends Activity  {
         //	allMyCursors = new ArrayList<>();
             this.setContentView(R.layout.alta_persona);
             this.registrarWidgets();
+			this.configurarBotonGuardar();
+			this.configurarBotonGuardarYSalir();
             this.guardarPersonaSeleccionada(this.getIntent());
             this.configurarListaTelefonos();
             this.configurarListaDirecciones();
@@ -284,8 +287,7 @@ public class AltaPersonaActivity extends Activity  {
             this.configurarMasOMenosEmails();
             this.configurarMasOMenosDirecciones();
             this.configurarMasOMenosDatosPorCategoria();
-            this.configurarBotonGuardar();
-            this.configurarBotonGuardarYSalir();
+
             this.configurarBotonesAgregarTipoValor();
             if(mPersonaSeleccionada.getId() == 0 || mPersonaSeleccionada.getId() == -1){
                 this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_agregar_persona));
@@ -745,20 +747,86 @@ public class AltaPersonaActivity extends Activity  {
 		botonAddMail = this.findViewById(R.id.addMail);
 		botonAddDir = this.findViewById(R.id.addDir);
 
-	/*	mEntryApellido.setOnKeyListener(new View.OnKeyListener() {
-			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				realzarBotonGuardar();
-				return false;
-			}
-		});*/
+        mEntryApellido.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                realzarBotonGuardar();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mEntryNombre.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                realzarBotonGuardar();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mEntryDatoExtra.addTextChangedListener(new TextWatcher() {
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                realzarBotonGuardar();
+            }
+
+
+
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+            }
+
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mEntryDescripcion.addTextChangedListener(new TextWatcher() {
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                realzarBotonGuardar();
+            }
+
+
+
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+            }
+
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mCheckFechaNac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                realzarBotonGuardar();
+            }
+        });
 
 
 
 
 
-
-	}
+    }
 	
 	private void cargarPersonaDto(String idPerString){
 		int idPer = Integer.valueOf(idPerString);
@@ -772,45 +840,13 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryApellido.getText().clear();
 			mEntryApellido.append(mPersonaSeleccionada.getApellido());
 		}
-		mEntryApellido.addTextChangedListener(new TextWatcher() {
 
-			public void onTextChanged(CharSequence s, int start, int before,
-									  int count) {
-				realzarBotonGuardar();
-			}
-
-
-
-			public void beforeTextChanged(CharSequence s, int start, int count,
-										  int after) {
-			}
-
-			public void afterTextChanged(Editable s) {
-
-			}
-		});
 
 		if(mPersonaSeleccionada.getNombres() != null && !mPersonaSeleccionada.getNombres().equals("")){
 	//		mEntryNombre.setText(mPersonaSeleccionada.getNombres());
 			mEntryNombre.getText().clear();
 			mEntryNombre.append(mPersonaSeleccionada.getNombres());
 		}
-		mEntryNombre.addTextChangedListener(new TextWatcher() {
-			public void onTextChanged(CharSequence s, int start, int before,
-									  int count) {
-				realzarBotonGuardar();
-			}
-
-
-
-			public void beforeTextChanged(CharSequence s, int start, int count,
-										  int after) {
-			}
-
-			public void afterTextChanged(Editable s) {
-
-			}
-		});
 
 	//mEntryDatoExtra.setText(mPersonaSeleccionada.getDatoExtra());
 
@@ -818,54 +854,12 @@ public class AltaPersonaActivity extends Activity  {
 		if(mPersonaSeleccionada.getDatoExtra() != null) {
 			mEntryDatoExtra.append(mPersonaSeleccionada.getDatoExtra());
 		}
-		mEntryDatoExtra.addTextChangedListener(new TextWatcher() {
-			public void onTextChanged(CharSequence s, int start, int before,
-									  int count) {
-				realzarBotonGuardar();
-			}
-
-
-
-			public void beforeTextChanged(CharSequence s, int start, int count,
-										  int after) {
-			}
-
-			public void afterTextChanged(Editable s) {
-
-			}
-		});
-
 
 //		mEntryDescripcion.setText(mPersonaSeleccionada.getDescripcion());
 		mEntryDescripcion.getText().clear();
 		if(mPersonaSeleccionada.getDescripcion() != null) {
 			mEntryDescripcion.append(mPersonaSeleccionada.getDescripcion());
 		}
-
-
-		mEntryDescripcion.addTextChangedListener(new TextWatcher() {
-			public void onTextChanged(CharSequence s, int start, int before,
-									  int count) {
-				realzarBotonGuardar();
-			}
-
-
-
-			public void beforeTextChanged(CharSequence s, int start, int count,
-										  int after) {
-			}
-
-			public void afterTextChanged(Editable s) {
-
-			}
-		});
-
-		mCheckFechaNac.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				realzarBotonGuardar();
-			}
-		});
 
 
 		this.cargarTelefonos();

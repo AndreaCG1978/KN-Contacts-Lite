@@ -838,26 +838,11 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	private void efectuarLlamadaGenerico(String numero) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		final String numeroTemp = numero;
-		/*builder.setMessage(this.getString(R.string.mensaje_seleccione_llamada_sms) + " " + numero)
-				.setCancelable(true)
-				.setPositiveButton(R.string.label_llamada, new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						efectuarLlamada(numeroTemp);
-					}
-				})
-				.setNegativeButton(R.string.label_sms, new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						enviarSMS(numeroTemp);
-					}
-				});*/
-
-		//final CharSequence[] charSequence = new CharSequence[] {"As Guest","I have account here", "Something else"};
 		final CharSequence[] charSequence = new CharSequence[] {
 				this.getString(R.string.label_llamada),
 				this.getString(R.string.label_sms),
 				"WhatsApp"};
 		builder.setTitle(this.getString(R.string.mensaje_seleccione_llamada_sms))
-				//.setMessage("You can buy our products without registration too. Enjoy the shopping")
 				.setSingleChoiceItems(charSequence, 0, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -867,15 +852,12 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 								break; // optional
 							case 1:
 								enviarSMS(numeroTemp);
-								//ConstantsAdmin.cursorCategoriasPersonales = cl;
 								break; // optional
 							case 2:
 								enviarWhatsApp(numeroTemp);
-								//ConstantsAdmin.cursorCategoriasPersonales = cl;
 								break; // optional
 
 							default : // Optional
-								// Statements
 						}
 
 
