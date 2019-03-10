@@ -277,14 +277,14 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		ConstantsAdmin.finalizarBD(mDBManager);
 		if (posPeople < getPeople().getCount() - 1) {
 			botonSkipContact.setEnabled(true);
-			botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul));
+			botonSkipContact.setTextColor(getResources().getColor(R.color.color_blanco));
 		} else {
 			botonSkipContact.setEnabled(false);
-			botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul_oscuro));
+			botonSkipContact.setTextColor(getResources().getColor(R.color.color_gris));
 		}
 		if (posPeople > 0) {
 			botonPrevContact.setEnabled(true);
-			botonPrevContact.setTextColor(getResources().getColor(R.color.color_azul));
+			botonPrevContact.setTextColor(getResources().getColor(R.color.color_blanco));
 		}
 	}
 
@@ -338,14 +338,14 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		ConstantsAdmin.finalizarBD(mDBManager);
 		if (posPeople == 0) {
 			botonPrevContact.setEnabled(false);
-			botonPrevContact.setTextColor(getResources().getColor(R.color.color_azul_oscuro));
+			botonPrevContact.setTextColor(getResources().getColor(R.color.color_gris));
 		} else {
 			botonPrevContact.setEnabled(true);
-			botonPrevContact.setTextColor(getResources().getColor(R.color.color_azul));
+			botonPrevContact.setTextColor(getResources().getColor(R.color.color_blanco));
 		}
 		if (posPeople < getPeople().getCount()) {
 			botonSkipContact.setEnabled(true);
-			botonSkipContact.setTextColor(getResources().getColor(R.color.color_azul));
+			botonSkipContact.setTextColor(getResources().getColor(R.color.color_blanco));
 		}
 
 	}
@@ -369,17 +369,18 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 			if (persona.getId() == -1) {
 				this.seleccionarPrimerCategoria();
-				text = text + " (" + getResources().getString(R.string.label_nuevo_contacto) + ")";
+				text = text + System.getProperty("line.separator") + "(" + getResources().getString(R.string.label_nuevo_contacto) + ")";
 				botonAddContact.setText(getResources().getString(R.string.label_agregar));
 				entryDatoExtra.setText("");
 				entryDescripcion.setText("");
 
 			} else {
 				this.seleccionarCategoriaContactoExistente();
-				text = text + getResources().getString(R.string.label_contacto_existente) + persona.getCategoriaNombreRelativo() + ")";
+				text = text + System.getProperty("line.separator") + getResources().getString(R.string.label_contacto_existente) + persona.getCategoriaNombreRelativo() + ")";
 				botonAddContact.setText(getResources().getString(R.string.label_actualizar));
 				entryDatoExtra.setText(persona.getDatoExtra());
 				entryDescripcion.setText(persona.getDescripcion());
+
 			}
 			mPersonaEncontrada.setText(text);
 

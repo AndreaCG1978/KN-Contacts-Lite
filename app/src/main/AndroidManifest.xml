@@ -78,7 +78,8 @@
 		<activity android:name="PhotoActivity">
 		</activity>
 
-		<activity android:name="ImportarContactoActivity">
+		<activity android:name="ImportarContactoActivity"
+			android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
 			<intent-filter>
 				<action android:name="android.permission.READ_CONTACTS" />
 			</intent-filter>

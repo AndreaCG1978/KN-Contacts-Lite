@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<string name="app_name"><![CDATA[KN-контактами III]]></string>
+<string name="app_name"><![CDATA[KN-контактами]]></string>
 <string name="hint_apellido"><![CDATA[ФАМИЛИЯ]]></string>
 <string name="hint_nombre"><![CDATA[ИМЯ]]></string>
 <string name="hint_telMovil"><![CDATA[МОБИЛЬНЫЕ]]></string>
@@ -191,8 +191,8 @@
 <string name="label_actualizar"><![CDATA[ОБНОВИТЬ]]></string>
 <string name="mensaje_importar_todo_1"><![CDATA[Все новые контакты будут импортированы в качестве:]]></string>
 <string name="mensaje_importar_todo_2"><![CDATA[. Существующие контакты будут обновляться (только свои телефоны и почтовые аккаунты). Продолжить?]]></string>
-<string name="label_anterior"><![CDATA[<<]]></string>
-<string name="label_siguiente"><![CDATA[>>]]></string>
+    <string name="label_anterior"><![CDATA[«]]></string>
+    <string name="label_siguiente"><![CDATA[»]]></string>
 <string name="label_agregar_todos"><![CDATA[Добавить все]]></string>
 <string name="label_omitir_todos"><![CDATA[Пропустить все]]></string>
 <string name="label_preferidos"><![CDATA[ИЗБРАННОЕ]]></string>
@@ -203,5 +203,6 @@
 <string name="menu_editar_persona">Edit Contact</string>
     <string name="hint_contrasenia">********</string>
     <string name="blank">%d</string>
+    <string name="groupIndicator"><![CDATA[>]]></string>
 
 </resources>

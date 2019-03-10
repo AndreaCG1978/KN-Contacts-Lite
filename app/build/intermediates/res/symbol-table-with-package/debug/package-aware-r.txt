@@ -221,7 +221,6 @@ id line1
 id line3
 id linea1
 id linea2
-id linea3
 id linearAddress
 id linearApellido
 id linearCaracteristica
@@ -372,6 +371,7 @@ string error_alta_tipo_valor_incompleta
 string error_exportar_csv
 string error_importar_csv
 string error_sin_preferidos
+string groupIndicator
 string help_busqueda
 string hint_apellido
 string hint_busqueda

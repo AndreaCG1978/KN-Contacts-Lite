@@ -9,6 +9,8 @@
 		android:gravity="top"
 		android:padding="5dp"
 		android:layout_gravity="top"
+		android:textColor="@color/color_gris"
+		android:textSize="27sp"
 		android:background="@drawable/custom_button"/>
 
 	<LinearLayout
@@ -16,8 +18,8 @@
 		android:orientation="vertical"
 		android:paddingRight="10dp"
 		android:paddingEnd="10dp"
-		android:paddingLeft="7dp"
-		android:paddingStart="7dp"
+		android:paddingLeft="3dp"
+		android:paddingStart="3dp"
 
 		>
 		<LinearLayout android:layout_width="match_parent"
@@ -28,19 +30,23 @@
 
 
 			<TextView android:id="@+id/rowApellido" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:textColor="@color/color_negro"
+				android:layout_height="wrap_content"
+				android:textColor="@color/color_blanco"
 				android:textSize="13sp"
-				android:paddingTop="1dp" android:paddingEnd="4dp"
-				android:paddingBottom="1dp" android:typeface="monospace"
+				android:paddingTop="1dp"
+				android:paddingEnd="4dp"
+				android:paddingBottom="1dp"
+				android:typeface="monospace"
 				android:maxLength="20"
-				android:paddingLeft="20dp"
-				android:paddingStart="20dp"
+				android:paddingLeft="1dp"
+				android:paddingStart="1dp"
 				android:paddingRight="4dp"
+
 				>
 			</TextView>
 			<TextView android:id="@+id/rowNombres" android:layout_height="wrap_content"
 				android:layout_width="match_parent" android:textSize="13sp"
-				android:textColor="@color/color_negro" android:padding="1dp"
+				android:textColor="@color/color_blanco" android:padding="1dp"
 				android:typeface="monospace">
 			</TextView>
 
@@ -48,13 +54,16 @@
 
 		<TextView android:id="@+id/rowDatoRelevante"
 			android:layout_width="match_parent" android:layout_height="wrap_content"
-			android:textStyle="bold" android:textColor="@color/color_gris_oscuro"
+			android:textStyle="bold"
+			android:textColor="@color/color_gris_oscuro"
 			android:textSize="13sp"
 			android:paddingEnd="15dp"
 			android:typeface="monospace"
-			android:paddingTop="0dp" android:paddingBottom="0dp"
+			android:paddingTop="0dp"
+			android:paddingBottom="0dp"
 			android:background="@drawable/custom_text_view_categoria"
-			android:gravity="start" android:layout_marginEnd="5dp"
+			android:gravity="end"
+			android:layout_marginEnd="5dp"
 			android:singleLine="true"
 			android:paddingLeft="35dp"
 			android:paddingStart="35dp"

@@ -526,18 +526,25 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 								boolean muestraFoto = mostrarFoto(textFoto, per.getId());
 								if(!muestraFoto){
 									textFoto.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
-									textFoto.setVisibility(View.GONE);
+									textFoto.setText("░");
+									//textFoto.setVisibility(View.GONE);
+								}else{
+									textFoto.setText("");
 								}
 
 								//      ImageView photo = v.findViewById(R.id.photo);
 								if(per.getApellido() != null){
-									textApe.setText(per.getApellido().toUpperCase());
+									textApe.setText("¤ " + per.getApellido().toUpperCase());
 								}else{
 									textApe.setText("");
 								}
 
 								if(per.getNombres() != null){
-									textNom.setText(per.getNombres().toUpperCase());
+									if(per.getApellido() == null || per.getApellido().equals("")) {
+										textNom.setText("¤ " + per.getNombres().toUpperCase());
+									}else{
+										textNom.setText(per.getNombres().toUpperCase());
+									}
 								}else{
 									textNom.setText("");
 								}

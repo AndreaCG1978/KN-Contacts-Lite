@@ -73,7 +73,9 @@
         </activity>
         <activity android:name="com.boxico.android.kn.contacts.PhotoActivity" >
         </activity>
-        <activity android:name="com.boxico.android.kn.contacts.ImportarContactoActivity" >
+        <activity
+            android:name="com.boxico.android.kn.contacts.ImportarContactoActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
             <intent-filter>
                 <action android:name="android.permission.READ_CONTACTS" />
             </intent-filter>

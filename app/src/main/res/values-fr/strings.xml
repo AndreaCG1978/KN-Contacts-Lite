@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<string name="app_name">KN-Contacts III</string>
+<string name="app_name">KN-Contacts</string>
   
 <string name="hint_apellido">NOM DE FAMILLE</string>
 <string name="hint_nombre"><![CDATA[PRÉNOM]]></string>
@@ -190,8 +190,8 @@
 <string name="label_actualizar"><![CDATA[MISE À JOUR]]></string>
 <string name="mensaje_importar_todo_1"><![CDATA[Tous les nouveaux contacts seront importés en tant que:]]></string>
 <string name="mensaje_importar_todo_2"><![CDATA[. Les contacts existants seront mis à jour (seulement leurs téléphones et comptes de messagerie). Continuer?]]></string>
-<string name="label_anterior"><![CDATA[<<]]></string>
-<string name="label_siguiente"><![CDATA[>>]]></string>
+    <string name="label_anterior"><![CDATA[«]]></string>
+    <string name="label_siguiente"><![CDATA[»]]></string>
 <string name="label_agregar_todos"><![CDATA[Ajouter tous]]></string>
 <string name="label_omitir_todos"><![CDATA[Sautez tous]]></string>
 <string name="label_preferidos"><![CDATA[FAVORITES]]></string>
@@ -202,5 +202,6 @@
 <string name="menu_editar_persona">Edit Contact</string>
     <string name="hint_contrasenia">********</string>
     <string name="blank">%d</string>
+    <string name="groupIndicator"><![CDATA[>]]></string>
 
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<string name="app_name"><![CDATA[KN-Kontakt III]]></string>
+<string name="app_name"><![CDATA[KN-Kontakt]]></string>
 <string name="hint_apellido"><![CDATA[ZUNAME]]></string>
 <string name="hint_nombre"><![CDATA[NAMEN]]></string>
 <string name="hint_telMovil"><![CDATA[HANDY]]></string>
@@ -191,8 +191,8 @@
 <string name="label_actualizar"><![CDATA[AKTUALISIEREN]]></string>
 <string name="mensaje_importar_todo_1"><![CDATA[Alle neuen Kontakte werden als importiert werden:]]></string>
 <string name="mensaje_importar_todo_2"><![CDATA[. Bestehende Kontakte werden aktualisiert (nur ihre Handys und E-Mail-Konten) werden. Weiter?]]></string>
-<string name="label_anterior"><![CDATA[<<]]></string>
-<string name="label_siguiente"><![CDATA[>>]]></string>
+    <string name="label_anterior"><![CDATA[«]]></string>
+    <string name="label_siguiente"><![CDATA[»]]></string>
 <string name="label_agregar_todos"><![CDATA[ADDIEREN ALLE]]></string>
 <string name="label_omitir_todos"><![CDATA[SKIP ALLE]]></string>
 <string name="label_preferidos"><![CDATA[FAVORITEN]]></string>
@@ -203,4 +203,5 @@
 <string name="menu_editar_persona">Edit Contact</string>
     <string name="hint_contrasenia">********</string>
     <string name="blank">%d</string>
+    <string name="groupIndicator"><![CDATA[>]]></string>
 </resources>
