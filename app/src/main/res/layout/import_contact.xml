@@ -15,18 +15,18 @@
 		android:gravity="center"
 		android:background="@color/color_gris_oscuro"
 		android:layout_margin="5dp"
-		android:padding="7dp">
+		android:padding="3dp">
 
 
 		<Button android:id="@+id/botonPrevContact" android:text="@string/label_anterior"
 			android:layout_width="30dp"
 			android:layout_height="30dp"
-			android:layout_margin="3dp"
-			android:textSize="20sp"
-			android:paddingBottom="5dp"
+			android:layout_margin="5dp"
+			android:textSize="22sp"
+			android:paddingBottom="4dp"
 			android:textColor="@color/color_blanco"
 			android:background="@drawable/custom_button"
-			android:layout_gravity="center" />
+			android:layout_gravity="center_horizontal|bottom" />
 
 		<TextView
 			android:id="@+id/textPersonaEncontrada"
@@ -43,37 +43,41 @@
 		<Button android:id="@+id/botonSkipContact" android:text="@string/label_siguiente"
 			android:layout_width="30dp"
 			android:layout_height="30dp"
-			android:layout_margin="3dp"
-			android:textSize="20sp"
-			android:paddingBottom="5dp"
-			android:textColor="@color/color_blanco"
-			android:background="@drawable/custom_button"
-			android:layout_gravity="center" />
+            android:layout_margin="5dp"
+            android:textSize="22sp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/color_blanco"
+            android:background="@drawable/custom_button"
+            android:layout_gravity="center_horizontal|bottom" />
 
 	</LinearLayout>
 
 	<LinearLayout android:layout_width="match_parent"
 		android:layout_height="wrap_content" android:orientation="horizontal"
 		android:gravity="center" android:background="@color/color_gris_oscuro"
-		android:layout_margin="5dp">
+		android:layout_margin="5dp"
+		android:padding="5dp">
 
 		<Button android:id="@+id/botonAddContact" android:layout_width="wrap_content"
 			android:layout_height="30dp" android:layout_margin="5dp"
-			android:textSize="12sp" android:textColor="@color/color_blanco"
-			android:background="@drawable/custom_button" android:layout_gravity="center" />
+			android:textSize="11sp" android:textColor="@color/color_blanco"
+			android:background="@drawable/custom_button" android:layout_gravity="center"
+			android:padding="2dp"/>
 
 		<Button android:id="@+id/botonAddAll" android:text="@string/label_agregar_todos"
 			android:layout_width="wrap_content" android:layout_height="30dp"
-			android:layout_marginLeft="10dp" android:textSize="11sp"
+			android:layout_marginLeft="15dp" android:textSize="10sp"
 			android:textColor="@color/color_blanco" android:background="@drawable/custom_button"
-			android:layout_gravity="center" />
+			android:layout_gravity="center"
+			android:padding="2dp"/>
 
 
 		<Button android:id="@+id/botonSkipAll" android:text="@string/label_omitir_todos"
 			android:layout_width="wrap_content" android:layout_height="30dp"
-			android:layout_marginLeft="10dp" android:textSize="11sp"
+			android:layout_marginLeft="15dp" android:textSize="10sp"
 			android:textColor="@color/color_blanco" android:background="@drawable/custom_button"
-			android:layout_gravity="center" />
+			android:layout_gravity="center"
+			android:padding="2dp"/>
 
 	</LinearLayout>
 
@@ -86,7 +90,7 @@
 		android:background="@color/color_gris_claro"
 		android:textColor="@color/color_gris_oscuro"
 		android:layout_margin="5dp"
-		android:padding="3dp" />
+		android:padding="5dp" />
 
 
 	<TextView
@@ -97,7 +101,7 @@
 		android:background="@color/color_gris_claro"
 		android:textColor="@color/color_gris_oscuro"
 		android:layout_margin="5dp"
-		android:padding="3dp" />
+		android:padding="5dp" />
 
 
 	<TextView
@@ -108,30 +112,33 @@
 		android:background="@color/color_gris_claro"
 		android:textColor="@color/color_gris_oscuro"
 		android:layout_margin="5dp"
-		android:padding="3dp" />
+		android:padding="5dp" />
 
 
 
-	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+	<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
 		android:orientation="horizontal" android:layout_margin="5dp"
 		android:gravity="right"
-		android:background="@drawable/custom_text_view_apellido">
+		android:background="@color/color_gris_oscuro"
+		android:padding="7dp">
 
 
 		<Spinner android:id="@+id/spinnerCategorias_alta_persona"
-			android:layout_width="310dp"
+			android:layout_width="200dp"
 			android:layout_height="33dp"
 			android:layout_marginEnd="10dp"
 			android:layout_marginTop="8dp"
 			android:layout_marginBottom="8dp"
 			style="@style/SpinnerTheme"
-			android:layout_marginRight="10dp" />
+			android:layout_marginRight="10dp"
+			android:layout_marginLeft="10dp"/>
 
-		<ImageButton android:id="@+id/imagenCategorias" android:background="@drawable/categoria_icon"
+		<ImageButton android:id="@+id/imagenCategorias"
+			android:background="@drawable/categoria_icon"
 			android:layout_height="34dp" android:layout_width="34dp"
-			android:layout_marginStart="18dp"
+			android:layout_marginStart="10dp"
 			android:contentDescription="imagenCategorias"
-			android:layout_marginLeft="18dp" />
+			android:layout_marginLeft="10dp" />
 	
 	</LinearLayout>
 
@@ -141,16 +148,18 @@
 		>
 
 		<TextView android:id="@+id/label_datoExtra"
-			android:layout_width="130dp" android:layout_height="wrap_content"
+			android:layout_width="120dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:padding="5dp" android:gravity="end"
 			android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" />
 
-		<EditText android:id="@+id/entryDatoExtra" android:inputType="textCapWords|textMultiLine"
+		<EditText android:id="@+id/entryDatoExtra"
+			android:inputType="textCapWords|textMultiLine"
 			android:layout_height="wrap_content"
 			android:textStyle="bold"
 			android:textColor="@color/color_gris_oscuro"
 			android:padding="5dp"
+			android:textColorHint="@color/color_gris"
 			android:textSize="15sp"
 			android:layout_marginStart="3dp"
 			android:layout_marginEnd="4dp"
@@ -178,7 +187,7 @@
 		>
 
 		<TextView android:id="@+id/label_descripcion" android:text="@string/hint_descripcion"
-			android:layout_width="130dp" android:layout_height="wrap_content"
+			android:layout_width="120dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:padding="5dp" android:gravity="end"
 			android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_azul_oscuro" />
@@ -186,12 +195,14 @@
 		<EditText android:id="@+id/entryDescripcion" android:hint="@string/hint_descripcion"
 			android:inputType="textCapWords|textMultiLine"
 			android:layout_height="wrap_content"
-			android:textStyle="bold" android:textColor="@color/color_gris_oscuro"
+			android:textStyle="bold"
+			android:textColor="@color/color_gris_oscuro"
 			android:padding="5dp"
 			android:textSize="15sp"
 			android:layout_marginStart="3dp"
 			android:layout_marginEnd="4dp"
 			android:layout_width="match_parent"
+			android:textColorHint="@color/color_gris"
 			android:maxLength="60"
 			android:importantForAutofill="no"
 			android:layout_marginLeft="3dp"
