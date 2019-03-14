@@ -1152,7 +1152,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		//	Cursor emails = getContentResolver().query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, projectionMail, ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = " + contactId, null, null);
 		if (emails != null && emails.getCount() > 0) {
 			//    super.startManagingCursor(emails);
-			mails = this.getString(R.string.label_emails) + "\n";
+			mails = "░" + this.getString(R.string.label_emails) + System.getProperty("line.separator");
 			while (emails.moveToNext()) {
 				// Tis would allow you get several email addresses
 				emailAddress = emails.getString(emails.getColumnIndex(Email.DATA));
@@ -1173,7 +1173,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 					label = emails.getString(emails.getColumnIndex(ContactsContract.CommonDataKinds.Email.LABEL));
 				}*/
 				if (!emailAddress.equals("")) {
-					mails = mails + "\n" + label + ": " + emailAddress;
+					mails = mails + System.getProperty("line.separator") + "¤ " + label.toUpperCase() + "» " + emailAddress;
 				}
 				/*
 				if (!emailAddress.equals("")) {
@@ -1220,8 +1220,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 //    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
 		if (phones != null && phones.getCount() > 0) {
 //  	        super.startManagingCursor(phones);
-			tels = this.getString(R.string.label_telefonos) + "\n";
-			while (phones.moveToNext()) {
+			tels = "░" + this.getString(R.string.label_telefonos) + System.getProperty("line.separator");
+            while (phones.moveToNext()) {
 				phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 				phoneType = phones.getInt(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
 				int lblIndex = phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL);
@@ -1233,8 +1233,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			/*	if (label.equalsIgnoreCase("Custom")){
 					label = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.LABEL));
 				}*/
+
 				if (!phoneNumber.equals("")) {
-					tels = tels + "\n" + label + ": " + phoneNumber;
+					tels = tels + System.getProperty("line.separator") + "¤ " + label.toUpperCase() + "» " + phoneNumber;
 					/*switch (phoneType) {
 						case Phone.TYPE_HOME:
 							tels = tels + "\n" + Phone.TYPE_HOME + ": " + phoneNumber;
@@ -1283,7 +1284,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 //    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
 		if (dirsCursor != null && dirsCursor.getCount() > 0) {
 //  	        super.startManagingCursor(phones);
-			dirs = this.getString(R.string.label_direcciones) + "\n";
+			dirs = "░" + this.getString(R.string.label_direcciones) + System.getProperty("line.separator");
 			while (dirsCursor.moveToNext()) {
 				dir = dirsCursor.getString(dirsCursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.STREET));
 				city = dirsCursor.getString(dirsCursor.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.CITY));
@@ -1304,7 +1305,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
                     if(city != null && !city.equals("")){
                         dir = dir + " " + city;
                     }
-                    dirs = dirs + "\n" + label + ": " + dir;
+                    dirs = dirs + System.getProperty("line.separator") + "¤ " + label.toUpperCase() + "» " + dir;
 
 				}
 

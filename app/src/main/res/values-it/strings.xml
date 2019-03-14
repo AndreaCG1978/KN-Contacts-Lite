@@ -189,8 +189,8 @@
 <string name="label_actualizar"><![CDATA[AGGIORNA]]></string>
 <string name="mensaje_importar_todo_1"><![CDATA[Tutti i nuovi contatti verranno importati come:]]></string>
 <string name="mensaje_importar_todo_2"><![CDATA[. Contatti esistenti verranno aggiornati (solo loro telefoni ed e-mail). Continuare?]]></string>
-    <string name="label_anterior"><![CDATA[«]]></string>
-    <string name="label_siguiente"><![CDATA[»]]></string>
+    <string name="label_anterior"><![CDATA[«▒]]></string>
+    <string name="label_siguiente"><![CDATA[▒»]]></string>
 <string name="label_agregar_todos"><![CDATA[AGGIUNGI TUTTI]]></string>
 <string name="label_omitir_todos"><![CDATA[SALTA TUTTI]]></string>
 <string name="label_preferidos"><![CDATA[FAVORITI]]></string>

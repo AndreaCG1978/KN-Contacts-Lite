@@ -198,8 +198,8 @@
 	<string name="label_actualizar"><![CDATA[ACTUALIZAR]]></string>
 	<string name="mensaje_importar_todo_1"><![CDATA[Se importarán todos los contactos nuevos como:]]></string>
 	<string name="mensaje_importar_todo_2"><![CDATA[. Los contactos existentes serán actualizados (solo sus teléfonos y cuentas de correo). Desea continuar?]]></string>
-	<string name="label_anterior"><![CDATA[«]]></string>
-	<string name="label_siguiente"><![CDATA[»]]></string>
+	<string name="label_anterior"><![CDATA[«▒]]></string>
+	<string name="label_siguiente"><![CDATA[▒»]]></string>
 	<string name="label_agregar_todos"><![CDATA[AGREGAR TODOS]]></string>
 	<string name="label_omitir_todos"><![CDATA[OMITIR TODOS]]></string>
 	<string name="label_preferidos"><![CDATA[PREFERIDOS]]></string>
