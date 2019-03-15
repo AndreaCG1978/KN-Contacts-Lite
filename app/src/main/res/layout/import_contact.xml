@@ -114,37 +114,47 @@
 		android:layout_margin="5dp"
 		android:padding="5dp" />
 
-
+	<View android:layout_width="match_parent" android:layout_height="1px"
+		android:background="@color/color_gris_oscuro"/>
 
 	<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
 		android:orientation="horizontal" android:layout_margin="5dp"
-		android:gravity="right"
-		android:background="@color/color_gris_oscuro"
+		android:gravity="left"
 		android:padding="7dp">
-
-
-		<Spinner android:id="@+id/spinnerCategorias_alta_persona"
-			android:layout_width="200dp"
-			android:layout_height="33dp"
-			android:layout_marginEnd="10dp"
-			android:layout_marginTop="8dp"
-			android:layout_marginBottom="8dp"
-			style="@style/SpinnerTheme"
-			android:layout_marginRight="10dp"
-			android:layout_marginLeft="10dp"/>
 
 		<ImageButton android:id="@+id/imagenCategorias"
 			android:background="@drawable/categoria_icon"
 			android:layout_height="34dp" android:layout_width="34dp"
-			android:layout_marginStart="10dp"
 			android:contentDescription="imagenCategorias"
-			android:layout_marginLeft="10dp" />
-	
+			android:layout_marginLeft="3dp"
+			/>
+
+
+		<LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:layout_marginLeft="10dp"
+			android:padding="5dp"
+			android:background="@color/color_gris_oscuro"
+			>
+
+
+			<Spinner android:id="@+id/spinnerCategorias_alta_persona"
+				android:layout_width="wrap_content"
+				android:layout_height="30dp"
+				android:layout_margin="5dp"
+				android:spinnerMode="dialog"
+				style="@style/SpinnerTheme"
+				android:background="@color/color_gris_claro"/>
+
+		</LinearLayout>
+
+
 	</LinearLayout>
 
 	<LinearLayout android:id="@+id/linearCaracteristica"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:orientation="horizontal" android:layout_margin="4dp"
+		android:orientation="horizontal" android:layout_marginLeft="17dp"
 		>
 
 		<TextView android:id="@+id/label_datoExtra"
@@ -183,7 +193,7 @@
 
 	<LinearLayout
         android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:orientation="horizontal" android:layout_margin="4dp"
+		android:orientation="horizontal" android:layout_marginLeft="17dp" android:layout_marginTop="7dp"
 		>
 
 		<TextView android:id="@+id/label_descripcion" android:text="@string/hint_descripcion"
