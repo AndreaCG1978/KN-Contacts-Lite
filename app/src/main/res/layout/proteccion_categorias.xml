@@ -1,119 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:layout_width="match_parent" android:layout_height="wrap_content"
 	android:orientation="vertical"
-	android:background="@color/color_gris_oscuro">
+	android:background="@color/color_gris_claro">
 
-	<LinearLayout android:layout_width="fill_parent"
+	<LinearLayout android:layout_width="match_parent"
 		android:layout_height="wrap_content" android:gravity="start"
 		android:orientation="vertical">
 
+		<TextView android:id="@+id/leyendaNoSeRegistraPass"
+			android:text="░ Debe registrar una contraseña para poder proteger sus categorias..."
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@color/color_gris_oscuro"
+			android:textColor="@color/color_gris_claro"
+			android:padding="5dp"
+			android:gravity="center"
+			android:textSize="12sp"
+			android:layout_margin="5dp">
+		</TextView>
 
-		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:gravity="start"
-			android:layout_margin="5dp" android:orientation="horizontal">
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="wrap_content" android:layout_margin="5dp"
+			android:orientation="horizontal" android:background="@color/color_gris_oscuro"
+			android:padding="5dp"
+			android:layout_gravity="center">
 
-
-
-			<TextView android:background="@drawable/custom_text_view_categoria"
-				android:textColor="@color/color_azul_oscuro" android:layout_width="250dp"
-				android:layout_height="30dp" android:textSize="14sp"
-				android:textStyle="bold" android:layout_marginBottom="10dp"
-				android:layout_marginStart="8dp" android:gravity="center"
+			<TextView
 				android:text="@string/title_proteccion_categorias"
-				android:layout_marginLeft="8dp">
+				android:textColor="@color/color_gris_claro"
+				android:layout_width="wrap_content"
+				android:layout_height="25dp"
+				android:textSize="11sp"
+				android:textStyle="bold"
+				android:layout_margin="5dp"
+				android:gravity="center">
 			</TextView>
 
 			<Button android:id="@+id/botonRegistrarContrasenia"
-				android:layout_width="32dp" android:layout_height="28dp"
-				android:text="►"
+				android:layout_width="wrap_content"
+				android:layout_height="28dp"
+				android:text="@string/label_registrar_contrasenia"
 				android:textColor="@android:color/white"
-				android:textSize="18sp"
-				android:textStyle="bold"
 				android:layout_gravity="center"
-				android:layout_marginLeft="7dp"
-				android:layout_below="@id/menu_icons"
 				android:contentDescription="savePassword"
-				android:paddingBottom="1dp"
-				android:paddingTop="1dp"
 				android:typeface="monospace"
+				android:textSize="11sp"
+				android:layout_marginStart="30dp"
 				android:background="@drawable/custom_button"
 				/>
-			<ImageButton android:id="@+id/botonActivarDesactivarPass"
-				android:layout_width="28dp" android:layout_height="28dp"
-				android:contentDescription="imagenProtegerCategorias"
-				android:layout_marginStart="10dp"/>
+
 
 		</LinearLayout>
 
 
-		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:gravity="center_vertical"
-			android:layout_margin="3dp" android:orientation="horizontal">
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
+			android:layout_margin="5dp"
+			android:orientation="horizontal">
 
 
 
 			<TextView android:text="@string/label_contrasenia"
-				android:layout_width="160dp" android:layout_height="30dp"
+				android:layout_width="160dp"
+				android:layout_height="30dp"
 				android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_blanco" android:padding="5dp"
-				android:gravity="end" android:textSize="12sp">
+				android:textColor="@color/color_negro"
+				android:padding="5dp"
+				android:gravity="end"
+				android:textSize="12sp">
 			</TextView>
 
 			<EditText android:id="@+id/contrasenia1" 
-				android:textColor="@color/color_blanco" android:layout_width="fill_parent"
-				android:layout_height="35dp" android:padding="4dp"
-				android:textSize="15sp" android:layout_marginLeft="4dp"
-				android:layout_marginRight="4dp" android:inputType="textPassword"
+				android:textColor="@color/color_negro"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:padding="4dp"
+				android:textSize="15sp"
+				android:layout_marginLeft="4dp"
+				android:layout_marginRight="4dp"
+				android:inputType="textPassword"
 				android:maxLength="20"
-				android:importantForAutofill="no">
+				android:importantForAutofill="no"
+				android:hint="@string/hint_contrasenia"
+				android:textColorHint="@color/color_gris">
 			</EditText>
 
 		</LinearLayout>
 
-		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:orientation="horizontal"
-			android:layout_margin="3dp" android:gravity="center_vertical">
-
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_margin="5dp"
+			android:gravity="center_vertical">
 
 
 			<TextView android:layout_width="160dp"
-				android:layout_height="30dp" android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_blanco" android:padding="5dp"
-				android:gravity="end" android:textSize="12sp"
+				android:layout_height="30dp"
+				android:background="@drawable/custom_text_view_categoria_desc"
+				android:textColor="@color/color_negro"
+				android:padding="5dp"
+				android:gravity="end"
+				android:textSize="12sp"
 				android:text="@string/label_repetir_contrasenia">
 			</TextView>
 
-			<EditText android:id="@+id/contrasenia2" 
-				android:textColor="@color/color_blanco" android:layout_width="fill_parent"
-				android:layout_height="35dp" android:padding="4dp"
-				android:textSize="15sp" android:layout_marginLeft="4dp"
-				android:layout_marginRight="4dp" android:inputType="textPassword"
+			<EditText android:id="@+id/contrasenia2"
+				android:textColor="@color/color_negro"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:padding="4dp"
+				android:textSize="15sp"
+				android:layout_marginLeft="4dp"
+				android:layout_marginRight="4dp"
+				android:inputType="textPassword"
 				android:maxLength="20"
-				android:importantForAutofill="no">
+				android:importantForAutofill="no"
+				android:hint="@string/hint_contrasenia"
+				android:textColorHint="@color/color_gris">
 			</EditText>
 
 		</LinearLayout>
 
-		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:gravity="center_vertical"
-			android:layout_margin="3dp" android:orientation="horizontal">
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
+			android:layout_margin="5dp"
+			android:orientation="horizontal">
 
 			<TextView android:text="@string/label_mail"
-				android:layout_width="70dp" android:layout_height="30dp"
+				android:layout_width="70dp"
+				android:layout_height="30dp"
 				android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_blanco" android:padding="5dp"
-				android:gravity="end" android:textSize="12sp">
+				android:textColor="@color/color_negro"
+				android:padding="5dp"
+				android:gravity="end"
+				android:textSize="12sp">
 			</TextView>
 
 			<EditText android:id="@+id/mailPassword" 
-				android:textColor="@color/color_blanco" android:layout_width="fill_parent"
-				android:layout_height="35dp" android:padding="4dp"
-				android:textSize="15sp" android:layout_marginLeft="4dp"
-				android:layout_marginRight="4dp" android:inputType="textEmailAddress"
+				android:textColor="@color/color_negro"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:padding="4dp"
+				android:textSize="15sp"
+				android:layout_marginLeft="4dp"
+				android:layout_marginRight="4dp"
+				android:inputType="textEmailAddress"
 				android:maxLength="90"
 				android:hint="@string/label_email"
+				android:textColorHint="@color/color_gris"
 				android:importantForAutofill="no">
 			</EditText>
 
@@ -124,27 +162,49 @@
 
 
 
-	<LinearLayout android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:layout_margin="3dp"
-		android:orientation="vertical" android:background="@color/color_gris_oscuro">
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="match_parent" android:layout_margin="5dp"
+		android:orientation="vertical" android:background="@color/color_gris_claro">
 
 
-		<TextView android:id="@+id/tituloCategorias"
-			android:background="@drawable/custom_text_view_categoria"
-			android:textColor="@color/color_azul_oscuro" android:layout_width="280dp"
-			android:layout_height="25dp" android:textSize="12sp"
-			android:textStyle="bold" android:layout_marginBottom="10dp"
-			android:layout_marginStart="8dp" android:gravity="center"
-			android:layout_marginLeft="8dp">
-		</TextView>
+
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="wrap_content" android:layout_margin="5dp"
+			android:orientation="horizontal" android:background="@color/color_gris_oscuro"
+			android:padding="5dp" android:layout_gravity="center">
+
+
+			<TextView android:id="@+id/tituloCategorias"
+				android:textColor="@color/color_gris_claro"
+				android:layout_width="wrap_content"
+				android:layout_height="25dp"
+				android:textSize="11sp"
+				android:textStyle="bold"
+				android:layout_margin="5dp"
+				android:gravity="center"
+				>
+			</TextView>
+			<Button android:id="@+id/botonActivarDesactivarPass"
+				android:layout_width="wrap_content"
+				android:layout_height="28dp"
+				android:contentDescription="activateProtection"
+				android:text="@string/label_activar_categoria"
+				android:textColor="@android:color/white"
+				android:textSize="11sp"
+				android:layout_gravity="center"
+				android:layout_marginLeft="30dp"
+				android:typeface="monospace"
+				android:background="@drawable/custom_button"/>
+		</LinearLayout>
 
 
 
 
 		<ListView android:id="@android:id/list"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:dividerHeight="8dp"
-			android:fastScrollEnabled="true" android:background="@color/color_gris_oscuro"
+			android:fastScrollEnabled="true"
 			android:listSelector="@android:color/transparent">
 		</ListView>
 		<TextView android:id="@android:id/empty"

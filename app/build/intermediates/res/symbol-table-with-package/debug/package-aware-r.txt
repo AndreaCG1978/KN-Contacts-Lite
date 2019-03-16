@@ -217,6 +217,7 @@ id label_telefonos
 id label_tipo_dato_extra
 id label_valor
 id left
+id leyendaNoSeRegistraPass
 id line1
 id line3
 id linea1

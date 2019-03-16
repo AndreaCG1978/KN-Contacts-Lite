@@ -3,6 +3,7 @@ package com.boxico.android.kn.contacts.util;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +48,10 @@ public class KNCategoryProtectionAdapter extends ArrayAdapter<CategoriaDTO> {
 		Button btnE = ll.findViewById(R.id.editButton);
 		btnR.setVisibility(View.GONE);
 		btnE.setVisibility(View.GONE);
+		final TextView txt = ll.findViewById(R.id.text1);
 
 
-		CheckBox cb = ll.findViewById(R.id.checkActivada);
+		final CheckBox cb = ll.findViewById(R.id.checkActivada);
 		//	final ListadoCategoriaActivity act = (ListadoCategoriaActivity) activity;
 
 		cb.setOnClickListener(new View.OnClickListener() {
@@ -57,13 +59,20 @@ public class KNCategoryProtectionAdapter extends ArrayAdapter<CategoriaDTO> {
 			public void onClick(View v) {
 				//activity.activarODesactivarCategoria(pos);
 				activity.activarODesactivarCategoria(cat);
+				if(cb.isChecked()){
+					txt.setTextColor(Color.RED);
+				}else{
+					txt.setTextColor(Color.DKGRAY);
+				}
 			}
 		});
 
 		if(ConstantsAdmin.estaProtegidaCategoria(cat.getNombreReal())){
 			cb.setChecked(true);
+			txt.setTextColor(Color.RED);
 		}else{
 			cb.setChecked(false);
+			txt.setTextColor(Color.DKGRAY);
 		}
 
 		return ll;

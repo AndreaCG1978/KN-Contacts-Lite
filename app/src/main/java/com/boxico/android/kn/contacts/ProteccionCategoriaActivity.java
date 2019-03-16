@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -30,9 +31,9 @@ public class ProteccionCategoriaActivity extends ListActivity {
 	private EditText contrasenia2 = null;
 	private EditText mailPassword = null;
 	private TextView labelCategorias = null;
-	private ProteccionCategoriaActivity me = null;
-	private ImageButton botonActivarDesactivarPass = null;
+	private Button botonActivarDesactivarPass = null;
 	//	private ArrayList<Cursor> allMyCursors = null;
+	private ProteccionCategoriaActivity me = null;
 
 
 	@Override
@@ -91,7 +92,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			botonActivarContrasenia.setTextColor(getResources().getColor(R.color.color_negro));
 */
 			//botonActivarDesactivarPass.setEnabled(true);
-			botonActivarDesactivarPass.setImageResource(R.drawable.candado_abierto);
+			botonActivarDesactivarPass.setText(R.string.label_bloquear_contrasenia);
 			
 			//imagen.setBackground(getResources().getDrawable(R.drawable.candado_abierto));
 		}else{
@@ -99,8 +100,8 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			contrasenia2.setEnabled(false);
 			botonRegistrarContrasenia.setEnabled(false);			
 			mailPassword.setEnabled(false);
-			botonRegistrarContrasenia.setTextColor(getResources().getColor(R.color.color_negro));
-			botonActivarDesactivarPass.setImageResource(R.drawable.candado_cerrado);
+			botonRegistrarContrasenia.setTextColor(getResources().getColor(R.color.color_gris_claro));
+			botonActivarDesactivarPass.setText(R.string.label_desbloquear_contrasenia);
 
 		/*	botonActivarContrasenia.setEnabled(true);
 			botonActivarContrasenia.setTextColor(getResources().getColor(R.color.color_azul));
@@ -114,10 +115,17 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		//	imagen.setBackgroundDrawable(dCandadoCerrado);
 		}
 
+		this.findViewById(R.id.leyendaNoSeRegistraPass).setVisibility(View.GONE);
+		botonActivarDesactivarPass.setVisibility(View.VISIBLE);
+		botonRegistrarContrasenia.setText(R.string.label_actualizar);
 		// NO ESTA REGISTRADA EN LA BASE LA CONTRASEÑA
 		if(ConstantsAdmin.contrasenia.getId() == -1){
 			this.getListView().setVisibility(View.GONE);
 			labelCategorias.setVisibility(View.GONE);
+			this.findViewById(R.id.leyendaNoSeRegistraPass).setVisibility(View.VISIBLE);
+			botonActivarDesactivarPass.setVisibility(View.GONE);
+			botonRegistrarContrasenia.setText(R.string.label_registrar_contrasenia);
+
 		}else if(ConstantsAdmin.contrasenia.isActiva()){// ESTA REGISTRADA EN LA BD LA CONTRASEÑA, Y ESTA EN MODO ON
 			this.getListView().setVisibility(View.VISIBLE);
 			labelCategorias.setVisibility(View.VISIBLE);
@@ -125,7 +133,8 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			this.getListView().setEnabled(true);
 			
 		}else{// ESTA REGISTRADA LA CONTRASEÑA, Y ESTA EN MODO OFF
-			this.getListView().setVisibility(View.GONE);
+			this.getListView().setVisibility(View.INVISIBLE);
+
 			labelCategorias.setVisibility(View.GONE);
 
 		}

@@ -10,15 +10,20 @@
 		android:layout_marginStart="8dp" android:textColor="@color/color_gris_claro"
 		android:layout_marginLeft="8dp" />
 
-	<TextView android:id="@+id/text1" android:layout_width="225dp"
-		android:layout_height="wrap_content" android:background="@drawable/custom_text_expandable_group_label"
-		android:textSize="13sp" android:paddingTop="9dp"
-		android:typeface="monospace" android:paddingStart="15dp"
-		android:paddingEnd="10dp" android:paddingBottom="5dp"
+	<TextView android:id="@+id/text1"
+		android:layout_width="225dp"
+		android:layout_height="wrap_content"
+		android:textSize="14sp"
+		android:paddingTop="9dp"
+		android:typeface="monospace"
+		android:paddingStart="15dp"
+		android:paddingEnd="10dp"
+		android:paddingBottom="5dp"
 		android:layout_marginStart="10dp"
         android:paddingLeft="15dp"
 		android:layout_marginLeft="10dp"
-		android:paddingRight="10dp" />
+		android:paddingRight="10dp"
+		android:textColor="@color/color_gris_oscuro"/>
 
 
 	<LinearLayout android:id="@+id/linearDatos"
