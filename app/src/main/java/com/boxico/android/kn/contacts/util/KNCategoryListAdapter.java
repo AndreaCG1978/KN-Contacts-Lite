@@ -5,6 +5,7 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,10 +45,10 @@ public class KNCategoryListAdapter extends ArrayAdapter<CategoriaDTO> {
 		View v = super.getView(position, convertView, parent);
 		ListView lv = (ListView)parent;
 		final CategoriaDTO cat = (CategoriaDTO) lv.getAdapter().getItem(position);
-		TextView tv;
+		final TextView tv;
 		LinearLayout ll;
 		ll = (LinearLayout)v;
-		tv = (TextView) ll.getChildAt(0);
+		tv = (TextView) ll.findViewById(R.id.text1);
 		final int pos = position;
 		Button btnR = ll.findViewById(R.id.removeButton);
 
@@ -79,31 +80,28 @@ public class KNCategoryListAdapter extends ArrayAdapter<CategoriaDTO> {
 			}
 		});
 
-		CheckBox cb = ll.findViewById(R.id.checkActivada);
+		final CheckBox cb = ll.findViewById(R.id.checkActivada);
 	//	final ListadoCategoriaActivity act = (ListadoCategoriaActivity) activity;
 
 		cb.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-                activity.activarODesactivarCategoria(pos);
+				if(cb.isChecked()){
+					tv.setTextColor(Color.BLACK);
+				}else{
+					tv.setTextColor(Color.GRAY);
+				}
+				activity.activarODesactivarCategoria(pos);
 			}
 		});
 
-		// HABILITAR ESTO!!! SAQUE PARA HACER PRUEBAS
-
-		if(paraProteccion){// SE USA PARA MOSTRAR LAS CATEGORIAS PROTEGIDAS
-		/*	if(ConstantsAdmin.estaProtegidaCategoria(cat.getNombreReal())){
-				tv.setTextColor(activity.getResources().getColor(R.color.color_celeste));
-				tv.setText("<< " + tv.getText() + " >>");
-			}else{
-	    		tv.setTextColor(activity.getResources().getColor(R.color.color_gris_oscuro));
-	    	}*/
-		}else{// SE USA PARA MOSTRAR LAS CATEGORIAS ACTIVAS
+		if(!paraProteccion){// SE USA PARA MOSTRAR LAS CATEGORIAS ACTIVAS
 			if(cat.getActiva() == 1){
 				cb.setChecked(true);
+				tv.setTextColor(Color.BLACK);
 			}else{
 				cb.setChecked(false);
-				
+				tv.setTextColor(Color.GRAY);
 			}
 		}
 		return ll;

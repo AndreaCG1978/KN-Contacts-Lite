@@ -106,6 +106,9 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 		textApe.setTextSize(15);
 		textNom.setTextSize(15);
 		textDR.setTextSize(13);
+		textApe.setPadding(25, 5, 2, 5);
+		textNom.setPadding(3, 5, 5, 5);
+
 		textDR.setVisibility(View.VISIBLE);
 
 	//	view.findViewById(R.id.rowDatoRelevante2).setVisibility(View.GONE);

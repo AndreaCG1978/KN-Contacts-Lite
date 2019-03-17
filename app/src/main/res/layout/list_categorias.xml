@@ -1,51 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-	<LinearLayout android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:orientation="vertical"
-		android:background="@color/color_gris_oscuro">
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:background="@color/color_gris_claro">
 
-		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:orientation="horizontal">
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:background="@color/color_gris_oscuro"
+			android:layout_margin="5dp"
+			android:padding="5dp"
+			android:gravity="left">
 
-			<TextView android:id="@+id/categoriaTextView" android:background="@drawable/custom_text_view_categoria"
-				android:textColor="@color/color_azul_oscuro" android:layout_width="250dp"
-				android:layout_height="30dp" android:textSize="14sp"
-				android:textStyle="bold" android:layout_margin="10dp" android:gravity="center"
-				android:text="@string/label_categorias">
+			<TextView android:id="@+id/categoriaTextView"
+				android:text="@string/label_categorias"
+				android:textColor="@color/color_gris_claro"
+				android:layout_width="wrap_content"
+				android:layout_height="25dp"
+				android:textSize="12sp"
+				android:textStyle="bold"
+				android:layout_margin="5dp"
+				>
 			</TextView>
 
 			<Button android:id="@+id/addCategoria"
-				android:layout_width="32dp" android:layout_height="28dp"
-				android:text="+"
+				android:layout_width="wrap_content"
+				android:layout_height="28dp"
+				android:text="@string/label_agregar_categoria"
 				android:textColor="@color/color_blanco"
-				android:textSize="18sp"
+				android:textSize="11sp"
 				android:textStyle="bold"
 				android:layout_gravity="center"
-				android:layout_marginLeft="7dp"
-				android:layout_below="@id/menu_icons"
+				android:layout_marginLeft="30dp"
+				android:layout_marginStart="30dp"
 				android:contentDescription="addCategory"
-				android:paddingBottom="3dp"
-				android:paddingTop="1dp"
+				android:padding="3dp"
 				android:typeface="monospace"
 				android:background="@drawable/custom_button"
 				>
 			</Button>
 
 			<Button android:id="@+id/saveCategoria"
-				android:layout_width="32dp" android:layout_height="28dp"
-				android:text="►"
+				android:layout_width="wrap_content"
+				android:layout_height="28dp"
+				android:text="@string/label_registrarPersona"
 				android:textColor="@color/color_blanco"
-				android:textSize="18sp"
+				android:textSize="11sp"
 				android:textStyle="bold"
 				android:layout_gravity="center"
-				android:layout_marginLeft="7dp"
-				android:layout_below="@id/menu_icons"
+				android:layout_marginLeft="15dp"
+				android:layout_marginStart="15dp"
 				android:contentDescription="addCategory"
-				android:paddingBottom="1dp"
-				android:paddingTop="1dp"
+				android:padding="3dp"
 				android:typeface="monospace"
 				android:background="@drawable/custom_button"
 				android:visibility="gone"
@@ -54,54 +64,79 @@
 
 		</LinearLayout>
 
-	<LinearLayout
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:orientation="vertical">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_margin="5dp"
+			android:padding="5dp">
 
-		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:orientation="horizontal"
-			android:layout_margin="7dp">
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			>
 
 			<TextView android:id="@+id/labelNombreCategoria"
-				android:text="@string/hint_categoria" android:layout_width="130dp"
-				android:layout_height="wrap_content" android:textSize="13sp"
-				android:padding="8dp" android:gravity="end" android:singleLine="true"
+				android:text="@string/hint_categoria"
+				android:layout_width="130dp"
+				android:layout_height="wrap_content"
+				android:textSize="11sp"
+				android:textStyle="bold"
+				android:padding="4dp"
+				android:gravity="end"
+				android:singleLine="true"
 				android:background="@drawable/custom_text_view_categoria_desc"
 				android:textColor="@color/color_azul_oscuro"
 				android:visibility="gone"/>
 
 
 			<EditText android:id="@+id/entryNombreCategoria"
-				android:layout_width="fill_parent" android:layout_height="35dp"
-				android:hint="@string/hint_categoria" android:inputType="textCapCharacters"
-				android:maxLength="15" android:nextFocusUp="@+id/label_tipo_dato_extra"
-				android:padding="8dp" android:textSize="14sp"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:hint="@string/hint_categoria"
+				android:inputType="textCapCharacters"
+				android:maxLength="30"
+				android:nextFocusUp="@+id/label_tipo_dato_extra"
+				android:padding="8dp"
+				android:textSize="12sp"
 				android:layout_marginStart="9dp"
-				android:textColor="@color/color_blanco"
+				android:textColor="@color/color_negro"
 				android:importantForAutofill="no"
 				android:layout_marginLeft="9dp"
+				android:textColorHint="@color/color_gris"
 				android:visibility="gone"/>
 
 		</LinearLayout>
 
-		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:orientation="horizontal"
-			android:layout_margin="7dp">
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			>
 
 			<TextView android:id="@+id/label_tipo_dato_extra"
-				android:text="@string/hint_caracteristica" android:layout_width="130dp"
-				android:layout_height="wrap_content" android:textSize="13sp"
-				android:padding="8dp" android:gravity="end" android:singleLine="true"
+				android:text="@string/hint_caracteristica"
+				android:layout_width="130dp"
+				android:layout_height="wrap_content"
+				android:textSize="11sp"
+				android:textStyle="bold"
+				android:padding="4dp"
+				android:gravity="end"
+				android:singleLine="true"
 				android:background="@drawable/custom_text_view_categoria_desc"
 				android:textColor="@color/color_azul_oscuro"
 				android:visibility="gone"/>
 
 			<EditText android:id="@+id/entryTipoDatoExtra"
-				android:layout_width="fill_parent" android:layout_height="35dp"
-				android:hint="@string/hint_caracteristica" android:inputType="textCapCharacters"
-				android:layout_marginStart="9dp" android:maxLength="15"
-				android:textColor="@color/color_blanco"
-				android:textSize="14sp" android:padding="8dp"
+				android:layout_width="match_parent"
+				android:layout_height="35dp"
+				android:hint="@string/hint_caracteristica"
+				android:inputType="textCapCharacters"
+				android:layout_marginStart="9dp"
+				android:maxLength="30"
+				android:textColor="@color/color_negro"
+				android:textSize="12sp"
+				android:padding="8dp"
+				android:textColorHint="@color/color_gris"
 				android:importantForAutofill="no"
 				android:layout_marginLeft="9dp"
 				android:visibility="gone"/>
@@ -114,8 +149,10 @@
 		android:orientation="vertical">
 
 			<ListView android:id="@android:id/list"
-				android:layout_width="fill_parent" android:layout_height="fill_parent"
-				android:dividerHeight="10dp" android:divider="@color/color_negro"
+				android:layout_width="fill_parent"
+				android:layout_height="match_parent"
+				android:dividerHeight="10dp"
+				android:divider="@android:color/transparent"
 				android:listSelector="@android:color/transparent"
 				android:cacheColorHint="#00000000"
 				android:scrollbars="none"

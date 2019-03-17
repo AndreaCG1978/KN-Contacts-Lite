@@ -60,19 +60,19 @@ public class KNCategoryProtectionAdapter extends ArrayAdapter<CategoriaDTO> {
 				//activity.activarODesactivarCategoria(pos);
 				activity.activarODesactivarCategoria(cat);
 				if(cb.isChecked()){
-					txt.setTextColor(Color.RED);
+					txt.setTextColor(Color.BLACK);
 				}else{
-					txt.setTextColor(Color.DKGRAY);
+					txt.setTextColor(Color.GRAY);
 				}
 			}
 		});
 
 		if(ConstantsAdmin.estaProtegidaCategoria(cat.getNombreReal())){
 			cb.setChecked(true);
-			txt.setTextColor(Color.RED);
+			txt.setTextColor(Color.BLACK);
 		}else{
 			cb.setChecked(false);
-			txt.setTextColor(Color.DKGRAY);
+			txt.setTextColor(Color.GRAY);
 		}
 
 		return ll;

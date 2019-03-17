@@ -34,13 +34,9 @@
 				android:textColor="@color/color_blanco"
 				android:textSize="13sp"
 				android:paddingTop="1dp"
-				android:paddingEnd="4dp"
 				android:paddingBottom="1dp"
 				android:typeface="monospace"
 				android:maxLength="20"
-				android:paddingLeft="1dp"
-				android:paddingStart="1dp"
-				android:paddingRight="4dp"
 
 				>
 			</TextView>
@@ -57,18 +53,18 @@
 			android:textStyle="bold"
 			android:textColor="@color/color_gris_oscuro"
 			android:textSize="13sp"
-			android:paddingEnd="15dp"
 			android:typeface="monospace"
 			android:paddingTop="0dp"
 			android:paddingBottom="0dp"
 			android:background="@drawable/custom_text_view_categoria"
-			android:gravity="end"
-			android:layout_marginEnd="5dp"
+			android:gravity="start"
 			android:singleLine="true"
-			android:paddingLeft="35dp"
-			android:paddingStart="35dp"
+			android:paddingLeft="15dp"
+			android:paddingStart="15dp"
 			android:paddingRight="15dp"
-			android:layout_marginRight="25dp">
+			android:paddingEnd="15dp"
+			android:layout_marginRight="15dp"
+			android:layout_marginEnd="15dp">
 		</TextView>
 
 

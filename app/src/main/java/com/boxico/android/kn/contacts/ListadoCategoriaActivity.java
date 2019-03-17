@@ -69,6 +69,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 		addCategoria = this.findViewById(R.id.addCategoria);
 		addCategoria.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				categoriaSeleccionada = null;
 				openAltaCategoria();
 			}
 		});
@@ -126,7 +127,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 	}
 
 	public void openAltaCategoria(){
-		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+	//	InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		if(entryNombreCategoria.getVisibility() == View.VISIBLE){
 			this.habilitarLista(true, Color.WHITE);
 			entryTipoDatoExtra.setVisibility(View.GONE);
@@ -136,8 +137,10 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 			saveCategoria.setVisibility(View.GONE);
 			entryTipoDatoExtra.setText("");
 			entryNombreCategoria.setText("");
+			addCategoria.setTextColor(Color.WHITE);
 			//opacarBotonGuardar();
-			imm.hideSoftInputFromWindow(entryNombreCategoria.getWindowToken(), 0);
+			ConstantsAdmin.hideKeyboard(this);
+			//imm.hideSoftInputFromWindow(entryNombreCategoria.getWindowToken(), 0);
 
 		}else {
 			this.habilitarLista(false, Color.LTGRAY);
@@ -156,7 +159,9 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 
 			entryNombreCategoria.requestFocus();
 			saveCategoria.setVisibility(View.VISIBLE);
-			imm.showSoftInput(entryNombreCategoria, InputMethodManager.SHOW_IMPLICIT);
+			addCategoria.setTextColor(Color.DKGRAY);
+			ConstantsAdmin.showKeyboard(this, entryNombreCategoria);
+			//imm.showSoftInput(entryNombreCategoria, InputMethodManager.SHOW_IMPLICIT);
 
 
 		}
