@@ -2,7 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent" android:layout_height="match_parent"
-	android:orientation="horizontal" android:layout_margin="5dp"
+	android:orientation="horizontal" android:layout_margin="12dp"
 	android:gravity="center_vertical"
 	android:descendantFocusability="beforeDescendants"
 	android:background="@color/color_gris_claro">
@@ -42,21 +42,15 @@
 
 
 	<Button android:id="@+id/removeButton"
-		android:layout_width="30dp" android:layout_height="26dp"
-		android:text="X"
-		android:textColor="@android:color/white"
-		android:textSize="12sp"
-		android:textStyle="bold"
+		android:layout_width="20dp" android:layout_height="24dp"
 		android:gravity="center"
 		android:layout_marginRight="1dp"
 		android:layout_marginLeft="1dp"
 		android:contentDescription="X"
-		android:paddingBottom="1dp"
-		android:paddingTop="1dp"
-		android:typeface="monospace"
-		android:background="@drawable/custom_button"
+		android:background="@drawable/delete_icon_mini"
 		>
 	</Button>
+
 
 
 

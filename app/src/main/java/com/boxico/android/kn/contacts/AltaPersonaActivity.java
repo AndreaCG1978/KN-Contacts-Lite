@@ -507,7 +507,7 @@ public class AltaPersonaActivity extends Activity  {
    //     KNSimpleCustomAdapter adapter = obtenerAdapter(telefonos, telefonosData);
 		this.resetAdapterTelefonos(null, true);
 //        telefonosList.setAdapter(adapter);
-		getTelefonosList().setDividerHeight(10);
+		getTelefonosList().setDividerHeight(15);
 
     }
 
@@ -515,7 +515,7 @@ public class AltaPersonaActivity extends Activity  {
 //		KNSimpleCustomAdapter adapter = obtenerAdapter(mails, mailsData);
   //      mailsList.setAdapter(adapter);
 		this.resetAdapterMails(null, true);
-        getMailsList().setDividerHeight(10);
+        getMailsList().setDividerHeight(15);
     }
 
     
@@ -523,7 +523,7 @@ public class AltaPersonaActivity extends Activity  {
 		//KNSimpleCustomAdapter adapter = obtenerAdapter(direcciones, direccionesData);
         //direccionesList.setAdapter(adapter);
 		this.resetAdapterDirecciones(null, true);
-        getDireccionesList().setDividerHeight(10);
+        getDireccionesList().setDividerHeight(15);
     }
 
     private HashMap<Integer,String> cargarDatosTelefonosEnLista() {

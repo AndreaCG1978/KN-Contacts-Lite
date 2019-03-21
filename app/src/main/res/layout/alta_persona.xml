@@ -79,7 +79,7 @@ android:background="@color/color_gris_claro">
 			android:layout_marginBottom="20dp"
             android:gravity="start|center"
 			android:typeface="monospace"
-            android:background="@drawable/custom_text_view_categoria"
+            android:background="@drawable/custom_text_view_categoria_desc"
             android:paddingStart="20dp"
             android:paddingLeft="20dp"
 			android:paddingTop="10dp"
@@ -190,7 +190,7 @@ android:background="@color/color_gris_claro">
 			android:orientation="horizontal" android:layout_margin="5dp"
 			android:layout_below="@id/menu_icons"
 			android:gravity="center"
-			android:background="@drawable/custom_text_view_categoria">
+			android:background="@drawable/custom_text_view_categoria_desc">
 
 			<TextView android:id="@+id/label_phones" android:text="@string/label_telefonos"
 				android:layout_height="28dp"
@@ -210,18 +210,15 @@ android:background="@color/color_gris_claro">
 				android:contentDescription="addTelefono"
 				android:text="@string/label_agregar"
 				android:textStyle="bold"
-				android:layout_marginLeft="5dp"
-				android:layout_marginStart="5dp"
-				android:paddingBottom="8dp"
-				android:paddingTop="8dp"
-				android:paddingStart="20dp"
-				android:paddingEnd="15dp"
+				android:layout_marginLeft="22dp"
+				android:layout_marginStart="22dp"
+				android:padding="2dp"
 				android:layout_width="wrap_content"
-				android:layout_height="32dp"
-				android:textSize="12sp"
+				android:layout_height="25dp"
+				android:textSize="11sp"
 				android:textColor="@color/color_blanco"
 				android:typeface="monospace"
-				android:background="@android:color/transparent"
+				android:background="@drawable/custom_button"
 				>
 			</Button>
 
@@ -284,7 +281,7 @@ android:background="@color/color_gris_claro">
 			android:orientation="horizontal" android:layout_margin="5dp"
 			android:layout_below="@id/menu_icons"
 			android:gravity="center"
-			android:background="@drawable/custom_text_view_categoria">
+			android:background="@drawable/custom_text_view_categoria_desc">
 
 
 			<TextView android:id="@+id/label_emails" android:text="@string/label_emails"
@@ -304,18 +301,15 @@ android:background="@color/color_gris_claro">
 				android:contentDescription="addMail"
 				android:text="@string/label_agregar"
 				android:textStyle="bold"
-				android:layout_marginLeft="5dp"
-				android:layout_marginStart="5dp"
-				android:paddingBottom="8dp"
-				android:paddingTop="8dp"
-				android:paddingStart="20dp"
-				android:paddingEnd="15dp"
+				android:layout_marginLeft="22dp"
+				android:layout_marginStart="22dp"
+				android:padding="2dp"
 				android:layout_width="wrap_content"
-				android:layout_height="32dp"
-				android:textSize="12sp"
+				android:layout_height="25dp"
+				android:textSize="11sp"
 				android:textColor="@color/color_blanco"
 				android:typeface="monospace"
-				android:background="@android:color/transparent"
+				android:background="@drawable/custom_button"
 				>
 			</Button>
 
@@ -386,7 +380,7 @@ android:background="@color/color_gris_claro">
 			android:orientation="horizontal" android:layout_margin="5dp"
 			android:layout_below="@id/menu_icons"
 			android:gravity="center"
-			android:background="@drawable/custom_text_view_categoria">
+			android:background="@drawable/custom_text_view_categoria_desc">
 
 			<TextView android:id="@+id/label_address" android:text="@string/label_direcciones"
 				android:layout_height="28dp"
@@ -406,19 +400,15 @@ android:background="@color/color_gris_claro">
 				android:contentDescription="addAddress"
 				android:text="@string/label_agregar"
 				android:textStyle="bold"
-				android:layout_marginLeft="5dp"
-				android:layout_marginStart="5dp"
-				android:paddingBottom="8dp"
-				android:paddingTop="8dp"
-				android:paddingStart="20dp"
-				android:paddingEnd="15dp"
+				android:layout_marginLeft="22dp"
+				android:layout_marginStart="22dp"
+				android:padding="2dp"
 				android:layout_width="wrap_content"
-				android:layout_height="32dp"
-				android:textSize="12sp"
+				android:layout_height="25dp"
+				android:textSize="11sp"
 				android:textColor="@color/color_blanco"
 				android:typeface="monospace"
-				android:background="@android:color/transparent"
-
+				android:background="@drawable/custom_button"
 				>
 			</Button>
 
@@ -509,7 +499,7 @@ android:background="@color/color_gris_claro">
 			android:layout_marginBottom="20dp"
 			android:gravity="start|center"
 			android:typeface="monospace"
-			android:background="@drawable/custom_text_view_categoria"
+			android:background="@drawable/custom_text_view_categoria_desc"
 			android:paddingStart="20dp"
 			android:paddingLeft="20dp"
 			android:paddingTop="10dp"
