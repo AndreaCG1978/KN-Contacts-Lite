@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,8 +45,8 @@ public class KNCategoryProtectionAdapter extends ArrayAdapter<CategoriaDTO> {
 		final CategoriaDTO cat = (CategoriaDTO) lv.getAdapter().getItem(position);
 		LinearLayout ll;
 		ll = (LinearLayout)v;
-		Button btnR = ll.findViewById(R.id.removeButton);
-		Button btnE = ll.findViewById(R.id.editButton);
+		ImageButton btnR = ll.findViewById(R.id.removeButton);
+		ImageButton btnE = ll.findViewById(R.id.editButton);
 		btnR.setVisibility(View.GONE);
 		btnE.setVisibility(View.GONE);
 		final TextView txt = ll.findViewById(R.id.text1);

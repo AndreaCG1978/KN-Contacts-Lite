@@ -74,8 +74,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private int posPeople = 0;
 
 	private Button botonAddContact = null;
-	private Button botonSkipContact = null;
-	private Button botonPrevContact = null;
+	private ImageButton botonSkipContact = null;
+	private ImageButton botonPrevContact = null;
 	private Button botonAddAll = null;
 	private Button botonSkipAll = null;
 	private Asociacion contactoActual = null;
@@ -275,17 +275,17 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 		}
 		ConstantsAdmin.finalizarBD(mDBManager);
-		if (posPeople < getPeople().getCount() - 1) {
+	/*	if (posPeople < getPeople().getCount() - 1) {
 			botonSkipContact.setEnabled(true);
 			botonSkipContact.setTextColor(getResources().getColor(R.color.color_blanco));
 		} else {
 			botonSkipContact.setEnabled(false);
 			botonSkipContact.setTextColor(getResources().getColor(R.color.color_gris));
-		}
-		if (posPeople > 0) {
+		}*/
+	/*	if (posPeople > 0) {
 			botonPrevContact.setEnabled(true);
 			botonPrevContact.setTextColor(getResources().getColor(R.color.color_blanco));
-		}
+		}*/
 	}
 
 
@@ -336,17 +336,17 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			}
 		}
 		ConstantsAdmin.finalizarBD(mDBManager);
-		if (posPeople == 0) {
+	/*	if (posPeople == 0) {
 			botonPrevContact.setEnabled(false);
 			botonPrevContact.setTextColor(getResources().getColor(R.color.color_gris));
 		} else {
 			botonPrevContact.setEnabled(true);
 			botonPrevContact.setTextColor(getResources().getColor(R.color.color_blanco));
-		}
-		if (posPeople < getPeople().getCount()) {
+		}*/
+		/*if (posPeople < getPeople().getCount()) {
 			botonSkipContact.setEnabled(true);
 			botonSkipContact.setTextColor(getResources().getColor(R.color.color_blanco));
-		}
+		}*/
 
 	}
 
@@ -481,8 +481,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			}
 		});
 
-		botonPrevContact.setEnabled(false);
-		botonSkipContact.setEnabled(false);
+	//	botonPrevContact.setEnabled(false);
+	//	botonSkipContact.setEnabled(false);
 
 
 		ImageButton categorias = this.findViewById(R.id.imagenCategorias);

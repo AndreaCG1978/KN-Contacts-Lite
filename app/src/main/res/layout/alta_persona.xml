@@ -531,14 +531,15 @@ android:background="@color/color_gris_claro">
 			android:orientation="vertical">
 
 			<LinearLayout android:id="@+id/linearCategoria"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
-				android:orientation="horizontal" android:layout_margin="5dp"
-				android:gravity="right"
+				android:layout_width="match_parent" android:layout_height="wrap_content"
+				android:orientation="horizontal" android:layout_margin="10dp"
+				android:gravity="left"
 				android:background="@drawable/custom_text_view_apellido">
 
 				<Spinner android:id="@+id/spinnerCategorias_alta_persona"
-					android:layout_below="@id/label_category" android:layout_width="310dp"
-					android:layout_height="33dp"
+					android:layout_below="@id/label_category"
+					android:layout_width="wrap_content"
+					android:layout_height="35dp"
 					android:layout_marginEnd="10dp"
 					android:layout_marginTop="8dp"
 					android:layout_marginBottom="8dp"

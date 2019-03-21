@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,7 +51,7 @@ public class KNCategoryListAdapter extends ArrayAdapter<CategoriaDTO> {
 		ll = (LinearLayout)v;
 		tv = (TextView) ll.findViewById(R.id.text1);
 		final int pos = position;
-		Button btnR = ll.findViewById(R.id.removeButton);
+		ImageButton btnR = ll.findViewById(R.id.removeButton);
 
 		if(!cat.isCategoriaPersonal()){
 			btnR.setVisibility(View.GONE);
@@ -66,7 +67,7 @@ public class KNCategoryListAdapter extends ArrayAdapter<CategoriaDTO> {
 
 
 
-		Button btnE = ll.findViewById(R.id.editButton);
+		ImageButton btnE = ll.findViewById(R.id.editButton);
 
 		if(!cat.isCategoriaPersonal()){
 			btnE.setVisibility(View.GONE);
