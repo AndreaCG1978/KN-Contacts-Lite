@@ -66,7 +66,6 @@ public class ConstantsAdmin {
 
 	// CONSTANTES DE LA BASE DE DATOS
 
-
 	private static Map<String, List<PersonaDTO>> organizadosAlfabeticamente = null;
 	private static Map<String, List<PersonaDTO>> organizadosPorCategoria = null;
 
@@ -624,6 +623,8 @@ public class ConstantsAdmin {
 	public static final int ACTIVITY_EJECUTAR_ALTA_EMAIL=16;
 	public static final int ACTIVITY_EJECUTAR_EDICION_DIRECCION=17;
 	public static final int ACTIVITY_EJECUTAR_ALTA_DIRECCION=18;
+
+	public static final int ACTIVITY_CHOOSE_FILE=19;
 	/*
       public static final String TIPO_DATO_EXTRA_ACTIVIDAD = "ACTIVIDAD";
       public static final String TIPO_DATO_EXTRA_PARENTESCO = "PARENTESCO";

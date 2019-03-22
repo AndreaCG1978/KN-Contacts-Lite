@@ -21,11 +21,13 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -133,6 +135,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 	private final int PERMISSIONS_RESTORE_BACKUP = 101;
 	private final int PERMISSIONS_READ_CONTACTS = 102;
+
+	private static final int ACTIVITY_CHOOSE_FILE = 3;
 
 	private class ImportCSVTask extends AsyncTask<Long, Integer, Integer>{
 		ProgressDialog dialog = null;
@@ -1902,11 +1906,20 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 					})
 					.setNegativeButton(R.string.puntocoma_separated, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-							Long[] params = new Long[1];
+						/*	Long[] params = new Long[1];
 							params[0] = 1L;
 							dialog.cancel();
 							separadorExcel = ConstantsAdmin.PUNTO_COMA;
-							new ExportCSVEsteticoTask().execute(params);	    	           }
+							new ExportCSVEsteticoTask().execute(params);	*/
+
+							Intent chooseFile;
+							Intent intent;
+							chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+							chooseFile.setType("folder/*");
+							intent = Intent.createChooser(chooseFile, "Choose a file");
+							startActivityForResult(intent, ACTIVITY_CHOOSE_FILE);
+
+						}
 					});
 			builder.show();
 		}else{
@@ -1989,11 +2002,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
 		super.onActivityResult(requestCode, resultCode, intent);
-		ejecutarOnActivityResult(requestCode);
+		ejecutarOnActivityResult(requestCode, intent);
 	}
 
-	private void ejecutarOnActivityResult(int requestCode){
+	private void ejecutarOnActivityResult(int requestCode, Intent intent){
 		try {
+			String path  = "";
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 			if(requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_PROTECCION_CATEGORIA){
 				categoriasSeleccionadas = null;
@@ -2002,6 +2016,13 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			if(requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA || requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_ELIMINAR_CONTACTO
 					|| requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_ACTIVAR_CONTRASENIA){
 				ConstantsAdmin.resetPersonasOrganizadas();
+
+			}
+
+			if(requestCode == ConstantsAdmin.ACTIVITY_CHOOSE_FILE)
+			{
+				Uri uri = intent.getData();
+				String FilePath = getRealPathFromURI(uri);
 
 			}
 			mySortedByElements = null;
@@ -2029,6 +2050,15 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		}
 
 
+	}
+
+	public String getRealPathFromURI(Uri contentUri) {
+		String [] proj = {MediaStore.Images.Media.DATA};
+		Cursor cursor = getContentResolver().query( contentUri, proj, null, null,null);
+		if (cursor == null) return null;
+		int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+		cursor.moveToFirst();
+		return cursor.getString(column_index);
 	}
 
 	public void onPause() {
