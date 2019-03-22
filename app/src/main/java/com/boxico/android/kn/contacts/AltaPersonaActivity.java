@@ -84,7 +84,7 @@ public class AltaPersonaActivity extends Activity  {
     private EditText mEntryNuevoValMail = null;
     private EditText mEntryNuevoValDir = null;
 
-	private Button botonAddTel = null;
+	private ImageButton botonAddTel = null;
 	private Button botonAddMail = null;
 	private Button botonAddDir = null;
 	
@@ -397,7 +397,7 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryNuevoTipoTel.append("");
 			mEntryNuevoValTel.getText().clear();
 			mEntryNuevoValTel.append("");
-			botonAddTel.setTextColor(Color.WHITE);
+		//	botonAddTel.setTextColor(Color.WHITE);
 
 			opacarBotonGuardar();
 	//		imm.hideSoftInputFromWindow(mEntryNuevoTipoTel.getWindowToken(), 0);
@@ -410,7 +410,7 @@ public class AltaPersonaActivity extends Activity  {
 			realzarBotonGuardar();
 			mEntryNuevoTipoTel.getText().clear();
 			mEntryNuevoTipoTel.append(getResources().getText(R.string.hint_tipo));
-			botonAddTel.setTextColor(Color.LTGRAY);
+		//	botonAddTel.setTextColor(Color.LTGRAY);
 
 			//mEntryNuevoTipoTel.setText(getResources().getText(R.string.hint_tipo));
 			mEntryNuevoTipoTel.setSelectAllOnFocus(true);
@@ -1574,7 +1574,7 @@ public class AltaPersonaActivity extends Activity  {
 		this.mostrarEmails();
 		this.mostrarDirecciones();
 		this.mostrarDatosPorCategoria();
-		botonAddTel.setTextColor(Color.WHITE);
+	//	botonAddTel.setTextColor(Color.WHITE);
 		botonAddMail.setTextColor(Color.WHITE);
 		botonAddDir.setTextColor(Color.WHITE);
 	//	ConstantsAdmin.hideKeyboard(this);

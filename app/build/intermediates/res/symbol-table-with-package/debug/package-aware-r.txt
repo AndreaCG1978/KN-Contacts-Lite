@@ -239,7 +239,6 @@ id linearLayoutImagen
 id linearLista
 id linearMails
 id linearNombre
-id linearPhones
 id listaDirecciones
 id listaDireccionesAlta
 id listaEspecial

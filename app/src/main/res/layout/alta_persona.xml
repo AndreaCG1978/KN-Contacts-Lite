@@ -29,37 +29,37 @@ android:background="@color/color_gris_claro">
             android:gravity="center_horizontal"
 			android:layout_below="@id/invisible"
             android:background="@color/color_gris_oscuro"
-            android:padding="5dp">
+            android:padding="10dp">
 
 			<ImageButton android:id="@+id/menu_icon_identification"
-				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:layout_height="35dp" android:layout_width="35dp"
 				android:nextFocusRight="@+id/menu_icon_phone" android:nextFocusDown="@+id/entryApellido"
 				android:focusable="true"
                 android:contentDescription="menu_icon_identification" />
 
 
 			<ImageButton android:id="@+id/menu_icon_phone"
-				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:layout_height="35dp" android:layout_width="35dp"
 				android:layout_marginStart="20dp" android:nextFocusRight="@+id/menu_icon_mail"
                 android:contentDescription="menu_icon_phone"
 				android:layout_marginLeft="20dp" />
 
 			<ImageButton android:id="@+id/menu_icon_mail"
-				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:layout_height="35dp" android:layout_width="35dp"
 				android:layout_marginStart="26dp" android:nextFocusRight="@+id/menu_icon_addres"
 				android:focusable="true"
                 android:contentDescription="menu_icon_mail"
 				android:layout_marginLeft="26dp" />
 
 			<ImageButton android:id="@+id/menu_icon_addres"
-				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:layout_height="35dp" android:layout_width="35dp"
 				android:layout_marginStart="26dp" android:nextFocusRight="@+id/menu_icon_category"
 				android:focusable="true"
                 android:contentDescription="menu_icon_addres"
 				android:layout_marginLeft="26dp" />
 
 			<ImageButton android:id="@+id/menu_icon_category"
-				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:layout_height="35dp" android:layout_width="35dp"
 				android:layout_marginStart="26dp" android:nextFocusRight="@+id/butttonRegistrarYSalir"
 				android:focusable="true"
                 android:contentDescription="menu_icon_category"
@@ -184,49 +184,39 @@ android:background="@color/color_gris_claro">
 
 		</LinearLayout>
 
-
-		<LinearLayout android:id="@+id/linearPhones"
-			android:layout_width="match_parent" android:layout_height="wrap_content"
-			android:orientation="horizontal" android:layout_margin="5dp"
+		<TextView android:id="@+id/label_phones"
 			android:layout_below="@id/menu_icons"
-			android:gravity="center"
-			android:background="@drawable/custom_text_view_categoria_desc">
+			android:text="@string/label_telefonos"
+			android:layout_height="28dp"
+			android:textColor="@color/color_blanco"
+			android:textSize="14sp"
+			android:gravity="start|center"
+			android:typeface="monospace"
+			android:paddingStart="15dp"
+			android:paddingLeft="15dp"
+			android:layout_margin="10dp"
+			android:layout_width="220dp"
+			android:layout_marginBottom="6dp"
+			android:background="@drawable/custom_text_view_categoria_desc"
+			/>
 
-			<TextView android:id="@+id/label_phones" android:text="@string/label_telefonos"
-				android:layout_height="28dp"
-				android:textColor="@color/color_negro"
-				android:textSize="14sp"
-				android:gravity="start|center"
-				android:typeface="monospace"
-				android:paddingStart="15dp"
-				android:paddingLeft="15dp"
-				android:layout_margin="5dp"
-				android:layout_width="220dp"
-				android:layout_marginBottom="6dp"
-				/>
+		<ImageButton android:id="@+id/addTelefono"
+			android:layout_below="@id/label_phones"
+			android:layout_marginLeft="20dp"
+			android:layout_marginStart="20dp"
+			android:layout_width="28dp"
+			android:layout_height="28dp"
+			android:focusable="true"
+			android:foregroundGravity="right"
+			android:background="@drawable/add_icon"
+			>
+		</ImageButton>
 
 
-			<Button android:id="@+id/addTelefono"
-				android:contentDescription="addTelefono"
-				android:text="@string/label_agregar"
-				android:textStyle="bold"
-				android:layout_marginLeft="22dp"
-				android:layout_marginStart="22dp"
-				android:padding="2dp"
-				android:layout_width="wrap_content"
-				android:layout_height="25dp"
-				android:textSize="11sp"
-				android:textColor="@color/color_blanco"
-				android:typeface="monospace"
-				android:background="@drawable/custom_button"
-				>
-			</Button>
-
-		</LinearLayout>
 
 		<EditText android:id="@+id/nuevoTipoTel" android:layout_width="120dp"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/linearPhones"
+			android:layout_below="@id/addTelefono"
 			android:textSize="15sp"
 			android:padding="10dp"
 			android:gravity="end"
@@ -246,7 +236,7 @@ android:background="@color/color_gris_claro">
 		<EditText android:id="@+id/nuevoValorTel"
 			android:inputType="phone"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/linearPhones"
+			android:layout_below="@id/addTelefono"
 			android:layout_toRightOf="@id/nuevoTipoTel"
 			android:layout_toEndOf="@id/nuevoTipoTel"
 			android:textColor="@color/color_negro"
@@ -656,13 +646,14 @@ android:background="@color/color_gris_claro">
                 android:layout_width="fill_parent" android:layout_height="wrap_content"
 				android:orientation="horizontal" android:gravity="center"
 				android:layout_margin="5dp"
+				android:padding="3dp"
 				android:background="@color/color_gris_oscuro">
 
 				<Button android:id="@+id/butttonRegistrarPersonaFinal"
 					android:nextFocusRight="@+id/butttonRegistrarYSalir" android:text="@string/label_registrarPersona"
 
 					android:layout_width="wrap_content"
-					android:layout_height="30dp" android:layout_margin="5dp"
+					android:layout_height="25dp" android:layout_margin="5dp"
 					android:textSize="12sp" android:textColor="@color/color_negro"
 					android:background="@drawable/custom_button" android:layout_gravity="center"
 					android:paddingBottom="5dp"
@@ -679,9 +670,11 @@ android:background="@color/color_gris_claro">
 				<Button android:id="@+id/butttonRegistrarYSalir"
 					android:text="@string/label_registrarPersonaYSalir"
 					android:layout_width="wrap_content"
-					android:layout_height="30dp" android:layout_margin="5dp"
+					android:layout_height="25dp"
+					android:layout_marginStart="15dp"
 					android:textSize="12sp" android:textColor="@color/color_negro"
-					android:background="@drawable/custom_button" android:layout_gravity="center"
+					android:background="@drawable/custom_button"
+					android:layout_gravity="center"
 					android:paddingBottom="5dp"
 					android:paddingTop="5dp"
 					android:paddingStart="15dp"

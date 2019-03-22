@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -137,7 +138,6 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private final int PERMISSIONS_RESTORE_BACKUP = 101;
 	private final int PERMISSIONS_READ_CONTACTS = 102;
 
-	private static final int ACTIVITY_CHOOSE_FILE = 3;
 
 	private class ImportCSVTask extends AsyncTask<Long, Integer, Integer>{
 		ProgressDialog dialog = null;
@@ -1913,19 +1913,34 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 							separadorExcel = ConstantsAdmin.PUNTO_COMA;
 							new ExportCSVEsteticoTask().execute(params);	*/
 
-							/*Intent chooseFile;
+				/*			Intent chooseFile;
 							Intent intent;
 							chooseFile = new Intent(Intent.ACTION_CHOOSER);
 							chooseFile.setType("folder/*");
 							intent = Intent.createChooser(chooseFile, "Choose a file");
-							startActivityForResult(intent, ACTIVITY_CHOOSE_FILE);
-*/
+							startActivityForResult(intent, ACTIVITY_CHOOSE_FILE);*/
 
-							Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+/*
+							Intent intent = new Intent(Intent.ACTION_);
 							Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
 									+ "/myFolder/");
 							intent.setDataAndType(uri, "text/csv");
 							startActivity(Intent.createChooser(intent, "Open folder"));
+*/
+							Long[] params = new Long[1];
+							params[0] = 1L;
+							dialog.cancel();
+							separadorExcel = ConstantsAdmin.PUNTO_COMA;
+							new ExportCSVEsteticoTask().execute(params);
+
+							Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath());
+							Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
+									.addCategory(Intent.CATEGORY_OPENABLE)
+									.setDataAndType(uri, "text/csv")
+									.putExtra(Intent.EXTRA_TITLE, "archivo.csv");
+
+							startActivityForResult(intent, ConstantsAdmin.ACTIVITY_CHOOSE_FILE);
+
 
 						}
 					});

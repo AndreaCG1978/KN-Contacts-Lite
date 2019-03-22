@@ -47,6 +47,9 @@
             <intent-filter>
                 <action android:name="android.permission.READ_CONTACTS" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            </intent-filter>
         </activity>
         <activity android:name="com.boxico.android.kn.contacts.DetallePersonaActivity" >
             <intent-filter>
