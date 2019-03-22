@@ -25,6 +25,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
@@ -1912,12 +1913,19 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 							separadorExcel = ConstantsAdmin.PUNTO_COMA;
 							new ExportCSVEsteticoTask().execute(params);	*/
 
-							Intent chooseFile;
+							/*Intent chooseFile;
 							Intent intent;
-							chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+							chooseFile = new Intent(Intent.ACTION_CHOOSER);
 							chooseFile.setType("folder/*");
 							intent = Intent.createChooser(chooseFile, "Choose a file");
 							startActivityForResult(intent, ACTIVITY_CHOOSE_FILE);
+*/
+
+							Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+							Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
+									+ "/myFolder/");
+							intent.setDataAndType(uri, "text/csv");
+							startActivity(Intent.createChooser(intent, "Open folder"));
 
 						}
 					});
