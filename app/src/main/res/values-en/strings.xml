@@ -126,7 +126,7 @@
 <string name="menu_importar_contactos_csv">Restore Backup</string>
 <string name="menu_exportar_contactos">Do Backup</string>
 <string name="menu_exportar_excel">Export to Excel</string>
-<string name="mensaje_exito_exportar_excel">Contacts information will be exported to a CSV file called "kncontactsExcel.csv" within the "KN-Contacts" folder. Select CSV format:</string>
+<string name="mensaje_exito_exportar_excel">Select CSV format:</string>
 
 
 <string name="error_exportar_csv">Failed to generate the Contacts backup.</string>

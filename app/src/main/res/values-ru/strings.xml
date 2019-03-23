@@ -135,7 +135,7 @@
 
 <string name="menu_importar_contactos_csv"><![CDATA[Восстановление резервной]]></string>
 <string name="menu_exportar_excel"><![CDATA[Экспорт в Excel]]></string>
-<string name="mensaje_exito_exportar_excel"><![CDATA[Данные из ваших контактов будет экспортироваться в файл CSV называется "kncontactsExcel.csv", в папке "KN-Contacts". Выберите CSV-формате:]]></string>
+<string name="mensaje_exito_exportar_excel"><![CDATA[Выберите CSV-формате:]]></string>
 
 
 <string name="mensaje_importar_contactos_csv"><![CDATA[Это сделает восстановления последней резервной копии. Хотите продолжить? (Это может занять несколько секунд)…)]]></string>

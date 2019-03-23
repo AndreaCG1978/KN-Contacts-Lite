@@ -135,7 +135,7 @@
 
 <string name="menu_importar_contactos_csv">Sicherung wiederherstellen</string>
 <string name="menu_exportar_excel">Exportieren nach Excel</string>
-<string name="mensaje_exito_exportar_excel"><![CDATA[Kontakt Daten in eine Datei namens "kncontactsExcel.csv" innerhalb des Ordners "KN-Contacts" gespeichert werden. Wählen Sie im CSV-Format:]]></string>
+<string name="mensaje_exito_exportar_excel"><![CDATA[Wählen Sie im CSV-Format:]]></string>
 
 
 <string name="mensaje_importar_contactos_csv"><![CDATA[Es ruft die letzte Sicherung. Möchten Sie fortfahren? (Es kann einige Sekunden dauern …)]]></string>

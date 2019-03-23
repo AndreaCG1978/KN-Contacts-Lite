@@ -1,5 +1,7 @@
 package com.boxico.android.kn.contacts;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -1903,30 +1905,17 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 							dialog.cancel();
 							separadorExcel = ConstantsAdmin.COMA;
 							new ExportCSVEsteticoTask().execute(params);
+							Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath());
+							Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
+									.addCategory(Intent.CATEGORY_OPENABLE)
+									.setDataAndType(uri, "text/csv")
+									.putExtra(Intent.EXTRA_TITLE, ConstantsAdmin.fileEsteticoCSV);
+
+							startActivityForResult(intent, ConstantsAdmin.ACTIVITY_CHOOSE_FILE);
 						}
 					})
 					.setNegativeButton(R.string.puntocoma_separated, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-						/*	Long[] params = new Long[1];
-							params[0] = 1L;
-							dialog.cancel();
-							separadorExcel = ConstantsAdmin.PUNTO_COMA;
-							new ExportCSVEsteticoTask().execute(params);	*/
-
-				/*			Intent chooseFile;
-							Intent intent;
-							chooseFile = new Intent(Intent.ACTION_CHOOSER);
-							chooseFile.setType("folder/*");
-							intent = Intent.createChooser(chooseFile, "Choose a file");
-							startActivityForResult(intent, ACTIVITY_CHOOSE_FILE);*/
-
-/*
-							Intent intent = new Intent(Intent.ACTION_);
-							Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
-									+ "/myFolder/");
-							intent.setDataAndType(uri, "text/csv");
-							startActivity(Intent.createChooser(intent, "Open folder"));
-*/
 							Long[] params = new Long[1];
 							params[0] = 1L;
 							dialog.cancel();
@@ -1937,7 +1926,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 							Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
 									.addCategory(Intent.CATEGORY_OPENABLE)
 									.setDataAndType(uri, "text/csv")
-									.putExtra(Intent.EXTRA_TITLE, "archivo.csv");
+									.putExtra(Intent.EXTRA_TITLE, ConstantsAdmin.fileEsteticoCSV);
 
 							startActivityForResult(intent, ConstantsAdmin.ACTIVITY_CHOOSE_FILE);
 
@@ -2028,6 +2017,24 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		ejecutarOnActivityResult(requestCode, intent);
 	}
 
+	private void saveCSVContactsFiles(Intent intent){
+		Uri uri = intent.getData();
+	//	String filePath = getRealPathFromURI(uri);
+		//String filePath = intent.getData().getPath();
+		String fileTempPath = ConstantsAdmin.obtenerPathDeArchivo(ConstantsAdmin.fileEsteticoCSV);
+		try {
+			ConstantsAdmin.copyFiles(fileTempPath,uri, this.getContentResolver());
+		} catch (IOException e) {
+			ConstantsAdmin.mostrarMensajeDialog(this, this.getString(R.string.error_exportar_csv));
+		}
+
+
+	}
+
+
+
+
+
 	private void ejecutarOnActivityResult(int requestCode, Intent intent){
 		try {
 			String path  = "";
@@ -2044,8 +2051,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 			if(requestCode == ConstantsAdmin.ACTIVITY_CHOOSE_FILE)
 			{
-				Uri uri = intent.getData();
-				String FilePath = getRealPathFromURI(uri);
+				this.saveCSVContactsFiles(intent);
 
 			}
 			mySortedByElements = null;
@@ -2076,12 +2082,14 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 	public String getRealPathFromURI(Uri contentUri) {
-		String [] proj = {MediaStore.Images.Media.DATA};
-		Cursor cursor = getContentResolver().query( contentUri, proj, null, null,null);
-		if (cursor == null) return null;
-		int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+	//	String [] proj = {MediaStore.Images.Media.DATA};
+		Cursor cursor = getContentResolver().query( contentUri, null, null, null,null);
+		if (cursor == null) {
+			return null;
+		}
+		//int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 		cursor.moveToFirst();
-		return cursor.getString(column_index);
+		return cursor.getString(0);
 	}
 
 	public void onPause() {

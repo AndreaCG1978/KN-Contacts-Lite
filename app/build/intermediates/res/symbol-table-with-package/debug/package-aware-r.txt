@@ -229,7 +229,6 @@ id line1
 id line3
 id linea1
 id linea2
-id linearAddress
 id linearApellido
 id linearCaracteristica
 id linearCategoria
@@ -237,7 +236,6 @@ id linearCumple
 id linearDatos
 id linearLayoutImagen
 id linearLista
-id linearMails
 id linearNombre
 id listaDirecciones
 id listaDireccionesAlta

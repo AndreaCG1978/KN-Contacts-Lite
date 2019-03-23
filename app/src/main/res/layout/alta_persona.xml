@@ -72,19 +72,17 @@ android:background="@color/color_gris_claro">
 
 		<TextView android:id="@+id/label_identificacion"
             android:text="@string/label_identificacion" android:layout_below="@id/menu_icons"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textColor="@color/color_negro"
-            android:textSize="14sp"
-			android:layout_marginBottom="20dp"
-            android:gravity="start|center"
+			android:layout_height="28dp"
+			android:textColor="@color/color_blanco"
+			android:textSize="14sp"
+			android:gravity="start|center"
 			android:typeface="monospace"
-            android:background="@drawable/custom_text_view_categoria_desc"
-            android:paddingStart="20dp"
-            android:paddingLeft="20dp"
-			android:paddingTop="10dp"
-			android:paddingBottom="10dp"
-            android:layout_margin="5dp"
+			android:paddingStart="15dp"
+			android:paddingLeft="15dp"
+			android:layout_margin="10dp"
+			android:layout_width="220dp"
+			android:layout_marginBottom="6dp"
+			android:background="@drawable/custom_text_view_categoria_desc"
             />
 
 		<LinearLayout android:id="@+id/linearApellido"
@@ -266,48 +264,42 @@ android:background="@color/color_gris_claro">
 			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent">
 		</ListView>
 
-		<LinearLayout android:id="@+id/linearMails"
-			android:layout_width="match_parent" android:layout_height="wrap_content"
-			android:orientation="horizontal" android:layout_margin="5dp"
+
+		<TextView android:id="@+id/label_emails"
+			android:text="@string/label_emails"
 			android:layout_below="@id/menu_icons"
-			android:gravity="center"
-			android:background="@drawable/custom_text_view_categoria_desc">
+			android:layout_height="28dp"
+			android:textColor="@color/color_blanco"
+			android:textSize="14sp"
+			android:gravity="start|center"
+			android:typeface="monospace"
+			android:paddingStart="15dp"
+			android:paddingLeft="15dp"
+			android:layout_margin="10dp"
+			android:layout_width="220dp"
+			android:layout_marginBottom="6dp"
+			android:background="@drawable/custom_text_view_categoria_desc"
+			/>
+
+		<ImageButton android:id="@+id/addMail"
+			android:contentDescription="addMail"
+			android:padding="2dp"
+			android:layout_below="@id/label_emails"
+			android:layout_marginLeft="20dp"
+			android:layout_marginStart="20dp"
+			android:layout_width="28dp"
+			android:layout_height="28dp"
+			android:focusable="true"
+			android:foregroundGravity="right"
+			android:background="@drawable/add_icon"
+			>
+		</ImageButton>
 
 
-			<TextView android:id="@+id/label_emails" android:text="@string/label_emails"
-				android:layout_height="28dp"
-				android:textColor="@color/color_negro"
-				android:textSize="14sp"
-				android:gravity="start|center"
-				android:typeface="monospace"
-				android:paddingStart="15dp"
-				android:paddingLeft="15dp"
-				android:layout_margin="5dp"
-				android:layout_width="220dp"
-				android:layout_marginBottom="6dp"
-				/>
-
-			<Button android:id="@+id/addMail"
-				android:contentDescription="addMail"
-				android:text="@string/label_agregar"
-				android:textStyle="bold"
-				android:layout_marginLeft="22dp"
-				android:layout_marginStart="22dp"
-				android:padding="2dp"
-				android:layout_width="wrap_content"
-				android:layout_height="25dp"
-				android:textSize="11sp"
-				android:textColor="@color/color_blanco"
-				android:typeface="monospace"
-				android:background="@drawable/custom_button"
-				>
-			</Button>
-
-		</LinearLayout>
 
 		<EditText android:id="@+id/nuevoTipoMail" android:layout_width="120dp"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/linearMails"
+			android:layout_below="@id/addMail"
 			android:textSize="15sp"
 			android:padding="10dp"
 			android:gravity="end"
@@ -327,7 +319,7 @@ android:background="@color/color_gris_claro">
 		<EditText android:id="@+id/nuevoValorMail"
 			android:inputType="textEmailAddress|textMultiLine"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/linearMails"
+			android:layout_below="@id/addMail"
 			android:layout_toRightOf="@id/nuevoTipoMail"
 			android:layout_toEndOf="@id/nuevoTipoMail"
 			android:textColor="@color/color_negro"
@@ -365,48 +357,41 @@ android:background="@color/color_gris_claro">
 			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent">
 		</ListView>
 
-		<LinearLayout android:id="@+id/linearAddress"
-			android:layout_width="match_parent" android:layout_height="wrap_content"
-			android:orientation="horizontal" android:layout_margin="5dp"
+		<TextView
+			android:id="@+id/label_address" android:text="@string/label_direcciones"
 			android:layout_below="@id/menu_icons"
-			android:gravity="center"
-			android:background="@drawable/custom_text_view_categoria_desc">
+			android:layout_height="28dp"
+			android:textColor="@color/color_blanco"
+			android:textSize="14sp"
+			android:gravity="start|center"
+			android:typeface="monospace"
+			android:paddingStart="15dp"
+			android:paddingLeft="15dp"
+			android:layout_margin="10dp"
+			android:layout_width="220dp"
+			android:layout_marginBottom="6dp"
+			android:background="@drawable/custom_text_view_categoria_desc"
+			/>
 
-			<TextView android:id="@+id/label_address" android:text="@string/label_direcciones"
-				android:layout_height="28dp"
-				android:textColor="@color/color_negro"
-				android:textSize="14sp"
-				android:gravity="start|center"
-				android:typeface="monospace"
-				android:paddingStart="15dp"
-				android:paddingLeft="15dp"
-				android:layout_margin="5dp"
-				android:layout_width="220dp"
-				android:layout_marginBottom="6dp"
+		<ImageButton
+			android:id="@+id/addDir"
+			android:contentDescription="addAddress"
+			android:padding="2dp"
+			android:layout_below="@id/label_address"
+			android:layout_marginLeft="20dp"
+			android:layout_marginStart="20dp"
+			android:layout_width="28dp"
+			android:layout_height="28dp"
+			android:focusable="true"
+			android:foregroundGravity="right"
+			android:background="@drawable/add_icon"
+			>
+		</ImageButton>
 
-				/>
-
-			<Button android:id="@+id/addDir"
-				android:contentDescription="addAddress"
-				android:text="@string/label_agregar"
-				android:textStyle="bold"
-				android:layout_marginLeft="22dp"
-				android:layout_marginStart="22dp"
-				android:padding="2dp"
-				android:layout_width="wrap_content"
-				android:layout_height="25dp"
-				android:textSize="11sp"
-				android:textColor="@color/color_blanco"
-				android:typeface="monospace"
-				android:background="@drawable/custom_button"
-				>
-			</Button>
-
-		</LinearLayout>
 
 		<EditText android:id="@+id/nuevoTipoDir" android:layout_width="120dp"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/linearAddress"
+			android:layout_below="@id/addDir"
 			android:textSize="15sp"
 			android:padding="10dp"
 			android:gravity="end"
@@ -426,7 +411,7 @@ android:background="@color/color_gris_claro">
 		<EditText android:id="@+id/nuevoValorDir"
 			android:inputType="textPostalAddress|textCapCharacters|textMultiLine"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/linearAddress"
+			android:layout_below="@id/addDir"
 			android:layout_toRightOf="@id/nuevoTipoDir"
 			android:layout_toEndOf="@id/nuevoTipoDir"
 			android:textColor="@color/color_negro"
@@ -480,21 +465,20 @@ android:background="@color/color_gris_claro">
 			android:typeface="monospace"
 			/>
 
-		<TextView android:id="@+id/label_category" android:text="@string/label_datosDeCategoria"
+		<TextView android:id="@+id/label_category"
+			android:text="@string/label_datosDeCategoria"
 			android:layout_below="@id/menu_icons"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textColor="@color/color_negro"
+			android:layout_height="28dp"
+			android:textColor="@color/color_blanco"
 			android:textSize="14sp"
-			android:layout_marginBottom="20dp"
 			android:gravity="start|center"
 			android:typeface="monospace"
-			android:background="@drawable/custom_text_view_categoria_desc"
-			android:paddingStart="20dp"
-			android:paddingLeft="20dp"
-			android:paddingTop="10dp"
-			android:paddingBottom="10dp"
-			android:layout_margin="5dp"/>
+			android:paddingStart="15dp"
+			android:paddingLeft="15dp"
+			android:layout_margin="10dp"
+			android:layout_width="220dp"
+			android:layout_marginBottom="6dp"
+			android:background="@drawable/custom_text_view_categoria_desc"/>
 
 
 

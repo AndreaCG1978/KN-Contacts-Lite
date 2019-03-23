@@ -85,8 +85,8 @@ public class AltaPersonaActivity extends Activity  {
     private EditText mEntryNuevoValDir = null;
 
 	private ImageButton botonAddTel = null;
-	private Button botonAddMail = null;
-	private Button botonAddDir = null;
+	private ImageButton botonAddMail = null;
+	private ImageButton botonAddDir = null;
 	
 	private List<TipoValorDTO> telefonos = new ArrayList<>();
 	private List<TipoValorDTO> mails = new ArrayList<>();
@@ -437,7 +437,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoValMail.getText().clear();
 			mEntryNuevoValMail.append("");
-			botonAddMail.setTextColor(Color.WHITE);
+	//		botonAddMail.setTextColor(Color.WHITE);
            // mEntryNuevoValMail.setText("");
             opacarBotonGuardar();
 		//	imm.hideSoftInputFromWindow(mEntryNuevoTipoMail.getWindowToken(), 0);
@@ -452,7 +452,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoTipoMail.getText().clear();
 			mEntryNuevoTipoMail.append(getResources().getText(R.string.hint_tipo));
-			botonAddMail.setTextColor(Color.LTGRAY);
+		//	botonAddMail.setTextColor(Color.LTGRAY);
 
             mEntryNuevoTipoMail.setSelectAllOnFocus(true);
             mEntryNuevoTipoMail.requestFocus();
@@ -472,7 +472,7 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoTipoDir.getText().clear();
 			mEntryNuevoTipoDir.append("");
-			botonAddDir.setTextColor(Color.WHITE);
+	//		botonAddDir.setTextColor(Color.WHITE);
           //  mEntryNuevoValDir.setText("");
 
 			mEntryNuevoValDir.getText().clear();
@@ -492,7 +492,7 @@ public class AltaPersonaActivity extends Activity  {
 			mEntryNuevoTipoDir.getText().clear();
 			mEntryNuevoTipoDir.append(getResources().getText(R.string.hint_tipo));
 
-			botonAddDir.setTextColor(Color.LTGRAY);
+		//	botonAddDir.setTextColor(Color.LTGRAY);
             mEntryNuevoTipoDir.setSelectAllOnFocus(true);
             mEntryNuevoTipoDir.requestFocus();
             ConstantsAdmin.showKeyboard(this, mEntryNuevoTipoDir);
@@ -1575,8 +1575,8 @@ public class AltaPersonaActivity extends Activity  {
 		this.mostrarDirecciones();
 		this.mostrarDatosPorCategoria();
 	//	botonAddTel.setTextColor(Color.WHITE);
-		botonAddMail.setTextColor(Color.WHITE);
-		botonAddDir.setTextColor(Color.WHITE);
+	//	botonAddMail.setTextColor(Color.WHITE);
+	//	botonAddDir.setTextColor(Color.WHITE);
 	//	ConstantsAdmin.hideKeyboard(this);
 	}
 

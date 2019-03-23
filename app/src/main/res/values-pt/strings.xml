@@ -135,7 +135,7 @@
 <string name="menu_exportar_contactos">Gerar de backup</string>
 
 <string name="menu_exportar_excel">Exportar para Excel</string>
-<string name="mensaje_exito_exportar_excel"><![CDATA[Os dados de seus contatos serão exportados para um arquivo CSV chamado "kncontactsExcel.csv" dentro da pasta "KN-Contacts". Seleccione o formato CSV:]]></string>
+<string name="mensaje_exito_exportar_excel"><![CDATA[Seleccione o formato CSV:]]></string>
 
 
 

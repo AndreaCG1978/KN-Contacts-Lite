@@ -128,7 +128,7 @@
 <string name="mensaje_importando_contactos">Importation de contacts…</string>
 <string name="menu_importar_contactos_csv"><![CDATA[Récupérer sauvegarde]]></string>
 <string name="menu_exportar_excel">Exporter vers Excel</string>
-<string name="mensaje_exito_exportar_excel"><![CDATA[Les données de vos contacts seront exportées vers un fichier CSV appelé "kncontactsExcel.csv" dans le "KN-Contacts". Sélectionnez le format CSV:]]></string>
+<string name="mensaje_exito_exportar_excel"><![CDATA[Sélectionnez le format CSV:]]></string>
 
 <string name="mensaje_exportando_contactos"><![CDATA[Contacts sont exportés…]]></string>
 <string name="menu_exportar_contactos"><![CDATA[Générer de sauvegarde]]></string>

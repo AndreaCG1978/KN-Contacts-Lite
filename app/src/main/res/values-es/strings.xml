@@ -141,7 +141,7 @@
 
 	<string name="menu_importar_contactos_csv">Restaurar Backup</string>
 	<string name="menu_exportar_excel">Exportar a Excel</string>
-	<string name="mensaje_exito_exportar_excel"><![CDATA[Los datos de sus contactos serán exportados en un archivo CSV llamado "kncontactsExcel.csv", dentro de la carpeta "KN-Contacts". Seleccione formato CSV:]]></string>
+	<string name="mensaje_exito_exportar_excel"><![CDATA[Seleccione formato CSV:]]></string>
 
 
 	<string name="mensaje_importar_contactos_csv"><![CDATA[Se realizará la restauración de la última copia de seguridad realizada. Desea continuar?(Puede tardar varios segundos…)]]></string>

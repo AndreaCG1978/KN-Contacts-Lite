@@ -133,7 +133,7 @@
 <string name="hint_nuevo_tipo">NUOVO TIPO</string>
 <string name="menu_exportar_contactos">Generazione di backup</string>
 <string name="menu_exportar_excel">Esporta in Excel</string>
-<string name="mensaje_exito_exportar_excel">I dati dei vostri contatti saranno esportati in un file CSV denominato "kncontactsExcel.csv" nella "KN-Contacts". Seleziona formato CSV:</string>
+<string name="mensaje_exito_exportar_excel">Seleziona formato CSV:</string>
 
 
 <string name="mensaje_importar_contactos_csv"><![CDATA[Ci sarà il ripristino dell\'ultimo backup eseguito. Vuoi continuare? (Può richiedere diversi secondi …)]]></string>

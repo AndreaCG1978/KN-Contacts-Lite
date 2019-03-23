@@ -3,9 +3,12 @@ package com.boxico.android.kn.contacts.util;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URL;
@@ -93,6 +96,7 @@ public class ConstantsAdmin {
 	public static final String querySelectionPhoneContactsById = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ";
 	public static final String querySelectionDirsContactsById = ContactsContract.CommonDataKinds.StructuredPostal.CONTACT_ID + " = ";
 
+	public static final String fileEsteticoCSV = "kncontactsExcel.csv";
 
 	private static ArrayList<Long> telefonosAEliminar = null;
 
@@ -1556,7 +1560,6 @@ public class ConstantsAdmin {
 			msg = (String) canStore.getValue();
 			if(boolValue){
 				body = obtenerCSVdeContactosEstetico(context, separador, categoriasProtegidas, mDBManager);
-				String fileEsteticoCSV = "kncontactsExcel.csv";
 				almacenarArchivo(fileEsteticoCSV, body);
 				mensaje = context.getString(R.string.mensaje_exito_exportar_csv);
 			}else{
@@ -1590,6 +1593,10 @@ public class ConstantsAdmin {
 		return path + File.separator + nombreDirectorio;
 	}
 
+	public static String obtenerPath(){
+		String path = Environment.getExternalStorageDirectory().toString();
+		return path + File.separator + folderCSV;
+	}
 
 	private static String obtenerCSVdeContactosEstetico(Activity context, String separador, List<CategoriaDTO> categoriasProtegidas, DataBaseManager mDBManager){
 		StringBuilder result = new StringBuilder();
@@ -2864,9 +2871,40 @@ public class ConstantsAdmin {
 	public static final int ACTIVITY_EJECUTAR_SACAR_PHOTO = 25;
 
 
+	public static InputStream getInputStreamFromUri(ContentResolver cr, Uri uri){
+		InputStream fis = null;
+		try {
+			fis = cr.openInputStream(uri);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return fis;
+
+	}
+
+	public static FileOutputStream getFileOutputStreamFromUri(ContentResolver cr, Uri uri){
+		OutputStream os = null;
+		FileOutputStream fos = null;
+		try {
+		//	fos = cr.openInputStream(uri);
+			os = cr.openOutputStream(uri);
+			fos = (FileOutputStream)os;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return fos;
+
+	}
+
 	public static String obtenerPathImagen(){
 		String result;
 		result = obtenerPath(folderCSV) + File.separator + imageFolder + File.separator;
+		return result;
+	}
+
+	public static String obtenerPathDeArchivo(String fileName){
+		String result;
+		result = obtenerPath(folderCSV) + File.separator + fileName;
 		return result;
 	}
 
@@ -2906,7 +2944,59 @@ public class ConstantsAdmin {
 
 	}
 
+	public static void copyFiles(String srcPath, String dstPath) throws IOException {
+		File srcFile = new File(srcPath);
+		File dstFile = new File(dstPath);
+		copyFiles(srcFile, dstFile);
 
+	}
+
+	public static void copyFiles(String srcPath, Uri dst, ContentResolver cr) throws IOException {
+		File src = new File(srcPath);
+		InputStream in = new FileInputStream(src);
+		try {
+			OutputStream out = getFileOutputStreamFromUri(cr, dst);
+			try {
+				// Transfer bytes from in to out
+				byte[] buf = new byte[1024];
+				int len;
+				while ((len = in.read(buf)) > 0) {
+					out.write(buf, 0, len);
+				}
+			} finally {
+				out.close();
+			}
+		}
+		catch(Exception exc){
+			exc.printStackTrace();
+		}
+		finally {
+			in.close();
+		}
+	}
+
+	public static void copyFiles(File src, File dst) throws IOException {
+		InputStream in = new FileInputStream(src);
+		try {
+			OutputStream out = new FileOutputStream(dst);
+			try {
+				// Transfer bytes from in to out
+				byte[] buf = new byte[1024];
+				int len;
+				while ((len = in.read(buf)) > 0) {
+					out.write(buf, 0, len);
+				}
+			} finally {
+				out.close();
+			}
+		}
+		catch(Exception exc){
+				exc.printStackTrace();
+			}
+		finally {
+			in.close();
+		}
+	}
 
 	private static void deletePictureAndThumbnail(Uri selectedImageUri, ContentResolver cr) {
 		try {
