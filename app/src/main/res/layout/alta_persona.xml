@@ -71,18 +71,19 @@ android:background="@color/color_gris_claro">
 
 
 		<TextView android:id="@+id/label_identificacion"
-            android:text="@string/label_identificacion" android:layout_below="@id/menu_icons"
+            android:text="@string/label_identificacion"
+			android:layout_below="@id/menu_icons"
 			android:layout_height="28dp"
-			android:textColor="@color/color_blanco"
+			android:textColor="@color/color_gris_claro"
 			android:textSize="14sp"
-			android:gravity="start|center"
 			android:typeface="monospace"
+			android:gravity="center"
 			android:paddingStart="15dp"
 			android:paddingLeft="15dp"
-			android:layout_margin="10dp"
-			android:layout_width="220dp"
+			android:layout_margin="5dp"
+			android:layout_width="match_parent"
 			android:layout_marginBottom="6dp"
-			android:background="@drawable/custom_text_view_categoria_desc"
+			android:background="@color/color_gris_oscuro"
             />
 
 		<LinearLayout android:id="@+id/linearApellido"
@@ -183,38 +184,44 @@ android:background="@color/color_gris_claro">
 		</LinearLayout>
 
 		<TextView android:id="@+id/label_phones"
-			android:layout_below="@id/menu_icons"
 			android:text="@string/label_telefonos"
+			android:layout_below="@id/menu_icons"
 			android:layout_height="28dp"
-			android:textColor="@color/color_blanco"
+			android:textColor="@color/color_gris_claro"
 			android:textSize="14sp"
-			android:gravity="start|center"
 			android:typeface="monospace"
+			android:gravity="center"
 			android:paddingStart="15dp"
 			android:paddingLeft="15dp"
-			android:layout_margin="10dp"
-			android:layout_width="220dp"
+			android:layout_margin="5dp"
+			android:layout_width="match_parent"
 			android:layout_marginBottom="6dp"
-			android:background="@drawable/custom_text_view_categoria_desc"
+			android:background="@color/color_gris_oscuro"
 			/>
 
-		<ImageButton android:id="@+id/addTelefono"
+		<LinearLayout android:id="@+id/linearTelefono"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:layout_below="@id/label_phones"
-			android:layout_marginLeft="20dp"
-			android:layout_marginStart="20dp"
-			android:layout_width="28dp"
-			android:layout_height="28dp"
-			android:focusable="true"
-			android:foregroundGravity="right"
-			android:background="@drawable/add_icon"
-			>
-		</ImageButton>
+			android:gravity="end"
+			android:layout_marginEnd="10dp">
 
+			<ImageButton android:id="@+id/addTelefono"
+				android:layout_margin="3dp"
+				android:layout_width="28dp"
+				android:layout_height="28dp"
+				android:focusable="true"
+				android:foregroundGravity="right"
+				android:background="@drawable/add_icon"
+				>
+			</ImageButton>
+
+		</LinearLayout>
 
 
 		<EditText android:id="@+id/nuevoTipoTel" android:layout_width="120dp"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/addTelefono"
+			android:layout_below="@id/linearTelefono"
 			android:textSize="15sp"
 			android:padding="10dp"
 			android:gravity="end"
@@ -234,7 +241,7 @@ android:background="@color/color_gris_claro">
 		<EditText android:id="@+id/nuevoValorTel"
 			android:inputType="phone"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/addTelefono"
+			android:layout_below="@id/linearTelefono"
 			android:layout_toRightOf="@id/nuevoTipoTel"
 			android:layout_toEndOf="@id/nuevoTipoTel"
 			android:textColor="@color/color_negro"
@@ -269,37 +276,42 @@ android:background="@color/color_gris_claro">
 			android:text="@string/label_emails"
 			android:layout_below="@id/menu_icons"
 			android:layout_height="28dp"
-			android:textColor="@color/color_blanco"
+			android:textColor="@color/color_gris_claro"
 			android:textSize="14sp"
-			android:gravity="start|center"
 			android:typeface="monospace"
+			android:gravity="center"
 			android:paddingStart="15dp"
 			android:paddingLeft="15dp"
-			android:layout_margin="10dp"
-			android:layout_width="220dp"
+			android:layout_margin="5dp"
+			android:layout_width="match_parent"
 			android:layout_marginBottom="6dp"
-			android:background="@drawable/custom_text_view_categoria_desc"
+			android:background="@color/color_gris_oscuro"
 			/>
 
-		<ImageButton android:id="@+id/addMail"
-			android:contentDescription="addMail"
-			android:padding="2dp"
+		<LinearLayout android:id="@+id/linearMail"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:layout_below="@id/label_emails"
-			android:layout_marginLeft="20dp"
-			android:layout_marginStart="20dp"
-			android:layout_width="28dp"
-			android:layout_height="28dp"
-			android:focusable="true"
-			android:foregroundGravity="right"
-			android:background="@drawable/add_icon"
-			>
-		</ImageButton>
+			android:gravity="end"
+			android:layout_marginEnd="10dp">
+
+			<ImageButton android:id="@+id/addMail"
+				android:contentDescription="addMail"
+				android:layout_margin="3dp"
+				android:layout_width="28dp"
+				android:layout_height="28dp"
+				android:focusable="true"
+				android:background="@drawable/add_icon"
+				>
+			</ImageButton>
+
+		</LinearLayout>
 
 
 
 		<EditText android:id="@+id/nuevoTipoMail" android:layout_width="120dp"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/addMail"
+			android:layout_below="@id/linearMail"
 			android:textSize="15sp"
 			android:padding="10dp"
 			android:gravity="end"
@@ -319,7 +331,7 @@ android:background="@color/color_gris_claro">
 		<EditText android:id="@+id/nuevoValorMail"
 			android:inputType="textEmailAddress|textMultiLine"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/addMail"
+			android:layout_below="@id/linearMail"
 			android:layout_toRightOf="@id/nuevoTipoMail"
 			android:layout_toEndOf="@id/nuevoTipoMail"
 			android:textColor="@color/color_negro"
@@ -358,40 +370,45 @@ android:background="@color/color_gris_claro">
 		</ListView>
 
 		<TextView
-			android:id="@+id/label_address" android:text="@string/label_direcciones"
+			android:id="@+id/label_address"
+			android:text="@string/label_direcciones"
 			android:layout_below="@id/menu_icons"
 			android:layout_height="28dp"
-			android:textColor="@color/color_blanco"
+			android:textColor="@color/color_gris_claro"
 			android:textSize="14sp"
-			android:gravity="start|center"
 			android:typeface="monospace"
+			android:gravity="center"
 			android:paddingStart="15dp"
 			android:paddingLeft="15dp"
-			android:layout_margin="10dp"
-			android:layout_width="220dp"
+			android:layout_margin="5dp"
+			android:layout_width="match_parent"
 			android:layout_marginBottom="6dp"
-			android:background="@drawable/custom_text_view_categoria_desc"
+			android:background="@color/color_gris_oscuro"
 			/>
 
-		<ImageButton
-			android:id="@+id/addDir"
-			android:contentDescription="addAddress"
-			android:padding="2dp"
+		<LinearLayout android:id="@+id/linearDir"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:layout_below="@id/label_address"
-			android:layout_marginLeft="20dp"
-			android:layout_marginStart="20dp"
-			android:layout_width="28dp"
-			android:layout_height="28dp"
-			android:focusable="true"
-			android:foregroundGravity="right"
-			android:background="@drawable/add_icon"
-			>
-		</ImageButton>
+			android:gravity="end"
+			android:layout_marginEnd="10dp">
 
+			<ImageButton
+				android:id="@+id/addDir"
+				android:contentDescription="addAddress"
+				android:layout_margin="3dp"
+				android:layout_width="28dp"
+				android:layout_height="28dp"
+				android:focusable="true"
+				android:background="@drawable/add_icon"
+				>
+			</ImageButton>
+
+		</LinearLayout>
 
 		<EditText android:id="@+id/nuevoTipoDir" android:layout_width="120dp"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/addDir"
+			android:layout_below="@id/linearDir"
 			android:textSize="15sp"
 			android:padding="10dp"
 			android:gravity="end"
@@ -411,7 +428,7 @@ android:background="@color/color_gris_claro">
 		<EditText android:id="@+id/nuevoValorDir"
 			android:inputType="textPostalAddress|textCapCharacters|textMultiLine"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/addDir"
+			android:layout_below="@id/linearDir"
 			android:layout_toRightOf="@id/nuevoTipoDir"
 			android:layout_toEndOf="@id/nuevoTipoDir"
 			android:textColor="@color/color_negro"
@@ -449,36 +466,40 @@ android:background="@color/color_gris_claro">
 			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent"	>
 		</ListView>
 
-		<TextView android:id="@+id/label_sinDatos"
-			android:layout_width="wrap_content"
+		<LinearLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/text_sinDatos"
-			android:textSize="14sp"
+			android:gravity="center"
 			android:layout_below="@id/menu_icons"
-			android:paddingStart="15dp"
-			android:paddingEnd="15dp"
-			android:textColor="@color/color_gris_oscuro"
 			android:layout_marginTop="50dp"
-			android:paddingLeft="15dp"
-			android:paddingRight="15dp"
-			android:gravity="center|center_horizontal"
-			android:typeface="monospace"
-			/>
+			>
+
+			<TextView android:id="@+id/label_sinDatos"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/text_sinDatos"
+				android:textSize="14sp"
+				android:textColor="@color/color_gris_oscuro"
+				android:typeface="monospace"
+				/>
+
+		</LinearLayout>
 
 		<TextView android:id="@+id/label_category"
 			android:text="@string/label_datosDeCategoria"
 			android:layout_below="@id/menu_icons"
 			android:layout_height="28dp"
-			android:textColor="@color/color_blanco"
+			android:textColor="@color/color_gris_claro"
 			android:textSize="14sp"
-			android:gravity="start|center"
 			android:typeface="monospace"
+			android:gravity="center"
 			android:paddingStart="15dp"
 			android:paddingLeft="15dp"
-			android:layout_margin="10dp"
-			android:layout_width="220dp"
+			android:layout_margin="5dp"
+			android:layout_width="match_parent"
 			android:layout_marginBottom="6dp"
-			android:background="@drawable/custom_text_view_categoria_desc"/>
+			android:background="@color/color_gris_oscuro"
+		/>
 
 
 
@@ -495,20 +516,32 @@ android:background="@color/color_gris_claro">
 			android:orientation="vertical">
 
 			<LinearLayout android:id="@+id/linearCategoria"
-				android:layout_width="match_parent" android:layout_height="wrap_content"
-				android:orientation="horizontal" android:layout_margin="10dp"
-				android:gravity="left"
-				android:background="@drawable/custom_text_view_apellido">
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:layout_margin="5dp"
+				android:gravity="left|center_horizontal"
+				android:background="@color/color_gris_oscuro">
+
+
+				<ImageButton
+					android:id="@+id/configCategory"
+					android:contentDescription="Config category"
+					android:layout_margin="8dp"
+					android:layout_width="32dp"
+					android:layout_height="32dp"
+					android:focusable="true"
+					android:background="@drawable/categoria_am_icon_bw"
+					>
+				</ImageButton>
 
 				<Spinner android:id="@+id/spinnerCategorias_alta_persona"
 					android:layout_below="@id/label_category"
 					android:layout_width="wrap_content"
-					android:layout_height="35dp"
-					android:layout_marginEnd="10dp"
-					android:layout_marginTop="8dp"
-					android:layout_marginBottom="8dp"
+					android:layout_height="30dp"
+					android:layout_margin="8dp"
 					style="@style/SpinnerTheme"
-					android:layout_marginRight="10dp" />
+					/>
 
 			</LinearLayout>
 
@@ -611,7 +644,7 @@ android:background="@color/color_gris_claro">
 
 		<TextView android:id="@+id/nombre_contacto"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:textSize="15sp" android:background="@drawable/custom_text_view_categoria"
+			android:textSize="15sp" android:background="@drawable/custom_text_view_categoria_desc"
 			android:textColor="@color/color_negro"
 			android:layout_margin="5dp"
 			android:typeface="monospace"

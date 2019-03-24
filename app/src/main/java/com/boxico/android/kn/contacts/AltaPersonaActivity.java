@@ -87,6 +87,7 @@ public class AltaPersonaActivity extends Activity  {
 	private ImageButton botonAddTel = null;
 	private ImageButton botonAddMail = null;
 	private ImageButton botonAddDir = null;
+	private ImageButton configCategory = null;
 	
 	private List<TipoValorDTO> telefonos = new ArrayList<>();
 	private List<TipoValorDTO> mails = new ArrayList<>();
@@ -320,7 +321,13 @@ public class AltaPersonaActivity extends Activity  {
             public void onClick(View v) {
             	openAltaDireccion();
             }
-        });		
+        });
+		configCategory.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				openListadoCategoria();
+			}
+		});
 	}
 
 
@@ -746,6 +753,7 @@ public class AltaPersonaActivity extends Activity  {
 		botonAddTel = this.findViewById(R.id.addTelefono);
 		botonAddMail = this.findViewById(R.id.addMail);
 		botonAddDir = this.findViewById(R.id.addDir);
+		configCategory = this.findViewById(R.id.configCategory);
 
         mEntryApellido.addTextChangedListener(new TextWatcher() {
             @Override
@@ -1840,13 +1848,16 @@ public class AltaPersonaActivity extends Activity  {
 	
 	private void setVisibilityParaViewPorCategorias(int visibility){
 		Spinner spinner = this.findViewById(R.id.spinnerCategorias_alta_persona);
+		//ImageButton configCategory = this.findViewById(R.id.configCategory);
 		mEntryDatoExtra.setVisibility(visibility);
 		mEntryDescripcion.setVisibility(visibility);
 		this.findViewById(R.id.label_datoExtra).setVisibility(visibility);
 		this.findViewById(R.id.label_descripcion).setVisibility(visibility);
+		configCategory.setVisibility(visibility);
 		if(spinner != null){
 			spinner.setVisibility(visibility);	
 		}
+
 		
 	}
 	

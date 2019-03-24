@@ -13,12 +13,14 @@
     <color name="color_azul_oscuro">#474556</color>
 	<color name="color_azul">#545066</color>
     <color name="color_gris_boton">#D3D2CD</color>
-	<color name="color_celeste">#354CB5</color>
+	<color name="color_celeste">#5c678a</color>
+
 
 
     <style name="SpinnerTheme" parent="android:Widget.Spinner">
         <item name="android:textColor">@color/color_gris_oscuro</item>
         <item name="android:textSize">10sp</item>
+        <item name="android:background">@drawable/custom_button</item>
     </style>
 
 </resources>

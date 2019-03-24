@@ -171,6 +171,7 @@ id checkFechaNacimiento
 id chronometer
 id clip_horizontal
 id clip_vertical
+id configCategory
 id contrasenia1
 id contrasenia2
 id cumple
@@ -234,9 +235,12 @@ id linearCaracteristica
 id linearCategoria
 id linearCumple
 id linearDatos
+id linearDir
 id linearLayoutImagen
 id linearLista
+id linearMail
 id linearNombre
+id linearTelefono
 id listaDirecciones
 id listaDireccionesAlta
 id listaEspecial

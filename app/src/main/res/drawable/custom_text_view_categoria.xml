@@ -7,7 +7,7 @@
                 android:radius="3dp" />
             <gradient
                 android:endColor="@color/color_gris_claro"
-                android:startColor="@color/color_gris"
+                android:startColor="@color/color_celeste"
                 android:angle="180" />
  
         </shape>

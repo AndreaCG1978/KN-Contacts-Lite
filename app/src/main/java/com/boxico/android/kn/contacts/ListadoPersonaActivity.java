@@ -612,7 +612,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 								if(((ExpandableListView) parent).isGroupExpanded(groupPosition)){
 									textName.setTextColor(Color.WHITE);
 								}else{
-									textName.setTextColor(Color.BLACK);
+									textName.setTextColor(Color.LTGRAY);
 
 								}
 							//	textName.setTextColor(getResources().getColor(R.color.color_negro));

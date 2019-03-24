@@ -11,62 +11,61 @@
 		android:scrollbarAlwaysDrawVerticalTrack="true"
 		android:background="@color/color_gris_claro" >
 
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:gravity="center"
+			android:orientation="horizontal"
+			android:padding="7dp"
+			android:background="@color/color_gris_oscuro">
 
-		<LinearLayout android:orientation="horizontal"
-				android:layout_width="fill_parent" android:layout_height="45dp"
-				android:layout_margin="5dp" android:gravity="center"
-				android:background="@color/color_gris_oscuro">
+			<ImageButton android:id="@+id/imagenAddContacto"
+				android:background="@drawable/person_add_icon"
+				android:layout_height="35dp" android:layout_width="35dp"
+				android:contentDescription="imagenAddContacto" />
+
+			<ImageButton android:id="@+id/buttonSwitchOrganizacion"
+				android:layout_width="32dp" android:layout_height="32dp"
+				android:background="@drawable/organizar_nombre"
+				android:contentDescription="buttonSwitchOrganizacion"
+				android:layout_marginLeft="30dp"
+				android:layout_marginStart="30dp" />
+
+			<ImageButton android:id="@+id/buttonMoreOrLess"
+				android:layout_width="32dp" android:layout_height="32dp"
+				android:background="@drawable/more_desc_contact"
+				android:contentDescription="buttonMoreOrLess"
+				android:visibility="gone"
+				android:layout_marginLeft="30dp"
+				android:layout_marginStart="30dp" />
+
+			<ImageButton android:id="@+id/buttonExpandContractAll"
+				android:layout_width="30dp" android:layout_height="30dp"
+				android:background="@drawable/expandir_icon"
+				android:contentDescription="buttonExpandContractAll"
+				android:layout_marginLeft="30dp"
+				android:layout_marginStart="30dp" />
+
+
+			<ImageButton android:id="@+id/imagenPreferidos"
+				android:layout_height="30dp" android:layout_width="30dp"
+				android:contentDescription="imagenPreferidos"
+				android:layout_marginLeft="30dp"
+				android:layout_marginStart="30dp" />
+
+
+			<ImageButton android:id="@+id/botonProtegerCategorias"
+				android:layout_height="30dp" android:layout_width="30dp"
+				android:contentDescription="botonProtegerCategorias"
+				android:layout_marginLeft="30dp"
+				android:layout_marginStart="30dp" />
 
 
 
-				<EditText android:id="@+id/entryBusquedaPersona"
-					android:inputType="textCapCharacters" android:layout_height="28dp"
-					android:layout_width="110dp" android:maxLength="15"
-					android:paddingStart="7dp" android:paddingEnd="7dp" android:textSize="13sp"
-					android:hint="@string/hint_busqueda" android:textColor="@color/color_gris_oscuro"
-					android:textColorHint="@color/color_gris"
-					android:importantForAutofill="no"
-					android:paddingLeft="7dp" android:paddingRight="7dp"
-					android:layout_marginLeft="3dp"
-					android:layout_marginStart="3dp"
-					android:textStyle="italic"
-					android:background="@color/color_gris_claro"
-					/>
-
-
-				<com.boxico.android.kn.contacts.util.MultiSpinner
-					android:id="@+id/multi_spinner" android:layout_width="32dp"
-					android:layout_height="32dp" android:background="@drawable/categoria_search_icon"
-					android:layout_marginStart="50dp" android:layout_marginLeft="50dp"
-					/>
-
-
-				<ImageButton android:id="@+id/buttonTodasLasCategorias"
-					android:layout_width="30dp" android:layout_height="30dp"
-					android:layout_marginStart="22dp" android:background="@drawable/clear_icon"
-					android:contentDescription="buttonTodasLasCategorias"
-					android:layout_marginLeft="22dp" />
-
-				<TextView android:id="@+id/cantRegistros"
-					android:layout_height="wrap_content" android:layout_width="wrap_content"
-					android:layout_marginStart="22dp" android:textSize="13sp"
-					android:layout_marginLeft="22dp"
-					android:textColor="@color/color_gris_claro"
-					android:gravity="top"/>
-
-				<ImageView android:id="@+id/imgPrefRight"
-					android:layout_width="13dp" android:layout_height="13dp"
-					android:src="@drawable/pref_detalle_icon"
-					android:layout_marginStart="10dp"
-					android:contentDescription="imgPrefRight"
-					android:layout_marginLeft="10dp" />
-
-			</LinearLayout>
-
+		</LinearLayout>
 
 
 		<ExpandableListView android:id="@android:id/list"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:scrollbarAlwaysDrawVerticalTrack="true"
 			android:listSelector="@android:color/transparent"
 			android:cacheColorHint="@android:color/transparent"
@@ -102,56 +101,75 @@
 		android:gravity="center_vertical" android:layout_margin="5dp"
 		android:background="@color/color_gris_claro">
 
-		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:gravity="center"
-			android:orientation="horizontal"
-			android:padding="7dp"
+
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="fill_parent" android:layout_height="45dp"
+			android:layout_margin="5dp" android:gravity="left|center_vertical"
 			android:background="@color/color_gris_oscuro">
 
-			<ImageButton android:id="@+id/imagenAddContacto"
-				android:background="@drawable/person_add_icon"
-				android:layout_height="35dp" android:layout_width="35dp"
-				android:contentDescription="imagenAddContacto" />
-
-			<ImageButton android:id="@+id/buttonSwitchOrganizacion"
-				android:layout_width="32dp" android:layout_height="32dp"
-				android:background="@drawable/organizar_nombre"
-				android:contentDescription="buttonSwitchOrganizacion"
-				android:layout_marginLeft="28dp"
-				android:layout_marginStart="28dp" />
-
-			<ImageButton android:id="@+id/buttonMoreOrLess"
-				android:layout_width="32dp" android:layout_height="32dp"
-				android:background="@drawable/more_desc_contact"
-				android:contentDescription="buttonMoreOrLess"
-				android:visibility="gone"
-				android:layout_marginLeft="28dp"
-				android:layout_marginStart="28dp" />
-
-			<ImageButton android:id="@+id/buttonExpandContractAll"
-				android:layout_width="30dp" android:layout_height="30dp"
-				android:background="@drawable/expandir_icon"
-				android:contentDescription="buttonExpandContractAll"
-				android:layout_marginLeft="28dp"
-				android:layout_marginStart="28dp" />
+			<com.boxico.android.kn.contacts.util.MultiSpinner
+				android:id="@+id/multi_spinner"
+				android:layout_width="32dp"
+				android:layout_height="32dp"
+				android:background="@drawable/categoria_search_icon"
+				android:layout_marginStart="15dp"
+				android:layout_marginLeft="15dp"
+				/>
 
 
-			<ImageButton android:id="@+id/imagenPreferidos"
-				android:layout_height="30dp" android:layout_width="30dp"
-				android:contentDescription="imagenPreferidos"
-				android:layout_marginLeft="28dp"
-				android:layout_marginStart="28dp" />
+			<EditText android:id="@+id/entryBusquedaPersona"
+				android:layout_height="28dp"
+				android:layout_width="110dp"
+				android:inputType="textCapCharacters"
+				android:maxLength="15"
+				android:paddingStart="7dp"
+				android:paddingEnd="7dp"
+				android:textSize="13sp"
+				android:hint="@string/hint_busqueda"
+				android:textColor="@color/color_gris_oscuro"
+				android:textColorHint="@color/color_gris"
+				android:importantForAutofill="no"
+				android:paddingLeft="7dp"
+				android:paddingRight="7dp"
+				android:layout_marginLeft="20dp"
+				android:layout_marginStart="20dp"
+				android:textStyle="italic"
+				android:background="@color/color_gris_claro"
+				/>
 
 
-			<ImageButton android:id="@+id/botonProtegerCategorias"
-				android:layout_height="30dp" android:layout_width="30dp"
-				android:contentDescription="botonProtegerCategorias"
-				android:layout_marginLeft="28dp"
-				android:layout_marginStart="28dp" />
+			<ImageButton android:id="@+id/buttonTodasLasCategorias"
+				android:layout_width="28dp"
+				android:layout_height="28dp"
+				android:layout_marginStart="20dp"
+				android:layout_marginLeft="20dp"
+				android:background="@drawable/clear_icon"
+				android:contentDescription="buttonTodasLasCategorias"
+				 />
 
+			<TextView android:id="@+id/cantRegistros"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:textSize="13sp"
+				android:layout_marginStart="60dp"
+				android:layout_marginLeft="60dp"
+				android:textColor="@color/color_gris_claro"
+				android:gravity="top"/>
 
+			<ImageView android:id="@+id/imgPrefRight"
+				android:layout_width="13dp"
+				android:layout_height="13dp"
+				android:src="@drawable/pref_detalle_icon"
+				android:layout_marginStart="10dp"
+				android:contentDescription="imgPrefRight"
+				android:layout_marginLeft="10dp" />
 
 		</LinearLayout>
+
+
+
+
+
 	</RelativeLayout>
 
 
