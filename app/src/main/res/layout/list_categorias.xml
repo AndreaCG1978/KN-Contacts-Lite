@@ -39,7 +39,7 @@
 				android:layout_marginStart="30dp"
 				android:contentDescription="addCategory"
 				android:padding="3dp"
-				android:typeface="monospace"
+				android:typeface="normal"
 				android:background="@drawable/custom_button"
 				>
 			</Button>
@@ -56,7 +56,7 @@
 				android:layout_marginStart="15dp"
 				android:contentDescription="addCategory"
 				android:padding="3dp"
-				android:typeface="monospace"
+				android:typeface="normal"
 				android:background="@drawable/custom_button"
 				android:visibility="gone"
 				>

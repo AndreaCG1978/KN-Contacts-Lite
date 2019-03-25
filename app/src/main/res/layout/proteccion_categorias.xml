@@ -47,7 +47,7 @@
 				android:textColor="@android:color/white"
 				android:layout_gravity="center"
 				android:contentDescription="savePassword"
-				android:typeface="monospace"
+				android:typeface="normal"
 				android:textSize="11sp"
 				android:layout_marginStart="30dp"
 				android:background="@drawable/custom_button"
@@ -195,7 +195,7 @@
 				android:textSize="11sp"
 				android:layout_gravity="center"
 				android:layout_marginLeft="30dp"
-				android:typeface="monospace"
+				android:typeface="normal"
 				android:background="@drawable/custom_button"/>
 		</LinearLayout>
 

@@ -616,9 +616,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 								}
 							//	textName.setTextColor(getResources().getColor(R.color.color_negro));
-								textName.setTypeface(Typeface.MONOSPACE);
+								textName.setTypeface(Typeface.SANS_SERIF);
 								textCantidad.setTextColor(getResources().getColor(R.color.color_gris_claro));
-								textCantidad.setTypeface(Typeface.MONOSPACE);
+								textCantidad.setTypeface(Typeface.SANS_SERIF);
 								textCantidad.setText(String.valueOf(personasMap.get(temp).size()));
 								return v;
 							}

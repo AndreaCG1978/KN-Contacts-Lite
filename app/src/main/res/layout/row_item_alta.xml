@@ -13,9 +13,9 @@
 		android:padding="7dp"
 		android:gravity="end"
 		android:background="@drawable/custom_text_view_categoria_desc"
-		android:typeface="monospace"
+		android:typeface="normal"
 		android:focusable="false"
-		android:textColor="@color/color_negro"
+		android:textColor="@color/color_gris_claro"
 		android:textAllCaps="true">
 	</EditText>
 
@@ -23,7 +23,7 @@
 		android:layout_height="wrap_content"
         android:layout_width="218dp"
 		android:textColor="@color/color_negro"
-		android:typeface="monospace"
+		android:typeface="normal"
 		android:padding="5dp"
 		android:textSize="15sp"
 		android:layout_marginStart="5dp" android:layout_marginEnd="4dp"

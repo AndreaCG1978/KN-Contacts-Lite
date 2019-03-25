@@ -15,7 +15,7 @@
 		android:layout_height="wrap_content"
 		android:textSize="14sp"
 		android:paddingTop="9dp"
-		android:typeface="monospace"
+		android:typeface="normal"
 		android:paddingStart="15dp"
 		android:paddingEnd="10dp"
 		android:paddingBottom="5dp"

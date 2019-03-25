@@ -76,7 +76,7 @@ android:background="@color/color_gris_claro">
 			android:layout_height="28dp"
 			android:textColor="@color/color_gris_claro"
 			android:textSize="14sp"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:gravity="center"
 			android:paddingStart="15dp"
 			android:paddingLeft="15dp"
@@ -94,9 +94,9 @@ android:background="@color/color_gris_claro">
 			<TextView android:id="@+id/label_apellido" android:text="@string/hint_apellido"
 				android:layout_width="110dp" android:layout_height="wrap_content"
 				android:textSize="13sp" android:padding="8dp" android:gravity="end"
-				android:typeface="monospace"
+				android:typeface="normal"
 				android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_negro"
+				android:textColor="@color/color_gris_claro"
 				/>
 
 
@@ -111,7 +111,7 @@ android:background="@color/color_gris_claro">
 				android:textSize="15sp"
                 android:maxLength="22"
 				android:textColor="@color/color_negro"
-				android:typeface="monospace"
+				android:typeface="normal"
 				android:importantForAutofill="no"
 				android:layout_marginRight="4dp"
 				android:layout_marginLeft="3dp"
@@ -130,15 +130,15 @@ android:background="@color/color_gris_claro">
 				android:layout_width="110dp" android:textSize="13sp"
 				android:layout_height="wrap_content" android:padding="8dp"
 				android:gravity="end" android:singleLine="true"
-				android:typeface="monospace"
+				android:typeface="normal"
 				android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_negro" />
+				android:textColor="@color/color_gris_claro" />
 
 			<EditText android:id="@+id/entryNombre" android:hint="@string/hint_nombre"
 				android:nextFocusDown="@+id/checkFechaNacimiento" android:inputType="textCapWords"
 				android:layout_height="35dp" android:textStyle="bold"
 				android:textColor="@color/color_negro"
-				android:typeface="monospace"
+				android:typeface="normal"
 				android:padding="5dp" android:textSize="15sp"
 				android:layout_marginStart="3dp" android:layout_marginEnd="4dp"
 				android:maxLength="25" android:layout_width="fill_parent"
@@ -166,7 +166,7 @@ android:background="@color/color_gris_claro">
                 android:layout_width="140dp" android:textSize="10sp"
                 android:layout_height="wrap_content"
                 android:gravity="start" android:singleLine="true"
-                android:typeface="monospace"
+                android:typeface="normal"
                 android:textColor="@color/color_blanco" />
 
 
@@ -174,7 +174,7 @@ android:background="@color/color_gris_claro">
 				android:nextFocusDown="@+id/butttonRegistrarPersonaFinal"
 				android:layout_width="wrap_content" android:layout_height="28dp"
 				android:textSize="10sp" android:textColor="@color/color_gris_oscuro"
-				android:typeface="monospace"
+				android:typeface="normal"
 				android:layout_margin="5dp"
 				android:background="@drawable/custom_button"
 				/>
@@ -189,7 +189,7 @@ android:background="@color/color_gris_claro">
 			android:layout_height="28dp"
 			android:textColor="@color/color_gris_claro"
 			android:textSize="14sp"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:gravity="center"
 			android:paddingStart="15dp"
 			android:paddingLeft="15dp"
@@ -226,7 +226,7 @@ android:background="@color/color_gris_claro">
 			android:padding="10dp"
 			android:gravity="end"
 			android:background="@drawable/custom_text_view_categoria_desc"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:layout_marginStart="10dp"
 			android:layout_marginLeft="10dp"
 			android:textColor="@color/color_negro"
@@ -245,7 +245,7 @@ android:background="@color/color_gris_claro">
 			android:layout_toRightOf="@id/nuevoTipoTel"
 			android:layout_toEndOf="@id/nuevoTipoTel"
 			android:textColor="@color/color_negro"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:padding="8dp"
 			android:textSize="15sp"
 			android:layout_marginStart="5dp"
@@ -278,7 +278,7 @@ android:background="@color/color_gris_claro">
 			android:layout_height="28dp"
 			android:textColor="@color/color_gris_claro"
 			android:textSize="14sp"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:gravity="center"
 			android:paddingStart="15dp"
 			android:paddingLeft="15dp"
@@ -316,7 +316,7 @@ android:background="@color/color_gris_claro">
 			android:padding="10dp"
 			android:gravity="end"
 			android:background="@drawable/custom_text_view_categoria_desc"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:layout_marginStart="10dp"
 			android:layout_marginLeft="10dp"
 			android:textColor="@color/color_negro"
@@ -335,7 +335,7 @@ android:background="@color/color_gris_claro">
 			android:layout_toRightOf="@id/nuevoTipoMail"
 			android:layout_toEndOf="@id/nuevoTipoMail"
 			android:textColor="@color/color_negro"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:padding="8dp"
 			android:textSize="14sp"
 			android:layout_marginStart="5dp"
@@ -376,7 +376,7 @@ android:background="@color/color_gris_claro">
 			android:layout_height="28dp"
 			android:textColor="@color/color_gris_claro"
 			android:textSize="14sp"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:gravity="center"
 			android:paddingStart="15dp"
 			android:paddingLeft="15dp"
@@ -413,7 +413,7 @@ android:background="@color/color_gris_claro">
 			android:padding="10dp"
 			android:gravity="end"
 			android:background="@drawable/custom_text_view_categoria_desc"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:layout_marginStart="10dp"
 			android:layout_marginLeft="10dp"
 			android:textColor="@color/color_negro"
@@ -432,7 +432,7 @@ android:background="@color/color_gris_claro">
 			android:layout_toRightOf="@id/nuevoTipoDir"
 			android:layout_toEndOf="@id/nuevoTipoDir"
 			android:textColor="@color/color_negro"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:padding="8dp"
 			android:textSize="14sp"
 			android:layout_marginStart="5dp"
@@ -480,7 +480,7 @@ android:background="@color/color_gris_claro">
 				android:text="@string/text_sinDatos"
 				android:textSize="14sp"
 				android:textColor="@color/color_gris_oscuro"
-				android:typeface="monospace"
+				android:typeface="normal"
 				/>
 
 		</LinearLayout>
@@ -491,7 +491,7 @@ android:background="@color/color_gris_claro">
 			android:layout_height="28dp"
 			android:textColor="@color/color_gris_claro"
 			android:textSize="14sp"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:gravity="center"
 			android:paddingStart="15dp"
 			android:paddingLeft="15dp"
@@ -556,15 +556,15 @@ android:background="@color/color_gris_claro">
 					android:layout_width="130dp" android:layout_height="wrap_content"
 					android:textSize="13sp" android:padding="8dp" android:gravity="end"
 					android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-					android:textColor="@color/color_negro"
-					android:typeface="monospace"/>
+					android:textColor="@color/color_gris_claro"
+					android:typeface="normal"/>
 
 				<EditText android:id="@+id/entryDatoExtra"
 					android:inputType="textCapSentences|textMultiLine"
 					android:layout_height="wrap_content"
 					android:textStyle="bold"
 					android:textColor="@color/color_negro"
-					android:typeface="monospace"
+					android:typeface="normal"
 					android:padding="5dp"
 					android:textSize="15sp"
 					android:layout_marginStart="3dp"
@@ -601,15 +601,15 @@ android:background="@color/color_gris_claro">
 					android:layout_width="130dp" android:layout_height="wrap_content"
 					android:textSize="13sp" android:padding="8dp" android:gravity="end"
 					android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-					android:textColor="@color/color_negro"
-					android:typeface="monospace"/>
+					android:textColor="@color/color_gris_claro"
+					android:typeface="normal"/>
 
 				<EditText android:id="@+id/entryDescripcion" android:hint="@string/hint_descripcion"
 					android:inputType="textCapSentences|textMultiLine"
 					android:layout_height="wrap_content"
 					android:textStyle="bold"
 					android:textColor="@color/color_negro"
-					android:typeface="monospace"
+					android:typeface="normal"
 					android:padding="5dp"
 					android:textSize="15sp"
 					android:layout_marginStart="3dp"
@@ -645,9 +645,9 @@ android:background="@color/color_gris_claro">
 		<TextView android:id="@+id/nombre_contacto"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:textSize="15sp" android:background="@drawable/custom_text_view_categoria_desc"
-			android:textColor="@color/color_negro"
+			android:textColor="@color/color_blanco"
 			android:layout_margin="5dp"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:padding="5dp" android:gravity="center" android:textStyle="bold" />
 
 		<LinearLayout android:id="@+id/botonera"
@@ -679,7 +679,7 @@ android:background="@color/color_gris_claro">
 					android:paddingLeft="15dp"
 					android:paddingEnd="15dp"
 					android:paddingRight="15dp"
-					android:typeface="monospace"
+					android:typeface="normal"
 					android:layout_marginEnd="25dp"
 					android:layout_marginRight="25dp"
 					/>
@@ -698,7 +698,7 @@ android:background="@color/color_gris_claro">
 					android:paddingLeft="15dp"
 					android:paddingEnd="15dp"
 					android:paddingRight="15dp"
-					android:typeface="monospace"
+					android:typeface="normal"
 
 					/>
 

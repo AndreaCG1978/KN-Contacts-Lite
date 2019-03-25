@@ -32,7 +32,7 @@
 				android:textSize="13sp"
 				android:paddingTop="1dp"
 				android:paddingBottom="1dp"
-				android:typeface="monospace"
+				android:typeface="normal"
 				android:maxLength="20"
 
 				>
@@ -40,7 +40,7 @@
 			<TextView android:id="@+id/rowNombres" android:layout_height="wrap_content"
 				android:layout_width="match_parent" android:textSize="13sp"
 				android:textColor="@color/color_blanco" android:padding="1dp"
-				android:typeface="monospace">
+				android:typeface="normal">
 			</TextView>
 
 		</LinearLayout>
@@ -50,7 +50,7 @@
 			android:textStyle="bold"
 			android:textColor="@color/color_gris_oscuro"
 			android:textSize="13sp"
-			android:typeface="monospace"
+			android:typeface="normal"
 			android:paddingTop="0dp"
 			android:paddingBottom="0dp"
 			android:background="@drawable/custom_text_view_categoria"
