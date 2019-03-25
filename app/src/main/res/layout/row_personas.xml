@@ -2,7 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
 	android:layout_height="fill_parent" android:orientation="horizontal"
-	android:layout_margin="10dp">
+	android:layout_margin="5dp">
 
 	<TextView android:id="@+id/rowFoto" android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
@@ -16,10 +16,7 @@
 	<LinearLayout
 		android:layout_width="match_parent" android:layout_height="wrap_content"
 		android:orientation="vertical"
-		android:paddingRight="10dp"
-		android:paddingEnd="10dp"
-		android:paddingLeft="3dp"
-		android:paddingStart="3dp"
+		android:padding="3dp"
 
 		>
 		<LinearLayout android:layout_width="match_parent"
@@ -61,10 +58,9 @@
 			android:singleLine="true"
 			android:paddingLeft="15dp"
 			android:paddingStart="15dp"
-			android:paddingRight="15dp"
-			android:paddingEnd="15dp"
-			android:layout_marginRight="15dp"
-			android:layout_marginEnd="15dp">
+			android:paddingRight="5dp"
+			android:paddingEnd="5dp"
+			>
 		</TextView>
 
 

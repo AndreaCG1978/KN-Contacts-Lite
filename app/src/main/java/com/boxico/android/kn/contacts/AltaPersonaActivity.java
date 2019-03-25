@@ -1258,9 +1258,30 @@ public class AltaPersonaActivity extends Activity  {
 				}
 			}*/
 
-
-
 			if (listdata != null) {
+				for (HashMap hmTemp : listdata) {
+					hm = hmTemp;
+					vLayout = (LinearLayout) getMailsList().getChildAt(i);
+					eTemp = vLayout.findViewById(R.id.rowTipo);
+					tipoTemp = eTemp.getText().toString();
+					eTemp = vLayout.findViewById(R.id.rowValor);
+					valTemp = eTemp.getText().toString();
+					if (!tipoTemp.equals("") && !valTemp.equals("")) {
+						tv = new TipoValorDTO();
+						tv.setIdPersona((String) hm.get(ID_PERSONA));
+						tv.setId((Long) hm.get(ID_TIPO_VALOR));
+						tv.setTipo(tipoTemp);
+						tv.setValor(valTemp);
+						mailsTemp.add(tv);
+						huboCambios = true;
+
+					}
+					i++;
+
+				}
+
+
+			/*
 				for (HashMap hmTemp : listdata) {
 					hm = hmTemp;
 					tipoTemp = (String)mailsAdapter.getData().get(i).get(TIPO);
@@ -1275,7 +1296,7 @@ public class AltaPersonaActivity extends Activity  {
 						huboCambios = true;
 					}
 					i++;
-				}
+				}*/
 			}
 		}
 		ConstantsAdmin.registrarMails(mailsTemp, mDBManager);
@@ -1319,11 +1340,6 @@ public class AltaPersonaActivity extends Activity  {
 
 			mEntryNuevoValTel.getText().clear();
 			mEntryNuevoValTel.append("");
-
-
-
-			//mEntryNuevoTipoTel.setText("");
-		//	mEntryNuevoValTel.setText("");
 			huboCambios = true;
 		}else {
 
@@ -1335,6 +1351,29 @@ public class AltaPersonaActivity extends Activity  {
 			EditText eTemp = null;
 			String tipoTemp, valTemp = null;
 			if (listdata != null) {
+
+				for (HashMap hmTemp : listdata) {
+					hm = hmTemp;
+					vLayout = (LinearLayout) getTelefonosList().getChildAt(i);
+					eTemp = vLayout.findViewById(R.id.rowTipo);
+					tipoTemp = eTemp.getText().toString();
+					eTemp = vLayout.findViewById(R.id.rowValor);
+					valTemp = eTemp.getText().toString();
+					if (!tipoTemp.equals("") && !valTemp.equals("")) {
+						tv = new TipoValorDTO();
+						tv.setIdPersona((String) hm.get(ID_PERSONA));
+						tv.setId((Long) hm.get(ID_TIPO_VALOR));
+						tv.setTipo(tipoTemp);
+						tv.setValor(valTemp);
+						telefonosTemp.add(tv);
+						huboCambios = true;
+
+					}
+					i++;
+
+				}
+
+				/*
 				for (HashMap hmTemp : listdata) {
 					hm = hmTemp;
                     tipoTemp = (String)telefonosAdapter.getData().get(i).get(TIPO);
@@ -1349,7 +1388,7 @@ public class AltaPersonaActivity extends Activity  {
 						huboCambios = true;
 					}
 					i++;
-				}
+				}*/
 			}
 		}
 		ConstantsAdmin.registrarTelefonos(telefonosTemp, mDBManager);
@@ -1467,7 +1506,7 @@ public class AltaPersonaActivity extends Activity  {
 		ConstantsAdmin.registrarTelefonos(telefonos, mDBManager);
 		
 	}
-*/
+
 	private void registrarMails(List<TipoValorDTO> mails, long idPer){
 		Iterator<TipoValorDTO> it = mails.iterator();
 		TipoValorDTO tv;
@@ -1492,7 +1531,7 @@ public class AltaPersonaActivity extends Activity  {
 		
 	}
 		
-		
+	*/
 	
 	private void seleccionarPrimerCategoria(){
 		mCategoriaSeleccionada = this.mSpinnerAdapt.getItem(0);
