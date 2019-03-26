@@ -95,6 +95,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private String separadorExcel = null;
 	private int mGroupSelected = -1;
 	private int mChildSelected = -1;
+	private ImageButton addContact = null;
 
 
 	private ImageButton preferidos = null;
@@ -781,7 +782,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     }    */
 
 	private void configurarAddContact(){
-		ImageButton addContact = this.findViewById(R.id.imagenAddContacto);
+		addContact = this.findViewById(R.id.imagenAddContacto);
 		addContact.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -1604,6 +1605,9 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 					new KNSimpleCursorAdapter(this, R.layout.row_personas, personasCursor, from, to);
 			listaEspecial.setAdapter(personas);
 			cantReg.setText("(" + listaEspecial.getAdapter().getCount() + ")");
+			listaEspecial.requestFocus(0);
+			entryBusqueda.requestFocus();
+
 		}/*
 		this.closeContextMenu();
 		this.closeOptionsMenu();

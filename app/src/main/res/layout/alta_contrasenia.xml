@@ -11,10 +11,13 @@
 
 
 		<TextView android:text="@string/label_contrasenia"
-			android:layout_width="110dp" android:layout_height="32dp"
+			android:layout_width="110dp"
+			android:layout_height="32dp"
 			android:background="@drawable/custom_text_view_categoria_desc"
-			android:textColor="@color/color_negro" android:padding="7dp"
-			android:gravity="end" android:textSize="12sp" />
+			android:textColor="@color/color_gris_claro"
+			android:padding="7dp"
+			android:gravity="end"
+			android:textSize="12sp" />
 
 		<EditText android:id="@+id/contrasenia1" android:inputType="textPassword"
 			android:maxLength="20"
