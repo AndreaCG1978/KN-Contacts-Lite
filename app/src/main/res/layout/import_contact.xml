@@ -161,7 +161,7 @@
 			android:layout_width="120dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:padding="5dp" android:gravity="end"
 			android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-			android:textColor="@color/color_azul_oscuro" />
+			android:textColor="@color/color_gris_claro" />
 
 		<EditText android:id="@+id/entryDatoExtra"
 			android:inputType="textCapWords|textMultiLine"
@@ -200,7 +200,7 @@
 			android:layout_width="120dp" android:layout_height="wrap_content"
 			android:textSize="13sp" android:padding="5dp" android:gravity="end"
 			android:singleLine="true" android:background="@drawable/custom_text_view_categoria_desc"
-			android:textColor="@color/color_azul_oscuro" />
+			android:textColor="@color/color_gris_claro" />
 
 		<EditText android:id="@+id/entryDescripcion" android:hint="@string/hint_descripcion"
 			android:inputType="textCapWords|textMultiLine"

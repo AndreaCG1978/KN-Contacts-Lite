@@ -231,6 +231,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		String contactIdTemp;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
+		mTelsPersonaEncontrada.setText("");
+		mMailsPersonaEncontrada.setText("");
+		mDirsPersonaEncontrada.setText("");
 
 		while (!encontrado && getPeople().moveToNext()) {
 			posPeople = getPeople().getPosition();
@@ -262,9 +265,6 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 							persona.setNombres(null);
 						}*/
 						encontrado = true;
-						mTelsPersonaEncontrada.setText("");
-						mMailsPersonaEncontrada.setText("");
-						mDirsPersonaEncontrada.setText("");
 						this.mostrarDatosPersonaEncontrada();
 					}
 
@@ -274,6 +274,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 
 		}
+
 		ConstantsAdmin.finalizarBD(mDBManager);
 	/*	if (posPeople < getPeople().getCount() - 1) {
 			botonSkipContact.setEnabled(true);
@@ -296,6 +297,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		String contactIdTemp;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
+		mTelsPersonaEncontrada.setText("");
+		mMailsPersonaEncontrada.setText("");
+		mDirsPersonaEncontrada.setText("");
 		while (!encontrado && getPeople().moveToPrevious()) {
 			posPeople = getPeople().getPosition();
 			contactIdTemp = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
@@ -326,15 +330,14 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 							persona.setNombres(null);
 						}*/
 						encontrado = true;
-						mTelsPersonaEncontrada.setText("");
-						mMailsPersonaEncontrada.setText("");
-						mDirsPersonaEncontrada.setText("");
+
 						this.mostrarDatosPersonaEncontrada();
 
 					}
 				}
 			}
 		}
+
 		ConstantsAdmin.finalizarBD(mDBManager);
 	/*	if (posPeople == 0) {
 			botonPrevContact.setEnabled(false);
