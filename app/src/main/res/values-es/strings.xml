@@ -71,12 +71,11 @@
 	<string name="cat_Socio">Socio</string>
 	<string name="cat_Jefe">Jefe</string>
 	<string name="cat_Amigo">Amigo</string>
-	<string name="cat_Companiero"><![CDATA[Compañero]]></string>
 	<string name="cat_Conocido">Conocido</string>
 	<string name="cat_Profesor">Profesor</string>
 	<string name="cat_Vecino">Vecino</string>
 	<string name="cat_Colega">Colega</string>
-	<string name="cat_Medico"><![CDATA[Médico]]></string>
+	<string name="cat_Medico">Doctor</string>
 	<string name="cat_TODAS">TODAS</string>
 
     <string name="smesEne">Enero</string>

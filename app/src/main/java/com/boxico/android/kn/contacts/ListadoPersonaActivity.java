@@ -11,8 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -52,6 +54,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
@@ -307,9 +310,10 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			this.recuperarConfiguracion();
 			verBusqueda();
 			layoutInflater = (LayoutInflater) this.getLayoutInflater();
-			this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+//			this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 			this.redirigirImportarContactos();
+			getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
 		}catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorInicioAplicacion));
@@ -1605,8 +1609,10 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 					new KNSimpleCursorAdapter(this, R.layout.row_personas, personasCursor, from, to);
 			listaEspecial.setAdapter(personas);
 			cantReg.setText("(" + listaEspecial.getAdapter().getCount() + ")");
-			listaEspecial.requestFocus(0);
-			entryBusqueda.requestFocus();
+		//	listaEspecial.requestFocus(0);
+
+			//entryBusqueda.requestFocus();
+		//	getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
 		}/*
 		this.closeContextMenu();

@@ -1,5 +1,6 @@
 package com.boxico.android.kn.contacts;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -1131,7 +1132,8 @@ public class AltaPersonaActivity extends Activity  {
 	
 	private void registrarPersona(){
 		try {
-			
+			String catTemp = null;
+			String catRelativoTemp = null;
 			if(mPersonaSeleccionada == null){
 				mPersonaSeleccionada = new PersonaDTO();
 			}
@@ -1150,9 +1152,11 @@ public class AltaPersonaActivity extends Activity  {
 				this.seleccionarPrimerCategoria();
 			}
 			if(cambioCategoriaFlag){
+				catTemp = Normalizer.normalize(mCategoriaSeleccionada.getNombreReal(), Normalizer.Form.NFC);
+				catRelativoTemp = Normalizer.normalize(mCategoriaSeleccionada.getNombreRelativo(), Normalizer.Form.NFC);
 				mPersonaSeleccionada.setCategoriaId(mCategoriaSeleccionada.getId());
-				mPersonaSeleccionada.setCategoriaNombre(mCategoriaSeleccionada.getNombreReal());
-				mPersonaSeleccionada.setCategoriaNombreRelativo(mCategoriaSeleccionada.getNombreRelativo());
+				mPersonaSeleccionada.setCategoriaNombre(catTemp);
+				mPersonaSeleccionada.setCategoriaNombreRelativo(catRelativoTemp);
 				cambioCategoriaFlag = false;
 			}
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
@@ -2104,9 +2108,9 @@ public class AltaPersonaActivity extends Activity  {
 			case ConstantsAdmin.CATEGORIA_COLEGAS:
 				result = getString(R.string.hint_lugarOActividad);
 				break;
-			case ConstantsAdmin.CATEGORIA_COMPANIEROS:
+		/*	case ConstantsAdmin.CATEGORIA_COMPANIEROS:
 				result = getString(R.string.hint_lugarOActividad);
-				break;
+				break;*/
 			case ConstantsAdmin.CATEGORIA_CONOCIDOS:
 				result = getString(R.string.hint_lugarOActividad);
 				break;

@@ -822,9 +822,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			case ConstantsAdmin.CATEGORIA_COLEGAS:
 				result = getString(R.string.hint_lugarOActividad);
 				break;
-			case ConstantsAdmin.CATEGORIA_COMPANIEROS:
+			/*case ConstantsAdmin.CATEGORIA_COMPANIEROS:
 				result = getString(R.string.hint_lugarOActividad);
-				break;
+				break;*/
 			case ConstantsAdmin.CATEGORIA_CONOCIDOS:
 				result = getString(R.string.hint_lugarOActividad);
 				break;

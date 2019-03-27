@@ -345,7 +345,6 @@ string blank
 string cat_Amigo
 string cat_Cliente
 string cat_Colega
-string cat_Companiero
 string cat_Conocido
 string cat_Familiar
 string cat_Jefe

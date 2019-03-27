@@ -435,9 +435,9 @@ public class ConstantsAdmin {
 			case ConstantsAdmin.CATEGORIA_COLEGAS:
 				result = context.getString(R.string.hint_lugarOActividad);
 				break;
-			case ConstantsAdmin.CATEGORIA_COMPANIEROS:
+		/*	case ConstantsAdmin.CATEGORIA_COMPANIEROS:
 				result = context.getString(R.string.hint_lugarOActividad);
-				break;
+				break;*/
 			case ConstantsAdmin.CATEGORIA_CONOCIDOS:
 				result = context.getString(R.string.hint_lugarOActividad);
 				break;
@@ -485,10 +485,10 @@ public class ConstantsAdmin {
 		cat = new CategoriaDTO(0, ConstantsAdmin.CATEGORIA_CLIENTES,ConstantsAdmin.CATEGORIA_CLIENTES, 1, tipoDE);
 		mDBManager.crearCategoria(cat, false);
 
-		tipoDE = obtenerTipoDatoExtraPorCategoria(ConstantsAdmin.CATEGORIA_COMPANIEROS, context);
+	/*	tipoDE = obtenerTipoDatoExtraPorCategoria(ConstantsAdmin.CATEGORIA_COMPANIEROS, context);
 		cat = new CategoriaDTO(0, ConstantsAdmin.CATEGORIA_COMPANIEROS, ConstantsAdmin.CATEGORIA_COMPANIEROS, 1, tipoDE);
 		mDBManager.crearCategoria(cat, false);
-
+*/
 //		cat = new CategoriaDTO(0, ConstantsAdmin.CATEGORIA_CONOCIDOS, ConstantsAdmin.CATEGORIA_CONOCIDOS, 0);
 //		mDBManager.crearCategoria(cat);
 		tipoDE = obtenerTipoDatoExtraPorCategoria(ConstantsAdmin.CATEGORIA_FAMILIARES, context);
@@ -571,7 +571,7 @@ public class ConstantsAdmin {
 	public static final String CATEGORIA_SOCIOS= "Socio";
 	public static final String CATEGORIA_JEFES = "Jefe";
 	public static final String CATEGORIA_AMIGOS = "Amigo";
-	public static final String CATEGORIA_COMPANIEROS = "Companero";
+//	public static final String CATEGORIA_COMPANIEROS = "Companero";
 	public static final String CATEGORIA_CONOCIDOS = "Conocido";
 	public static final String CATEGORIA_PROFESORES = "Profesor";
 	public static final String CATEGORIA_VECINOS = "Vecino";
@@ -964,9 +964,9 @@ public class ConstantsAdmin {
 			case ConstantsAdmin.CATEGORIA_COLEGAS:
 				nombreCat = context.getString(R.string.cat_Colega);
 				break;
-			case ConstantsAdmin.CATEGORIA_COMPANIEROS:
+		/*	case ConstantsAdmin.CATEGORIA_COMPANIEROS:
 				nombreCat = context.getString(R.string.cat_Companiero);
-				break;
+				break;*/
 			case ConstantsAdmin.CATEGORIA_CONOCIDOS:
 				nombreCat = context.getString(R.string.cat_Conocido);
 				break;
