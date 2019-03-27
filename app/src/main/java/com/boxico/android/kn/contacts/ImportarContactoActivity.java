@@ -61,9 +61,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 //	private ArrayList<Cursor> allMyCursors = null;
 
 	private TextView mPersonaEncontrada;
-	private TextView mTelsPersonaEncontrada;
-	private TextView mMailsPersonaEncontrada;
-	private TextView mDirsPersonaEncontrada;
+	private TextView mExtrasPersonaEncontrada;
+//	private TextView mMailsPersonaEncontrada;
+//	private TextView mDirsPersonaEncontrada;
 	private TextView entryDatoExtra;
 	private TextView entryDescripcion;
 
@@ -231,9 +231,6 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		String contactIdTemp;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
-		mTelsPersonaEncontrada.setText("");
-		mMailsPersonaEncontrada.setText("");
-		mDirsPersonaEncontrada.setText("");
 
 		while (!encontrado && getPeople().moveToNext()) {
 			posPeople = getPeople().getPosition();
@@ -297,9 +294,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		String contactIdTemp;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		ConstantsAdmin.inicializarBD(mDBManager);
-		mTelsPersonaEncontrada.setText("");
-		mMailsPersonaEncontrada.setText("");
-		mDirsPersonaEncontrada.setText("");
+
 		while (!encontrado && getPeople().moveToPrevious()) {
 			posPeople = getPeople().getPosition();
 			contactIdTemp = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
@@ -388,30 +383,27 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			mPersonaEncontrada.setText(text);
 
 			String tels = this.obtenerTelDeContacto(contactId);
-			if(tels != null){
-				mTelsPersonaEncontrada.setVisibility(View.VISIBLE);
-				mTelsPersonaEncontrada.setText(tels);
-			}else{
-				mTelsPersonaEncontrada.setVisibility(View.GONE);
-			}
-
-
 			String mails = this.obtenerMailDeContacto(contactId);
-			if(mails != null){
-				mMailsPersonaEncontrada.setVisibility(View.VISIBLE);
-				mMailsPersonaEncontrada.setText(mails);
-			}else{
-				mMailsPersonaEncontrada.setVisibility(View.GONE);
-			}
-
 			String dirs = this.obtenerDirsDeContacto(contactId);
-			if(dirs != null){
-				mDirsPersonaEncontrada.setVisibility(View.VISIBLE);
-				mDirsPersonaEncontrada.setText(dirs);
-			}else{
-				mDirsPersonaEncontrada.setVisibility(View.GONE);
+			String total = "";
+			if(tels != null){
+				total = total + tels + System.getProperty("line.separator");
 			}
 
+			if(mails != null){
+				total = total + System.getProperty("line.separator") + mails + System.getProperty("line.separator");
+			}
+
+			if(dirs != null){
+				total = total + System.getProperty("line.separator") + dirs + System.getProperty("line.separator");
+			}
+
+			if(!total.equals("")){
+				mExtrasPersonaEncontrada.setVisibility(View.VISIBLE);
+				mExtrasPersonaEncontrada.setText(total);
+			}else {
+				mExtrasPersonaEncontrada.setVisibility(View.GONE);
+			}
 
 
 			//mPersonaEncontrada.setText(mPersonaEncontrada.getText());
@@ -744,9 +736,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private void registrarWidgets() {
 		mSpinner = this.findViewById(R.id.spinnerCategorias_alta_persona);
 		mPersonaEncontrada = this.findViewById(R.id.textPersonaEncontrada);
-		mTelsPersonaEncontrada = this.findViewById(R.id.textTelsPersonaEncontrada);
-		mMailsPersonaEncontrada = this.findViewById(R.id.textMailsPersonaEncontrada);
-		mDirsPersonaEncontrada = this.findViewById(R.id.textDirsPersonaEncontrada);
+		mExtrasPersonaEncontrada = this.findViewById(R.id.textExtrasPersonaEncontrada);
+	//	mMailsPersonaEncontrada = this.findViewById(R.id.textMailsPersonaEncontrada);
+	//	mDirsPersonaEncontrada = this.findViewById(R.id.textDirsPersonaEncontrada);
 		entryDatoExtra = this.findViewById(R.id.entryDatoExtra);
 		entryDescripcion = this.findViewById(R.id.entryDescripcion);
 		botonAddAll = this.findViewById(R.id.botonAddAll);

@@ -80,7 +80,7 @@
 
 
 	<TextView
-		android:id="@+id/textTelsPersonaEncontrada"
+		android:id="@+id/textExtrasPersonaEncontrada"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:textSize="13sp"
@@ -90,26 +90,6 @@
 		android:padding="5dp" />
 
 
-	<TextView
-		android:id="@+id/textMailsPersonaEncontrada"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:textSize="13sp"
-		android:background="@color/color_gris_claro"
-		android:textColor="@color/color_negro"
-		android:layout_margin="5dp"
-		android:padding="5dp" />
-
-
-	<TextView
-		android:id="@+id/textDirsPersonaEncontrada"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:textSize="13sp"
-		android:background="@color/color_gris_claro"
-		android:textColor="@color/color_negro"
-		android:layout_margin="5dp"
-		android:padding="5dp" />
 
 	<View android:layout_width="match_parent" android:layout_height="1px"
 		android:background="@color/color_gris_oscuro"/>

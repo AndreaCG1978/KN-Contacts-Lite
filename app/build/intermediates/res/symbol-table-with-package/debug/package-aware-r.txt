@@ -293,11 +293,9 @@ id text1
 id text2
 id textAcercaDeMail
 id textCantidad
-id textDirsPersonaEncontrada
-id textMailsPersonaEncontrada
+id textExtrasPersonaEncontrada
 id textName
 id textPersonaEncontrada
-id textTelsPersonaEncontrada
 id textTodasLasPublicaciones
 id time
 id title
