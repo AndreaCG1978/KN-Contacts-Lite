@@ -77,7 +77,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	private ImageButton botonSkipContact = null;
 	private ImageButton botonPrevContact = null;
 	private Button botonAddAll = null;
-	private Button botonSkipAll = null;
+//	private Button botonSkipAll = null;
 	private Asociacion contactoActual = null;
 	private PersonaDTO persona = null;
 	private String contactId = null;
@@ -404,6 +404,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			}else {
 				mExtrasPersonaEncontrada.setVisibility(View.GONE);
 			}
+			mExtrasPersonaEncontrada.invalidate();
+			((View) mExtrasPersonaEncontrada.getParent()).invalidate();
 
 
 			//mPersonaEncontrada.setText(mPersonaEncontrada.getText());
@@ -456,12 +458,12 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			}
 		});
 
-		botonSkipAll.setOnClickListener(new View.OnClickListener() {
+		/*botonSkipAll.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				skipAll();
 			}
 		});
-
+*/
 		botonPrevContact.setOnLongClickListener(new View.OnLongClickListener() {
 			public boolean onLongClick(View v) {
 				prevContact();
@@ -743,7 +745,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		entryDescripcion = this.findViewById(R.id.entryDescripcion);
 		botonAddAll = this.findViewById(R.id.botonAddAll);
 		botonAddContact = this.findViewById(R.id.botonAddContact);
-		botonSkipAll = this.findViewById(R.id.botonSkipAll);
+	//	botonSkipAll = this.findViewById(R.id.botonSkipAll);
 		botonSkipContact = this.findViewById(R.id.botonSkipContact);
 		botonPrevContact = this.findViewById(R.id.botonPrevContact);
 

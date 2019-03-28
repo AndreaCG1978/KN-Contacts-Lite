@@ -142,7 +142,6 @@ id botonMisCategorias
 id botonPrevContact
 id botonProtegerCategorias
 id botonRegistrarContrasenia
-id botonSkipAll
 id botonSkipContact
 id botonera
 id bottom
