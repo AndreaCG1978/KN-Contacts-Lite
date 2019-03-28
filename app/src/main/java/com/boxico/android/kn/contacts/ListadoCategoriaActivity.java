@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 	private TextView labelTipoDatoExtra = null;
 	private EditText entryNombreCategoria = null;
 	private EditText entryTipoDatoExtra = null;
-	private Button addCategoria = null;
+	private ImageButton addCategoria = null;
 	private Button saveCategoria = null;
 	private int cantActivas = 0;
 	private int cantCategorias = 0;
@@ -137,7 +138,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 			saveCategoria.setVisibility(View.GONE);
 			entryTipoDatoExtra.setText("");
 			entryNombreCategoria.setText("");
-			addCategoria.setTextColor(Color.WHITE);
+		//	addCategoria.setTextColor(Color.WHITE);
 			//opacarBotonGuardar();
 			ConstantsAdmin.hideKeyboard(this);
 			//imm.hideSoftInputFromWindow(entryNombreCategoria.getWindowToken(), 0);
@@ -159,7 +160,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 
 			entryNombreCategoria.requestFocus();
 			saveCategoria.setVisibility(View.VISIBLE);
-			addCategoria.setTextColor(Color.DKGRAY);
+		//	addCategoria.setTextColor(Color.DKGRAY);
 			ConstantsAdmin.showKeyboard(this, entryNombreCategoria);
 			//imm.showSoftInput(entryNombreCategoria, InputMethodManager.SHOW_IMPLICIT);
 
