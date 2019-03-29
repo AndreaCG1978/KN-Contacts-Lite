@@ -27,6 +27,7 @@ import com.boxico.android.kn.contacts.util.KNCategoryProtectionAdapter;
 public class ProteccionCategoriaActivity extends ListActivity {
 	
 	private Button botonRegistrarContrasenia = null;
+	private Button botonReenviarPass = null;
 	private EditText contrasenia1 = null;
 	private EditText contrasenia2 = null;
 	private EditText mailPassword = null;
@@ -47,6 +48,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		this.inicializarCategoriasProtegidas();
 		this.registrarWidgets();
 		this.configurarBotonRegistrarContrasenia();
+		this.configurarBotonReenviarPass();
 		this.configurarBotonActivarDesactivarPass();
 	//	this.configurarBotonDesactivarContrasenia();
 		this.habilitarCampos();
@@ -84,35 +86,21 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		if(ConstantsAdmin.contrasenia.isActiva()){
 			contrasenia1.setEnabled(true);
 			contrasenia2.setEnabled(true);
-			botonRegistrarContrasenia.setEnabled(true);
+		//	botonRegistrarContrasenia.setEnabled(true);
+			botonRegistrarContrasenia.setVisibility(View.VISIBLE);
+			botonReenviarPass.setVisibility(View.GONE);
 			mailPassword.setEnabled(true);
 			botonRegistrarContrasenia.setTextColor(getResources().getColor(R.color.color_blanco));
-/*
-			botonActivarContrasenia.setEnabled(false);
-			botonActivarContrasenia.setTextColor(getResources().getColor(R.color.color_negro));
-*/
-			//botonActivarDesactivarPass.setEnabled(true);
 			botonActivarDesactivarPass.setText(R.string.label_bloquear_contrasenia);
 			
-			//imagen.setBackground(getResources().getDrawable(R.drawable.candado_abierto));
 		}else{
 			contrasenia1.setEnabled(false);
 			contrasenia2.setEnabled(false);
-			botonRegistrarContrasenia.setEnabled(false);			
+			botonRegistrarContrasenia.setVisibility(View.GONE);
+			botonReenviarPass.setVisibility(View.VISIBLE);
 			mailPassword.setEnabled(false);
 			botonRegistrarContrasenia.setTextColor(getResources().getColor(R.color.color_gris_claro));
 			botonActivarDesactivarPass.setText(R.string.label_desbloquear_contrasenia);
-
-		/*	botonActivarContrasenia.setEnabled(true);
-			botonActivarContrasenia.setTextColor(getResources().getColor(R.color.color_azul));
-			
-			botonDesactivarContrasenia.setEnabled(false);
-			botonDesactivarContrasenia.setTextColor(getResources().getColor(R.color.color_negro));
-			imagen.setBackground(getResources().getDrawable(R.drawable.candado_cerrado));*/
-
-
-
-		//	imagen.setBackgroundDrawable(dCandadoCerrado);
 		}
 
 		this.findViewById(R.id.leyendaNoSeRegistraPass).setVisibility(View.GONE);
@@ -156,6 +144,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		}
 		botonRegistrarContrasenia = this.findViewById(R.id.botonRegistrarContrasenia);
 		botonActivarDesactivarPass = this.findViewById(R.id.botonActivarDesactivarPass);
+		botonReenviarPass = this.findViewById(R.id.botonReenviarPass);
 /*
 		botonActivarContrasenia = this.findViewById(R.id.botonActivarContrasenia);
 		botonDesactivarContrasenia = this.findViewById(R.id.botonDesactivarContrasenia);
@@ -174,6 +163,17 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		});
     	
     }
+
+	private void configurarBotonReenviarPass(){
+		botonReenviarPass.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				reenviarContrasenia();
+			}
+		});
+	}
+
     
     private void configurarBotonActivarDesactivarPass(){
     	botonActivarDesactivarPass.setOnClickListener(new View.OnClickListener() {
@@ -311,7 +311,12 @@ public class ProteccionCategoriaActivity extends ListActivity {
 
     	this.habilitarCampos();
     }
-    
+
+
+	private void reenviarContrasenia(){
+
+	}
+
     private void registrarContrasenia(){
     	String c1 = contrasenia1.getText().toString();
     	String c2 = contrasenia2.getText().toString();

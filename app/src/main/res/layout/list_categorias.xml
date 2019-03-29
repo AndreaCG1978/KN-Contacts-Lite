@@ -10,13 +10,18 @@
 
 		<TextView android:id="@+id/categoriaTextView"
 			android:text="@string/label_categorias"
-			android:textColor="@android:color/white"
+			android:textColor="@color/color_gris_claro"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:textSize="13sp"
+			android:textSize="15sp"
 			android:textStyle="bold"
-			android:padding="7dp"
-			android:layout_margin="5dp"
+			android:padding="9dp"
+			android:layout_marginLeft="5dp"
+			android:layout_marginStart="5dp"
+			android:layout_marginEnd="5dp"
+			android:layout_marginRight="5dp"
+			android:layout_marginTop="5dp"
+			android:layout_marginBottom="10dp"
 			android:gravity="center"
 			android:background="@color/color_gris_oscuro"
 			>
@@ -25,13 +30,12 @@
 		<LinearLayout android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="horizontal"
-			android:layout_margin="5dp"
-			android:padding="5dp"
 			android:gravity="right">
 
    			<ImageButton android:id="@+id/addCategoria"
 				android:layout_marginRight="8dp"
 				android:layout_marginEnd="8dp"
+				android:layout_marginTop="10dp"
 				android:layout_width="28dp"
 				android:layout_height="28dp"
 				android:focusable="true"
@@ -39,25 +43,7 @@
 				>
 			</ImageButton>
 
-			<Button android:id="@+id/saveCategoria"
-				android:layout_width="wrap_content"
-				android:layout_height="28dp"
-				android:text="@string/label_registrarPersona"
-				android:textColor="@color/color_blanco"
-				android:textSize="11sp"
-				android:textStyle="bold"
-				android:layout_gravity="center"
-				android:layout_marginLeft="15dp"
-				android:layout_marginStart="15dp"
-				android:contentDescription="addCategory"
-				android:padding="3dp"
-				android:typeface="normal"
-				android:background="@drawable/custom_button"
-				android:visibility="gone"
-				>
-			</Button>
-
-		</LinearLayout>
+        </LinearLayout>
 
 
 
@@ -65,7 +51,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
-			android:layout_margin="5dp"
 			android:padding="5dp">
 
 		<LinearLayout android:layout_width="match_parent"
@@ -77,13 +62,13 @@
 				android:text="@string/hint_categoria"
 				android:layout_width="130dp"
 				android:layout_height="wrap_content"
-				android:textSize="11sp"
+				android:textSize="12sp"
 				android:textStyle="bold"
 				android:padding="4dp"
 				android:gravity="end"
 				android:singleLine="true"
 				android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_azul_oscuro"
+				android:textColor="@color/color_gris_claro"
 				android:visibility="gone"/>
 
 
@@ -95,7 +80,7 @@
 				android:maxLength="30"
 				android:nextFocusUp="@+id/label_tipo_dato_extra"
 				android:padding="8dp"
-				android:textSize="12sp"
+				android:textSize="13sp"
 				android:layout_marginStart="9dp"
 				android:textColor="@color/color_negro"
 				android:importantForAutofill="no"
@@ -114,13 +99,13 @@
 				android:text="@string/hint_caracteristica"
 				android:layout_width="130dp"
 				android:layout_height="wrap_content"
-				android:textSize="11sp"
+				android:textSize="12sp"
 				android:textStyle="bold"
 				android:padding="4dp"
 				android:gravity="end"
 				android:singleLine="true"
 				android:background="@drawable/custom_text_view_categoria_desc"
-				android:textColor="@color/color_azul_oscuro"
+				android:textColor="@color/color_gris_claro"
 				android:visibility="gone"/>
 
 			<EditText android:id="@+id/entryTipoDatoExtra"
@@ -131,7 +116,7 @@
 				android:layout_marginStart="9dp"
 				android:maxLength="30"
 				android:textColor="@color/color_negro"
-				android:textSize="12sp"
+				android:textSize="13sp"
 				android:padding="8dp"
 				android:textColorHint="@color/color_gris"
 				android:importantForAutofill="no"
@@ -140,7 +125,56 @@
 		</LinearLayout>
 	</LinearLayout>
 
-	<LinearLayout android:id="@+id/linearLista"
+		<LinearLayout android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center">
+
+			<Button android:id="@+id/saveCategoria"
+				android:layout_width="wrap_content"
+				android:layout_height="28dp"
+				android:text="@string/label_registrarPersona"
+				android:textColor="@color/color_blanco"
+				android:textSize="11sp"
+				android:textStyle="bold"
+				android:layout_gravity="center"
+				android:layout_marginLeft="15dp"
+				android:layout_marginStart="15dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:contentDescription="addCategory"
+				android:padding="3dp"
+				android:typeface="normal"
+				android:background="@drawable/custom_button"
+				android:visibility="gone"
+				>
+			</Button>
+
+			<Button android:id="@+id/cancelSaveCategory"
+				android:layout_width="wrap_content"
+				android:layout_height="28dp"
+				android:text="@string/label_categorias"
+				android:textColor="@color/color_blanco"
+				android:layout_marginTop="10dp"
+				android:textSize="11sp"
+				android:textStyle="bold"
+				android:layout_gravity="center"
+				android:layout_marginLeft="15dp"
+				android:layout_marginStart="15dp"
+				android:layout_marginBottom="10dp"
+				android:contentDescription="addCategory"
+				android:padding="3dp"
+				android:typeface="normal"
+				android:background="@drawable/custom_button"
+				android:visibility="gone"
+				>
+			</Button>
+
+		</LinearLayout>
+
+
+
+		<LinearLayout android:id="@+id/linearLista"
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:orientation="vertical">

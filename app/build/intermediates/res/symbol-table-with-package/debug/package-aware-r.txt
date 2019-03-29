@@ -141,6 +141,7 @@ id botonAgregarCategoria
 id botonMisCategorias
 id botonPrevContact
 id botonProtegerCategorias
+id botonReenviarPass
 id botonRegistrarContrasenia
 id botonSkipContact
 id botonera
@@ -159,6 +160,7 @@ id buttonTodasLasCategorias
 id buttonVerPersona
 id butttonRegistrarPersonaFinal
 id butttonRegistrarYSalir
+id cancelSaveCategory
 id cancel_action
 id cantRegistros
 id categoriaTextView

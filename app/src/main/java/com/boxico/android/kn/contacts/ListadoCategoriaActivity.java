@@ -36,6 +36,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 	private EditText entryTipoDatoExtra = null;
 	private ImageButton addCategoria = null;
 	private Button saveCategoria = null;
+	private Button cancelSaveCategory = null;
 	private int cantActivas = 0;
 	private int cantCategorias = 0;
 	private String titulo = null;
@@ -79,6 +80,12 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 			public void onClick(View v) {
 				salvarCategoria();
 				refreshList();
+				openAltaCategoria();
+			}
+		});
+		cancelSaveCategory = this.findViewById(R.id.cancelSaveCategory);
+		cancelSaveCategory.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
 				openAltaCategoria();
 			}
 		});
@@ -136,6 +143,8 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 			labelNombreCategoria.setVisibility(View.GONE);
 			labelTipoDatoExtra.setVisibility(View.GONE);
 			saveCategoria.setVisibility(View.GONE);
+			cancelSaveCategory.setVisibility(View.GONE);
+			addCategoria.setVisibility(View.VISIBLE);
 			entryTipoDatoExtra.setText("");
 			entryNombreCategoria.setText("");
 		//	addCategoria.setTextColor(Color.WHITE);
@@ -160,6 +169,8 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 
 			entryNombreCategoria.requestFocus();
 			saveCategoria.setVisibility(View.VISIBLE);
+			cancelSaveCategory.setVisibility(View.VISIBLE);
+            addCategoria.setVisibility(View.GONE);
 		//	addCategoria.setTextColor(Color.DKGRAY);
 			ConstantsAdmin.showKeyboard(this, entryNombreCategoria);
 			//imm.showSoftInput(entryNombreCategoria, InputMethodManager.SHOW_IMPLICIT);
