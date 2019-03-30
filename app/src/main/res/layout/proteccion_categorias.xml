@@ -83,7 +83,7 @@
 				android:textSize="12sp">
 			</TextView>
 
-			<EditText android:id="@+id/contrasenia1" 
+			<EditText android:id="@+id/contrasenia1"
 				android:textColor="@color/color_negro"
 				android:layout_width="match_parent"
 				android:layout_height="35dp"
@@ -150,9 +150,9 @@
 				android:textSize="12sp">
 			</TextView>
 
-			<EditText android:id="@+id/mailPassword" 
+			<EditText android:id="@+id/mailPassword"
 				android:textColor="@color/color_negro"
-				android:layout_width="match_parent"
+				android:layout_width="wrap_content"
 				android:layout_height="35dp"
 				android:padding="4dp"
 				android:textSize="15sp"
@@ -164,6 +164,15 @@
 				android:textColorHint="@color/color_gris"
 				android:importantForAutofill="no">
 			</EditText>
+
+			<ImageButton android:id="@+id/botonReenviarPass"
+				android:layout_width="30dp"
+				android:layout_height="30dp"
+				android:layout_marginLeft="10dp"
+				android:contentDescription="activateProtection"
+				android:layout_gravity="center"
+				android:background="@drawable/send_password_icon"/>
+
 
 		</LinearLayout>
 
@@ -218,16 +227,6 @@
 				android:typeface="normal"
 				android:background="@drawable/custom_button"/>
 
-			<Button android:id="@+id/botonReenviarPass"
-				android:layout_width="wrap_content"
-				android:layout_height="28dp"
-				android:contentDescription="activateProtection"
-				android:text="@string/label_activar_categoria"
-				android:textColor="@android:color/white"
-				android:textSize="12sp"
-				android:layout_gravity="center"
-				android:typeface="normal"
-				android:background="@drawable/custom_button"/>
 
 		</LinearLayout>
 

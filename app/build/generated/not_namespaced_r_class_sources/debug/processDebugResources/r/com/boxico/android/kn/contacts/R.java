@@ -286,8 +286,9 @@ public final class R {
     public static final int pref_icon_bw=0x7f050039;
     public static final int prev_icon=0x7f05003a;
     public static final int restore_menu=0x7f05003b;
-    public static final int spinner_layout=0x7f05003c;
-    public static final int splash=0x7f05003d;
+    public static final int send_password_icon=0x7f05003c;
+    public static final int spinner_layout=0x7f05003d;
+    public static final int splash=0x7f05003e;
   }
   public static final class id {
     public static final int action0=0x7f060000;

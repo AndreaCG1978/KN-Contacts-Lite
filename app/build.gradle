@@ -4,6 +4,10 @@ android {
     compileSdkVersion 27
     buildToolsVersion "28.0.3"
 
+    packagingOptions {
+        pickFirst 'META-INF/LICENSE.txt' // picks the JavaMail license file
+    }
+
     defaultConfig {
         applicationId "com.boxico.android.kn.contacts"
         minSdkVersion 17
@@ -12,6 +16,8 @@ android {
 
     dependencies {
         implementation 'com.android.support:support-v4:27.1.1'
+        implementation 'com.sun.mail:android-mail:1.6.2'
+        implementation 'com.sun.mail:android-activation:1.6.2'
     }
 
     buildTypes {

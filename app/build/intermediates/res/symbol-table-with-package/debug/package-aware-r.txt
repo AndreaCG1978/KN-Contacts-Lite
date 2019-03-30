@@ -118,6 +118,7 @@ drawable pref_icon
 drawable pref_icon_bw
 drawable prev_icon
 drawable restore_menu
+drawable send_password_icon
 drawable spinner_layout
 drawable splash
 id action0
