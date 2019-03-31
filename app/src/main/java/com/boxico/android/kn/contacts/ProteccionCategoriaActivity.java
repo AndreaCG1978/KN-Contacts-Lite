@@ -5,8 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -85,22 +88,31 @@ public class ProteccionCategoriaActivity extends ListActivity {
 
 	private void habilitarCampos(){
 		if(ConstantsAdmin.contrasenia.isActiva()){
+			contrasenia1.setTextColor(Color.BLACK);
+			contrasenia2.setTextColor(Color.BLACK);
+			mailPassword.setTextColor(Color.BLACK);
+
 			contrasenia1.setEnabled(true);
 			contrasenia2.setEnabled(true);
+			mailPassword.setEnabled(true);
 			//	botonRegistrarContrasenia.setEnabled(true);
 			botonRegistrarContrasenia.setVisibility(View.VISIBLE);
 			botonReenviarPass.setVisibility(View.GONE);
-			mailPassword.setEnabled(true);
-			botonRegistrarContrasenia.setTextColor(getResources().getColor(R.color.color_blanco));
+			botonRegistrarContrasenia.setTextColor(Color.WHITE);
 			botonActivarDesactivarPass.setText(R.string.label_bloquear_contrasenia);
 
 		}else{
+			contrasenia1.setTextColor(Color.GRAY);
+			contrasenia2.setTextColor(Color.GRAY);
+			mailPassword.setTextColor(Color.GRAY);
+
 			contrasenia1.setEnabled(false);
 			contrasenia2.setEnabled(false);
+			mailPassword.setEnabled(false);
+
 			botonRegistrarContrasenia.setVisibility(View.GONE);
 			botonReenviarPass.setVisibility(View.VISIBLE);
-			mailPassword.setEnabled(false);
-			botonRegistrarContrasenia.setTextColor(getResources().getColor(R.color.color_gris_claro));
+			botonRegistrarContrasenia.setTextColor(Color.LTGRAY);
 			botonActivarDesactivarPass.setText(R.string.label_desbloquear_contrasenia);
 		}
 
@@ -170,10 +182,29 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-			//	reenviarContrasenia();
-				Long[] params = new Long[1];
-				params[0] = 1L;
-				new SendMail().execute(params);
+				AlertDialog.Builder builder = new AlertDialog.Builder(me);
+				builder.setMessage("Se enviara la contraseña al mail:" + ConstantsAdmin.contrasenia.getMail() +". Desea continuar?")
+						.setCancelable(true)
+						.setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								Long[] params = new Long[1];
+								params[0] = 1L;
+								new SendMail().execute(params);
+
+
+							}
+						})
+						.setNegativeButton(R.string.label_no, new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								dialog.cancel();
+							}
+						});
+				builder.show();
+
+
+
+
+
 
 			}
 		});
@@ -181,14 +212,14 @@ public class ProteccionCategoriaActivity extends ListActivity {
 
 	private class SendMail extends AsyncTask<Long, Integer, Integer> {
 
-
+        boolean okSend = false;
 		protected void onProgressUpdate() {
 			//called when the background task makes any progress
 		}
 
 		@Override
 		protected Integer doInBackground(Long... longs) {
-			reenviarContrasenia();
+			okSend = reenviarContrasenia();
 			return null;
 		}
 
@@ -199,7 +230,11 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		@Override
 		protected void onPostExecute(Integer integer) {
 			super.onPostExecute(integer);
-			ConstantsAdmin.mostrarMensaje(me, "oh yeah baby");
+			if(okSend) {
+                ConstantsAdmin.mostrarMensaje(me, "oh yeah baby");
+            }else{
+                ConstantsAdmin.mostrarMensaje(me, "Problemas al enviar password");
+            }
 		}
 	}
 
@@ -344,25 +379,23 @@ public class ProteccionCategoriaActivity extends ListActivity {
 
 
 
-	private void reenviarContrasenia(){
-		KNMail m = new KNMail("knapps.mobile@gmail.com", "sfyhfald2017");
+	private boolean reenviarContrasenia(){
+	    boolean okSend = false;
+		KNMail m = new KNMail(ConstantsAdmin.kn_mail, ConstantsAdmin.kn_mail_pass);
 
 		String[] toArr = {ConstantsAdmin.contrasenia.getMail()};
 		m.setTo(toArr);
-		m.setFrom("knapps.mobile@gmail.com");
-		m.setSubject("KN-Contacts Password");
-		m.setBody(ConstantsAdmin.contrasenia.getContrasenia());
+		m.setFrom(ConstantsAdmin.kn_mail);
+		m.setSubject(this.getString(R.string.app_name) + " - " + this.getString(R.string.title_proteccion_categorias));
+		m.setBody(this.getString(R.string.label_contrasenia) + ": " + ConstantsAdmin.contrasenia.getContrasenia());
 
 		try {
-
-			if(!m.send()) {
-			//	ConstantsAdmin.mostrarMensaje(me, "oh yeah baby");
-				ConstantsAdmin.mostrarMensaje(me, "fuck...");
-			}
+            okSend = m.send();
 		} catch(Exception e) {
 			//Toast.makeText(MailApp.this, "There was a problem sending the email.", Toast.LENGTH_LONG).show();
 			ConstantsAdmin.mostrarMensaje(me, "fuck...");
 		}
+		return okSend;
 
 	}
 

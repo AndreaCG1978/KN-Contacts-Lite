@@ -120,6 +120,7 @@
 				android:layout_width="32dp"
 				android:layout_height="32dp"
 				android:background="@drawable/categoria_search_icon"
+				android:popupBackground="@drawable/categoria_search_icon"
 				android:layout_marginStart="15dp"
 				android:layout_marginLeft="15dp"
 				/>

@@ -33,6 +33,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -54,6 +55,8 @@ import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
 import com.boxico.android.kn.contacts.util.Asociacion;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
+
+import static com.boxico.android.kn.contacts.util.ConstantsAdmin.personaSeleccionada;
 
 
 public class DetallePersonaActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -111,6 +114,8 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
     private final int PERSONA_EMAIL_CURSOR = 4;
     private final int PERSONA_PHONE_CURSOR = 5;
     private final int PERSONA_DIR_CURSOR = 6;
+
+	private final int PERMISSIONS_CALL_PHONE = 103;
 
 
 
@@ -200,6 +205,18 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	}
 
 
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions,
+										   int[] grantResults) {
+		Intent callIntent = new Intent(Intent.ACTION_CALL);
+		callIntent.setData(Uri.parse("tel:" + ConstantsAdmin.phoneNumberTemp));
+
+		if (requestCode == PERMISSIONS_CALL_PHONE) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				startActivityForResult(callIntent, ConstantsAdmin.ACTIVITY_LLAMAR_CONTACTO);
+			}
+		}
+	}
 
 	@Override
 	protected void onDestroy()
@@ -251,6 +268,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		String numero;
 		HashMap<String, String> map = (HashMap<String, String>) adapt.getItem(pos);
 		numero = map.get(VALOR);
+		ConstantsAdmin.phoneNumberTemp = numero;
 		efectuarLlamadaGenerico(numero);
 
 
@@ -843,7 +861,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				this.getString(R.string.label_sms),
 				"WhatsApp"};
 		builder.setTitle(this.getString(R.string.mensaje_seleccione_llamada_sms))
-				.setSingleChoiceItems(charSequence, 0, new DialogInterface.OnClickListener() {
+				.setSingleChoiceItems(charSequence, -1, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						switch(which) {
@@ -907,16 +925,18 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 				if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 					// TODO: Consider calling
-					//    Activity#requestPermissions
-					// here to request the missing permissions, and then overriding
-					//   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-					//                                          int[] grantResults)
-					// to handle the case where the user grants the permission. See the documentation
-					// for Activity#requestPermissions for more details.
-					return;
+
+					ActivityCompat.requestPermissions(this,
+							new String[]{Manifest.permission.CALL_PHONE},
+							PERMISSIONS_CALL_PHONE);
+				}else{
+					startActivityForResult(callIntent, ConstantsAdmin.ACTIVITY_LLAMAR_CONTACTO);
 				}
+			}else{
+				startActivityForResult(callIntent, ConstantsAdmin.ACTIVITY_LLAMAR_CONTACTO);
 			}
-			startActivityForResult(callIntent, ConstantsAdmin.ACTIVITY_LLAMAR_CONTACTO);
+
+
 	    } catch (Exception e) {
 	    	ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEfectuarLlamada));
    	    }

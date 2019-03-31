@@ -17,7 +17,7 @@ public class MultiSpinner extends Spinner implements
 		OnMultiChoiceClickListener, OnCancelListener {
 	 
 	private List<String> items;
-	    private boolean[] selected;
+	private boolean[] selected;
 	private MultiSpinnerListener listener;
 
 		public MultiSpinner(Context context) {

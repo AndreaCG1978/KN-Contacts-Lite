@@ -66,8 +66,9 @@ import android.support.v4.content.ContextCompat;
 
 public class ConstantsAdmin {
 	public static final String KEY_FOTO = "foto";
+	public static String phoneNumberTemp = "";
 
-	// CONSTANTES DE LA BASE DE DATOS
+    // CONSTANTES DE LA BASE DE DATOS
 
 	private static Map<String, List<PersonaDTO>> organizadosAlfabeticamente = null;
 	private static Map<String, List<PersonaDTO>> organizadosPorCategoria = null;
@@ -97,6 +98,8 @@ public class ConstantsAdmin {
 	public static final String querySelectionDirsContactsById = ContactsContract.CommonDataKinds.StructuredPostal.CONTACT_ID + " = ";
 
 	public static final String fileEsteticoCSV = "kncontactsExcel.csv";
+	public static final String kn_mail ="knapps.mobile@gmail.com";
+	public static final String kn_mail_pass ="sfyhfald2017";
 
 	private static ArrayList<Long> telefonosAEliminar = null;
 
