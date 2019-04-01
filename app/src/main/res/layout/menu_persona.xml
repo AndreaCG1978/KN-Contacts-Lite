@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	android:orientation="vertical" android:gravity="center">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="horizontal"
+	android:gravity="center">
 
-	<View android:layout_width="wrap_content" android:layout_height="1px"
-		android:layout_marginBottom="8dp" android:background="@color/color_azul" />
+	<View android:layout_width="wrap_content"
+		android:layout_height="1px"
+		android:layout_marginBottom="8dp"
+		android:background="@color/color_gris_oscuro" />
 
 
 	<Button android:id="@+id/buttonVerPersona"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textColor="@color/color_azul"
-		android:background="@drawable/custom_button" android:text="@string/label_ver_detalle"
-		android:textSize="14sp" android:layout_margin="7dp"/>
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/person_add_icon"
+		android:layout_margin="7dp"/>
 		
 	<Button android:id="@+id/buttonEditarPersona"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-		android:text="@string/label_editarPersona" android:textSize="14sp" android:layout_margin="7dp"/>
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/edit_icon"
+		android:layout_margin="7dp"/>
 
 	<Button android:id="@+id/buttonBorrarPersona"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-		android:text="@string/label_borrarPersona" android:textSize="14sp" android:layout_margin="7dp"/>
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/delete"
+		android:layout_margin="7dp"/>
 
 	<Button android:id="@+id/buttonEnviarInfoPersona"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:textColor="@color/color_azul" android:background="@drawable/custom_button"
-		android:text="@string/label_enviar_info" android:textSize="14sp" android:layout_margin="7dp"/>
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/next_icon"
+		android:layout_margin="7dp"/>
 	
 </LinearLayout>

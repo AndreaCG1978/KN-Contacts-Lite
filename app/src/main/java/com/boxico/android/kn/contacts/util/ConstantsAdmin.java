@@ -259,6 +259,8 @@ public class ConstantsAdmin {
 			// ORGANIZO ALFABETICAMENTE
 			if(per.getApellido() != null && !per.getApellido().equals("")){
 				primeraLetra = per.getApellido().substring(0, 1).toUpperCase();
+			}else if(per.getNombres() != null && !per.getNombres().equals("")){
+				primeraLetra = per.getNombres().substring(0, 1).toUpperCase();;
 			}else{
 				primeraLetra = "";
 			}
