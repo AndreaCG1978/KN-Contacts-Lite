@@ -88,7 +88,7 @@
 	</LinearLayout>
 
 	<LinearLayout android:id="@+id/nombres"
-		android:layout_width="fill_parent"
+		android:layout_width="match_parent"
 		android:layout_height="79dp"
 		android:orientation="vertical"
 		android:gravity="center"
@@ -246,22 +246,32 @@
 	</LinearLayout>
 
 	<ListView android:id="@+id/listaTelefonos"
-		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
 		android:dividerHeight="2dp"
-		android:layout_below="@id/menu" android:layout_margin="5dp"
+		android:divider="@color/color_gris_claro"
+		android:layout_below="@id/menu"
+		android:layout_margin="5dp"
 		android:listSelector="@android:color/transparent">
 	</ListView>
 
-	<ListView android:id="@+id/listaMails" android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:dividerHeight="2dp"
+	<ListView android:id="@+id/listaMails"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:dividerHeight="2dp"
+		android:divider="@color/color_gris_claro"
 		android:layout_below="@id/menu"
-		android:layout_margin="5dp" android:listSelector="@android:color/transparent">
+		android:layout_margin="5dp"
+		android:listSelector="@android:color/transparent">
 	</ListView>
 
 	<ListView android:id="@+id/listaDirecciones"
-		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
 		android:dividerHeight="2dp"
-		android:layout_below="@id/menu" android:layout_margin="5dp"
+		android:layout_below="@id/menu"
+		android:divider="@color/color_gris_claro"
+		android:layout_margin="5dp"
 		android:listSelector="@android:color/transparent">
 	</ListView>
 

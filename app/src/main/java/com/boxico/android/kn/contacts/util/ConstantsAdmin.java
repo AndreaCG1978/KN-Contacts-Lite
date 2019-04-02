@@ -1985,85 +1985,58 @@ public class ConstantsAdmin {
 		//result = result + SEPARACION_PERSONA + ENTER;
 
 		// DATOS PERSONALES
+		String separador = System.getProperty("line.separator");
 
-		result.append("- ").append(per.getApellido()).append(" ");
-		if(per.getNombres() != null && !per.getNombres().equals("")){
-			result.append(per.getNombres()).append(ConstantsAdmin.ENTER);
+		result.append(separador);
+		if(per.getApellido() != null && per.getNombres() != null){
+			result.append(per.getApellido().toUpperCase() + ", " + per.getNombres());
+		}else if(per.getApellido() != null){
+			result.append(per.getApellido().toUpperCase());
+		}else{
+			result.append(per.getNombres());
 		}
-		result.append(ConstantsAdmin.ENTER);
+
+		result.append(separador);
+
 		// TELEFONOS
 
-		result = new StringBuilder(ConstantsAdmin.ENTER + result + context.getResources().getString(R.string.label_telefonos) + ConstantsAdmin.ENTER);
-
-		result.append(ConstantsAdmin.ENTER);
-/*
-		if(per.getTelParticular() != null){
-			result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getTelParticular()).append(ConstantsAdmin.ENTER);
-		}
-		if(per.getCelular() != null){
-			result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_telMovil)).append(SEPARACION_ATRIBUTO).append(per.getCelular()).append(ConstantsAdmin.ENTER);
-		}
-		if(per.getTelLaboral() != null){
-			result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getTelLaboral()).append(ConstantsAdmin.ENTER);
-		}
-*/
-
 		masTVs = obtenerTelefonosIdPersona(per.getId(), mDBManager);
-		it = masTVs.iterator();
-		while(it.hasNext()){
-			tv = it.next();
-			result.append("* ").append(context.getString(R.string.label_telefono)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(ConstantsAdmin.ENTER);
+		if(masTVs.size() > 0){
+			result.append(separador + "░ " + context.getResources().getString(R.string.label_telefonos) + separador + separador);
+			it = masTVs.iterator();
+			while(it.hasNext()){
+				tv = it.next();
+				result.append("*").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(" ").append(tv.getValor()).append(separador);
+			}
+			result.append(separador);
 		}
-
-		result.append(ConstantsAdmin.ENTER);
 		// MAILS
-		result = new StringBuilder(ConstantsAdmin.ENTER + result + context.getResources().getString(R.string.label_mail) + ConstantsAdmin.ENTER);
+		//result = new StringBuilder(ConstantsAdmin.ENTER + result + context.getResources().getString(R.string.label_mail) + ConstantsAdmin.ENTER);
 
-		result.append(ConstantsAdmin.ENTER);
-
-		/*
-		if(per.getEmailParticular() != null){
-			result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getEmailParticular()).append(ConstantsAdmin.ENTER);
-		}
-		if(per.getEmailLaboral() != null){
-			result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getEmailLaboral()).append(ConstantsAdmin.ENTER);
-		}
-		if(per.getEmailOtro() != null){
-			result.append("* ").append(context.getString(R.string.label_email)).append("-").append(context.getString(R.string.hint_otro)).append(SEPARACION_ATRIBUTO).append(per.getEmailOtro()).append(ConstantsAdmin.ENTER);
-		}*/
-
-		masTVs = obtenerEmailsIdPersona(per.getId(),mDBManager);
-		it = masTVs.iterator();
-		while(it.hasNext()){
-			tv = it.next();
-			result.append("* ").append(context.getString(R.string.label_email)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(ConstantsAdmin.ENTER);
+		masTVs = obtenerEmailsIdPersona(per.getId(), mDBManager);
+		if(masTVs.size() > 0) {
+			result.append(separador + "░ " + context.getResources().getString(R.string.label_mail) + separador + separador);
+			it = masTVs.iterator();
+			while (it.hasNext()) {
+				tv = it.next();
+				result.append("*").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(" ").append(tv.getValor()).append(separador);
+			}
+			result.append(separador);
 		}
 
-		result.append(ConstantsAdmin.ENTER);
+
 		// DIRECCIONES
 
-		result = new StringBuilder(ConstantsAdmin.ENTER + result + context.getResources().getString(R.string.label_direcciones) + ConstantsAdmin.ENTER);
-
-		result.append(ConstantsAdmin.ENTER);
-		/*
-		if(per.getDireccionParticular() != null){
-			result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_particular)).append(SEPARACION_ATRIBUTO).append(per.getDireccionParticular()).append(ConstantsAdmin.ENTER);
-		}
-		if(per.getDireccionLaboral() != null){
-			result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(context.getString(R.string.hint_laboral)).append(SEPARACION_ATRIBUTO).append(per.getDireccionLaboral()).append(ConstantsAdmin.ENTER);
-		}
-*/
-
 		masTVs = obtenerDireccionesIdPersona(per.getId(), mDBManager);
-		it = masTVs.iterator();
-		while(it.hasNext()){
-			tv = it.next();
-			result.append("* ").append(context.getString(R.string.label_direccion)).append("-").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(ConstantsAdmin.ENTER);
+		if(masTVs.size() > 0) {
+			result.append(separador + "░ " + context.getResources().getString(R.string.label_direcciones) + separador + separador);
+			it = masTVs.iterator();
+			while (it.hasNext()) {
+				tv = it.next();
+				result.append("*").append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(" ").append(tv.getValor()).append(separador);
+			}
+			result.append(separador);
 		}
-
-		result.append(ConstantsAdmin.ENTER);
-
-		result.append(ENTER);
 
 
 		return result.toString();

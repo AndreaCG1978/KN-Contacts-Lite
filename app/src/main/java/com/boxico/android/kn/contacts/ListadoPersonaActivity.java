@@ -1064,7 +1064,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	//	catSelectTextView = this.findViewById(R.id.categoriasSeleccionadasId);
 	}
 
-	@Override
+/*	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 									ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -1072,14 +1072,14 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 		// TODO: fill in rest of method
 	}
-
+*/
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 			case ConstantsAdmin.ACTIVITY_EJECUTAR_ELIMINAR_CONTACTO:
 				AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 				mPersonaSelect = info.id;
-				eliminarPersonaDialog();
+			//	eliminarPersonaDialog();
 				return true;
 		}
 		return super.onContextItemSelected(item);

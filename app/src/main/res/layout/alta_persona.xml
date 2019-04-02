@@ -204,7 +204,8 @@ android:background="@color/color_gris_claro">
 			android:layout_height="wrap_content"
 			android:layout_below="@id/label_phones"
 			android:gravity="end"
-			android:layout_marginEnd="10dp">
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="10dp">
 
 			<ImageButton android:id="@+id/addTelefono"
 				android:layout_margin="3dp"
@@ -264,11 +265,16 @@ android:background="@color/color_gris_claro">
 
 
 		<ListView android:id="@+id/listaTelefonosAlta"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:dividerHeight="10dp"
-			android:layout_below="@id/nuevoTipoTel" android:layout_marginLeft="5dp"
-			android:layout_marginRight="5dp" android:layout_marginTop="15dp"
-			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent">
+			android:divider="@color/color_gris_claro"
+			android:layout_below="@id/nuevoTipoTel"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			android:layout_marginTop="15dp"
+			android:layout_marginBottom="5dp"
+			android:listSelector="@android:color/transparent">
 		</ListView>
 
 
@@ -293,7 +299,8 @@ android:background="@color/color_gris_claro">
 			android:layout_height="wrap_content"
 			android:layout_below="@id/label_emails"
 			android:gravity="end"
-			android:layout_marginEnd="10dp">
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="10dp">
 
 			<ImageButton android:id="@+id/addMail"
 				android:contentDescription="addMail"
@@ -362,11 +369,16 @@ android:background="@color/color_gris_claro">
 
 
 		<ListView android:id="@+id/listaMailsAlta"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:dividerHeight="10dp"
-			android:layout_below="@id/nuevoTipoMail" android:layout_marginLeft="5dp"
-			android:layout_marginRight="5dp" android:layout_marginTop="15dp"
-			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent">
+			android:divider="@color/color_gris_claro"
+			android:layout_below="@id/nuevoTipoMail"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			android:layout_marginTop="15dp"
+			android:layout_marginBottom="5dp"
+			android:listSelector="@android:color/transparent">
 		</ListView>
 
 		<TextView
@@ -391,7 +403,8 @@ android:background="@color/color_gris_claro">
 			android:layout_height="wrap_content"
 			android:layout_below="@id/label_address"
 			android:gravity="end"
-			android:layout_marginEnd="10dp">
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="10dp">
 
 			<ImageButton
 				android:id="@+id/addDir"
@@ -459,11 +472,16 @@ android:background="@color/color_gris_claro">
 
 
 		<ListView android:id="@+id/listaDireccionesAlta"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:dividerHeight="10dp"
-			android:layout_below="@id/nuevoTipoDir" android:layout_marginLeft="5dp"
-			android:layout_marginRight="5dp" android:layout_marginTop="15dp"
-			android:layout_marginBottom="5dp" android:listSelector="@android:color/transparent"	>
+			android:divider="@color/color_gris_claro"
+			android:layout_below="@id/nuevoTipoDir"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			android:layout_marginTop="15dp"
+			android:layout_marginBottom="5dp"
+			android:listSelector="@android:color/transparent"	>
 		</ListView>
 
 		<LinearLayout

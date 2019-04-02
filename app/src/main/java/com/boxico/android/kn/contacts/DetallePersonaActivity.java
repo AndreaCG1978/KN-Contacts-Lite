@@ -61,84 +61,83 @@ import static com.boxico.android.kn.contacts.util.ConstantsAdmin.personaSeleccio
 
 public class DetallePersonaActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-	//private ArrayList<Cursor> allMyCursors = null;
+    //private ArrayList<Cursor> allMyCursors = null;
 
-	private BroadcastReceiver mReceiverConecta = null;
+    private BroadcastReceiver mReceiverConecta = null;
 
-	private static final String VALOR = "VALOR";
-	private static final String TIPO = "TIPO";
+    private static final String VALOR = "VALOR";
+    private static final String TIPO = "TIPO";
 
-	private int mPersonaSeleccionadaId = -1;
+    private int mPersonaSeleccionadaId = -1;
     private String mPersonaSeleccionadaIdAgenda = null;
-	private static DetallePersonaActivity me = null;
-	private TextView mFechaNacimiento = null;
-	private TextView mApellido = null;
-	private TextView mNombres = null;
-	private TextView mCategoria = null;
-	private TextView mFechaNacimientoLabel = null;
-	private TextView mTituloTelefonos = null;
-	private TextView mTituloEmails = null;
-	private TextView mTituloDirecciones = null;
+    private static DetallePersonaActivity me = null;
+    private TextView mFechaNacimiento = null;
+    private TextView mApellido = null;
+    private TextView mNombres = null;
+    private TextView mCategoria = null;
+    private TextView mFechaNacimientoLabel = null;
+    private TextView mTituloTelefonos = null;
+    private TextView mTituloEmails = null;
+    private TextView mTituloDirecciones = null;
 
-	private ImageButton mImagenPreferido = null;
-	private ImageButton importarContacto = null;
-	private ImageView photo = null;
-	private TextView sinDatos = null;
+    private ImageButton mImagenPreferido = null;
+    private ImageButton importarContacto = null;
+    private ImageView photo = null;
+    private TextView sinDatos = null;
 
-	//Drawable shapeLight = null;
-	//Drawable shapeDark = null;
+    //Drawable shapeLight = null;
+    //Drawable shapeDark = null;
 
-//	private final int colorSeleccionado = Color.parseColor("#874312");
-	private final int colorSeleccionado = Color.parseColor("#FFFFFF");
-//	private final int colorDeseleccionado = Color.parseColor("#41289C");
-	private final int colorDeseleccionado = Color.BLACK;
+    //	private final int colorSeleccionado = Color.parseColor("#874312");
+    private final int colorSeleccionado = Color.parseColor("#FFFFFF");
+    //	private final int colorDeseleccionado = Color.parseColor("#41289C");
+    private final int colorDeseleccionado = Color.BLACK;
 
-	private boolean mMostrarTelefonos = false;
-	private boolean mMostrarEmails = false;
-	private boolean mMostrarDirecciones = false;
-	private boolean mEsPreferido = false;
+    private boolean mMostrarTelefonos = false;
+    private boolean mMostrarEmails = false;
+    private boolean mMostrarDirecciones = false;
+    private boolean mEsPreferido = false;
 
-	private ListView telefonosList = null;
-	private ListView mailsList = null;
-	private ListView direccionesList = null;
+    private ListView telefonosList = null;
+    private ListView mailsList = null;
+    private ListView direccionesList = null;
 
-	private List<Asociacion> telefonos = null;
-	private List<Asociacion> mails = null;
-	private List<Asociacion> direcciones = null;
+    private List<Asociacion> telefonos = null;
+    private List<Asociacion> mails = null;
+    private List<Asociacion> direcciones = null;
 
-	private Drawable iconBig = null;
+    private Drawable iconBig = null;
 
-	private final int PERSONAS_CURSOR = 1;
-	private final int PREFERIDO_CURSOR = 2;
+    private final int PERSONAS_CURSOR = 1;
+    private final int PREFERIDO_CURSOR = 2;
     private final int PERSONA_EXTRA_ID_CURSOR = 3;
     private final int PERSONA_EMAIL_CURSOR = 4;
     private final int PERSONA_PHONE_CURSOR = 5;
     private final int PERSONA_DIR_CURSOR = 6;
 
-	private final int PERMISSIONS_CALL_PHONE = 103;
+    private final int PERMISSIONS_CALL_PHONE = 103;
 
 
+    public DetallePersonaActivity() {
+        super();
 
-	public DetallePersonaActivity() {
-		super();
+        // TODO Auto-generated constructor stub
+    }
 
-		// TODO Auto-generated constructor stub
-	}
-
-/*
-	private void resetAllMyCursors() {
-		Cursor cur;
-		for (Cursor allMyCursor : allMyCursors) {
-			cur = allMyCursor;
-			cur.close();
-			this.stopManagingCursor(cur);
-		}
-		allMyCursors = new ArrayList<>();
-	}
-*/
-	private void cargarLoaders() {
-		this.getSupportLoaderManager().initLoader(PERSONAS_CURSOR, null, this);
-		this.getSupportLoaderManager().initLoader(PREFERIDO_CURSOR, null, this);
+    /*
+        private void resetAllMyCursors() {
+            Cursor cur;
+            for (Cursor allMyCursor : allMyCursors) {
+                cur = allMyCursor;
+                cur.close();
+                this.stopManagingCursor(cur);
+            }
+            allMyCursors = new ArrayList<>();
+        }
+    */
+    private void cargarLoaders() {
+        this.getSupportLoaderManager().initLoader(PERSONAS_CURSOR, null, this);
+        this.getSupportLoaderManager().initLoader(PREFERIDO_CURSOR, null, this);
         this.getSupportLoaderManager().initLoader(PERSONA_EXTRA_ID_CURSOR, null, this);
         this.getSupportLoaderManager().initLoader(PERSONA_EMAIL_CURSOR, null, this);
         this.getSupportLoaderManager().initLoader(PERSONA_PHONE_CURSOR, null, this);
@@ -146,74 +145,84 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
     }
 
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		me = this;
-	//	allMyCursors = new ArrayList<>();
-		Intent intent = getIntent();
-		setContentView(R.layout.details_personas);
-		this.registrarViews();
-		mMostrarTelefonos = true;
-		this.cargarLoaders();
-		this.configurarBotonEditar();
-		this.configurarBotonEliminar();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        me = this;
+        //	allMyCursors = new ArrayList<>();
+        Intent intent = getIntent();
+        setContentView(R.layout.details_personas);
+        this.registrarViews();
+        mMostrarTelefonos = true;
+        this.cargarLoaders();
+        this.configurarBotonEditar();
+        this.configurarBotonEliminar();
 
-		this.configurarMostrarTelefonos();
-		this.configurarMostrarMails();
-		this.configurarMostrarDirecciones();
-		this.configurarSeleccionarPreferido();
-		this.configurarImportarContacto();
-		this.configurarBorrarPhoto();
-		this.compruebaCuandoConecta();
-		this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_detallePersona));
-		mPersonaSeleccionadaId = Integer.valueOf((String) intent.getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
-	//	this.mostrarFoto();
-	}
+        this.configurarMostrarTelefonos();
+        this.configurarMostrarMails();
+        this.configurarMostrarDirecciones();
+        this.configurarSeleccionarPreferido();
+        this.configurarImportarContacto();
+        this.configurarBorrarPhoto();
+        this.compruebaCuandoConecta();
+        this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_detallePersona));
+        mPersonaSeleccionadaId = Integer.valueOf((String) intent.getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
+        //	this.mostrarFoto();
+    }
 
-	private void compruebaCuandoConecta() {
-		mReceiverConecta = new BroadcastReceiver() {
-			public void onReceive(Context context, Intent intent) {
-				String action = intent.getAction();
-				switch (action) {
-					case Intent.ACTION_MEDIA_MOUNTED:
+    private void compruebaCuandoConecta() {
+        mReceiverConecta = new BroadcastReceiver() {
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                switch (action) {
+                    case Intent.ACTION_MEDIA_MOUNTED:
                         finish();
-						break;
-					case Intent.ACTION_MEDIA_UNMOUNTED:
-						break;
-					case Intent.ACTION_MEDIA_SCANNER_STARTED:
-						break;
-					case Intent.ACTION_MEDIA_SCANNER_FINISHED:
-						break;
-					case Intent.ACTION_MEDIA_EJECT:
-						break;
+                        break;
+                    case Intent.ACTION_MEDIA_UNMOUNTED:
+                        break;
+                    case Intent.ACTION_MEDIA_SCANNER_STARTED:
+                        break;
+                    case Intent.ACTION_MEDIA_SCANNER_FINISHED:
+                        break;
+                    case Intent.ACTION_MEDIA_EJECT:
+                        break;
 			/*		case Intent.ACTION_UMS_CONNECTED:
 						finish();
 						break;
 					case Intent.ACTION_UMS_DISCONNECTED:
 
 						break;*/
-			        default:
-			            break;
-				}
-			}
-		};
-		String SOME_ACTION = Intent.ACTION_MEDIA_MOUNTED;
-		IntentFilter intentFilter = new IntentFilter(SOME_ACTION);
-		registerReceiver(mReceiverConecta, intentFilter);
+                    default:
+                        break;
+                }
+            }
+        };
+        String SOME_ACTION = Intent.ACTION_MEDIA_MOUNTED;
+        IntentFilter intentFilter = new IntentFilter(SOME_ACTION);
+        registerReceiver(mReceiverConecta, intentFilter);
 
 
-	}
+    }
 
 
-	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions,
-										   int[] grantResults) {
-		Intent callIntent = new Intent(Intent.ACTION_CALL);
-		callIntent.setData(Uri.parse("tel:" + ConstantsAdmin.phoneNumberTemp));
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + ConstantsAdmin.phoneNumberTemp));
 
-		if (requestCode == PERMISSIONS_CALL_PHONE) {
-			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				startActivityForResult(callIntent, ConstantsAdmin.ACTIVITY_LLAMAR_CONTACTO);
+        if (requestCode == PERMISSIONS_CALL_PHONE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivityForResult(callIntent, ConstantsAdmin.ACTIVITY_LLAMAR_CONTACTO);
 			}
 		}
 	}

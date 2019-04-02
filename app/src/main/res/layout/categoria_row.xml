@@ -37,25 +37,25 @@
 
 
 	<ImageButton android:id="@+id/editButton"
-		android:layout_width="30dp" android:layout_height="30dp"
+		android:layout_width="25dp"
+		android:layout_height="25dp"
 		android:layout_marginLeft="5dp"
 		android:layout_marginStart="5dp"
 		android:contentDescription="►"
 		android:padding="2dp"
 		android:layout_gravity="center|center_horizontal"
-		android:src="@drawable/edit_icon_mini"
-		android:background="@drawable/custom_button">
+		android:background="@drawable/edit_icon_mini">
 	</ImageButton>
 
 	<ImageButton android:id="@+id/removeButton"
-		android:layout_width="30dp" android:layout_height="30dp"
+		android:layout_width="25dp"
+		android:layout_height="25dp"
 		android:layout_gravity="center|center_horizontal"
-		android:layout_marginLeft="15dp"
-		android:layout_marginStart="15dp"
+		android:layout_marginLeft="20dp"
+		android:layout_marginStart="20dp"
 		android:contentDescription="-"
-		android:background="@drawable/custom_button"
 		android:padding="2dp"
-		android:src="@drawable/delete_icon_mini">
+		android:background="@drawable/delete_icon_mini">
 	</ImageButton>
 
 	</LinearLayout>

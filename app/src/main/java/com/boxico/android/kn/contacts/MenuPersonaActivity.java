@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
@@ -46,15 +47,15 @@ public class MenuPersonaActivity extends Activity {
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		per = ConstantsAdmin.obtenerPersonaId(this, mPersonaSeleccionadaId, mDBManager);
 		String nombre = "";
-		if(per.getApellido() != null){
-			nombre = per.getApellido() + ", ";
+		if(per.getApellido() != null && (per.getNombres() == null || per.getNombres().equals(""))){
+			nombre = per.getApellido();
+		}else if(per.getApellido()!= null && !per.getApellido().equals("") && per.getNombres() != null && !per.getNombres().equals("")){
+    		nombre = per.getApellido() + ", " + per.getNombres();
+    	}else{
+			nombre = per.getNombres();
 		}
-
-    	if(per.getNombres() != null && !per.getNombres().equals("")){
-    		nombre = nombre + per.getNombres();
-    	}
 		dialog.setTitle(nombre);
-		Button btn = dialog.findViewById(R.id.buttonVerPersona);
+		ImageButton btn = dialog.findViewById(R.id.buttonVerPersona);
 		btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	openVerDetallePersona();

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:layout_height="match_parent"
-	android:orientation="horizontal" android:layout_margin="12dp"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="horizontal"
 	android:gravity="center_vertical"
 	android:descendantFocusability="beforeDescendants"
 	android:background="@color/color_gris_claro">
@@ -26,11 +27,12 @@
 		android:typeface="normal"
 		android:padding="5dp"
 		android:textSize="15sp"
-		android:layout_marginStart="5dp" android:layout_marginEnd="4dp"
+		android:layout_marginLeft="5dp"
+		android:layout_marginStart="5dp"
+		android:layout_marginEnd="1dp"
+		android:layout_marginRight="1dp"
 		android:maxLength="60"
 		android:selectAllOnFocus="true"
-		android:layout_marginRight="4dp"
-       	android:layout_marginLeft="5dp"
 		android:lines="4"
 		android:minLines="1"
 		android:maxLines="4"
@@ -42,7 +44,8 @@
 
 
 	<Button android:id="@+id/removeButton"
-		android:layout_width="20dp" android:layout_height="24dp"
+		android:layout_width="25dp"
+		android:layout_height="25dp"
 		android:gravity="center"
 		android:layout_marginRight="1dp"
 		android:layout_marginLeft="1dp"

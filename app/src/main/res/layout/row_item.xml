@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="horizontal" android:layout_margin="5dp">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="horizontal"
+	android:layout_margin="5dp">
 
-	<TextView android:id="@+id/rowTipo" android:layout_width="95dp"
-		android:layout_height="fill_parent" android:textColor="@color/color_negro"
+	<TextView android:id="@+id/rowTipo"
+		android:layout_width="95dp"
+		android:layout_height="match_parent"
+		android:textColor="@color/color_gris_claro"
 		android:textSize="12sp"
 		android:singleLine="false"
 		android:paddingTop="8dp"
 		android:paddingBottom="8dp"
 		android:gravity="end|center"
-		android:background="@drawable/custom_text_view_categoria"
+		android:background="@drawable/custom_text_view_categoria_desc"
         android:paddingLeft="2dp"
 		android:paddingStart="2dp"
         android:paddingRight="8dp"
@@ -21,7 +25,8 @@
 		android:textStyle="bold">
 	</TextView>
 
-	<TextView android:id="@+id/rowValor" android:layout_width="fill_parent"
+	<TextView android:id="@+id/rowValor"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content" 
 		android:textColor="@color/color_naranja_oscuro"
 		android:textSize="16sp"
