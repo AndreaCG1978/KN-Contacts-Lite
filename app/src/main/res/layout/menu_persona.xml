@@ -1,56 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content"
+	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:orientation="vertical"
+	android:orientation="horizontal"
 	android:gravity="center"
 	android:background="@color/color_gris_oscuro">
 
-	<View android:layout_width="wrap_content"
-		android:layout_height="1px"
-		android:layout_marginBottom="8dp"
-		android:background="@color/color_gris_claro" />
-
-	<LinearLayout
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:gravity="center"
-		>
 
 		<ImageButton android:id="@+id/buttonVerPersona"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:background="@drawable/person_add_icon"
+			android:layout_width="43dp"
+			android:layout_height="43dp"
+			android:background="@drawable/less_desc_contact"
 			android:layout_margin="15dp"/>
 
 		<ImageButton android:id="@+id/buttonEditarPersona"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="32dp"
+			android:layout_height="32dp"
 			android:background="@drawable/edit_icon"
 			android:layout_margin="15dp"/>
 
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:gravity="center">
-
-
 		<ImageButton android:id="@+id/buttonEnviarInfoPersona"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:src="@drawable/next_icon"
+			android:layout_width="35dp"
+			android:layout_height="35dp"
+			android:background="@drawable/send_icon"
 			android:layout_margin="15dp"/>
 
 		<ImageButton android:id="@+id/buttonBorrarPersona"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:src="@drawable/delete"
+			android:layout_width="30dp"
+			android:layout_height="35dp"
+			android:background="@drawable/delete"
 			android:layout_margin="15dp"/>
 
-	</LinearLayout>
 
 </LinearLayout>

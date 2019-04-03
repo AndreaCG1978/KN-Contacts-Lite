@@ -79,6 +79,7 @@ import com.boxico.android.kn.contacts.util.MultiSpinner;
 import com.boxico.android.kn.contacts.util.MultiSpinner.MultiSpinnerListener;
 
 import static com.boxico.android.kn.contacts.util.ConstantsAdmin.obtenerPathImagen;
+import static com.boxico.android.kn.contacts.util.ConstantsAdmin.obtenerPersonaId;
 import static com.boxico.android.kn.contacts.util.ConstantsAdmin.personaSeleccionada;
 
 
@@ -1035,11 +1036,16 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				// TODO Auto-generated method stub
 
 				Cursor per;
+				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
 				Intent i = new Intent(me, DetallePersonaActivity.class);
 				per = (Cursor)listaEspecial.getAdapter().getItem(arg2);
 				long id = per.getLong(0);
+				personaSeleccionada = ConstantsAdmin.obtenerPersonaId(me, id, mDBManager);
+
+				askForReadContactsPermission(id);
+				/*
 				i.putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(id));
-				me.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_DETALLE_PERSONA);
+				me.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_DETALLE_PERSONA);*/
 
 			}
 		});

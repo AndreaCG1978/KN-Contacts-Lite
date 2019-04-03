@@ -118,6 +118,7 @@ drawable pref_icon
 drawable pref_icon_bw
 drawable prev_icon
 drawable restore_menu
+drawable send_icon
 drawable send_password_icon
 drawable spinner_layout
 drawable splash
@@ -150,6 +151,7 @@ id bottom
 id buttonBorrarPersona
 id buttonEditarPersona
 id buttonEliminarCategoria
+id buttonEnviarInfo
 id buttonEnviarInfoPersona
 id buttonExpandContractAll
 id buttonIrAEditarPersona

@@ -116,6 +116,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
     private final int PERSONA_DIR_CURSOR = 6;
 
     private final int PERMISSIONS_CALL_PHONE = 103;
+	private final int PERMISSIONS_READ_CONTACT = 104;
 
 
     public DetallePersonaActivity() {
@@ -156,7 +157,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
         this.cargarLoaders();
         this.configurarBotonEditar();
         this.configurarBotonEliminar();
-
+		this.configurarBotonEnviarInfo();
         this.configurarMostrarTelefonos();
         this.configurarMostrarMails();
         this.configurarMostrarDirecciones();
@@ -1197,7 +1198,24 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	        });
 		}
 	}
-	
+
+	private void configurarBotonEnviarInfo(){
+		ImageButton boton = this.findViewById(R.id.buttonEnviarInfo);
+		if(boton != null){
+			boton.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					enviarInfo();
+				}
+			});
+		}
+	}
+
+	private void enviarInfo(){
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		String infoContacto = ConstantsAdmin.recuperarInfoContacto(this, mPersonaSeleccionadaId, mDBManager);
+		ConstantsAdmin.enviarMailGenerico(this, "", infoContacto, "");
+	}
+
 	private void eliminarPersonaDialog(){
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
     	builder.setMessage(R.string.mensaje_borrar_persona)

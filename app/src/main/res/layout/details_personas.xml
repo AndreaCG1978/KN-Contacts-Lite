@@ -15,7 +15,7 @@
 		android:layout_marginTop="10dp"
 		android:layout_marginBottom="3dp"
 		android:background="@color/color_gris_oscuro"
-		android:padding="7dp"
+		android:padding="10dp"
 		android:layout_marginRight="9dp"
 		android:layout_marginEnd="9dp"
 		android:layout_marginStart="9dp"
@@ -23,29 +23,39 @@
 		>
 
 		<ImageButton android:id="@+id/buttonIrAEditarPersona"
-			android:layout_width="30dp" android:layout_height="30dp"
+			android:layout_width="30dp"
+			android:layout_height="30dp"
 			android:background="@drawable/edit_icon"
-			android:contentDescription="imagenEditar"
+			android:contentDescription="imageEdit"
 			/>
 
-
-
 		<ImageButton android:id="@+id/imagenPreferido"
-			android:layout_height="32dp" android:layout_width="32dp"
+			android:layout_height="32dp"
+			android:layout_width="32dp"
 			android:layout_marginStart="40dp"
-			android:contentDescription="imagenPreferido"
+			android:contentDescription="imagePref"
 			android:layout_marginLeft="40dp" />
 
 		<ImageButton android:id="@+id/importarContacto"
-			android:layout_height="32dp" android:layout_width="32dp"
-			android:layout_marginStart="40dp" android:background="@drawable/import_icon"
+			android:layout_height="32dp"
+			android:layout_width="32dp"
+			android:layout_marginStart="40dp"
+			android:background="@drawable/import_icon"
 			android:contentDescription="importContact"
+			android:layout_marginLeft="40dp" />
+
+		<ImageButton android:id="@+id/buttonEnviarInfo"
+			android:layout_width="28dp"
+			android:layout_height="32dp"
+			android:layout_marginStart="40dp"
+			android:background="@drawable/send_icon"
+			android:contentDescription="imageSend"
 			android:layout_marginLeft="40dp" />
 
 		<ImageButton android:id="@+id/buttonBorrarPersona"
 			android:layout_width="28dp" android:layout_height="32dp"
 			android:layout_marginStart="40dp" android:background="@drawable/delete"
-			android:contentDescription="imagenBorrar"
+			android:contentDescription="imageDelete"
 			android:layout_marginLeft="40dp" />
 
 	</LinearLayout>
