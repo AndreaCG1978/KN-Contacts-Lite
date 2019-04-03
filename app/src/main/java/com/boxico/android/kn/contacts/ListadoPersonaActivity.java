@@ -1656,6 +1656,14 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA,0, R.string.menu_agregar_persona);
 		item.setIcon(R.drawable.person_menu_icon);
 
+		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS,0, R.string.menu_importar_contactos);
+		item.setIcon(R.drawable.import_menu_icon);
+
+		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS,0, R.string.menu_listar_categoria);
+		item.setIcon(R.drawable.categoria_menu_icon);
+
+		menuItemExportarContactosEstetico = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS_ESTETICO,0, R.string.menu_exportar_excel);
+		menuItemExportarContactosEstetico.setIcon(R.drawable.export_excel);
 
 
 		menuItemExportarContactos = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS,0, R.string.menu_exportar_contactos);
@@ -1663,18 +1671,6 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS_CSV,0, R.string.menu_importar_contactos_csv);
 		item.setIcon(R.drawable.restore_menu);
-
-
-
-		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_IMPORTAR_CONTACTOS,0, R.string.menu_importar_contactos);
-		item.setIcon(R.drawable.import_menu_icon);
-
-		menuItemExportarContactosEstetico = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_EXPORTAR_CONTACTOS_ESTETICO,0, R.string.menu_exportar_excel);
-		menuItemExportarContactosEstetico.setIcon(R.drawable.export_excel);
-
-
-		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_LISTADO_CATEGORIAS,0, R.string.menu_listar_categoria);
-		item.setIcon(R.drawable.categoria_menu_icon);
 
 		item = menu.add(0, ConstantsAdmin.ACTIVITY_EJECUTAR_ABOUT_ME,0, R.string.menu_about_me);
 		item.setIcon(R.drawable.about_me_menu);

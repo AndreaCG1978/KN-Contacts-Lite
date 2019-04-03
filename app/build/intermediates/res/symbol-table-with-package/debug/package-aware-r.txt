@@ -300,7 +300,6 @@ id textCantidad
 id textExtrasPersonaEncontrada
 id textName
 id textPersonaEncontrada
-id textTodasLasPublicaciones
 id time
 id title
 id tituloCategorias

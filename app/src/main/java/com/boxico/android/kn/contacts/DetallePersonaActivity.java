@@ -91,7 +91,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
     //	private final int colorSeleccionado = Color.parseColor("#874312");
     private final int colorSeleccionado = Color.parseColor("#FFFFFF");
     //	private final int colorDeseleccionado = Color.parseColor("#41289C");
-    private final int colorDeseleccionado = Color.BLACK;
+    private final int colorDeseleccionado = Color.DKGRAY;
 
     private boolean mMostrarTelefonos = false;
     private boolean mMostrarEmails = false;

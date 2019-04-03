@@ -88,9 +88,9 @@ public class KNCategoryListAdapter extends ArrayAdapter<CategoriaDTO> {
 			@Override
 			public void onClick(View v) {
 				if(cb.isChecked()){
-					tv.setTextColor(Color.BLACK);
+					tv.setTextColor(Color.WHITE);
 				}else{
-					tv.setTextColor(Color.GRAY);
+					tv.setTextColor(Color.LTGRAY);
 				}
 				activity.activarODesactivarCategoria(pos);
 			}
@@ -99,10 +99,10 @@ public class KNCategoryListAdapter extends ArrayAdapter<CategoriaDTO> {
 		if(!paraProteccion){// SE USA PARA MOSTRAR LAS CATEGORIAS ACTIVAS
 			if(cat.getActiva() == 1){
 				cb.setChecked(true);
-				tv.setTextColor(Color.BLACK);
+				tv.setTextColor(Color.WHITE);
 			}else{
 				cb.setChecked(false);
-				tv.setTextColor(Color.GRAY);
+				tv.setTextColor(Color.LTGRAY);
 			}
 		}
 		return ll;

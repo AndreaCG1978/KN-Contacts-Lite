@@ -7,9 +7,9 @@
 	android:layout_margin="5dp">
 
 	<TextView android:id="@+id/rowTipo"
-		android:layout_width="95dp"
+		android:layout_width="98dp"
 		android:layout_height="match_parent"
-		android:textColor="@color/color_gris_claro"
+		android:textColor="@color/color_blanco"
 		android:textSize="12sp"
 		android:singleLine="false"
 		android:paddingTop="8dp"
@@ -18,25 +18,25 @@
 		android:background="@drawable/custom_text_view_categoria_desc"
         android:paddingLeft="2dp"
 		android:paddingStart="2dp"
-        android:paddingRight="8dp"
-		android:paddingEnd="8dp"
+        android:paddingRight="4dp"
+		android:paddingEnd="4dp"
 		android:textAllCaps="true"
-		android:typeface="normal"
-		android:textStyle="bold">
+		android:typeface="normal">
 	</TextView>
 
 	<TextView android:id="@+id/rowValor"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content" 
-		android:textColor="@color/color_naranja_oscuro"
-		android:textSize="16sp"
-		android:background="@drawable/custom_text_view_categoria"
-		android:paddingStart="10dp"
-		android:paddingTop="12dp"
+		android:textColor="@android:color/holo_blue_bright"
+		android:textSize="15sp"
+		android:background="@color/color_gris_oscuro"
+		android:paddingStart="4dp"
 		android:paddingEnd="5dp"
+		android:gravity="start|center"
+		android:paddingTop="12dp"
 		android:paddingBottom="12dp"
 		android:layout_marginStart="2dp"
-        android:paddingLeft="10dp"
+        android:paddingLeft="4dp"
         android:layout_marginLeft="2dp"
         android:paddingRight="5dp"
 		android:typeface="normal">

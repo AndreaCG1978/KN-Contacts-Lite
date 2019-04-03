@@ -470,11 +470,10 @@ public final class R {
     public static final int textExtrasPersonaEncontrada=0x7f0600af;
     public static final int textName=0x7f0600b0;
     public static final int textPersonaEncontrada=0x7f0600b1;
-    public static final int textTodasLasPublicaciones=0x7f0600b2;
-    public static final int time=0x7f0600b3;
-    public static final int title=0x7f0600b4;
-    public static final int tituloCategorias=0x7f0600b5;
-    public static final int top=0x7f0600b6;
+    public static final int time=0x7f0600b2;
+    public static final int title=0x7f0600b3;
+    public static final int tituloCategorias=0x7f0600b4;
+    public static final int top=0x7f0600b5;
   }
   public static final class integer {
     public static final int cancel_button_image_alpha=0x7f070000;

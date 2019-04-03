@@ -299,11 +299,10 @@ int id textCantidad 0x7f0600ae
 int id textExtrasPersonaEncontrada 0x7f0600af
 int id textName 0x7f0600b0
 int id textPersonaEncontrada 0x7f0600b1
-int id textTodasLasPublicaciones 0x7f0600b2
-int id time 0x7f0600b3
-int id title 0x7f0600b4
-int id tituloCategorias 0x7f0600b5
-int id top 0x7f0600b6
+int id time 0x7f0600b2
+int id title 0x7f0600b3
+int id tituloCategorias 0x7f0600b4
+int id top 0x7f0600b5
 int integer cancel_button_image_alpha 0x7f070000
 int integer status_bar_notification_info_maxnum 0x7f070001
 int layout acerca_de 0x7f080000

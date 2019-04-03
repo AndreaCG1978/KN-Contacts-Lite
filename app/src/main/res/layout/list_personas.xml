@@ -28,30 +28,30 @@
 				android:layout_width="32dp" android:layout_height="32dp"
 				android:background="@drawable/organizar_nombre"
 				android:contentDescription="buttonSwitchOrganizacion"
-				android:layout_marginLeft="30dp"
-				android:layout_marginStart="30dp" />
+				android:layout_marginLeft="35dp"
+				android:layout_marginStart="35dp" />
 
 			<ImageButton android:id="@+id/buttonMoreOrLess"
 				android:layout_width="32dp" android:layout_height="32dp"
 				android:background="@drawable/more_desc_contact"
 				android:contentDescription="buttonMoreOrLess"
 				android:visibility="gone"
-				android:layout_marginLeft="30dp"
-				android:layout_marginStart="30dp" />
+				android:layout_marginLeft="35dp"
+				android:layout_marginStart="35dp" />
 
 			<ImageButton android:id="@+id/buttonExpandContractAll"
 				android:layout_width="30dp" android:layout_height="30dp"
 				android:background="@drawable/expandir_icon"
 				android:contentDescription="buttonExpandContractAll"
-				android:layout_marginLeft="30dp"
-				android:layout_marginStart="30dp" />
+				android:layout_marginLeft="35dp"
+				android:layout_marginStart="35dp" />
 
 
 			<ImageButton android:id="@+id/imagenPreferidos"
 				android:layout_height="30dp" android:layout_width="30dp"
 				android:contentDescription="imagenPreferidos"
-				android:layout_marginLeft="30dp"
-				android:layout_marginStart="30dp" />
+				android:layout_marginLeft="35dp"
+				android:layout_marginStart="35dp" />
 
 
 			<ImageButton android:id="@+id/botonProtegerCategorias"

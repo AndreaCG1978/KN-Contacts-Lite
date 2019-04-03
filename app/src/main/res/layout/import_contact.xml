@@ -54,30 +54,30 @@
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
 		android:gravity="center"
-		android:background="@color/color_gris_oscuro"
+		android:background="@color/color_celeste"
 		android:layout_margin="5dp"
-		android:padding="10dp">
+		android:padding="5dp">
 
 		<Button android:id="@+id/botonAddContact"
 			android:layout_width="wrap_content"
 			android:layout_height="30dp"
 			android:layout_margin="5dp"
-			android:textSize="11sp"
+			android:textSize="12sp"
 			android:textColor="@color/color_blanco"
 			android:background="@drawable/custom_button"
 			android:layout_gravity="center"
-			android:padding="8dp"/>
+			android:padding="4dp"/>
 
 		<Button android:id="@+id/botonAddAll"
 			android:text="@string/label_agregar_todos"
 			android:layout_width="wrap_content"
 			android:layout_height="30dp"
-			android:layout_marginLeft="15dp"
-			android:textSize="11sp"
+			android:layout_marginLeft="30dp"
+			android:textSize="12sp"
 			android:textColor="@color/color_blanco"
 			android:background="@drawable/custom_button"
 			android:layout_gravity="center"
-			android:padding="8dp"/>
+			android:padding="4dp"/>
 
 
 	</LinearLayout>
@@ -220,13 +220,13 @@
 
 	<TextView
 		android:id="@+id/textExtrasPersonaEncontrada"
-		android:layout_width="fill_parent"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:textSize="13sp"
-		android:background="@color/color_gris_claro"
-		android:textColor="@color/color_negro"
+		android:background="@color/color_celeste"
+		android:textColor="@color/color_blanco"
 		android:layout_margin="5dp"
-		android:padding="5dp" />
+		android:padding="10dp" />
 
 
 

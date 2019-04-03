@@ -40,14 +40,7 @@ public class AboutMeActivity extends Activity {
 				enviarMailGenerico(mail.getText().toString());
 			}
 		});
-		TextView publicaciones = this.findViewById(R.id.textTodasLasPublicaciones);
-    	publicaciones.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				abrirNavegadorConLink();
-			}
-		});
+
 
     	
     }

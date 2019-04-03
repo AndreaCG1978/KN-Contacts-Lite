@@ -21,11 +21,6 @@
 		android:textSize="18sp" android:textColor="@color/color_celeste"
 		android:textStyle="italic" />
 
-	<TextView android:id="@+id/textTodasLasPublicaciones"
-		android:layout_height="wrap_content" android:layout_width="fill_parent"
-		android:text="@string/text_acerca_de_verPublicaciones"
-		android:layout_margin="10dp" android:textSize="18sp"
-		android:textStyle="bold" android:textColor="@color/color_naranja" />
 
 
 
