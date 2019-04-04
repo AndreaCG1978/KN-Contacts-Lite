@@ -78,8 +78,10 @@ drawable custom_text_view_categoria
 drawable custom_text_view_categoria_desc
 drawable delete
 drawable delete_icon_mini
+drawable delete_icon_mini_w
 drawable edit_icon
 drawable edit_icon_mini
+drawable edit_icon_mini_w
 drawable expandir_icon
 drawable export_excel
 drawable generate_menu

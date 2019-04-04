@@ -45,7 +45,7 @@
 		android:contentDescription="►"
 		android:padding="2dp"
 		android:layout_gravity="center|center_horizontal"
-		android:background="@drawable/edit_icon_mini">
+		android:background="@drawable/edit_icon_mini_w">
 	</ImageButton>
 
 	<ImageButton android:id="@+id/removeButton"
@@ -56,7 +56,7 @@
 		android:layout_marginStart="20dp"
 		android:contentDescription="-"
 		android:padding="2dp"
-		android:background="@drawable/delete_icon_mini">
+		android:background="@drawable/delete_icon_mini_w">
 	</ImageButton>
 
 	</LinearLayout>

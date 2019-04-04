@@ -220,7 +220,6 @@
 			android:layout_height="30dp"
 			android:focusable="true"
 			android:gravity="center"
-			android:textStyle="bold"
 			android:textSize="13sp"
 			android:typeface="normal"
 			/>
@@ -237,7 +236,6 @@
 			android:focusable="true"
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
-			android:textStyle="bold"
 			android:textSize="13sp"
 			android:typeface="normal"
 			/>
@@ -254,7 +252,6 @@
 			android:focusable="true"
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
-			android:textStyle="bold"
 			android:textSize="13sp"
 			android:typeface="normal"
 			/>
