@@ -183,7 +183,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				AlertDialog.Builder builder = new AlertDialog.Builder(me);
-				builder.setMessage("Se enviara la contraseña al mail:" + ConstantsAdmin.contrasenia.getMail() +". Desea continuar?")
+				builder.setMessage(me.getString(R.string.mensaje_enviar_contrasenia) + ConstantsAdmin.contrasenia.getMail())
 						.setCancelable(true)
 						.setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
@@ -231,9 +231,9 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		protected void onPostExecute(Integer integer) {
 			super.onPostExecute(integer);
 			if(okSend) {
-                ConstantsAdmin.mostrarMensaje(me, "oh yeah baby");
+                ConstantsAdmin.mostrarMensaje(me, me.getString(R.string.mensaje_exito_almacenar_password));
             }else{
-                ConstantsAdmin.mostrarMensaje(me, "Problemas al enviar password");
+                ConstantsAdmin.mostrarMensaje(me,me.getString(R.string.errorMandarMail));
             }
 		}
 	}
@@ -393,7 +393,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
             okSend = m.send();
 		} catch(Exception e) {
 			//Toast.makeText(MailApp.this, "There was a problem sending the email.", Toast.LENGTH_LONG).show();
-			ConstantsAdmin.mostrarMensaje(me, "fuck...");
+			ConstantsAdmin.mostrarMensaje(me, me.getString(R.string.errorMandarMail));
 		}
 		return okSend;
 

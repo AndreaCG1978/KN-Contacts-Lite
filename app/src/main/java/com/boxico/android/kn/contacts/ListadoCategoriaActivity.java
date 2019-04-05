@@ -298,14 +298,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 	}
 	*/
 
-	/*
-	private void verMisCategorias(){
-        Intent i = new Intent(this, MisCategoriasActivity.class);
-        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_MIS_CATEGORIAS);
-	}
 
-
-	*/
 	/*
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);

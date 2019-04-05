@@ -1,20 +1,8 @@
 package com.boxico.android.kn.contacts;
 
-import java.io.File;
-import java.io.IOException;
-import java.time.format.TextStyle;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -32,8 +20,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -43,10 +29,6 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.style.TextAppearanceSpan;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,7 +36,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
@@ -78,8 +59,15 @@ import com.boxico.android.kn.contacts.util.KNSimpleCursorAdapter;
 import com.boxico.android.kn.contacts.util.MultiSpinner;
 import com.boxico.android.kn.contacts.util.MultiSpinner.MultiSpinnerListener;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import static com.boxico.android.kn.contacts.util.ConstantsAdmin.obtenerPathImagen;
-import static com.boxico.android.kn.contacts.util.ConstantsAdmin.obtenerPersonaId;
 import static com.boxico.android.kn.contacts.util.ConstantsAdmin.personaSeleccionada;
 
 
@@ -340,7 +328,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			}
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle("Aun no se han cargado contactos...")
+			builder.setTitle(this.getString(R.string.mensaje_sin_contactos))
 					//.setMessage("You can buy our products without registration too. Enjoy the shopping")
 					.setSingleChoiceItems(charSequence, -1, new DialogInterface.OnClickListener() {
 						@Override
@@ -1268,7 +1256,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 //    }
 // --Commented out by Inspection STOP (26/12/2018 09:04)
 
-
+/*
 	private Asociacion obtenerNombreYApellidoDeContactoDeAgenda(String contactId){
 		Asociacion asoc = null;
 		Cursor nameCur;
@@ -1289,7 +1277,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		}
 
 		return asoc;
-	}
+	}*/
 
 	/*
 	private void importarMailDeContacto(String[] projectionMail, PersonaDTO per, String contactId){

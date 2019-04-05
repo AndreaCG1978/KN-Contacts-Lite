@@ -1,7 +1,5 @@
 package com.boxico.android.kn.contacts.util;
 
-import java.util.List;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,19 +8,18 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.boxico.android.kn.contacts.ListadoCategoriaActivity;
-import com.boxico.android.kn.contacts.MisCategoriasActivity;
 import com.boxico.android.kn.contacts.R;
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
+
+import java.util.List;
 
 public class KNCategoryListAdapter extends ArrayAdapter<CategoriaDTO> {
 

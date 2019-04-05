@@ -167,7 +167,7 @@
 <string name="label_desbloquear_contrasenia"><![CDATA[SBLOCCA]]></string>
 <string name="label_bloquear_contrasenia"><![CDATA[BLOCCARE]]></string>
 
-<string name="mensaje_exito_almacenar_password"><![CDATA[La password è stata registrata e memorizzata nel "kncontacts.txt" in cartella KN-Contacts.]]></string>
+<string name="mensaje_exito_almacenar_password"><![CDATA[La tua password è stata inviata!]]></string>
 <string name="error_alta_contrasenia"><![CDATA[Password errata…]]></string>
 
 <string name="title_obtener_imagen"><![CDATA[Ottenere Picture]]></string>
@@ -203,5 +203,7 @@
     <string name="groupIndicator"><![CDATA[>]]></string>
     <string name="label_wsp">WhatsApp</string>
     <string name="mensaje_pregunta_importar_contacto"><![CDATA[I dati del contatto verranno importati dalla Rubrica del telefono (quelli esistenti sono conservati). Vuoi continuare?]]></string>
+    <string name="mensaje_sin_contactos"><![CDATA[Inizia la registrazione dei contatti da:]]></string>
+    <string name="mensaje_enviar_contrasenia"><![CDATA[Invia la password all\'account di posta elettronica:]]></string>
 
 </resources>

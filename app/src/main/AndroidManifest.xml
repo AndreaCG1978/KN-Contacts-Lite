@@ -63,15 +63,6 @@
 		<activity android:name="AboutMeActivity">
 		</activity>
 
-		<activity android:name="MisCategoriasActivity">
-		</activity>
-
-		<activity android:name="AltaCategoriaActivity">
-		</activity>
-
-		<activity android:name="AltaTipoValorActivity">
-		</activity>
-
 		<activity android:name="ProteccionCategoriaActivity">
 		</activity>
 

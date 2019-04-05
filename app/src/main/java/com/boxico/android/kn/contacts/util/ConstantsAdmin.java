@@ -99,7 +99,7 @@ public class ConstantsAdmin {
 
 	public static final String fileEsteticoCSV = "kncontactsExcel.csv";
 	public static final String kn_mail ="knapps.mobile@gmail.com";
-	public static final String kn_mail_pass ="sfyhfald2017";
+	public static final String kn_mail_pass ="sfyhfald2019";
 
 	private static ArrayList<Long> telefonosAEliminar = null;
 

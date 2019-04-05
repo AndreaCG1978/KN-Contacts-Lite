@@ -460,6 +460,7 @@ string mensaje_contrasenia_no_coinciden
 string mensaje_contrasenia_registrada_ok
 string mensaje_debe_ingresar_mail
 string mensaje_debe_registrar_contrasenia
+string mensaje_enviar_contrasenia
 string mensaje_error_tarjeta_no_formato
 string mensaje_error_tarjeta_no_montada
 string mensaje_error_tarjeta_shared
@@ -482,6 +483,7 @@ string mensaje_registre_contrasenia
 string mensaje_seleccione_actividad_categoria
 string mensaje_seleccione_categoria_proteger
 string mensaje_seleccione_llamada_sms
+string mensaje_sin_contactos
 string menu_about_me
 string menu_agregar_persona
 string menu_editar_o_eliminar
