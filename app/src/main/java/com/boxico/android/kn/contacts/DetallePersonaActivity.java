@@ -869,7 +869,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		final CharSequence[] charSequence = new CharSequence[] {
 				this.getString(R.string.label_llamada),
 				this.getString(R.string.label_sms),
-				"WhatsApp"};
+				this.getString(R.string.label_wsp)};
 		builder.setTitle(this.getString(R.string.mensaje_seleccione_llamada_sms))
 				.setSingleChoiceItems(charSequence, -1, new DialogInterface.OnClickListener() {
 					@Override
@@ -996,7 +996,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	            public void onClick(View v) {
 
 					AlertDialog.Builder builder = new AlertDialog.Builder(me);
-					builder.setMessage(getResources().getString(R.string.mensaje_importando_contactos))
+					builder.setMessage(getResources().getString(R.string.mensaje_pregunta_importar_contacto))
 							.setCancelable(false)
 							.setPositiveButton(R.string.label_si, new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog, int id) {

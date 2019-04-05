@@ -202,9 +202,11 @@
 <string name="label_enviar_info"><![CDATA[SEND TO]]></string>
 
 <string name="menu_editar_persona">Edit Contact</string>
-    <string name="hint_contrasenia">********</string>
-    <string name="blank">%d</string>
-    <string name="groupIndicator"><![CDATA[>]]></string>
+<string name="hint_contrasenia">********</string>
+<string name="blank">%d</string>
+<string name="groupIndicator"><![CDATA[>]]></string>
+<string name="label_wsp">WhatsApp</string>
+<string name="mensaje_pregunta_importar_contacto">The contact data will be imported from the Contacts Diary of your mobile (the existing ones are preserved). Do you wish to continue?</string>
 
 
 </resources>

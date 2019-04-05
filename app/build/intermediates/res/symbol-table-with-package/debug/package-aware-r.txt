@@ -449,6 +449,7 @@ string label_sms
 string label_telefono
 string label_telefonos
 string label_ver_detalle
+string label_wsp
 string mensaje_activacion_proteccion
 string mensaje_borrar_categoria
 string mensaje_borrar_foto
@@ -476,6 +477,7 @@ string mensaje_importar_contactos_csv
 string mensaje_importar_todo_1
 string mensaje_importar_todo_2
 string mensaje_no_hay_contactos
+string mensaje_pregunta_importar_contacto
 string mensaje_registre_contrasenia
 string mensaje_seleccione_actividad_categoria
 string mensaje_seleccione_categoria_proteger

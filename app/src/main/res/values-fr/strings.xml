@@ -199,8 +199,10 @@
 <string name="label_ver_detalle"><![CDATA[VOIR DETAILS]]></string>
 <string name="label_enviar_info"><![CDATA[ENVOYER À]]></string>
 <string name="menu_editar_persona">Edit Contact</string>
-    <string name="hint_contrasenia">********</string>
-    <string name="blank">%d</string>
-    <string name="groupIndicator"><![CDATA[>]]></string>
+<string name="hint_contrasenia">********</string>
+<string name="blank">%d</string>
+<string name="groupIndicator"><![CDATA[>]]></string>
+<string name="label_wsp">WhatsApp</string>
+<string name="mensaje_pregunta_importar_contacto"><![CDATA[Les données de contact seront importées à partir du répertoire de contacts de votre téléphone (les données existantes seront préservées). Voulez-vous continuer?]]></string>
 
 </resources>

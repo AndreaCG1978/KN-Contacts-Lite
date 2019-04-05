@@ -201,5 +201,7 @@
     <string name="hint_contrasenia">********</string>
     <string name="blank">%d</string>
     <string name="groupIndicator"><![CDATA[>]]></string>
+    <string name="label_wsp">WhatsApp</string>
+    <string name="mensaje_pregunta_importar_contacto"><![CDATA[I dati del contatto verranno importati dalla Rubrica del telefono (quelli esistenti sono conservati). Vuoi continuare?]]></string>
 
 </resources>
