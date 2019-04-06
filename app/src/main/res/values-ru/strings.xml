@@ -189,7 +189,7 @@
 <string name="label_contacto_existente"><![CDATA[(Существующие Контакт -]]></string>
 <string name="label_actualizar"><![CDATA[ОБНОВИТЬ]]></string>
 <string name="mensaje_importar_todo_1"><![CDATA[Все новые контакты будут импортированы в качестве:]]></string>
-<string name="mensaje_importar_todo_2"><![CDATA[. Существующие контакты будут обновляться (только свои телефоны и почтовые аккаунты). Продолжить?]]></string>
+<string name="mensaje_importar_todo_2"><![CDATA[. Существующие контакты будут обновляться (телефоны, электронные письма и адреса). Продолжить?]]></string>
     <string name="label_anterior"><![CDATA[«▒]]></string>
     <string name="label_siguiente"><![CDATA[▒»]]></string>
 <string name="label_agregar_todos"><![CDATA[Добавить все]]></string>

@@ -2,7 +2,8 @@
 
 
 	<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
 		android:background="@color/color_gris_claro"
 		android:overScrollMode="always"
 		android:scrollbarStyle="insideOverlay"
@@ -99,7 +100,7 @@
 
 	<LinearLayout android:id="@+id/nombres"
 		android:layout_width="match_parent"
-		android:layout_height="79dp"
+		android:layout_height="wrap_content"
 		android:orientation="vertical"
 		android:gravity="center"
 		android:layout_marginTop="7dp"
@@ -113,7 +114,7 @@
 		>
 
 		<TextView android:id="@+id/detalle_apellido"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
 			android:textSize="22sp" android:textStyle="bold" android:textColor="@color/color_negro"
 			android:paddingStart="2dp"
 			android:paddingEnd="5dp"
@@ -126,7 +127,7 @@
 			/>
 
 		<TextView android:id="@+id/detalle_nombres"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
 			android:textColor="@color/color_negro" android:textSize="18sp"
 			android:typeface="normal"
 			android:singleLine="true"
@@ -142,7 +143,7 @@
 	</LinearLayout>
 
 	<TextView android:id="@+id/detalle_categoria"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_width="match_parent" android:layout_height="wrap_content"
 		android:layout_below="@id/nombres" android:textSize="13sp"
 		android:textStyle="bold" android:paddingStart="15dp"
 		android:paddingEnd="10dp"
@@ -156,7 +157,7 @@
 		android:layout_marginLeft="7dp"/>
 
 	<LinearLayout android:id="@+id/cumple"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_width="match_parent" android:layout_height="wrap_content"
 		android:gravity="center"
 		android:layout_marginBottom="5dp" android:background="@drawable/custom_text_view_categoria"
 		android:layout_below="@id/detalle_categoria"
@@ -180,7 +181,7 @@
 
 
 		<TextView android:id="@+id/detalle_fechaNacimiento"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
 			android:textSize="11sp" android:textColor="@color/color_gris_oscuro"
 			android:paddingStart="5dp" android:paddingEnd="5dp"
 			android:paddingLeft="5dp" android:paddingRight="5dp"/>

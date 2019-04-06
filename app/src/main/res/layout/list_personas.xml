@@ -111,8 +111,10 @@
 
 
 		<LinearLayout android:orientation="horizontal"
-			android:layout_width="fill_parent" android:layout_height="45dp"
-			android:layout_margin="5dp" android:gravity="left|center_vertical"
+			android:layout_width="match_parent"
+			android:layout_height="45dp"
+			android:layout_margin="5dp"
+			android:gravity="center|center_vertical"
 			android:background="@color/color_gris_oscuro">
 
 			<com.boxico.android.kn.contacts.util.MultiSpinner

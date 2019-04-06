@@ -196,7 +196,7 @@
 	<string name="label_contacto_existente"><![CDATA[(Contacto Existente -]]></string>
 	<string name="label_actualizar"><![CDATA[ACTUALIZAR]]></string>
 	<string name="mensaje_importar_todo_1"><![CDATA[Se importarán todos los contactos nuevos como:]]></string>
-	<string name="mensaje_importar_todo_2"><![CDATA[. Los contactos existentes serán actualizados (solo sus teléfonos y cuentas de correo). Desea continuar?]]></string>
+	<string name="mensaje_importar_todo_2"><![CDATA[. Los contactos existentes serán actualizados (teléfonos, emails y direcciones). Desea continuar?]]></string>
 	<string name="label_anterior"><![CDATA[«▒]]></string>
 	<string name="label_siguiente"><![CDATA[▒»]]></string>
 	<string name="label_agregar_todos"><![CDATA[AGREGAR TODOS]]></string>
