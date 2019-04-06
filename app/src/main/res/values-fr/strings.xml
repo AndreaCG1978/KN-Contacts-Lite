@@ -206,5 +206,6 @@
 <string name="mensaje_pregunta_importar_contacto"><![CDATA[Les données de contact seront importées à partir du répertoire de contacts de votre téléphone (les données existantes seront préservées). Voulez-vous continuer?]]></string>
     <string name="mensaje_sin_contactos"><![CDATA[Commencez l\'enregistrement des contacts de:]]></string>
     <string name="mensaje_enviar_contrasenia">Envoyez le mot de passe au compte de messagerie:</string>
+    <string name="mensaje_leyenda_registrar_contrasenia"><![CDATA[░ Vous devez enregistrer un mot de passe pour protéger vos catégories!]]></string>
 
 </resources>

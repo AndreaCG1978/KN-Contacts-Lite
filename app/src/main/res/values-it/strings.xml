@@ -205,5 +205,6 @@
     <string name="mensaje_pregunta_importar_contacto"><![CDATA[I dati del contatto verranno importati dalla Rubrica del telefono (quelli esistenti sono conservati). Vuoi continuare?]]></string>
     <string name="mensaje_sin_contactos"><![CDATA[Inizia la registrazione dei contatti da:]]></string>
     <string name="mensaje_enviar_contrasenia"><![CDATA[Invia la password all\'account di posta elettronica:]]></string>
+    <string name="mensaje_leyenda_registrar_contrasenia"><![CDATA[░ Devi registrare una password per proteggere le tue categorie!]]></string>
 
 </resources>

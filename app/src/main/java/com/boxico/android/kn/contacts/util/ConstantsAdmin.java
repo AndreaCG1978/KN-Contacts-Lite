@@ -1039,7 +1039,7 @@ public class ConstantsAdmin {
 	public static ArrayList<TipoValorDTO> mailsARegistrar = null;
 	public static ArrayList<TipoValorDTO> direccionesARegistrar = null;
 
-	public static Asociacion comprobarSDCard(Activity context){
+/*	public static Asociacion comprobarSDCard(Activity context){
 		Asociacion map;
 		String auxSDCardStatus = Environment.getExternalStorageState();
 		boolean sePuede = false;
@@ -1078,14 +1078,14 @@ public class ConstantsAdmin {
 
 		return map;
 	}
-
+*/
 	public static String mensaje = null;
 	public static final String folderCSV = "KN-Contacts";
 	private static final String fileCSV = ".kncontacts.csv";
 
 
 	public static boolean existsBackupFile(Activity context){
-		File file = obtenerFileCSV(context);
+		File file = obtenerFileCSV();
 		return file != null && file.exists();
 	}
 
@@ -1095,7 +1095,7 @@ public class ConstantsAdmin {
 		mensaje = context.getString(R.string.error_importar_csv);
 		try {
 			if(existsBackupFile(context)) {
-				file = obtenerFileCSV(context);
+				file = obtenerFileCSV();
 				body = obtenerContenidoArchivo(file, context);
 				procesarStringDatos(context, body, mDBManager);
 				mensaje = context.getString(R.string.mensaje_exito_importar_csv);
@@ -1482,11 +1482,12 @@ public class ConstantsAdmin {
 	private static String obtenerContenidoArchivo(File file, Activity context)throws IOException{
 		// ACA DEBERIA CARGAR EL CONTENIDO DEL ARCHIVO PASADO COMO PARAMETRO, HACER LOS CONTROLES DE LECTURA
 		String line;
-		Asociacion canStore = comprobarSDCard(context);
-		boolean boolValue = (Boolean)canStore.getKey();
-		String msg = (String) canStore.getValue();
 		StringBuilder result = new StringBuilder();
-		if(boolValue){
+	//	Asociacion canStore = comprobarSDCard(context);
+		/*boolean boolValue = (Boolean)canStore.getKey();
+		String msg = (String) canStore.getValue();
+
+		if(boolValue){*/
 			BufferedReader input =  new BufferedReader(new FileReader(file));
 			line = input.readLine();
 			while(line != null){
@@ -1496,11 +1497,11 @@ public class ConstantsAdmin {
 
 				line = input.readLine();
 			}
-
+/*
 		}else{
 			mensaje = msg;
 		}
-
+*/
 		return result.toString();
 
 	}
@@ -1512,16 +1513,16 @@ public class ConstantsAdmin {
 		String body;
 		try
 		{
-			canStore = comprobarSDCard(context);
-			boolValue = (Boolean)canStore.getKey();
+		//	canStore = comprobarSDCard(context);
+	/*		boolValue = (Boolean)canStore.getKey();
 			msg = (String) canStore.getValue();
-			if(boolValue){
-				body = obtenerCSVdeContactos(context, mDBManager);
-				almacenarArchivo(fileCSV , body);
-				mensaje = context.getString(R.string.mensaje_exito_exportar_csv);
-			}else{
+			if(boolValue){*/
+			body = obtenerCSVdeContactos(context, mDBManager);
+			almacenarArchivo(fileCSV , body);
+			mensaje = context.getString(R.string.mensaje_exito_exportar_csv);
+	/*		}else{
 				mensaje = msg;
-			}
+			}*/
 
 		}catch (Exception e) {
 			mensaje = context.getString(R.string.error_exportar_csv);
@@ -1560,16 +1561,16 @@ public class ConstantsAdmin {
 				}
 			}
 
-			canStore = comprobarSDCard(context);
-			boolValue = (Boolean)canStore.getKey();
+	//		canStore = comprobarSDCard(context);
+	/*		boolValue = (Boolean)canStore.getKey();
 			msg = (String) canStore.getValue();
-			if(boolValue){
-				body = obtenerCSVdeContactosEstetico(context, separador, categoriasProtegidas, mDBManager);
-				almacenarArchivo(fileEsteticoCSV, body);
-				mensaje = context.getString(R.string.mensaje_exito_exportar_csv);
-			}else{
+			if(boolValue){*/
+			body = obtenerCSVdeContactosEstetico(context, separador, categoriasProtegidas, mDBManager);
+			almacenarArchivo(fileEsteticoCSV, body);
+			mensaje = context.getString(R.string.mensaje_exito_exportar_csv);
+		/*	}else{
 				mensaje = msg;
-			}
+			}*/
 
 		}catch (Exception e) {
 			mensaje = context.getString(R.string.error_exportar_csv);
@@ -2241,22 +2242,67 @@ public class ConstantsAdmin {
 		builder.show();
 	}
 
-	private static File obtenerFileCSV(Activity context){
-		// LEVANTAR TODOS LOS FILES QUE ESTAN EN LA CARPETA KN-CSVfiles
-		File backup = null;
-		boolean boolValue;
-		Asociacion canStore;
-		canStore = comprobarSDCard(context);
-		boolValue = (Boolean)canStore.getKey();
-		String msg = (String)canStore.getValue();
-		if(boolValue){
-			String path = obtenerPath(folderCSV);
-			backup = new File(path + File.separator + fileCSV);
-		}else{
-			mensaje = msg;
-		}
+	private static File obtenerFileCSV(){
+		/*File backup = null;
+		String path = obtenerPath(folderCSV);
+		backup = new File(path + File.separator + fileCSV);
 		return backup;
+		*/
+
+		return obtenerFile(fileCSV);
 	}
+
+
+	public static File obtenerFile(String fileName){
+
+		String path = obtenerPath(ConstantsAdmin.folderCSV);
+
+		File dir = new File(path);
+		dir.mkdir();
+
+		File file = new File(dir.getPath(), fileName);
+		if(!file.exists()){
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+
+			}
+		}
+
+
+
+	/*
+		String path = obtenerPath(folderCSV);
+		backup = new File(path + File.separator + fileName);*/
+		return file;
+	}
+
+
+
+	public static File obtenerFile(String folderName, String fileName){
+
+		String path = obtenerPath(ConstantsAdmin.folderCSV + File.separator + folderName);
+
+		File dir = new File(path);
+		dir.mkdir();
+
+		File file = new File(dir.getPath(), fileName);
+		if(!file.exists()){
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+
+			}
+		}
+
+
+
+	/*
+		String path = obtenerPath(folderCSV);
+		backup = new File(path + File.separator + fileName);*/
+		return file;
+	}
+
 
 	public static void eliminarCategoriaPersonal(CategoriaDTO cat, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);

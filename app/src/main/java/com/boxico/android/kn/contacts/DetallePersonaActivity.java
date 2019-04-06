@@ -116,7 +116,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
     private final int PERSONA_DIR_CURSOR = 6;
 
     private final int PERMISSIONS_CALL_PHONE = 103;
-	private final int PERMISSIONS_READ_CONTACT = 104;
+//	private final int PERMISSIONS_READ_CONTACT = 104;
 
 
     public DetallePersonaActivity() {
@@ -840,20 +840,20 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 	private void mostrarFoto() {
 		try {
-			Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(this);
-			boolean puede = (Boolean) puedeCargar.getKey();
+/*			Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(this);
+			boolean puede = (Boolean) puedeCargar.getKey();*/
 			photo.setVisibility(View.GONE);
-			if (puede) {
-				String path = ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(mPersonaSeleccionadaId) + ".jpg";
-				if(ConstantsAdmin.existeArchivo(path)){
-					Bitmap b = BitmapFactory.decodeFile(path);
-					iconBig = new BitmapDrawable(getResources(), b);
-					if (b != null) {
-						photo.setVisibility(View.VISIBLE);
-						photo.setImageBitmap(b);
-					}
+		//	if (puede) {
+			String path = ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(mPersonaSeleccionadaId) + ".jpg";
+			if(ConstantsAdmin.existeArchivo(path)){
+				Bitmap b = BitmapFactory.decodeFile(path);
+				iconBig = new BitmapDrawable(getResources(), b);
+				if (b != null) {
+					photo.setVisibility(View.VISIBLE);
+					photo.setImageBitmap(b);
 				}
 			}
+			//}
 
 		} catch (Exception e) {
 			photo.setVisibility(View.GONE);
@@ -1104,17 +1104,17 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	}
 	
 	private void eliminarPhoto(){
-		Asociacion asoc = ConstantsAdmin.comprobarSDCard(this);
+	/*	Asociacion asoc = ConstantsAdmin.comprobarSDCard(this);
 		boolean puede = (Boolean)asoc.getKey();
-		String msg = (String) asoc.getValue();
-		if(puede){
+		String msg = (String) asoc.getValue();*/
+	//	if(puede){
 	       	File file = new File(ConstantsAdmin.obtenerPathImagen() + "." + String.valueOf(mPersonaSeleccionadaId) + ".jpg");
 	       	if(file.exists()){
 	       		file.delete();
 	       	}
-		}else{
+	/*	}else{
 			ConstantsAdmin.mostrarMensajeDialog(this, msg);
-		}
+		}*/
 
 	}
 
@@ -1144,16 +1144,16 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	}
 	
 	private void sacarPhoto(){
-		Asociacion asoc = ConstantsAdmin.comprobarSDCard(this);
+	/*	Asociacion asoc = ConstantsAdmin.comprobarSDCard(this);
 		boolean bool = (Boolean)asoc.getKey();
-		String msg = (String) asoc.getValue();
-		if(bool){
+		String msg = (String) asoc.getValue();*/
+	//	if(bool){
 	        Intent i = new Intent(this, PhotoActivity.class);
 	        i.putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(mPersonaSeleccionadaId));
 	        this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_SACAR_PHOTO);			
-		}else{
+	/*	}else{
 			ConstantsAdmin.mostrarMensajeDialog(this, msg);
-		}
+		}*/
 
 
 	}

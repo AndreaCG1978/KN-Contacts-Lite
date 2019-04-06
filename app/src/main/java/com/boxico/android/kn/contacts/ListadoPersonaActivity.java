@@ -645,10 +645,10 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private boolean mostrarFoto(final TextView tv, long idPer){
 		boolean muestraFoto = false;
 		try {
-			Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(me);
+		/*	Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(me);
 			boolean puede = (Boolean) puedeCargar.getKey();
 
-			if(puede){
+			if(puede){*/
 				String path = obtenerPathImagen() + "." + String.valueOf(idPer)  + ".jpg";
 				if(ConstantsAdmin.existeArchivo(path)){
 					Bitmap b = BitmapFactory.decodeFile(path);
@@ -678,7 +678,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 						}
 					}
 
-				}
+			//	}
 			}
     		/*
 

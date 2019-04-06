@@ -37,10 +37,10 @@
 		</LinearLayout>
 
 		<TextView android:id="@+id/leyendaNoSeRegistraPass"
-			android:text="░ Debe registrar una contraseña para poder proteger sus categorias..."
+			android:text="@string/mensaje_leyenda_registrar_contrasenia"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:background="@color/color_gris_oscuro"
+			android:background="@color/color_celeste"
 			android:textColor="@color/color_gris_claro"
 			android:padding="7dp"
 			android:gravity="left"

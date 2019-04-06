@@ -214,5 +214,6 @@
     <string name="mensaje_pregunta_importar_contacto"><![CDATA[Se importarán los datos del contacto desde la Agenda de Contactos de su teléfono (se preservan los existentes). ¿Desea continuar?]]></string>
     <string name="mensaje_sin_contactos">Comenzar la carga de contactos desde:</string>
     <string name="mensaje_enviar_contrasenia"><![CDATA[Enviar la contraseña a la cuenta de mail:]]></string>
+    <string name="mensaje_leyenda_registrar_contrasenia"><![CDATA[░ Debe registrar una contraseña para poder proteger sus categorías!]]></string>
 
 </resources>

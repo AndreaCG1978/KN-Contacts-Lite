@@ -284,6 +284,10 @@
         "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/drawable-ldpi/pref_detalle_bn_icon.png"
     },
     {
+        "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/xml_provider_paths.xml.flat",
+        "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/xml/provider_paths.xml"
+    },
+    {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_contacts_icon.png.flat",
         "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/drawable-hdpi/contacts_icon.png"
     },

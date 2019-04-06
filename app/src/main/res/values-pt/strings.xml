@@ -209,5 +209,6 @@
     <string name="mensaje_pregunta_importar_contacto"><![CDATA[Os dados de contato serão importados do diretório de contatos do seu telefone (se os existentes forem mantidos). O que seguir?]]></string>
     <string name="mensaje_sin_contactos">Inicie o registro de contatos de:</string>
     <string name="mensaje_enviar_contrasenia">Envie a senha para a conta de email:</string>
+    <string name="mensaje_leyenda_registrar_contrasenia"><![CDATA[░ Você precisa registrar uma senha para proteger suas categorias!]]></string>
 
 </resources>

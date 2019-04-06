@@ -207,4 +207,5 @@
     <string name="mensaje_pregunta_importar_contacto"><![CDATA[Die Daten des Kontakts werden aus dem Kontaktverzeichnis Ihres Telefons importiert. Möchten Sie fortfahren?]]></string>
     <string name="mensaje_sin_contactos">Starten Sie die Registrierung von Kontakten von:</string>
     <string name="mensaje_enviar_contrasenia">Senden Sie das Passwort an das E-Mail-Konto:</string>
+    <string name="mensaje_leyenda_registrar_contrasenia"><![CDATA[░ Sie müssen ein Passwort registrieren, um Ihre Kategorien zu schützen!]]></string>
 </resources>

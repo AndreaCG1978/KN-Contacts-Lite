@@ -477,6 +477,7 @@ string mensaje_importando_contactos
 string mensaje_importar_contactos_csv
 string mensaje_importar_todo_1
 string mensaje_importar_todo_2
+string mensaje_leyenda_registrar_contrasenia
 string mensaje_no_hay_contactos
 string mensaje_pregunta_importar_contacto
 string mensaje_registre_contrasenia
@@ -541,3 +542,4 @@ styleable CoordinatorLayout_Layout android_layout_gravity layout_anchor layout_a
 styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery
 styleable FontFamilyFont android_font android_fontWeight android_fontStyle font fontStyle fontWeight
 xml backup_descriptor
+xml provider_paths

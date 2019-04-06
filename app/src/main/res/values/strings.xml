@@ -209,6 +209,7 @@
 <string name="mensaje_pregunta_importar_contacto">The contact data will be imported from the Contacts Diary of your mobile (the existing data are preserved). Do you wish to continue?</string>
     <string name="mensaje_sin_contactos">Begin contact loading from:</string>
     <string name="mensaje_enviar_contrasenia">Send the password to the email account:</string>
+    <string name="mensaje_leyenda_registrar_contrasenia"><![CDATA[░ You must register a password to protect your categories!]]></string>
 
 
 </resources>

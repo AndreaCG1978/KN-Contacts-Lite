@@ -31,10 +31,10 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 	private boolean mostrarFoto(final TextView tv, long idPer){
 		boolean muestraFoto = false;
 		try {
-			Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(localContext);
+		/*	Asociacion puedeCargar = ConstantsAdmin.comprobarSDCard(localContext);
 			boolean puede = (Boolean) puedeCargar.getKey();
 
-			if(puede){
+			if(puede){*/
 				String path = ConstantsAdmin.obtenerPathImagen() + "." +String.valueOf(idPer)  + ".jpg";
 				if(ConstantsAdmin.existeArchivo(path)){
 
@@ -66,7 +66,7 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 						});
 
 					}
-				}
+			//	}
 			}
     		/*
 
