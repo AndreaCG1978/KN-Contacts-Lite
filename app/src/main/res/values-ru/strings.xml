@@ -138,7 +138,7 @@
 
 
 <string name="mensaje_importar_contactos_csv"><![CDATA[Это сделает восстановления последней резервной копии. Хотите продолжить? (Это может занять несколько секунд)…)]]></string>
-<string name="mensaje_exportar_contactos"><![CDATA[Контактная информация будет защищена в "kncontacts.csv",  в папку с именем "KN-Contacts"(Сохраните копию этого файла на другое устройство). Если есть резервная копия будет перезаписана. Хотите продолжить?]]></string>
+<string name="mensaje_exportar_contactos"><![CDATA[Ваши контакты будут заархивированы (если копия существует, она будет заменена). Вы хотите продолжить?]]></string>
 <string name="error_importar_csv"><![CDATA[Вы не можете восстановить данные резервного копирования.]]></string>  
 <string name="mensaje_no_hay_contactos"><![CDATA[Никаких контактов, чтобы сделать резервную копию.]]></string>  
 

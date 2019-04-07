@@ -140,7 +140,7 @@
 
 
 <string name="mensaje_importar_contactos_csv"><![CDATA[Ele irá restaurar o último backup realizado. Quer continuar? (Pode levar alguns segundos …)]]></string>
-<string name="mensaje_exportar_contactos"><![CDATA[As informações de contato serão protegidos no "kncontacts.csv" contida no "KN-Contatos" do seu cartão SD. Para maior segurança, guarde em outro lugar uma cópia atualizada deste arquivo. Irá substituir o backup existente. Quer continuar?]]></string>
+<string name="mensaje_exportar_contactos"><![CDATA[Seus contatos serão armazenados em backup (se houver uma cópia, ela será substituída). Você quer continuar?]]></string>
 <string name="error_importar_csv"><![CDATA[Não é possível recuperar o backup.]]></string>  
 <string name="mensaje_no_hay_contactos"><![CDATA[Nenhum contato para fazer um backup.]]></string>  
 

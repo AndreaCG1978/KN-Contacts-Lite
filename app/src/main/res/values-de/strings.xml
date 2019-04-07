@@ -138,7 +138,7 @@
 
 
 <string name="mensaje_importar_contactos_csv"><![CDATA[Es ruft die letzte Sicherung. Möchten Sie fortfahren? (Es kann einige Sekunden dauern …)]]></string>
-<string name="mensaje_exportar_contactos"><![CDATA[Die Kontaktdaten werden in die Datei aufgenommen werden "kncontacts.csv". Diese Datei befindet sich in der "KN-Contacts" Ordner Ihres SD-CARD.Für mehr Sicherheit, an anderer Stelle zu speichern eine aktualisierte Kopie dieser Datei. Wenn es eine Backup überschrieben werden. Möchten Sie fortfahren?]]></string>
+<string name="mensaje_exportar_contactos"><![CDATA[Ihre Kontakte werden gesichert (wenn eine Kopie vorhanden ist, wird sie ersetzt). Möchten Sie fortfahren?]]></string>
 <string name="error_importar_csv"><![CDATA[Unfähig, die Sicherung abrufen.]]></string>  
 <string name="mensaje_no_hay_contactos">Keine Kontakte, um eine Sicherungskopie zu machen.</string>  
 

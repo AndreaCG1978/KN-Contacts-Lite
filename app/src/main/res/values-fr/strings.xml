@@ -136,7 +136,7 @@
 <string name="hint_nuevo_tipo">NOUVEAU TYPE</string>	
 
 <string name="mensaje_importar_contactos_csv"><![CDATA[Il va restaurer la dernière sauvegarde effectuée. Voulez-vous continuer? (Il peut prendre quelques secondes …)]]></string>
-<string name="mensaje_exportar_contactos"><![CDATA[Les informations de contact seront protégés dans le "kncontacts.csv" contenus dans le dossier KN-contacts sur votre carte SD. Pour plus de sécurité, stocker ailleurs une copie à jour de ce fichier. S\'il ya déjà une sauvegarde, il sera écrasé. Voulez-vous continuer?]]></string>
+<string name="mensaje_exportar_contactos"><![CDATA[Vos contacts seront sauvegardés (si une copie existe, elle sera remplacée). Voulez-vous continuer?]]></string>
 <string name="error_importar_csv"><![CDATA[Impossible de récupérer la sauvegarde.]]></string>  
 <string name="mensaje_no_hay_contactos"><![CDATA[Pas de contacts pour faire une sauvegarde.]]></string>  
 

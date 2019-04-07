@@ -137,7 +137,7 @@
 <string name="label_ok">OK</string>
 
 <string name="mensaje_importar_contactos_csv"><![CDATA[There will be restoring the last backup performed. Want to continue? (It may take several seconds …)]]></string>
-<string name="mensaje_exportar_contactos"><![CDATA[The contact information will be protected in the "kncontacts.csv" contained in the "KN-Contacts" folder on your SD-CARD. For your safety, save in some other place a current copy of this file. If there is a backup, it will be overwritten. Continue?]]></string>
+<string name="mensaje_exportar_contactos"><![CDATA[Your contacts will be backed up (if a copy exists, it will be replaced). Do you wish to continue?]]></string>
 <string name="error_importar_csv">Unable to retrieve the backup.</string>  
 <string name="mensaje_no_hay_contactos">No contacts to make a backup.</string>  
 

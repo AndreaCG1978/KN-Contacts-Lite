@@ -158,6 +158,8 @@ activity#com.boxico.android.kn.contacts.AltaPersonaActivity
 ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:62:3-63:14
 	android:screenOrientation
 		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:62:48-84
+	android:windowSoftInputMode
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:62:85-145
 	android:name
 		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:62:13-47
 activity#com.boxico.android.kn.contacts.AboutMeActivity

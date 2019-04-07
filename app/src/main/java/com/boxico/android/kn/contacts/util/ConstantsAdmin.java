@@ -2261,14 +2261,14 @@ public class ConstantsAdmin {
 		dir.mkdir();
 
 		File file = new File(dir.getPath(), fileName);
-		if(!file.exists()){
+	/*	if(!file.exists()){
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
 
 			}
 		}
-
+*/
 
 
 	/*
