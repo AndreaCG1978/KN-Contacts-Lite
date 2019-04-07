@@ -297,7 +297,7 @@ public class AltaPersonaActivity extends Activity  {
             }else{
                 this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_editar_persona));
             }
-			getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+			getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
 
             
@@ -536,17 +536,20 @@ public class AltaPersonaActivity extends Activity  {
        	String val = null;
         HashMap<String, Object> hmData = null;
         int i = 0;
+        Long idTipoVal = null;
         LinearLayout ll = null;
         EditText etxt = null;
 		HashMap<Integer,String> datosEnLista =  new HashMap<>();
         if (telefonosData != null) {
             for (HashMap hmTemp : telefonosData) {
                 hmData = hmTemp;
-                val = (String) hmData.get(VALOR);                //datosEnLista.add(hm);
-				datosEnLista.put(i,val);
+                val = (String) hmData.get(VALOR);
+                idTipoVal = (Long) hmData.get(ID_TIPO_VALOR);
+                //datosEnLista.add(hm);
+				datosEnLista.put(idTipoVal.intValue(),val);
 	            ll = (LinearLayout) getTelefonosList().getAdapter().getView(i, null,getTelefonosList());
                 etxt = ll.findViewById(R.id.rowValor);
-                etxt.setTag(i);
+                etxt.setTag(idTipoVal.intValue());
                 i++;
             }
         }
@@ -559,15 +562,25 @@ public class AltaPersonaActivity extends Activity  {
 		int i = 0;
 		LinearLayout ll = null;
 		EditText etxt = null;
+		Long idTipoVal = null;
 		HashMap<Integer,String> datosEnLista =  new HashMap<>();
 		if (mailsData != null) {
 			for (HashMap hmTemp : mailsData) {
 				hmData = hmTemp;
-				val = (String) hmData.get(VALOR);                //datosEnLista.add(hm);
+				val = (String) hmData.get(VALOR);
+
+				idTipoVal = (Long) hmData.get(ID_TIPO_VALOR);
+				//datosEnLista.add(hm);
+				datosEnLista.put(idTipoVal.intValue(),val);
+				ll = (LinearLayout) getMailsList().getAdapter().getView(i, null,getMailsList());
+				etxt = ll.findViewById(R.id.rowValor);
+				etxt.setTag(idTipoVal.intValue());
+
+			/*
 				datosEnLista.put(i,val);
 				ll = (LinearLayout) getMailsList().getAdapter().getView(i, null,getMailsList());
 				etxt = ll.findViewById(R.id.rowValor);
-				etxt.setTag(i);
+				etxt.setTag(i);*/
 				i++;
 			}
 		}
@@ -580,15 +593,23 @@ public class AltaPersonaActivity extends Activity  {
 		int i = 0;
 		LinearLayout ll = null;
 		EditText etxt = null;
+		Long idTipoVal = null;
 		HashMap<Integer,String> datosEnLista =  new HashMap<>();
 		if (direccionesData != null) {
 			for (HashMap hmTemp : direccionesData) {
 				hmData = hmTemp;
-				val = (String) hmData.get(VALOR);                //datosEnLista.add(hm);
+				val = (String) hmData.get(VALOR);
+				idTipoVal = (Long) hmData.get(ID_TIPO_VALOR);
+				//datosEnLista.add(hm);
+				datosEnLista.put(idTipoVal.intValue(),val);
+				ll = (LinearLayout) getDireccionesList().getAdapter().getView(i, null,getDireccionesList());
+				etxt = ll.findViewById(R.id.rowValor);
+				etxt.setTag(idTipoVal.intValue());
+				/*
 				datosEnLista.put(i,val);
 				ll = (LinearLayout) getDireccionesList().getAdapter().getView(i, null,getDireccionesList());
 				etxt = ll.findViewById(R.id.rowValor);
-				etxt.setTag(i);
+				etxt.setTag(i); */
 				i++;
 			}
 		}
@@ -1238,6 +1259,26 @@ public class AltaPersonaActivity extends Activity  {
 			LinearLayout vLayout = null;
 			EditText eTemp = null;
 			String tipoTemp, valTemp = null;
+
+			if (listdata != null) {
+				Long idTipoValor = null;
+				for (HashMap hmTemp : listdata) {
+					hm = hmTemp;
+					tipoTemp = (String) mailsAdapter.getData().get(i).get(TIPO);
+					idTipoValor = (Long) mailsAdapter.getData().get(i).get(ID_TIPO_VALOR);
+					valTemp = mailsAdapter.getDatosEnLista().get(idTipoValor.intValue());
+					if (!tipoTemp.equals("") && !valTemp.equals("")) {
+						tv = new TipoValorDTO();
+						tv.setIdPersona((String) hm.get(ID_PERSONA));
+						tv.setId((Long) hm.get(ID_TIPO_VALOR));
+						tv.setTipo(tipoTemp);
+						tv.setValor(valTemp);
+						mailsTemp.add(tv);
+						huboCambios = true;
+					}
+					i++;
+				}
+			}
 		/*	if (listdata != null) {
 				for (HashMap hmTemp : listdata) {
 					hm = hmTemp;
@@ -1259,7 +1300,7 @@ public class AltaPersonaActivity extends Activity  {
 
 				}
 			}*/
-
+/*
 			if (listdata != null) {
 				for (HashMap hmTemp : listdata) {
 					hm = hmTemp;
@@ -1281,7 +1322,7 @@ public class AltaPersonaActivity extends Activity  {
 					i++;
 
 				}
-
+*/
 
 			/*
 				for (HashMap hmTemp : listdata) {
@@ -1299,7 +1340,7 @@ public class AltaPersonaActivity extends Activity  {
 					}
 					i++;
 				}*/
-			}
+
 		}
 		ConstantsAdmin.registrarMails(mailsTemp, mDBManager);
 
@@ -1353,33 +1394,36 @@ public class AltaPersonaActivity extends Activity  {
 			EditText eTemp = null;
 			String tipoTemp, valTemp = null;
 			if (listdata != null) {
-
+/*
 				for (HashMap hmTemp : listdata) {
 					hm = hmTemp;
 					vLayout = (LinearLayout) getTelefonosList().getChildAt(i);
-					eTemp = vLayout.findViewById(R.id.rowTipo);
-					tipoTemp = eTemp.getText().toString();
-					eTemp = vLayout.findViewById(R.id.rowValor);
-					valTemp = eTemp.getText().toString();
-					if (!tipoTemp.equals("") && !valTemp.equals("")) {
-						tv = new TipoValorDTO();
-						tv.setIdPersona((String) hm.get(ID_PERSONA));
-						tv.setId((Long) hm.get(ID_TIPO_VALOR));
-						tv.setTipo(tipoTemp);
-						tv.setValor(valTemp);
-						telefonosTemp.add(tv);
-						huboCambios = true;
+					if(vLayout != null){
+                        eTemp = vLayout.findViewById(R.id.rowTipo);
+                        tipoTemp = eTemp.getText().toString();
+                        eTemp = vLayout.findViewById(R.id.rowValor);
+                        valTemp = eTemp.getText().toString();
+                        if (!tipoTemp.equals("") && !valTemp.equals("")) {
+                            tv = new TipoValorDTO();
+                            tv.setIdPersona((String) hm.get(ID_PERSONA));
+                            tv.setId((Long) hm.get(ID_TIPO_VALOR));
+                            tv.setTipo(tipoTemp);
+                            tv.setValor(valTemp);
+                            telefonosTemp.add(tv);
+                            huboCambios = true;
 
+                        }
 					}
 					i++;
 
-				}
+				}*/
 
-				/*
+				Long idTipoValor = null;
 				for (HashMap hmTemp : listdata) {
 					hm = hmTemp;
                     tipoTemp = (String)telefonosAdapter.getData().get(i).get(TIPO);
-					valTemp = telefonosAdapter.getDatosEnLista().get(i);
+                    idTipoValor = (Long)telefonosAdapter.getData().get(i).get(ID_TIPO_VALOR);
+					valTemp = telefonosAdapter.getDatosEnLista().get(idTipoValor.intValue());
 					if (!tipoTemp.equals("") && !valTemp.equals("")) {
 						tv = new TipoValorDTO();
 						tv.setIdPersona((String) hm.get(ID_PERSONA));
@@ -1390,7 +1434,7 @@ public class AltaPersonaActivity extends Activity  {
 						huboCambios = true;
 					}
 					i++;
-				}*/
+				}
 			}
 		}
 		ConstantsAdmin.registrarTelefonos(telefonosTemp, mDBManager);
@@ -1456,6 +1500,26 @@ public class AltaPersonaActivity extends Activity  {
             LinearLayout vLayout = null;
             EditText eTemp = null;
             String tipoTemp, valTemp = null;
+			if (listdata != null) {
+				Long idTipoValor = null;
+				for (HashMap hmTemp : listdata) {
+					hm = hmTemp;
+					tipoTemp = (String) direccionesAdapter.getData().get(i).get(TIPO);
+					idTipoValor = (Long) direccionesAdapter.getData().get(i).get(ID_TIPO_VALOR);
+					valTemp = direccionesAdapter.getDatosEnLista().get(idTipoValor.intValue());
+					if (!tipoTemp.equals("") && !valTemp.equals("")) {
+						tv = new TipoValorDTO();
+						tv.setIdPersona((String) hm.get(ID_PERSONA));
+						tv.setId((Long) hm.get(ID_TIPO_VALOR));
+						tv.setTipo(tipoTemp);
+						tv.setValor(valTemp);
+						dirsTemp.add(tv);
+						huboCambios = true;
+					}
+					i++;
+				}
+			}
+            /*
             if (listdata != null) {
                 for (HashMap hmTemp : listdata) {
                     hm = hmTemp;
@@ -1477,7 +1541,7 @@ public class AltaPersonaActivity extends Activity  {
                     i++;
 
                 }
-            }
+            }*/
         }
         ConstantsAdmin.registrarDirecciones(dirsTemp, mDBManager);
 

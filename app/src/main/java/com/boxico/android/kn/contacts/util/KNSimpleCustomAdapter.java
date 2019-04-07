@@ -18,6 +18,7 @@ import com.boxico.android.kn.contacts.AltaPersonaActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class KNSimpleCustomAdapter extends SimpleAdapter {
 
@@ -110,7 +111,11 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 		    etxt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         }
 		btn.setTag(position);
-		etxt.setTag(position);
+		//etxt.setTag(position);
+
+		Object idTipoValor = (data.get(position)).get(ID_TIPO_VALOR);
+		Long intValue = (Long)idTipoValor;
+		etxt.setTag(intValue.intValue());
 
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -131,7 +136,9 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 				//data.remove(pos);
 
                // data.remove(position);
+				Long intValue = (Long)idTipoValor;
 				localContext.eliminarItemListView(data, position);
+                datosEnLista.remove(intValue.intValue());
           //      localContext.resetAdapter(data);
 
 		//		localContext.realzarBotonGuardar();
