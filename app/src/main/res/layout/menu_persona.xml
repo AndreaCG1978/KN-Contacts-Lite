@@ -11,25 +11,29 @@
 			android:layout_width="43dp"
 			android:layout_height="43dp"
 			android:background="@drawable/less_desc_contact"
-			android:layout_margin="15dp"/>
+			android:layout_margin="15dp"
+			android:contentDescription="buttonVerPersona" />
 
 		<ImageButton android:id="@+id/buttonEditarPersona"
 			android:layout_width="32dp"
 			android:layout_height="32dp"
 			android:background="@drawable/edit_icon"
-			android:layout_margin="15dp"/>
+			android:layout_margin="15dp"
+			android:contentDescription="buttonEditarPersona" />
 
 		<ImageButton android:id="@+id/buttonEnviarInfoPersona"
 			android:layout_width="35dp"
 			android:layout_height="35dp"
 			android:background="@drawable/send_icon"
-			android:layout_margin="15dp"/>
+			android:layout_margin="15dp"
+			android:contentDescription="buttonEnviarInfoPersona"/>
 
 		<ImageButton android:id="@+id/buttonBorrarPersona"
 			android:layout_width="30dp"
 			android:layout_height="35dp"
 			android:background="@drawable/delete"
-			android:layout_margin="15dp"/>
+			android:layout_margin="15dp"
+			android:contentDescription="buttonBorrarPersona"/>
 
 
 </LinearLayout>

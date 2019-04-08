@@ -47,6 +47,7 @@ import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 import com.boxico.android.kn.contacts.util.KNSimpleCustomAdapter;
 
+@SuppressWarnings("ALL")
 public class AltaPersonaActivity extends Activity  {
 	
 	private ArrayAdapter<CategoriaDTO> mSpinnerAdapt = null;

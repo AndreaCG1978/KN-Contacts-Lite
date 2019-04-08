@@ -30,10 +30,6 @@ import static android.os.Build.VERSION_CODES.M;
 
 public class PhotoActivity extends Activity {
 
-	// --Commented out by Inspection (12/11/2018 12:36):protected boolean _taken = true;
-	private File sdImageMainDirectory;
-	private final String fileTemp = "temp.jpg";
-
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 0;
 	private int mPersonaSeleccionadaId = -1;
 
@@ -131,7 +127,9 @@ public class PhotoActivity extends Activity {
 	private void capturarImagenDesdeCamara(){
 
 		String folderName = "temp";
-		sdImageMainDirectory = ConstantsAdmin.obtenerFile(folderName, fileTemp);
+		// --Commented out by Inspection (12/11/2018 12:36):protected boolean _taken = true;
+		String fileTemp = "temp.jpg";
+		File sdImageMainDirectory = ConstantsAdmin.obtenerFile(folderName, fileTemp);
 
 
 		capturoConCamara = true;

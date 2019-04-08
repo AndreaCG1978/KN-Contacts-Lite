@@ -687,7 +687,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				} else if (tempDatoExtra != null && !tempDatoExtra.equals("")) {
 					tempCategoria = tempCategoria + "(" + tempDatoExtra + ")";
 				} else if (tempDesc != null && !tempDesc.equals("")) {
-					tempCategoria = tempCategoria + "(" + tempDesc + ")";;
+					tempCategoria = tempCategoria + "(" + tempDesc + ")";
 
 				}
 
@@ -1082,7 +1082,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		long idP = mDBManager.createPersona(perTemp, false);
 		if (idP != -1) {
 			InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.getContentResolver(),
-					ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(mPersonaSeleccionadaIdAgenda)));
+					ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, Long.valueOf(mPersonaSeleccionadaIdAgenda)));
 			if (inputStream != null) {
 				foto = BitmapFactory.decodeStream(inputStream);
 			}
@@ -1286,14 +1286,14 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
         DataBaseManager mDBManager = DataBaseManager.getInstance(this);
         //   ConstantsAdmin.inicializarBD( mDBManager);
         CursorLoader cl = null;
-        boolean noActivaContraseña = ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva();
+        boolean noActivaContrasenia = ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva();
         switch(id) {
             case PERSONAS_CURSOR:
                 cl = mDBManager.cursorLoaderPersonaPorId(0, this);
                 //ConstantsAdmin.cursorCategorias = cl;
                 break; // optional
             case PREFERIDO_CURSOR:
-                cl = mDBManager.cursorLoaderPreferidos(noActivaContraseña, ConstantsAdmin.categoriasProtegidas, this);
+                cl = mDBManager.cursorLoaderPreferidos(noActivaContrasenia, ConstantsAdmin.categoriasProtegidas, this);
                 //ConstantsAdmin.cursorCategoriasPersonales = cl;
                 break; // optional
             case PERSONA_EXTRA_ID_CURSOR:

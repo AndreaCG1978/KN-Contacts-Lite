@@ -12,7 +12,8 @@ android:background="@color/color_gris_claro">
 	<RelativeLayout android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="@color/color_gris_claro"
-		android:clickable="true">
+		android:clickable="true"
+		android:focusable="true">
 
 
 		<TextView android:id="@+id/invisible"
@@ -127,7 +128,6 @@ android:background="@color/color_gris_claro">
                 android:maxLength="22"
 				android:textColor="@color/color_negro"
 				android:typeface="normal"
-				android:importantForAutofill="no"
 				android:layout_marginRight="4dp"
 				android:layout_marginLeft="3dp"
                 android:layout_marginStart="3dp"
@@ -157,7 +157,6 @@ android:background="@color/color_gris_claro">
 				android:padding="5dp" android:textSize="15sp"
 				android:layout_marginStart="3dp" android:layout_marginEnd="4dp"
 				android:maxLength="25" android:layout_width="match_parent"
-				android:importantForAutofill="no"
 				android:layout_marginRight="4dp"
 				android:layout_marginLeft="3dp"
 				android:textColorHint="@color/color_gris"/>
@@ -229,7 +228,7 @@ android:background="@color/color_gris_claro">
 				android:focusable="true"
 				android:foregroundGravity="right"
 				android:background="@drawable/add_icon"
-				>
+				android:contentDescription="addTelefono">
 			</ImageButton>
 
 		</LinearLayout>
@@ -268,7 +267,6 @@ android:background="@color/color_gris_claro">
 			android:layout_marginEnd="4dp"
 			android:maxLength="30"
 			android:layout_width="172dp"
-			android:importantForAutofill="no"
 			android:layout_marginRight="4dp"
 			android:layout_marginLeft="5dp"
 			android:layout_marginTop="15dp"
@@ -364,7 +362,6 @@ android:background="@color/color_gris_claro">
 			android:layout_marginEnd="4dp"
 			android:maxLength="45"
 			android:layout_width="172dp"
-			android:importantForAutofill="no"
 			android:layout_marginRight="4dp"
 			android:layout_marginLeft="5dp"
 			android:layout_marginTop="10dp"
@@ -467,7 +464,6 @@ android:background="@color/color_gris_claro">
 			android:layout_marginEnd="4dp"
 			android:maxLength="120"
 			android:layout_width="172dp"
-			android:importantForAutofill="no"
 			android:layout_marginRight="4dp"
 			android:layout_marginLeft="5dp"
 			android:layout_marginTop="10dp"
@@ -569,7 +565,6 @@ android:background="@color/color_gris_claro">
 				</ImageButton>
 
 				<Spinner android:id="@+id/spinnerCategorias_alta_persona"
-					android:layout_below="@id/label_category"
 					android:layout_width="wrap_content"
 					android:layout_height="30dp"
 					android:layout_margin="8dp"
@@ -605,7 +600,6 @@ android:background="@color/color_gris_claro">
 					android:layout_width="match_parent"
 					android:maxLength="30"
 					android:hint="@string/hint_descripcion"
-					android:importantForAutofill="no"
 					android:layout_marginRight="4dp"
 					android:layout_marginLeft="3dp"
 					android:textColorHint="@color/color_gris"
@@ -627,8 +621,7 @@ android:background="@color/color_gris_claro">
 
 			<LinearLayout
 				android:layout_width="match_parent" android:layout_height="wrap_content"
-				android:orientation="horizontal" android:layout_margin="5dp"
-				android:layout_below="@id/linearCaracteristica">
+				android:orientation="horizontal" android:layout_margin="5dp">
 
 				<TextView android:id="@+id/label_descripcion" android:text="@string/hint_descripcion"
 					android:layout_width="130dp" android:layout_height="wrap_content"
@@ -652,7 +645,6 @@ android:background="@color/color_gris_claro">
 					android:gravity="top|start"
 					android:lines="4"
 					android:singleLine="false"
-					android:importantForAutofill="no"
 					android:layout_marginRight="4dp"
 					android:layout_marginLeft="3dp"
 					android:minLines="1"

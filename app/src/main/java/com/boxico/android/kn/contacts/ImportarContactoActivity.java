@@ -213,7 +213,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	private void mostrarFoto(String cId){
 		InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.getContentResolver(),
-				ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(cId)));
+				ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, Long.valueOf(cId)));
 		TextView tv = this.findViewById(R.id.textPersonaEncontrada);
 		BitmapDrawable iconBig = null;
 		if (inputStream != null) {
@@ -663,7 +663,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 					InputStream inputStream = null;
 					Bitmap photoTemp = null;
 					inputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.getContentResolver(),
-							ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(contactId)));
+							ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, Long.valueOf(contactId)));
 					if (inputStream != null) {
 						photoTemp = BitmapFactory.decodeStream(inputStream);
 						try {

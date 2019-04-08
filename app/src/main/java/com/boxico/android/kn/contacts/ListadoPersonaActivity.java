@@ -82,12 +82,11 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private ImageButton switchOrganizacion = null;
 	private ImageButton expandContractAll = null;
 	private ImageButton protegerCategorias = null;
-	private ImageButton masOMenosDesc = null;
+//	private ImageButton masOMenosDesc = null;
 	private static ListadoPersonaActivity me = null;
 	private String separadorExcel = null;
 	private int mGroupSelected = -1;
 	private int mChildSelected = -1;
-	private ImageButton addContact = null;
 
 
 	private ImageButton preferidos = null;
@@ -295,7 +294,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			this.configurarAddContact();
 			this.configurarBotonSwitchOrganizacion();
 			this.configurarBotonExpandContractAll();
-			this.configurarBotonMasOMenosDesc();
+		//	this.configurarBotonMasOMenosDesc();
 			this.recuperarConfiguracion();
 			verBusqueda();
 			layoutInflater = (LayoutInflater) this.getLayoutInflater();
@@ -775,7 +774,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
     }    */
 
 	private void configurarAddContact(){
-		addContact = this.findViewById(R.id.imagenAddContacto);
+		ImageButton addContact = this.findViewById(R.id.imagenAddContacto);
 		addContact.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -878,6 +877,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				ConstantsAdmin.config.setListaExpandida(false);
+				expandContractAll.setBackground(getResources().getDrawable(R.drawable.expandir_icon));
 				mostrarTodosLosContactos();
 			}
 		});
@@ -901,7 +902,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 
-
+/*
 	private void configurarBotonMasOMenosDesc(){
 		masOMenosDesc = this.findViewById(R.id.buttonMoreOrLess);
 		//	Drawable dlessDesc = getResources().getDrawable(R.drawable.less_desc_contact);
@@ -915,7 +916,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		});
 
 	}
-
+*/
 
 	private void expandContractAll(){
 
@@ -1004,10 +1005,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	//	catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
 		//	catSelectTextView.setVisibility(View.GONE);
 	//	imgPrefLeft.setVisibility(View.GONE);
+
 		imgPrefRight.setVisibility(View.GONE);
 		spinnerCategorias.setItems(todasLasCategString, this);
 		this.recargarLista();
 		mGroupSelected = -1;
+
 		entryBusqueda.setText("");
 
 	}
@@ -1586,8 +1589,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			spinnerCategorias.setItems(todasLasCategString, this);
 		}*/
 		ConstantsAdmin.config.setMuestraPreferidos(false);
-		boolean noActivaContraseña = !ConstantsAdmin.contrasenia.isActiva();
-		personasCursor = mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(noActivaContraseña, mEntryBusquedaNombre, categoriasSeleccionadas, ConstantsAdmin.categoriasProtegidas);
+		boolean noActivaContrasenia = !ConstantsAdmin.contrasenia.isActiva();
+		personasCursor = mDBManager.fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(noActivaContrasenia, mEntryBusquedaNombre, categoriasSeleccionadas, ConstantsAdmin.categoriasProtegidas);
 
 		if(personasCursor != null){
 			String[] from;
@@ -1702,7 +1705,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		//   ConstantsAdmin.inicializarBD( mDBManager);
 		CursorLoader cl = null;
-		boolean noActivaContraseña = ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva();
+		boolean noActivaContrasenia = ConstantsAdmin.contrasenia != null && !ConstantsAdmin.contrasenia.isActiva();
 		switch(id) {
 			case CATEGORIAS_CURSOR:
 				cl = mDBManager.cursorLoaderCategoriasPorNombre(null, this);
@@ -1719,11 +1722,11 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				cl = mDBManager.cursorLoaderCategoriasProtegidas(null, this);
 				break; 				// optional
 			case PERSONAS_CURSOR:
-				cl = mDBManager.cursorLoaderPersonas(noActivaContraseña, ConstantsAdmin.categoriasProtegidas, this);
+				cl = mDBManager.cursorLoaderPersonas(noActivaContrasenia, ConstantsAdmin.categoriasProtegidas, this);
 				ConstantsAdmin.cursorPersonas = cl;
 				break;
 			case PREFERIDOS_CURSOR:
-				cl = mDBManager.cursorLoaderPreferidos(noActivaContraseña, ConstantsAdmin.categoriasProtegidas, this);
+				cl = mDBManager.cursorLoaderPreferidos(noActivaContrasenia, ConstantsAdmin.categoriasProtegidas, this);
 				ConstantsAdmin.cursorPreferidos = cl;
 				break;
 			case CATEGORIAS_ACTIVAS_CURSOR:
@@ -2080,7 +2083,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 
 	}
-
+/*
 	public String getRealPathFromURI(Uri contentUri) {
 	//	String [] proj = {MediaStore.Images.Media.DATA};
 		Cursor cursor = getContentResolver().query( contentUri, null, null, null,null);
@@ -2091,7 +2094,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
-
+*/
 	public void onPause() {
 		super.onPause();
 		this.closeContextMenu();

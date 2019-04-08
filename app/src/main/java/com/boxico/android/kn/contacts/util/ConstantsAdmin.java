@@ -260,7 +260,7 @@ public class ConstantsAdmin {
 			if(per.getApellido() != null && !per.getApellido().equals("")){
 				primeraLetra = per.getApellido().substring(0, 1).toUpperCase();
 			}else if(per.getNombres() != null && !per.getNombres().equals("")){
-				primeraLetra = per.getNombres().substring(0, 1).toUpperCase();;
+				primeraLetra = per.getNombres().substring(0, 1).toUpperCase();
 			}else{
 				primeraLetra = "";
 			}
@@ -3162,7 +3162,7 @@ public class ConstantsAdmin {
 	}
 
 
-	public static void crearNuevoTel(String phoneNumber, int phoneType, String labelTemp, Cursor phones, ArrayList nuevosTels, Resources res){
+	public static void crearNuevoTel(String phoneNumber, int phoneType, String labelTemp, Cursor phones, ArrayList<TipoValorDTO> nuevosTels, Resources res){
 		TipoValorDTO nuevoTipo = new TipoValorDTO();
 		nuevoTipo.setValor(phoneNumber);
 		String label = res.getString(ContactsContract.CommonDataKinds.Phone.getTypeLabelResource(phoneType));
@@ -3174,7 +3174,7 @@ public class ConstantsAdmin {
 
 	}
 
-	public static void crearNuevoEmail(String mail, int mailType, String labelTemp, Cursor mails, ArrayList nuevosMails, Resources res){
+	public static void crearNuevoEmail(String mail, int mailType, String labelTemp, Cursor mails, ArrayList<TipoValorDTO> nuevosMails, Resources res){
 		TipoValorDTO nuevoTipo = new TipoValorDTO();
 		nuevoTipo.setValor(mail);
 
@@ -3187,7 +3187,7 @@ public class ConstantsAdmin {
 		nuevosMails.add(nuevoTipo);
 	}
 
-	public static void crearNuevaDireccion(String dir, int dirType, String labelTemp, Cursor dirs, ArrayList nuevasDirs, Resources res){
+	public static void crearNuevaDireccion(String dir, int dirType, String labelTemp, Cursor dirs, ArrayList<TipoValorDTO> nuevasDirs, Resources res){
 		TipoValorDTO nuevoTipo = new TipoValorDTO();
 		nuevoTipo.setValor(dir);
 

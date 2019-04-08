@@ -224,14 +224,14 @@ public class DataBaseManager {
     	 return result.toString();
      }
      
-     public Cursor fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(boolean noActivaContraseña, String param, List<String> categorias, List<CategoriaDTO> categoriasProtegidas) {
+     public Cursor fetchAllPersonaPorApellidoONombreODatosCategoriaMultiSeleccion(boolean noActivaContrasenia, String param, List<String> categorias, List<CategoriaDTO> categoriasProtegidas) {
     	 String sortOrder = ConstantsAdmin.KEY_APELLIDO + " COLLATE LOCALIZED ASC";
     	 Cursor result = null;
     	 StringBuilder consultaPorCategoria = new StringBuilder(" (1 = 2) ");
     	 Iterator<String> catSelect;
     	 String catTemp;
 
-    	 String selection = this.queryParaCategoriaProtegidas(noActivaContraseña, categoriasProtegidas);
+    	 String selection = this.queryParaCategoriaProtegidas(noActivaContrasenia, categoriasProtegidas);
     	 /*
     	 String categProteg = " (1 = 1) ";
     	 if(noActivaContraseña){
@@ -498,14 +498,14 @@ public class DataBaseManager {
     	 mDbHelper.deleteAll(mDb);
      }
 
-	public CursorLoader cursorLoaderPreferidos(boolean noActivaContraseña, List<CategoriaDTO> categoriasProtegidas, Context context) {
+	public CursorLoader cursorLoaderPreferidos(boolean noActivaContrasenia, List<CategoriaDTO> categoriasProtegidas, Context context) {
 /*		String categProteg = " (1 = 1) ";
 		if(noActivaContraseña){
 			categProteg = categProteg + this.queryParaCategoriaProtegidas(categoriasProtegidas);
 		}
 		*/
 
-		String selection = this.queryParaCategoriaProtegidas(noActivaContraseña, categoriasProtegidas);
+		String selection = this.queryParaCategoriaProtegidas(noActivaContrasenia, categoriasProtegidas);
 
 		String query = "SELECT * FROM " + ConstantsAdmin.TABLA_PERSONA + " a INNER JOIN " + ConstantsAdmin.TABLA_PREFERIDOS + " b ON a._id = b._id WHERE " + selection;
 
@@ -797,11 +797,11 @@ public class DataBaseManager {
 
 
 
-	public CursorLoader cursorLoaderPersonas(boolean noActivaContraseña, List<CategoriaDTO> categoriasProtegidas, Context context) {
+	public CursorLoader cursorLoaderPersonas(boolean noActivaContrasenia, List<CategoriaDTO> categoriasProtegidas, Context context) {
 		String sortOrder = ConstantsAdmin.KEY_APELLIDO + " COLLATE LOCALIZED ASC";
 //		String selection = " (1 = 1) ";
 //		if(noActivaContraseña){
-		String selection = this.queryParaCategoriaProtegidas(noActivaContraseña, categoriasProtegidas);
+		String selection = this.queryParaCategoriaProtegidas(noActivaContrasenia, categoriasProtegidas);
 //		}
 
 

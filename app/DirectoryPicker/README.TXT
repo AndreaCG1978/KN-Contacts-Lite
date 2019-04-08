@@ -1,1 +1,0 @@
-See http://bgreco.net/directorypicker/readme.html

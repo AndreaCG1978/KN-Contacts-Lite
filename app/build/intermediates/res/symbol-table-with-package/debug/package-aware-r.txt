@@ -141,8 +141,6 @@ id botonActivarContrasenia
 id botonActivarDesactivarPass
 id botonAddAll
 id botonAddContact
-id botonAgregarCategoria
-id botonMisCategorias
 id botonPrevContact
 id botonProtegerCategorias
 id botonReenviarPass
@@ -152,14 +150,12 @@ id botonera
 id bottom
 id buttonBorrarPersona
 id buttonEditarPersona
-id buttonEliminarCategoria
 id buttonEnviarInfo
 id buttonEnviarInfoPersona
 id buttonExpandContractAll
 id buttonIrAEditarPersona
 id buttonMoreOrLess
 id buttonPickDate
-id buttonRegistrarCategoria
 id buttonSwitchOrganizacion
 id buttonTodasLasCategorias
 id buttonVerPersona
@@ -194,9 +190,7 @@ id entryDatoExtra
 id entryDescripcion
 id entryNombre
 id entryNombreCategoria
-id entryNuevoTipo
 id entryTipoDatoExtra
-id entryValor
 id fill
 id fill_horizontal
 id fill_vertical
@@ -224,12 +218,10 @@ id label_emails
 id label_fechaNacimiento
 id label_identificacion
 id label_nombre
-id label_nuevo_tipo
 id label_phones
 id label_sinDatos
 id label_telefonos
 id label_tipo_dato_extra
-id label_valor
 id left
 id leyendaNoSeRegistraPass
 id line1
@@ -290,7 +282,6 @@ id rowTipo
 id rowValor
 id saveCategoria
 id spinnerCategorias_alta_persona
-id spinnerTipoValor
 id start
 id status_bar_latest_event_content
 id tag_transition_group
@@ -309,11 +300,8 @@ id top
 integer cancel_button_image_alpha
 integer status_bar_notification_info_maxnum
 layout acerca_de
-layout admin_categorias
-layout alta_categoria
 layout alta_contrasenia
 layout alta_persona
-layout alta_tipo_valor
 layout categoria_row
 layout details_personas
 layout import_contact
