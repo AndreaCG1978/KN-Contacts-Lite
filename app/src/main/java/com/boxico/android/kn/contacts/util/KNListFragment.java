@@ -253,7 +253,7 @@ public abstract class KNListFragment extends FragmentActivity implements OnCreat
         if (root instanceof ListView) {
             mList = (ListView)root;
         } else {
-            mStandardEmptyView = (TextView)root.findViewById(INTERNAL_EMPTY_ID);
+            mStandardEmptyView = root.findViewById(INTERNAL_EMPTY_ID);
             if (mStandardEmptyView == null) {
                 mEmptyView = root.findViewById(android.R.id.empty);
             } else {
@@ -298,7 +298,7 @@ public abstract class KNListFragment extends FragmentActivity implements OnCreat
 
     public void onContentChanged() {
         View emptyView = findViewById(android.R.id.empty);
-        mList = (ListView) findViewById(android.R.id.list);
+        mList = findViewById(android.R.id.list);
         if (mList == null) {
             throw new RuntimeException(
                     "Your content must have a ListView whose id attribute is " +

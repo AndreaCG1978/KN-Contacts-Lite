@@ -109,7 +109,7 @@ public class DataBaseManager {
 	public void eliminarTipoValor(long id, String nombreTabla){
 		mDb.delete(nombreTabla, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(id), null);
 	}
-     
+     /*
      public void eliminarTelefono(long id){
 		 mDb.delete(ConstantsAdmin.TABLA_TELEFONOS, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(id), null);
 	 }
@@ -121,7 +121,7 @@ public class DataBaseManager {
      public void eliminarDireccion(long id){
 		 mDb.delete(ConstantsAdmin.TABLA_DIRECCIONES, ConstantsAdmin.KEY_ROWID + "=" + String.valueOf(id), null);
 	 }
-
+*/
      public long createPersona(PersonaDTO persona, boolean importando) {
     	 long returnValue;
          ContentValues initialValues = new ContentValues();
@@ -1213,7 +1213,7 @@ public class DataBaseManager {
          return result;
      }*/
 
-	public CursorLoader cursorLoaderCategoriasProtegidas(String paramNombre, Context context) {
+	public CursorLoader cursorLoaderCategoriasProtegidas(Context context) {
 /*		String selection = null;
 		if(paramNombre != null && !paramNombre.equals("")){
 			selection  = ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%'";

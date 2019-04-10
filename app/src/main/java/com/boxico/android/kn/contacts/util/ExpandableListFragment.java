@@ -247,8 +247,6 @@ public class ExpandableListFragment extends FragmentActivity
     }
 
     private void ensureList() {
-        if (mList != null) {
-        }
 
 /*
         View root = findViewById(android.R.id.list);
@@ -322,7 +320,7 @@ public class ExpandableListFragment extends FragmentActivity
 
     public void onContentChanged() {
         View emptyView = findViewById(android.R.id.empty);
-        mList = (ExpandableListView) findViewById(android.R.id.list);
+        mList = findViewById(android.R.id.list);
         if (mList == null) {
             throw new RuntimeException(
                     "Your content must have a ExpandableListView whose id attribute is " +

@@ -159,12 +159,12 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
         this.configurarSeleccionarPreferido();
         this.configurarImportarContacto();
         this.configurarBorrarPhoto();
-        this.compruebaCuandoConecta();
+   //     this.compruebaCuandoConecta();
         this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_detallePersona));
         mPersonaSeleccionadaId = Integer.valueOf((String) intent.getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
         //	this.mostrarFoto();
     }
-
+/*
     private void compruebaCuandoConecta() {
         mReceiverConecta = new BroadcastReceiver() {
             public void onReceive(Context context, Intent intent) {
@@ -181,12 +181,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
                         break;
                     case Intent.ACTION_MEDIA_EJECT:
                         break;
-			/*		case Intent.ACTION_UMS_CONNECTED:
-						finish();
-						break;
-					case Intent.ACTION_UMS_DISCONNECTED:
 
-						break;*/
                     default:
                         break;
                 }
@@ -198,7 +193,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 
     }
-
+*/
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
@@ -1031,7 +1026,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	}
 
 	private void importarContacto(){
-		boolean ok = false;
+	//	boolean ok = false;
 
         Cursor nameCur;
         CursorLoader nameCurLoader;
@@ -1091,7 +1086,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 			ConstantsAdmin.crearTelefonos(nuevosTelefonos, idP, mDBManager);
 			ConstantsAdmin.crearEmails(nuevosMails, idP, mDBManager);
 			ConstantsAdmin.crearDirecciones(nuevasDirecciones, idP, mDBManager);
-			ok = true;
+		//	ok = true;
 
 		}
 		ConstantsAdmin.finalizarBD(mDBManager);

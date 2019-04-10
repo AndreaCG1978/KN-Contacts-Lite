@@ -4,12 +4,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -137,7 +134,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 	public void openAltaCategoria(){
 	//	InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		if(entryNombreCategoria.getVisibility() == View.VISIBLE){
-			this.habilitarLista(true, Color.WHITE);
+			this.habilitarLista(true);
 			entryTipoDatoExtra.setVisibility(View.GONE);
 			entryNombreCategoria.setVisibility(View.GONE);
 			labelNombreCategoria.setVisibility(View.GONE);
@@ -153,7 +150,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 			//imm.hideSoftInputFromWindow(entryNombreCategoria.getWindowToken(), 0);
 
 		}else {
-			this.habilitarLista(false, Color.LTGRAY);
+			this.habilitarLista(false);
 			entryTipoDatoExtra.setVisibility(View.VISIBLE);
 			entryNombreCategoria.setVisibility(View.VISIBLE);
 			labelNombreCategoria.setVisibility(View.VISIBLE);
@@ -179,7 +176,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 		}
 
 	}
-
+/*
 
 	public View getViewByPosition(int position, ListView listView) {
 		final int firstListItemPosition = listView.getFirstVisiblePosition();
@@ -193,13 +190,13 @@ public class ListadoCategoriaActivity extends KNListFragment  {
 		}
 	}
 
+*/
 
-
-	private void habilitarLista(boolean b, int color){
-		LinearLayout ly1, ly2 = null;
+	private void habilitarLista(boolean b){
+	/*	LinearLayout ly1, ly2 = null;
 		CheckBox chk = null;
 		Button btn = null;
-		TextView txt = null;
+		TextView txt = null;*/
 
 		if(b){
 			this.getListView().setVisibility(View.VISIBLE);

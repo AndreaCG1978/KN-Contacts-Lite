@@ -126,11 +126,11 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 				String idTVString = idTipoValor.toString();
 				long idTV = Long.valueOf(idTVString);
                 if(localContext.ismMostrarTelefonosBoolean()){
-                    ConstantsAdmin.getTelefonosAEliminar().add(Long.valueOf(idTV));
+                    ConstantsAdmin.getTelefonosAEliminar().add(idTV);
                 }else if(localContext.ismMostrarEmailsBoolean()){
-                    ConstantsAdmin.getMailsAEliminar().add(Long.valueOf(idTV));
+                    ConstantsAdmin.getMailsAEliminar().add(idTV);
                 }else if(localContext.ismMostrarDireccionesBoolean()){
-                    ConstantsAdmin.getDireccionesAEliminar().add(Long.valueOf(idTV));
+                    ConstantsAdmin.getDireccionesAEliminar().add(idTV);
                 }
             //   lista.remove(element);
 				//data.remove(pos);

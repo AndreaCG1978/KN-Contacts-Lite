@@ -46,7 +46,7 @@ public class KNCategoryListAdapter extends ArrayAdapter<CategoriaDTO> {
 		final TextView tv;
 		LinearLayout ll;
 		ll = (LinearLayout)v;
-		tv = (TextView) ll.findViewById(R.id.text1);
+		tv = ll.findViewById(R.id.text1);
 		final int pos = position;
 		ImageButton btnR = ll.findViewById(R.id.removeButton);
 

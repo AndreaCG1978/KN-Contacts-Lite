@@ -30,7 +30,7 @@ public class TipoValorDTO {
 	public void setIdPersona(String idPersona) {
 		this.idPersona = idPersona;
 	}
-	
+	/*
 	public TipoValorDTO getCopy(){
 		TipoValorDTO copy = new TipoValorDTO();
 		copy.setId(this.getId());
@@ -39,7 +39,7 @@ public class TipoValorDTO {
 		copy.setValor(this.getValor());
 		return copy;
 	}
-	
+	*/
 	
 
 }

@@ -295,7 +295,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		//	this.configurarBotonMasOMenosDesc();
 			this.recuperarConfiguracion();
 			verBusqueda();
-			layoutInflater = (LayoutInflater) this.getLayoutInflater();
+			layoutInflater = this.getLayoutInflater();
 //			this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 			this.redirigirImportarContactos();
@@ -564,14 +564,14 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 							@Override
 							public View newChildView(boolean isLastChild, ViewGroup parent) {
 								if(layoutInflater == null){
-									layoutInflater = (LayoutInflater) getLayoutInflater();
+									layoutInflater = getLayoutInflater();
 								}
 								return layoutInflater.inflate(R.layout.row_personas, parent, false);
 							}
 
 							public View newGroupView(boolean isExpanded, ViewGroup parent){
 								if(layoutInflater == null){
-									layoutInflater = (LayoutInflater) (LayoutInflater) getLayoutInflater();
+									layoutInflater = getLayoutInflater();
 								}
 
 								return layoutInflater.inflate(R.layout.personas_row_label, parent, false);
@@ -654,24 +654,22 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 						small = Bitmap.createScaledBitmap(b, 59, 67, true);
 						final Drawable icon = new BitmapDrawable(getResources(), small);
 						//final Drawable icon = Drawable.createFromPath(ConstantsAdmin.obtenerPathImagen() + String.valueOf(idPer)  + ".jpg");
-						if(icon != null){
-							tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
-							//tv.setCompoundDrawablePadding(3);
-							//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
-							final Drawable iconBig = new BitmapDrawable(getResources(), b);
-							muestraFoto = true;
-							tv.setOnTouchListener(new View.OnTouchListener() {
-								@Override
-								public boolean onTouch(View v, MotionEvent event) {
-									if(event.getAction() == MotionEvent.ACTION_UP) {
-										ConstantsAdmin.showFotoPopUp(iconBig, me);
-										return true;
-									}
+						tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+						//tv.setCompoundDrawablePadding(3);
+						//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
+						final Drawable iconBig = new BitmapDrawable(getResources(), b);
+						muestraFoto = true;
+						tv.setOnTouchListener(new View.OnTouchListener() {
+							@Override
+							public boolean onTouch(View v, MotionEvent event) {
+								if(event.getAction() == MotionEvent.ACTION_UP) {
+									ConstantsAdmin.showFotoPopUp(iconBig, me);
 									return true;
 								}
-							});
+								return true;
+							}
+						});
 
-						}
 					}
 
 			//	}
@@ -941,6 +939,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 	}
 
+	/*
+
 	private void moreOrLessDesc(){
 		int grupoSeleccionado = mGroupSelected;
 		mListPosition = getExpandableListView().getFirstVisiblePosition();
@@ -964,18 +964,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			mGroupSelected = -1;
 		}
 
-    /*	if(!ConstantsAdmin.config.isEstanDetallados()){
-    		masOMenosDesc.setBackground(getResources().getDrawable(R.drawable.more_desc_contact));
-    	}else{
-    		masOMenosDesc.setBackground(getResources().getDrawable(R.drawable.less_desc_contact));
-    	}*/
-
 		if (mListState != null){
 			getExpandableListView().onRestoreInstanceState(mListState);
 		}
 		getExpandableListView().setSelectionFromTop(mListPosition, mItemPosition);
 	}
-
+*/
 
 	private void switchOrganizacion(){
 		ConstantsAdmin.config.setOrdenadoPorCategoria(!ConstantsAdmin.config.isOrdenadoPorCategoria());
@@ -1025,7 +1019,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 				Cursor per;
 				DataBaseManager mDBManager = DataBaseManager.getInstance(me);
-				Intent i = new Intent(me, DetallePersonaActivity.class);
+			//	Intent i = new Intent(me, DetallePersonaActivity.class);
 				per = (Cursor)listaEspecial.getAdapter().getItem(arg2);
 				long id = per.getLong(0);
 				personaSeleccionada = ConstantsAdmin.obtenerPersonaId(id, mDBManager);
@@ -1081,6 +1075,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		// TODO: fill in rest of method
 	}
 
+	/*
 	private void eliminarPersonaDialog(){
 		try {
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
@@ -1115,7 +1110,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEliminacionContacto));
 		}
 	}
-
+*/
 
 	private void eliminarPersonaSeleccionada(){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
@@ -1716,7 +1711,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				cl = mDBManager.cursorLoaderContrasenia(this);
 				break;
 			case CATEGORIAS_PROTEGIDAS_CURSOR:
-				cl = mDBManager.cursorLoaderCategoriasProtegidas(null, this);
+				cl = mDBManager.cursorLoaderCategoriasProtegidas(this);
 				break; 				// optional
 			case PERSONAS_CURSOR:
 				cl = mDBManager.cursorLoaderPersonas(noActivaContrasenia, ConstantsAdmin.categoriasProtegidas, this);
@@ -2037,7 +2032,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 	private void ejecutarOnActivityResult(int requestCode, Intent intent){
 		try {
-			String path  = "";
+		//	String path  = "";
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 			if(requestCode == ConstantsAdmin.ACTIVITY_EJECUTAR_PROTECCION_CATEGORIA){
 				categoriasSeleccionadas = null;

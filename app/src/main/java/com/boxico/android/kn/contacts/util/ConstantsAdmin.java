@@ -407,7 +407,7 @@ public class ConstantsAdmin {
         inicializarBD(mDBManager);
         while(it.hasNext()){
             idVal = it.next();
-            mDBManager.eliminarTipoValor(idVal.longValue(), tablaNombre);
+            mDBManager.eliminarTipoValor(idVal, tablaNombre);
         }
         finalizarBD(mDBManager);
     }
@@ -702,7 +702,7 @@ public class ConstantsAdmin {
 		return result;
 
 	}
-
+/*
 	public static List<CategoriaDTO> categoriasPersonalesCursorToDtos(Cursor cursor){
 		ArrayList<CategoriaDTO> result = new ArrayList<>();
 		CategoriaDTO cat;
@@ -726,7 +726,7 @@ public class ConstantsAdmin {
 
 		return result;
 
-	}
+	}*/
 
 	public static PersonaDTO obtenerPersonaId(long idPer, DataBaseManager mDBManager){
 		PersonaDTO per = new PersonaDTO();
@@ -741,7 +741,7 @@ public class ConstantsAdmin {
 		finalizarBD(mDBManager);
 		return per;
 	}
-
+/*
 	public static CategoriaDTO obtenerCategoriaPersonalId(long idCat, DataBaseManager mDBManager){
 		CategoriaDTO cat = new CategoriaDTO();
 		cat.setId(idCat);
@@ -755,7 +755,7 @@ public class ConstantsAdmin {
 		finalizarBD(mDBManager);
 		return cat;
 	}
-
+*/
 
 	private static List<TipoValorDTO> cursorToTipoValorDtos(Cursor cursor){
 		ArrayList<TipoValorDTO> result = new ArrayList<>();
@@ -1447,7 +1447,7 @@ public class ConstantsAdmin {
 		String[] campos;
 		if(lista != null){
 			Iterator<String> it = lista.iterator();
-			Long id;
+			Long id = null;
 			if(it.hasNext()){
 				linea = it.next();
 				campos = linea.split(PUNTO_COMA);
@@ -1591,12 +1591,12 @@ public class ConstantsAdmin {
 		String path = Environment.getExternalStorageDirectory().toString();
 		return path + File.separator + nombreDirectorio;
 	}
-
+/*
 	public static String obtenerPath(){
 		String path = Environment.getExternalStorageDirectory().toString();
 		return path + File.separator + folderCSV;
 	}
-
+*/
 	private static String obtenerCSVdeContactosEstetico(Activity context, String separador, List<CategoriaDTO> categoriasProtegidas, DataBaseManager mDBManager){
 		StringBuilder result = new StringBuilder();
 		PersonaDTO per;
@@ -1983,7 +1983,7 @@ public class ConstantsAdmin {
 
 		result.append(separador);
 		if(per.getApellido() != null && per.getNombres() != null){
-			result.append(per.getApellido().toUpperCase() + ", " + per.getNombres());
+			result.append(per.getApellido().toUpperCase()).append(", ").append(per.getNombres());
 		}else if(per.getApellido() != null){
 			result.append(per.getApellido().toUpperCase());
 		}else{
@@ -1996,7 +1996,7 @@ public class ConstantsAdmin {
 
 		masTVs = obtenerTelefonosIdPersona(per.getId(), mDBManager);
 		if(masTVs.size() > 0){
-			result.append(separador + "░ " + context.getResources().getString(R.string.label_telefonos) + separador + separador);
+			result.append(separador).append("░ ").append(context.getResources().getString(R.string.label_telefonos)).append(separador).append(separador);
 			it = masTVs.iterator();
 			while(it.hasNext()){
 				tv = it.next();
@@ -2009,7 +2009,7 @@ public class ConstantsAdmin {
 
 		masTVs = obtenerEmailsIdPersona(per.getId(), mDBManager);
 		if(masTVs.size() > 0) {
-			result.append(separador + "░ " + context.getResources().getString(R.string.label_mail) + separador + separador);
+			result.append(separador).append("░ ").append(context.getResources().getString(R.string.label_mail)).append(separador).append(separador);
 			it = masTVs.iterator();
 			while (it.hasNext()) {
 				tv = it.next();
@@ -2023,7 +2023,7 @@ public class ConstantsAdmin {
 
 		masTVs = obtenerDireccionesIdPersona(per.getId(), mDBManager);
 		if(masTVs.size() > 0) {
-			result.append(separador + "░ " + context.getResources().getString(R.string.label_direcciones) + separador + separador);
+			result.append(separador).append("░ ").append(context.getResources().getString(R.string.label_direcciones)).append(separador).append(separador);
 			it = masTVs.iterator();
 			while (it.hasNext()) {
 				tv = it.next();
@@ -2370,9 +2370,8 @@ public class ConstantsAdmin {
 					}
 					mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_TELEFONOS);
 				}else{// ES UN TELEFONO YA CARGADO EN KN, HAY QUE ACTUALIZARLO
-					Iterator<TipoValorDTO> itTemp = result.iterator();
-					while (itTemp.hasNext()){
-						mTipoValorTemp = itTemp.next();
+					for (TipoValorDTO aResult : result) {
+						mTipoValorTemp = aResult;
 						mTipoValor.setId(mTipoValorTemp.getId());
 						mTipoValor.setIdPersona(String.valueOf(id));
 						mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_TELEFONOS);
@@ -2407,9 +2406,8 @@ public class ConstantsAdmin {
 					}
 					mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_EMAILS);
 				}else{// ES UN MAIL YA CARGADO EN KN, HAY QUE ACTUALIZARLO
-					Iterator<TipoValorDTO> itTemp = result.iterator();
-					while (itTemp.hasNext()){
-						mTipoValorTemp = itTemp.next();
+					for (TipoValorDTO aResult : result) {
+						mTipoValorTemp = aResult;
 						mTipoValor.setId(mTipoValorTemp.getId());
 						mTipoValor.setIdPersona(String.valueOf(id));
 						mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_EMAILS);
@@ -2456,9 +2454,8 @@ public class ConstantsAdmin {
 					}
 					mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_DIRECCIONES);
 				}else{// ES UN MAIL YA CARGADO EN KN, HAY QUE ACTUALIZARLO
-					Iterator<TipoValorDTO> itTemp = result.iterator();
-					while (itTemp.hasNext()){
-						mTipoValorTemp = itTemp.next();
+					for (TipoValorDTO aResult : result) {
+						mTipoValorTemp = aResult;
 						mTipoValor.setId(mTipoValorTemp.getId());
 						mTipoValor.setIdPersona(String.valueOf(id));
 						mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_DIRECCIONES);
@@ -2686,7 +2683,7 @@ public class ConstantsAdmin {
 	private static List<CategoriaDTO> obtenerCategoriasProtegidas(Activity context, DataBaseManager mDBManager){
 		CursorLoader cursorLoader = null;
 		List<CategoriaDTO> categorias = new ArrayList<>();
-		cursorLoader = mDBManager.cursorLoaderCategoriasProtegidas(null, context);
+		cursorLoader = mDBManager.cursorLoaderCategoriasProtegidas(context);
 		//		cursor = mDBManager.fetchCategoriasActivasPorNombre(null);
 		if(cursorLoader != null){
 			//	startManagingCursor(cursor);
@@ -2886,7 +2883,7 @@ public class ConstantsAdmin {
 
 	public static final int ACTIVITY_EJECUTAR_SACAR_PHOTO = 25;
 
-
+/*
 	public static InputStream getInputStreamFromUri(ContentResolver cr, Uri uri){
 		InputStream fis = null;
 		try {
@@ -2896,7 +2893,7 @@ public class ConstantsAdmin {
 		}
 		return fis;
 
-	}
+	}*/
 
 	private static FileOutputStream getFileOutputStreamFromUri(ContentResolver cr, Uri uri){
 		OutputStream os = null;
@@ -2993,6 +2990,7 @@ public class ConstantsAdmin {
 		}
 	}
 
+	/*
 	private static void copyFiles(File src, File dst) throws IOException {
 		InputStream in = new FileInputStream(src);
 		try {
@@ -3014,14 +3012,14 @@ public class ConstantsAdmin {
 		finally {
 			in.close();
 		}
-	}
+	}*/
 
 	private static void deletePictureAndThumbnail(Uri selectedImageUri, ContentResolver cr) {
 		try {
 			String uri = getThumbnailPath(selectedImageUri, cr);
 			if (uri != null) {
 				File file = new File(uri);
-				if(file != null && file.exists()){
+				if(file.exists()){
 					file.delete();
 				}
 
@@ -3029,7 +3027,7 @@ public class ConstantsAdmin {
 			uri = getPicturePath(selectedImageUri, cr);
 			if (uri != null) {
 				File file = new File(uri);
-				if(file != null && file.exists()){
+				if(file.exists()){
 					file.delete();
 				}
 

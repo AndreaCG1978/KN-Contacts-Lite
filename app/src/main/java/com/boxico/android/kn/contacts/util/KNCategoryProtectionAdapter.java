@@ -26,7 +26,7 @@ import java.util.List;
 public class KNCategoryProtectionAdapter extends ArrayAdapter<CategoriaDTO> {
 
 	private ProteccionCategoriaActivity activity = null;
-	private boolean paraProteccion;
+	//private boolean paraProteccion;
 
 
 	public KNCategoryProtectionAdapter(Context context, int resourceId, int textViewResourceId,
