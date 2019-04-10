@@ -25,12 +25,12 @@ public class KNSimpleCustomAdapter extends SimpleAdapter {
 	private AltaPersonaActivity localContext = null;
 	private ArrayList<HashMap<String,Object>> data = null;
 	private static final String ID_TIPO_VALOR = "ID_TIPO_VALOR";
-	private static final String ID_PERSONA = "ID_VALOR";
+//	private static final String ID_PERSONA = "ID_VALOR";
 	private boolean habilitado = true;
-	private static final String VALOR = "VALOR";
-	private static final String TIPO = "TIPO";
+	//private static final String VALOR = "VALOR";
+	//private static final String TIPO = "TIPO";
 	private HashMap<Integer,String> datosEnLista = null;
-    private static final String ID_CAMPO = "idCampo";
+  //  private static final String ID_CAMPO = "idCampo";
 
     public HashMap<Integer,String> getDatosEnLista() {
         return datosEnLista;

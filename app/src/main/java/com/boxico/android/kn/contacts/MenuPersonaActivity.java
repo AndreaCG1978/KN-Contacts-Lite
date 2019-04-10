@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
@@ -45,7 +44,7 @@ public class MenuPersonaActivity extends Activity {
 	private void registrarWidgets(Dialog dialog){
 		PersonaDTO per;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		per = ConstantsAdmin.obtenerPersonaId(this, mPersonaSeleccionadaId, mDBManager);
+		per = ConstantsAdmin.obtenerPersonaId(mPersonaSeleccionadaId, mDBManager);
 		String nombre = "";
 		if(per.getApellido() != null && (per.getNombres() == null || per.getNombres().equals(""))){
 			nombre = per.getApellido();

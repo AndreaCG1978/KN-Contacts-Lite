@@ -46,17 +46,19 @@ public class AboutMeActivity extends Activity {
     }
     
     
-    private void abrirNavegadorConLink(){
-    	try {
-    		Intent intent = new Intent(Intent.ACTION_VIEW);
-    		intent.setData(Uri.parse("market://search?q=pub:" + getString(R.string.text_acerca_de_empresa)));
-    		startActivity(intent);
-			
-		} catch (Exception e) {
-			ConstantsAdmin.mostrarMensaje(this, getString(R.string.error_exportar_csv));
-		}
-    	 	
-    }
+// --Commented out by Inspection START (10/4/2019 08:41):
+//    private void abrirNavegadorConLink(){
+//    	try {
+//    		Intent intent = new Intent(Intent.ACTION_VIEW);
+//    		intent.setData(Uri.parse("market://search?q=pub:" + getString(R.string.text_acerca_de_empresa)));
+//    		startActivity(intent);
+//
+//		} catch (Exception e) {
+//			ConstantsAdmin.mostrarMensaje(this, getString(R.string.error_exportar_csv));
+//		}
+//
+//    }
+// --Commented out by Inspection STOP (10/4/2019 08:41)
 
     private void enviarMailGenerico(String text){
     	try {

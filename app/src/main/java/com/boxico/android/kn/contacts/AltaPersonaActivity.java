@@ -11,20 +11,15 @@ import java.util.Locale;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -861,7 +856,7 @@ public class AltaPersonaActivity extends Activity  {
 	private void cargarPersonaDto(String idPerString){
 		int idPer = Integer.valueOf(idPerString);
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-		mPersonaSeleccionada = ConstantsAdmin.obtenerPersonaId(this, idPer, mDBManager);
+		mPersonaSeleccionada = ConstantsAdmin.obtenerPersonaId(idPer, mDBManager);
 	}
 	
 	private void cargarEntriesConPersonaDto(){

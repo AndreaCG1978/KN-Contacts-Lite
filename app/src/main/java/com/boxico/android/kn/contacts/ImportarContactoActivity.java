@@ -15,7 +15,6 @@ import android.content.ContentUris;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -251,7 +250,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 					}
 
 					if (!family.equals("") || !given.equals("")) {
-						persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given, family, this);
+						persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given, family);
 						if (persona == null) {
 							persona = new PersonaDTO();
 						}
@@ -314,7 +313,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 					}
 					if (!family.equals("") || !given.equals("")) {
 
-						persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given, family, this);
+						persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given, family);
 						if (persona == null) {
 							persona = new PersonaDTO();
 						}
@@ -494,12 +493,12 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 
 	}
 
-
+/*
 	private void skipAll() {
 		this.finish();
 
 	}
-
+*/
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
@@ -642,7 +641,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 				family = (String) contactoActual.getValue();
 
 				if (family != null && !family.equals("") || given != null && !given.equals("")) {
-					persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given, family, this);
+					persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given, family);
 					if (persona == null) {
 						persona = new PersonaDTO();
 					}
@@ -914,9 +913,9 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		persona.setIdPersonaAgenda(contactId);
 
 //        if (tieneTelefonos) {
-		nuevosTelefonos = ConstantsAdmin.importarTelDeContacto(persona, contactId, this.getResources());
-		nuevosMails = ConstantsAdmin.importarMailDeContacto(persona, contactId, this.getResources());
-		nuevasDirecciones = ConstantsAdmin.importarDirDeContacto(persona, contactId, this.getResources());
+		nuevosTelefonos = ConstantsAdmin.importarTelDeContacto(contactId, this.getResources());
+		nuevosMails = ConstantsAdmin.importarMailDeContacto(contactId, this.getResources());
+		nuevasDirecciones = ConstantsAdmin.importarDirDeContacto(contactId, this.getResources());
 
 
 	}

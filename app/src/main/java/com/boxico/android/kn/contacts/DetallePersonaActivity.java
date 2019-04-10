@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -42,21 +41,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
 import com.boxico.android.kn.contacts.util.Asociacion;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
-
-import static com.boxico.android.kn.contacts.util.ConstantsAdmin.personaSeleccionada;
 
 
 public class DetallePersonaActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -1035,7 +1030,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		}
 	}
 
-	private boolean importarContacto(){
+	private void importarContacto(){
 		boolean ok = false;
 
         Cursor nameCur;
@@ -1047,7 +1042,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 
-		PersonaDTO perTemp = ConstantsAdmin.obtenerPersonaId(this, mPersonaSeleccionadaId, mDBManager);
+		PersonaDTO perTemp = ConstantsAdmin.obtenerPersonaId(mPersonaSeleccionadaId, mDBManager);
 
 		// SE ACTUALIZAN LOS DATOS BASICOS (APELLIDO Y NOMBRE)
         nameCurLoader = ConstantsAdmin.cursorPersonaExtra;
@@ -1073,9 +1068,9 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 		// OBTENGO LOS TELEFONOS, EMAILS Y DIRECCIONES DE LA AGENDA
 
-		ArrayList<TipoValorDTO> nuevosTelefonos = ConstantsAdmin.importarTelDeContacto(perTemp, mPersonaSeleccionadaIdAgenda, this.getResources());
-		ArrayList<TipoValorDTO> nuevosMails = ConstantsAdmin.importarMailDeContacto(perTemp, mPersonaSeleccionadaIdAgenda, this.getResources());
-		ArrayList<TipoValorDTO> nuevasDirecciones = ConstantsAdmin.importarDirDeContacto(perTemp, mPersonaSeleccionadaIdAgenda, this.getResources());
+		ArrayList<TipoValorDTO> nuevosTelefonos = ConstantsAdmin.importarTelDeContacto(mPersonaSeleccionadaIdAgenda, this.getResources());
+		ArrayList<TipoValorDTO> nuevosMails = ConstantsAdmin.importarMailDeContacto(mPersonaSeleccionadaIdAgenda, this.getResources());
+		ArrayList<TipoValorDTO> nuevasDirecciones = ConstantsAdmin.importarDirDeContacto(mPersonaSeleccionadaIdAgenda, this.getResources());
 
 		ConstantsAdmin.inicializarBD(mDBManager);
 
@@ -1100,7 +1095,6 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 		}
 		ConstantsAdmin.finalizarBD(mDBManager);
-		return ok;
 	}
 	
 	private void eliminarPhoto(){

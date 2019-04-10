@@ -99,7 +99,7 @@ public class KNSimpleCursorAdapter extends SimpleCursorAdapter {
 	public void bindView(View view, Context context, Cursor cursor) {
 		// TODO Auto-generated method stub
 		super.bindView(view, context, cursor);
-		boolean miniFoto = false;
+	//	boolean miniFoto = false;
 		TextView textApe = view.findViewById(R.id.rowApellido);
 		TextView textNom = view.findViewById(R.id.rowNombres);
 		TextView textDR	= view.findViewById(R.id.rowDatoRelevante);

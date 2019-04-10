@@ -4,8 +4,7 @@
   
 <string name="hint_apellido">COGNOME</string>
 <string name="hint_nombre">NOME</string>
-<string name="hint_telMovil">CELL</string>
-<string name="hint_descripcion">DESCRIZIONE</string>
+    <string name="hint_descripcion">DESCRIZIONE</string>
 <string name="hint_lugarOActividad"><![CDATA[ATTIVITÀ]]></string>
 <string name="hint_parentesco">PARENTELA</string>
 <string name="hint_empresa">AZIENDA</string>
@@ -13,17 +12,12 @@
 <string name="hint_rol">RUOLO</string>
 <string name="hint_obraSocial">ASSICURAZIONE</string>
 <string name="hint_zona">ZONA</string>
-<string name="hint_particular">PARTICOLARE</string>
-<string name="hint_laboral">LAVORO</string>
-<string name="hint_otro">ALTRI</string>
-<string name="hint_fechaNacimiento">NASCITA</string>
+    <string name="hint_fechaNacimiento">NASCITA</string>
 <string name="hint_categoria">CATEGORIA</string>
     <string name="hint_caracteristica">FUNZIONE</string>
 
-<string name="label_editarPersona">MODIFICA</string>
     <string name="label_fechaNacimiento">NASCITA</string>
-<string name="label_borrarPersona">ELIMINA</string>
-<string name="label_registrarPersona">SALVA</string>
+    <string name="label_registrarPersona">SALVA</string>
 <string name="label_si">SI</string>
 <string name="label_no">NO</string>
     <string name="label_llamada">CHIAMATA</string>
@@ -37,8 +31,7 @@
 <string name="label_emails">EMAIL</string>
 <string name="label_direcciones">INDIRIZZO</string>
 <string name="label_datosDeCategoria">CATEGORIA</string>
-<string name="label_misCategorias">MOSTRA MIE CATEGORIE</string>
-<string name="label_telefono">TELEFONO</string>
+    <string name="label_telefono">TELEFONO</string>
 <string name="label_email">E-MAIL</string>
 <string name="label_direccion">INDIRIZZO</string>	 
 
@@ -50,15 +43,12 @@
 <string name="menu_agregar_persona">Aggiungi contatto</string>
     <string name="menu_listar_categoria">Categorie</string>
 <string name="menu_importar_contactos">Importa contatti</string>
-<string name="menu_eliminar">Rimuovi contatto</string>
-<string name="menu_about_me">Su di me …</string>
-    <string name="menu_editar_o_eliminar">Modifica/Rimuovi</string>
+    <string name="menu_about_me">Su di me …</string>
 
-<string name="title_detallePersona">Dettagli </string>
+    <string name="title_detallePersona">Dettagli </string>
     <string name="title_acerca_de">Su di me…</string>
-<string name="title_nueva_categoria">Nuova categoria</string>
-     
-<string name="text_sinDatos">SENZA DATI</string>
+
+    <string name="text_sinDatos">SENZA DATI</string>
 
     <string name="cat_Paciente">Paziente</string>
 <string name="cat_Proveedor">Fornitore</string>
@@ -93,17 +83,13 @@
 <string name="errorEliminacionCategoria">Impossibile rimuovere la categoria.</string>
 <string name="errorActualizacionContacto">Impossibile aggiornare il contatto.</string>
 <string name="errorAltaContacto">Impossibile aggiungere il contatto.</string>
-<string name="errorAltaCategoria">Impossibile aggiungere la categoria.</string>
-<string name="errorActualizacionCategoria">Impossibile aggiornare la categoria.</string>   	
-<string name="errorImportarContacto">Impossibile importare dalla lista dei contatti.</string>
-<string name="errorSinContactosPorImportar"><![CDATA[Nessun contatto per l\'importazione…]]></string>
-<string name="errorEfectuarLlamada">Impossibile effettuare la chiamata.</string>
+    <string name="errorImportarContacto">Impossibile importare dalla lista dei contatti.</string>
+    <string name="errorEfectuarLlamada">Impossibile effettuare la chiamata.</string>
 <string name="errorMandarMensaje">Impossibile inviare il messaggio.</string>
 <string name="errorMandarMail"><![CDATA[Impossibile inviare l\'e-mail.]]></string>
 <string name="errorDesactivandoCategorias"><![CDATA[Non è possibile disattivare tutte le categorie.]]></string>
 <string name="error_alta_persona_incompleta"><![CDATA[È necessario completare il cognome …]]></string>
 <string name="error_alta_categoria_incompleta"><![CDATA[È necessario completare il nome della categoria e funzionalità …]]></string>
-<string name="error_alta_tipo_valor_incompleta"><![CDATA[È necessario completare tipo e valore.]]></string>
     <string name="error_sin_preferidos">Non ci sono contatti preferiti.</string>
 <string name="errorEliminacionPreferido">Impossibile rimuovere il contatto preferito.</string>	
 <string name="errorAgregarPreferido">Impossibile aggiungere il contatto preferito.</string>
@@ -112,16 +98,8 @@
 <string name="text_acerca_de_mail">knapps.mobile@gmail.com</string>	
 <string name="text_acerca_de">Realizzato da</string>
 <string name="text_acerca_de_sugerencia">Per qualsiasi commento, inviare un messaggio a:</string>
-<string name="text_acerca_de_verPublicaciones">-TUTTE LE PUBBLICAZIONI-</string>
 
-<string name="mensaje_error_tarjeta_solo_lectura"><![CDATA[L\'SD-CARD si trova in modalità di sola lettura.]]></string>
-<string name="mensaje_error_tarjeta_no_formato"><![CDATA[Errore, la SD-CARD non possono essere utilizzati, non in un formato accettato o non correttamente formattata.]]></string>
-<string name="mensaje_error_tarjeta_no_montada"><![CDATA[Errore, è necessario installare una scheda SD-CARD al tuo cellulare.]]></string>
-<string name="mensaje_error_tarjeta_shared"><![CDATA[Errore, la SD-CARD è condiviso. Scollegare il cavo USB e riprovare.]]></string>
-<string name="mensaje_error_tarjeta_unmountable"><![CDATA[Errore, la SD-CARD non può essere montato. \n Questo può essere perché è danneggiato o danneggiato.]]></string>
-<string name="mensaje_error_tarjeta_unmounted"><![CDATA[Errore, la SD-CARD è presente nel cellulare, ma non montati. Montarlo prima di utilizzare il programma.]]></string>
- 
-<string name="mensaje_exito_exportar_csv"><![CDATA[Contatti sono stati salvati con successo.]]></string>
+    <string name="mensaje_exito_exportar_csv"><![CDATA[Contatti sono stati salvati con successo.]]></string>
 <string name="mensaje_exito_importar_csv">Contatti sono stati recuperati con successo.</string>
 <string name="error_exportar_csv"><![CDATA[Il backup non può essere generato.]]></string>   	
 <string name="label_ok">Ok</string> 
@@ -129,8 +107,7 @@
 <string name="menu_importar_contactos_csv">Ripristina di backup</string>
 
 <string name="hint_tipo">TIPO</string>
-<string name="hint_nuevo_tipo">NUOVO TIPO</string>
-<string name="menu_exportar_contactos">Generazione di backup</string>
+    <string name="menu_exportar_contactos">Generazione di backup</string>
 <string name="menu_exportar_excel">Esporta in Excel</string>
 <string name="mensaje_exito_exportar_excel">Seleziona formato CSV:</string>
 
@@ -142,9 +119,8 @@
 
 <string name="coma_separated">formato USA/UK ( , )</string>
 <string name="puntocoma_separated">formato CSV/DSV ( ; )</string>
-<string name="help_busqueda"><![CDATA[RICERCA PER COGNOME, NOME, O DEI DATI ISCRITTI NELLA CATEGORIA DI CONTATTO.]]></string>
 
-<string name="mensaje_seleccione_actividad_categoria"><![CDATA[Categoria Gestione]]></string>
+    <string name="mensaje_seleccione_actividad_categoria"><![CDATA[Categoria Gestione]]></string>
 <string name="label_activar_categoria"><![CDATA[ABILITA]]></string>
 <string name="label_proteger_categoria"><![CDATA[PROTEGGERE]]></string>
 
@@ -178,29 +154,18 @@
 
 <string name="mensaje_debe_ingresar_mail"><![CDATA[Inserisci un indirizzo email per inviare la tua password.]]></string>
 <string name="label_categorias"><![CDATA[CATEGORIE]]></string>
-<string name="label_categorias_personales"><![CDATA[MIE CATEGORIE]]></string>
-<string name="label_categoriasFijas"><![CDATA[MOSTRA CATEGORIE]]></string>
-<string name="label_agregar_categoria"><![CDATA[AGGIUNGI]]></string>
-<string name="label_mail"><![CDATA[EMAIL]]></string>
+    <string name="label_mail"><![CDATA[EMAIL]]></string>
 <string name="label_nuevo_contacto"><![CDATA[Nuovo contatto]]></string>
 <string name="label_agregar"><![CDATA[AGGIUNGI]]></string>
 <string name="label_contacto_existente"><![CDATA[(Contatto esistente -]]></string>
 <string name="label_actualizar"><![CDATA[AGGIORNA]]></string>
 <string name="mensaje_importar_todo_1"><![CDATA[Tutti i nuovi contatti verranno importati come:]]></string>
 <string name="mensaje_importar_todo_2"><![CDATA[. Contatti esistenti verranno aggiornati (Numeri di telefono, e-mail e indirizzi). Continuare?]]></string>
-    <string name="label_anterior"><![CDATA[«▒]]></string>
-    <string name="label_siguiente"><![CDATA[▒»]]></string>
-<string name="label_agregar_todos"><![CDATA[AGGIUNGI TUTTI]]></string>
-<string name="label_omitir_todos"><![CDATA[SALTA TUTTI]]></string>
-<string name="label_preferidos"><![CDATA[FAVORITI]]></string>
-<string name="hint_busqueda">CERCA</string>
+    <string name="label_agregar_todos"><![CDATA[AGGIUNGI TUTTI]]></string>
+    <string name="hint_busqueda">CERCA</string>
 
-<string name="label_ver_detalle"><![CDATA[VEDI DETTAGLIO]]></string>
-<string name="label_enviar_info"><![CDATA[INVIA A]]></string>
-<string name="menu_editar_persona">Edit Contact</string>
+    <string name="menu_editar_persona">Edit Contact</string>
     <string name="hint_contrasenia">********</string>
-    <string name="blank">%d</string>
-    <string name="groupIndicator"><![CDATA[>]]></string>
     <string name="label_wsp">WhatsApp</string>
     <string name="mensaje_pregunta_importar_contacto"><![CDATA[I dati del contatto verranno importati dalla Rubrica del telefono (quelli esistenti sono conservati). Vuoi continuare?]]></string>
     <string name="mensaje_sin_contactos"><![CDATA[Inizia la registrazione dei contatti da:]]></string>

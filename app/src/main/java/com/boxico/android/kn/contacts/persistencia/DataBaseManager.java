@@ -1214,12 +1214,11 @@ public class DataBaseManager {
      }*/
 
 	public CursorLoader cursorLoaderCategoriasProtegidas(String paramNombre, Context context) {
-		String selection = null;
+/*		String selection = null;
 		if(paramNombre != null && !paramNombre.equals("")){
-			// result = mDb.query(ConstantsAdmin.TABLA_CATEGORIA, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA, ConstantsAdmin.KEY_CATEGORIA_ACTIVA, ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA},"(" + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%') AND (" + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " = 1)", null, null, null, null);
 			selection  = ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " LIKE '%" + paramNombre + "%'";
 		}
-
+*/
 		return new CursorLoader( context, null, new String[] {ConstantsAdmin.KEY_ROWID, ConstantsAdmin.KEY_NOMBRE_CATEGORIA}, null, null, null)
 		{
 			@Override

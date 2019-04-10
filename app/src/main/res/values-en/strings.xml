@@ -4,8 +4,7 @@
   
 <string name="hint_apellido">LAST NAME</string>
 <string name="hint_nombre">FIRST NAME</string>
-<string name="hint_telMovil">MOBILE</string>
-<string name="hint_descripcion">DESCRIPTION</string>
+    <string name="hint_descripcion">DESCRIPTION</string>
 <string name="hint_lugarOActividad">ACTIVITY</string>
 <string name="hint_parentesco">KINSHIP</string>
 <string name="hint_empresa">COMPANY</string>
@@ -13,17 +12,12 @@
 <string name="hint_rol">ROLE</string>
 <string name="hint_obraSocial">MEDICAL INSURANCE</string>
 <string name="hint_zona">ZONE</string>
-<string name="hint_particular">HOME</string>
-<string name="hint_laboral">WORK</string>
-<string name="hint_otro">OTHER</string>
-<string name="hint_fechaNacimiento">BIRTHDATE</string>
+    <string name="hint_fechaNacimiento">BIRTHDATE</string>
 <string name="hint_categoria">CATEGORY</string>
     <string name="hint_caracteristica">FEATURE</string>
 
-<string name="label_editarPersona">EDIT</string>
     <string name="label_fechaNacimiento">BIRTHDATE</string>
-<string name="label_borrarPersona">DELETE</string>
-<string name="label_registrarPersona">SAVE</string>
+    <string name="label_registrarPersona">SAVE</string>
 <string name="label_si">YES</string>
 <string name="label_no">NO</string>
     <string name="label_llamada">CALL</string>
@@ -35,8 +29,7 @@
 <string name="label_emails">EMAILS</string>
 <string name="label_direcciones">ADDRESSES</string>
 <string name="label_datosDeCategoria">CATEGORY</string>
-<string name="label_misCategorias">SHOW MY CATEGORIES</string>
-<string name="label_telefono">PHONE</string>
+    <string name="label_telefono">PHONE</string>
 <string name="label_email">E-MAIL</string>
 <string name="label_direccion">ADDRESS</string>	
 
@@ -47,15 +40,12 @@
 <string name="menu_agregar_persona">Add Contact</string>
     <string name="menu_listar_categoria">Categories</string>
 <string name="menu_importar_contactos">Import Contacts</string>
-<string name="menu_eliminar">Remove Contact</string>
-<string name="menu_about_me">About me…</string>
-    <string name="menu_editar_o_eliminar">Edit/Remove</string>
+    <string name="menu_about_me">About me…</string>
 
-<string name="title_detallePersona">Details </string>
+    <string name="title_detallePersona">Details </string>
     <string name="title_acerca_de">About me…</string>
-<string name="title_nueva_categoria">New Category</string>
-     
-<string name="text_sinDatos">WITHOUT DATA</string>
+
+    <string name="text_sinDatos">WITHOUT DATA</string>
 
     <string name="cat_Paciente">Patient</string>
 <string name="cat_Proveedor">Provider</string>
@@ -89,12 +79,9 @@
 <string name="errorEliminacionContacto">Failed to remove the Contact.</string>
 <string name="errorEliminacionCategoria">Failed to remove the Category.</string>
 <string name="errorActualizacionContacto">Failed to update the Contact.</string>
-<string name="errorAltaCategoria">Failed to add the Category.</string>
-<string name="errorActualizacionCategoria">Failed to update the Category.</string>
-<string name="errorAltaContacto">Failed to add the Contact.</string>
+    <string name="errorAltaContacto">Failed to add the Contact.</string>
 <string name="errorImportarContacto">Failed to import from Contact List.</string>
-<string name="errorSinContactosPorImportar">There is not Contacts to import…</string>
-<string name="errorEfectuarLlamada">Failed to make the call.</string>
+    <string name="errorEfectuarLlamada">Failed to make the call.</string>
 <string name="errorMandarMensaje">Failed to send the message.</string>
 <string name="errorMandarMail">Failed to send the email.</string>
 <string name="errorDesactivandoCategorias">You can not deactivate all Categories.</string>
@@ -108,16 +95,8 @@
 <string name="text_acerca_de_mail">knapps.mobile@gmail.com</string>	
 <string name="text_acerca_de">Made by</string>
 <string name="text_acerca_de_sugerencia">For comments, send a message to:</string>
-<string name="text_acerca_de_verPublicaciones">-ALL PUBLICATIONS-</string>
-   	
-<string name="mensaje_error_tarjeta_solo_lectura">The SD-CARD is in read-only mode.</string>
-<string name="mensaje_error_tarjeta_no_formato">Error, the SD-CARD cannot be used, not in a format accepted or not properly formatted.</string>
-<string name="mensaje_error_tarjeta_no_montada">Error, you need to install an SD-CARD to your mobile.</string>
-<string name="mensaje_error_tarjeta_shared">Error, the SD-CARD is being shared. Disconnect the USB cable and try again.</string>
-<string name="mensaje_error_tarjeta_unmountable">Error, the SD-CARD cannot be mounted. \n This may be because is corrupted or damaged.</string>
-<string name="mensaje_error_tarjeta_unmounted">Error, the SD-CARD is present in the mobile but not mounted. Mount it before using the program.</string>
- 
-<string name="mensaje_exito_exportar_csv">Contacts have been successfully safeguarded.</string>
+
+    <string name="mensaje_exito_exportar_csv">Contacts have been successfully safeguarded.</string>
 <string name="mensaje_exito_importar_csv">Contacts have been successfully recovered.</string>
 <string name="mensaje_exportando_contactos">Safeguarding Contacts…</string>
 <string name="mensaje_importando_contactos">Recovering Contacts…</string>
@@ -129,12 +108,10 @@
 
 
 <string name="error_exportar_csv">Failed to generate the Contacts backup.</string>
-<string name="error_alta_tipo_valor_incompleta">You must complete type and value.</string>
 
-<string name="hint_tipo">TYPE</string>
-<string name="hint_nuevo_tipo">NEW TYPE</string>
+    <string name="hint_tipo">TYPE</string>
 
-<string name="label_ok">OK</string>
+    <string name="label_ok">OK</string>
 
 <string name="mensaje_importar_contactos_csv"><![CDATA[There will be restoring the last backup performed. Want to continue? (It may take several seconds …)]]></string>
 <string name="mensaje_exportar_contactos"><![CDATA[Your contacts will be backed up (if a copy exists, it will be replaced). Do you wish to continue?]]></string>
@@ -143,10 +120,9 @@
 
 <string name="coma_separated">USA/UK CSV file ( , )</string>
 <string name="puntocoma_separated">CSV/DSV file ( ; )</string>
-<string name="help_busqueda"><![CDATA[SEARCH BY LAST NAME, NAME, OR ANY DATA ENTERED IN THE CATEGORY OF CONTACT.]]></string>
 
 
-<string name="mensaje_seleccione_actividad_categoria"><![CDATA[Category Management]]></string>
+    <string name="mensaje_seleccione_actividad_categoria"><![CDATA[Category Management]]></string>
 <string name="label_activar_categoria"><![CDATA[ACTIVATE]]></string>
 <string name="label_proteger_categoria"><![CDATA[PROTECT]]></string>
 
@@ -180,29 +156,18 @@
 
 <string name="mensaje_debe_ingresar_mail"><![CDATA[Enter an email to send your password.]]></string>
 <string name="label_categorias"><![CDATA[CATEGORIES]]></string>
-<string name="label_categorias_personales"><![CDATA[MY CATEGORIES]]></string>
-<string name="label_categoriasFijas"><![CDATA[SHOW CATEGORIES]]></string>
-<string name="label_agregar_categoria"><![CDATA[ADD]]></string>
-<string name="label_mail"><![CDATA[EMAIL]]></string>
+    <string name="label_mail"><![CDATA[EMAIL]]></string>
 <string name="label_nuevo_contacto"><![CDATA[New Contact]]></string>
 <string name="label_agregar"><![CDATA[ADD]]></string>
 <string name="label_contacto_existente"><![CDATA[(Existing Contact -]]></string>
 <string name="label_actualizar"><![CDATA[UPDATE]]></string>
 <string name="mensaje_importar_todo_1"><![CDATA[All new contacts will be imported as:]]></string>
 <string name="mensaje_importar_todo_2"><![CDATA[. Existing contacts will be updated (telephone numbers, emails and addresses). Continue?]]></string>
-    <string name="label_anterior"><![CDATA[«▒]]></string>
-    <string name="label_siguiente"><![CDATA[▒»]]></string>
-<string name="label_agregar_todos"><![CDATA[ADD ALL]]></string>
-<string name="label_omitir_todos"><![CDATA[SKIP ALL]]></string>
-<string name="label_preferidos"><![CDATA[FAVOURITES]]></string>
-<string name="hint_busqueda">SEARCH</string>
+    <string name="label_agregar_todos"><![CDATA[ADD ALL]]></string>
+    <string name="hint_busqueda">SEARCH</string>
 
-<string name="label_ver_detalle"><![CDATA[VIEW DETAILS]]></string>
-<string name="label_enviar_info"><![CDATA[SEND TO]]></string>
-<string name="menu_editar_persona">Edit Contact</string>
+    <string name="menu_editar_persona">Edit Contact</string>
     <string name="hint_contrasenia">********</string>
-    <string name="blank">%d</string>
-    <string name="groupIndicator"><![CDATA[>]]></string>
     <string name="label_wsp">WhatsApp</string>
     <string name="mensaje_pregunta_importar_contacto">The contact data will be imported from the Contacts Diary of your mobile (the existing data are preserved). Do you wish to continue?</string>
     <string name="mensaje_sin_contactos">Begin contact loading from:</string>

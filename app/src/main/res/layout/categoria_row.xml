@@ -29,8 +29,8 @@
 		android:textColor="@color/color_gris_claro"/>
 
 
-	<LinearLayout android:id="@+id/linearDatos"
-		android:layout_width="wrap_content" android:layout_height="match_parent"
+	<LinearLayout
+        android:layout_width="wrap_content" android:layout_height="match_parent"
 		android:orientation="horizontal"
 		android:gravity="end"
 		android:layout_margin="1dp">

@@ -11,9 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -36,15 +33,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.net.UrlQuerySanitizer;
 import android.os.Environment;
-import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.CursorLoader;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +58,7 @@ import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
 import android.support.v4.content.ContextCompat;
 
 public class ConstantsAdmin {
-	public static final String KEY_FOTO = "foto";
+//	public static final String KEY_FOTO = "foto";
 	public static String phoneNumberTemp = "";
 
     // CONSTANTES DE LA BASE DE DATOS
@@ -622,9 +615,9 @@ public class ConstantsAdmin {
 	public static final int ACTIVITY_EJECUTAR_ELIMINAR_CONTACTO=6;
 	public static final int ACTIVITY_LLAMAR_CONTACTO = 7;
 	public static final int ACTIVITY_EJECUTAR_ABOUT_ME = 8;
-	public static final int ACTIVITY_EJECUTAR_MIS_CATEGORIAS = 9;
-	public static final int ACTIVITY_EJECUTAR_ALTA_CATEGORIA=10;
-	public static final int ACTIVITY_EJECUTAR_EDITAR_CATEGORIA=11;
+	// --Commented out by Inspection (10/4/2019 08:41):public static final int ACTIVITY_EJECUTAR_MIS_CATEGORIAS = 9;
+	// --Commented out by Inspection (10/4/2019 08:41):public static final int ACTIVITY_EJECUTAR_ALTA_CATEGORIA=10;
+	// --Commented out by Inspection (10/4/2019 08:41):public static final int ACTIVITY_EJECUTAR_EDITAR_CATEGORIA=11;
 	//  public static final int ACTIVITY_EJECUTAR_ELIMINAR_CATEGORIA=12;
 	public static final int ACTIVITY_EJECUTAR_EDICION_TELEFONO=13;
 	public static final int ACTIVITY_EJECUTAR_ALTA_TELEFONO=14;
@@ -657,13 +650,13 @@ public class ConstantsAdmin {
 	public static final String KEY_ESTAN_DETALLADOS = "estanDetallados";
 	public static final String KEY_LISTA_EXPANDIDA = "listaExpandida";
 	public static final String KEY_MUESTRA_PREFERIDOS = "muestraPreferidos";
-
+/*
 	public static final String TIPO_ELEMENTO = "tipoElemento";
 	public static final String TIPO_TELEFONO = "tipoTelefono";
 	public static final String TIPO_EMAIL = "tipoEmail";
 	public static final String TIPO_DIRECCION = "tipoDireccion";
 
-
+*/
 
 	public static List<CategoriaDTO> categoriasCursorToDtos(Cursor cursor){
 		ArrayList<CategoriaDTO> result = new ArrayList<>();
@@ -735,7 +728,7 @@ public class ConstantsAdmin {
 
 	}
 
-	public static PersonaDTO obtenerPersonaId(Activity context, long idPer, DataBaseManager mDBManager){
+	public static PersonaDTO obtenerPersonaId(long idPer, DataBaseManager mDBManager){
 		PersonaDTO per = new PersonaDTO();
 		per.setId(idPer);
 		Cursor perCursor;
@@ -806,7 +799,7 @@ public class ConstantsAdmin {
 		return result;
 	}
 
-
+/*
 	private static List<TipoValorDTO> obtenerTipoValorDtosIdPersona(long id, String tipo, String tablaName,  DataBaseManager mDBManager){
 		Cursor cur;
 		List<TipoValorDTO> result;
@@ -819,7 +812,7 @@ public class ConstantsAdmin {
 		finalizarBD(mDBManager);
 		return result;
 	}
-
+*/
 
 	private static CategoriaDTO cursorToCategoriaDto(Cursor catCursor){
 		String temp;
@@ -918,7 +911,7 @@ public class ConstantsAdmin {
 	}
 
 
-	public static PersonaDTO obtenerPersonaConNombreYApellido(String name, String apellido, Activity context){
+	public static PersonaDTO obtenerPersonaConNombreYApellido(String name, String apellido){
 		Cursor cursor;
 		CursorLoader cursorLoader = null;
 		PersonaDTO per = null;
@@ -1030,9 +1023,9 @@ public class ConstantsAdmin {
 		t.show();
 	}
 
-	public static TipoValorDTO tipoValorSeleccionado = null;
+	/*public static TipoValorDTO tipoValorSeleccionado = null;
 	public static TipoValorDTO tipoValorAnteriorSeleccionado = null;
-	public static ArrayList<String> tiposValores = null;
+	public static ArrayList<String> tiposValores = null;*/
 	public static PersonaDTO personaSeleccionada = null;
 
 	public static ArrayList<TipoValorDTO> telefonosARegistrar = null;
@@ -1084,7 +1077,7 @@ public class ConstantsAdmin {
 	private static final String fileCSV = ".kncontacts.csv";
 
 
-	public static boolean existsBackupFile(Activity context){
+	public static boolean existsBackupFile(){
 		File file = obtenerFileCSV();
 		return file != null && file.exists();
 	}
@@ -1094,9 +1087,9 @@ public class ConstantsAdmin {
 		File file;
 		mensaje = context.getString(R.string.error_importar_csv);
 		try {
-			if(existsBackupFile(context)) {
+			if(existsBackupFile()) {
 				file = obtenerFileCSV();
-				body = obtenerContenidoArchivo(file, context);
+				body = obtenerContenidoArchivo(file);
 				procesarStringDatos(context, body, mDBManager);
 				mensaje = context.getString(R.string.mensaje_exito_importar_csv);
 			}
@@ -1479,7 +1472,7 @@ public class ConstantsAdmin {
 		return pass;
 	}
 
-	private static String obtenerContenidoArchivo(File file, Activity context)throws IOException{
+	private static String obtenerContenidoArchivo(File file)throws IOException{
 		// ACA DEBERIA CARGAR EL CONTENIDO DEL ARCHIVO PASADO COMO PARAMETRO, HACER LOS CONTROLES DE LECTURA
 		String line;
 		StringBuilder result = new StringBuilder();
@@ -1507,9 +1500,9 @@ public class ConstantsAdmin {
 	}
 
 	public static void exportarCSV(Activity context, DataBaseManager mDBManager){
-		Asociacion canStore;
+		/*Asociacion canStore;
 		Boolean boolValue;
-		String msg;
+		String msg;*/
 		String body;
 		try
 		{
@@ -1530,9 +1523,9 @@ public class ConstantsAdmin {
 	}
 
 	public static void exportarCSVEstetico(Activity context, String separador, List<CategoriaDTO> categoriasProtegidas, DataBaseManager mDBManager){
-		Asociacion canStore;
+		/*Asociacion canStore;
 		Boolean boolValue;
-		String msg;
+		String msg;*/
 		String body;
 		try
 		{
@@ -1629,7 +1622,7 @@ public class ConstantsAdmin {
 		List<PersonaDTO> personas = obtenerTodasLasPersonas(context, mDBManager);
 		for (PersonaDTO persona : personas) {
 			per = persona;
-			result.append(obtenerStringPersona(per, context, mDBManager));
+			result.append(obtenerStringPersona(per, mDBManager));
 		}
 
 
@@ -1704,7 +1697,7 @@ public class ConstantsAdmin {
 
 
 
-	private static String obtenerStringPersona(PersonaDTO per, Activity context, DataBaseManager mDBManager){
+	private static String obtenerStringPersona(PersonaDTO per, DataBaseManager mDBManager){
 		StringBuilder result = new StringBuilder();
 		List<TipoValorDTO> masTVs;
 		TipoValorDTO tv;
@@ -1854,7 +1847,7 @@ public class ConstantsAdmin {
 
 	}
 
-	public static String encodeTobase64(Bitmap image) {
+	private static String encodeTobase64(Bitmap image) {
 		Bitmap immagex = image;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		immagex.compress(Bitmap.CompressFormat.JPEG, 80, baos);
@@ -1863,7 +1856,7 @@ public class ConstantsAdmin {
 		return imageEncoded;
 	}
 
-	public static Bitmap decodeBase64(String input) {
+	private static Bitmap decodeBase64(String input) {
 		byte[] decodedByte = Base64.decode(input, 0);
 		return BitmapFactory.decodeByteArray(decodedByte,0,decodedByte.length);
 	}
@@ -2217,10 +2210,10 @@ public class ConstantsAdmin {
 	public static final String COMA = ",";
 	private static final String FIN = "#F#";
 	private static final String CAMPO_NULO = "###";
-	private static final String PARTICULAR = "PARTICULAR";
-	private static final String LABORAL = "LABORAL";
-	private static final String OTRO = "OTRO";
-	private static final String MOVIL = "MOVIL";
+//	private static final String PARTICULAR = "PARTICULAR";
+//	private static final String LABORAL = "LABORAL";
+//	private static final String OTRO = "OTRO";
+//	private static final String MOVIL = "MOVIL";
 	private static final String SEPARACION_ATRIBUTO = ":";
 	private static final String HEAD_PERSONA = "$$PE";
 	private static final String HEAD_CATEGORIA = "$$C";
@@ -2253,15 +2246,14 @@ public class ConstantsAdmin {
 	}
 
 
-	public static File obtenerFile(String fileName){
+	private static File obtenerFile(String fileName){
 
 		String path = obtenerPath(ConstantsAdmin.folderCSV);
 
 		File dir = new File(path);
 		dir.mkdir();
 
-		File file = new File(dir.getPath(), fileName);
-	/*	if(!file.exists()){
+		/*	if(!file.exists()){
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
@@ -2274,7 +2266,7 @@ public class ConstantsAdmin {
 	/*
 		String path = obtenerPath(folderCSV);
 		backup = new File(path + File.separator + fileName);*/
-		return file;
+		return new File(dir.getPath(), fileName);
 	}
 
 
@@ -2324,7 +2316,7 @@ public class ConstantsAdmin {
 		finalizarBD(mDBManager);
 		return id;
 	}
-
+/*
 	public static void eliminarTelefono(TipoValorDTO tv, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.eliminarTelefono(tv.getId());
@@ -2353,7 +2345,7 @@ public class ConstantsAdmin {
 		inicializarBD(mDBManager);
 		mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_TELEFONOS);
 		finalizarBD(mDBManager);
-	}
+	}*/
 
 	public static void crearTelefonos(ArrayList<TipoValorDTO> tels, long id, DataBaseManager mDBManager){
 		TipoValorDTO mTipoValor = null;
@@ -2428,7 +2420,7 @@ public class ConstantsAdmin {
 		//	finalizarBD(mDBManager);
 		}
 	}
-
+/*
 	public static void crearEmail(TipoValorDTO mTipoValor, DataBaseManager mDBManager){
 		inicializarBD(mDBManager);
 		mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_EMAILS);
@@ -2440,7 +2432,7 @@ public class ConstantsAdmin {
 		mDBManager.createTipoValor(mTipoValor, ConstantsAdmin.TABLA_DIRECCIONES);
 		finalizarBD(mDBManager);
 	}
-
+*/
 	public static void crearDirecciones(ArrayList<TipoValorDTO> dirs, long id, DataBaseManager mDBManager){
 		TipoValorDTO mTipoValor = null;
 		TipoValorDTO mTipoValorTemp = null;
@@ -2906,7 +2898,7 @@ public class ConstantsAdmin {
 
 	}
 
-	public static FileOutputStream getFileOutputStreamFromUri(ContentResolver cr, Uri uri){
+	private static FileOutputStream getFileOutputStreamFromUri(ContentResolver cr, Uri uri){
 		OutputStream os = null;
 		FileOutputStream fos = null;
 		try {
@@ -2968,12 +2960,14 @@ public class ConstantsAdmin {
 
 	}
 
-	public static void copyFiles(String srcPath, String dstPath) throws IOException {
-		File srcFile = new File(srcPath);
-		File dstFile = new File(dstPath);
-		copyFiles(srcFile, dstFile);
-
-	}
+// --Commented out by Inspection START (10/4/2019 08:41):
+//	public static void copyFiles(String srcPath, String dstPath) throws IOException {
+//		File srcFile = new File(srcPath);
+//		File dstFile = new File(dstPath);
+//		copyFiles(srcFile, dstFile);
+//
+//	}
+// --Commented out by Inspection STOP (10/4/2019 08:41)
 
 	public static void copyFiles(String srcPath, Uri dst, ContentResolver cr) throws IOException {
 		File src = new File(srcPath);
@@ -2999,7 +2993,7 @@ public class ConstantsAdmin {
 		}
 	}
 
-	public static void copyFiles(File src, File dst) throws IOException {
+	private static void copyFiles(File src, File dst) throws IOException {
 		InputStream in = new FileInputStream(src);
 		try {
 			OutputStream out = new FileOutputStream(dst);
@@ -3136,7 +3130,7 @@ public class ConstantsAdmin {
 		// TODO Auto-generated method stub
 
 		String result;
-		PersonaDTO per = obtenerPersonaId(activity, id, mDBManager);
+		PersonaDTO per = obtenerPersonaId(id, mDBManager);
 		result = obtenerStringEsteticoPersonaParaEnviar(per, activity, mDBManager);
 		return result;
 	}
@@ -3162,7 +3156,7 @@ public class ConstantsAdmin {
 	}
 
 
-	public static void crearNuevoTel(String phoneNumber, int phoneType, String labelTemp, Cursor phones, ArrayList<TipoValorDTO> nuevosTels, Resources res){
+	private static void crearNuevoTel(String phoneNumber, int phoneType, String labelTemp, ArrayList<TipoValorDTO> nuevosTels, Resources res){
 		TipoValorDTO nuevoTipo = new TipoValorDTO();
 		nuevoTipo.setValor(phoneNumber);
 		String label = res.getString(ContactsContract.CommonDataKinds.Phone.getTypeLabelResource(phoneType));
@@ -3174,7 +3168,7 @@ public class ConstantsAdmin {
 
 	}
 
-	public static void crearNuevoEmail(String mail, int mailType, String labelTemp, Cursor mails, ArrayList<TipoValorDTO> nuevosMails, Resources res){
+	private static void crearNuevoEmail(String mail, int mailType, String labelTemp, ArrayList<TipoValorDTO> nuevosMails, Resources res){
 		TipoValorDTO nuevoTipo = new TipoValorDTO();
 		nuevoTipo.setValor(mail);
 
@@ -3187,7 +3181,7 @@ public class ConstantsAdmin {
 		nuevosMails.add(nuevoTipo);
 	}
 
-	public static void crearNuevaDireccion(String dir, int dirType, String labelTemp, Cursor dirs, ArrayList<TipoValorDTO> nuevasDirs, Resources res){
+	private static void crearNuevaDireccion(String dir, int dirType, String labelTemp, ArrayList<TipoValorDTO> nuevasDirs, Resources res){
 		TipoValorDTO nuevoTipo = new TipoValorDTO();
 		nuevoTipo.setValor(dir);
 
@@ -3201,7 +3195,7 @@ public class ConstantsAdmin {
 	}
 
 
-	public static ArrayList<TipoValorDTO> importarTelDeContacto(PersonaDTO per, String contactId, Resources res){
+	public static ArrayList<TipoValorDTO> importarTelDeContacto(String contactId, Resources res){
 		String phoneNumber;
 		int phoneType;
 		CursorLoader nameCurLoader;
@@ -3214,7 +3208,7 @@ public class ConstantsAdmin {
 		nameCurLoader.setSelection(ConstantsAdmin.querySelectionPhoneContactsById + contactId);
 		nameCurLoader.reset();
 		Cursor phones = nameCurLoader.loadInBackground();
-		TipoValorDTO nuevoTipo = null;
+		//TipoValorDTO nuevoTipo = null;
 		String label = null;
 
 //    		Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projectionPhone ,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,null, null);
@@ -3268,7 +3262,7 @@ public class ConstantsAdmin {
 							}
 							break;
 						default:*/
-					ConstantsAdmin.crearNuevoTel(phoneNumber, phoneType, label, phones, nuevosTels, res);
+					ConstantsAdmin.crearNuevoTel(phoneNumber, phoneType, label, nuevosTels, res);
 							//	per.set(phoneNumber);
 						//	break;
 				//	}
@@ -3284,7 +3278,7 @@ public class ConstantsAdmin {
 
 	}
 
-	public static ArrayList<TipoValorDTO> importarMailDeContacto(PersonaDTO per, String contactId, Resources res) {
+	public static ArrayList<TipoValorDTO> importarMailDeContacto(String contactId, Resources res) {
 
 
 		String email;
@@ -3343,7 +3337,7 @@ public class ConstantsAdmin {
 							break;
 
 						default:*/
-					ConstantsAdmin.crearNuevoEmail(email, mailType, label, mails, nuevosMails, res);
+					ConstantsAdmin.crearNuevoEmail(email, mailType, label, nuevosMails, res);
 							//	per.set(phoneNumber);
 						//	break;
 				//	}
@@ -3356,7 +3350,7 @@ public class ConstantsAdmin {
 		return nuevosMails;
 	}
 
-	public static ArrayList<TipoValorDTO> importarDirDeContacto(PersonaDTO per, String contactId, Resources res) {
+	public static ArrayList<TipoValorDTO> importarDirDeContacto(String contactId, Resources res) {
 
 		String dir;
 		String label = null;
@@ -3403,7 +3397,7 @@ public class ConstantsAdmin {
 							break;
 
 						default:*/
-					ConstantsAdmin.crearNuevaDireccion(dir, dirType, label, dirs, nuevasDirs, res);
+					ConstantsAdmin.crearNuevaDireccion(dir, dirType, label, nuevasDirs, res);
 							//	per.set(phoneNumber);
 						//	break;
 					//}

@@ -31,8 +31,8 @@
 				android:layout_marginLeft="35dp"
 				android:layout_marginStart="35dp" />
 
-			<ImageButton android:id="@+id/buttonMoreOrLess"
-				android:layout_width="32dp" android:layout_height="32dp"
+			<ImageButton
+                android:layout_width="32dp" android:layout_height="32dp"
 				android:background="@drawable/more_desc_contact"
 				android:contentDescription="buttonMoreOrLess"
 				android:visibility="gone"

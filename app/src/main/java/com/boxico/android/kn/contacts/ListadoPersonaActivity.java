@@ -19,7 +19,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -52,7 +51,6 @@ import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.CategoriaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.ConfigDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
-import com.boxico.android.kn.contacts.util.Asociacion;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 import com.boxico.android.kn.contacts.util.ExpandableListFragment;
 import com.boxico.android.kn.contacts.util.KNSimpleCursorAdapter;
@@ -312,7 +310,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		if((personasMap == null || personasMap.size() == 0)&&(!ConstantsAdmin.config.isMuestraPreferidos())) {
 			boolean existsBU = false;
 			int size;
-			if (ConstantsAdmin.existsBackupFile(this)) {
+			if (ConstantsAdmin.existsBackupFile()) {
 				existsBU = true;
 				size = 3;
 			} else {
@@ -660,8 +658,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 							tv.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
 							//tv.setCompoundDrawablePadding(3);
 							//	Bitmap big = Bitmap.createScaledBitmap(b, 300, 350, true);
-							Bitmap big = b;
-							final Drawable iconBig = new BitmapDrawable(getResources(), big);
+							final Drawable iconBig = new BitmapDrawable(getResources(), b);
 							muestraFoto = true;
 							tv.setOnTouchListener(new View.OnTouchListener() {
 								@Override
@@ -1031,7 +1028,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 				Intent i = new Intent(me, DetallePersonaActivity.class);
 				per = (Cursor)listaEspecial.getAdapter().getItem(arg2);
 				long id = per.getLong(0);
-				personaSeleccionada = ConstantsAdmin.obtenerPersonaId(me, id, mDBManager);
+				personaSeleccionada = ConstantsAdmin.obtenerPersonaId(id, mDBManager);
 
 				askForReadContactsPermission(id);
 				/*
@@ -1087,7 +1084,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	private void eliminarPersonaDialog(){
 		try {
 			DataBaseManager mDBManager = DataBaseManager.getInstance(this);
-			PersonaDTO per = ConstantsAdmin.obtenerPersonaId(this, mPersonaSelect, mDBManager);
+			PersonaDTO per = ConstantsAdmin.obtenerPersonaId(mPersonaSelect, mDBManager);
 			String contacto = per.getApellido();
 			if(contacto == null){
 				contacto = "";

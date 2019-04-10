@@ -213,9 +213,6 @@ public class ProteccionCategoriaActivity extends ListActivity {
 	private class SendMail extends AsyncTask<Long, Integer, Integer> {
 
         boolean okSend = false;
-		protected void onProgressUpdate() {
-			//called when the background task makes any progress
-		}
 
 		@Override
 		protected Integer doInBackground(Long... longs) {

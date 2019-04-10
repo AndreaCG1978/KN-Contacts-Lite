@@ -317,7 +317,9 @@ public class ListadoCategoriaActivity extends KNListFragment  {
     	}
     	return result;
     }
-  */  
+  */
+
+/*
     private void activarODesactivarCategoria(ListView list, int position, View v){
 		LinearLayout ll = (LinearLayout)v;
 		TextView tv = (TextView) ll.getChildAt(0);
@@ -345,7 +347,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
     		list.setItemChecked(position, true);
     	}
     }
-
+*/
 	public void activarODesactivarCategoria(int position){
 		CategoriaDTO catSelected = (CategoriaDTO) getListView().getItemAtPosition(position);
 		if(!(cantActivas == 1 && catSelected.getActiva() == 1)){

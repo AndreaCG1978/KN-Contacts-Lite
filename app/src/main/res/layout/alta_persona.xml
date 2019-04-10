@@ -163,8 +163,8 @@ android:background="@color/color_gris_claro">
 
 		</LinearLayout>
 
-		<LinearLayout android:id="@+id/linearCumple"
-			android:layout_width="match_parent" android:layout_height="wrap_content"
+		<LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
 			android:orientation="horizontal" android:layout_margin="5dp"
 			android:layout_below="@id/linearNombre"
 			android:gravity="center"
@@ -544,8 +544,8 @@ android:background="@color/color_gris_claro">
 			android:layout_height="match_parent"
 			android:orientation="vertical">
 
-			<LinearLayout android:id="@+id/linearCategoria"
-				android:layout_width="match_parent"
+			<LinearLayout
+                android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="horizontal"
 				android:layout_margin="5dp"
@@ -574,8 +574,8 @@ android:background="@color/color_gris_claro">
 			</LinearLayout>
 
 
-			<LinearLayout android:id="@+id/linearCaracteristica"
-				android:layout_width="match_parent" android:layout_height="wrap_content"
+			<LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
 				android:orientation="horizontal" android:layout_margin="5dp"
 				>
 
