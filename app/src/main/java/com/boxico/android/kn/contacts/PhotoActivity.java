@@ -135,13 +135,14 @@ public class PhotoActivity extends Activity {
 		capturoConCamara = true;
 		Uri outputFileUri = null;
 		Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
 		if (Build.VERSION.SDK_INT > M){
 			outputFileUri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", sdImageMainDirectory);
 			intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 		}else{
 			outputFileUri = Uri.fromFile(sdImageMainDirectory);
 		}
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+	//	intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
 		startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 
 	}
@@ -150,8 +151,8 @@ public class PhotoActivity extends Activity {
 
 		if (Build.VERSION.SDK_INT >= M) {
 			if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-					&& checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-					&& checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+					|| checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+					|| checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 				// TODO: Consider calling
 
 				ActivityCompat.requestPermissions(this,

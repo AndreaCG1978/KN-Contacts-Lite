@@ -58,7 +58,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
     //private ArrayList<Cursor> allMyCursors = null;
 
-    private BroadcastReceiver mReceiverConecta = null;
+  //  private BroadcastReceiver mReceiverConecta = null;
 
     private static final String VALOR = "VALOR";
     private static final String TIPO = "TIPO";
@@ -218,12 +218,11 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		}
 	}
 
-	@Override
-	protected void onDestroy()
+/*	protected void onDestroy()
 	{
 	    this.unregisterReceiver(mReceiverConecta);
 		super.onDestroy();
-	}
+	}*/
 /*
 	@Override
 	public void startManagingCursor(Cursor c) {
