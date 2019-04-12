@@ -390,6 +390,12 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
 		config = ConstantsAdmin.obtenerConfiguracion(me, mDBManager);
 		ConstantsAdmin.config = config;
+
+		if(ConstantsAdmin.config.isOrdenadoPorCategoria()){
+			switchOrganizacion.setBackground(getResources().getDrawable(R.drawable.organizar_nombre));
+		}else{
+			switchOrganizacion.setBackground(getResources().getDrawable(R.drawable.organizar_categoria));
+		}
 		// TODO Auto-generated method stub
 
 	}

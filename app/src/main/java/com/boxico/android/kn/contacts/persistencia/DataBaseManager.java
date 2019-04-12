@@ -252,7 +252,7 @@ public class DataBaseManager {
     			 catSelect = categorias.iterator();
     			 while(catSelect.hasNext()){
     				 catTemp = catSelect.next();
-    				 consultaPorCategoria.append(" OR (").append(ConstantsAdmin.KEY_NOMBRE_CATEGORIA).append("='").append(catTemp).append("')");
+    				 consultaPorCategoria.append(" OR (").append(ConstantsAdmin.KEY_NOMBRE_CATEGORIA_RELATIVO).append("='").append(catTemp).append("')");
     			 }
 		    	 if(param != null && !param.equals("")){
 		    		 result = mDb.query(ConstantsAdmin.TABLA_PERSONA, atr, "(" + consulta + ") AND (" + consultaPorCategoria + ")", null, null, null, sortOrder);
