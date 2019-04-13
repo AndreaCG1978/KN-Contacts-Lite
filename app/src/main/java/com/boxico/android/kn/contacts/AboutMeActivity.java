@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,8 +20,19 @@ public class AboutMeActivity extends Activity {
        	this.setContentView(R.layout.acerca_de);
         this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_acerca_de));
        	this.configurarMailYLinkPagEmpresa();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
     }
-    
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				this.finish();
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
     protected void onResume() {
         super.onResume();
         if(ConstantsAdmin.mainActivity == null){

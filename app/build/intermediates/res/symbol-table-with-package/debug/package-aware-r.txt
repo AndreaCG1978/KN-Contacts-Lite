@@ -64,6 +64,8 @@ drawable categoria_icon
 drawable categoria_menu_icon
 drawable categoria_search_icon
 drawable clear_icon
+drawable clear_icon1
+drawable clear_icon2
 drawable contacts_icon
 drawable contraer_icon
 drawable custom_button
@@ -148,6 +150,7 @@ id buttonEnviarInfoPersona
 id buttonExpandContractAll
 id buttonIrAEditarPersona
 id buttonPickDate
+id buttonPreferido
 id buttonSwitchOrganizacion
 id buttonTodasLasCategorias
 id buttonVerPersona

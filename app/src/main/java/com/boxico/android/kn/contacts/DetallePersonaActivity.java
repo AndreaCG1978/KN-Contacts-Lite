@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
@@ -37,6 +38,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -131,6 +133,20 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
             allMyCursors = new ArrayList<>();
         }
     */
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		// call ActionBarDrawerToggle.onOptionsItemSelected(), if it returns true
+		// then it has handled the app icon touch event
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				this.finish();
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
     private void cargarLoaders() {
         this.getSupportLoaderManager().initLoader(PERSONAS_CURSOR, null, this);
         this.getSupportLoaderManager().initLoader(PREFERIDO_CURSOR, null, this);
@@ -162,6 +178,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
    //     this.compruebaCuandoConecta();
         this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_detallePersona));
         mPersonaSeleccionadaId = Integer.valueOf((String) intent.getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
+		getActionBar().setDisplayHomeAsUpEnabled(true);
         //	this.mostrarFoto();
     }
 /*

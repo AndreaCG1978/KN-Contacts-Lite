@@ -33,6 +33,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -190,6 +191,15 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		}
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				this.finish();
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -203,6 +213,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			this.configurarSpinner();
 			this.configurarBotones();
 			this.askForContactPermission();
+			getActionBar().setDisplayHomeAsUpEnabled(true);
 		} catch (Exception e) {
 			// TODO: handle exception
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorInicioAplicacion));

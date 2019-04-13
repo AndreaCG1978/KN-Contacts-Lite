@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -54,9 +55,19 @@ public class ListadoCategoriaActivity extends KNListFragment  {
         this.registrarWidgets();
         //this.configurarList(getListView());
 		this.refreshList();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
         
     }
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				this.finish();
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	private void registrarWidgets(){
 		labelCategorias = this.findViewById(R.id.categoriaTextView);

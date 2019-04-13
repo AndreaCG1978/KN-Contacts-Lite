@@ -96,6 +96,18 @@ public class ConstantsAdmin {
 
 	private static ArrayList<Long> telefonosAEliminar = null;
 
+	public static boolean esPreferido(long id, DataBaseManager mDBManager, Context ctx){
+		boolean result = false;
+		ConstantsAdmin.inicializarBD(mDBManager);
+		cursorPreferidos = mDBManager.cursorLoaderPreferidoPorId(id, ctx);
+		//	Cursor prefCursor = mDBManager.fetchPreferidoPorId(mPersonaSeleccionadaId);
+		Cursor prefCursor = cursorPreferidos.loadInBackground();
+		//startManagingCursor(prefCursor);
+		result = prefCursor.getCount() > 0;
+		prefCursor.close();
+		ConstantsAdmin.finalizarBD(mDBManager);
+		return result;
+	}
 
 	public static ArrayList<Long> getTelefonosAEliminar() {
 		if(telefonosAEliminar == null){

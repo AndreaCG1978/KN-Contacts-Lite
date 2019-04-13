@@ -259,8 +259,16 @@ public class AltaPersonaActivity extends Activity  {
 			break;
 		}    	
     }
-    
-	
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				this.finish();
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -293,9 +301,7 @@ public class AltaPersonaActivity extends Activity  {
             }else{
                 this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_editar_persona));
             }
-		//	getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-         //   ConstantsAdmin.hideKeyboard(this);
-
+			getActionBar().setDisplayHomeAsUpEnabled(true);
 
             
 		} catch (Exception e) {

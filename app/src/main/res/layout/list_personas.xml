@@ -149,11 +149,11 @@
 
 
 			<ImageButton android:id="@+id/buttonTodasLasCategorias"
-				android:layout_width="28dp"
-				android:layout_height="28dp"
-				android:layout_marginStart="20dp"
-				android:layout_marginLeft="20dp"
-				android:background="@drawable/clear_icon"
+				android:layout_width="30dp"
+				android:layout_height="30dp"
+				android:layout_marginStart="30dp"
+				android:layout_marginLeft="30dp"
+				android:background="@drawable/clear_icon2"
 				android:contentDescription="buttonTodasLasCategorias"
 				 />
 

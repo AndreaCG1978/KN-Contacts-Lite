@@ -17,12 +17,15 @@ public class MenuPersonaActivity extends Activity {
 	
 	private Dialog dialog = null;
 	private int mPersonaSeleccionadaId = -1;
+	private boolean mEsPreferido = false;
+	private ImageButton mImagenPreferido = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
         mPersonaSeleccionadaId = Integer.valueOf((String)getIntent().getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
+        mEsPreferido = (Boolean)getIntent().getExtras().get(ConstantsAdmin.KEY_MUESTRA_PREFERIDOS);
         this.configurarDialog();
         this.registrarWidgets(dialog);
         dialog.show();
@@ -78,16 +81,51 @@ public class MenuPersonaActivity extends Activity {
             	sendInfoByMail();
             }
         });
+		mImagenPreferido = dialog.findViewById(R.id.buttonPreferido);
+		mImagenPreferido.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				setearPreferido();
+			}
+		});
+		if(mEsPreferido){
+			mImagenPreferido.setBackground(getResources().getDrawable(R.drawable.pref_icon));
+		}else{
+			mImagenPreferido.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
+		}
 	}
 
 	
-    private void sendInfoByMail(){
+    private void setearPreferido(){
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		if(mEsPreferido && mImagenPreferido!= null){
+			mEsPreferido = false;
+			mImagenPreferido.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
+			try {
+				ConstantsAdmin.eliminarPreferido(mPersonaSeleccionadaId, mDBManager);
+			} catch (Exception e) {
+				ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorEliminacionPreferido));
+			}
+		}else if(mImagenPreferido!= null){
+			mEsPreferido = true;
+			mImagenPreferido.setBackground(getResources().getDrawable(R.drawable.pref_icon));
+			try {
+				ConstantsAdmin.crearPreferido(mPersonaSeleccionadaId, mDBManager);
+			} catch (Exception e) {
+				ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorAgregarPreferido));
+			}
+
+		}
+	}
+
+	private void sendInfoByMail(){
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
     	String infoContacto = ConstantsAdmin.recuperarInfoContacto(this, mPersonaSeleccionadaId, mDBManager);
     	ConstantsAdmin.enviarMailGenerico(this, "", infoContacto, "");
     	dialog.cancel();
     	this.finish();
     }
+
+
     
 
 	private void eliminarPersonaDialog(){

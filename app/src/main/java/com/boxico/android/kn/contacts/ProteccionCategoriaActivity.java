@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -57,7 +58,18 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		//	this.configurarBotonDesactivarContrasenia();
 		this.habilitarCampos();
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				this.finish();
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

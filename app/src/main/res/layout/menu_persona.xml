@@ -35,5 +35,12 @@
 			android:layout_margin="15dp"
 			android:contentDescription="buttonBorrarPersona"/>
 
+		<ImageButton android:id="@+id/buttonPreferido"
+			android:layout_width="35dp"
+			android:layout_height="35dp"
+			android:background="@drawable/pref_icon_bw"
+			android:layout_margin="15dp"
+			android:contentDescription="buttonPreferido"/>
+
 
 </LinearLayout>
