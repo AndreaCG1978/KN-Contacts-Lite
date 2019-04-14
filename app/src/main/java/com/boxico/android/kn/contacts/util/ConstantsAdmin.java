@@ -3131,8 +3131,8 @@ public class ConstantsAdmin {
 		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);//the subject
 		emailIntent.setType("plain/text");
 		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body); //adds the body of the mail
-
-		activity.startActivity(emailIntent);
+		activity.startActivity(Intent.createChooser(emailIntent, null));
+		//activity.startActivity(emailIntent);
 	}
 
 

@@ -179,6 +179,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
         this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_detallePersona));
         mPersonaSeleccionadaId = Integer.valueOf((String) intent.getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+
         //	this.mostrarFoto();
     }
 /*
@@ -573,14 +574,18 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				mEsPreferido = prefCursor.getCount() > 0;
 				prefCursor.close();
 				//stopManagingCursor(prefCursor);
-				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_APELLIDO));
-				if(temp != null){
-					mApellido.setText(temp.toUpperCase());
+				String tempApe = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_APELLIDO));
+				if(tempApe != null && !tempApe.equals("")){
+					mApellido.setText(tempApe.toUpperCase());
 				}
-				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_NOMBRES));
-				if (temp != null && !temp.equals("")) {
-					mNombres.setText(temp);
-				}
+                String tempNom = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_NOMBRES));
+				if (tempNom != null && !tempNom.equals("") && tempApe != null && !tempApe.equals("")) {
+					mNombres.setText(tempNom);
+				}else if(tempNom == null || tempNom.equals("")){
+				    mApellido.setText(tempApe.toUpperCase());
+                }else if(tempApe == null || tempApe.equals("")) {
+                    mApellido.setText(tempNom.toUpperCase());
+                }
 
 				/*
 				temp = perCursor.getString(perCursor.getColumnIndex(ConstantsAdmin.KEY_TEL_PARTICULAR));
@@ -876,7 +881,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 				this.getString(R.string.label_llamada),
 				this.getString(R.string.label_sms),
 				this.getString(R.string.label_wsp)};
-		builder.setTitle(this.getString(R.string.mensaje_seleccione_llamada_sms))
+		builder.setTitle(this.getString(R.string.mensaje_seleccione_llamada_sms) + " " + numero)
 				.setSingleChoiceItems(charSequence, -1, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {

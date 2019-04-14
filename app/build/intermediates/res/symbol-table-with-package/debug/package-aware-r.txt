@@ -54,6 +54,7 @@ dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
 drawable about_me_menu
+drawable action_icon
 drawable add_icon
 drawable camera_icon
 drawable candado_abierto
