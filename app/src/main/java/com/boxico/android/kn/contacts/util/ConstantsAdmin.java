@@ -3126,9 +3126,10 @@ public class ConstantsAdmin {
 		// TODO Auto-generated method stub
 
 		String[] address = {emailaddress};
-		Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND); //This is the email intent
+		Intent emailIntent = new Intent(Intent.ACTION_SEND); //This is the email intent
 		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, address); // adds the address to the intent
 		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);//the subject
+		//emailIntent.setPackage("com.whatsapp");
 		emailIntent.setType("plain/text");
 		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body); //adds the body of the mail
 		activity.startActivity(Intent.createChooser(emailIntent, null));
