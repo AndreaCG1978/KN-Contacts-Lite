@@ -1832,8 +1832,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		}
 
 		protected void onProgressUpdate(Integer... progress) {
-			dialog = ProgressDialog.show(me, "",
-					me.getString(R.string.mensaje_exportando_contactos), false);
+		//	dialog = ProgressDialog.show(me, "",me.getString(R.string.mensaje_exportando_contactos), false);
 		}
 
 		@Override
@@ -1843,8 +1842,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			}catch (Exception e) {
 				// TODO: handle exception
 			}
-			ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
-			ConstantsAdmin.mensaje = null;
+	//		ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
+		//	ConstantsAdmin.mensaje = null;
 
 		}
 	}
@@ -2038,14 +2037,17 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 	}
 
 	private void saveCSVContactsFiles(Intent intent){
-		Uri uri = intent.getData();
-	//	String filePath = getRealPathFromURI(uri);
-		//String filePath = intent.getData().getPath();
-		String fileTempPath = ConstantsAdmin.obtenerPathDeArchivo(ConstantsAdmin.fileEsteticoCSV);
-		try {
-			ConstantsAdmin.copyFiles(fileTempPath,uri, this.getContentResolver());
-		} catch (IOException e) {
-			ConstantsAdmin.mostrarMensajeDialog(this, this.getString(R.string.error_exportar_csv));
+		Uri uri = null;
+		if(intent != null){
+			uri = intent.getData();
+			//	String filePath = getRealPathFromURI(uri);
+			//String filePath = intent.getData().getPath();
+			String fileTempPath = ConstantsAdmin.obtenerPathDeArchivo(ConstantsAdmin.fileEsteticoCSV);
+			try {
+				ConstantsAdmin.copyFiles(fileTempPath,uri, this.getContentResolver());
+			} catch (IOException e) {
+				ConstantsAdmin.mostrarMensajeDialog(this, this.getString(R.string.error_exportar_csv));
+			}
 		}
 
 
