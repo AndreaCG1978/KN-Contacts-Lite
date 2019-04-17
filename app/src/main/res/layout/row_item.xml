@@ -40,7 +40,6 @@
         android:layout_marginLeft="2dp"
         android:paddingRight="5dp"
 		android:typeface="normal"
-		android:drawableRight="@drawable/action_icon"
 		android:drawablePadding="2dp"
 
 		>

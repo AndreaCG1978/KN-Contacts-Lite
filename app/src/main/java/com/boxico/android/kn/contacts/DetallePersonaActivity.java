@@ -54,6 +54,7 @@ import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
 import com.boxico.android.kn.contacts.util.Asociacion;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
+import com.boxico.android.kn.contacts.util.KNSimpleCustomDetailsAdapter;
 
 
 public class DetallePersonaActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -121,6 +122,30 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
         // TODO Auto-generated constructor stub
     }
+
+	public boolean ismMostrarTelefonos() {
+		return mMostrarTelefonos;
+	}
+
+	public void setmMostrarTelefonos(boolean mMostrarTelefonos) {
+		this.mMostrarTelefonos = mMostrarTelefonos;
+	}
+
+	public boolean ismMostrarEmails() {
+		return mMostrarEmails;
+	}
+
+	public void setmMostrarEmails(boolean mMostrarEmails) {
+		this.mMostrarEmails = mMostrarEmails;
+	}
+
+	public boolean ismMostrarDirecciones() {
+		return mMostrarDirecciones;
+	}
+
+	public void setmMostrarDirecciones(boolean mMostrarDirecciones) {
+		this.mMostrarDirecciones = mMostrarDirecciones;
+	}
 
     /*
         private void resetAllMyCursors() {
@@ -263,8 +288,9 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 		String[] from = {TIPO, VALOR};
 		int[] to = {R.id.rowTipo, R.id.rowValor};
+//		SimpleAdapter adapter = new SimpleAdapter(this, listdata, R.layout.row_item, from, to);
 
-		SimpleAdapter adapter = new SimpleAdapter(this, listdata, R.layout.row_item, from, to);
+		KNSimpleCustomDetailsAdapter adapter = new KNSimpleCustomDetailsAdapter(this, listdata, R.layout.row_item, from, to);
 		telefonosList.setAdapter(adapter);
 		telefonosList.setOnItemClickListener(new OnItemClickListener() {
 
