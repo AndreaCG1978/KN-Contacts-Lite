@@ -5,7 +5,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_action_tombstone.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/layout/notification_action_tombstone.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout/notification_action_tombstone.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_go_address_icon.png.flat",
@@ -17,7 +17,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_template_lines_media.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/870170e5042068a7828eb2bf71164d29/res/layout/notification_template_lines_media.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/a02b0eac5896f5f55858121ed5131e3f/res/layout/notification_template_lines_media.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_alta_persona.xml.flat",
@@ -33,7 +33,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_template_part_time.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/layout/notification_template_part_time.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout/notification_template_part_time.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_pref_icon.png.flat",
@@ -49,7 +49,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-mdpi-v4/notification_bg_low_normal.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-mdpi-v4/notification_bg_low_normal.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_mail_am_icon.png.flat",
@@ -89,7 +89,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable_notification_tile_bg.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable/notification_tile_bg.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable/notification_tile_bg.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_delete.png.flat",
@@ -117,7 +117,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout-v21_notification_action_tombstone.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/layout-v21/notification_action_tombstone.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout-v21/notification_action_tombstone.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi_home_am_icon_bw.png.flat",
@@ -145,11 +145,11 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-hdpi-v4/notification_bg_normal.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-hdpi-v4/notification_bg_normal.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_candado_abierto.png.flat",
@@ -169,7 +169,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout-v21_notification_template_custom_big.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/layout-v21/notification_template_custom_big.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout-v21/notification_template_custom_big.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi_clear_icon.png.flat",
@@ -217,11 +217,11 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout-v21_notification_template_icon_group.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/layout-v21/notification_template_icon_group.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout-v21/notification_template_icon_group.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_clear_icon.png.flat",
@@ -229,7 +229,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-xhdpi-v4/notification_bg_normal.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-xhdpi-v4/notification_bg_normal.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi_send_icon.png.flat",
@@ -241,11 +241,11 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_list_categorias.xml.flat",
@@ -257,7 +257,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-mdpi-v4/notify_panel_notification_icon_bg.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-mdpi-v4/notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_next_icon.png.flat",
@@ -285,7 +285,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_action.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/layout/notification_action.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout/notification_action.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_clear_icon2.png.flat",
@@ -301,7 +301,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_pref_detalle_bn_icon.png.flat",
@@ -321,11 +321,11 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_template_media.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/870170e5042068a7828eb2bf71164d29/res/layout/notification_template_media.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/a02b0eac5896f5f55858121ed5131e3f/res/layout/notification_template_media.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-hdpi-v4/notification_bg_low_normal.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-hdpi-v4/notification_bg_low_normal.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_categoria_icon.png.flat",
@@ -345,7 +345,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_media_cancel_action.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/870170e5042068a7828eb2bf71164d29/res/layout/notification_media_cancel_action.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/a02b0eac5896f5f55858121ed5131e3f/res/layout/notification_media_cancel_action.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_restore_menu.png.flat",
@@ -365,7 +365,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_media_action.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/870170e5042068a7828eb2bf71164d29/res/layout/notification_media_action.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/a02b0eac5896f5f55858121ed5131e3f/res/layout/notification_media_action.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable_custom_text_view_apellido.xml.flat",
@@ -373,7 +373,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-v21_notification_action_background.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-v21/notification_action_background.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-v21/notification_action_background.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_contraer_icon.png.flat",
@@ -425,7 +425,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_template_big_media.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/870170e5042068a7828eb2bf71164d29/res/layout/notification_template_big_media.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/a02b0eac5896f5f55858121ed5131e3f/res/layout/notification_template_big_media.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_row_personas.xml.flat",
@@ -509,7 +509,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable_notification_bg_low.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable/notification_bg_low.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable/notification_bg_low.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_send_password_icon.png.flat",
@@ -569,7 +569,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable_notification_bg.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable/notification_bg.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable/notification_bg.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_categoria_am_icon_bw.png.flat",
@@ -577,7 +577,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_import_icon.png.flat",
@@ -589,7 +589,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_template_icon_group.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/layout/notification_template_icon_group.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout/notification_template_icon_group.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi_person_am_icon_bw.png.flat",
@@ -601,11 +601,11 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_template_part_chronometer.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/layout/notification_template_part_chronometer.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout/notification_template_part_chronometer.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_template_big_media_narrow.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/870170e5042068a7828eb2bf71164d29/res/layout/notification_template_big_media_narrow.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/a02b0eac5896f5f55858121ed5131e3f/res/layout/notification_template_big_media_narrow.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_person_am_icon_bw.png.flat",
@@ -673,7 +673,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi_action_icon.png.flat",
@@ -681,11 +681,11 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_template_big_media_narrow_custom.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/870170e5042068a7828eb2bf71164d29/res/layout/notification_template_big_media_narrow_custom.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/a02b0eac5896f5f55858121ed5131e3f/res/layout/notification_template_big_media_narrow_custom.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-mdpi-v4/notification_bg_normal.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-mdpi-v4/notification_bg_normal.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_person_add_icon.png.flat",
@@ -705,7 +705,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-mdpi-v4/notification_bg_low_pressed.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-mdpi-v4/notification_bg_low_pressed.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable_custom_text_expandable_group_label.xml.flat",
@@ -737,7 +737,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout-v16_notification_template_custom_big.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/layout-v16/notification_template_custom_big.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout-v16/notification_template_custom_big.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_pref_detalle_icon.png.flat",
@@ -745,7 +745,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable-mdpi-v4/notification_bg_normal_pressed.9.png"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-mdpi-v4/notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_person_am_icon.png.flat",
@@ -769,7 +769,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_template_media_custom.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/870170e5042068a7828eb2bf71164d29/res/layout/notification_template_media_custom.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/a02b0eac5896f5f55858121ed5131e3f/res/layout/notification_template_media_custom.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_generate_menu.png.flat",
@@ -833,7 +833,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_notification_template_big_media_custom.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/870170e5042068a7828eb2bf71164d29/res/layout/notification_template_big_media_custom.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/a02b0eac5896f5f55858121ed5131e3f/res/layout/notification_template_big_media_custom.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-ldpi_delete_icon_mini_w.png.flat",
@@ -857,7 +857,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable_notification_icon_background.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/drawable/notification_icon_background.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable/notification_icon_background.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_categoria_am_icon.png.flat",
@@ -869,7 +869,7 @@
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout-v21_notification_action.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7219f37c9f99e85abc636dccb3f359a7/res/layout-v21/notification_action.xml"
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout-v21/notification_action.xml"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi_candado_abierto.png.flat",

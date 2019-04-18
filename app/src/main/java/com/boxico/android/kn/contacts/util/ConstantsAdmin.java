@@ -25,6 +25,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -3125,14 +3126,25 @@ public class ConstantsAdmin {
 	public static void enviarMailGenerico(Activity activity, String emailaddress, String body, String subject) {
 		// TODO Auto-generated method stub
 
-		String[] address = {emailaddress};
-		Intent emailIntent = new Intent(Intent.ACTION_SEND); //This is the email intent
-		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, address); // adds the address to the intent
-		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);//the subject
-		//emailIntent.setPackage("com.whatsapp");
-		emailIntent.setType("plain/text");
-		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body); //adds the body of the mail
-		activity.startActivity(Intent.createChooser(emailIntent, null));
+		try {
+			String[] address = {emailaddress};
+			Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND); //This is the email intent
+			emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, address); // adds the address to the intent
+			emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);//the subject
+			//emailIntent.setPackage("com.whatsapp");
+			emailIntent.setType("text/plain");
+		//	PackageManager pm = activity.getPackageManager();
+		//	PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
+		//	emailIntent.setPackage("com.whatsapp");
+			if(body == null || body.equals("")){
+				body = "Hi!";
+			}
+			emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body); //adds the body of the mail
+			activity.startActivity(Intent.createChooser(emailIntent, null));
+
+		}catch(Exception exc){
+			exc.printStackTrace();
+		}
 		//activity.startActivity(emailIntent);
 	}
 

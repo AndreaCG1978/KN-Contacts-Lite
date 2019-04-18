@@ -1009,17 +1009,11 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		mEntryBusquedaNombre = null;
 		categoriasSeleccionadas = null;
 		preferidos.setBackground(getResources().getDrawable(R.drawable.pref_icon_bw));
-		//	catSelectTextView.setText(getResources().getString(R.string.title_acerca_de));
-		//	catSelectTextView.setVisibility(View.GONE);
-		//	imgPrefLeft.setVisibility(View.GONE);
-
 		imgPrefRight.setVisibility(View.GONE);
 		spinnerCategorias.setItems(todasLasCategString, this);
-		this.recargarLista();
 		mGroupSelected = -1;
-
 		entryBusqueda.setText("");
-
+	//	this.recargarLista();
 	}
 
 	private void configurarListView() {

@@ -353,7 +353,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 		String mail;
 		HashMap<String, String> map = (HashMap<String, String>) adapt.getItem(pos);
 		mail = map.get(VALOR);
-		enviarMailGenerico(mail);
+		ConstantsAdmin.enviarMailGenerico(this, mail, "", "");
 
 
 	}
@@ -863,7 +863,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 	//	this.resetAllMyCursors();
 		switch (requestCode) {
 			case ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA:
-				this.populateFields();
+			//	this.populateFields();
 				break;
 			case ConstantsAdmin.ACTIVITY_EJECUTAR_SACAR_PHOTO:
 				this.mostrarFoto();
@@ -1007,22 +1007,21 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
    	    }
    	}
     	
-    	
+    	/*
     private void enviarMailGenerico(String mail){
     	try {
     		Intent email_intent =  new Intent(android.content.Intent.ACTION_SEND);
         	email_intent.setType("plain/text");
-        	email_intent.putExtra(android.content.Intent.EXTRA_EMAIL, new
-        	String[]{mail});
+        	email_intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{mail});
         	email_intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
         	email_intent.putExtra(android.content.Intent.EXTRA_TEXT, " ");
-        	this.startActivity(Intent.createChooser(email_intent,mail));   
+			this.startActivity(Intent.createChooser(email_intent,mail));
 			
 		} catch (Exception e) {
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorMandarMail));
 		}
     	 	
-    }
+    }*/
        
 	private void configurarBotonEditar(){
 		ImageButton boton = this.findViewById(R.id.buttonIrAEditarPersona);
