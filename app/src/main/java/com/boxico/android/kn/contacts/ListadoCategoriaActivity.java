@@ -56,6 +56,7 @@ public class ListadoCategoriaActivity extends KNListFragment  {
         //this.configurarList(getListView());
 		this.refreshList();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.label_categorias));
         
     }
 

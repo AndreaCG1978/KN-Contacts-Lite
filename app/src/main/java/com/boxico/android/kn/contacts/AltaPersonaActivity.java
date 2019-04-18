@@ -297,9 +297,9 @@ public class AltaPersonaActivity extends Activity  {
 
             this.configurarBotonesAgregarTipoValor();
             if(mPersonaSeleccionada.getId() == 0 || mPersonaSeleccionada.getId() == -1){
-                this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_agregar_persona));
+                this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_agregar_persona).toUpperCase());
             }else{
-                this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_editar_persona));
+                this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_editar_persona).toUpperCase());
             }
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 

@@ -82,6 +82,9 @@ drawable edit_icon_mini_w
 drawable expandir_icon
 drawable export_excel
 drawable generate_menu
+drawable go_address_icon
+drawable go_mail_icon
+drawable go_message_icon
 drawable home_am_icon
 drawable home_am_icon_bw
 drawable import_icon

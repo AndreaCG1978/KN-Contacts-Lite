@@ -2093,7 +2093,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			}else if(ConstantsAdmin.config.isMuestraPreferidos()){
 				ConstantsAdmin.config.setMuestraPreferidos(false);
 				this.verPreferidos();
-			}else{
+			}
+			else{
 				this.mostrarTodosLosContactos();
 			}
 		} catch (Exception e) {

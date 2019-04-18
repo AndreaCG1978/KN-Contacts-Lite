@@ -59,6 +59,7 @@ public class ProteccionCategoriaActivity extends ListActivity {
 		this.habilitarCampos();
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_proteccion_categorias));
 
 	}
 

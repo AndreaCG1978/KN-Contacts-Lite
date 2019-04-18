@@ -214,6 +214,7 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 			this.configurarBotones();
 			this.askForContactPermission();
 			getActionBar().setDisplayHomeAsUpEnabled(true);
+			this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.menu_importar_contactos).toUpperCase());
 		} catch (Exception e) {
 			// TODO: handle exception
 			ConstantsAdmin.mostrarMensaje(this, getString(R.string.errorInicioAplicacion));

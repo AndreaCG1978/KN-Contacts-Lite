@@ -201,7 +201,7 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
         this.configurarImportarContacto();
         this.configurarBorrarPhoto();
    //     this.compruebaCuandoConecta();
-        this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_detallePersona));
+        this.setTitle(this.getResources().getString(R.string.app_name) + " - " + this.getResources().getString(R.string.title_detallePersona).toUpperCase());
         mPersonaSeleccionadaId = Integer.valueOf((String) intent.getExtras().get(ConstantsAdmin.PERSONA_SELECCIONADA));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -333,8 +333,8 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 		String[] from = {TIPO, VALOR};
 		int[] to = {R.id.rowTipo, R.id.rowValor};
-
-		SimpleAdapter adapter = new SimpleAdapter(this, listdata, R.layout.row_item, from, to);
+		KNSimpleCustomDetailsAdapter adapter = new KNSimpleCustomDetailsAdapter(this, listdata, R.layout.row_item, from, to);
+		//SimpleAdapter adapter = new SimpleAdapter(this, listdata, R.layout.row_item, from, to);
 		mailsList.setAdapter(adapter);
 		mailsList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -395,8 +395,8 @@ public class DetallePersonaActivity extends FragmentActivity implements LoaderMa
 
 		String[] from = {TIPO, VALOR};
 		int[] to = {R.id.rowTipo, R.id.rowValor};
-
-		SimpleAdapter adapter = new SimpleAdapter(this, listdata, R.layout.row_item, from, to);
+		KNSimpleCustomDetailsAdapter adapter = new KNSimpleCustomDetailsAdapter(this, listdata, R.layout.row_item, from, to);
+	//	SimpleAdapter adapter = new SimpleAdapter(this, listdata, R.layout.row_item, from, to);
 		direccionesList.setAdapter(adapter);
         direccionesList.setOnItemClickListener(new OnItemClickListener() {
 

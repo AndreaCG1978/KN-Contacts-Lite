@@ -1,6 +1,9 @@
 package com.boxico.android.kn.contacts;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -181,9 +184,19 @@ public class PhotoActivity extends Activity {
 					}else{
 						Uri selectedImage = data.getData();
 						InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-						Rect r = new Rect();
-						r.set(-1,-1,-1,-1);
-						b = BitmapFactory.decodeStream(imageStream);
+						Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+						double w = bitmap.getWidth();
+						double h = bitmap.getHeight();
+						if(w > 1500 && h > 1500){
+							w = w * 0.15;
+							h = h * 0.15;
+						}
+						int wint = (int)w;
+						int hint = (int)h;
+						b = Bitmap.createScaledBitmap(bitmap, wint, hint, true);
+						/*ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+						b.compress(Bitmap.CompressFormat.JPEG, 100, bytes);*/
+
 					}
 
 					ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(mPersonaSeleccionadaId) + ".jpg", b);
@@ -196,6 +209,8 @@ public class PhotoActivity extends Activity {
 		}
 		finish();
 	}
+
+
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
