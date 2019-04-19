@@ -90,6 +90,7 @@ drawable home_am_icon_bw
 drawable import_icon
 drawable import_menu_icon
 drawable less_desc_contact
+drawable logo
 drawable mail_am_icon
 drawable mail_am_icon_bw
 drawable more_desc_contact
@@ -123,6 +124,7 @@ drawable restore_menu
 drawable send_icon
 drawable send_password_icon
 drawable splash
+drawable splash1
 id action0
 id action_container
 id action_divider

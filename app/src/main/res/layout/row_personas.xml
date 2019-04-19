@@ -2,11 +2,13 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
 	android:layout_height="match_parent" android:orientation="horizontal"
-	android:layout_margin="5dp">
+	android:layout_margin="5dp"	>
 
 	<TextView android:id="@+id/rowFoto" android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:padding="3dp"
+		android:layout_marginLeft="15dp"
+		android:layout_marginStart="15dp"
 		android:layout_gravity="center"
 		android:textColor="@color/color_gris"
 		android:background="@color/color_gris_oscuro"/>
@@ -15,16 +17,22 @@
 		android:layout_width="match_parent" android:layout_height="wrap_content"
 		android:orientation="vertical"
 		android:padding="3dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginStart="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginEnd="10dp"
 
 		>
 		<LinearLayout android:layout_width="match_parent"
 			android:layout_height="wrap_content" android:orientation="horizontal"
-			android:background="@drawable/custom_text_view_apellido">
+			android:background="@drawable/custom_text_view_apellido"
+			>
 
 
 
 
-			<TextView android:id="@+id/rowApellido" android:layout_width="wrap_content"
+			<TextView android:id="@+id/rowApellido"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textColor="@color/color_blanco"
 				android:textSize="13sp"
@@ -32,6 +40,7 @@
 				android:paddingBottom="1dp"
 				android:typeface="normal"
 				android:maxLength="20"
+
 
 				>
 			</TextView>
@@ -44,7 +53,8 @@
 		</LinearLayout>
 
 		<TextView android:id="@+id/rowDatoRelevante"
-			android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:textStyle="bold"
 			android:textColor="@color/color_gris_oscuro"
 			android:textSize="13sp"
@@ -58,6 +68,7 @@
 			android:paddingStart="15dp"
 			android:paddingRight="5dp"
 			android:paddingEnd="5dp"
+
 			>
 		</TextView>
 

@@ -252,6 +252,10 @@
         "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/layout/list_categorias.xml"
     },
     {
+        "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable_splash1.png.flat",
+        "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/drawable/splash1.png"
+    },
+    {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_prev_icon.png.flat",
         "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/drawable-hdpi/prev_icon.png"
     },
@@ -522,6 +526,10 @@
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_edit_icon_mini_w.png.flat",
         "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/drawable-hdpi/edit_icon_mini_w.png"
+    },
+    {
+        "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable_logo.png.flat",
+        "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/drawable/logo.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-mdpi_organizar_categoria.png.flat",
