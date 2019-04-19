@@ -32,10 +32,13 @@ class DataBaseHelper extends SQLiteOpenHelper{
 	
   
     private static final String DATABASE_CREATE_CATEGORIAS = "create table if not exists " + ConstantsAdmin.TABLA_CATEGORIA + 
-    "(" + ConstantsAdmin.KEY_ROWID +" integer primary key autoincrement, "
-    + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " integer not null, "
-    + ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA + " text not null, "
-    + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " text not null);";
+            "(" + ConstantsAdmin.KEY_ROWID +" integer primary key autoincrement, "
+            + ConstantsAdmin.KEY_CATEGORIA_ACTIVA + " integer not null, "
+            + ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA + " text not null default 'cambiar', "
+            + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " text not null);";
+
+
+ //   "' ADD COLUMN '" + ConstantsAdmin.KEY_CATEGORIA_TIPO_DATO_EXTRA + "' TEXT NOT NULL DEFAULT 'cambiar'";
     
     private static final String DATABASE_CREATE_PREFERIDOS = "create table if not exists " + ConstantsAdmin.TABLA_PREFERIDOS + 
     "(" + ConstantsAdmin.KEY_ROWID +" integer not null);";
@@ -146,9 +149,12 @@ class DataBaseHelper extends SQLiteOpenHelper{
      "(" + ConstantsAdmin.KEY_ROWID +" integer primary key autoincrement, "
      + ConstantsAdmin.KEY_CONTRASENIA + " text not null, "
      + ConstantsAdmin.KEY_MAIL1 + " text, "
-     + ConstantsAdmin.KEY_CONTRASENIA_ACTIVA + " integer default 1, "
+     + ConstantsAdmin.KEY_CONTRASENIA_ACTIVA + " integer not null default 1, "
      + ConstantsAdmin.KEY_MAIL2 + " text);";
-     
+
+
+
+
      private static final String DATABASE_CREATE_CATEGORIA_PROTEGIDA = "create table if not exists " + ConstantsAdmin.TABLA_CATEGORIA_PROTEGIDA + 
      "(" + ConstantsAdmin.KEY_ROWID +" integer primary key autoincrement, "
      + ConstantsAdmin.KEY_NOMBRE_CATEGORIA + " text not null);";

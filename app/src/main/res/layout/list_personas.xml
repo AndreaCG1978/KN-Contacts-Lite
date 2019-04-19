@@ -119,8 +119,8 @@
 
 			<com.boxico.android.kn.contacts.util.MultiSpinner
 				android:id="@+id/multi_spinner"
-				android:layout_width="32dp"
-				android:layout_height="32dp"
+				android:layout_width="35dp"
+				android:layout_height="35dp"
 				android:background="@drawable/categoria_search_icon"
 				android:popupBackground="@drawable/categoria_search_icon"
 				android:layout_marginStart="15dp"
@@ -149,8 +149,8 @@
 
 
 			<ImageButton android:id="@+id/buttonTodasLasCategorias"
-				android:layout_width="33dp"
-				android:layout_height="30dp"
+				android:layout_width="35dp"
+				android:layout_height="35dp"
 				android:layout_marginStart="30dp"
 				android:layout_marginLeft="30dp"
 				android:background="@drawable/clear_icon1"

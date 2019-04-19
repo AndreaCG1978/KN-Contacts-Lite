@@ -338,23 +338,23 @@ public class ConstantsAdmin {
 
 
 	public static void actualizarTablaCategorias(Activity context, DataBaseManager mDBManager){
-		boolean actualizo = mDBManager.actualizarTablaCategoria();
-		List<CategoriaDTO> categorias;
+	//	boolean actualizo = mDBManager.actualizarTablaCategoria();
+        List<CategoriaDTO> categorias;
 		Iterator<CategoriaDTO> it;
 		CategoriaDTO cat;
-		if(actualizo){
-			Cursor cursor = mDBManager.fetchAllCategoriasPorNombre(null);
-			//    context.startManagingCursor(cursor);
-			categorias = ConstantsAdmin.categoriasCursorToDtos(cursor);
-			cursor.close();
-			//      context.stopManagingCursor(cursor);
-			it = categorias.iterator();
-			while(it.hasNext()){
-				cat = it.next();
-				cat.setTipoDatoExtra(obtenerTipoDatoExtraPorCategoria(cat.getNombreReal(), context));
-				mDBManager.actualizarCategoria(cat);
-			}
-		}
+
+        Cursor cursor = mDBManager.fetchAllCategoriasPorNombre(null);
+        //    context.startManagingCursor(cursor);
+        categorias = ConstantsAdmin.categoriasCursorToDtos(cursor);
+        cursor.close();
+        //      context.stopManagingCursor(cursor);
+        it = categorias.iterator();
+        while(it.hasNext()){
+            cat = it.next();
+            cat.setTipoDatoExtra(obtenerTipoDatoExtraPorCategoria(cat.getNombreReal(), context));
+            mDBManager.actualizarCategoria(cat);
+        }
+
 	}
 
 	public static void actualizarTablaContrasenia(DataBaseManager mDBManager){
