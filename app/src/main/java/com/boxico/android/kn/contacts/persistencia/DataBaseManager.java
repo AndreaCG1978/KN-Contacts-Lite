@@ -80,7 +80,11 @@ public class DataBaseManager {
      public long createTipoValor(TipoValorDTO tipoVal, String nombreTabla) {
     	 long returnValue = tipoVal.getId();
          ContentValues initialValues = new ContentValues();
-         initialValues.put(ConstantsAdmin.KEY_TIPO, tipoVal.getTipo());
+         String tipoTemp = tipoVal.getTipo();
+         if(tipoTemp == null || tipoTemp.equals("")) {
+         	tipoTemp = "type";
+		 }
+         initialValues.put(ConstantsAdmin.KEY_TIPO, tipoTemp);
          initialValues.put(ConstantsAdmin.KEY_VALOR, tipoVal.getValor());
          initialValues.put(ConstantsAdmin.KEY_ID_PERSONA, tipoVal.getIdPersona());
     	 if(tipoVal.getId() == -1 ){

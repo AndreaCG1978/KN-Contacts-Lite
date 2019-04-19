@@ -240,6 +240,10 @@
         "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/drawable-hdpi/import_icon.png"
     },
     {
+        "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable_splash1.png.flat",
+        "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/drawable/splash1.png"
+    },
+    {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
     },
@@ -250,10 +254,6 @@
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/layout_list_categorias.xml.flat",
         "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/layout/list_categorias.xml"
-    },
-    {
-        "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable_splash1.png.flat",
-        "source": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/res/drawable/splash1.png"
     },
     {
         "merged": "/home/andrea/AndroidStudioProjects/KN-Contacts-I/app/build/intermediates/res/merged/debug/drawable-hdpi_prev_icon.png.flat",

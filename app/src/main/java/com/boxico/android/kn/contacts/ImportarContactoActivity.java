@@ -51,7 +51,7 @@ import com.boxico.android.kn.contacts.persistencia.dtos.TipoValorDTO;
 import com.boxico.android.kn.contacts.util.Asociacion;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
-public class ImportarContactoActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ImportarContactoActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor>, OnItemSelectedListener {
 
 	private ArrayAdapter<CategoriaDTO> mSpinnerAdapt = null;
 	private CategoriaDTO mCategoriaSeleccionada = null;
@@ -631,8 +631,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		protected void onPostExecute(Integer result) {
 			dialog.cancel();
 			finish();
-			ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
-			ConstantsAdmin.mensaje = null;
+		/*	ConstantsAdmin.mostrarMensajeDialog(me, ConstantsAdmin.mensaje);
+			ConstantsAdmin.mensaje = null;*/
 		}
 	}
 
@@ -800,8 +800,8 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		this.mSpinnerAdapt = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, categorias);
 		this.seleccionarPrimerCategoria();
 		spinner.setAdapter(this.mSpinnerAdapt);
-		OnItemSelectedListener spinnerListener = new seleccionSpinnerListener();
-		spinner.setOnItemSelectedListener(spinnerListener);
+		//	OnItemSelectedListener spinnerListener = new seleccionSpinnerListener();
+		spinner.setOnItemSelectedListener(this);
 	}
 
 	private void mostrarDatosPorCategoria() {
@@ -869,6 +869,18 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		return result;
 	}
 
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View v, int pos, long row) {
+		mCategoriaSeleccionada = (CategoriaDTO) parent.getSelectedItem();
+		mostrarDatosPorCategoria();
+		//mSpinnerAdapt.notifyDataSetChanged();
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+
+	}
+/*
 
 	class seleccionSpinnerListener implements OnItemSelectedListener {
 
@@ -876,13 +888,14 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		public void onItemSelected(AdapterView<?> parent, View v, int pos, long row) {
 			mCategoriaSeleccionada = (CategoriaDTO) parent.getSelectedItem();
 			mostrarDatosPorCategoria();
+			//mSpinnerAdapt.notifyDataSetChanged();
 		}
 
 		public void onNothingSelected(AdapterView<?> parent) {
 
 		}
 	}
-
+*/
 
 	protected void onPause() {
 		super.onPause();

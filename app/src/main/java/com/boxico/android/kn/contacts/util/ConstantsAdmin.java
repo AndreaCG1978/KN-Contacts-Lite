@@ -1682,7 +1682,7 @@ public class ConstantsAdmin {
 
 	private static String obtenerStringCategoria(CategoriaDTO cat, String header){
 		String result;
-		result = header + PUNTO_COMA + cat.getId() + PUNTO_COMA + cat.getNombreReal() + PUNTO_COMA + cat.getActiva() + PUNTO_COMA + cat.getTipoDatoExtra() + ENTER;
+		result = header + PUNTO_COMA + cat.getId() + PUNTO_COMA + cat.getNombreReal().replace("\n", " ") + PUNTO_COMA + cat.getActiva() + PUNTO_COMA + cat.getTipoDatoExtra().replace("\n", " ") + ENTER;
 		return result;
 	}
 
@@ -1715,6 +1715,9 @@ public class ConstantsAdmin {
 		List<TipoValorDTO> masTVs;
 		TipoValorDTO tv;
 		Iterator<TipoValorDTO> it;
+		String temp = "";
+		String tempTipo = "";
+		String tempValor = "";
 		//result = result + SEPARACION_PERSONA + ENTER;
 
 		// DATOS PERSONALES
@@ -1722,13 +1725,15 @@ public class ConstantsAdmin {
 		result.append(HEAD_PERSONA).append(PUNTO_COMA).append(per.getId()).append(PUNTO_COMA);
 
 		if(per.getApellido() != null && !per.getApellido().equals("")){
-			result.append(per.getApellido()).append(PUNTO_COMA);
+		    temp = per.getApellido().replace("\n", " ");
+			result.append(temp).append(PUNTO_COMA);
 		}else{
 			result.append(CAMPO_NULO).append(PUNTO_COMA);
 		}
 
 		if(per.getNombres() != null && !per.getNombres().equals("")){
-			result.append(per.getNombres()).append(PUNTO_COMA);
+			temp = per.getNombres().replace("\n", " ");
+			result.append(temp).append(PUNTO_COMA);
 		}else{
 			result.append(CAMPO_NULO).append(PUNTO_COMA);
 		}
@@ -1782,7 +1787,9 @@ public class ConstantsAdmin {
 		it = masTVs.iterator();
 		while(it.hasNext()){
 			tv = it.next();
-			result.append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(PUNTO_COMA);
+			tempTipo = tv.getTipo().replace("\n", " ");
+			tempValor = tv.getValor().replace("\n", " ");
+			result.append(tempTipo).append(SEPARACION_ATRIBUTO).append(tempValor).append(PUNTO_COMA);
 		}
 
 		result.append(FIN).append(PUNTO_COMA);
@@ -1802,7 +1809,9 @@ public class ConstantsAdmin {
 		it = masTVs.iterator();
 		while(it.hasNext()){
 			tv = it.next();
-			result.append(tv.getTipo()).append(SEPARACION_ATRIBUTO).append(tv.getValor()).append(PUNTO_COMA);
+			tempTipo = tv.getTipo().replace("\n", " ");
+			tempValor = tv.getValor().replace("\n", " ");
+			result.append(tempTipo).append(SEPARACION_ATRIBUTO).append(tempValor).append(PUNTO_COMA);
 		}
 
 		result.append(FIN).append(PUNTO_COMA);
@@ -1813,7 +1822,8 @@ public class ConstantsAdmin {
 		result.append(per.getCategoriaNombre()).append(PUNTO_COMA);
 		result.append(per.getCategoriaNombreRelativo()).append(PUNTO_COMA);
 		if(per.getDatoExtra()!= null && !per.getDatoExtra().equals("")){
-			result.append(per.getDatoExtra()).append(PUNTO_COMA);
+			temp = per.getDatoExtra().replace("\n", " ");
+			result.append(temp).append(PUNTO_COMA);
 		}else{
 			result.append(CAMPO_NULO).append(PUNTO_COMA);
 		}
@@ -1826,7 +1836,8 @@ public class ConstantsAdmin {
 */
 
 		if(per.getDescripcion() != null && !per.getDescripcion().equals("")){
-			result.append(per.getDescripcion()).append(PUNTO_COMA);
+			temp = per.getDescripcion().replace("\n", " ");
+			result.append(temp).append(PUNTO_COMA);
 		}else{
 			result.append(CAMPO_NULO).append(PUNTO_COMA);
 		}
