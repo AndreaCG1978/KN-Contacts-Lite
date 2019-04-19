@@ -1,11 +1,16 @@
 package com.boxico.android.kn.contacts;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -13,12 +18,16 @@ import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
+import static com.boxico.android.kn.contacts.util.ConstantsAdmin.personaSeleccionada;
+
 public class MenuPersonaActivity extends Activity {
 	
 	private Dialog dialog = null;
 	private int mPersonaSeleccionadaId = -1;
 	private boolean mEsPreferido = false;
 	private ImageButton mImagenPreferido = null;
+	private final int PERMISSIONS_READ_CONTACTS = 101;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +39,20 @@ public class MenuPersonaActivity extends Activity {
         this.registrarWidgets(dialog);
         dialog.show();
 	}
-	
-	
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions,
+										   int[] grantResults) {
+
+		if (requestCode == PERMISSIONS_READ_CONTACTS) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				this.openVerDetallePersonaPrivado();
+			}
+		}
+	}
+
+
+
 	private void configurarDialog(){
 		dialog = new Dialog(this);
         dialog.setContentView(R.layout.menu_persona);
@@ -60,7 +81,7 @@ public class MenuPersonaActivity extends Activity {
 		ImageButton btn = dialog.findViewById(R.id.buttonVerPersona);
 		btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	openVerDetallePersona();
+				askForReadContactsPermission();
             }
         });
 		btn = dialog.findViewById(R.id.buttonEditarPersona);
@@ -165,8 +186,30 @@ public class MenuPersonaActivity extends Activity {
     	dialog.cancel();
     	this.finish();
 	}
-		
-    private void openVerDetallePersona(){
+
+
+
+
+	private void askForReadContactsPermission() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+					!= PackageManager.PERMISSION_GRANTED) {
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.READ_CONTACTS},
+						PERMISSIONS_READ_CONTACTS);
+
+
+			} else {//Ya tiene el permiso...
+				this.openVerDetallePersonaPrivado();
+			}
+		} else {
+			this.openVerDetallePersonaPrivado();
+		}
+
+
+	}
+
+    private void openVerDetallePersonaPrivado(){
         Intent i = new Intent(this, DetallePersonaActivity.class);
         i.putExtra(ConstantsAdmin.PERSONA_SELECCIONADA, String.valueOf(mPersonaSeleccionadaId));
         this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_DETALLE_PERSONA);
