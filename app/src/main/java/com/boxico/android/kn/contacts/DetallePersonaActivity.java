@@ -12,14 +12,10 @@ import java.util.List;
 import java.util.Locale;
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
 import android.content.ContentUris;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
