@@ -38,6 +38,7 @@ public class MenuPersonaActivity extends Activity {
         this.configurarDialog();
         this.registrarWidgets(dialog);
         dialog.show();
+
 	}
 
 	@Override
@@ -106,6 +107,7 @@ public class MenuPersonaActivity extends Activity {
 		mImagenPreferido.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				setearPreferido();
+
 			}
 		});
 		if(mEsPreferido){
@@ -136,6 +138,8 @@ public class MenuPersonaActivity extends Activity {
 			}
 
 		}
+		dialog.cancel();
+
 	}
 
 	private void sendInfoByMail(){

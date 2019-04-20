@@ -74,6 +74,7 @@ public class ConstantsAdmin {
 	public static CursorLoader cursorCategorias = null;
 	public static CursorLoader cursorCategoriasPersonales = null;
 	public static CursorLoader cursorPreferidos = null;
+	public static CursorLoader cursorComprobacionPreferidos = null;
 	public static ListadoPersonaActivity mainActivity = null;
 	public static CursorLoader cursorCategoriasActivas = null;
 	public static CursorLoader cursorCategoriasPersonalesActivas = null;
@@ -100,9 +101,9 @@ public class ConstantsAdmin {
 	public static boolean esPreferido(long id, DataBaseManager mDBManager, Context ctx){
 		boolean result = false;
 		ConstantsAdmin.inicializarBD(mDBManager);
-		cursorPreferidos = mDBManager.cursorLoaderPreferidoPorId(id, ctx);
+		cursorComprobacionPreferidos = mDBManager.cursorLoaderPreferidoPorId(id, ctx);
 		//	Cursor prefCursor = mDBManager.fetchPreferidoPorId(mPersonaSeleccionadaId);
-		Cursor prefCursor = cursorPreferidos.loadInBackground();
+		Cursor prefCursor = cursorComprobacionPreferidos.loadInBackground();
 		//startManagingCursor(prefCursor);
 		result = prefCursor.getCount() > 0;
 		prefCursor.close();
