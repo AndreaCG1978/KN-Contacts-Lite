@@ -4,21 +4,17 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import com.boxico.android.kn.contacts.R;
 import com.boxico.android.kn.contacts.AltaPersonaActivity;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class KNSimpleCustomAdapter extends SimpleAdapter {
 

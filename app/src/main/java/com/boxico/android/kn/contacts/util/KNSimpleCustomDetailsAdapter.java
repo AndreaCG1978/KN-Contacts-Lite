@@ -1,19 +1,12 @@
 package com.boxico.android.kn.contacts.util;
 
 import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.boxico.android.kn.contacts.AltaPersonaActivity;
 import com.boxico.android.kn.contacts.DetallePersonaActivity;
 import com.boxico.android.kn.contacts.R;
 

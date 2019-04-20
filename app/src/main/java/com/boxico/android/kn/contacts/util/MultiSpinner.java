@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.util.AttributeSet;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.boxico.android.kn.contacts.R;

@@ -18,7 +18,7 @@ import com.boxico.android.kn.contacts.persistencia.DataBaseManager;
 import com.boxico.android.kn.contacts.persistencia.dtos.PersonaDTO;
 import com.boxico.android.kn.contacts.util.ConstantsAdmin;
 
-import static com.boxico.android.kn.contacts.util.ConstantsAdmin.personaSeleccionada;
+
 
 public class MenuPersonaActivity extends Activity {
 	

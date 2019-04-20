@@ -41,7 +41,7 @@ INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/Andr
 	xmlns:android
 		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:4:43-67
+		ADDED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml:4:43-66
 		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
 		INJECTED from /home/andrea/AndroidStudioProjects/KN-Contacts-I/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.READ_CONTACTS

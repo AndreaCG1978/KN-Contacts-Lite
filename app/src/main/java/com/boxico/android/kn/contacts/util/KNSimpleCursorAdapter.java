@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.boxico.android.kn.contacts.R;
