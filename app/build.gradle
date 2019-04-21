@@ -9,7 +9,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.boxico.android.kn.contacts"
+        applicationId "com.boxico.android.kn.contactslite"
         minSdkVersion 19
         targetSdkVersion 27
     }

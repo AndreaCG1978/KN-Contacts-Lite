@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.boxico.android.kn.contacts"
+    package="com.boxico.android.kn.contactslite"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -30,9 +30,10 @@
         android:icon="@drawable/contacts_icon"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:supportsRtl="true" >
+        android:supportsRtl="true"
+        android:testOnly="true" >
         <activity
-            android:name="com.boxico.android.kn.contacts.InitActivity"
+            android:name="com.boxico.android.kn.contactslite.InitActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.boxico.android.kn.contacts.ListadoPersonaActivity"
+            android:name="com.boxico.android.kn.contactslite.ListadoPersonaActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.permission.READ_CONTACTS" />
@@ -54,7 +55,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.boxico.android.kn.contacts.DetallePersonaActivity"
+            android:name="com.boxico.android.kn.contactslite.DetallePersonaActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.permission.CALL_PHONE" />
@@ -64,27 +65,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.boxico.android.kn.contacts.ListadoCategoriaActivity"
+            android:name="com.boxico.android.kn.contactslite.ListadoCategoriaActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.boxico.android.kn.contacts.AltaPersonaActivity"
+            android:name="com.boxico.android.kn.contactslite.AltaPersonaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
-            android:name="com.boxico.android.kn.contacts.AboutMeActivity"
+            android:name="com.boxico.android.kn.contactslite.AboutMeActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.boxico.android.kn.contacts.ProteccionCategoriaActivity"
+            android:name="com.boxico.android.kn.contactslite.ProteccionCategoriaActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.boxico.android.kn.contacts.ActivarContraseniaActivity"
+            android:name="com.boxico.android.kn.contactslite.ActivarContraseniaActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.boxico.android.kn.contacts.PhotoActivity"
+            android:name="com.boxico.android.kn.contactslite.PhotoActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -94,7 +95,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.boxico.android.kn.contacts.ImportarContactoActivity"
+            android:name="com.boxico.android.kn.contactslite.ImportarContactoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
             <intent-filter>
@@ -102,13 +103,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.boxico.android.kn.contacts.MenuPersonaActivity"
+            android:name="com.boxico.android.kn.contactslite.MenuPersonaActivity"
             android:screenOrientation="portrait" >
         </activity>
 
         <provider
-            android:name="com.boxico.android.kn.contacts.util.GenericFileProvider"
-            android:authorities="com.boxico.android.kn.contacts.provider"
+            android:name="com.boxico.android.kn.contactslite.util.GenericFileProvider"
+            android:authorities="com.boxico.android.kn.contactslite.provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data

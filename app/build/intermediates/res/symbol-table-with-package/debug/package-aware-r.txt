@@ -1,4 +1,4 @@
-com.boxico.android.kn.contacts
+com.boxico.android.kn.contactslite
 attr coordinatorLayoutStyle
 attr font
 attr fontProviderAuthority

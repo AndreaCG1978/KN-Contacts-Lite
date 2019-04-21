@@ -1,5 +1,5 @@
 -- Merging decision tree log ---
-provider#com.boxico.android.kn.contacts.util.GenericFileProvider
+provider#com.boxico.android.kn.contactslite.util.GenericFileProvider
 INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:96:3-104:14
 	android:grantUriPermissions
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:100:4-38
@@ -9,7 +9,7 @@ INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:96:
 	android:exported
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:99:4-28
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:97:4-44
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:97:4-78
 manifest
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:2:1-107:12
 INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:2:1-107:12
@@ -29,7 +29,7 @@ INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:2:1
 INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:2:1-107:12
 INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:2:1-107:12
 	package
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:4:2-42
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:4:2-46
 		INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml
 		INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml
 	android:versionName
@@ -41,7 +41,7 @@ INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:2:1
 	xmlns:android
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:4:43-66
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:4:47-70
 		INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml
 		INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.READ_CONTACTS
@@ -98,12 +98,12 @@ ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:23:2-1
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:23:15-53
 	android:allowBackup
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:28:3-29
-activity#com.boxico.android.kn.contacts.InitActivity
+activity#com.boxico.android.kn.contactslite.InitActivity
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:35:3-43:14
 	android:screenOrientation
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:35:41-77
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:35:76-112
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:35:13-40
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:35:13-75
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:36:4-39:20
 action#android.intent.action.MAIN
@@ -120,88 +120,88 @@ action#android.permission.READ_CONTACTS
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:41:5-63
 	android:name
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:41:13-60
-activity#com.boxico.android.kn.contacts.ListadoPersonaActivity
+activity#com.boxico.android.kn.contactslite.ListadoPersonaActivity
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:44:3-52:14
 	android:screenOrientation
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:44:51-87
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:44:86-122
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:44:13-50
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:44:13-85
 intent-filter#action:name:android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:48:4-50:20
 action#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:49:5-72
 	android:name
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:49:13-69
-activity#com.boxico.android.kn.contacts.DetallePersonaActivity
+activity#com.boxico.android.kn.contactslite.DetallePersonaActivity
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:53:3-60:14
 	android:screenOrientation
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:53:51-87
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:53:86-122
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:53:13-50
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:53:13-85
 intent-filter#action:name:android.permission.CALL_PHONE
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:54:4-56:20
 action#android.permission.CALL_PHONE
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:55:5-60
 	android:name
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:55:13-57
-activity#com.boxico.android.kn.contacts.ListadoCategoriaActivity
+activity#com.boxico.android.kn.contactslite.ListadoCategoriaActivity
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:61:3-62:14
 	android:screenOrientation
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:61:53-89
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:61:88-124
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:61:13-52
-activity#com.boxico.android.kn.contacts.AltaPersonaActivity
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:61:13-87
+activity#com.boxico.android.kn.contactslite.AltaPersonaActivity
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:63:3-66:64
 	android:screenOrientation
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:65:4-40
 	android:windowSoftInputMode
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:66:4-61
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:64:4-38
-activity#com.boxico.android.kn.contacts.AboutMeActivity
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:64:4-73
+activity#com.boxico.android.kn.contactslite.AboutMeActivity
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:68:3-69:14
 	android:screenOrientation
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:68:44-80
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:68:79-115
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:68:13-43
-activity#com.boxico.android.kn.contacts.ProteccionCategoriaActivity
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:68:13-78
+activity#com.boxico.android.kn.contactslite.ProteccionCategoriaActivity
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:71:3-72:14
 	android:screenOrientation
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:71:56-92
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:71:91-127
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:71:13-55
-activity#com.boxico.android.kn.contacts.ActivarContraseniaActivity
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:71:13-90
+activity#com.boxico.android.kn.contactslite.ActivarContraseniaActivity
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:74:3-75:14
 	android:screenOrientation
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:74:55-91
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:74:90-126
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:74:13-54
-activity#com.boxico.android.kn.contacts.PhotoActivity
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:74:13-89
+activity#com.boxico.android.kn.contactslite.PhotoActivity
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:77:3-84:14
 	android:screenOrientation
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:77:42-78
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:77:77-113
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:77:13-41
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:77:13-76
 intent-filter#action:name:android.permission.READ_EXTERNAL_STORAGE
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:78:4-80:20
 action#android.permission.READ_EXTERNAL_STORAGE
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:79:5-71
 	android:name
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:79:13-68
-activity#com.boxico.android.kn.contacts.ImportarContactoActivity
+activity#com.boxico.android.kn.contactslite.ImportarContactoActivity
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:86:3-91:14
 	android:screenOrientation
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:86:53-89
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:86:88-124
 	android:windowSoftInputMode
 		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:87:4-61
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:86:13-52
-activity#com.boxico.android.kn.contacts.MenuPersonaActivity
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:86:13-87
+activity#com.boxico.android.kn.contactslite.MenuPersonaActivity
 ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:93:3-94:14
 	android:screenOrientation
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:93:48-84
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:93:83-119
 	android:name
-		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:93:13-47
+		ADDED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml:93:13-82
 uses-sdk
 INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/andrea/KN-Contacts-Lite/app/src/main/AndroidManifest.xml
