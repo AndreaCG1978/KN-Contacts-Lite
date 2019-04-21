@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.boxico.android.kn.contacts"
+    android:targetSandboxVersion="2"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="27" />
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:hardwareAccelerated="false"
+        android:icon="@drawable/contacts_icon"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true" >
+        <activity
+            android:name="com.boxico.android.kn.contacts.InitActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.permission.READ_CONTACTS" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.boxico.android.kn.contacts.ListadoPersonaActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.permission.READ_CONTACTS" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.boxico.android.kn.contacts.DetallePersonaActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.permission.CALL_PHONE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.permission.READ_CONTACTS" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.boxico.android.kn.contacts.ListadoCategoriaActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.boxico.android.kn.contacts.AltaPersonaActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name="com.boxico.android.kn.contacts.AboutMeActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.boxico.android.kn.contacts.ProteccionCategoriaActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.boxico.android.kn.contacts.ActivarContraseniaActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.boxico.android.kn.contacts.PhotoActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.boxico.android.kn.contacts.ImportarContactoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
+            <intent-filter>
+                <action android:name="android.permission.READ_CONTACTS" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.boxico.android.kn.contacts.MenuPersonaActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <provider
+            android:name="com.boxico.android.kn.contacts.util.GenericFileProvider"
+            android:authorities="com.boxico.android.kn.contacts.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+
+</manifest>

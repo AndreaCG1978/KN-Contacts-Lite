@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<string name="app_name"><![CDATA[KN-Kontakt]]></string>
+<string name="app_name"><![CDATA[KN-Kontakt Lite]]></string>
 <string name="hint_apellido"><![CDATA[ZUNAME]]></string>
 <string name="hint_nombre"><![CDATA[NAMEN]]></string>
     <string name="hint_descripcion"><![CDATA[BESCHREIBUNG]]></string>
