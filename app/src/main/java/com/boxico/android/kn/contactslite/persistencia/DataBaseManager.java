@@ -447,6 +447,13 @@ public class DataBaseManager {
 		 return result;
      }
 
+	public long tablaPersonasSize(){
+		long result = 0;
+		SQLiteStatement s = mDb.compileStatement(DataBaseHelper.SIZE_PERSONAS);
+		result = s.simpleQueryForLong();
+		return result;
+	}
+
      public long tablaCategoriaSize(){
    	 	long result = 0;
 		SQLiteStatement s = mDb.compileStatement(DataBaseHelper.SIZE_CATEGORIAS);

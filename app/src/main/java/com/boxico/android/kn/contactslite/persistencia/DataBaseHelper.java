@@ -73,6 +73,8 @@ class DataBaseHelper extends SQLiteOpenHelper{
     
     
 	public static final String SIZE_CATEGORIAS = "select count(" + ConstantsAdmin.KEY_ROWID + ") from " + ConstantsAdmin.TABLA_CATEGORIA + " where " + ConstantsAdmin.KEY_ROWID + " > 0" ;
+
+    public static final String SIZE_PERSONAS = "select count(" + ConstantsAdmin.KEY_ROWID + ") from " + ConstantsAdmin.TABLA_PERSONA + " where " + ConstantsAdmin.KEY_ROWID + " > 0" ;
     
 	public static final String SIZE_CONTRASENIA = "select count(" + ConstantsAdmin.KEY_ROWID + ") from " + ConstantsAdmin.TABLA_CONTRASENIA + " where " + ConstantsAdmin.KEY_ROWID + " > 0" ;
 

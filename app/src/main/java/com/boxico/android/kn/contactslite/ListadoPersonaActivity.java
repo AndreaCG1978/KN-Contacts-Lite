@@ -2014,9 +2014,19 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ABOUT_ME);
 	}
 
+	private boolean verificarTope(){
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		long totalCargados = ConstantsAdmin.tablaPersonasSize(mDBManager);
+		return totalCargados < ConstantsAdmin.tope;
+	}
+
 	private void openAltaPersona() {
-		Intent i = new Intent(this, AltaPersonaActivity.class);
-		this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA);
+		if(this.verificarTope()) {
+			Intent i = new Intent(this, AltaPersonaActivity.class);
+			this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA);
+		}else{
+			ConstantsAdmin.mostrarMensaje(this, this.getString(R.string.mensaje_borrar_foto));
+		}
 	}
 
 	private void openListadoCategoria(){

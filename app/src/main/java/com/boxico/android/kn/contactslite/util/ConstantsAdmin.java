@@ -95,6 +95,8 @@ public class ConstantsAdmin {
 	public static final String kn_mail ="knapps.mobile@gmail.com";
 	public static final String kn_mail_pass ="sfyhfald2019";
 
+	public static final int tope = 3;
+
 	private static ArrayList<Long> telefonosAEliminar = null;
 
 	public static boolean esPreferido(long id, DataBaseManager mDBManager, Context ctx){
@@ -429,6 +431,14 @@ public class ConstantsAdmin {
 		long valor;
 		inicializarBD(mDBManager);
 		valor = mDBManager.tablaPreferidosSize();
+		finalizarBD(mDBManager);
+		return valor;
+	}
+
+	public static long tablaPersonasSize(DataBaseManager mDBManager){
+		long valor;
+		inicializarBD(mDBManager);
+		valor = mDBManager.tablaPersonasSize();
 		finalizarBD(mDBManager);
 		return valor;
 	}
