@@ -173,5 +173,6 @@
     <string name="mensaje_sin_contactos"><![CDATA[Начать регистрацию контактов с:]]></string>
     <string name="mensaje_enviar_contrasenia"><![CDATA[Отправьте пароль на адрес электронной почты:]]></string>
     <string name="mensaje_leyenda_registrar_contrasenia"><![CDATA[░ Вам необходимо зарегистрировать пароль для защиты ваших категорий!]]></string>
+    <string name="mensaje_alcanzo_tope"><![CDATA[Вы не можете добавлять новые контакты в версии Lite.]]></string>
 
 </resources>

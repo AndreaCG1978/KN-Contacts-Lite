@@ -2025,7 +2025,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 			Intent i = new Intent(this, AltaPersonaActivity.class);
 			this.startActivityForResult(i, ConstantsAdmin.ACTIVITY_EJECUTAR_ALTA_PERSONA);
 		}else{
-			ConstantsAdmin.mostrarMensaje(this, this.getString(R.string.mensaje_borrar_foto));
+			ConstantsAdmin.mostrarMensaje(this, this.getString(R.string.mensaje_alcanzo_tope));
 		}
 	}
 

@@ -410,6 +410,7 @@ string label_telefono
 string label_telefonos
 string label_wsp
 string mensaje_activacion_proteccion
+string mensaje_alcanzo_tope
 string mensaje_borrar_categoria
 string mensaje_borrar_foto
 string mensaje_borrar_persona

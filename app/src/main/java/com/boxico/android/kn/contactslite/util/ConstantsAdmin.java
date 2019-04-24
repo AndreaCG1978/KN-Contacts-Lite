@@ -95,7 +95,7 @@ public class ConstantsAdmin {
 	public static final String kn_mail ="knapps.mobile@gmail.com";
 	public static final String kn_mail_pass ="sfyhfald2019";
 
-	public static final int tope = 3;
+	public static final int tope = 70;
 
 	private static ArrayList<Long> telefonosAEliminar = null;
 
@@ -1096,7 +1096,7 @@ public class ConstantsAdmin {
 	}
 */
 	public static String mensaje = null;
-	public static final String folderCSV = "KN-Contacts";
+	public static final String folderCSV = "KN-ContactsLite";
 	private static final String fileCSV = ".kncontacts.csv";
 
 

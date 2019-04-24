@@ -175,5 +175,6 @@
     <string name="mensaje_sin_contactos">Inicie o registro de contatos de:</string>
     <string name="mensaje_enviar_contrasenia">Envie a senha para a conta de email:</string>
     <string name="mensaje_leyenda_registrar_contrasenia"><![CDATA[░ Você precisa registrar uma senha para proteger suas categorias!]]></string>
+    <string name="mensaje_alcanzo_tope"><![CDATA[Não é possível adicionar novos contatos na versão Lite.]]></string>
 
 </resources>

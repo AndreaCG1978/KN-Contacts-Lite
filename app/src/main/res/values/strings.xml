@@ -173,5 +173,6 @@
     <string name="mensaje_sin_contactos">Begin contact loading from:</string>
     <string name="mensaje_enviar_contrasenia"><![CDATA[Send the password to the email account: ]]></string>
     <string name="mensaje_leyenda_registrar_contrasenia"><![CDATA[░ You must register a password to protect your categories!]]></string>
+    <string name="mensaje_alcanzo_tope">It is not possible to add new contacts in the Lite version.</string>
 
 </resources>

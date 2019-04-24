@@ -173,4 +173,5 @@
     <string name="mensaje_sin_contactos">Starten Sie die Registrierung von Kontakten von:</string>
     <string name="mensaje_enviar_contrasenia">Senden Sie das Passwort an das E-Mail-Konto:</string>
     <string name="mensaje_leyenda_registrar_contrasenia"><![CDATA[░ Sie müssen ein Passwort registrieren, um Ihre Kategorien zu schützen!]]></string>
+    <string name="mensaje_alcanzo_tope"><![CDATA[In der Lite-Version können keine neuen Kontakte hinzugefügt werden.]]></string>
 </resources>

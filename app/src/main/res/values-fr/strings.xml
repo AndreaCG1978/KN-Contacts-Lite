@@ -172,5 +172,6 @@
     <string name="mensaje_sin_contactos"><![CDATA[Commencez l\'enregistrement des contacts de:]]></string>
     <string name="mensaje_enviar_contrasenia">Envoyez le mot de passe au compte de messagerie:</string>
     <string name="mensaje_leyenda_registrar_contrasenia"><![CDATA[░ Vous devez enregistrer un mot de passe pour protéger vos catégories!]]></string>
+    <string name="mensaje_alcanzo_tope"><![CDATA[Il ñ\'est pas possible d\'ajouter de nouveaux contacts dans la version Lite.]]></string>
 
 </resources>

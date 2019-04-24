@@ -642,50 +642,58 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 		ConstantsAdmin.mDBManager.createPersona(persona, false);*/
 		String given;
 		String family;
+		long contador = 0;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		long cantTotalPersonas = ConstantsAdmin.tablaPersonasSize(mDBManager);
 		ConstantsAdmin.inicializarBD(mDBManager);
-		getPeople().moveToFirst();
-		while (getPeople().moveToNext()) {
-			contactId = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
-			contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactId);
-			if (contactoActual != null) {
-				given = (String) contactoActual.getKey();
-				family = (String) contactoActual.getValue();
 
-				if (family != null && !family.equals("") || given != null && !given.equals("")) {
-					persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given, family);
-					if (persona == null) {
-						persona = new PersonaDTO();
-					}
-					persona.setApellido(family);
-					persona.setNombres(given);
+		if(contador + cantTotalPersonas < ConstantsAdmin.tope){
+			getPeople().moveToFirst();
+			while (getPeople().moveToNext() && (contador + cantTotalPersonas < ConstantsAdmin.tope)){
+				contactId = getPeople().getString(getPeople().getColumnIndex(ContactsContract.Contacts._ID));
+				contactoActual = this.obtenerNombreYApellidoDeContactoDeAgenda(contactId);
+				if (contactoActual != null) {
+					given = (String) contactoActual.getKey();
+					family = (String) contactoActual.getValue();
+
+					if (family != null && !family.equals("") || given != null && !given.equals("")) {
+						persona = ConstantsAdmin.obtenerPersonaConNombreYApellido(given, family);
+						if (persona == null) {
+							persona = new PersonaDTO();
+							contador ++;
+						}
+						persona.setApellido(family);
+						persona.setNombres(given);
 				/*	if (persona.getNombres() != null && persona.getApellido() == null) {
 						persona.setApellido(persona.getNombres());
 						persona.setNombres(null);
 					}*/
 
-					this.obtenerContactoCapturado(true);
-					long idPersona = mDBManager.createPersona(persona, false);
-                    this.guardarNuevosTelefonos(mDBManager, idPersona);
-                    this.guardarNuevosMails(mDBManager, idPersona);
-                    this.guardarNuevasDirecciones(mDBManager, idPersona);
-					// Cargo foto
+						this.obtenerContactoCapturado(true);
+						long idPersona = mDBManager.createPersona(persona, false);
 
-					InputStream inputStream = null;
-					Bitmap photoTemp = null;
-					inputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.getContentResolver(),
-							ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, Long.valueOf(contactId)));
-					if (inputStream != null) {
-						photoTemp = BitmapFactory.decodeStream(inputStream);
-						try {
-							ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(idPersona) + ".jpg", photoTemp);
-						} catch (IOException e) {
-							e.printStackTrace();
+						this.guardarNuevosTelefonos(mDBManager, idPersona);
+						this.guardarNuevosMails(mDBManager, idPersona);
+						this.guardarNuevasDirecciones(mDBManager, idPersona);
+						// Cargo foto
+
+						InputStream inputStream = null;
+						Bitmap photoTemp = null;
+						inputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.getContentResolver(),
+								ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, Long.valueOf(contactId)));
+						if (inputStream != null) {
+							photoTemp = BitmapFactory.decodeStream(inputStream);
+							try {
+								ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(idPersona) + ".jpg", photoTemp);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 						}
+
+
 					}
-
-
 				}
+
 			}
 
 		}
@@ -696,29 +704,40 @@ public class ImportarContactoActivity extends FragmentActivity implements Loader
 	}
 
 
+	private boolean verificarTope(){
+		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		long totalCargados = ConstantsAdmin.tablaPersonasSize(mDBManager);
+		return totalCargados < ConstantsAdmin.tope;
+	}
+
 	private void addContact() {
 		long id;
 		DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+		boolean puedeAgregar = !this.verificarTope();
 		ConstantsAdmin.inicializarBD(mDBManager);
 		this.obtenerContactoCapturado(false);
-		id = mDBManager.createPersona(persona, false);
-		if (id != -1) {
-            try {
-            	if(photo != null) {
-					ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(id) + ".jpg", photo);
+		if(persona.getId() == -1 && puedeAgregar){
+			ConstantsAdmin.mostrarMensaje(this, this.getString(R.string.mensaje_alcanzo_tope));
+		}else {
+			id = mDBManager.createPersona(persona, false);
+			if (id != -1) {
+				try {
+					if (photo != null) {
+						ConstantsAdmin.almacenarImagen(this, ConstantsAdmin.folderCSV + File.separator + ConstantsAdmin.imageFolder, "." + String.valueOf(id) + ".jpg", photo);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            ConstantsAdmin.resetPersonasOrganizadas();
-			persona.setId(id);
-			this.guardarNuevosTelefonos(mDBManager, id);
-			this.guardarNuevosMails(mDBManager, id);
-			this.guardarNuevasDirecciones(mDBManager, id);
-			this.mostrarDatosPersonaEncontrada();
-			mPersonaEncontrada.setText(mPersonaEncontrada.getText() + " #");
+				ConstantsAdmin.resetPersonasOrganizadas();
+				persona.setId(id);
+				this.guardarNuevosTelefonos(mDBManager, id);
+				this.guardarNuevosMails(mDBManager, id);
+				this.guardarNuevasDirecciones(mDBManager, id);
+				this.mostrarDatosPersonaEncontrada();
+				mPersonaEncontrada.setText(mPersonaEncontrada.getText() + " #");
+			}
+			ConstantsAdmin.finalizarBD(mDBManager);
 		}
-		ConstantsAdmin.finalizarBD(mDBManager);
 		//	this.buscarSiguienteContacto();
 
 
