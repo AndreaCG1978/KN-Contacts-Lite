@@ -112,6 +112,15 @@ public class ConstantsAdmin {
 		return result;
 	}
 
+	public static boolean existeBackupKNContactsLite(){
+		String path = obtenerPath(ConstantsAdmin.folderCSV);
+		File dir = new File(path);
+		dir.mkdir();
+		String nombreArchivo = fileCSV;
+		File file = new File(dir.getPath(), nombreArchivo);
+		return file.exists();
+	}
+
 	public static ArrayList<Long> getTelefonosAEliminar() {
 		if(telefonosAEliminar == null){
             telefonosAEliminar = new ArrayList<>();
