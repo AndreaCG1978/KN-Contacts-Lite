@@ -94,6 +94,7 @@ public class ConstantsAdmin {
 	public static final String fileEsteticoCSV = "kncontactsExcel.csv";
 	public static final String kn_mail ="knapps.mobile@gmail.com";
 	public static final String kn_mail_pass ="sfyhfald2019";
+	public static final String url_whatsapp ="https://api.whatsapp.com/";
 
 	public static final int tope = 70;
 
