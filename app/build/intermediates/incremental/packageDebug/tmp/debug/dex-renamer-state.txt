@@ -1,4 +1,4 @@
-#Sun Apr 28 09:03:49 ART 2019
+#Wed May 01 18:00:50 ART 2019
 base.0=/home/andrea/KN-Contacts-Lite/app/build/intermediates/dex/debug/mergeDexDebug/out
 path.0=classes.dex
 renamed.0=classes.dex

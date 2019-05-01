@@ -8,28 +8,28 @@
         "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
     },
     {
-        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_contacts_icon.png.flat",
-        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/contacts_icon.png"
-    },
-    {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_mail_am_icon.png.flat",
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/mail_am_icon.png"
+    },
+    {
+        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_contacts_icon.png.flat",
+        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/contacts_icon.png"
     },
     {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-mdpi_send_icon.png.flat",
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-mdpi/send_icon.png"
     },
     {
-        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/layout_notification_template_part_chronometer.xml.flat",
-        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout/notification_template_part_chronometer.xml"
+        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_clear_icon2.png.flat",
+        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/clear_icon2.png"
     },
     {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_go_address_icon.png.flat",
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/go_address_icon.png"
     },
     {
-        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_clear_icon2.png.flat",
-        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/clear_icon2.png"
+        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/layout_notification_template_part_chronometer.xml.flat",
+        "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout/notification_template_part_chronometer.xml"
     },
     {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
@@ -44,32 +44,32 @@
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-ldpi/delete.png"
     },
     {
-        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_categoria_icon.png.flat",
-        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/categoria_icon.png"
+        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-ldpi_go_mail_icon.png.flat",
+        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-ldpi/go_mail_icon.png"
     },
     {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_pref_detalle_icon.png.flat",
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/pref_detalle_icon.png"
     },
     {
-        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-ldpi_go_mail_icon.png.flat",
-        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-ldpi/go_mail_icon.png"
+        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_categoria_icon.png.flat",
+        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/categoria_icon.png"
     },
     {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_person_am_icon_bw.png.flat",
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/person_am_icon_bw.png"
     },
     {
-        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-mdpi_categoria_am_icon_bw.png.flat",
-        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-mdpi/categoria_am_icon_bw.png"
+        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_contraer_icon.png.flat",
+        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/contraer_icon.png"
     },
     {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_pref_icon.png.flat",
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/pref_icon.png"
     },
     {
-        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_contraer_icon.png.flat",
-        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/contraer_icon.png"
+        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-mdpi_categoria_am_icon_bw.png.flat",
+        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-mdpi/categoria_am_icon_bw.png"
     },
     {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-ldpi_person_am_icon.png.flat",
@@ -140,12 +140,12 @@
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-ldpi/delete_icon_mini.png"
     },
     {
-        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_mail_am_icon_bw.png.flat",
-        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/mail_am_icon_bw.png"
-    },
-    {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/layout-v21_notification_action_tombstone.xml.flat",
         "source": "/home/andrea/.gradle/caches/transforms-2/files-2.1/3e33f18aa36992dcdee15821dc4b4e3e/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_mail_am_icon_bw.png.flat",
+        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/mail_am_icon_bw.png"
     },
     {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable_notification_bg_low.xml.flat",
@@ -208,12 +208,12 @@
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-mdpi/more_desc_contact.png"
     },
     {
-        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_home_am_icon.png.flat",
-        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/home_am_icon.png"
-    },
-    {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_about_me_menu.png.flat",
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/about_me_menu.png"
+    },
+    {
+        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-hdpi_home_am_icon.png.flat",
+        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-hdpi/home_am_icon.png"
     },
     {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-mdpi_delete_icon_mini_w.png.flat",
@@ -268,12 +268,12 @@
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-mdpi/mail_am_icon_bw.png"
     },
     {
-        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-ldpi_prev_icon.png.flat",
-        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-ldpi/prev_icon.png"
-    },
-    {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/layout_splash.xml.flat",
         "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/layout/splash.xml"
+    },
+    {
+        "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-ldpi_prev_icon.png.flat",
+        "source": "/home/andrea/KN-Contacts-Lite/app/src/main/res/drawable-ldpi/prev_icon.png"
     },
     {
         "merged": "/home/andrea/KN-Contacts-Lite/app/build/intermediates/res/merged/debug/drawable-mdpi_pref_detalle_icon.png.flat",
