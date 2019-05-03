@@ -1,4 +1,4 @@
-#Wed May 01 18:00:50 ART 2019
-base.0=/home/andrea/KN-Contacts-Lite/app/build/intermediates/dex/debug/mergeDexDebug/out
+#Fri May 03 08:40:05 ART 2019
+base.0=C\:\\Users\\a.grassano.spb\\ProyectosAndroid\\KN-Contacts-Lite\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
 path.0=classes.dex
 renamed.0=classes.dex
