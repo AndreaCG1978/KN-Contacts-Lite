@@ -217,6 +217,8 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
 					!= PackageManager.PERMISSION_GRANTED) {
+				DataBaseManager mDBManager = DataBaseManager.getInstance(this);
+				personaSeleccionada = ConstantsAdmin.obtenerPersonaId(idPer, mDBManager);
 				ActivityCompat.requestPermissions(this,
 						new String[]{Manifest.permission.READ_CONTACTS},
 						PERMISSIONS_READ_CONTACTS);
@@ -231,6 +233,7 @@ public class ListadoPersonaActivity extends ExpandableListFragment implements Mu
 
 
 	}
+
 
 
 	private void askForReadStoragePermission() {

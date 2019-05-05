@@ -897,6 +897,33 @@ public class DataBaseManager {
          return mCursor;
      }
 */
+
+
+
+	public CursorLoader cursorLoaderIdAgenda(String idAgenda, Context context) {
+
+		String selection = ConstantsAdmin.querySelectionByIdAgenda(idAgenda);
+
+		return new CursorLoader( context, null, null, selection, null, null)
+		{
+			@Override
+			public Cursor loadInBackground()
+			{
+				// You better know how to get your database.
+				// You can use any query that returns a cursor.
+				Cursor c = null;
+				if(mDb.isOpen()){
+					c = mDb.query(true, ConstantsAdmin.TABLA_PERSONA, getProjection(), getSelection(), getSelectionArgs(), null, null, getSortOrder(), null );
+					if (c != null) {
+						c.moveToFirst();
+					}
+				}
+				return c;
+			}
+		};
+
+	}
+
     public CursorLoader cursorLoaderNombreApellidoPersona (String nombre, String apellido, Context context) {
 
         String selection = ConstantsAdmin.querySelectionNombreYApellidoPersona(nombre, apellido);
