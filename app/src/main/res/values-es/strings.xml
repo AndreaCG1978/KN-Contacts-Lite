@@ -103,7 +103,9 @@
 
 
     <string name="text_acerca_de">Un producto realizado por</string>
-    <string name="text_acerca_de_sugerencia"><![CDATA[Por cualquier inconveniente, sugerencia o comentario, comuní­quese con nosotros a:]]></string>
+    <string name="text_acerca_de_sugerencia"><![CDATA[La version KN-Contacts Lite solo permite agregar hasta 70 contactos.
+
+    Por cualquier inconveniente, sugerencia o comentario, comuní­quese con nosotros a:]]></string>
 
     <string name="error_exportar_csv">No es posible generar el Backup.</string>
 

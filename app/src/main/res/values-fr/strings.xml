@@ -96,7 +96,9 @@
 <string name="text_acerca_de_empresa">KN-Apps</string>
 <string name="text_acerca_de_mail">knapps.mobile@gmail.com</string>	
 <string name="text_acerca_de"><![CDATA[Fabriqué par]]></string>
-<string name="text_acerca_de_sugerencia"><![CDATA[Pour des commentaires, envoyer un message à:]]></string>
+<string name="text_acerca_de_sugerencia"><![CDATA[La version KN-Contacts Lite ne vous permet d\'ajouter que 70 contacts au maximum.
+
+Pour des commentaires, envoyer un message à:]]></string>
 
     <string name="mensaje_exito_exportar_csv"><![CDATA[Des contacts ont été sauvegardés avec succès.]]></string>
 <string name="mensaje_exito_importar_csv"><![CDATA[Des contacts ont été chargées avec succès.]]></string>
