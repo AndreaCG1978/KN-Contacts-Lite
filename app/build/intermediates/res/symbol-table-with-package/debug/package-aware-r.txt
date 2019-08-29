@@ -87,6 +87,7 @@ drawable go_mail_icon
 drawable go_message_icon
 drawable home_am_icon
 drawable home_am_icon_bw
+drawable ic_launcher
 drawable import_icon
 drawable import_menu_icon
 drawable less_desc_contact
